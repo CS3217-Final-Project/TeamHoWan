@@ -13,3 +13,6 @@ blocks:
             - checkout
             - swift build -v
             - swift test -v
+      prologue:
+        commands:
+          - cd GameOfRunes
