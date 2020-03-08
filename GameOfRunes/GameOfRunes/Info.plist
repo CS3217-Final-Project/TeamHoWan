@@ -40,7 +40,8 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Dragon FIre.ttf</string>
+		<string>Dragon-FIre.otf</string>
+		<string>HVD_Comic_Serif_Pro.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

@@ -13,7 +13,7 @@ class HealthComponent: GKComponent {
     var healthPoints: Int
     
     init(healthPoints: Int) {
-        self.healthPoints = healthPoints
+        self.healthPoints = max(0, healthPoints)
         super.init()
     }
     
