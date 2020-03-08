@@ -5,16 +5,16 @@ agent:
     type: a1-standard-4
     os_image: macos-mojave-xcode11
 blocks:
-  - name: Run tests
+  - name: Download code
     task:
-      env_vars:
-        - name: LANG
-          value: en_US.UTF-8
-      prologue:
-        commands:
-          - checkout
+      env_vars: []
+      jobs:
+        - name: Download
+          commands:
+            - checkout
+  - name: Unit Tests
+    task:
       jobs:
         - name: Test
           commands:
-            - bundle exec xcversion select 11.2.1
-            - bundle exec fastlane test
+            - echo "running unit test."
