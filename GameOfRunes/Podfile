@@ -1,0 +1,7 @@
+platform :ios, "13.2"
+use_modular_headers!
+
+target "GameOfRunes" do
+  pod "SwiftLint"
+
+end
