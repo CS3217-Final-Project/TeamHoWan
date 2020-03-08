@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F1298E922021B12A5C71EE7 /* libPods-GameOfRunes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
-		4ACC8BAB2414C69800F235AE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAA2414C69800F235AE /* GameScene.sks */; };
-		4ACC8BAD2414C69800F235AE /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAC2414C69800F235AE /* Actions.sks */; };
 		4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAE2414C69800F235AE /* GameScene.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
 		4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB22414C69800F235AE /* Main.storyboard */; };
@@ -20,6 +18,7 @@
 		4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD12414D57900F235AE /* SpriteComponent.swift */; };
 		4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD32414D71100F235AE /* EnemyEntity.swift */; };
 		4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD52414D79F00F235AE /* EntityManager.swift */; };
+		4ACC8BD8241520E600F235AE /* BackgroundEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +34,6 @@
 /* Begin PBXFileReference section */
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4ACC8BAA2414C69800F235AE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		4ACC8BAC2414C69800F235AE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		4ACC8BAE2414C69800F235AE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4ACC8BB02414C69800F235AE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4ACC8BB32414C69800F235AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		4ACC8BD12414D57900F235AE /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		4ACC8BD32414D71100F235AE /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		4ACC8BD52414D79F00F235AE /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
+		4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundEntity.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,8 +97,6 @@
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
-				4ACC8BAA2414C69800F235AE /* GameScene.sks */,
-				4ACC8BAC2414C69800F235AE /* Actions.sks */,
 				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
@@ -131,6 +127,7 @@
 		4ACC8BD02414D54800F235AE /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */,
 				4ACC8BD32414D71100F235AE /* EnemyEntity.swift */,
 				4ACC8BD52414D79F00F235AE /* EntityManager.swift */,
 			);
@@ -238,10 +235,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
-				4ACC8BAB2414C69800F235AE /* GameScene.sks in Resources */,
 				4ACC8BB62414C69B00F235AE /* Assets.xcassets in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
-				4ACC8BAD2414C69800F235AE /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +301,7 @@
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
+				4ACC8BD8241520E600F235AE /* BackgroundEntity.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
