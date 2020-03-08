@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var entityManager: EntityManager!
     
     var entities = [GKEntity]()
     var graphs = [String: GKGraph]()
@@ -19,7 +20,8 @@ class GameScene: SKScene {
     private var spinnyNode: SKShapeNode?
     
     override func sceneDidLoad() {
-
+        entityManager = .init(scene: self)
+        
         self.lastUpdateTime = 0
         
         // Get label node from scene and store it for use later

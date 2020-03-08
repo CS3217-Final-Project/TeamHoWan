@@ -17,6 +17,9 @@
 		4ACC8BB62414C69B00F235AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB52414C69B00F235AE /* Assets.xcassets */; };
 		4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */; };
 		4ACC8BC42414C69B00F235AE /* GameOfRunesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BC32414C69B00F235AE /* GameOfRunesTests.swift */; };
+		4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD12414D57900F235AE /* SpriteComponent.swift */; };
+		4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD32414D71100F235AE /* EnemyEntity.swift */; };
+		4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD52414D79F00F235AE /* EntityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		4ACC8BBF2414C69B00F235AE /* GameOfRunesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfRunesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BC32414C69B00F235AE /* GameOfRunesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfRunesTests.swift; sourceTree = "<group>"; };
 		4ACC8BC52414C69B00F235AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACC8BD12414D57900F235AE /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		4ACC8BD32414D71100F235AE /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
+		4ACC8BD52414D79F00F235AE /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
+				4ACC8BCF2414D53800F235AE /* Components */,
+				4ACC8BD02414D54800F235AE /* Entities */,
 				4ACC8BAA2414C69800F235AE /* GameScene.sks */,
 				4ACC8BAC2414C69800F235AE /* Actions.sks */,
 				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
@@ -110,6 +118,23 @@
 				4ACC8BC52414C69B00F235AE /* Info.plist */,
 			);
 			path = GameOfRunesTests;
+			sourceTree = "<group>";
+		};
+		4ACC8BCF2414D53800F235AE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4ACC8BD12414D57900F235AE /* SpriteComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4ACC8BD02414D54800F235AE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4ACC8BD32414D71100F235AE /* EnemyEntity.swift */,
+				4ACC8BD52414D79F00F235AE /* EntityManager.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		5A6CB57AA35FD0CFDEBF8802 /* Frameworks */ = {
@@ -277,7 +302,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */,
+				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
+				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
+				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
