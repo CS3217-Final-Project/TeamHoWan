@@ -19,6 +19,10 @@
 		4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD32414D71100F235AE /* EnemyEntity.swift */; };
 		4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD52414D79F00F235AE /* EntityManager.swift */; };
 		4ACC8BD8241520E600F235AE /* BackgroundEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */; };
+		4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD92415322400F235AE /* HealthComponent.swift */; };
+		4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */; };
+		4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDD2415324400F235AE /* ManaComponent.swift */; };
+		4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		4ACC8BD32414D71100F235AE /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		4ACC8BD52414D79F00F235AE /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundEntity.swift; sourceTree = "<group>"; };
+		4ACC8BD92415322400F235AE /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
+		4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHealthEntity.swift; sourceTree = "<group>"; };
+		4ACC8BDD2415324400F235AE /* ManaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaComponent.swift; sourceTree = "<group>"; };
+		4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManaEntity.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BD12414D57900F235AE /* SpriteComponent.swift */,
+				4ACC8BD92415322400F235AE /* HealthComponent.swift */,
+				4ACC8BDD2415324400F235AE /* ManaComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -127,9 +137,11 @@
 		4ACC8BD02414D54800F235AE /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				4ACC8BD52414D79F00F235AE /* EntityManager.swift */,
 				4ACC8BD7241520E600F235AE /* BackgroundEntity.swift */,
 				4ACC8BD32414D71100F235AE /* EnemyEntity.swift */,
-				4ACC8BD52414D79F00F235AE /* EntityManager.swift */,
+				4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */,
+				4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -297,12 +309,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */,
+				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
+				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				4ACC8BD8241520E600F235AE /* BackgroundEntity.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
+				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
+				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

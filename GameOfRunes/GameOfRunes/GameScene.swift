@@ -44,7 +44,7 @@ class GameScene: SKScene {
                 y: size.height / 2
             )
             let currentSpriteSize = spriteComponent.node.size
-            let newSpriteWidth = size.width / 8
+            let newSpriteWidth = size.width / 6
             let newSpriteHeight = currentSpriteSize.height / currentSpriteSize.width * newSpriteWidth
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
         }
