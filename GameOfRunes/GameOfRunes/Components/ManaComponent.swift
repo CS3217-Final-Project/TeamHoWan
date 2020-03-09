@@ -26,7 +26,7 @@ class ManaComponent: GKComponent {
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         
-        if CACurrentMediaTime() - lastUpdateMana > 0.5 {
+        if CACurrentMediaTime() - lastUpdateMana >= 1.0 {
             lastUpdateMana = CACurrentMediaTime()
             manaPoints += 1
         }

@@ -11,15 +11,23 @@ import GameplayKit
 
 class EndPointEntity: GKEntity {
     
-    override init() {
+    init(entityManger: EntityManager) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line2"))
         
-        let teamComponent = TeamComponent(teamType: .player)
+        let teamComponent = TeamComponent(team: .player)
+        
+        let moveComponent = MoveComponent(
+            maxSpeed: 0.0,
+            maxAcceleration: 0.0,
+            radius: .init(spriteComponent.node.size.height),
+            entityManager: entityManger
+        )
         
         addComponent(spriteComponent)
         addComponent(teamComponent)
+        addComponent(moveComponent)
     }
     
     @available(*, unavailable)

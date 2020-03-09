@@ -16,8 +16,9 @@
 		4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA508D124161F3200D9ADE4 /* MoveBehavior.swift */; };
 		4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA508D4241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift */; };
 		4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B35F241646DF008D4953 /* EndPointEntity.swift */; };
-		4AA5B36224164FC9008D4953 /* TeamType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36124164FC9008D4953 /* TeamType.swift */; };
+		4AA5B36224164FC9008D4953 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36124164FC9008D4953 /* Team.swift */; };
 		4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B363241650A1008D4953 /* TeamComponent.swift */; };
+		4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAE2414C69800F235AE /* GameScene.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -54,8 +55,9 @@
 		4AA508D124161F3200D9ADE4 /* MoveBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveBehavior.swift; sourceTree = "<group>"; };
 		4AA508D4241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKAgent2D+typeConversionHelpers.swift"; sourceTree = "<group>"; };
 		4AA5B35F241646DF008D4953 /* EndPointEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointEntity.swift; sourceTree = "<group>"; };
-		4AA5B36124164FC9008D4953 /* TeamType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamType.swift; sourceTree = "<group>"; };
+		4AA5B36124164FC9008D4953 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		4AA5B363241650A1008D4953 /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
+		4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+pointManipulationHelpers.swift"; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BAE2414C69800F235AE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -113,7 +115,7 @@
 			children = (
 				4AA508CA2416170600D9ADE4 /* ArenaType.swift */,
 				4AA508CC24161A1900D9ADE4 /* EnemyType.swift */,
-				4AA5B36124164FC9008D4953 /* TeamType.swift */,
+				4AA5B36124164FC9008D4953 /* Team.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				4AA508D4241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift */,
+				4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,7 +382,7 @@
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
-				4AA5B36224164FC9008D4953 /* TeamType.swift in Sources */,
+				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
@@ -390,6 +393,7 @@
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
+				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
 				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

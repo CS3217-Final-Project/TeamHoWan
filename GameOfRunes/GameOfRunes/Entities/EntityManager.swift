@@ -12,7 +12,8 @@ import GameplayKit
 class EntityManager {
     lazy var componentSystems: [GKComponentSystem] = {
         let manaSystem = GKComponentSystem(componentClass: ManaComponent.self)
-        return [manaSystem]
+        let moveSystem = GKComponentSystem(componentClass: MoveComponent.self)
+        return [manaSystem, moveSystem]
     }()
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
@@ -52,14 +53,7 @@ class EntityManager {
     }
     
     func spawnEnemy() {
-        guard let manaComponent = entities
-            .compactMap({ $0.component(ofType: ManaComponent.self) })
-            .first, manaComponent.manaPoints >= 10 else {
-                return
-        }
-        
-        manaComponent.manaPoints -= 10
-        let enemyEntity = EnemyEntity(enemyType: .orc2)
+        let enemyEntity = EnemyEntity(enemyType: .orc2, entityManager: self)
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = scene?.size {
             spriteComponent.node.position = .init(
@@ -71,5 +65,14 @@ class EntityManager {
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
         }
         add(enemyEntity)
+    }
+    
+    func entities(for team: Team) -> [GKEntity] {
+        entities.compactMap { $0.component(ofType: TeamComponent.self)?.team == team ? $0 : nil }
+    }
+    
+    func moveComponents(for team: Team) -> [MoveComponent] {
+        let entitiesToMove = entities(for: team)
+        return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
     }
 }

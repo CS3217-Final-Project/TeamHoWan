@@ -38,7 +38,7 @@ class GameScene: SKScene {
     }
     
     private func setUpEndPoint() {
-        let endPointEntity = EndPointEntity()
+        let endPointEntity = EndPointEntity(entityManger: entityManager)
         
         if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
@@ -82,6 +82,5 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         entityManager.spawnEnemy()
-        print("test")
     }
 }

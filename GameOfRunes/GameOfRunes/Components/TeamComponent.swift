@@ -10,10 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class TeamComponent: GKComponent {
-    let teamType: TeamType
+    let team: Team
     
-    init(teamType: TeamType) {
-        self.teamType = teamType
+    init(team: Team) {
+        self.team = team
         super.init()
     }
     
