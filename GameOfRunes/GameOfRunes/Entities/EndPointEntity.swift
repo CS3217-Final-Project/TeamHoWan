@@ -15,7 +15,11 @@ class EndPointEntity: GKEntity {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line2"))
+        
+        let teamComponent = TeamComponent(teamType: .player)
+        
         addComponent(spriteComponent)
+        addComponent(teamComponent)
     }
     
     @available(*, unavailable)

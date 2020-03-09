@@ -16,7 +16,11 @@ class EnemyEntity: GKEntity {
         
         let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
         let spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
+        
+        let teamComponent = TeamComponent(teamType: .enemy)
+        
         addComponent(spriteComponent)
+        addComponent(teamComponent)
     }
     
     @available(*, unavailable)
