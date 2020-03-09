@@ -17,13 +17,14 @@ class GameScene: SKScene {
     override func sceneDidLoad() {
         entityManager = .init(scene: self)
         
-        setUpBackground()
+        setUpArenaLayout()
         setUpEndPoint()
         setUpMana()
     }
     
-    private func setUpBackground() {
+    private func setUpArenaLayout() {
         let backgroundEntity = BackgroundEntity(arenaType: .arena2)
+        let playerAreaEntity = PlayerAreaEntity()
         
         if let spriteComponent = backgroundEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
@@ -32,22 +33,38 @@ class GameScene: SKScene {
             )
             spriteComponent.node.size = size
             spriteComponent.node.zPosition = -1
+            spriteComponent.node.name = "background"
+        }
+        
+        if let spriteComponent = playerAreaEntity.component(ofType: SpriteComponent.self) {
+            let newSpriteWidth = size.width
+            let newSpriteHeight = size.height / 6
+            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
+            spriteComponent.node.position = .init(
+                x: newSpriteWidth / 2,
+                y: newSpriteHeight / 2
+            )
+            spriteComponent.node.zPosition = 1
+            spriteComponent.node.name = "player area"
         }
         
         entityManager.add(backgroundEntity)
+        entityManager.add(playerAreaEntity)
     }
     
     private func setUpEndPoint() {
         let endPointEntity = EndPointEntity(entityManger: entityManager)
         
-        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
+        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self),
+            let playerAreaNode = scene?.childNode(withName: "player area") {
+            let newSpriteWidth = size.width
+            let newSpriteHeight = size.height / 40
+            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
             spriteComponent.node.position = .init(
                 x: size.width / 2,
-                y: 150
+                y: playerAreaNode.frame.size.height + newSpriteHeight / 2
             )
-            let newSpriteWidth = size.width
-            let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
+            spriteComponent.node.zPosition = 1
         }
         
         entityManager.add(endPointEntity)
@@ -59,7 +76,7 @@ class GameScene: SKScene {
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 100)
-        manaLabel.zPosition = 1
+        manaLabel.zPosition = 2
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"

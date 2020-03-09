@@ -19,6 +19,7 @@
 		4AA5B36224164FC9008D4953 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36124164FC9008D4953 /* Team.swift */; };
 		4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B363241650A1008D4953 /* TeamComponent.swift */; };
 		4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */; };
+		4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAE2414C69800F235AE /* GameScene.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -58,6 +59,7 @@
 		4AA5B36124164FC9008D4953 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		4AA5B363241650A1008D4953 /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+pointManipulationHelpers.swift"; sourceTree = "<group>"; };
+		4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaEntity.swift; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BAE2414C69800F235AE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -138,6 +140,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4AA5B3692416A95C008D4953 /* Custom nodes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom nodes";
+			sourceTree = "<group>";
+		};
 		4ACC8B9C2414C69800F235AE = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +175,7 @@
 				4AA508C9241614D500D9ADE4 /* Types */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
+				4AA5B3692416A95C008D4953 /* Custom nodes */,
 				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
@@ -207,6 +217,7 @@
 				4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */,
 				4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */,
 				4AA5B35F241646DF008D4953 /* EndPointEntity.swift */,
+				4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -375,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
@@ -556,6 +568,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -574,6 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
