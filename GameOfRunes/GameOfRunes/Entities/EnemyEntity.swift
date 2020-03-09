@@ -22,7 +22,7 @@ class EnemyEntity: GKEntity {
         let moveComponent = MoveComponent(
             maxSpeed: 150.0,
             maxAcceleration: 5.0,
-            radius: .init(spriteComponent.node.size.width) * 0.3,
+            radius: .init(spriteComponent.node.size.width) * 0.01,
             entityManager: entityManager
         )
         
