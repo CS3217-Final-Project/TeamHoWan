@@ -34,15 +34,15 @@ enum CustomGestures {
         case .arrowDown:
             return PathModel(directions: [1, 7], datas: self as AnyObject)
         case .eShape:
-            return PathModel(directions: [4,3,2,1,0,4,3,2,1,0], datas: self as AnyObject)
+            return PathModel(directions: [4, 3, 2, 1, 0, 4, 3, 2, 1, 0], datas: self as AnyObject)
         case .wShape:
             return PathModel(directions: [2, 7, 1, 6], datas: self as AnyObject)
         case .doubleWShape:
             return PathModel(directions: [2, 7, 1, 6, 2, 7, 1, 6], datas: self as AnyObject)
         case .uShape:
-            return PathModel(directions: [2,1,0,7,6], datas: self as AnyObject)
+            return PathModel(directions: [2, 1, 0, 7, 6], datas: self as AnyObject)
         case .zShape:
-            return PathModel(directions: [0,3,0], datas: self as AnyObject)
+            return PathModel(directions: [0, 3, 0], datas: self as AnyObject)
         }
     }
     

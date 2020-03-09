@@ -10,20 +10,20 @@ import Foundation
 
 open class DBPathRecognizer {
     
-    var deltaMove:Double
-    var sliceCount:Int
-    var costMax:Int
-    var models:[PathModel] = []
+    var deltaMove: Double
+    var sliceCount: Int
+    var costMax: Int
+    var models: [PathModel] = []
     
-    fileprivate var path:Path?
+    fileprivate var path: Path?
     
-    init (sliceCount:Int = 8, deltaMove:Double = 8.0, costMax:Int = 32){
+    init (sliceCount: Int = 8, deltaMove: Double = 8.0, costMax: Int = 32) {
         self.sliceCount = sliceCount
         self.deltaMove = deltaMove
         self.costMax = costMax
     }
     
-    open func recognizePath(_ path:Path) -> PathModel? {
+    open func recognizePath(_ path: Path) -> PathModel? {
         
         self.path = path
         
@@ -34,7 +34,7 @@ open class DBPathRecognizer {
         let dir = directions()
         
         var bestCost = Int.max
-        var bestModel:PathModel?
+        var bestModel: PathModel?
         
         for model in models {
             
@@ -42,7 +42,7 @@ open class DBPathRecognizer {
             
             if model.filter != nil {
                 cost = model.filter!(cost, PathInfos(deltaPoints: deltaPoints(),
-                                                     boundingBox: path.boundingBox , directions: dir))
+                                                     boundingBox: path.boundingBox, directions: dir))
             }
             
             if cost < costMax && cost < bestCost {
@@ -56,7 +56,7 @@ open class DBPathRecognizer {
         
     }
     
-    open func addModel(_ model:PathModel) {
+    open func addModel(_ model: PathModel) {
         models.append(model)
     }
     
@@ -97,31 +97,28 @@ open class DBPathRecognizer {
         }
         
         var result: [Int] = []
-        let sliceAngle:Double = .pi * 2.0 / Double(sliceCount)
+        let sliceAngle: Double = .pi * 2.0 / Double(sliceCount)
         
-        for (index, _) in dpoints.enumerated() {
-            if index < dpoints.count - 1 {
-                
-                var angle:Double = dpoints[index].angleWithPoint(dpoints[index + 1])
-                
-                if angle < 0 {
-                    angle = angle + .pi * 2.0
-                }
-                
-                if (angle < sliceAngle / 2.0 || angle > .pi * 2.0 - sliceAngle){
-                    result.append(0)
-                } else {
-                    let rounded:Int = Int(round(angle / sliceAngle))
-                    result.append(rounded)
-                }
+        for (index, _) in dpoints.enumerated() where index < dpoints.count - 1 {
+            
+            var angle: Double = dpoints[index].angleWithPoint(dpoints[index + 1])
+            
+            if angle < 0 {
+                angle += .pi * 2.0
+            }
+            
+            if angle < sliceAngle / 2.0 || angle > .pi * 2.0 - sliceAngle {
+                result.append(0)
+            } else {
+                let rounded = Int(round(angle / sliceAngle))
+                result.append(rounded)
             }
         }
-        
         
         return result
     }
     
-    fileprivate func directionCost(_ a:Int,_ b:Int)->Int {
+    fileprivate func directionCost(_ a: Int, _ b: Int) -> Int {
         
         var dif = abs(a - b)
         
@@ -129,22 +126,19 @@ open class DBPathRecognizer {
             dif = sliceCount - dif
         }
         
-        return dif;
+        return dif
     }
     
-    fileprivate func costLeven(_ a:[Int],_ b:[Int]) -> Int {
+    fileprivate func costLeven(_ a: [Int], _ b: [Int]) -> Int {
         
         var td = Array2D(cols: a.count + 1, rows: b.count + 1)
         var tw = Array2D(cols: a.count + 1, rows: b.count + 1)
         
-        let safe_max_value:Int = Int(Int16.max) // Don'n now why Int.max cause a EXEC_BAD error
+        let safe_max_value = Int(Int16.max) // Don'n now why Int.max cause a EXEC_BAD error
         //println("\(safe_max_value)")
         
-        
-        for x in 1...a.count
-        {
-            for y in 1..<b.count
-            {
+        for x in 1...a.count {
+            for y in 1..<b.count {
                 td[x, y] = directionCost(a[x - 1], b[y - 1])
             }
         }
@@ -157,28 +151,25 @@ open class DBPathRecognizer {
             tw[index, 0] = safe_max_value
         }
         
-        tw[0, 0]=0;
+        tw[0, 0]=0
         
-        var cost:Int = 0;
-        var pa:Int;
-        var pb:Int;
-        var pc:Int;
+        var cost: Int = 0
+        var pa: Int
+        var pb: Int
+        var pc: Int
         
-        for x in 1...a.count
-        {
-            for y in 1..<b.count
-            {
-                cost = td[x, y];
-                pa = tw[x - 1, y] + cost;
-                pb = tw[x, y - 1] + cost;
-                pc = tw[x - 1, y - 1] + cost;
+        for x in 1...a.count {
+            for y in 1..<b.count {
+                cost = td[x, y]
+                pa = tw[x - 1, y] + cost
+                pb = tw[x, y - 1] + cost
+                pc = tw[x - 1, y - 1] + cost
                 tw[x, y] = min(min(pa, pb), pc)
             }
         }
         
-        return tw[a.count, b.count - 1];
+        return tw[a.count, b.count - 1]
     }
-    
     
 }
 
@@ -190,36 +181,36 @@ open class DBPathRecognizer {
 
 /* Path point */
 
-public struct PathPoint : Equatable {
+public struct PathPoint: Equatable {
     
-    var x:Int16 = 0
-    var y:Int16 = 0
+    var x: Int16 = 0
+    var y: Int16 = 0
     
-    public func squareDistanceFromPoint(_ point:PathPoint) -> Double {
-        let dfx:Double = Double(point.x) - Double(x)
-        let dfy:Double = Double(point.y) - Double(y)
+    public func squareDistanceFromPoint(_ point: PathPoint) -> Double {
+        let dfx = Double(point.x) - Double(x)
+        let dfy = Double(point.y) - Double(y)
         let sqareDistance = dfx * dfx + dfy * dfy
         return sqareDistance
     }
     
-    public func angleWithPoint(_ point:PathPoint) -> Double {
-        let dfx:Double = Double(point.x) - Double(x)
-        let dfy:Double = Double(point.y) - Double(y)
+    public func angleWithPoint(_ point: PathPoint) -> Double {
+        let dfx = Double(point.x) - Double(x)
+        let dfy = Double(point.y) - Double(y)
         return atan2(dfy, dfx)
     }
 }
 
 public func ==(lhs: PathPoint, rhs: PathPoint) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y
+    lhs.x == rhs.x && lhs.y == rhs.y
 }
 
 /* Rect */
 public struct Rect {
     
-    var top:Int16;
-    var left:Int16;
-    var bottom:Int16;
-    var right:Int16;
+    var top: Int16
+    var left: Int16
+    var bottom: Int16
+    var right: Int16
 }
 
 /* Path */
@@ -228,16 +219,16 @@ public struct Path {
     
     var points: [PathPoint] = [PathPoint]()
     
-    var boundingBox:Rect {
+    var boundingBox: Rect {
         get {
             
-            var r:Rect = Rect(top: Int16.max, left:Int16.max, bottom:Int16.min, right:Int16.min)
+            var r = Rect(top: Int16.max, left: Int16.max, bottom: Int16.min, right: Int16.min)
             
             for point in points {
-                r.left = point.x < r.left ? point.x : r.left;
-                r.top = point.y < r.top ? point.y : r.top;
-                r.right = point.x > r.right ? point.x : r.right;
-                r.bottom = point.y > r.bottom ? point.y : r.bottom;
+                r.left = point.x < r.left ? point.x : r.left
+                r.top = point.y < r.top ? point.y : r.top
+                r.right = point.x > r.right ? point.x : r.right
+                r.bottom = point.y > r.bottom ? point.y : r.bottom
             }
             
             return r
@@ -245,22 +236,22 @@ public struct Path {
     }
     
     var count: Int {
-        get { return points.count }
+        get { points.count }
     }
     
-    mutating public func addPoint(_ point:PathPoint) {
+    public mutating func addPoint(_ point: PathPoint) {
         points.append(point)
     }
     
-    mutating public func addPointFromRaw(_ rawDatas:[Int]){
+    public mutating func addPointFromRaw(_ rawDatas: [Int]) {
         let rawDatas = rawDatas
-        var i = 0;
+        var i = 0
         var _:PathPoint
         
         while i < rawDatas.count {
             let px = rawDatas[i]
             let py = rawDatas[i + 1]
-            let pt = PathPoint(x:Int16(px), y:Int16(py))
+            let pt = PathPoint(x: Int16(px), y: Int16(py))
             
             addPoint(pt)
             
@@ -272,19 +263,19 @@ public struct Path {
 /* Path Infos */
 
 public struct PathInfos {
-    let deltaPoints:[PathPoint]
-    let boundingBox:Rect
-    let directions:[Int]
+    let deltaPoints: [PathPoint]
+    let boundingBox: Rect
+    let directions: [Int]
     
-    var width:Int16 {
+    var width: Int16 {
         get {
-            return boundingBox.right - boundingBox.left
+            boundingBox.right - boundingBox.left
         }
     }
     
-    var height:Int16 {
+    var height: Int16 {
         get {
-            return boundingBox.bottom - boundingBox.top
+            boundingBox.bottom - boundingBox.top
         }
     }
 }
@@ -293,11 +284,11 @@ public struct PathInfos {
 
 public struct PathModel {
     
-    var directions:[Int]
-    var datas:AnyObject
-    var filter:((Int, PathInfos) -> Int)?
+    var directions: [Int]
+    var datas: AnyObject
+    var filter: ((Int, PathInfos) -> Int)?
     
-    init(directions:[Int], datas:AnyObject, filter:((Int, PathInfos) -> Int)? = nil) {
+    init(directions: [Int], datas: AnyObject, filter: ((Int, PathInfos) -> Int)? = nil) {
         self.directions = directions
         self.datas = datas
         self.filter = filter
@@ -308,19 +299,19 @@ public struct PathModel {
 /* Array2D */
 
 public struct Array2D {
-    var cols:Int
-    var rows:Int
-    var matrix:[Int]
+    var cols: Int
+    var rows: Int
+    var matrix: [Int]
     
-    init(cols:Int, rows:Int) {
+    init(cols: Int, rows: Int) {
         self.cols = cols
         self.rows = rows
         matrix = Array(repeating: 0, count: cols * rows)
     }
     
-    subscript(col:Int, row:Int) -> Int {
+    subscript(col: Int, row: Int) -> Int {
         get {
-            return matrix[cols * row + col]
+            matrix[cols * row + col]
         }
         set {
             matrix[cols * row + col] = newValue
