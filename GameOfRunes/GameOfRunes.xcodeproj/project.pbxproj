@@ -37,6 +37,7 @@
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGestures.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
+		566121E02416937900475CE1 /* SceneOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DF2416937900475CE1 /* SceneOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestures.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
+		566121DF2416937900475CE1 /* SceneOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOverlay.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,13 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
+				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
+				566121DE2416936E00475CE1 /* Scenes */,
 				566121D7241682C500475CE1 /* Gesture Recogniser */,
 				4AA508D32416213B00D9ADE4 /* Extensions */,
 				4AA508C9241614D500D9ADE4 /* Types */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
-				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
-				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
 				4ACC8BB52414C69B00F235AE /* Assets.xcassets */,
 				4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */,
@@ -228,6 +230,15 @@
 			path = "Gesture Recogniser";
 			sourceTree = "<group>";
 		};
+		566121DE2416936E00475CE1 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
+				566121DF2416937900475CE1 /* SceneOverlay.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		5A6CB57AA35FD0CFDEBF8802 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +267,7 @@
 				4ACC8BA12414C69800F235AE /* Sources */,
 				4ACC8BA22414C69800F235AE /* Frameworks */,
 				4ACC8BA32414C69800F235AE /* Resources */,
-				4ACC8BCE2414C95100F235AE /* ShellScript */,
+				4ACC8BCE2414C95100F235AE /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -346,20 +357,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4ACC8BCE2414C95100F235AE /* ShellScript */ = {
+		4ACC8BCE2414C95100F235AE /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
@@ -405,6 +417,7 @@
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
+				566121E02416937900475CE1 /* SceneOverlay.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				4ACC8BD8241520E600F235AE /* BackgroundEntity.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,

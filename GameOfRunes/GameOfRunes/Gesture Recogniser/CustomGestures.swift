@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum CustomGestures {
+enum CustomGestures: String {
     case horizontalLine
     case horizontalLine2
     case verticalLine
@@ -46,11 +46,11 @@ enum CustomGestures {
         }
     }
     
-    func getAllGesturePathModels() -> [PathModel] {
+    static func getAllGesturePathModels() -> [PathModel] {
         getAllCustomGestures().map({ $0.getPathModel() })
     }
     
-    func getAllCustomGestures() -> [CustomGestures] {
+    static func getAllCustomGestures() -> [CustomGestures] {
         [
             .horizontalLine,
             .horizontalLine2,

@@ -15,6 +15,7 @@ class EntityManager {
         let moveSystem = GKComponentSystem(componentClass: MoveComponent.self)
         return [manaSystem, moveSystem]
     }()
+    
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
