@@ -35,6 +35,7 @@
 		4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDD2415324400F235AE /* ManaComponent.swift */; };
 		4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */; };
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
+		566121DB2416838000475CE1 /* CustomGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGestures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		4ACC8BDD2415324400F235AE /* ManaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaComponent.swift; sourceTree = "<group>"; };
 		4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManaEntity.swift; sourceTree = "<group>"; };
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
+		566121DA2416838000475CE1 /* CustomGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestures.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				566121D8241682DD00475CE1 /* DBPathRecognizer.swift */,
+				566121DA2416838000475CE1 /* CustomGestures.swift */,
 			);
 			path = "Gesture Recogniser";
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
+				566121DB2416838000475CE1 /* CustomGestures.swift in Sources */,
 				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
