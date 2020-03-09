@@ -64,7 +64,8 @@ class EntityManager {
             let sceneSize = scene?.size {
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
-                y: 150)
+                y: sceneSize.height - 100
+            )
             let newSpriteWidth = sceneSize.width / 6
             let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)

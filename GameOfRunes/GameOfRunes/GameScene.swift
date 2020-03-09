@@ -18,8 +18,8 @@ class GameScene: SKScene {
         entityManager = .init(scene: self)
         
         setUpBackground()
+        setUpEndPoint()
         setUpMana()
-        setUpEnemy()
     }
     
     private func setUpBackground() {
@@ -37,6 +37,22 @@ class GameScene: SKScene {
         entityManager.add(backgroundEntity)
     }
     
+    private func setUpEndPoint() {
+        let endPointEntity = EndPointEntity()
+        
+        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = .init(
+                x: size.width / 2,
+                y: 150
+            )
+            let newSpriteWidth = size.width
+            let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
+            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
+        }
+        
+        entityManager.add(endPointEntity)
+    }
+    
     private func setUpMana() {
         entityManager.add(PlayerManaEntity())
         
@@ -48,22 +64,6 @@ class GameScene: SKScene {
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
         addChild(manaLabel)
-    }
-    
-    private func setUpEnemy() {
-        let enemyEntity = EnemyEntity(enemyType: .evilKnight)
-        
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = .init(
-                x: size.width / 2,
-                y: size.height / 2
-            )
-            let newSpriteWidth = size.width / 6
-            let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
-        }
-        
-        entityManager.add(enemyEntity)
     }
     
     override func update(_ currentTime: TimeInterval) {

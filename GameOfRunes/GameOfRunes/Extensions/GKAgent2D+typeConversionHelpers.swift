@@ -1,5 +1,5 @@
 //
-//  Agent2D+typeConversionHelpers.swift
+//  GKAgent2D+typeConversionHelpers.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 9/3/20.
