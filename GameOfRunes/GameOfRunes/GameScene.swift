@@ -16,7 +16,6 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         entityManager = .init(scene: self)
-        
         setUpBackground()
         setUpEndPoint()
         setUpMana()
