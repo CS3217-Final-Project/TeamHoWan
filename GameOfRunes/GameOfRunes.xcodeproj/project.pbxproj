@@ -20,6 +20,10 @@
 		4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B363241650A1008D4953 /* TeamComponent.swift */; };
 		4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */; };
 		4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */; };
+		4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */; };
+		4AA5B3742416BF5E008D4953 /* HealthNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3732416BF5E008D4953 /* HealthNode.swift */; };
+		4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */; };
+		4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAE2414C69800F235AE /* GameScene.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -60,6 +64,10 @@
 		4AA5B363241650A1008D4953 /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+pointManipulationHelpers.swift"; sourceTree = "<group>"; };
 		4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaEntity.swift; sourceTree = "<group>"; };
+		4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNode.swift; sourceTree = "<group>"; };
+		4AA5B3732416BF5E008D4953 /* HealthNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthNode.swift; sourceTree = "<group>"; };
+		4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+resizeHelpers.swift"; sourceTree = "<group>"; };
+		4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+vectorManipulationHelpers.swift"; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BAE2414C69800F235AE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -136,15 +144,19 @@
 			children = (
 				4AA508D4241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift */,
 				4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */,
+				4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */,
+				4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4AA5B3692416A95C008D4953 /* Custom nodes */ = {
+		4AA5B3702416BB54008D4953 /* Custom Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */,
+				4AA5B3732416BF5E008D4953 /* HealthNode.swift */,
 			);
-			path = "Custom nodes";
+			path = "Custom Nodes";
 			sourceTree = "<group>";
 		};
 		4ACC8B9C2414C69800F235AE = {
@@ -175,7 +187,7 @@
 				4AA508C9241614D500D9ADE4 /* Types */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
-				4AA5B3692416A95C008D4953 /* Custom nodes */,
+				4AA5B3702416BB54008D4953 /* Custom Nodes */,
 				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
@@ -387,6 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */,
+				4AA5B3742416BF5E008D4953 /* HealthNode.swift in Sources */,
+				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
@@ -395,6 +409,7 @@
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
+				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
@@ -403,6 +418,7 @@
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
+				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,

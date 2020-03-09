@@ -15,11 +15,13 @@ class HealthNode: SKSpriteNode {
         }
     }
     
-    init(size: CGSize, active: Bool=true) {
+    init(active: Bool = true) {
         self.active = active
-        super.init(texture: nil, color: .clear, size: size)
+        super.init(texture: nil, color: .clear, size: .zero)
         
-        texture = getTexture(active: active)
+        let texture = getTexture(active: active)
+        size = texture.size()
+        self.texture = texture
     }
     
     @available(*, unavailable)

@@ -19,6 +19,7 @@ class GameScene: SKScene {
         
         setUpArenaLayout()
         setUpEndPoint()
+        setUpHealthBar()
         setUpMana()
     }
     
@@ -27,10 +28,7 @@ class GameScene: SKScene {
         let playerAreaEntity = PlayerAreaEntity()
         
         if let spriteComponent = backgroundEntity.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = .init(
-                x: size.width / 2,
-                y: size.height / 2
-            )
+            spriteComponent.node.position = .init(x: size.width / 2, y: size.height / 2)
             spriteComponent.node.size = size
             spriteComponent.node.zPosition = -1
             spriteComponent.node.name = "background"
@@ -60,14 +58,25 @@ class GameScene: SKScene {
             let newSpriteWidth = size.width
             let newSpriteHeight = size.height / 40
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
-            spriteComponent.node.position = .init(
-                x: size.width / 2,
-                y: playerAreaNode.frame.size.height + newSpriteHeight / 2
-            )
+            spriteComponent.node.position = playerAreaNode.position
+                + .init(dx: 0.0, dy: (playerAreaNode.frame.size.height + newSpriteHeight) / 2)
             spriteComponent.node.zPosition = 1
         }
         
         entityManager.add(endPointEntity)
+    }
+    
+    private func setUpHealthBar() {
+        let healthBarNode = HealthBarNode(totalLives: 3)
+        
+        if let playerAreaNode = scene?.childNode(withName: "player area") {
+            let playerAreaSize = playerAreaNode.frame.size
+            healthBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
+            healthBarNode.position = playerAreaNode.position
+                + .init(dx: -playerAreaSize.width / 4, dy: playerAreaSize.height / 5)
+            healthBarNode.zPosition = 2
+            addChild(healthBarNode)
+        }
     }
     
     private func setUpMana() {
@@ -76,7 +85,7 @@ class GameScene: SKScene {
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 100)
-        manaLabel.zPosition = 2
+        manaLabel.zPosition = 3
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
