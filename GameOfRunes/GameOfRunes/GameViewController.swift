@@ -28,9 +28,7 @@ class GameViewController: UIViewController {
         // Present the scene
         if let view = view as? SKView {
             view.presentScene(scene)
-            
             view.ignoresSiblingOrder = true
-            
             view.showsFPS = true
             view.showsNodeCount = true
         }
@@ -41,12 +39,19 @@ class GameViewController: UIViewController {
         rawPoints = []
         let touch = touches.first
         let location = touch!.location(in: view)
+        // TODO: 0.8 is magic number => should be changed 
+        if (location.y >= 0.8 * view.bounds.size.height) {
+            return
+        }
         rawPoints.append(Int(location.x))
         rawPoints.append(Int(location.y))
     }
     
     // Stores all coordinates when the touch moves
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if rawPoints.isEmpty {
+            return
+        }
         let touch = touches.first
         let location = touch!.location(in: view)
         if (rawPoints[rawPoints.count-2] != Int(location.x) && rawPoints[rawPoints.count-1] != Int(location.y)) {
