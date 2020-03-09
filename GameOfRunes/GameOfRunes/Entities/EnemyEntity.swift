@@ -11,23 +11,12 @@ import GameplayKit
 
 class EnemyEntity: GKEntity {
     
-    init(imageName: String) {
+    init(enemyType: EnemyType) {
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))
+        let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
+        let spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
         addComponent(spriteComponent)
-    }
-    
-    init(texture: SKTexture) {
-        super.init()
-        
-        let spriteComponent = SpriteComponent(texture: texture)
-        addComponent(spriteComponent)
-    }
-    
-    override convenience init() {
-        let evilKnightAtlas = SKTextureAtlas(named: "Evil Knight")
-        self.init(texture: evilKnightAtlas.textureNamed("WALK_002"))
     }
     
     @available(*, unavailable)

@@ -23,7 +23,7 @@ class GameScene: SKScene {
     }
     
     private func setUpBackground() {
-        let backgroundEntity = BackgroundEntity(imageName: "arena 2")
+        let backgroundEntity = BackgroundEntity(arenaType: .arena2)
         
         if let spriteComponent = backgroundEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
@@ -51,16 +51,15 @@ class GameScene: SKScene {
     }
     
     private func setUpEnemy() {
-        let enemyEntity = EnemyEntity()
+        let enemyEntity = EnemyEntity(enemyType: .evilKnight)
         
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
                 x: size.width / 2,
                 y: size.height / 2
             )
-            let currentSpriteSize = spriteComponent.node.size
             let newSpriteWidth = size.width / 6
-            let newSpriteHeight = currentSpriteSize.height / currentSpriteSize.width * newSpriteWidth
+            let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
         }
         

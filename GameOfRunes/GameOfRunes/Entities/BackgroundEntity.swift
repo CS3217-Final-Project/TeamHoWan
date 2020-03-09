@@ -11,10 +11,10 @@ import GameplayKit
 
 class BackgroundEntity: GKEntity {
     
-    init(imageName: String) {
+    init(arenaType: ArenaType) {
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))
+        let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: arenaType.rawValue))
         addComponent(spriteComponent)
     }
     
