@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     private var entityManager: EntityManager!
     private var lastUpdateTime: TimeInterval = 0.0
-    let manaLabel = SKLabelNode(fontNamed: "HVDComicSerifPro")
+    let manaLabel = SKLabelNode(fontNamed: "DragonFire")
     
     override func sceneDidLoad() {
         entityManager = .init(scene: self)
@@ -39,15 +39,6 @@ class GameScene: SKScene {
     
     private func setUpMana() {
         entityManager.add(PlayerManaEntity())
-        for family in UIFont.familyNames {
-
-            let sName: String = family as String
-            print("family: \(sName)")
-                    
-            for name in UIFont.fontNames(forFamilyName: sName) {
-                print("name: \(name as String)")
-            }
-        }
         
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
@@ -60,8 +51,7 @@ class GameScene: SKScene {
     }
     
     private func setUpEnemy() {
-        let evilKnightAtlas = SKTextureAtlas(named: "Evil Knight")
-        let enemyEntity = EnemyEntity(texture: evilKnightAtlas.textureNamed("WALK_002"))
+        let enemyEntity = EnemyEntity()
         
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
@@ -89,5 +79,10 @@ class GameScene: SKScene {
             .first {
             manaLabel.text = "\(manaEntity.manaPoints)"
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        entityManager.spawnEnemy()
+        print("test")
     }
 }

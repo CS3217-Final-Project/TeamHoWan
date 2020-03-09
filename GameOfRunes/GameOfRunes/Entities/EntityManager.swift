@@ -50,4 +50,27 @@ class EntityManager {
         }
         toRemoveEntities = []
     }
+    
+    func spawnEnemy() {
+        guard let manaComponent = entities
+            .compactMap({ $0.component(ofType: ManaComponent.self) })
+            .first, manaComponent.manaPoints >= 10 else {
+                return
+        }
+        
+        manaComponent.manaPoints -= 10
+        let enemyEntity = EnemyEntity()
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
+            let sceneSize = scene?.size {
+            spriteComponent.node.position = .init(
+                x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
+                y: 150)
+            spriteComponent.node.zPosition = 1
+            let currentSpriteSize = spriteComponent.node.size
+            let newSpriteWidth = sceneSize.width / 6
+            let newSpriteHeight = currentSpriteSize.height / currentSpriteSize.width * newSpriteWidth
+            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
+        }
+        add(enemyEntity)
+    }
 }
