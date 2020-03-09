@@ -4,4 +4,4 @@ osx_image: xcode11.3
 xcode_project: GameOfRunes/GameOfRunes.xcodeproj
 xcode_scheme: GameOfRunes
 xcode_destination: platform=iOS Simulator,OS=13.3,name=iPad Pro (9.7-inch)
-podfile: GameOfRunes/
+podfile: GameOfRunes/Podfile
