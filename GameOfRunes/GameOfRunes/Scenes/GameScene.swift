@@ -13,6 +13,7 @@ class GameScene: SKScene {
     private var entityManager: EntityManager!
     private var lastUpdateTime: TimeInterval = 0.0
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
+    var manaBarNode: ManaBarNode!
     
     override func sceneDidLoad() {
         entityManager = .init(scene: self)
@@ -92,6 +93,7 @@ class GameScene: SKScene {
         manaBarNode.position = playerAreaNode.position
             + .init(dx: playerAreaSize.width / 4.5, dy: playerAreaSize.height / 4.5)
         manaBarNode.zPosition = 100
+        self.manaBarNode = manaBarNode
         addChild(manaBarNode)
     }
     
@@ -119,6 +121,7 @@ class GameScene: SKScene {
             .compactMap({ $0.component(ofType: ManaComponent.self) })
             .first {
             manaLabel.text = "\(manaEntity.manaPoints)"
+            manaBarNode.currentManaPoints = manaEntity.manaPoints
         }
     }
     
