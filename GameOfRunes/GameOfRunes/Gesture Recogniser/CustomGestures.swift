@@ -1,12 +1,14 @@
 //
-//  CustomGestures.swift
+//  CustomGesture.swift
 //  GameOfRunes
 //
 //  Created by Andy on 9/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum CustomGestures: String {
+import SpriteKit
+
+enum CustomGesture: String {
     case horizontalLine
     case horizontalLine2
     case verticalLine
@@ -32,7 +34,6 @@ enum CustomGestures: String {
     case lightning
     case diamond
     case ribbon
-    
     
     func getPathModel() -> PathModel {
         switch self {
@@ -85,11 +86,15 @@ enum CustomGestures: String {
         }
     }
     
-    static func getAllGesturePathModels() -> [PathModel] {
-        getAllCustomGestures().map({ $0.getPathModel() })
+    func getTexture() -> SKTexture {
+        
     }
     
-    static func getAllCustomGestures() -> [CustomGestures] {
+    static func getAllGesturePathModels() -> [PathModel] {
+        getAllCustomGesture().map({ $0.getPathModel() })
+    }
+    
+    static func getAllCustomGesture() -> [CustomGesture] {
         [
             .horizontalLine,
             .horizontalLine2,

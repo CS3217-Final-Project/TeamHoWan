@@ -47,6 +47,8 @@
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGestures.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
+		56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6D2417E7B7009172C6 /* GestureNode.swift */; };
+		56E82D702417E9D2009172C6 /* GamePlayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestures.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
+		56E82D6D2417E7B7009172C6 /* GestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureNode.swift; sourceTree = "<group>"; };
+		56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayConfiguration.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */,
 				4AA5B3732416BF5E008D4953 /* HealthNode.swift */,
 				4AA5B3792417625D008D4953 /* ManaBarNode.swift */,
+				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
 				4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */,
 				4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */,
 			);
@@ -270,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				563F3DEC24171B49009381B9 /* GameScene.swift */,
+				56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -446,11 +452,13 @@
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
+				56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */,
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
+				56E82D702417E9D2009172C6 /* GamePlayConfiguration.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,

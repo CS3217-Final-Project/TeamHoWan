@@ -11,11 +11,11 @@ import GameplayKit
 
 class GestureComponent: GKComponent {
     private var gesture: PathModel
-//    private var gestureSprite: SKSpriteNode
+    let node: GestureNode
     
     init(gesture: PathModel) {
         self.gesture = gesture
-//        self.gestureSprite = gesture.getTexture()
+        self.node = GestureNode(gesture: gesture)
         super.init()
     }
     

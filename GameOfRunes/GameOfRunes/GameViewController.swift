@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for pathModel in CustomGestures.getAllGesturePathModels() {
+        for pathModel in CustomGesture.getAllGesturePathModels() {
             recognizer.addModel(pathModel)
         }
         
@@ -73,7 +73,7 @@ class GameViewController: UIViewController {
             return
         }
         
-        guard let customGesture: CustomGestures = gesture.datas as? CustomGestures else {
+        guard let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
             return
         }
         print(customGesture.rawValue)

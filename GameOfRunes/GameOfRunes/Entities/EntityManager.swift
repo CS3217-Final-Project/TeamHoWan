@@ -29,6 +29,18 @@ class EntityManager {
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             scene?.addChild(spriteNode)
+            
+            if let gestureNode = entity.component(ofType: GestureComponent.self)?.node {
+                scene?.addChild(gestureNode)
+                
+                let xRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.x)
+                let yRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.y)
+
+                let constraint = SKConstraint.positionX(xRange, y: yRange)
+                constraint.referenceNode = spriteNode
+                
+                gestureNode.constraints = [constraint]
+            }
         }
         
         componentSystems.forEach { $0.addComponent(foundIn: entity) }
