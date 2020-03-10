@@ -76,7 +76,7 @@ class GameScene: SKScene {
         let playerAreaSize = playerAreaNode.frame.size
         healthBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
         healthBarNode.position = playerAreaNode.position
-            + .init(dx: -playerAreaSize.width / 4, dy: playerAreaSize.height / 5)
+            + .init(dx: -playerAreaSize.width / 4.5, dy: playerAreaSize.height / 4.5)
         healthBarNode.zPosition = 100
         addChild(healthBarNode)
     }
@@ -90,7 +90,7 @@ class GameScene: SKScene {
         let playerAreaSize = playerAreaNode.frame.size
         manaBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
         manaBarNode.position = playerAreaNode.position
-            + .init(dx: 0.0, dy: playerAreaSize.height / 5)
+            + .init(dx: playerAreaSize.width / 4.5, dy: playerAreaSize.height / 4.5)
         manaBarNode.zPosition = 100
         addChild(manaBarNode)
     }

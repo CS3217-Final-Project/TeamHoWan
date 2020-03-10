@@ -27,10 +27,10 @@
 		4AA5B37A2417625D008D4953 /* ManaBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3792417625D008D4953 /* ManaBarNode.swift */; };
 		4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */; };
 		4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B37D24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift */; };
+		4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AA5B37F2417879B008D4953 /* Assets.xcassets */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
 		4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB22414C69800F235AE /* Main.storyboard */; };
-		4ACC8BB62414C69B00F235AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB52414C69B00F235AE /* Assets.xcassets */; };
 		4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */; };
 		4ACC8BC42414C69B00F235AE /* GameOfRunesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BC32414C69B00F235AE /* GameOfRunesTests.swift */; };
 		4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BD12414D57900F235AE /* SpriteComponent.swift */; };
@@ -77,11 +77,11 @@
 		4AA5B3792417625D008D4953 /* ManaBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNode.swift; sourceTree = "<group>"; };
 		4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarNode.swift; sourceTree = "<group>"; };
 		4AA5B37D24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexColorCodeInitializer.swift"; sourceTree = "<group>"; };
+		4AA5B37F2417879B008D4953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BB02414C69800F235AE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4ACC8BB32414C69800F235AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4ACC8BB52414C69B00F235AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ACC8BB82414C69B00F235AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ACC8BBA2414C69B00F235AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ACC8BBF2414C69B00F235AE /* GameOfRunesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfRunesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,8 +206,8 @@
 				4ACC8BD02414D54800F235AE /* Entities */,
 				4AA5B3702416BB54008D4953 /* Custom Nodes */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
+				4AA5B37F2417879B008D4953 /* Assets.xcassets */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
-				4ACC8BB52414C69B00F235AE /* Assets.xcassets */,
 				4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
@@ -370,9 +370,9 @@
 			files = (
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
-				4ACC8BB62414C69B00F235AE /* Assets.xcassets in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,8 +18,8 @@ class ManaBarNode: SKSpriteNode {
     private var progressBarNode: ProgressBarNode
     override var size: CGSize {
         didSet {
-            progressBarNode.size = size.applying(.init(scaleX: 0.7, y: 0.85))
-            progressBarNode.progress = 0.5
+            progressBarNode.size = size.applying(.init(scaleX: 1.0, y: 0.9))
+            //progressBarNode.progress = 0.5
         }
     }
     
@@ -27,11 +27,10 @@ class ManaBarNode: SKSpriteNode {
         self.numManaUnits = max(1, numManaUnits)
         self.manaPointsPerUnit = max(1, manaPointsPerUnit)
         currentManaPoints = 0
-        let texture = SKTexture(imageNamed: "mana-container2")
+        let texture = SKTexture(imageNamed: "mana-container")
         progressBarNode = .init(color: .init(hex: "#a8ffff", alpha: 1.0), size: texture.size())
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        anchorPoint = .init(x: 0.0, y: 0.5)
         progressBarNode.position = position
         progressBarNode.zPosition = -1
         addChild(progressBarNode)
