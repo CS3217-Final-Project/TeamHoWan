@@ -16,8 +16,8 @@ class EnemyEntity: GKEntity {
         
         let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
         let spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
-        
         let teamComponent = TeamComponent(team: .enemy)
+        let gestureComponent = GestureComponent(gesture: .arrowUp)
         
         let moveComponent = MoveComponent(
             maxSpeed: 150.0,
@@ -26,6 +26,7 @@ class EnemyEntity: GKEntity {
             entityManager: entityManager
         )
         
+        addComponent(gestureComponent)
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)

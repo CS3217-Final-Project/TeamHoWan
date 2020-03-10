@@ -10,10 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class GestureComponent: GKComponent {
-    private var gesture: PathModel
+    private var gesture: CustomGesture
     let node: GestureNode
     
-    init(gesture: PathModel) {
+    init(gesture: CustomGesture) {
         self.gesture = gesture
         self.node = GestureNode(gesture: gesture)
         super.init()

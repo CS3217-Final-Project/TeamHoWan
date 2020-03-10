@@ -9,7 +9,6 @@
 import Foundation
 
 open class DBPathRecognizer {
-    
     var deltaMove: Double
     var sliceCount: Int
     var costMax: Int
@@ -26,34 +25,27 @@ open class DBPathRecognizer {
     open func recognizePath(_ path: Path) -> PathModel? {
         
         self.path = path
-        
         if path.count < 2 {
             return nil
         }
         
         let dir = directions()
-        
         var bestCost = Int.max
         var bestModel: PathModel?
         
         for model in models {
-            
             var cost = costLeven(model.directions, dir)
-            
             if model.filter != nil {
                 cost = model.filter!(cost, PathInfos(deltaPoints: deltaPoints(),
                                                      boundingBox: path.boundingBox, directions: dir))
             }
-            
             if cost < costMax && cost < bestCost {
                 bestCost = cost
                 bestModel = model
             }
-            
         }
         
         return bestModel
-        
     }
     
     open func addModel(_ model: PathModel) {
@@ -61,16 +53,13 @@ open class DBPathRecognizer {
     }
     
     fileprivate func deltaPoints() -> [PathPoint] {
-        
         let points = path!.points
-        
         if points.count < 2 {
             return points
         }
         
         var current = points.first!
         var result: [PathPoint] = [current]
-        
         for (_, point) in points.enumerated() {
             
             let distance = current.squareDistanceFromPoint(point)
@@ -84,14 +73,11 @@ open class DBPathRecognizer {
         if current != points.last! {
             result.append(points.last!)
         }
-        
         return result
     }
     
     fileprivate func directions() -> [Int] {
-        
         let dpoints = deltaPoints()
-        
         if dpoints.count < 2 {
             return []
         }
@@ -100,7 +86,6 @@ open class DBPathRecognizer {
         let sliceAngle: Double = .pi * 2.0 / Double(sliceCount)
         
         for (index, _) in dpoints.enumerated() where index < dpoints.count - 1 {
-            
             var angle: Double = dpoints[index].angleWithPoint(dpoints[index + 1])
             
             if angle < 0 {
