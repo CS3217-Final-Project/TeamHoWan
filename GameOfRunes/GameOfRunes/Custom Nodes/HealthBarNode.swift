@@ -12,7 +12,7 @@ class HealthBarNode: SKSpriteNode {
     private static let spacingBetweenHealthNodes: CGFloat = 10.0
     let totalLives: Int
     var livesLeft: Int
-    var healthNodes = [HealthNode]()
+    private var healthNodes = [HealthNode]()
     override var size: CGSize {
         didSet {
             let numHealthNodes = healthNodes.count

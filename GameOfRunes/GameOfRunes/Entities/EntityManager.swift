@@ -53,7 +53,7 @@ class EntityManager {
         toRemoveEntities = []
     }
     
-    func spawnEnemy() {
+    func spawnEnemy() {        
         let enemyEntity = EnemyEntity(enemyType: .orc2, entityManager: self)
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = scene?.size {
