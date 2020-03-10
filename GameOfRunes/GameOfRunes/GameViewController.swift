@@ -75,7 +75,6 @@ class GameViewController: UIViewController {
         guard let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
             return
         }
-        print(customGesture.rawValue)
         guard let view = view as? SKView else {
             return
         }
