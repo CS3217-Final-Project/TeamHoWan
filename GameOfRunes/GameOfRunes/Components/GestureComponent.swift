@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GestureComponent: GKComponent {
-    private var gesture: CustomGesture
+    let gesture: CustomGesture
     let node: GestureNode
     
     init(gesture: CustomGesture) {

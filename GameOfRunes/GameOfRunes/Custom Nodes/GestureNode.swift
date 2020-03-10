@@ -17,7 +17,6 @@ class GestureNode: SKSpriteNode {
         let texture = gesture.getTexture()
         size = texture.size()
         self.texture = texture
-
         addChild(gestureNode)
         
         // Constrain the position of the `chargeLevelNode`.

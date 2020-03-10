@@ -72,11 +72,17 @@ class GameViewController: UIViewController {
         guard let gesture: PathModel = self.recognizer.recognizePath(path) else {
             return
         }
-        
         guard let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
             return
         }
         print(customGesture.rawValue)
+        guard let view = view as? SKView else {
+            return
+        }
+        guard let scene = view.scene as? GameScene else {
+            return
+        }
+        scene.removeMonstersWithGesture(gesture: customGesture)
     }
     
     override var shouldAutorotate: Bool {

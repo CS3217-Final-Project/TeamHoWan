@@ -88,4 +88,16 @@ class EntityManager {
         let entitiesToMove = entities(for: team)
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
     }
+    
+    func removeMonstersWithGesture(gesture: CustomGesture) {
+        for enemyEntity in entities(for: .enemy) {
+            guard let gestureComponent = enemyEntity.component(ofType: GestureComponent.self) else {
+                continue
+            }
+            guard gestureComponent.gesture != gesture else {
+                continue
+            }
+            self.remove(enemyEntity)
+        }
+    }
 }
