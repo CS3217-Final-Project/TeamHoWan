@@ -19,8 +19,12 @@
 		4AA5B36224164FC9008D4953 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36124164FC9008D4953 /* Team.swift */; };
 		4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B363241650A1008D4953 /* TeamComponent.swift */; };
 		4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */; };
+		4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */; };
+		4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */; };
+		4AA5B3742416BF5E008D4953 /* HealthNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3732416BF5E008D4953 /* HealthNode.swift */; };
+		4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */; };
+		4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
-		4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BAE2414C69800F235AE /* GameScene.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
 		4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB22414C69800F235AE /* Main.storyboard */; };
 		4ACC8BB62414C69B00F235AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB52414C69B00F235AE /* Assets.xcassets */; };
@@ -34,6 +38,7 @@
 		4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */; };
 		4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDD2415324400F235AE /* ManaComponent.swift */; };
 		4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */; };
+		563F3DED24171B4A009381B9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F3DEC24171B49009381B9 /* GameScene.swift */; };
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGestures.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
@@ -61,9 +66,13 @@
 		4AA5B36124164FC9008D4953 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		4AA5B363241650A1008D4953 /* TeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComponent.swift; sourceTree = "<group>"; };
 		4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+pointManipulationHelpers.swift"; sourceTree = "<group>"; };
+		4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaEntity.swift; sourceTree = "<group>"; };
+		4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNode.swift; sourceTree = "<group>"; };
+		4AA5B3732416BF5E008D4953 /* HealthNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthNode.swift; sourceTree = "<group>"; };
+		4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+resizeHelpers.swift"; sourceTree = "<group>"; };
+		4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+vectorManipulationHelpers.swift"; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4ACC8BAE2414C69800F235AE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4ACC8BB02414C69800F235AE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4ACC8BB32414C69800F235AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4ACC8BB52414C69B00F235AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +89,7 @@
 		4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHealthEntity.swift; sourceTree = "<group>"; };
 		4ACC8BDD2415324400F235AE /* ManaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaComponent.swift; sourceTree = "<group>"; };
 		4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManaEntity.swift; sourceTree = "<group>"; };
+		563F3DEC24171B49009381B9 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestures.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
@@ -140,8 +150,19 @@
 			children = (
 				4AA508D4241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift */,
 				4AA5B36524165601008D4953 /* CGPoint+pointManipulationHelpers.swift */,
+				4AA5B3772416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift */,
+				4AA5B3752416C6BB008D4953 /* CGSize+resizeHelpers.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4AA5B3702416BB54008D4953 /* Custom Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */,
+				4AA5B3732416BF5E008D4953 /* HealthNode.swift */,
+			);
+			path = "Custom Nodes";
 			sourceTree = "<group>";
 		};
 		4ACC8B9C2414C69800F235AE = {
@@ -168,13 +189,14 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
-				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				566121DE2416936E00475CE1 /* Scenes */,
 				566121D7241682C500475CE1 /* Gesture Recogniser */,
 				4AA508D32416213B00D9ADE4 /* Extensions */,
 				4AA508C9241614D500D9ADE4 /* Types */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
+				4AA5B3702416BB54008D4953 /* Custom Nodes */,
+				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
 				4ACC8BB52414C69B00F235AE /* Assets.xcassets */,
 				4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */,
@@ -215,6 +237,7 @@
 				4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */,
 				4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */,
 				4AA5B35F241646DF008D4953 /* EndPointEntity.swift */,
+				4AA5B36724168B1C008D4953 /* PlayerAreaEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -231,7 +254,7 @@
 		566121DE2416936E00475CE1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC8BAE2414C69800F235AE /* GameScene.swift */,
+				563F3DEC24171B49009381B9 /* GameScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -401,15 +424,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */,
+				4AA5B3742416BF5E008D4953 /* HealthNode.swift in Sources */,
+				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
-				4ACC8BAF2414C69800F235AE /* GameScene.swift in Sources */,
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* EntityManager.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
+				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
@@ -419,10 +445,12 @@
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
+				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGestures.swift in Sources */,
+				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +544,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -570,6 +600,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -585,12 +617,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = O;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -603,12 +636,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = O;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;

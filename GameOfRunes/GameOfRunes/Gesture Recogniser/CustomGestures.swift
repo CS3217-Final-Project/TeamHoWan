@@ -58,9 +58,9 @@ enum CustomGestures: String {
             return PathModel(directions: [2, 1, 0, 7, 6], datas: self as AnyObject)
         case .zShape:
             return PathModel(directions: [0, 3, 0], datas: self as AnyObject)
-        case .capitalTShape:
+        case .capitalTShape: // NOT WORKING
             return PathModel(directions: [0,2], datas: self as AnyObject)
-        case .capitalFShape:
+        case .capitalFShape: // NOT WORKING
             return PathModel(directions: [4, 3, 2, 1, 0, 4, 3, 2], datas: self as AnyObject)
         case .mShape:
             return PathModel(directions: [6,1,7,2], datas: self as AnyObject)
@@ -97,11 +97,23 @@ enum CustomGestures: String {
             .verticalLine2,
             .arrowUp,
             .arrowDown,
+            .arrowLeft,
+            .arrowRight,
             .eShape,
             .wShape,
             .doubleWShape,
             .uShape,
-            .zShape
+            .zShape,
+            .bShape,
+            .mShape,
+            .capitalFShape,
+            .capitalTShape,
+            .contortedCShape,
+            .pShape,
+            .rShape,
+            .lightning,
+            .diamond,
+            .ribbon
         ]
     }
 }

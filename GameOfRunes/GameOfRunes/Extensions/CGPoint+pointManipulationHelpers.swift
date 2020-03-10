@@ -10,8 +10,7 @@ import UIKit
 
 extension CGPoint {
     func distance(to point: CGPoint) -> CGFloat {
-        let vector = getVector(to: point)
-        return sqrt(vector.dx * vector.dx + vector.dy * vector.dy)
+        getVector(to: point).magnitude
     }
     
     func getVector(to point: CGPoint) -> CGVector {

@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-    private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0)
+    private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 40)
     private var rawPoints:[Int] = []
     @IBOutlet private var letterLabel: UILabel!
     
@@ -37,8 +37,10 @@ class GameViewController: UIViewController {
     // Stores the coordinates of the first touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         rawPoints = []
-        let touch = touches.first
-        let location = touch!.location(in: view)
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: view)
         // TODO: 0.8 is magic number => should be changed 
         if (location.y >= 0.8 * view.bounds.size.height) {
             return
@@ -52,8 +54,10 @@ class GameViewController: UIViewController {
         if rawPoints.isEmpty {
             return
         }
-        let touch = touches.first
-        let location = touch!.location(in: view)
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: view)
         if (rawPoints[rawPoints.count-2] != Int(location.x) && rawPoints[rawPoints.count-1] != Int(location.y)) {
             rawPoints.append(Int(location.x))
             rawPoints.append(Int(location.y))
@@ -74,11 +78,6 @@ class GameViewController: UIViewController {
         }
         print(customGesture.rawValue)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     override var shouldAutorotate: Bool {
         true
