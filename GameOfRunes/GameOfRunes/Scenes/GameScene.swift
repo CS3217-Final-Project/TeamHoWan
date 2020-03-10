@@ -20,6 +20,7 @@ class GameScene: SKScene {
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealthBar()
+        setUpManaBar()
         setUpMana()
     }
     
@@ -67,16 +68,31 @@ class GameScene: SKScene {
     }
     
     private func setUpHealthBar() {
-        let healthBarNode = HealthBarNode(totalLives: 3)
-        
-        if let playerAreaNode = scene?.childNode(withName: "player area") {
-            let playerAreaSize = playerAreaNode.frame.size
-            healthBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
-            healthBarNode.position = playerAreaNode.position
-                + .init(dx: -playerAreaSize.width / 4, dy: playerAreaSize.height / 5)
-            healthBarNode.zPosition = 2
-            addChild(healthBarNode)
+        guard let playerAreaNode = scene?.childNode(withName: "player area") else {
+            return
         }
+        
+        let healthBarNode = HealthBarNode(totalLives: 3)
+        let playerAreaSize = playerAreaNode.frame.size
+        healthBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
+        healthBarNode.position = playerAreaNode.position
+            + .init(dx: -playerAreaSize.width / 4, dy: playerAreaSize.height / 5)
+        healthBarNode.zPosition = 100
+        addChild(healthBarNode)
+    }
+    
+    private func setUpManaBar() {
+        guard let playerAreaNode = scene?.childNode(withName: "player area") else {
+            return
+        }
+        
+        let manaBarNode = ManaBarNode(numManaUnits: 5, manaPointsPerUnit: 10)
+        let playerAreaSize = playerAreaNode.frame.size
+        manaBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
+        manaBarNode.position = playerAreaNode.position
+            + .init(dx: 0.0, dy: playerAreaSize.height / 5)
+        manaBarNode.zPosition = 100
+        addChild(manaBarNode)
     }
     
     private func setUpMana() {
@@ -84,7 +100,7 @@ class GameScene: SKScene {
         
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
-        manaLabel.position = CGPoint(x: size.width / 2, y: 100)
+        manaLabel.position = CGPoint(x: size.width / 2, y: 50)
         manaLabel.zPosition = 3
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
