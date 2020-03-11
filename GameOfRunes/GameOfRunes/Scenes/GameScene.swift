@@ -20,6 +20,11 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
+        registerForPauseNotifications()
+    }
+
+    deinit {
+        unregisterForPauseNotifications()
     }
 
     required init?(coder aDecoder: NSCoder) {
