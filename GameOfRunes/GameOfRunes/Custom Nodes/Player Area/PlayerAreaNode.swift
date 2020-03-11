@@ -30,6 +30,9 @@ class PlayerAreaNode: SKSpriteNode {
     override var size: CGSize {
         // Swift's implementation: didSet can be called if new value is set INSIDE init
         didSet {
+            guard oldValue != size else {
+                return
+            }
             print("Resize player area")
             layoutHealthBar()
             layoutManaBar()
@@ -38,6 +41,9 @@ class PlayerAreaNode: SKSpriteNode {
     override var position: CGPoint {
         // Swift's implementation: didSet can be called if new value is set INSIDE init
         didSet {
+            guard oldValue != position else {
+                return
+            }
             print("Re-position player area")
             layoutHealthBar()
             layoutManaBar()
