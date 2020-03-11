@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/** Scene to be displayed when the game is paused. */
 class GamePauseScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachine {
     var gameStateMachine: GameStateMachine
 
@@ -32,7 +33,6 @@ class GamePauseScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMac
 
     func buttonPressed(button: ButtonNode) {
         if button.name == "continueButton" {
-            print("Continue Button Pressed!")
             gameStateMachine.enter(GameInPlayState.self)
         }
     }

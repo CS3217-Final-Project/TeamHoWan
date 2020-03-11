@@ -8,6 +8,10 @@
 
 import GameplayKit
 
+/**
+ State for `GameStateMachine` when the Game is just starting.
+ This state automatically transitions to `GameInPlayState` when ready.
+ */
 class GameStartState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -15,9 +19,7 @@ class GameStartState: GKState {
     }
 
     override func didEnter(from previousState: GKState?) {
-        print("Did Enter GameStartState")
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            print("here")
             return
         }
 

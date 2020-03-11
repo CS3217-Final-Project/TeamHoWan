@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+/**
+ Scene to be displayed when the game has ended (i.e. either win or lose
+ condition has been reached).
+ */
 class GameEndScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachine {
     var didWin: Bool = true
     var gameStateMachine: GameStateMachine
@@ -26,7 +30,7 @@ class GameEndScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachi
 
         let text = didWin ? "You Won!" : "You Lost :("
         let winLabel = SKLabelNode(text: text)
-        winLabel.fontName = "AvenirNext-Bold"
+        winLabel.fontName = "DragonFire"
         winLabel.fontSize = 65
         winLabel.fontColor = .white
         winLabel.position = CGPoint(x: frame.midX,

@@ -17,6 +17,10 @@ protocol ButtonNodeResponderType : class {
     func buttonPressed(button: ButtonNode)
 }
 
+/**
+ An `SKSpriteNode` that functions as a button.
+ To be added to `SKScene` or it subclasses.
+ */
 class ButtonNode : SKSpriteNode {
     private var responder: ButtonNodeResponderType {
         guard let responder = scene as? ButtonNodeResponderType else {
@@ -63,7 +67,7 @@ class ButtonNode : SKSpriteNode {
         }
     }
 
-    /// UIResponder touch handling.
+    /** UIResponder touch handling. */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if containsTouches(touches: touches) {
@@ -71,6 +75,7 @@ class ButtonNode : SKSpriteNode {
         }
     }
 
+    /** UIResponder touch handling. */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         isHighlighted = false
@@ -80,12 +85,13 @@ class ButtonNode : SKSpriteNode {
         }
     }
 
+    /** UIResponder touch handling. */
     override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
         super.touchesCancelled(touches!, with: event)
         isHighlighted = false
     }
 
-    /// Determine if any of the touches are within the `ButtonNode`.
+    /** Determine if any of the touches are within the `ButtonNode`. */
     private func containsTouches(touches: Set<UITouch>) -> Bool {
         guard let scene = scene else { fatalError("Button must be used within a scene.") }
 

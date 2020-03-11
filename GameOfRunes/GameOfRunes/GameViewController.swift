@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
                                                              GamePauseState(),
                                                              GameEndState()])
             sceneManager = SceneManager(presentingView: view,
-                                            gameStateMachine: gameStateMachine)
+                                        gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
             gameStateMachine.enter(GameStartState.self)
         }

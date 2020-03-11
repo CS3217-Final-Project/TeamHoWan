@@ -296,7 +296,6 @@
 				8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */,
 				8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */,
 				8A5CE9C02418869000BEC4B9 /* GameplayConfiguration.swift */,
-				8A5CE9B324187BDD00BEC4B9 /* SceneSKSFiles */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -316,13 +315,6 @@
 				A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		8A5CE9B324187BDD00BEC4B9 /* SceneSKSFiles */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SceneSKSFiles;
 			sourceTree = "<group>";
 		};
 		8A5CE9B424187BFD00BEC4B9 /* GameState */ = {

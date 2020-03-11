@@ -9,6 +9,7 @@
 import Foundation
 import CoreGraphics
 
+/** Stores all major game settings. */
 struct GameplayConfiguration {
     struct Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 65.0)

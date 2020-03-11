@@ -8,6 +8,7 @@
 
 import GameplayKit
 
+/** State for `GameStateMachine` when the Game is in play. */
 class GameInPlayState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {

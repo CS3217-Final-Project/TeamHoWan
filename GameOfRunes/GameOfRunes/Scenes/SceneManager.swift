@@ -8,6 +8,12 @@
 
 import SpriteKit
 
+/**
+ Helps manage the scenes to be displayed in View (i.e. `SKView`).
+ This class abstracts away the logic required to transition to different
+ scenes. This class is meant to be called by `GameStateMachine`
+ when `GameStateMachine` transitions between different states.
+ */
 class SceneManager {
     enum SceneIdentifier {
         case play
@@ -52,6 +58,9 @@ class SceneManager {
         presentingView.presentScene(scene, transition: transition)
     }
 
+    /**
+     Resets the `GameScene` by creating a new `GameScene` object,
+     */
     func restartGame() {
         guard let gameStateMachine = gameStateMachine else {
             return
