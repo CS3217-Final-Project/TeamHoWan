@@ -9,6 +9,9 @@
 import SpriteKit
 import GameplayKit
 
+/**
+ Class to manage all Entities within the game.
+ */
 class EntityManager {
     lazy var componentSystems: [GKComponentSystem] = {
         let manaSystem = GKComponentSystem(componentClass: ManaComponent.self)
@@ -19,9 +22,15 @@ class EntityManager {
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
+    weak var gameStateMachine: GameStateMachine?
+    private var playerHealthEntity: PlayerHealthEntity? {
+        entities.filter({ $0.component(ofType: HealthComponent.self) != nil }).first as? PlayerHealthEntity
+    }
     
-    init(scene: SKScene) {
+    init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
+        self.gameStateMachine = gameStateMachine
+        self.gameStateMachine?.entityManager = self
     }
     
     func add(_ entity: GKEntity) {
@@ -67,6 +76,16 @@ class EntityManager {
             }
         }
         toRemoveEntities = []
+
+        // Player Loses the Game
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self),
+            playerHealthComponent.healthPoints <= 0,
+            let gameStateMachine = gameStateMachine,
+            let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
+            gameEndState.didWin = false
+            gameStateMachine.enter(GameEndState.self)
+        }
     }
     
     func spawnEnemy() {        
@@ -83,16 +102,30 @@ class EntityManager {
         }
         add(enemyEntity)
     }
-    
+
+    /** Gets all entities of a particular `Team`. */
     func entities(for team: Team) -> [GKEntity] {
         entities.compactMap { $0.component(ofType: TeamComponent.self)?.team == team ? $0 : nil }
     }
-    
+
+    /** Gets all the `MoveComponents` of entities in a particular `Team` */
     func moveComponents(for team: Team) -> [MoveComponent] {
         let entitiesToMove = entities(for: team)
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
     }
-    
+
+    /** Decrements the Player's health by 1 point. */
+    func decreasePlayerHealth() {
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
+            playerHealthComponent.healthPoints -= 1
+        }
+    }
+
+    /**
+     Removes all `EnemyEntity`s whose `GestureComponent` corresponds
+     to `gesture`.
+     */
     func removeMonstersWithGesture(gesture: CustomGesture) {
         for enemyEntity in entities(for: .enemy) {
             guard let gestureComponent = enemyEntity.component(ofType: GestureComponent.self) else {

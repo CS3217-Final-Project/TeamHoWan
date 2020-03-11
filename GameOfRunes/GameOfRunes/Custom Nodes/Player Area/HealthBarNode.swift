@@ -16,6 +16,9 @@ class HealthBarNode: SKSpriteNode {
                 return
             }
             buildHealthNodes()
+            // ensures _livesLeft <= new totalLives
+            livesLeft = _livesLeft
+            updateActiveLives()
         }
     }
     var totalLives: Int {
@@ -28,7 +31,10 @@ class HealthBarNode: SKSpriteNode {
     }
     private var _livesLeft: Int {
         didSet {
-            (0..<healthNodes.count).forEach { healthNodes[$0].active = $0 < _livesLeft }
+            guard oldValue != _livesLeft else {
+                return
+            }
+            updateActiveLives()
         }
     }
     var livesLeft: Int {
@@ -63,6 +69,10 @@ class HealthBarNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func updateActiveLives() {
+        (0..<healthNodes.count).forEach { healthNodes[$0].active = $0 < _livesLeft }
+    }
+    
     private func buildHealthNodes() {
         healthNodes.forEach { $0.removeFromParent() }
         healthNodes = []
@@ -73,8 +83,6 @@ class HealthBarNode: SKSpriteNode {
             self.addChild(healthNode)
         }
         layoutHealthNodes()
-        // ensures _livesLeft <= new totalLives
-        livesLeft = _livesLeft
     }
     
     private func layoutHealthNodes() {
