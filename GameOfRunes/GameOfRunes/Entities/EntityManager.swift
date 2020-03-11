@@ -27,6 +27,7 @@ class EntityManager {
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
         self.gameStateMachine = gameStateMachine
+        self.gameStateMachine?.entityManager = self
     }
     
     func add(_ entity: GKEntity) {

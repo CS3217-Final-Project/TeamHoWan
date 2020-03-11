@@ -130,7 +130,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        
+
         entityManager.update(with: deltaTime)
         
         if let manaEntity = entityManager
@@ -172,5 +172,25 @@ extension GameScene: ButtonNodeResponderType {
         if button.name == "pauseButton" {
             gameStateMachine.enter(GamePauseState.self)
         }
+    }
+}
+
+/** Pause Game when the application becomes inactive */
+extension GameScene {
+    func registerForPauseNotifications() {
+        let pauseNotificationName = UIApplication.willResignActiveNotification
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(GameScene.pauseGame),
+                                               name: pauseNotificationName,
+                                               object: nil)
+    }
+
+    @objc func pauseGame() {
+        gameStateMachine.enter(GamePauseState.self)
+    }
+
+    func unregisterForPauseNotifications() {
+        let pauseNotificationName = UIApplication.willResignActiveNotification
+        NotificationCenter.default.removeObserver(self, name: pauseNotificationName, object: nil)
     }
 }

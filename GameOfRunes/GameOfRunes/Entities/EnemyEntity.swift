@@ -10,29 +10,44 @@ import SpriteKit
 import GameplayKit
 
 class EnemyEntity: GKEntity {
-    
+    private let spriteComponent: SpriteComponent
+    private let teamComponent: TeamComponent
+    private weak var entityManager: EntityManager?
+
     init(enemyType: EnemyType, entityManager: EntityManager) {
-        super.init()
-        
         let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
-        let spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
+
+        spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
+        teamComponent = TeamComponent(team: .enemy)
+        self.entityManager = entityManager
         
-        let teamComponent = TeamComponent(team: .enemy)
-        
+        super.init()
+        addComponent(spriteComponent)
+        addComponent(teamComponent)
+        addMoveComponent()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    /** Helper function to remove MoveComponent from EnemyEntity */
+    func removeMoveComponent() {
+        removeComponent(ofType: MoveComponent.self)
+    }
+
+    /** Helper function to add MoveComponent to EnemyEntity */
+    func addMoveComponent() {
+        guard let entityManager = entityManager else {
+            return
+        }
         let moveComponent = MoveComponent(
             maxSpeed: 150.0,
             maxAcceleration: 5.0,
             radius: .init(spriteComponent.node.size.width) * 0.01,
             entityManager: entityManager
         )
-        
-        addComponent(spriteComponent)
-        addComponent(teamComponent)
         addComponent(moveComponent)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
