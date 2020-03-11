@@ -1,5 +1,5 @@
 //
-//  GameplayConfiguration.swift
+//  GameplayConfig.swift
 //  GameOfRunes
 //
 //  Created by Brian Yen on 11/3/20.
@@ -10,7 +10,7 @@ import Foundation
 import CoreGraphics
 
 /** Stores all major game settings. */
-struct GameplayConfiguration {
+struct GameplayConfig {
     struct Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 65.0)
     }
