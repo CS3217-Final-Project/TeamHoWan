@@ -49,15 +49,35 @@ class PlayerAreaNode: SKSpriteNode {
             layoutManaBar()
         }
     }
-    lazy var healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
-    lazy var manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
+    var healthBarSize: CGSize {
+        didSet {
+            layoutHealthBar()
+        }
+    }
+    var manaBarSize: CGSize {
+        didSet {
+            layoutManaBar()
+        }
+    }
     // with respect to the center of current node
-    lazy var healthBarPositionOffsetFromCenter = CGVector(dx: -size.width / 4.5, dy: size.height / 4.5)
-    lazy var manaBarPositionOffsetFromCenter = CGVector(dx: size.width / 4.5, dy: size.height / 4.5)
+    var healthBarPositionOffsetFromCenter: CGVector {
+        didSet {
+            layoutHealthBar()
+        }
+    }
+    var manaBarPositionOffsetFromCenter: CGVector {
+        didSet {
+            layoutManaBar()
+        }
+    }
     
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
+        healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
+        manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
+        healthBarPositionOffsetFromCenter = CGVector(dx: -size.width / 4.5, dy: size.height / 4.5)
+        manaBarPositionOffsetFromCenter = CGVector(dx: size.width / 4.5, dy: size.height / 4.5)
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
         self.position = position

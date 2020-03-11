@@ -50,7 +50,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             size: size
         )
         backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
-        backgroundNode.zPosition = -1
+        backgroundNode.zPosition = -100
         addChild(backgroundNode)
         
         // Add player area
