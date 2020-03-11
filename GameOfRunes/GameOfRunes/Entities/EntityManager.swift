@@ -29,6 +29,18 @@ class EntityManager {
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             scene?.addChild(spriteNode)
+            
+            if let gestureNode = entity.component(ofType: GestureComponent.self)?.node {
+                scene?.addChild(gestureNode)
+                
+                let xRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.x)
+                let yRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.y)
+
+                let constraint = SKConstraint.positionX(xRange, y: yRange)
+                constraint.referenceNode = spriteNode
+                
+                gestureNode.constraints = [constraint]
+            }
         }
         
         componentSystems.forEach { $0.addComponent(foundIn: entity) }
@@ -37,6 +49,10 @@ class EntityManager {
     func remove(_ entity: GKEntity) {
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             spriteNode.removeFromParent()
+            
+            if let gestureNode = entity.component(ofType: GestureComponent.self)?.node {
+                gestureNode.removeFromParent()
+            }
         }
         
         entities.remove(entity)
@@ -75,5 +91,17 @@ class EntityManager {
     func moveComponents(for team: Team) -> [MoveComponent] {
         let entitiesToMove = entities(for: team)
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
+    }
+    
+    func removeMonstersWithGesture(gesture: CustomGesture) {
+        for enemyEntity in entities(for: .enemy) {
+            guard let gestureComponent = enemyEntity.component(ofType: GestureComponent.self) else {
+                continue
+            }
+            guard gestureComponent.gesture != gesture else {
+                continue
+            }
+            self.remove(enemyEntity)
+        }
     }
 }

@@ -64,12 +64,27 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         
         guard let entity = entity,
             let teamComponent = entity.component(ofType: TeamComponent.self),
-            let enemyMoveComponent = closestMoveComponent(for: teamComponent.team.oppositeTeam) else {
+            let enemyMoveComponent = closestMoveComponent(for: teamComponent.team.oppositeTeam),
+            let entityManager = entityManager,
+            let endpointComponent = entityManager.entities(for: .player).first as? EndPointEntity,
+            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
                 return
         }
-        
-        let alliedMoveComponents = entityManager?.moveComponents(for: teamComponent.team) ?? []
+        let alliedMoveComponents = entityManager.moveComponents(for: teamComponent.team)
         
         behavior = MoveBehavior(targetSpeed: maxSpeed, seek: enemyMoveComponent, avoid: alliedMoveComponents)
+        
+        for enemyEntity in entityManager.entities(for: .enemy) {
+            guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
+                continue
+            }
+            
+            if enemySpriteComponent
+                .node
+                .calculateAccumulatedFrame()
+                .intersects(endpointNode.calculateAccumulatedFrame()) {
+                entityManager.remove(enemyEntity)
+            }
+        }
     }
 }
