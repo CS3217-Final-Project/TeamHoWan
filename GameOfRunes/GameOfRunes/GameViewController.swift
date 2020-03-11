@@ -14,23 +14,23 @@ class GameViewController: UIViewController {
     private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 40)
     private var rawPoints:[Int] = []
     @IBOutlet private var letterLabel: UILabel!
+    private var sceneManager: SceneManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         for pathModel in CustomGesture.getAllGesturePathModels() {
             recognizer.addModel(pathModel)
         }
-        
-        let scene = GameScene(size: view.bounds.size)
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
-        // Present the scene
+
         if let view = view as? SKView {
-            view.presentScene(scene)
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+            let gameStateMachine = GameStateMachine(states: [GameStartState(),
+                                                             GameInPlayState(),
+                                                             GamePauseState(),
+                                                             GameEndState()])
+            sceneManager = SceneManager(presentingView: view,
+                                        gameStateMachine: gameStateMachine)
+            gameStateMachine.sceneManager = sceneManager
+            gameStateMachine.enter(GameStartState.self)
         }
     }
     
