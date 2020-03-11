@@ -20,18 +20,24 @@ class GameViewController: UIViewController {
         for pathModel in CustomGestures.getAllGesturePathModels() {
             recognizer.addModel(pathModel)
         }
-        
-        let scene = GameScene(size: view.bounds.size)
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
-        // Present the scene
+
         if let view = view as? SKView {
-            view.presentScene(scene)
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+            let sceneManager = SceneManager(presentingView: view)
+            
         }
+
+
+//        let scene = GameScene(size: view.bounds.size)
+//        // Set the scale mode to scale to fit the window
+//        scene.scaleMode = .aspectFill
+//
+//        // Present the scene
+//        if let view = view as? SKView {
+//            view.presentScene(scene)
+//            view.ignoresSiblingOrder = true
+//            view.showsFPS = true
+//            view.showsNodeCount = true
+//        }
     }
     
     // Stores the coordinates of the first touch
