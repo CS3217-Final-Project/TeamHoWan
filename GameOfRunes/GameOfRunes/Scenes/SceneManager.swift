@@ -54,7 +54,7 @@ class SceneManager {
             scene = self.gameEndScene
         }
 
-        let transition = SKTransition.doorsCloseHorizontal(withDuration: GameplayConfig.SceneManager.sceneTransitionDuration)
+        let transition = SKTransition.doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
         presentingView.presentScene(scene, transition: transition)
     }
 

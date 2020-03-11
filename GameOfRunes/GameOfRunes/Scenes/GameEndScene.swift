@@ -35,12 +35,12 @@ class GameEndScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachi
         winLabel.fontColor = .white
         winLabel.position = CGPoint(x: frame.midX,
                                     y: frame.midY +
-                                        CGFloat(GameplayConfig.GameEndScene.buttonHeight/2) +
-                                        CGFloat(GameplayConfig.GameEndScene.contentSpacing))
+                                        CGFloat(GameplayConfiguration.GameEndScene.buttonHeight/2) +
+                                        CGFloat(GameplayConfiguration.GameEndScene.contentSpacing))
         addChild(winLabel)
 
-        let buttonSize = CGSize(width: GameplayConfig.GameEndScene.buttonWidth,
-                                height: GameplayConfig.GameEndScene.buttonHeight)
+        let buttonSize = CGSize(width: GameplayConfiguration.GameEndScene.buttonWidth,
+                                height: GameplayConfiguration.GameEndScene.buttonHeight)
         let restartButton = ButtonNode(size: buttonSize,
                                        position: CGPoint(x: frame.midX, y: frame.midY),
                                        texture: SKTexture(imageNamed: "restartButton"),
