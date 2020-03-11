@@ -46,7 +46,7 @@ class ManaBarNode: SKSpriteNode {
     override var size: CGSize {
         didSet {
             // position the start of the progress bar to be inline with the window
-            progressBarNode.position = position + .init(dx: -size.width * 0.35, dy: 0.5)
+            progressBarNode.position = .zero + .init(dx: -size.width * 0.35, dy: 0.5)
             progressBarNode.size.height = size.height * 0.7
             progressBarNode.maxWidth = size.width * 0.7
             updateManaBar()
@@ -69,7 +69,7 @@ class ManaBarNode: SKSpriteNode {
                 dy: 0.0
             )
             
-            var barDividerNodePosition = position
+            var barDividerNodePosition: CGPoint = .zero
                 + .init(dx: -size.width * 0.35, dy: 0.0)
                 + .init(dx: spacingBetweenBarDividerNode + newBarDividerNodeWidth / 2, dy: 0.0)
             

@@ -29,7 +29,7 @@ class HealthBarNode: SKSpriteNode {
                 dy: 0.0
             )
             let numIntervalsPerSide = (numHealthNodes - 1) / 2
-            var healthNodePosition = position
+            var healthNodePosition: CGPoint = .zero
                 + .init(numIntervalsPerSide) * -intervalVector
                 + .init(dx: numHealthNodes.isMultiple(of: 2) ? -newHealthNodeWidth / 2 : 0.0, dy: 0.0)
             

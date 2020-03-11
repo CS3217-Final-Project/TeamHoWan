@@ -66,7 +66,7 @@ class GameScene: SKScene {
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 50)
-        manaLabel.zPosition = 3
+        manaLabel.zPosition = 200
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"

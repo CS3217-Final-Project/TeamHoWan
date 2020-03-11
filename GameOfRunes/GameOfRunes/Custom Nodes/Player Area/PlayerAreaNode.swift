@@ -30,7 +30,10 @@ class PlayerAreaNode: SKSpriteNode {
         healthBarNode = .init()
         manaBarNode = .init()
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
+        
         self.position = position
+        healthBarNode.zPosition = 100
+        manaBarNode.zPosition = 100
         addChild(healthBarNode)
         addChild(manaBarNode)
     }
@@ -42,15 +45,11 @@ class PlayerAreaNode: SKSpriteNode {
     
     private func layoutHealthBar() {
         healthBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.4))
-        healthBarNode.position = position
-            + .init(dx: -size.width / 4.5, dy: size.height / 4.5)
-        healthBarNode.zPosition = 100
+        healthBarNode.position = .zero + .init(dx: -size.width / 4.5, dy: size.height / 4.5)
     }
     
     private func layoutManaBar() {
         manaBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.4))
-        manaBarNode.position = position
-            + .init(dx: size.width / 4.5, dy: size.height / 4.5)
-        manaBarNode.zPosition = 100
+        manaBarNode.position = .zero + .init(dx: size.width / 4.5, dy: size.height / 4.5)
     }
 }
