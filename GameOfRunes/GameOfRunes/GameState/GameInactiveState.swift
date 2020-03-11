@@ -9,6 +9,9 @@
 import GameplayKit
 
 class GameInactiveState: GKState {
-
+    /** Checks for if the state to transition to is valid. */
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        return stateClass is GameInPlayState.Type
+    }
 }
 

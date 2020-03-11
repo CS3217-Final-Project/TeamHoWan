@@ -9,12 +9,23 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, ControlledByGameStateMachine {
     private var entityManager: EntityManager!
     private var lastUpdateTime: TimeInterval = 0.0
+    var gameStateMachine: GameStateMachine
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
     var manaBarNode: ManaBarNode!
-    
+    private var pauseButton: ButtonNode!
+
+    init(size: CGSize, gameStateMachine: GameStateMachine) {
+        self.gameStateMachine = gameStateMachine
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func sceneDidLoad() {
         entityManager = .init(scene: self)
         
@@ -23,6 +34,7 @@ class GameScene: SKScene {
         setUpHealthBar()
         setUpManaBar()
         setUpMana()
+        setUpPauseButton()
     }
     
     private func setUpArenaLayout() {
@@ -109,7 +121,7 @@ class GameScene: SKScene {
         manaLabel.text = "0"
         addChild(manaLabel)
     }
-    
+
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
@@ -127,5 +139,31 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         entityManager.spawnEnemy()
+    }
+}
+
+/**
+ Extension to deal with button-related logic (i.e. the Pause Button)
+ */
+extension GameScene: ButtonNodeResponderType {
+    private func setUpPauseButton() {
+        let buttonSize = CGSize(width: GameplayConfiguration.GamePlayScene.buttonWidth,
+                                height: GameplayConfiguration.GamePlayScene.buttonHeight)
+        let buttonPosition = CGPoint(x: frame.maxX -
+                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonWidth/2),
+                                     y: frame.maxY -
+                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonHeight/2))
+        let pauseButton = ButtonNode(size: buttonSize,
+                                     position: buttonPosition,
+                                     texture: SKTexture(imageNamed: "pauseButton"),
+                                     name: "pauseButton")
+        self.pauseButton = pauseButton
+        addChild(pauseButton)
+    }
+
+    func buttonPressed(button: ButtonNode) {
+        if button.name == "pauseButton" {
+            gameStateMachine.enter(GamePauseState.self)
+        }
     }
 }

@@ -8,8 +8,18 @@
 
 import SpriteKit
 
-class GameEndScene: SKScene, ButtonNodeResponderType {
+class GameEndScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachine {
     var didWin: Bool = true
+    var gameStateMachine: GameStateMachine
+
+    init(size: CGSize, gameStateMachine: GameStateMachine) {
+        self.gameStateMachine = gameStateMachine
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func didMove(to view: SKView) {
         backgroundColor = SKColor(white: 0, alpha: 1)
@@ -31,12 +41,13 @@ class GameEndScene: SKScene, ButtonNodeResponderType {
                                        position: CGPoint(x: frame.midX, y: frame.midY),
                                        texture: SKTexture(imageNamed: "restartButton"),
                                        name: "restartButton")
-        scene?.addChild(restartButton)
+        addChild(restartButton)
     }
 
     func buttonPressed(button: ButtonNode) {
         if button.name == "restartButton" {
             print("Restart Button Pressed")
+            gameStateMachine.enter(GameInPlayState.self)
         }
     }
 }

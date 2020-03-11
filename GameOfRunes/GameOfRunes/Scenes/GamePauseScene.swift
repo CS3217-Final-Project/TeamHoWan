@@ -8,7 +8,18 @@
 
 import SpriteKit
 
-class GamePauseScene: SKScene, ButtonNodeResponderType {
+class GamePauseScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachine {
+    var gameStateMachine: GameStateMachine
+
+    init(size: CGSize, gameStateMachine: GameStateMachine) {
+        self.gameStateMachine = gameStateMachine
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func didMove(to view: SKView) {
         let buttonSize = CGSize(width: GameplayConfiguration.GamePauseScene.buttonWidth,
                                 height: GameplayConfiguration.GamePauseScene.buttonHeight)
@@ -16,12 +27,13 @@ class GamePauseScene: SKScene, ButtonNodeResponderType {
                                         position: CGPoint(x: frame.midX, y: frame.midY),
                                         texture: SKTexture(imageNamed: "continueButton"),
                                         name: "continueButton")
-        scene?.addChild(continueButton)
+        addChild(continueButton)
     }
 
     func buttonPressed(button: ButtonNode) {
         if button.name == "continueButton" {
             print("Continue Button Pressed!")
+            gameStateMachine.enter(GameInPlayState.self)
         }
     }
 }

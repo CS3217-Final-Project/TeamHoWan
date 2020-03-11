@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 40)
     private var rawPoints:[Int] = []
     @IBOutlet private var letterLabel: UILabel!
+    private var sceneManager: SceneManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +22,29 @@ class GameViewController: UIViewController {
             recognizer.addModel(pathModel)
         }
 
+        if let view = view as? SKView {
+            let gameStateMachine = GameStateMachine(states: [GameInPlayState(),
+                                                             GamePauseState(),
+                                                             GameEndState()])
+            sceneManager = SceneManager(presentingView: view,
+                                            gameStateMachine: gameStateMachine)
+            gameStateMachine.sceneManager = sceneManager
+//            gameStateMachine.enter(GameInPlayState.self)
+            gameStateMachine.enter(GamePauseState.self)
+        }
+
 //        if let view = view as? SKView {
 //            let sceneManager = SceneManager(presentingView: view)
 //
 //        }
 
-        let scene = GameEndScene(size: view.bounds.size)
-        if let view = view as? SKView {
-            view.presentScene(scene)
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
+//        let scene = GameEndScene(size: view.bounds.size)
+//        if let view = view as? SKView {
+//            view.presentScene(scene)
+//            view.ignoresSiblingOrder = true
+//            view.showsFPS = true
+//            view.showsNodeCount = true
+//        }
 
 //        let scene = GameScene(size: view.bounds.size)
 //        // Set the scale mode to scale to fit the window

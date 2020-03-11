@@ -28,4 +28,9 @@ struct GameplayConfiguration {
         static let buttonHeight: Double = 100
         static let contentSpacing: Double = 20
     }
+
+    struct GamePlayScene {
+        static let buttonWidth: Double = 100
+        static let buttonHeight: Double = 100
+    }
 }
