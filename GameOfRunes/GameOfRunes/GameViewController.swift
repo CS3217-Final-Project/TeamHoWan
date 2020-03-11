@@ -26,7 +26,7 @@ class GameViewController: UIViewController {
 //
 //        }
 
-        let scene = GamePauseScene(size: view.bounds.size)
+        let scene = GameEndScene(size: view.bounds.size)
         if let view = view as? SKView {
             view.presentScene(scene)
             view.ignoresSiblingOrder = true

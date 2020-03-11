@@ -8,12 +8,16 @@
 
 import SpriteKit
 
+/**
+ A type that can respond to `ButtonNode` button press events.
+ This should be implemented by the `SKScene` that the `ButtonNode`
+ is added to.
+ */
 protocol ButtonNodeResponderType : class {
     func buttonPressed(button: ButtonNode)
 }
 
 class ButtonNode : SKSpriteNode {
-    private let defaultTexture: SKTexture
     private var responder: ButtonNodeResponderType {
         guard let responder = scene as? ButtonNodeResponderType else {
             fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
@@ -40,12 +44,11 @@ class ButtonNode : SKSpriteNode {
         }
     }
 
-    init (size: CGSize, name: String) {
-        self.defaultTexture = SKTexture(imageNamed: "button")
-        super.init(texture: defaultTexture, color: .lightGray, size: size)
+    init(size: CGSize, position: CGPoint, texture: SKTexture, name: String) {
+        super.init(texture: texture, color: .darkGray, size: size)
         self.name = name
         self.size = size
-        self.position = CGPoint(x: 100, y: 100)
+        self.position = position
         isUserInteractionEnabled = true
     }
 

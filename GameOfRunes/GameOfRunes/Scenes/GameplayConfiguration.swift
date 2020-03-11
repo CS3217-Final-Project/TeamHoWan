@@ -17,4 +17,15 @@ struct GameplayConfiguration {
     struct SceneManager {
         static let sceneTransitionDuration: TimeInterval = 0.5
     }
+
+    struct GamePauseScene {
+        static let buttonWidth: Double = 100
+        static let buttonHeight: Double = 100
+    }
+
+    struct GameEndScene {
+        static let buttonWidth: Double = 100
+        static let buttonHeight: Double = 100
+        static let contentSpacing: Double = 20
+    }
 }

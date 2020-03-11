@@ -9,8 +9,13 @@
 import SpriteKit
 
 class GamePauseScene: SKScene, ButtonNodeResponderType {
-    override func sceneDidLoad() {
-        let continueButton = ButtonNode(size: CGSize(width: 100, height: 100), name: "continueButton")
+    override func didMove(to view: SKView) {
+        let buttonSize = CGSize(width: GameplayConfiguration.GamePauseScene.buttonWidth,
+                                height: GameplayConfiguration.GamePauseScene.buttonHeight)
+        let continueButton = ButtonNode(size: buttonSize,
+                                        position: CGPoint(x: frame.midX, y: frame.midY),
+                                        texture: SKTexture(imageNamed: "continueButton"),
+                                        name: "continueButton")
         scene?.addChild(continueButton)
     }
 
