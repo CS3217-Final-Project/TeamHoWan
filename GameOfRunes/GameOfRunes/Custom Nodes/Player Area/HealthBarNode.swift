@@ -10,7 +10,7 @@ import SpriteKit
 
 class HealthBarNode: SKSpriteNode {
     private static let spacingBetweenHealthNodes: CGFloat = 10.0
-    let totalLives: Int
+    var totalLives: Int
     var livesLeft: Int
     private var healthNodes = [HealthNode]()
     override var size: CGSize {
@@ -40,7 +40,7 @@ class HealthBarNode: SKSpriteNode {
         }
     }
     
-    init(totalLives: Int) {
+    init(totalLives: Int = 3) {
         self.totalLives = max(1, totalLives)
         livesLeft = self.totalLives
         let texture = SKTexture(imageNamed: "health-container")

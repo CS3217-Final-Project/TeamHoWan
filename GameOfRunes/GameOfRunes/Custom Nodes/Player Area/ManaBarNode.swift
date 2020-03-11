@@ -82,7 +82,7 @@ class ManaBarNode: SKSpriteNode {
     private var barDividerNodes = [BarDividerNode]()
     private var lastLitBar = 0
     
-    init(numManaUnits: Int, manaPointsPerUnit: Int, initialManaPoints: Int = 0) {
+    init(numManaUnits: Int = 5, manaPointsPerUnit: Int = 10, initialManaPoints: Int = 0) {
         self.numManaUnits = max(1, numManaUnits)
         self.manaPointsPerUnit = max(1, manaPointsPerUnit)
         accumulatedManaPoints = initialManaPoints
