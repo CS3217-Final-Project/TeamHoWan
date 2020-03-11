@@ -154,12 +154,12 @@ class GameScene: SKScene, ControlledByGameStateMachine {
  */
 extension GameScene: ButtonNodeResponderType {
     private func setUpPauseButton() {
-        let buttonSize = CGSize(width: GameplayConfiguration.GamePlayScene.buttonWidth,
-                                height: GameplayConfiguration.GamePlayScene.buttonHeight)
+        let buttonSize = CGSize(width: GameplayConfig.GamePlayScene.buttonWidth,
+                                height: GameplayConfig.GamePlayScene.buttonHeight)
         let buttonPosition = CGPoint(x: frame.maxX -
-                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonWidth/2),
+                                        CGFloat(GameplayConfig.GamePlayScene.buttonWidth/2),
                                      y: frame.maxY -
-                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonHeight/2))
+                                        CGFloat(GameplayConfig.GamePlayScene.buttonHeight/2))
         let pauseButton = ButtonNode(size: buttonSize,
                                      position: buttonPosition,
                                      texture: SKTexture(imageNamed: "pauseButton"),

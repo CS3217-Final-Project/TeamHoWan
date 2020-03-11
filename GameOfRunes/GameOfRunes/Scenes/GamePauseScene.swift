@@ -22,8 +22,8 @@ class GamePauseScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMac
     }
 
     override func didMove(to view: SKView) {
-        let buttonSize = CGSize(width: GameplayConfiguration.GamePauseScene.buttonWidth,
-                                height: GameplayConfiguration.GamePauseScene.buttonHeight)
+        let buttonSize = CGSize(width: GameplayConfig.GamePauseScene.buttonWidth,
+                                height: GameplayConfig.GamePauseScene.buttonHeight)
         let continueButton = ButtonNode(size: buttonSize,
                                         position: CGPoint(x: frame.midX, y: frame.midY),
                                         texture: SKTexture(imageNamed: "continueButton"),
