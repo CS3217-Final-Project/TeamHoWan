@@ -10,6 +10,6 @@ import GameplayKit
 
 class GameInPlayState: GKState {
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-
+        return true
     }
 }

@@ -21,11 +21,18 @@ class GameViewController: UIViewController {
             recognizer.addModel(pathModel)
         }
 
-        if let view = view as? SKView {
-            let sceneManager = SceneManager(presentingView: view)
-            
-        }
+//        if let view = view as? SKView {
+//            let sceneManager = SceneManager(presentingView: view)
+//
+//        }
 
+        let scene = GamePauseScene(size: view.bounds.size)
+        if let view = view as? SKView {
+            view.presentScene(scene)
+            view.ignoresSiblingOrder = true
+            view.showsFPS = true
+            view.showsNodeCount = true
+        }
 
 //        let scene = GameScene(size: view.bounds.size)
 //        // Set the scale mode to scale to fit the window

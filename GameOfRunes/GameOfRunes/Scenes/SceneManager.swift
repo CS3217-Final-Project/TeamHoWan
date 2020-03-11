@@ -22,19 +22,18 @@ class SceneManager {
     }
 
     func transitionToScene(sceneIdentifier: SceneIdentifier) {
-        var scene: SKScene
-        switch SceneIdentifier {
-        case play:
-            scene = GameScene(size: self.presentingView.bounds.size)
-        case .pause:
-            scene = GamePauseScene()
-        case .end:
-            scene = GameEndScene()
-        }
-
-        let transition = SKTransition.doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.progressSceneTransitionDuration)
-        presentingView.presentScene(progressScene!, transition: transition)
-
+//        var scene: SKScene
+//        switch SceneIdentifier {
+//        case play:
+//            scene = GameScene(size: self.presentingView.bounds.size)
+//        case .pause:
+//            scene = GamePauseScene()
+//        case .end:
+//            scene = GameEndScene()
+//        }
+//
+//        let transition = SKTransition.doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
+//        presentingView.presentScene(scene, transition: transition)
     }
 
 }

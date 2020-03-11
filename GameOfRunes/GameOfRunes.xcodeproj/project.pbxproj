@@ -52,6 +52,9 @@
 		8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */; };
 		8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9BB24187EE600BEC4B9 /* GameEndState.swift */; };
 		8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */; };
+		8A5CE9C12418869000BEC4B9 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C02418869000BEC4B9 /* GameplayConfiguration.swift */; };
+		8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C42418874E00BEC4B9 /* GamePauseScene.swift */; };
+		8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,9 @@
 		8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
 		8A5CE9BB24187EE600BEC4B9 /* GameEndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndState.swift; sourceTree = "<group>"; };
 		8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		8A5CE9C02418869000BEC4B9 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayConfiguration.swift; sourceTree = "<group>"; };
+		8A5CE9C42418874E00BEC4B9 /* GamePauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseScene.swift; sourceTree = "<group>"; };
+		8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */,
+				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
 				4AA5B3732416BF5E008D4953 /* HealthNode.swift */,
 				4AA5B3792417625D008D4953 /* ManaBarNode.swift */,
 				4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */,
@@ -281,7 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				563F3DEC24171B49009381B9 /* GameScene.swift */,
+				8A5CE9C42418874E00BEC4B9 /* GamePauseScene.swift */,
 				8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */,
+				8A5CE9C02418869000BEC4B9 /* GameplayConfiguration.swift */,
 				8A5CE9B324187BDD00BEC4B9 /* SceneSKSFiles */,
 			);
 			path = Scenes;
@@ -473,10 +482,12 @@
 				4AA5B36824168B1C008D4953 /* PlayerAreaEntity.swift in Sources */,
 				4AA5B3742416BF5E008D4953 /* HealthNode.swift in Sources */,
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
+				8A5CE9C12418869000BEC4B9 /* GameplayConfiguration.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
+				8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */,
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
@@ -498,6 +509,7 @@
 				8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
+				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
