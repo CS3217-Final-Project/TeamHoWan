@@ -147,8 +147,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //TODO: Delete the following line when Monster-Endpoint collision code is pulled from master
-//        entityManager.decreasePlayerHealth()
         entityManager.spawnEnemy()
     }
 }

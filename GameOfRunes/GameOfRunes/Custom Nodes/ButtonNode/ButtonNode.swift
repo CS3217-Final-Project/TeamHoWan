@@ -9,15 +9,6 @@
 import SpriteKit
 
 /**
- A type that can respond to `ButtonNode` button press events.
- This should be implemented by the `SKScene` that the `ButtonNode`
- is added to.
- */
-protocol ButtonNodeResponderType : class {
-    func buttonPressed(button: ButtonNode)
-}
-
-/**
  An `SKSpriteNode` that functions as a button.
  To be added to `SKScene` or it subclasses.
  */

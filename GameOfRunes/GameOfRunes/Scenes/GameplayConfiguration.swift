@@ -1,5 +1,5 @@
 //
-//  GamePlayConfiguration.swift
+//  GameplayConfiguration.swift
 //  GameOfRunes
 //
 //  Created by Andy on 10/3/20.

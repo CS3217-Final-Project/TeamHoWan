@@ -71,9 +71,11 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
                 return
         }
         let alliedMoveComponents = entityManager.moveComponents(for: teamComponent.team)
-        
+
+        // Update Entity Movement Behaviour
         behavior = MoveBehavior(targetSpeed: maxSpeed, seek: enemyMoveComponent, avoid: alliedMoveComponents)
-        
+
+        // Check for Enemy-Endpoint Collision
         for enemyEntity in entityManager.entities(for: .enemy) {
             guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
                 continue
@@ -84,6 +86,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
                 .calculateAccumulatedFrame()
                 .intersects(endpointNode.calculateAccumulatedFrame()) {
                 entityManager.remove(enemyEntity)
+                entityManager.decreasePlayerHealth()
             }
         }
     }

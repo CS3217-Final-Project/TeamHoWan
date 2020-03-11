@@ -48,7 +48,7 @@
 		566121DB2416838000475CE1 /* CustomGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGestures.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
 		56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6D2417E7B7009172C6 /* GestureNode.swift */; };
-		56E82D702417E9D2009172C6 /* GamePlayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */; };
+		56E82D702417E9D2009172C6 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */; };
 		8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */; };
 		8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */; };
 		8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */; };
@@ -58,6 +58,7 @@
 		8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */; };
 		8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */; };
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
+		8AAADE4B24191D8D00606298 /* ButtonNodeResponderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +116,7 @@
 		566121DA2416838000475CE1 /* CustomGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestures.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
 		56E82D6D2417E7B7009172C6 /* GestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureNode.swift; sourceTree = "<group>"; };
-		56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayConfiguration.swift; sourceTree = "<group>"; };
+		56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayConfiguration.swift; sourceTree = "<group>"; };
 		8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInPlayState.swift; sourceTree = "<group>"; };
 		8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartState.swift; sourceTree = "<group>"; };
 		8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
+		8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNodeResponderType.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,8 +195,8 @@
 		4AA5B3702416BB54008D4953 /* Custom Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				8AAADE4924191D7A00606298 /* ButtonNode */,
 				4AA5B3712416BB6B008D4953 /* HealthBarNode.swift */,
-				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
 				4AA5B3732416BF5E008D4953 /* HealthNode.swift */,
 				4AA5B3792417625D008D4953 /* ManaBarNode.swift */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
@@ -298,7 +300,7 @@
 				8A5CE9C42418874E00BEC4B9 /* GamePauseScene.swift */,
 				8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */,
 				8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */,
-				56E82D6F2417E9D2009172C6 /* GamePlayConfiguration.swift */,
+				56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -330,6 +332,15 @@
 				8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */,
 			);
 			path = GameState;
+			sourceTree = "<group>";
+		};
+		8AAADE4924191D7A00606298 /* ButtonNode */ = {
+			isa = PBXGroup;
+			children = (
+				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
+				8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */,
+			);
+			path = ButtonNode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,8 +509,9 @@
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
+				8AAADE4B24191D8D00606298 /* ButtonNodeResponderType.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
-				56E82D702417E9D2009172C6 /* GamePlayConfiguration.swift in Sources */,
+				56E82D702417E9D2009172C6 /* GameplayConfiguration.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
