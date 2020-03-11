@@ -19,9 +19,14 @@ class EntityManager {
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
+    weak var gameStateMachine: GameStateMachine?
+    private var playerHealthEntity: PlayerHealthEntity? {
+        entities.filter({ $0.component(ofType: HealthComponent.self) != nil }).first as? PlayerHealthEntity
+    }
     
-    init(scene: SKScene) {
+    init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
+        self.gameStateMachine = gameStateMachine
     }
     
     func add(_ entity: GKEntity) {
@@ -51,6 +56,16 @@ class EntityManager {
             }
         }
         toRemoveEntities = []
+
+        // Player Loses the Game
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self),
+            playerHealthComponent.healthPoints == 0,
+            let gameStateMachine = gameStateMachine,
+            let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
+            gameEndState.didWin = false
+            gameStateMachine.enter(GameEndState.self)
+        }
     }
     
     func spawnEnemy() {        
@@ -75,5 +90,12 @@ class EntityManager {
     func moveComponents(for team: Team) -> [MoveComponent] {
         let entitiesToMove = entities(for: team)
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
+    }
+
+    func decreasePlayerHealth() {
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
+            playerHealthComponent.healthPoints -= 1
+        }
     }
 }

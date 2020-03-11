@@ -46,8 +46,7 @@ class GameEndScene: SKScene, ButtonNodeResponderType, ControlledByGameStateMachi
 
     func buttonPressed(button: ButtonNode) {
         if button.name == "restartButton" {
-            print("Restart Button Pressed")
-            gameStateMachine.enter(GameInPlayState.self)
+            gameStateMachine.enter(GameStartState.self)
         }
     }
 }

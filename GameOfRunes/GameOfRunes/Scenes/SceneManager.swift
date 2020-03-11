@@ -16,9 +16,10 @@ class SceneManager {
     }
 
     private let presentingView: SKView
-    private let gamePlayScene: GameScene
+    private var gamePlayScene: GameScene
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
+    private weak var gameStateMachine: GameStateMachine?
 
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
         self.presentingView = presentingView
@@ -31,6 +32,8 @@ class SceneManager {
         self.gamePlayScene = GameScene(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gamePauseScene = GamePauseScene(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameEndScene = GameEndScene(size: sceneSize, gameStateMachine: gameStateMachine)
+
+        self.gameStateMachine = gameStateMachine
     }
 
     func transitionToScene(sceneIdentifier: SceneIdentifier) {
@@ -49,4 +52,12 @@ class SceneManager {
         presentingView.presentScene(scene, transition: transition)
     }
 
+    func restartGame() {
+        guard let gameStateMachine = gameStateMachine else {
+            return
+        }
+
+        self.gamePlayScene = GameScene(size: self.presentingView.bounds.size,
+                                       gameStateMachine: gameStateMachine)
+    }
 }

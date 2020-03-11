@@ -27,11 +27,12 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
 
     override func sceneDidLoad() {
-        entityManager = .init(scene: self)
+        entityManager = .init(scene: self, gameStateMachine: gameStateMachine)
         
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealthBar()
+        setUpHealth()
         setUpManaBar()
         setUpMana()
         setUpPauseButton()
@@ -93,12 +94,16 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         healthBarNode.zPosition = 100
         addChild(healthBarNode)
     }
-    
+
+    private func setUpHealth() {
+        entityManager.add(PlayerHealthEntity())
+    }
+
     private func setUpManaBar() {
         guard let playerAreaNode = scene?.childNode(withName: "player area") else {
             return
         }
-        
+
         let manaBarNode = ManaBarNode(numManaUnits: 5, manaPointsPerUnit: 10)
         let playerAreaSize = playerAreaNode.frame.size
         manaBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
@@ -108,7 +113,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         self.manaBarNode = manaBarNode
         addChild(manaBarNode)
     }
-    
+
     private func setUpMana() {
         entityManager.add(PlayerManaEntity())
         
@@ -138,6 +143,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        entityManager.decreasePlayerHealth() // TODO: DEBUG
         entityManager.spawnEnemy()
     }
 }

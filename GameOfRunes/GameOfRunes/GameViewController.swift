@@ -23,40 +23,15 @@ class GameViewController: UIViewController {
         }
 
         if let view = view as? SKView {
-            let gameStateMachine = GameStateMachine(states: [GameInPlayState(),
+            let gameStateMachine = GameStateMachine(states: [GameStartState(),
+                                                             GameInPlayState(),
                                                              GamePauseState(),
                                                              GameEndState()])
             sceneManager = SceneManager(presentingView: view,
                                             gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
-//            gameStateMachine.enter(GameInPlayState.self)
-            gameStateMachine.enter(GamePauseState.self)
+            gameStateMachine.enter(GameStartState.self)
         }
-
-//        if let view = view as? SKView {
-//            let sceneManager = SceneManager(presentingView: view)
-//
-//        }
-
-//        let scene = GameEndScene(size: view.bounds.size)
-//        if let view = view as? SKView {
-//            view.presentScene(scene)
-//            view.ignoresSiblingOrder = true
-//            view.showsFPS = true
-//            view.showsNodeCount = true
-//        }
-
-//        let scene = GameScene(size: view.bounds.size)
-//        // Set the scale mode to scale to fit the window
-//        scene.scaleMode = .aspectFill
-//
-//        // Present the scene
-//        if let view = view as? SKView {
-//            view.presentScene(scene)
-//            view.ignoresSiblingOrder = true
-//            view.showsFPS = true
-//            view.showsNodeCount = true
-//        }
     }
     
     // Stores the coordinates of the first touch
