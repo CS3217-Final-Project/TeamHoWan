@@ -10,14 +10,11 @@ import SpriteKit
 import GameplayKit
 
 class EndPointEntity: GKEntity {
-    
     init(entityManger: EntityManager) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line4"))
-        
         let teamComponent = TeamComponent(team: .player)
-        
         let moveComponent = MoveComponent(
             maxSpeed: 0.0,
             maxAcceleration: 0.0,

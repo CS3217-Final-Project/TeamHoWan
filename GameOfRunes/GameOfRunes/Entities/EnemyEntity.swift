@@ -12,6 +12,7 @@ import GameplayKit
 class EnemyEntity: GKEntity {
     private let spriteComponent: SpriteComponent
     private let teamComponent: TeamComponent
+    private let gestureComponent: GestureComponent
     private weak var entityManager: EntityManager?
 
     init(enemyType: EnemyType, entityManager: EntityManager) {
@@ -19,9 +20,11 @@ class EnemyEntity: GKEntity {
 
         spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
         teamComponent = TeamComponent(team: .enemy)
+        gestureComponent = GestureComponent(gesture: .arrowUp)
         self.entityManager = entityManager
         
         super.init()
+        addComponent(gestureComponent)
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addMoveComponent()

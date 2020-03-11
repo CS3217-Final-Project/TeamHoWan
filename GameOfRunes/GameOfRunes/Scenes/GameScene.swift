@@ -127,6 +127,10 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         addChild(manaLabel)
     }
 
+    func removeMonstersWithGesture(gesture: CustomGesture) {
+        entityManager.removeMonstersWithGesture(gesture: gesture)
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
