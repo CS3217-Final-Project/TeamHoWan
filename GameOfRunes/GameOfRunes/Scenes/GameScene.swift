@@ -94,7 +94,5 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         entityManager.spawnEnemy()
-        playerAreaNode.healthBarNode.livesLeft -= 1
-        playerAreaNode.healthBarNode.totalLives += 1
     }
 }

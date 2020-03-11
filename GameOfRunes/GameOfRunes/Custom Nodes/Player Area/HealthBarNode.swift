@@ -18,17 +18,17 @@ class HealthBarNode: SKSpriteNode {
             buildHealthNodes()
         }
     }
-    private var _livesLeft: Int {
-        didSet {
-            (0..<_totalLives).forEach { healthNodes[$0].active = $0 < _livesLeft }
-        }
-    }
     var totalLives: Int {
         get {
             _totalLives
         }
         set {
             _totalLives = max(1, newValue)
+        }
+    }
+    private var _livesLeft: Int {
+        didSet {
+            (0..<healthNodes.count).forEach { healthNodes[$0].active = $0 < _livesLeft }
         }
     }
     var livesLeft: Int {
