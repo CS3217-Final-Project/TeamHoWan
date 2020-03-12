@@ -105,7 +105,7 @@ class GameEngine {
     
     func gestureActivated(gesture: CustomGesture) {
         for entity in entities {
-            guard let gestureComponent = entity.component(ofType: GestureComponent.self), gestureComponent.gesture != gesture else {
+            guard let gestureComponent = entity.component(ofType: GestureComponent.self), gestureComponent.gesture == gesture else {
                 continue
             }
 
