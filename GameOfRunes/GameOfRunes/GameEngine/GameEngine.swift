@@ -17,7 +17,7 @@ class GameEngine {
     weak var scene: SKScene?
     weak var gameStateMachine: GameStateMachine?
     private var playerHealthEntity: PlayerHealthEntity? {
-        entities.filter({ $0.component(ofType: HealthComponent.self) != nil }).first as? PlayerHealthEntity
+        entities.compactMap({ $0 as? PlayerHealthEntity }).first
     }
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
