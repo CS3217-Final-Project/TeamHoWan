@@ -30,6 +30,9 @@
 		4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AA5B37F2417879B008D4953 /* Assets.xcassets */; };
 		4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */; };
 		4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3832417BA71008D4953 /* SKSpriteNode+addGlow.swift */; };
+		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
+		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
+		4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
 		4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB22414C69800F235AE /* Main.storyboard */; };
@@ -93,6 +96,9 @@
 		4AA5B37F2417879B008D4953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDividerNode.swift; sourceTree = "<group>"; };
 		4AA5B3832417BA71008D4953 /* SKSpriteNode+addGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+addGlow.swift"; sourceTree = "<group>"; };
+		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
+		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
+		4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BB02414C69800F235AE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +219,16 @@
 			path = "Custom Nodes";
 			sourceTree = "<group>";
 		};
+		4AC87A442419ED3400D79639 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				4AC87A452419ED4100D79639 /* click1.mp3 */,
+				4AC87A462419ED4200D79639 /* click3.mp3 */,
+				4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		4ACC8B9C2414C69800F235AE = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +265,7 @@
 				4AA5B37F2417879B008D4953 /* Assets.xcassets */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
 				4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */,
+				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
 			);
@@ -433,8 +450,11 @@
 			files = (
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
+				4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
+				4AC87A482419ED4200D79639 /* click1.mp3 in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

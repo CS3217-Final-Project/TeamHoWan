@@ -15,6 +15,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     var gameStateMachine: GameStateMachine
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
     var playerAreaNode: PlayerAreaNode!
+    var bgmNode: SKAudioNode!
     private var pauseButton: ButtonNode!
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
@@ -40,6 +41,11 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         setUpHealth()
         setUpMana()
         setUpPauseButton()
+    }
+    
+    override func didMove(to view: SKView) {
+        bgmNode = .init(fileNamed: "Lion King Eldigan")
+        addChild(bgmNode)
     }
     
     private func setUpArenaLayout() {
