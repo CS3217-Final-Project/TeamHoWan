@@ -11,12 +11,9 @@ import GameplayKit
 
 class SpriteComponent: GKComponent {
     let node: SKSpriteNode
-    let heightToWidthRatio: CGFloat
     
-    init(texture: SKTexture) {
-        let size = texture.size()
-        node = SKSpriteNode(texture: texture, size: size)
-        heightToWidthRatio = size.height / size.width
+    init(texture: SKTexture?) {
+        node = SKSpriteNode(texture: texture, size: texture?.size() ?? .zero)
         super.init()
     }
     

@@ -89,16 +89,14 @@ class EntityManager {
     }
     
     func spawnEnemy() {        
-        let enemyEntity = EnemyEntity(enemyType: .orc2, entityManager: self)
+        let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, entityManager: self)
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = scene?.size {
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
                 y: sceneSize.height - 100
             )
-            let newSpriteWidth = sceneSize.width / 6
-            let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
+            spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
         }
         add(enemyEntity)
     }

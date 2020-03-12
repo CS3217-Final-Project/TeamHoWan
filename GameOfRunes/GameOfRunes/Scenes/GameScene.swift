@@ -35,7 +35,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     override func sceneDidLoad() {
         entityManager = .init(scene: self, gameStateMachine: gameStateMachine)
-        
+        EnemyType.loadEnemiesTextures()
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealth()

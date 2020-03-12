@@ -16,9 +16,17 @@ class EnemyEntity: GKEntity {
     private weak var entityManager: EntityManager?
 
     init(enemyType: EnemyType, entityManager: EntityManager) {
-        let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
-
-        spriteComponent = SpriteComponent(texture: enemyAtlas.textureNamed("WALK_002"))
+        spriteComponent = SpriteComponent(texture: enemyType.staticTexture)
+        spriteComponent.node.run(
+            .repeatForever(
+                .animate(
+                    with: enemyType.animationTextures,
+                    timePerFrame: 0.1,
+                    resize: false,
+                    restore: true
+                )
+            )
+        )
         teamComponent = TeamComponent(team: .enemy)
         gestureComponent = GestureComponent(gesture: .arrowUp)
         self.entityManager = entityManager
