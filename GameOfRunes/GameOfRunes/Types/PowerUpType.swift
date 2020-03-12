@@ -9,7 +9,7 @@
 import SpriteKit
 
 enum PowerUpType: String {
-    typealias RawValue = <#type#>
-    
-    
+    case hellfire
+    case icePrison
+    case darkVortex
 }

@@ -13,7 +13,7 @@ class EndPointEntity: GKEntity {
     init(entityManger: EntityManager) {
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line4"))
+        let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line"))
         spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
