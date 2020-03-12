@@ -28,7 +28,7 @@ class RemoveDelegate {
 
         gameEngine.remove(gestureEntity)
         
-        if enemyHealth == 0 {
+        if enemyHealth <= 0 {
             gameEngine.remove(enemyEntity)
         } else {
             // TODO: switch to next enemy gesture
