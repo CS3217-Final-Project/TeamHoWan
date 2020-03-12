@@ -83,7 +83,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
                 .node
                 .calculateAccumulatedFrame()
                 .intersects(endpointNode.calculateAccumulatedFrame()) {
-                gameEngine.remove(enemyEntity)
+                gameEngine.enemyReachedLine(enemyEntity)
             }
         }
     }

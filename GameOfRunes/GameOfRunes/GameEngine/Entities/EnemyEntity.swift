@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class EnemyEntity: GKEntity {
-    private var gestureEntities: [GestureEntity] = []
+    private (set) var gestureEntities: [GestureEntity] = []
     
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
@@ -32,10 +32,6 @@ class EnemyEntity: GKEntity {
         addComponent(moveComponent)
         addComponent(healthComponent)
         addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
-
-        if let currentGestureEntity = gestureEntities.first {
-            gameEngine.add(currentGestureEntity)
-        }
     }
 
     private func addGestures(enemyType: EnemyType, enemyNode: SKSpriteNode) {

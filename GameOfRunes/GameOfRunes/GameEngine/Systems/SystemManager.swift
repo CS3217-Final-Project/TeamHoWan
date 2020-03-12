@@ -14,12 +14,12 @@ class SystemManager {
     private let manaSystem = ManaSystem()
     private let moveSystem = MoveSystem()
     private let healthSystem = HealthSystem()
+    private let spriteSystem: SpriteSystem
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-        systems.append(manaSystem)
-        systems.append(moveSystem)
-        systems.append(healthSystem)
+        spriteSystem = SpriteSystem(gameEngine: gameEngine)
+        systems.append(contentsOf: [manaSystem, moveSystem, healthSystem, spriteSystem])
     }
     
     func update(with deltatime: TimeInterval) {

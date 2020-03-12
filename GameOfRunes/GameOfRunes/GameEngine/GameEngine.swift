@@ -23,12 +23,10 @@ class GameEngine {
     }
     
     func add(_ entity: GKEntity) {
-        entities.insert(entity)
-        
-        if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
-            scene?.addChild(spriteNode)
+        guard entities.insert(entity).inserted else {
+            return
         }
-        
+
         systemManager.addComponents(foundIn: entity)
     }
     
@@ -61,7 +59,13 @@ class GameEngine {
             let newSpriteHeight = spriteComponent.heightToWidthRatio * newSpriteWidth
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
         }
+        
+        guard let gestureEntity = enemyEntity.gestureEntities.first else {
+            return
+        }
+        
         add(enemyEntity)
+        add(gestureEntity)
     }
     
     func entities(for team: Team) -> [GKEntity] {
@@ -85,5 +89,13 @@ class GameEngine {
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         return systemManager.minusHealthPoints(for: entity)
+    }
+    
+    func enemyReachedLine(_ entity: GKEntity) {
+        guard let enemyEntity = entity as? EnemyEntity else {
+            return
+        }
+
+        removeDelegate.removeEnemyReachedLine(enemyEntity)
     }
 }

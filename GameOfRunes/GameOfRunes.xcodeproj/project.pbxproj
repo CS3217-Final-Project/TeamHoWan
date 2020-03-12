@@ -57,6 +57,7 @@
 		C6AFF687241A66360076F02B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF686241A66360076F02B /* System.swift */; };
 		C6AFF689241A67430076F02B /* ManaSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF688241A67430076F02B /* ManaSystem.swift */; };
 		C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68A241A674A0076F02B /* MoveSystem.swift */; };
+		C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68C241A7A530076F02B /* SpriteSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		C6AFF686241A66360076F02B /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		C6AFF688241A67430076F02B /* ManaSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaSystem.swift; sourceTree = "<group>"; };
 		C6AFF68A241A674A0076F02B /* MoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSystem.swift; sourceTree = "<group>"; };
+		C6AFF68C241A7A530076F02B /* SpriteSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				C6AFF67D24191A2A0076F02B /* SystemManager.swift */,
+				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
 				C6AFF684241A61650076F02B /* HealthSystem.swift */,
 				C6AFF686241A66360076F02B /* System.swift */,
@@ -502,6 +505,7 @@
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GamePlayConfiguration.swift in Sources */,
+				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
