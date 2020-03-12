@@ -68,7 +68,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
-        playerAreaNode.zPosition = 100
+        playerAreaNode.zPosition = 200
         addChild(playerAreaNode)
     }
     
@@ -81,7 +81,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
             spriteComponent.node.position = playerAreaNode.position
                 + .init(dx: 0.0, dy: (playerAreaNode.size.height + newSpriteHeight) / 2)
-            spriteComponent.node.zPosition = playerAreaNode.zPosition
+            spriteComponent.node.zPosition = 100
         }
         
         entityManager.add(endPointEntity)
@@ -103,7 +103,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 50)
-        manaLabel.zPosition = 200
+        manaLabel.zPosition = 300
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
