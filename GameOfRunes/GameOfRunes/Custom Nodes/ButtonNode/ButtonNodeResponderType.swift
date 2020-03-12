@@ -13,6 +13,6 @@ import SpriteKit
  This should be implemented by the `SKScene` that the `ButtonNode`
  is added to.
  */
-protocol ButtonNodeResponderType : class {
+protocol ButtonNodeResponderType: AnyObject {
     func buttonPressed(button: ButtonNode)
 }

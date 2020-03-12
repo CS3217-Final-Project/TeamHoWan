@@ -44,17 +44,21 @@ class SceneManager {
 
     func transitionToScene(sceneIdentifier: SceneIdentifier) {
         var scene: SKScene
+        var transition: SKTransition
         switch sceneIdentifier {
         case .play:
             scene = self.gamePlayScene
+            transition = .doorsOpenHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
         case .pause:
             scene = self.gamePauseScene
+            transition = .doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
         case .end(let didWin):
             self.gameEndScene.didWin = didWin
             scene = self.gameEndScene
+            transition = .doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
         }
 
-        let transition = SKTransition.doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
+        
         presentingView.presentScene(scene, transition: transition)
     }
 
