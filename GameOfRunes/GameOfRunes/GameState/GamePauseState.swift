@@ -27,7 +27,7 @@ class GamePauseState: GKState {
         super.didEnter(from: previousState)
         sceneManager.transitionToScene(sceneIdentifier: .pause)
         // Remove MoveComponent from EnemyEntity to prevent them from moving
-        gameStateMachine.entityManager?.entities(for: .enemy).forEach({
+        gameStateMachine.gameEngine?.entities(for: .enemy).forEach({
             if let enemyEntity = $0 as? EnemyEntity {
                 enemyEntity.removeMoveComponent()
             }

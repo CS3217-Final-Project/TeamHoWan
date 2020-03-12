@@ -11,11 +11,9 @@ import GameplayKit
 
 class GestureComponent: GKComponent {
     let gesture: CustomGesture
-    let node: GestureNode
-    
+
     init(gesture: CustomGesture) {
         self.gesture = gesture
-        self.node = GestureNode(gesture: gesture)
         super.init()
     }
     

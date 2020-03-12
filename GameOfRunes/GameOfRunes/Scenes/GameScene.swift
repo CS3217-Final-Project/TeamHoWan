@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, ControlledByGameStateMachine {
-    private var entityManager: EntityManager!
+    private var gameEngine: GameEngine!
     private var lastUpdateTime: TimeInterval = 0.0
     var gameStateMachine: GameStateMachine
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
@@ -34,7 +34,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func sceneDidLoad() {
-        entityManager = .init(scene: self, gameStateMachine: gameStateMachine)
+        gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
         EnemyType.loadEnemiesTextures()
         setUpArenaLayout()
         setUpEndPoint()
@@ -73,7 +73,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     private func setUpEndPoint() {
-        let endPointEntity = EndPointEntity(entityManger: entityManager)
+        let endPointEntity = EndPointEntity(gameEngine: gameEngine)
         
         if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
             let newSpriteWidth = size.width
@@ -84,7 +84,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             spriteComponent.node.zPosition = 100
         }
         
-        entityManager.add(endPointEntity)
+        gameEngine.add(endPointEntity)
     }
     
     private func setUpHealth() {
@@ -94,11 +94,11 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             healthBarNode.totalLives = healthComponent.healthPoints
             healthBarNode.livesLeft = healthComponent.healthPoints
         }
-        entityManager.add(PlayerHealthEntity())
+        gameEngine.add(PlayerHealthEntity())
     }
     
     private func setUpMana() {
-        entityManager.add(PlayerManaEntity())
+        gameEngine.add(PlayerManaEntity())
         
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
@@ -110,24 +110,26 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         addChild(manaLabel)
     }
 
-    func removeMonstersWithGesture(gesture: CustomGesture) {
-        entityManager.removeMonstersWithGesture(gesture: gesture)
+    func gestureActivated(gesture: CustomGesture) {
+        gameEngine.gestureActivated(gesture: gesture)
     }
     
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
 
-        entityManager.update(with: deltaTime)
+        gameEngine.update(with: deltaTime)
         
-        if let healthEntity = entityManager
+
+        if let playerHealthComponent = gameEngine
             .entities
-            .compactMap({ $0.component(ofType: HealthComponent.self) })
-            .first {
-            playerAreaNode.healthBarNode.livesLeft = healthEntity.healthPoints
+            .compactMap({ $0 as? PlayerHealthEntity })
+            .first?
+            .component(ofType: HealthComponent.self) {
+            playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
         }
         
-        if let manaEntity = entityManager
+        if let manaEntity = gameEngine
             .entities
             .compactMap({ $0.component(ofType: ManaComponent.self) })
             .first {
@@ -137,7 +139,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        entityManager.spawnEnemy()
+        gameEngine.spawnEnemy()
     }
 }
 

@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class EndPointEntity: GKEntity {
-    init(entityManger: EntityManager) {
+    init(gameEngine: GameEngine) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line"))
@@ -20,7 +20,7 @@ class EndPointEntity: GKEntity {
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
             radius: .init(spriteComponent.node.size.height),
-            entityManager: entityManger
+            gameEngine: gameEngine
         )
         
         addComponent(spriteComponent)

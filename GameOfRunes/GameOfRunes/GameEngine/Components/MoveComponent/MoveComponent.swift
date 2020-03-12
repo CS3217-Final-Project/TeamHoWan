@@ -10,10 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
-    weak var entityManager: EntityManager?
+    weak var gameEngine: GameEngine?
     
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, entityManager: EntityManager) {
-        self.entityManager = entityManager
+    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, gameEngine: GameEngine) {
+        self.gameEngine = gameEngine
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
@@ -47,7 +47,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
         
-        let targetMoveComponents = entityManager?.moveComponents(for: team) ?? []
+        let targetMoveComponents = gameEngine?.moveComponents(for: team) ?? []
         targetMoveComponents.forEach {
             let distance = cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
@@ -65,18 +65,18 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         guard let entity = entity,
             let teamComponent = entity.component(ofType: TeamComponent.self),
             let enemyMoveComponent = closestMoveComponent(for: teamComponent.team.oppositeTeam),
-            let entityManager = entityManager,
-            let endpointComponent = entityManager.entities(for: .player).first as? EndPointEntity,
+            let gameEngine = gameEngine,
+            let endpointComponent = gameEngine.entities(for: .player).first as? EndPointEntity,
             let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
                 return
         }
-        let alliedMoveComponents = entityManager.moveComponents(for: teamComponent.team)
-
+        let alliedMoveComponents = gameEngine.moveComponents(for: teamComponent.team)
+        
         // Update Entity Movement Behaviour
         behavior = MoveBehavior(targetSpeed: maxSpeed, seek: enemyMoveComponent, avoid: alliedMoveComponents)
-
+        
         // Check for Enemy-Endpoint Collision
-        for enemyEntity in entityManager.entities(for: .enemy) {
+        for enemyEntity in gameEngine.entities(for: .enemy) {
             guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
                 continue
             }
@@ -85,8 +85,8 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
                 .node
                 .calculateAccumulatedFrame()
                 .intersects(endpointNode.calculateAccumulatedFrame()) {
-                entityManager.remove(enemyEntity)
-                entityManager.decreasePlayerHealth()
+                gameEngine.enemyReachedLine(enemyEntity)
+                gameEngine.decreasePlayerHealth()
             }
         }
     }
