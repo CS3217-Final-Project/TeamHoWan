@@ -17,7 +17,7 @@ class PlayerHealthEntity: GKEntity {
         //let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))
         //addComponent(spriteComponent)
         
-        let healthComponent = HealthComponent(healthPoints: 3)
+        let healthComponent = HealthComponent(healthPoints: 5)
         addComponent(healthComponent)
     }
     

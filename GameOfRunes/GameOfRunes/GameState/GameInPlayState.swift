@@ -35,7 +35,7 @@ class GameInPlayState: GKState {
 
         if previousState is GamePauseState {
             // Add MoveComponent back to EnemyEntity to allow them to move (If from Pause State to InPlay State)
-            entityManager.entities(for: .enemy).map({
+            entityManager.entities(for: .enemy).forEach({
                 if let enemyEntity = $0 as? EnemyEntity {
                     enemyEntity.addMoveComponent()
                     entityManager.componentSystems.forEach { $0.addComponent(foundIn: enemyEntity)}

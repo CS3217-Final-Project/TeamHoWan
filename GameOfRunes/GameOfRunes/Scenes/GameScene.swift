@@ -14,7 +14,8 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     private var lastUpdateTime: TimeInterval = 0.0
     var gameStateMachine: GameStateMachine
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
-    var manaBarNode: ManaBarNode!
+    var playerAreaNode: PlayerAreaNode!
+    var bgmNode: SKAudioNode?
     private var pauseButton: ButtonNode!
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
@@ -26,106 +27,83 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     deinit {
         unregisterForPauseNotifications()
     }
-
+    
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func sceneDidLoad() {
         entityManager = .init(scene: self, gameStateMachine: gameStateMachine)
         
         setUpArenaLayout()
         setUpEndPoint()
-        setUpHealthBar()
         setUpHealth()
-        setUpManaBar()
         setUpMana()
         setUpPauseButton()
     }
     
+    override func didMove(to view: SKView) {
+        bgmNode?.removeFromParent()
+        let newBgmNode = SKAudioNode(fileNamed: "Lion King Eldigan")
+        bgmNode = newBgmNode
+        addChild(newBgmNode)
+    }
+    
     private func setUpArenaLayout() {
-        let backgroundEntity = BackgroundEntity(arenaType: .arena2)
-        let playerAreaEntity = PlayerAreaEntity()
+        // Add background
+        let backgroundNode = SKSpriteNode(
+            texture: .init(imageNamed: ArenaType.arena2.rawValue),
+            color: .clear,
+            size: size
+        )
+        backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
+        backgroundNode.zPosition = -100
+        addChild(backgroundNode)
         
-        if let spriteComponent = backgroundEntity.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = .init(x: size.width / 2, y: size.height / 2)
-            spriteComponent.node.size = size
-            spriteComponent.node.zPosition = -1
-            spriteComponent.node.name = "background"
-        }
-        
-        if let spriteComponent = playerAreaEntity.component(ofType: SpriteComponent.self) {
-            let newSpriteWidth = size.width
-            let newSpriteHeight = size.height / 6
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
-            spriteComponent.node.position = .init(
-                x: newSpriteWidth / 2,
-                y: newSpriteHeight / 2
-            )
-            spriteComponent.node.zPosition = 1
-            spriteComponent.node.name = "player area"
-        }
-        
-        entityManager.add(backgroundEntity)
-        entityManager.add(playerAreaEntity)
+        // Add player area
+        let playerAreaWidth = size.width
+        let playerAreaHeight = size.height / 6
+        playerAreaNode = .init(
+            size: .init(width: playerAreaWidth, height: playerAreaHeight),
+            position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
+        )
+        playerAreaNode.zPosition = 200
+        addChild(playerAreaNode)
     }
     
     private func setUpEndPoint() {
         let endPointEntity = EndPointEntity(entityManger: entityManager)
         
-        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self),
-            let playerAreaNode = scene?.childNode(withName: "player area") {
+        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
             let newSpriteWidth = size.width
             let newSpriteHeight = size.height / 40
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
             spriteComponent.node.position = playerAreaNode.position
-                + .init(dx: 0.0, dy: (playerAreaNode.frame.size.height + newSpriteHeight) / 2)
-            spriteComponent.node.zPosition = 1
+                + .init(dx: 0.0, dy: (playerAreaNode.size.height + newSpriteHeight) / 2)
+            spriteComponent.node.zPosition = 100
         }
         
         entityManager.add(endPointEntity)
     }
     
-    private func setUpHealthBar() {
-        guard let playerAreaNode = scene?.childNode(withName: "player area") else {
-            return
-        }
-        
-        let healthBarNode = HealthBarNode(totalLives: 3)
-        let playerAreaSize = playerAreaNode.frame.size
-        healthBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
-        healthBarNode.position = playerAreaNode.position
-            + .init(dx: -playerAreaSize.width / 4.5, dy: playerAreaSize.height / 4.5)
-        healthBarNode.zPosition = 100
-        addChild(healthBarNode)
-    }
-
     private func setUpHealth() {
+        let playerHealthEntity = PlayerHealthEntity()
+        if let healthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
+            let healthBarNode = playerAreaNode.healthBarNode
+            healthBarNode.totalLives = healthComponent.healthPoints
+            healthBarNode.livesLeft = healthComponent.healthPoints
+        }
         entityManager.add(PlayerHealthEntity())
     }
-
-    private func setUpManaBar() {
-        guard let playerAreaNode = scene?.childNode(withName: "player area") else {
-            return
-        }
-
-        let manaBarNode = ManaBarNode(numManaUnits: 5, manaPointsPerUnit: 10)
-        let playerAreaSize = playerAreaNode.frame.size
-        manaBarNode.size = playerAreaSize.applying(.init(scaleX: 0.45, y: 0.4))
-        manaBarNode.position = playerAreaNode.position
-            + .init(dx: playerAreaSize.width / 4.5, dy: playerAreaSize.height / 4.5)
-        manaBarNode.zPosition = 100
-        self.manaBarNode = manaBarNode
-        addChild(manaBarNode)
-    }
-
+    
     private func setUpMana() {
         entityManager.add(PlayerManaEntity())
         
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 50)
-        manaLabel.zPosition = 3
+        manaLabel.zPosition = 300
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
@@ -142,12 +120,19 @@ class GameScene: SKScene, ControlledByGameStateMachine {
 
         entityManager.update(with: deltaTime)
         
+        if let healthEntity = entityManager
+            .entities
+            .compactMap({ $0.component(ofType: HealthComponent.self) })
+            .first {
+            playerAreaNode.healthBarNode.livesLeft = healthEntity.healthPoints
+        }
+        
         if let manaEntity = entityManager
             .entities
             .compactMap({ $0.component(ofType: ManaComponent.self) })
             .first {
             manaLabel.text = "\(manaEntity.manaPoints)"
-            manaBarNode.currentManaPoints = manaEntity.manaPoints
+            playerAreaNode.manaBarNode.currentManaPoints = manaEntity.manaPoints
         }
     }
     

@@ -9,27 +9,25 @@
 import SpriteKit
 
 class HealthNode: SKSpriteNode {
+    private static let activeImage = SKTexture(imageNamed: "heart")
+    private static let inactiveImage = SKTexture(imageNamed: "heart-empty")
     var active: Bool {
         didSet {
-            texture = getTexture(active: active)
+            guard oldValue != active else {
+                return
+            }
+            texture = active ? Self.activeImage : Self.inactiveImage
         }
     }
     
     init(active: Bool = true) {
         self.active = active
-        super.init(texture: nil, color: .clear, size: .zero)
-        
-        let texture = getTexture(active: active)
-        size = texture.size()
-        self.texture = texture
+        let texture = active ? Self.activeImage : Self.inactiveImage
+        super.init(texture: texture, color: .clear, size: texture.size())
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func getTexture(active: Bool) -> SKTexture {
-        .init(imageNamed: active ? "heart" : "heart-empty")
     }
 }

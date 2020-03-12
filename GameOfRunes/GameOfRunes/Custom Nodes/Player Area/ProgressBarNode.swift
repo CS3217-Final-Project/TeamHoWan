@@ -9,28 +9,41 @@
 import SpriteKit
 
 class ProgressBarNode: SKSpriteNode {
-    private var storedProgress: CGFloat = 0.0
-    var maxWidth: CGFloat
+    private var _progress: CGFloat = 0.0
     var progress: CGFloat {
         get {
-            storedProgress
+            _progress
         }
-        
         set {
-            let newProgress = max(0.0, min(newValue, 1.0))
-            size.width = maxWidth * newProgress
-            storedProgress = newProgress
+            _progress = max(0.0, min(1.0, newValue))
+            updateProportion()
+        }
+    }
+    
+    private var _maxWidth: CGFloat
+    var maxWidth: CGFloat {
+        get {
+            _maxWidth
+        }
+        set {
+            _maxWidth = max(0.0, newValue)
+            updateProportion()
         }
     }
     
     init(color: UIColor, size: CGSize) {
-        maxWidth = size.width
+        _maxWidth = max(0.0, size.width)
         super.init(texture: nil, color: color, size: size)
         anchorPoint = .init(x: 0.0, y: 0.5)
+        updateProportion()
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func updateProportion() {
+        size.width = _maxWidth * _progress
     }
 }
