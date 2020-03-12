@@ -15,11 +15,17 @@ class GameEngine {
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
-    
-    init(scene: SKScene) {
+    weak var gameStateMachine: GameStateMachine?
+    private var playerHealthEntity: PlayerHealthEntity? {
+        entities.filter({ $0.component(ofType: HealthComponent.self) != nil }).first as? PlayerHealthEntity
+    }
+
+    init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
         self.systemManager = SystemManager(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
+        self.gameStateMachine = gameStateMachine
+        self.gameStateMachine?.gameEngine = self
     }
     
     func add(_ entity: GKEntity) {
@@ -45,6 +51,16 @@ class GameEngine {
             systemManager.removeComponents(foundIn: entity)
         }
         toRemoveEntities.removeAll()
+        
+        // Player Loses the Game
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self),
+            playerHealthComponent.healthPoints <= 0,
+            let gameStateMachine = gameStateMachine,
+            let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
+            gameEndState.didWin = false
+            gameStateMachine.enter(GameEndState.self)
+        }
     }
     
     func spawnEnemy() {        
@@ -68,13 +84,23 @@ class GameEngine {
         add(gestureEntity)
     }
     
+    /** Gets all entities of a particular `Team`. */
     func entities(for team: Team) -> [GKEntity] {
         entities.compactMap { $0.component(ofType: TeamComponent.self)?.team == team ? $0 : nil }
     }
     
+    /** Gets all the `MoveComponents` of entities in a particular `Team` */
     func moveComponents(for team: Team) -> [MoveComponent] {
         let entitiesToMove = entities(for: team)
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
+    }
+    
+    /** Decrements the Player's health by 1 point. */
+    func decreasePlayerHealth() {
+        if let playerHealthEntity = playerHealthEntity,
+            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
+            playerHealthComponent.healthPoints -= 1
+        }
     }
     
     func gestureActivated(gesture: CustomGesture) {

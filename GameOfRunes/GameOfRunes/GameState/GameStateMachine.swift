@@ -23,7 +23,7 @@ protocol ControlledByGameStateMachine {
  */
 class GameStateMachine: GKStateMachine {
     weak var sceneManager: SceneManager?
-    weak var entityManager: EntityManager?
+    weak var gameEngine: GameEngine?
 
     override init(states: [GKState]) {
         super.init(states: states)

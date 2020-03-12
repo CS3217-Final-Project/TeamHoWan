@@ -34,11 +34,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func sceneDidLoad() {
-<<<<<<< HEAD
-        gameEngine = .init(scene: self)
-=======
-        entityManager = .init(scene: self, gameStateMachine: gameStateMachine)
->>>>>>> master
+        gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
         
         setUpArenaLayout()
         setUpEndPoint()
@@ -65,22 +61,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         backgroundNode.zPosition = -100
         addChild(backgroundNode)
         
-<<<<<<< HEAD
-        if let spriteComponent = playerAreaEntity.component(ofType: SpriteComponent.self) {
-            let newSpriteWidth = size.width
-            let newSpriteHeight = size.height / 6
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
-            spriteComponent.node.position = .init(
-                x: newSpriteWidth / 2,
-                y: newSpriteHeight / 2
-            )
-            spriteComponent.node.zPosition = 1
-            spriteComponent.node.name = "player area"
-        }
-        
-        gameEngine.add(backgroundEntity)
-        gameEngine.add(playerAreaEntity)
-=======
         // Add player area
         let playerAreaWidth = size.width
         let playerAreaHeight = size.height / 6
@@ -90,7 +70,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         )
         playerAreaNode.zPosition = 200
         addChild(playerAreaNode)
->>>>>>> master
     }
     
     private func setUpEndPoint() {
@@ -115,7 +94,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             healthBarNode.totalLives = healthComponent.healthPoints
             healthBarNode.livesLeft = healthComponent.healthPoints
         }
-        entityManager.add(PlayerHealthEntity())
+        gameEngine.add(PlayerHealthEntity())
     }
     
     private func setUpMana() {

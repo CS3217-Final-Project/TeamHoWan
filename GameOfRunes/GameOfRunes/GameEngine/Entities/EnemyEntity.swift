@@ -72,5 +72,6 @@ class EnemyEntity: GKEntity {
             gameEngine: gameEngine
         )
         addComponent(moveComponent)
+        gameEngine.systemManager.addComponent(moveComponent)
     }
 }
