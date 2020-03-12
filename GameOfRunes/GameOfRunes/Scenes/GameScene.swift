@@ -10,13 +10,13 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    private var entityManager: EntityManager!
+    private var gameEngine: GameEngine!
     private var lastUpdateTime: TimeInterval = 0.0
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
     var manaBarNode: ManaBarNode!
     
     override func sceneDidLoad() {
-        entityManager = .init(scene: self)
+        gameEngine = .init(scene: self)
         
         setUpArenaLayout()
         setUpEndPoint()
@@ -48,12 +48,12 @@ class GameScene: SKScene {
             spriteComponent.node.name = "player area"
         }
         
-        entityManager.add(backgroundEntity)
-        entityManager.add(playerAreaEntity)
+        gameEngine.add(backgroundEntity)
+        gameEngine.add(playerAreaEntity)
     }
     
     private func setUpEndPoint() {
-        let endPointEntity = EndPointEntity(entityManger: entityManager)
+        let endPointEntity = EndPointEntity(gameEngine: gameEngine)
         
         if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self),
             let playerAreaNode = scene?.childNode(withName: "player area") {
@@ -65,7 +65,7 @@ class GameScene: SKScene {
             spriteComponent.node.zPosition = 1
         }
         
-        entityManager.add(endPointEntity)
+        gameEngine.add(endPointEntity)
     }
     
     private func setUpHealthBar() {
@@ -98,7 +98,7 @@ class GameScene: SKScene {
     }
     
     private func setUpMana() {
-        entityManager.add(PlayerManaEntity())
+        gameEngine.add(PlayerManaEntity())
         
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
@@ -110,17 +110,17 @@ class GameScene: SKScene {
         addChild(manaLabel)
     }
     
-    func removeMonstersWithGesture(gesture: CustomGesture) {
-        entityManager.removeMonstersWithGesture(gesture: gesture)
+    func gestureActivated(gesture: CustomGesture) {
+        gameEngine.gestureActivated(gesture: gesture)
     }
     
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         
-        entityManager.update(with: deltaTime)
+        gameEngine.update(with: deltaTime)
         
-        if let manaEntity = entityManager
+        if let manaEntity = gameEngine
             .entities
             .compactMap({ $0.component(ofType: ManaComponent.self) })
             .first {
@@ -130,6 +130,6 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        entityManager.spawnEnemy()
+        gameEngine.spawnEnemy()
     }
 }

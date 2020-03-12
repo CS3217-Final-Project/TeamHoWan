@@ -1,5 +1,5 @@
 //
-//  EntityManager.swift
+//  GameEngine.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 8/3/20.
@@ -9,19 +9,17 @@
 import SpriteKit
 import GameplayKit
 
-class EntityManager {
-    lazy var componentSystems: [GKComponentSystem] = {
-        let manaSystem = GKComponentSystem(componentClass: ManaComponent.self)
-        let moveSystem = GKComponentSystem(componentClass: MoveComponent.self)
-        return [manaSystem, moveSystem]
-    }()
-    
+class GameEngine {
+    var systemManager: SystemManager!
+    var removeDelegate: RemoveDelegate!
     var entities = Set<GKEntity>()
     var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
     
     init(scene: SKScene) {
         self.scene = scene
+        self.systemManager = SystemManager(gameEngine: self)
+        self.removeDelegate = RemoveDelegate(gameEngine: self)
     }
     
     func add(_ entity: GKEntity) {
@@ -29,48 +27,30 @@ class EntityManager {
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             scene?.addChild(spriteNode)
-            
-            if let gestureNode = entity.component(ofType: GestureComponent.self)?.node {
-                scene?.addChild(gestureNode)
-                
-                let xRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.x)
-                let yRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.y)
-
-                let constraint = SKConstraint.positionX(xRange, y: yRange)
-                constraint.referenceNode = spriteNode
-                
-                gestureNode.constraints = [constraint]
-            }
         }
         
-        componentSystems.forEach { $0.addComponent(foundIn: entity) }
+        systemManager.addComponents(foundIn: entity)
     }
     
     func remove(_ entity: GKEntity) {
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             spriteNode.removeFromParent()
-            
-            if let gestureNode = entity.component(ofType: GestureComponent.self)?.node {
-                gestureNode.removeFromParent()
-            }
         }
         
         entities.remove(entity)
         toRemoveEntities.insert(entity)
     }
     
-    func update(with deltaTime: CFTimeInterval) {
-        componentSystems.forEach { $0.update(deltaTime: deltaTime) }
+    func update(with deltaTime: TimeInterval) {
+        systemManager.update(with: deltaTime)
         toRemoveEntities.forEach { entity in
-            componentSystems.forEach { componentSystem in
-                componentSystem.removeComponent(foundIn: entity)
-            }
+            systemManager.removeComponents(foundIn: entity)
         }
-        toRemoveEntities = []
+        toRemoveEntities.removeAll()
     }
     
     func spawnEnemy() {        
-        let enemyEntity = EnemyEntity(enemyType: .orc2, entityManager: self)
+        let enemyEntity = EnemyEntity(enemyType: .orc2, gameEngine: self)
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = scene?.size {
             spriteComponent.node.position = .init(
@@ -93,15 +73,17 @@ class EntityManager {
         return entitiesToMove.compactMap { $0.component(ofType: MoveComponent.self) }
     }
     
-    func removeMonstersWithGesture(gesture: CustomGesture) {
-        for enemyEntity in entities(for: .enemy) {
-            guard let gestureComponent = enemyEntity.component(ofType: GestureComponent.self) else {
+    func gestureActivated(gesture: CustomGesture) {
+        for entity in entities {
+            guard let gestureComponent = entity.component(ofType: GestureComponent.self), gestureComponent.gesture != gesture else {
                 continue
             }
-            guard gestureComponent.gesture != gesture else {
-                continue
-            }
-            self.remove(enemyEntity)
+
+            removeDelegate.removeGesture(for: entity)
         }
+    }
+    
+    func minusHealthPoints(for entity: GKEntity) -> Int? {
+        return systemManager.minusHealthPoints(for: entity)
     }
 }

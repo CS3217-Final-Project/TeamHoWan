@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
         guard let scene = view.scene as? GameScene else {
             return
         }
-        scene.removeMonstersWithGesture(gesture: customGesture)
+        scene.gestureActivated(gesture: customGesture)
     }
     
     override var shouldAutorotate: Bool {
