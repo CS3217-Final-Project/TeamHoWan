@@ -53,7 +53,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     private func setUpArenaLayout() {
         // Add background
         let backgroundNode = SKSpriteNode(
-            texture: .init(imageNamed: ArenaType.arena2.rawValue),
+            texture: ArenaType.allCases.randomElement()?.texture ?? .init(),
             color: .clear,
             size: size
         )

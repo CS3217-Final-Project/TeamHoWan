@@ -6,7 +6,9 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum ArenaType: String {
+import SpriteKit
+
+enum ArenaType: String, CaseIterable {
     case arena1
     case arena2
     case arena3
@@ -15,4 +17,8 @@ enum ArenaType: String {
     case arena6
     case arena7
     case finalArena
+    
+    var texture: SKTexture {
+        .init(imageNamed: self.rawValue)
+    }
 }
