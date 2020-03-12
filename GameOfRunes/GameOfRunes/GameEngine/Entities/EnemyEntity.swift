@@ -23,16 +23,8 @@ class EnemyEntity: GKEntity {
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: 1)
 
-        let moveComponent = MoveComponent(
-            maxSpeed: 150.0,
-            maxAcceleration: 5.0,
-            radius: .init(spriteComponent.node.size.width) * 0.01,
-            gameEngine: gameEngine
-        )
-
         addComponent(spriteComponent)
         addComponent(teamComponent)
-        addComponent(moveComponent)
         addComponent(healthComponent)
         addMoveComponent()
         addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
