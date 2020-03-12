@@ -11,8 +11,11 @@ import GameplayKit
 
 class EnemyEntity: GKEntity {
     private (set) var gestureEntities: [GestureEntity] = []
+    private unowned var gameEngine: GameEngine
     
     init(enemyType: EnemyType, gameEngine: GameEngine) {
+        self.gameEngine = gameEngine
+
         super.init()
 
         let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
@@ -31,7 +34,13 @@ class EnemyEntity: GKEntity {
         addComponent(teamComponent)
         addComponent(moveComponent)
         addComponent(healthComponent)
+        addMoveComponent()
         addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func addGestures(enemyType: EnemyType, enemyNode: SKSpriteNode) {
@@ -49,8 +58,19 @@ class EnemyEntity: GKEntity {
         return true
     }
 
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    /** Helper function to remove MoveComponent from EnemyEntity */
+    func removeMoveComponent() {
+        removeComponent(ofType: MoveComponent.self)
+    }
+
+    /** Helper function to add MoveComponent to EnemyEntity */
+    func addMoveComponent() {
+        let moveComponent = MoveComponent(
+            maxSpeed: 150.0,
+            maxAcceleration: 5.0,
+            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01,
+            gameEngine: gameEngine
+        )
+        addComponent(moveComponent)
     }
 }

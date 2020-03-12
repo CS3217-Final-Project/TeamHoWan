@@ -14,6 +14,7 @@ class EndPointEntity: GKEntity {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line4"))
+        spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             maxSpeed: 0.0,

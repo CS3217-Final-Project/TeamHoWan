@@ -11,17 +11,20 @@ import SpriteKit
 class BarDividerNode: SKSpriteNode {
     var active: Bool {
         didSet {
-            color = active ? glowColor ?? normalColor : normalColor
+            guard oldValue != active else {
+                return
+            }
+            color = active ? glowColor : normalColor
         }
     }
     private var normalColor: UIColor
-    private var glowColor: UIColor?
+    private var glowColor: UIColor
     
     init(color: UIColor, glowColor: UIColor?, size: CGSize = .zero, active: Bool = false) {
         self.normalColor = color
-        self.glowColor = glowColor
+        self.glowColor = glowColor ?? color
         self.active = active
-        super.init(texture: nil, color: active ? glowColor ?? color : color, size: size)
+        super.init(texture: nil, color: active ? self.glowColor : self.normalColor, size: size)
     }
         
     @available(*, unavailable)
