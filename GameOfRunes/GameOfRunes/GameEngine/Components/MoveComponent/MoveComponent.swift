@@ -61,7 +61,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
-
+        print(seconds)
         guard let entity = entity,
             let teamComponent = entity.component(ofType: TeamComponent.self),
             let enemyMoveComponent = closestMoveComponent(for: teamComponent.team.oppositeTeam),
