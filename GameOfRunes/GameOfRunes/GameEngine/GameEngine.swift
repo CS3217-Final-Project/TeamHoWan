@@ -37,19 +37,17 @@ class GameEngine {
     }
     
     func remove(_ entity: GKEntity) {
-        if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
-            spriteNode.removeFromParent()
-        }
-        
         entities.remove(entity)
         toRemoveEntities.insert(entity)
     }
     
     func update(with deltaTime: TimeInterval) {
         systemManager.update(with: deltaTime)
+
         toRemoveEntities.forEach { entity in
             systemManager.removeComponents(foundIn: entity)
         }
+
         toRemoveEntities.removeAll()
         
         // Player Loses the Game
