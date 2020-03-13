@@ -1,5 +1,5 @@
 //
-//  BackgroundNode.swift
+//  GestureAreaNode.swift
 //  GameOfRunes
 //
 //  Created by Andy on 13/3/20.
@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class BackgroundNode: SKSpriteNode {
+class GestureAreaNode: SKSpriteNode {
     private var activeSlicePoints = [CGPoint]()
     private var activeSliceBG: SKShapeNode!
     private var activeSliceFG: SKShapeNode!
@@ -16,12 +16,10 @@ class BackgroundNode: SKSpriteNode {
     
     init(size: CGSize, gameEngine: GameEngine) {
         self.recogniser = GestureRecognizer(gameEngine: gameEngine)
-        super.init(texture: .init(imageNamed: ArenaType.arena2.rawValue),
-                  color: .clear,
-                  size: size)
+        super.init(texture: .none, color: .clear, size: size)
         
         position = .init(x: size.width / 2, y: size.height / 2)
-        zPosition = -100
+        zPosition = 50
         isUserInteractionEnabled = true
         createSlices()
     }

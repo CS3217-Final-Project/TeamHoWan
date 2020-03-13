@@ -63,8 +63,17 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     private func setUpArenaLayout() {
         // Add background
-        let backgroundNode = BackgroundNode(size: size, gameEngine: gameEngine)
-        addNode(backgroundNode)
+        let backgroundNode = SKSpriteNode(
+            texture: ArenaType.allCases.randomElement()?.texture ?? .init(),
+            color: .clear,
+            size: size
+        )
+        backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
+        backgroundNode.zPosition = -100
+        addChild(backgroundNode)
+
+        let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
+        addNode(gestureAreaNode)
 
         // Add player area
         let playerAreaWidth = size.width
@@ -159,6 +168,7 @@ extension GameScene: ButtonNodeResponderType {
                                      position: buttonPosition,
                                      texture: SKTexture(imageNamed: "pauseButton"),
                                      name: "pauseButton")
+        pauseButton.zPosition = 100
         self.pauseButton = pauseButton
         addNode(pauseButton)
     }
@@ -181,8 +191,6 @@ extension GameScene {
     }
 
     @objc func pauseGame() {
-        worldNode.isPaused = true
-        physicsWorld.speed = 0
         gameStateMachine.enter(GamePauseState.self)
     }
 
