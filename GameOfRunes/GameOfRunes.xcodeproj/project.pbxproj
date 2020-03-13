@@ -72,6 +72,7 @@
 		C6AFF689241A67430076F02B /* ManaSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF688241A67430076F02B /* ManaSystem.swift */; };
 		C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68A241A674A0076F02B /* MoveSystem.swift */; };
 		C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68C241A7A530076F02B /* SpriteSystem.swift */; };
+		C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C6B322DB241B9701001072AE /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		C6AFF688241A67430076F02B /* ManaSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaSystem.swift; sourceTree = "<group>"; };
 		C6AFF68A241A674A0076F02B /* MoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSystem.swift; sourceTree = "<group>"; };
 		C6AFF68C241A7A530076F02B /* SpriteSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSystem.swift; sourceTree = "<group>"; };
+		C6B322DB241B9701001072AE /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 		4ACC8B9C2414C69800F235AE = {
 			isa = PBXGroup;
 			children = (
+				C6B322DB241B9701001072AE /* .swiftlint.yml */,
 				4ACC8BA72414C69800F235AE /* GameOfRunes */,
 				4ACC8BC22414C69B00F235AE /* GameOfRunesTests */,
 				4ACC8BA62414C69800F235AE /* Products */,
@@ -497,6 +500,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */,
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
 				4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */,

@@ -72,7 +72,7 @@ class GameEngine {
             spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
         }
         
-        guard let gestureEntity = enemyEntity.gestureEntities.first else {
+        guard let gestureEntity = enemyEntity.gestureEntity else {
             return
         }
         
