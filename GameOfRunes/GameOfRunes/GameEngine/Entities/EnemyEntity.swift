@@ -32,7 +32,7 @@ class EnemyEntity: GKEntity {
             )
         )
         let teamComponent = TeamComponent(team: .enemy)
-        let healthComponent = HealthComponent(healthPoints: 1)
+        let healthComponent = HealthComponent(healthPoints: enemyType.health)
 
         addComponent(spriteComponent)
         addComponent(teamComponent)

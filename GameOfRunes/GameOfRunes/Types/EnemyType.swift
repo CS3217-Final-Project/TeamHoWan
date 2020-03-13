@@ -39,6 +39,13 @@ enum EnemyType: String, CaseIterable {
         Self.enemiesTextures[self] ?? []
     }
     
+    var health: Int {
+        switch self {
+        default:
+            return 1
+        }
+    }
+    
     var gesturesAvailable: [CustomGesture] {
         switch self {
         default:
