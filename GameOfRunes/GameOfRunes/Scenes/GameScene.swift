@@ -52,15 +52,9 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     private func setUpArenaLayout() {
         // Add background
-        let backgroundNode = SKSpriteNode(
-            texture: ArenaType.allCases.randomElement()?.texture ?? .init(),
-            color: .clear,
-            size: size
-        )
-        backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
-        backgroundNode.zPosition = -100
+        let backgroundNode = BackgroundNode(size: size, gameEngine: gameEngine)
         addChild(backgroundNode)
-        
+
         // Add player area
         let playerAreaWidth = size.width
         let playerAreaHeight = size.height / 6
@@ -108,10 +102,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
         addChild(manaLabel)
-    }
-
-    func gestureActivated(gesture: CustomGesture) {
-        gameEngine.gestureActivated(gesture: gesture)
     }
     
     override func update(_ currentTime: TimeInterval) {

@@ -3,12 +3,55 @@
 //  DBPathRecognizer
 //
 //  Created by Didier Brun on 15/03/2015.
+//  Modified by Andy Lam.
 //  Copyright (c) 2015 Didier Brun. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
-open class DBPathRecognizer {
+public class GestureRecognizer {
+    private var rawPoints:[Int] = []
+    private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)
+    private weak var gameEngine: GameEngine?
+    
+    init(gameEngine: GameEngine) {
+        for pathModel in CustomGesture.getAllGesturePathModels() {
+            recognizer.addModel(pathModel)
+        }
+        self.gameEngine = gameEngine
+    }
+    
+    func touchesBegan(_ location: CGPoint) {
+        rawPoints = []
+        rawPoints.append(Int(location.x))
+        rawPoints.append(Int(location.y))
+    }
+    
+    func touchesMoved(_ location: CGPoint) {
+        if rawPoints.isEmpty {
+            return
+        }
+        if (rawPoints[rawPoints.count-2] != Int(location.x) && rawPoints[rawPoints.count-1] != Int(location.y)) {
+            rawPoints.append(Int(location.x))
+            rawPoints.append(Int(location.y))
+        }
+    }
+    
+    func touchesEnded() {
+        var path: Path = Path()
+        path.addPointFromRaw(rawPoints)
+        
+        guard let gesture: PathModel = self.recognizer.recognizePath(path),
+            let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
+            return
+        }
+        print(customGesture.rawValue)
+        gameEngine?.gestureActivated(gesture: customGesture)
+    }
+}
+
+fileprivate class DBPathRecognizer {
     var deltaMove: Double
     var sliceCount: Int
     var costMax: Int
@@ -22,7 +65,7 @@ open class DBPathRecognizer {
         self.costMax = costMax
     }
     
-    open func recognizePath(_ path: Path) -> PathModel? {
+    fileprivate func recognizePath(_ path: Path) -> PathModel? {
         
         self.path = path
         if path.count < 2 {
@@ -48,7 +91,7 @@ open class DBPathRecognizer {
         return bestModel
     }
     
-    open func addModel(_ model: PathModel) {
+    fileprivate func addModel(_ model: PathModel) {
         models.append(model)
     }
     
@@ -163,7 +206,6 @@ open class DBPathRecognizer {
 // Helper structs
 //
 // -----------------------------------------------------------
-
 /* Path point */
 
 public struct PathPoint: Equatable {
@@ -171,14 +213,14 @@ public struct PathPoint: Equatable {
     var x: Int16 = 0
     var y: Int16 = 0
     
-    public func squareDistanceFromPoint(_ point: PathPoint) -> Double {
+    fileprivate func squareDistanceFromPoint(_ point: PathPoint) -> Double {
         let dfx = Double(point.x) - Double(x)
         let dfy = Double(point.y) - Double(y)
         let sqareDistance = dfx * dfx + dfy * dfy
         return sqareDistance
     }
     
-    public func angleWithPoint(_ point: PathPoint) -> Double {
+    fileprivate func angleWithPoint(_ point: PathPoint) -> Double {
         let dfx = Double(point.x) - Double(x)
         let dfy = Double(point.y) - Double(y)
         return atan2(dfy, dfx)
@@ -200,8 +242,7 @@ public struct Rect {
 
 /* Path */
 
-public struct Path {
-    
+fileprivate struct Path {
     var points: [PathPoint] = [PathPoint]()
     
     var boundingBox: Rect {
@@ -224,11 +265,11 @@ public struct Path {
         get { points.count }
     }
     
-    public mutating func addPoint(_ point: PathPoint) {
+    fileprivate mutating func addPoint(_ point: PathPoint) {
         points.append(point)
     }
     
-    public mutating func addPointFromRaw(_ rawDatas: [Int]) {
+    fileprivate mutating func addPointFromRaw(_ rawDatas: [Int]) {
         let rawDatas = rawDatas
         var i = 0
         var _:PathPoint
@@ -283,7 +324,7 @@ public struct PathModel {
 
 /* Array2D */
 
-public struct Array2D {
+fileprivate struct Array2D {
     var cols: Int
     var rows: Int
     var matrix: [Int]
