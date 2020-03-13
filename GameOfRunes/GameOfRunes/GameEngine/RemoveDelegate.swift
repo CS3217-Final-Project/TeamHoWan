@@ -28,6 +28,7 @@ class RemoveDelegate {
         gameEngine.remove(gestureEntity)
         
         if enemyHealth <= 0 {
+            enemyEntity.removeGesture()
             gameEngine.remove(enemyEntity)
             return
         }
