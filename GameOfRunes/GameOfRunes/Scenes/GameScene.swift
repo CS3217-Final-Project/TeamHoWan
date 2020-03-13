@@ -14,6 +14,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     private var lastUpdateTime: TimeInterval = 0.0
     var gameStateMachine: GameStateMachine
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
+    var backgroundNode: SKSpriteNode!
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode?
     private var pauseButton: ButtonNode!
@@ -36,6 +37,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     override func sceneDidLoad() {
         gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
         EnemyType.loadEnemiesTextures()
+        PowerUpType.loadPowerUpCastsTextures()
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealth()
@@ -52,7 +54,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     private func setUpArenaLayout() {
         // Add background
-        let backgroundNode = SKSpriteNode(
+        backgroundNode = .init(
             texture: ArenaType.allCases.randomElement()?.texture ?? .init(),
             color: .clear,
             size: size
@@ -139,7 +141,15 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameEngine.spawnEnemy()
+        guard let touch = touches.first else {
+            return
+        }
+        //gameEngine.spawnEnemy()
+        (PowerUpType.allCases.randomElement() ?? .hellfire).runAnimation(
+            at: touch.location(in: self),
+            with: .init(width: size.width / 3, height: size.width / 3),
+            on: self
+        )
     }
 }
 

@@ -24,7 +24,7 @@ enum EnemyType: String, CaseIterable {
         guard enemiesTextures.isEmpty else {
             return
         }
-        EnemyType.allCases.forEach { enemyType in
+        allCases.forEach { enemyType in
             let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
             let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
             enemiesTextures[enemyType] = enemyTextures
