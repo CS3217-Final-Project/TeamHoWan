@@ -121,20 +121,15 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         gameEngine.update(with: deltaTime)
         
 
-        if let playerHealthComponent = gameEngine
-            .entities
-            .compactMap({ $0 as? PlayerHealthEntity })
-            .first?
-            .component(ofType: HealthComponent.self) {
+        if let playerHealthComponent =
+            gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
         }
         
-        if let manaEntity = gameEngine
-            .entities
-            .compactMap({ $0.component(ofType: ManaComponent.self) })
-            .first {
-            manaLabel.text = "\(manaEntity.manaPoints)"
-            playerAreaNode.manaBarNode.currentManaPoints = manaEntity.manaPoints
+        if let playerManaComponent =
+            gameEngine.playerManaEntity?.component(ofType: ManaComponent.self) {
+            manaLabel.text = "\(playerManaComponent.manaPoints)"
+            playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
     }
     

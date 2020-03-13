@@ -73,6 +73,7 @@
 		C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68A241A674A0076F02B /* MoveSystem.swift */; };
 		C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68C241A7A530076F02B /* SpriteSystem.swift */; };
 		C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C6B322DB241B9701001072AE /* .swiftlint.yml */; };
+		C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B322DD241BC7AB001072AE /* EntityType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		C6AFF68A241A674A0076F02B /* MoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSystem.swift; sourceTree = "<group>"; };
 		C6AFF68C241A7A530076F02B /* SpriteSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSystem.swift; sourceTree = "<group>"; };
 		C6B322DB241B9701001072AE /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C6B322DD241BC7AB001072AE /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				4AA508CA2416170600D9ADE4 /* ArenaType.swift */,
+				C6B322DD241BC7AB001072AE /* EntityType.swift */,
 				4AA508CC24161A1900D9ADE4 /* EnemyType.swift */,
 				4AC87A4B241A3EB100D79639 /* PowerUpType.swift */,
 				4AA5B36124164FC9008D4953 /* Team.swift */,
@@ -606,6 +609,7 @@
 				C6AFF67E24191A2A0076F02B /* SystemManager.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
+				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
 				C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */,
 				8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,

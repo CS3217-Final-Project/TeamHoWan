@@ -49,7 +49,7 @@ class SystemManager {
         case is MoveComponent:
             moveSystem.addComponent(component as! MoveComponent)
         default:
-            fatalError("Component type not supported.")
+            fatalError("Component: \(component) not supported.")
         }
     }
 }

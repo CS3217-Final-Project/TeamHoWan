@@ -10,14 +10,17 @@ import SpriteKit
 import GameplayKit
 
 class GameEngine {
-    var systemManager: SystemManager!
-    var removeDelegate: RemoveDelegate!
-    var entities = Set<GKEntity>()
-    var toRemoveEntities = Set<GKEntity>()
+    private (set) var systemManager: SystemManager!
+    private (set) var removeDelegate: RemoveDelegate!
+    private (set) var entities = [EntityType : Set<GKEntity>]()
+    private var toRemoveEntities = Set<GKEntity>()
     weak var scene: SKScene?
     weak var gameStateMachine: GameStateMachine?
-    private var playerHealthEntity: PlayerHealthEntity? {
-        entities.compactMap({ $0 as? PlayerHealthEntity }).first
+    var playerHealthEntity: PlayerHealthEntity? {
+        entities[.playerHealthEntity]?.first as? PlayerHealthEntity
+    }
+    var playerManaEntity: PlayerManaEntity? {
+        entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
@@ -26,18 +29,51 @@ class GameEngine {
         self.removeDelegate = RemoveDelegate(gameEngine: self)
         self.gameStateMachine = gameStateMachine
         self.gameStateMachine?.gameEngine = self
+        
+        EntityType.allCases.forEach { entityType in
+            entities[entityType] = Set()
+        }
     }
     
     func add(_ entity: GKEntity) {
-        guard entities.insert(entity).inserted else {
-            return
+        var isInserted: Bool?
+        
+        switch entity {
+        case is EnemyEntity:
+            isInserted = entities[.enemyEntity]?.insert(entity).inserted
+        case is GestureEntity:
+            isInserted = entities[.gestureEntity]?.insert(entity).inserted
+        case is PlayerHealthEntity:
+            isInserted = entities[.playerHealthEntity]?.insert(entity).inserted
+        case is PlayerManaEntity:
+            isInserted = entities[.playerManaEntity]?.insert(entity).inserted
+        case is EndPointEntity:
+            isInserted = entities[.endPointEntity]?.insert(entity).inserted
+        default:
+            fatalError("Entity: \(entity) not supported.")
         }
 
-        systemManager.addComponents(foundIn: entity)
+        if isInserted == true {
+            systemManager.addComponents(foundIn: entity)
+        }
     }
     
     func remove(_ entity: GKEntity) {
-        entities.remove(entity)
+        switch entity {
+        case is EnemyEntity:
+            entities[.enemyEntity]?.remove(entity)
+        case is GestureEntity:
+            entities[.gestureEntity]?.remove(entity)
+        case is PlayerHealthEntity:
+            entities[.playerHealthEntity]?.remove(entity)
+        case is PlayerManaEntity:
+            entities[.playerManaEntity]?.remove(entity)
+        case is EndPointEntity:
+            entities[.endPointEntity]?.remove(entity)
+        default:
+            fatalError("Entity: \(entity) not supported.")
+        }
+
         toRemoveEntities.insert(entity)
     }
     
@@ -82,7 +118,12 @@ class GameEngine {
     
     /** Gets all entities of a particular `Team`. */
     func entities(for team: Team) -> [GKEntity] {
-        entities.compactMap { $0.component(ofType: TeamComponent.self)?.team == team ? $0 : nil }
+        switch team {
+        case .enemy:
+            return Array(entities[.enemyEntity] ?? Set())
+        case .player:
+            return Array(entities[.endPointEntity] ?? Set())
+        }
     }
     
     /** Gets all the `MoveComponents` of entities in a particular `Team` */
@@ -100,7 +141,7 @@ class GameEngine {
     }
     
     func gestureActivated(gesture: CustomGesture) {
-        for entity in entities {
+        for entity in entities[EntityType.gestureEntity] ?? Set() {
             guard let gestureComponent = entity.component(ofType: GestureComponent.self), gestureComponent.gesture == gesture else {
                 continue
             }
