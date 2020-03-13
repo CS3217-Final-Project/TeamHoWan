@@ -10,10 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
-    weak var gameEngine: GameEngine?
-    
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float, gameEngine: GameEngine) {
-        self.gameEngine = gameEngine
+    init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
