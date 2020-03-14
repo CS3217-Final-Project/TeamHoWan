@@ -56,10 +56,9 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         addChild(worldNode)
     }
     
-    private func addNode(_ node: SKNode) {
+    func addNode(_ node: SKNode) {
         worldNode.addChild(node)
     }
-
     
     private func setUpArenaLayout() {
         // Add background
@@ -70,7 +69,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         )
         backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
         backgroundNode.zPosition = -100
-        addChild(backgroundNode)
+        addNode(backgroundNode)
 
         let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
         addNode(gestureAreaNode)

@@ -56,7 +56,6 @@ class GestureAreaNode: SKSpriteNode {
         
         // Bezier Curve Construction
         redrawActiveSlice()
-        print(CGPoint(x: location.x + size.width / 2.0, y: size.height / 2.0 - location.y))
         recogniser.touchesMoved(CGPoint(x: location.x + size.width / 2.0, y: size.height / 2.0 - location.y))
     }
     

@@ -87,7 +87,7 @@ enum CustomGesture: String, CaseIterable {
     }
     
     func getTexture() -> SKTexture {
-        return SKTexture(imageNamed: "runeGrey_\(self.rawValue)")
+        SKTexture(imageNamed: "runeGrey_\(self.rawValue)")
     }
     
     static func getAllGesturePathModels() -> [PathModel] {

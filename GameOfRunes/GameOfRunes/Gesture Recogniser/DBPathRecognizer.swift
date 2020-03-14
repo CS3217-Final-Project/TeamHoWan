@@ -162,9 +162,7 @@ fileprivate class DBPathRecognizer {
         var td = Array2D(cols: a.count + 1, rows: b.count + 1)
         var tw = Array2D(cols: a.count + 1, rows: b.count + 1)
         
-        let safe_max_value = Int(Int16.max) // Don'n now why Int.max cause a EXEC_BAD error
-        //println("\(safe_max_value)")
-        
+        let safe_max_value = Int(Int16.max)     
         for x in 1...a.count {
             for y in 1..<b.count {
                 td[x, y] = directionCost(a[x - 1], b[y - 1])
