@@ -28,20 +28,7 @@ class GameInPlayState: GKState {
         guard let sceneManager = gameStateMachine.sceneManager else {
             fatalError("No SceneManager associated with GameStateMachine")
         }
-
-        guard let gameEngine = gameStateMachine.gameEngine else {
-            fatalError("No GameEngine associated with GameStateMachine")
-        }
-
-        if previousState is GamePauseState {
-            // Add MoveComponent back to EnemyEntity to allow them to move (If from Pause State to InPlay State)
-            gameEngine.entities(for: .enemy).forEach({
-                if let enemyEntity = $0 as? EnemyEntity {
-                    enemyEntity.addMoveComponent()
-                }
-            })
-        }
-
+        
         super.didEnter(from: previousState)
         sceneManager.transitionToScene(sceneIdentifier: .play)
     }
