@@ -36,6 +36,13 @@ class EnemyEntity: GKEntity {
         addComponent(teamComponent)
         addComponent(healthComponent)
         addMoveComponent()
+//        let moveComponent = MoveComponent(
+//            maxSpeed: 150.0,
+//            maxAcceleration: 5.0,
+//            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01,
+//            gameEngine: gameEngine
+//        )
+//        addComponent(moveComponent)
         addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
     }
     
@@ -59,6 +66,7 @@ class EnemyEntity: GKEntity {
         return true
     }
 
+    // TODO: Remove this when done with making new features
     /** Helper function to remove MoveComponent from EnemyEntity */
     func removeMoveComponent() {
         removeComponent(ofType: MoveComponent.self)

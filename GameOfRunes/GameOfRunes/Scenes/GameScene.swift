@@ -107,7 +107,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             healthBarNode.totalLives = healthComponent.healthPoints
             healthBarNode.livesLeft = healthComponent.healthPoints
         }
-        gameEngine.add(PlayerHealthEntity())
+        gameEngine.add(PlayerHealthEntity()) //TODO: This is likely a bug
     }
     
     private func setUpMana() {
