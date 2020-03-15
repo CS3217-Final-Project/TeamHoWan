@@ -6,10 +6,9 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import SpriteKit
 import GameplayKit
 
-class GestureEntity: GKEntity {
+class GestureEntity: Entity {
     unowned let parentEntity: GKEntity
 
     init(gesture: CustomGesture, parent: GKEntity) {
@@ -27,5 +26,9 @@ class GestureEntity: GKEntity {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func getType() -> EntityType {
+        return .gestureEntity
     }
 }

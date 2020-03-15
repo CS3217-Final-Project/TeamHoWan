@@ -9,13 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class EnemyEntity: GKEntity {
-    private (set) var gestureEntities: [GestureEntity] = []
+class EnemyEntity: Entity {
     private unowned var gameEngine: GameEngine
+    private let enemyType: EnemyType
+    private (set) var gestureEntity: GestureEntity?
     
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-
+        self.enemyType = enemyType
+            
         super.init()
         
         let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
@@ -30,7 +32,7 @@ class EnemyEntity: GKEntity {
             )
         )
         let teamComponent = TeamComponent(team: .enemy)
-        let healthComponent = HealthComponent(healthPoints: 1)
+        let healthComponent = HealthComponent(healthPoints: enemyType.health)
         let moveComponent = MoveComponent(
             maxSpeed: 150.0,
             maxAcceleration: 5.0,
@@ -42,26 +44,44 @@ class EnemyEntity: GKEntity {
         addComponent(teamComponent)
         addComponent(healthComponent)
         addComponent(moveComponent)
-        addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
+        setCurrentGesture()
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    private func addGestures(enemyType: EnemyType, enemyNode: SKSpriteNode) {
-        let nextGesture = GestureEntity(gesture: .arrowUp, parent: self)
-        nextGesture.component(ofType: SpriteComponent.self)?.setGestureConstraint(referenceNode: enemyNode)
-        gestureEntities.append(nextGesture)
+    
+    override func getType() -> EntityType {
+        return .enemyEntity
     }
 
-    func removeGesture(for entity: GestureEntity) -> Bool {
-        guard gestureEntities.first === entity else {
+    func setCurrentGesture() {
+        guard let enemyNode = component(ofType: SpriteComponent.self)?.node else {
+            return
+        }
+        
+        var availableGestures = enemyType.gesturesAvailable
+        
+        if let currentGesture = gestureEntity?.component(ofType: GestureComponent.self)?.gesture {
+            availableGestures.removeAll { $0 == currentGesture }
+        }
+        
+        guard let gesture = availableGestures.randomElement() else {
+            return
+        }
+
+        gestureEntity = GestureEntity(gesture: gesture, parent: self)
+        gestureEntity?.component(ofType: SpriteComponent.self)?
+            .setGestureConstraint(referenceNode: enemyNode)
+    }
+
+    func removeGesture() -> Bool {
+        guard gestureEntity != nil else {
             return false
         }
 
-        gestureEntities.removeFirst()
+        gestureEntity = nil
         return true
     }
 }

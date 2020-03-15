@@ -16,4 +16,18 @@ enum EnemyType: String, CaseIterable {
     case troll1
     case troll2
     case troll3
+
+    var health: Int {
+        switch self {
+        default:
+            return 1
+        }
+    }
+    
+    var gesturesAvailable: [CustomGesture] {
+        switch self {
+        default:
+            return [.arrowUp]
+        }
+    }
 }

@@ -130,19 +130,13 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         gameEngine.update(with: deltaTime)
         
 
-        if let playerHealthComponent = gameEngine
-            .entities
-            .compactMap({ $0 as? PlayerHealthEntity })
-            .first?
-            .component(ofType: HealthComponent.self) {
+        if let playerHealthComponent =
+            gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
         }
-
-        // TODO: Ask the team: Might want a direct reference to the PlayerManaEntity instead? Same applies for PlayerHealthEntity above?
-        if let playerManaComponent = gameEngine
-            .entities
-            .compactMap({ $0.component(ofType: ManaComponent.self) })
-            .first {
+        
+        if let playerManaComponent =
+            gameEngine.playerManaEntity?.component(ofType: ManaComponent.self) {
             manaLabel.text = "\(playerManaComponent.manaPoints)"
             playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
