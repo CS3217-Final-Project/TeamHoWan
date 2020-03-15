@@ -38,7 +38,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     override func sceneDidLoad() {
         gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
-        EnemyType.loadEnemiesTextures()
+        TextureContainer.loadTextures()
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealth()

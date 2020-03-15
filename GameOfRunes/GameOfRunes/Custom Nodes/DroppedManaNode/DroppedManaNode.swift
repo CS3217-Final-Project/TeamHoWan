@@ -8,24 +8,16 @@
 
 import SpriteKit
 
-protocol DroppedManaResponderType: class {
-    func droppedManaTapped(droppedManaNode: DroppedManaNode)
-}
-
 /**
  An `SKSpriteNode` that represents Mana dropped by a monster
  when the monster is killed. To be added to `SKScene` or its subclasses
  that implement the `DroppedManaResponderType` protocol (i.e. `GameScene`)
  */
 class DroppedManaNode: SKSpriteNode {
-    private var responder: DroppedManaResponderType {
-        guard let responder = scene as? DroppedManaResponderType else {
-            fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
-        }
-        return responder
-    }
+    private weak var responder: DroppedManaResponderType?
 
-    init(position: CGPoint) {
+    init(position: CGPoint, responder: DroppedManaResponderType) {
+        self.responder = responder
         super.init(texture: SKTexture(imageNamed: "mana"),
                    color: .darkGray,
                    size: CGSize(width: GameplayConfiguration.Mana.manaWidth,
@@ -40,12 +32,13 @@ class DroppedManaNode: SKSpriteNode {
 
     /** Forwards the button press event to the responder. */
     func droppedManaTapped() {
-        if isUserInteractionEnabled {
+        if let responder = responder,
+            isUserInteractionEnabled {
             responder.droppedManaTapped(droppedManaNode: self)
         }
     }
 
-    func removeDroppedMana() {
+    func remove() {
         removeFromParent()
     }
 

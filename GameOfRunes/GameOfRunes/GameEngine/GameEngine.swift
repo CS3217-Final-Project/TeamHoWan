@@ -19,6 +19,10 @@ class GameEngine {
     private var playerHealthEntity: PlayerHealthEntity? {
         entities.compactMap({ $0 as? PlayerHealthEntity }).first
     }
+    private var playerManaEntity: PlayerManaEntity? {
+        entities.compactMap({ $0 as? PlayerManaEntity }).first
+    }
+    private var droppedManaEntities = Set<DroppedManaEntity>()
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
@@ -121,5 +125,54 @@ class GameEngine {
         }
 
         removeDelegate.removeEnemyReachedLine(enemyEntity)
+    }
+}
+
+extension GameEngine: DroppedManaResponderType {
+    func dropMana(at enemyEntity: GKEntity) {
+            //TODO: Add probabilistic mechanism here?
+            guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
+                return
+            }
+
+            let position = enemySpriteComponent.node.position
+
+            // TODO: Clean up
+    //        let droppedManaNode = DroppedManaNode(position: position)
+    //        droppedManaNode.zPosition = 100
+    //        scene?.addChild(droppedManaNode)
+
+            //TODO: Add probabilistic mechanism for ManaPoints?
+            let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: 10, gameEngine: self)
+
+            //TODO: Explain to team why Set<GkEntity> for droppedmanaentity is necessary (tap detection happens at node level)
+            droppedManaEntities.insert(droppedManaEntity)
+            add(droppedManaEntity)
+    }
+
+    func droppedManaTapped(droppedManaNode: DroppedManaNode) {
+        for droppedManaEntity in droppedManaEntities {
+            if let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
+                droppedManaNode === spriteComponent.node {
+                increaseManaPoints(manaPoints: droppedManaEntity.manaPoints)
+                removeDroppedMana(droppedManaEntity: droppedManaEntity)
+
+            }
+        }
+    }
+
+    func increaseManaPoints(manaPoints: Int) {
+        if let playerManaEntity = playerManaEntity,
+            let playerManaComponent = playerManaEntity.component(ofType: ManaComponent.self) {
+            playerManaComponent.manaPoints += manaPoints
+        }
+    }
+
+    func decreaseManaPoints(manaPoints: Int) {
+        increaseManaPoints(manaPoints: -manaPoints)
+    }
+
+    func removeDroppedMana(droppedManaEntity: GKEntity) {
+        remove(droppedManaEntity)
     }
 }

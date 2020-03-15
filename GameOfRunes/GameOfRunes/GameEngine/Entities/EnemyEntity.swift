@@ -18,11 +18,11 @@ class EnemyEntity: GKEntity {
 
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: enemyType.staticTexture)
+        let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
-                    with: enemyType.animationTextures,
+                    with: TextureContainer.getEnemyAnimationTextures(enemyType),
                     timePerFrame: 0.1,
                     resize: false,
                     restore: true

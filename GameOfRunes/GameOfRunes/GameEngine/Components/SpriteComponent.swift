@@ -22,6 +22,11 @@ class SpriteComponent: GKComponent {
 
         super.init()
     }
+
+    init(droppedManaNode: DroppedManaNode) {
+        node = droppedManaNode
+        super.init()
+    }
     
     func setGestureConstraint(referenceNode: SKSpriteNode) {
         let xRange = SKRange(constantValue: GameplayConfiguration.Enemy.gestureBubbleOffset.x)
