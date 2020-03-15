@@ -12,13 +12,14 @@ class SystemManager {
     private unowned var gameEngine: GameEngine
     private var systems = [System]()
     private let manaSystem = ManaSystem()
-    private let moveSystem = MoveSystem()
+    private let moveSystem: MoveSystem
     private let healthSystem = HealthSystem()
     private let spriteSystem: SpriteSystem
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         spriteSystem = SpriteSystem(gameEngine: gameEngine)
+        moveSystem = MoveSystem(gameEngine: gameEngine)
         systems.append(contentsOf: [manaSystem, moveSystem, healthSystem, spriteSystem])
     }
     
@@ -48,7 +49,7 @@ class SystemManager {
         case is MoveComponent:
             moveSystem.addComponent(component as! MoveComponent)
         default:
-            fatalError("Component type not supported.")
+            fatalError("Component: \(component) not supported.")
         }
     }
 }

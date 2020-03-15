@@ -19,12 +19,15 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
 
-        guard let node = entity.component(ofType: SpriteComponent.self)?.node,
-            let gameScene = gameEngine.scene as? GameScene else {
+        guard let node = entity.component(ofType: SpriteComponent.self)?.node else {
             return
         }
 
-        gameScene.addNode(node)
-
+        gameEngine.scene?.addChild(node)
+    }
+    
+    override func removeComponent(foundIn entity: GKEntity) {
+        super.removeComponent(foundIn: entity)
+        entity.component(ofType: SpriteComponent.self)?.node.removeFromParent()
     }
 }

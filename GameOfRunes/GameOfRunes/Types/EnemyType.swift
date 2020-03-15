@@ -38,4 +38,18 @@ enum EnemyType: String, CaseIterable {
     var animationTextures: [SKTexture] {
         Self.enemiesTextures[self] ?? []
     }
+    
+    var health: Int {
+        switch self {
+        default:
+            return 1
+        }
+    }
+    
+    var gesturesAvailable: [CustomGesture] {
+        switch self {
+        default:
+            return [.arrowUp]
+        }
+    }
 }
