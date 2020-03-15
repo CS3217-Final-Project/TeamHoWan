@@ -15,6 +15,11 @@ struct GameplayConfiguration {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
     }
 
+    struct Mana {
+        static let manaWidth: Double = 100
+        static let manaHeight: Double = 100
+    }
+
     struct SceneManager {
         static let sceneTransitionDuration: TimeInterval = 0.5
     }

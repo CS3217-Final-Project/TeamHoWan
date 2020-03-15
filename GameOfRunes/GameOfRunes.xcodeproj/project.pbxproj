@@ -64,6 +64,7 @@
 		8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */; };
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
 		8AAADE4B24191D8D00606298 /* ButtonNodeResponderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */; };
+		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67A2419101B0076F02B /* GestureEntity.swift */; };
 		C6AFF67E24191A2A0076F02B /* SystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemManager.swift */; };
 		C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF680241923410076F02B /* RemoveDelegate.swift */; };
@@ -146,6 +147,7 @@
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNodeResponderType.swift; sourceTree = "<group>"; };
+		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		4AA5B3702416BB54008D4953 /* Custom Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				8AAE9BFF241E2DE200D29593 /* DroppedManaNode */,
 				4A8F0AA624191B6D00CD730B /* Player Area */,
 				8AAADE4924191D7A00606298 /* ButtonNode */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
@@ -389,6 +392,14 @@
 				8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */,
 			);
 			path = ButtonNode;
+			sourceTree = "<group>";
+		};
+		8AAE9BFF241E2DE200D29593 /* DroppedManaNode */ = {
+			isa = PBXGroup;
+			children = (
+				8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */,
+			);
+			path = DroppedManaNode;
 			sourceTree = "<group>";
 		};
 		C6AFF67C241919A00076F02B /* Systems */ = {
@@ -623,6 +634,7 @@
 				566121DB2416838000475CE1 /* CustomGestures.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
+				8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */,
 				C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

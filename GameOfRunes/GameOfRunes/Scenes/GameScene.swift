@@ -137,13 +137,14 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             .component(ofType: HealthComponent.self) {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
         }
-        
-        if let manaEntity = gameEngine
+
+        // TODO: Might want a direct reference to the PlayerManaEntity instead?
+        if let playerManaComponent = gameEngine
             .entities
             .compactMap({ $0.component(ofType: ManaComponent.self) })
             .first {
-            manaLabel.text = "\(manaEntity.manaPoints)"
-            playerAreaNode.manaBarNode.currentManaPoints = manaEntity.manaPoints
+            manaLabel.text = "\(playerManaComponent.manaPoints)"
+            playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
     }
     
