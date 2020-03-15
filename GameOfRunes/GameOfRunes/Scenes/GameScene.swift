@@ -145,7 +145,8 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             return
         }
         //gameEngine.spawnEnemy()
-        (PowerUpType.allCases.randomElement() ?? .hellfire).runAnimation(
+        print(playerAreaNode.powerUpContainerNode.selectedPowerUp)
+        playerAreaNode.powerUpContainerNode.selectedPowerUp?.runAnimation(
             at: touch.location(in: self),
             with: .init(width: size.width / 3, height: size.width / 3),
             on: self

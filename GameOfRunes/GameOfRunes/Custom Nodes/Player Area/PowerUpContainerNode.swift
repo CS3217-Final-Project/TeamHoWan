@@ -22,6 +22,16 @@ class PowerUpContainerNode: SKSpriteNode {
             layoutPowerUpNodes()
         }
     }
+    var selectedPowerUp: PowerUpType? {
+        didSet {
+            guard oldValue != selectedPowerUp else {
+                return
+            }
+            
+            powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
+            
+        }
+    }
     
     init(powerUpTypes: [PowerUpType]) {
         super.init(texture: nil, color: .clear, size: .zero)
