@@ -43,7 +43,6 @@ enum PowerUpType: String, CaseIterable {
         powerUpsTextures[darkVortex] = (670000...670019).map { darkVortexAtlas.textureNamed("\($0)") }
     }
     
-    
     func runAnimation(at position: CGPoint, with size: CGSize, on scene: SKScene) {
         let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size)
         animationNode.position = position

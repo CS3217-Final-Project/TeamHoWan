@@ -19,12 +19,19 @@ class PlayerAreaNode: SKSpriteNode {
         }
     }
     var manaBarNode: ManaBarNode {
-        // Swift's implementation: didSet will only be called for every new value set AFTER init
         didSet {
             print("Set new mana bar")
             oldValue.removeFromParent()
             addChild(manaBarNode)
             layoutManaBar()
+        }
+    }
+    var powerUpContainerNode: PowerUpContainerNode {
+        didSet {
+            print("Set new power up container")
+            oldValue.removeFromParent()
+            addChild(powerUpContainerNode)
+            layoutPowerUpContainer()
         }
     }
     override var size: CGSize {
@@ -36,10 +43,10 @@ class PlayerAreaNode: SKSpriteNode {
             print("Resize player area")
             layoutHealthBar()
             layoutManaBar()
+            layoutPowerUpContainer()
         }
     }
     override var position: CGPoint {
-        // Swift's implementation: didSet can be called if new value is set INSIDE init
         didSet {
             guard oldValue != position else {
                 return
@@ -47,6 +54,7 @@ class PlayerAreaNode: SKSpriteNode {
             print("Re-position player area")
             layoutHealthBar()
             layoutManaBar()
+            layoutPowerUpContainer()
         }
     }
     var healthBarSize: CGSize {
@@ -57,6 +65,11 @@ class PlayerAreaNode: SKSpriteNode {
     var manaBarSize: CGSize {
         didSet {
             layoutManaBar()
+        }
+    }
+    var powerUpContainerSize: CGSize {
+        didSet {
+            layoutPowerUpContainer()
         }
     }
     // with respect to the center of current node
@@ -70,19 +83,31 @@ class PlayerAreaNode: SKSpriteNode {
             layoutManaBar()
         }
     }
+    var powerUpContainerPositionOffsetFromCenter: CGVector {
+        didSet {
+            layoutPowerUpContainer()
+        }
+    }
     
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
+        powerUpContainerNode = .init(powerUpTypes: [.hellfire, .icePrison, .darkVortex])
+        
         healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
         manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
-        healthBarPositionOffsetFromCenter = CGVector(dx: -size.width / 4.5, dy: size.height / 4.5)
-        manaBarPositionOffsetFromCenter = CGVector(dx: size.width / 4.5, dy: size.height / 4.5)
+        powerUpContainerSize = size.applying(.init(scaleX: 0.45, y: 0.4))
+        
+        healthBarPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: size.height / 4.5)
+        manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4.5)
+        powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 4.5)
+        
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
         self.position = position
         addChild(healthBarNode)
         addChild(manaBarNode)
+        addChild(powerUpContainerNode)
     }
     
     @available(*, unavailable)
@@ -102,5 +127,12 @@ class PlayerAreaNode: SKSpriteNode {
         manaBarNode.size = manaBarSize
         manaBarNode.position = .zero + manaBarPositionOffsetFromCenter
         manaBarNode.zPosition = 100
+    }
+    
+    private func layoutPowerUpContainer() {
+        powerUpContainerNode.anchorPoint = .init(x: 0.5, y: 0.5)
+        powerUpContainerNode.size = powerUpContainerSize
+        powerUpContainerNode.position = .zero + powerUpContainerPositionOffsetFromCenter
+        powerUpContainerNode.zPosition = 100
     }
 }
