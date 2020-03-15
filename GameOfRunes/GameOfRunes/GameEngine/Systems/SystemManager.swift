@@ -42,14 +42,4 @@ class SystemManager {
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         return healthSystem.minusHealthPoints(for: entity)
     }
-
-    // TODO: Is this still necessary? Possible bug?
-    func addComponent(_ component: GKComponent) {
-        switch component {
-        case is MoveComponent:
-            moveSystem.addComponent(component as! MoveComponent)
-        default:
-            fatalError("Component type not supported.")
-        }
-    }
 }

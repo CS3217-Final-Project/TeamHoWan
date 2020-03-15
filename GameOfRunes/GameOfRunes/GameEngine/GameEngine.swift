@@ -128,39 +128,69 @@ class GameEngine {
     }
 }
 
+/** Extension for the Game Engine to deal with Mana-related events and logic. */
 extension GameEngine: DroppedManaResponderType {
+    /** Function called whenever a monster is killed and mana can be dropped. */
     func dropMana(at enemyEntity: GKEntity) {
-            //TODO: Add probabilistic mechanism here?
-            guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
-                return
-            }
+        guard shouldDropMana() else {
+            return
+        }
 
-            let position = enemySpriteComponent.node.position
+        guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
+            return
+        }
 
-            // TODO: Clean up
-    //        let droppedManaNode = DroppedManaNode(position: position)
-    //        droppedManaNode.zPosition = 100
-    //        scene?.addChild(droppedManaNode)
+        let position = enemySpriteComponent.node.position
+        let manaPoints = getRandomManaPoints()
+        let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: manaPoints, gameEngine: self)
 
-            //TODO: Add probabilistic mechanism for ManaPoints?
-            let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: 10, gameEngine: self)
-
-            //TODO: Explain to team why Set<GkEntity> for droppedmanaentity is necessary (tap detection happens at node level)
-            droppedManaEntities.insert(droppedManaEntity)
-            add(droppedManaEntity)
+        droppedManaEntities.insert(droppedManaEntity)
+        add(droppedManaEntity)
     }
 
+    /**
+     Checks if the Mana should be dropped.
+     This method utilises a uniform distribution to ensure
+     that the Mana is only dropped with probability determined
+     by the value `GameplayConfiguration.Mana.manaDropProbaility`
+     */
+    private func shouldDropMana() -> Bool {
+        let randNum = Double.random(in: 0.0...1.0)
+        if randNum <= GameplayConfiguration.Mana.manaDropProbability {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    /**
+     Obtains a randomised value for the mana points associated with
+     the `DroppedManaEntity` to be created. The upper and lower
+     bounds for the mana points can be set in `GameplayConfiguration`
+     */
+    private func getRandomManaPoints() -> Int {
+        let lowerBound = GameplayConfiguration.Mana.manaMinValue
+        let upperBound = GameplayConfiguration.Mana.manaMaxValue
+        return Int.random(in: lowerBound...upperBound)
+    }
+
+    /**
+     Handler function called whenever the `DroppedManaNode` is tapped
+     as part of conformance to the `DroppedManaResponderType` protocol.
+     - Note: This function removes the Mana from screen, and increments
+     the player's mana points.
+     */
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
         for droppedManaEntity in droppedManaEntities {
             if let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
                 droppedManaNode === spriteComponent.node {
                 increaseManaPoints(manaPoints: droppedManaEntity.manaPoints)
                 removeDroppedMana(droppedManaEntity: droppedManaEntity)
-
             }
         }
     }
 
+    /** Increases the Player's Mana points. */
     func increaseManaPoints(manaPoints: Int) {
         if let playerManaEntity = playerManaEntity,
             let playerManaComponent = playerManaEntity.component(ofType: ManaComponent.self) {
@@ -168,10 +198,12 @@ extension GameEngine: DroppedManaResponderType {
         }
     }
 
+    /** Decreaes the Player's Mana points. */
     func decreaseManaPoints(manaPoints: Int) {
         increaseManaPoints(manaPoints: -manaPoints)
     }
 
+    /** Removes the dropped mana from View and Model. */
     func removeDroppedMana(droppedManaEntity: GKEntity) {
         remove(droppedManaEntity)
     }

@@ -9,21 +9,27 @@
 import SpriteKit
 import GameplayKit
 
+/**
+ Entity to reprsent the Mana dropped by killed monsters in the game.
+ - Note: `manaPoints` refers to the amount of Mana Points gained
+ when `DroppedManaNode` is tapped
+ */
 class DroppedManaEntity: GKEntity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
-
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         let node = DroppedManaNode(position: position, responder: gameEngine)
-        self.manaPoints = manaPoints
         node.zPosition = 100
+        self.manaPoints = manaPoints
+
+        // Create and Animate Sprite Component
         self.spriteComponent = SpriteComponent(droppedManaNode: node)
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
                     with: TextureContainer.getManaAnimationTextures(),
                     timePerFrame: 0.1,
-                    resize: true,
+                    resize: false,
                     restore: true
                 )
             )

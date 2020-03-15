@@ -31,18 +31,17 @@ class EnemyEntity: GKEntity {
         )
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: 1)
+        let moveComponent = MoveComponent(
+            maxSpeed: 150.0,
+            maxAcceleration: 5.0,
+            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01,
+            gameEngine: gameEngine
+        )
 
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(healthComponent)
-        addMoveComponent()
-//        let moveComponent = MoveComponent(
-//            maxSpeed: 150.0,
-//            maxAcceleration: 5.0,
-//            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01,
-//            gameEngine: gameEngine
-//        )
-//        addComponent(moveComponent)
+        addComponent(moveComponent)
         addGestures(enemyType: enemyType, enemyNode: spriteComponent.node)
     }
     
@@ -64,23 +63,5 @@ class EnemyEntity: GKEntity {
 
         gestureEntities.removeFirst()
         return true
-    }
-
-    // TODO: Remove this when done with making new features
-    /** Helper function to remove MoveComponent from EnemyEntity */
-    func removeMoveComponent() {
-        removeComponent(ofType: MoveComponent.self)
-    }
-
-    /** Helper function to add MoveComponent to EnemyEntity */
-    func addMoveComponent() {
-        let moveComponent = MoveComponent(
-            maxSpeed: 150.0,
-            maxAcceleration: 5.0,
-            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01,
-            gameEngine: gameEngine
-        )
-        addComponent(moveComponent)
-        gameEngine.systemManager.addComponent(moveComponent)
     }
 }

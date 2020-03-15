@@ -30,26 +30,13 @@ class DroppedManaNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /** Forwards the button press event to the responder. */
+    /** Forwards the node tap event to the responder. */
     func droppedManaTapped() {
         if let responder = responder,
             isUserInteractionEnabled {
             responder.droppedManaTapped(droppedManaNode: self)
         }
     }
-
-    func remove() {
-        removeFromParent()
-    }
-
-    //TODO: Clean Up
-//    /** UIResponder touch handling. */
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        if containsTouches(touches: touches) {
-//            isHighlighted = true
-//        }
-//    }
 
     /** UIResponder touch handling. */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -60,15 +47,11 @@ class DroppedManaNode: SKSpriteNode {
         }
     }
 
-//    /** UIResponder touch handling. */
-//    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
-//        super.touchesCancelled(touches!, with: event)
-//        isHighlighted = false
-//    }
-
     /** Determine if any of the touches are within the `DroppedManaNode`. */
     private func containsTouches(touches: Set<UITouch>) -> Bool {
-        guard let scene = scene else { fatalError("Button must be used within a scene.") }
+        guard let scene = scene else {
+            fatalError("Button must be used within a scene.")
+        }
 
         return touches.contains { touch in
             let touchPoint = touch.location(in: scene)

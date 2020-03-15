@@ -107,7 +107,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             healthBarNode.totalLives = healthComponent.healthPoints
             healthBarNode.livesLeft = healthComponent.healthPoints
         }
-        gameEngine.add(PlayerHealthEntity()) //TODO: This is likely a bug
+        gameEngine.add(playerHealthEntity)
     }
     
     private func setUpMana() {
@@ -138,7 +138,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
         }
 
-        // TODO: Might want a direct reference to the PlayerManaEntity instead?
+        // TODO: Ask the team: Might want a direct reference to the PlayerManaEntity instead? Same applies for PlayerHealthEntity above?
         if let playerManaComponent = gameEngine
             .entities
             .compactMap({ $0.component(ofType: ManaComponent.self) })
