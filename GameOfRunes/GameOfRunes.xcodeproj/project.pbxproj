@@ -53,6 +53,7 @@
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
 		56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6D2417E7B7009172C6 /* GestureNode.swift */; };
 		56E82D702417E9D2009172C6 /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */; };
+		56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */; };
 		8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */; };
 		8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */; };
 		8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */; };
@@ -137,6 +138,7 @@
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
 		56E82D6D2417E7B7009172C6 /* GestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureNode.swift; sourceTree = "<group>"; };
 		56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayConfiguration.swift; sourceTree = "<group>"; };
+		56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureAreaNode.swift; sourceTree = "<group>"; };
 		8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInPlayState.swift; sourceTree = "<group>"; };
 		8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartState.swift; sourceTree = "<group>"; };
 		8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				4A8F0AA624191B6D00CD730B /* Player Area */,
 				8AAADE4924191D7A00606298 /* ButtonNode */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
+				56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */,
 			);
 			path = "Custom Nodes";
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
 				4AC87A4E241AC12700D79639 /* PowerUpNode.swift in Sources */,
+				56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */,
 				4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */,
 				8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */,
 				4AA5B37A2417625D008D4953 /* ManaBarNode.swift in Sources */,
@@ -797,13 +801,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andyylam.GameOfRunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -816,13 +820,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andyylam.GameOfRunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -834,8 +838,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -856,8 +861,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
