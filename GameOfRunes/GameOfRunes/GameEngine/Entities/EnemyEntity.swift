@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class EnemyEntity: GKEntity {
+class EnemyEntity: Entity {
     private unowned var gameEngine: GameEngine
     private let enemyType: EnemyType
     private (set) var gestureEntity: GestureEntity?
@@ -44,6 +44,10 @@ class EnemyEntity: GKEntity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func getType() -> EntityType {
+        return .enemyEntity
     }
 
     func setCurrentGesture() {

@@ -74,6 +74,7 @@
 		C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF68C241A7A530076F02B /* SpriteSystem.swift */; };
 		C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C6B322DB241B9701001072AE /* .swiftlint.yml */; };
 		C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B322DD241BC7AB001072AE /* EntityType.swift */; };
+		C6B322EA241DFF4D001072AE /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B322E9241DFF4D001072AE /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		C6AFF68C241A7A530076F02B /* SpriteSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteSystem.swift; sourceTree = "<group>"; };
 		C6B322DB241B9701001072AE /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C6B322DD241BC7AB001072AE /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
+		C6B322E9241DFF4D001072AE /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 				C6AFF67A2419101B0076F02B /* GestureEntity.swift */,
 				4ACC8BDB2415323800F235AE /* PlayerHealthEntity.swift */,
 				4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */,
+				C6B322E9241DFF4D001072AE /* Entity.swift */,
 				4AA5B35F241646DF008D4953 /* EndPointEntity.swift */,
 			);
 			path = Entities;
@@ -607,6 +610,7 @@
 				C6AFF687241A66360076F02B /* System.swift in Sources */,
 				4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */,
 				C6AFF67E24191A2A0076F02B /* SystemManager.swift in Sources */,
+				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,

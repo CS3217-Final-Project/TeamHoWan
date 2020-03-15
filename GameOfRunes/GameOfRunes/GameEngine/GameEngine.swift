@@ -35,43 +35,17 @@ class GameEngine {
         }
     }
     
-    func add(_ entity: GKEntity) {
-        var isInserted: Bool?
+    func add(_ entity: Entity) {
+        guard entities[entity.getType()]?.insert(entity).inserted == true else {
+            return
+        }
         
-        switch entity {
-        case is EnemyEntity:
-            isInserted = entities[.enemyEntity]?.insert(entity).inserted
-        case is GestureEntity:
-            isInserted = entities[.gestureEntity]?.insert(entity).inserted
-        case is PlayerHealthEntity:
-            isInserted = entities[.playerHealthEntity]?.insert(entity).inserted
-        case is PlayerManaEntity:
-            isInserted = entities[.playerManaEntity]?.insert(entity).inserted
-        case is EndPointEntity:
-            isInserted = entities[.endPointEntity]?.insert(entity).inserted
-        default:
-            fatalError("Entity: \(entity) not supported.")
-        }
-
-        if isInserted == true {
-            systemManager.addComponents(foundIn: entity)
-        }
+        systemManager.addComponents(foundIn: entity)
     }
     
-    func remove(_ entity: GKEntity) {
-        switch entity {
-        case is EnemyEntity:
-            entities[.enemyEntity]?.remove(entity)
-        case is GestureEntity:
-            entities[.gestureEntity]?.remove(entity)
-        case is PlayerHealthEntity:
-            entities[.playerHealthEntity]?.remove(entity)
-        case is PlayerManaEntity:
-            entities[.playerManaEntity]?.remove(entity)
-        case is EndPointEntity:
-            entities[.endPointEntity]?.remove(entity)
-        default:
-            fatalError("Entity: \(entity) not supported.")
+    func remove(_ entity: Entity) {
+        guard entities[entity.getType()]?.remove(entity) != nil else {
+            return
         }
 
         toRemoveEntities.insert(entity)
