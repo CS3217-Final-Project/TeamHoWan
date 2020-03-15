@@ -16,6 +16,7 @@ import SpriteKit
  */
 class TextureContainer {
     private static var enemiesTextures = [EnemyType: [SKTexture]]()
+    private static var enemyRemovalTextures = [SKTexture]()
     private static var manaTextures = [SKTexture]()
 
     static func loadTextures() {
@@ -29,6 +30,10 @@ class TextureContainer {
         // Load `manaTextures`
         let manaAtlas = SKTextureAtlas(named: "manaEssence")
         manaTextures = (0...29).map { manaAtlas.textureNamed("tile\($0)") }
+
+        // Load `enemyRemovalTextures`
+        let enemyRemovalAtlas = SKTextureAtlas(named: "removeEnemy")
+        enemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed("tile\($0)") }
     }
 
     /** Get the Animation Textures for the `enemyType` */
@@ -49,5 +54,10 @@ class TextureContainer {
     /** Get Static Texture for Mana. */
     static func getManaTexture() -> SKTexture {
         manaTextures.first ?? .init()
+    }
+
+    /** Get Animation Textures for Enemy Removal */
+    static func getEnemyRemovalAnimationTextures() -> [SKTexture] {
+        enemyRemovalTextures
     }
 }
