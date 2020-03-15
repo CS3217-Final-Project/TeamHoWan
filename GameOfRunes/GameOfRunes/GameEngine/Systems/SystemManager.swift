@@ -42,7 +42,8 @@ class SystemManager {
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         return healthSystem.minusHealthPoints(for: entity)
     }
-    
+
+    // TODO: Is this still necessary? Possible bug?
     func addComponent(_ component: GKComponent) {
         switch component {
         case is MoveComponent:
