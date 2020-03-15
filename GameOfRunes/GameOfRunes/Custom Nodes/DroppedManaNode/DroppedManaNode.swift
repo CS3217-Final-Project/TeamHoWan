@@ -56,6 +56,7 @@ class DroppedManaNode: SKSpriteNode {
         return touches.contains { touch in
             let touchPoint = touch.location(in: scene)
             let touchedNode = scene.atPoint(touchPoint)
+
             return touchedNode === self || touchedNode.inParentHierarchy(self)
         }
     }

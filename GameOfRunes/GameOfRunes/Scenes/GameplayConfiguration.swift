@@ -18,6 +18,7 @@ struct GameplayConfiguration {
     struct Mana {
         static let manaWidth: Double = 100
         static let manaHeight: Double = 100
+        static let manaTapDistanceThreshold: Double = 40
         static let manaDropProbability: Double = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
