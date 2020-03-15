@@ -22,9 +22,6 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
-    private var playerManaEntity: PlayerManaEntity? {
-        entities.compactMap({ $0 as? PlayerManaEntity }).first
-    }
     private var droppedManaEntities = Set<DroppedManaEntity>()
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
@@ -217,7 +214,7 @@ extension GameEngine: DroppedManaResponderType {
     }
 
     /** Removes the dropped mana from View and Model. */
-    func removeDroppedMana(droppedManaEntity: GKEntity) {
+    func removeDroppedMana(droppedManaEntity: Entity) {
         remove(droppedManaEntity)
     }
 }

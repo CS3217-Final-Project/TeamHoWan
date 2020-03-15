@@ -14,7 +14,7 @@ import GameplayKit
  - Note: `manaPoints` refers to the amount of Mana Points gained
  when `DroppedManaNode` is tapped
  */
-class DroppedManaEntity: GKEntity {
+class DroppedManaEntity: Entity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
@@ -41,5 +41,9 @@ class DroppedManaEntity: GKEntity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func getType() -> EntityType {
+        return .droppedManaEntity
     }
 }

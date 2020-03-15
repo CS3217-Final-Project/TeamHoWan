@@ -29,6 +29,17 @@ class TextureContainer {
         // Load `manaTextures`
         let manaAtlas = SKTextureAtlas(named: "manaEssence")
         manaTextures = (0...29).map { manaAtlas.textureNamed("tile\($0)") }
+
+//        manaTextures = (0...29).map { fileNum in
+//            let texture = manaAtlas.textureNamed("tile\(fileNum)")
+//            let image = UIImage(cgImage: texture.cgImage())
+//            if let croppedImage = TextureContainer.cropImage(image: image) {
+//                let texture = SKTexture(image: croppedImage)
+//                print("here")
+//                return texture
+//            }
+//            return SKTexture()
+//        }
     }
 
     /** Get the Animation Textures for the `enemyType` */
@@ -49,5 +60,23 @@ class TextureContainer {
     /** Get Static Texture for Mana. */
     static func getManaTexture() -> SKTexture {
         manaTextures.first ?? .init()
+    }
+
+    static func cropImage(image: UIImage) -> UIImage? {
+        guard let cgImage = image.cgImage else {
+            print("1")
+            return nil
+        }
+
+        let imageWidth = image.size.width
+        let imageHeight = image.size.height
+        let rect = CGRect(x: imageWidth/4, y: imageHeight/4, width: imageWidth/2, height: imageHeight/2)
+        if let imageRef = cgImage.cropping(to: rect) {
+            print("2")
+            return UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        } else {
+            print("3")
+            return nil
+        }
     }
 }
