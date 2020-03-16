@@ -13,10 +13,8 @@ enum CustomGesture: String, CaseIterable {
     case arrowUp
     case arrowLeft
     case bShape
-    case mShape
     case contortedCShape
     case pShape
-    case rShape
     case capitalFShape
     case lightning
     case diamond
@@ -27,11 +25,19 @@ enum CustomGesture: String, CaseIterable {
         case .verticalLine:
             return PathModel(directions: [2], datas: self as AnyObject)
         case .arrowUp:
-            return PathModel(directions: [7, 1], datas: self as AnyObject)
+            return PathModel(directions: [6, 7, 2, 1], datas: self as AnyObject, filter:{
+                (cost:Int, infos:PathInfos) -> Int in
+                guard let first = infos.deltaPoints.first?.y,
+                    let last = infos.deltaPoints.last?.y else {
+                    return cost
+                }
+                if (last - first > Int16(0.5 * Double(infos.height))) {
+                    return cost + 2
+                }
+                return cost
+            })
         case .capitalFShape:
             return PathModel(directions: [4, 3, 2, 1, 0, 4, 3, 2], datas: self as AnyObject)
-        case .mShape:
-            return PathModel(directions: [6,1,7,2], datas: self as AnyObject)
         case .arrowLeft:
             return PathModel(directions: [3, 1], datas: self as AnyObject)
         case .bShape:
@@ -55,11 +61,19 @@ enum CustomGesture: String, CaseIterable {
         case .contortedCShape:
             return PathModel(directions: [3, 5, 2, 7, 1], datas: self as AnyObject)
         case .pShape:
-            return PathModel(directions: [6, 1, 3], datas: self as AnyObject)
-        case .rShape:
-            return PathModel(directions: [6, 1, 3, 1], datas: self as AnyObject)
+            return PathModel(directions: [6, 1, 3, 3], datas: self as AnyObject, filter:{
+                (cost:Int, infos:PathInfos) -> Int in
+                guard let last = infos.deltaPoints.last?.y else {
+                    return cost
+                }
+                let upperLimit = infos.boundingBox.top + Int16(0.25 * Double(infos.height))
+                let lowerLimit = infos.boundingBox.bottom - Int16(0.35 * Double(infos.height))
+                if last < upperLimit || last > lowerLimit {
+                    return cost + 5
+                }
+                return cost
+            })
         }
-        
     }
     
     func getTexture() -> SKTexture {
