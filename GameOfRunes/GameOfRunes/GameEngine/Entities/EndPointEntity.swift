@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class EndPointEntity: GKEntity {
+class EndPointEntity: Entity {
     init(gameEngine: GameEngine) {
         super.init()
         
@@ -19,8 +19,7 @@ class EndPointEntity: GKEntity {
         let moveComponent = MoveComponent(
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.height),
-            gameEngine: gameEngine
+            radius: .init(spriteComponent.node.size.height)
         )
         
         addComponent(spriteComponent)
@@ -31,5 +30,9 @@ class EndPointEntity: GKEntity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func getType() -> EntityType {
+        return .endPointEntity
     }
 }

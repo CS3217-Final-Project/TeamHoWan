@@ -26,11 +26,20 @@ class GamePauseState: GKState {
 
         super.didEnter(from: previousState)
         sceneManager.transitionToScene(sceneIdentifier: .pause)
-        // Remove MoveComponent from EnemyEntity to prevent them from moving
-        gameStateMachine.gameEngine?.entities(for: .enemy).forEach({
-            if let enemyEntity = $0 as? EnemyEntity {
-                enemyEntity.removeMoveComponent()
-            }
-        })
+        sceneManager.gamePlayScene.worldNode.isPaused = true
+        sceneManager.gamePlayScene.physicsWorld.speed = 0
+    }
+    
+    override func willExit(to nextState: GKState) {
+        super.willExit(to: nextState)
+        
+        guard let gameStateMachine = stateMachine as? GameStateMachine else {
+            return
+        }
+        guard let sceneManager = gameStateMachine.sceneManager else {
+            fatalError("No SceneManager associated with GameStateMachine")
+        }
+        sceneManager.gamePlayScene.worldNode.isPaused = false
+        sceneManager.gamePlayScene.physicsWorld.speed = 1
     }
 }

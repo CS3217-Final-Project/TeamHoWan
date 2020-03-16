@@ -24,6 +24,10 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         }
 
         gameEngine.scene?.addChild(node)
-
+    }
+    
+    override func removeComponent(foundIn entity: GKEntity) {
+        super.removeComponent(foundIn: entity)
+        entity.component(ofType: SpriteComponent.self)?.node.removeFromParent()
     }
 }

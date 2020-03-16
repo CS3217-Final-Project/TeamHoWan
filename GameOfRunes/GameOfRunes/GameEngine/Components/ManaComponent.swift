@@ -20,8 +20,8 @@ class ManaComponent: GKComponent {
             storedManaPoints = max(0, newValue)
         }
     }
-    private var lastUpdateMana: TimeInterval = 0.0
-    
+    var lastUpdateMana: TimeInterval = 0.0
+
     init(manaPoints: Int) {
         self.storedManaPoints = max(0, manaPoints)
         super.init()
@@ -30,14 +30,5 @@ class ManaComponent: GKComponent {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func update(deltaTime seconds: TimeInterval) {
-        super.update(deltaTime: seconds)
-        
-        if CACurrentMediaTime() - lastUpdateMana >= 1.0 {
-            lastUpdateMana = CACurrentMediaTime()
-            manaPoints += 1
-        }
     }
 }
