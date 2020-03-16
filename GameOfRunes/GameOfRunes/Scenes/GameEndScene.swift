@@ -29,8 +29,8 @@ class GameEndScene: SKScene, ButtonNodeResponderType {
             size: .init(width: size.width * GameplayConfiguration.GameEndScene.buttonWidthRatio,
                         height: size.width * GameplayConfiguration.GameEndScene.buttonHeightRatio),
             position: center,
-            texture: .init(imageNamed: GameplayConfiguration.GameEndScene.buttonImageName),
-            name: GameplayConfiguration.GameEndScene.buttonImageName
+            texture: .init(imageNamed: ButtonType.restartButton.rawValue),
+            name: ButtonType.restartButton.rawValue
         )
         addChild(restartButton)
         
@@ -54,8 +54,8 @@ class GameEndScene: SKScene, ButtonNodeResponderType {
         statusLabel.text = didWin ? "You Won!" : "You Lost :("
     }
 
-    func buttonPressed(button: ButtonNode) {
-        if button.name == GameplayConfiguration.GameEndScene.buttonImageName {
+    func buttonPressed(button: SKSpriteNode) {
+        if button.name == ButtonType.restartButton.rawValue {
             gameStateMachine?.enter(GameStartState.self)
         }
     }

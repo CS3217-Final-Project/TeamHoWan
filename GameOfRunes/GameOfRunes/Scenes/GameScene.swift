@@ -18,7 +18,6 @@ class GameScene: SKScene {
     var backgroundNode: SKSpriteNode!
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode?
-    private var pauseButton: ButtonNode!
     
     let worldNode = SKNode()
 
@@ -79,7 +78,7 @@ class GameScene: SKScene {
 
         // Add player area
         let playerAreaWidth = size.width
-        let playerAreaHeight = size.height / 6
+        let playerAreaHeight = size.height / 5
         playerAreaNode = .init(
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
@@ -149,7 +148,6 @@ class GameScene: SKScene {
         guard let touch = touches.first else {
             return
         }
-        gameEngine.spawnEnemy()
         playerAreaNode.powerUpContainerNode.selectedPowerUp?.runAnimation(
             at: touch.location(in: self),
             with: .init(width: size.width / 3, height: size.width / 3),
@@ -163,24 +161,31 @@ class GameScene: SKScene {
  */
 extension GameScene: ButtonNodeResponderType {
     private func setUpPauseButton() {
-        let buttonSize = CGSize(width: GameplayConfiguration.GamePlayScene.buttonWidth,
-                                height: GameplayConfiguration.GamePlayScene.buttonHeight)
-        let buttonPosition = CGPoint(x: frame.maxX -
-                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonWidth/2),
-                                     y: frame.maxY -
-                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonHeight/2))
-        let pauseButton = ButtonNode(size: buttonSize,
-                                     position: buttonPosition,
-                                     texture: SKTexture(imageNamed: "pauseButton"),
-                                     name: "pauseButton")
-        pauseButton.zPosition = 100
-        self.pauseButton = pauseButton
+        let buttonMargin = GameplayConfiguration.GamePlayScene.buttonMargin
+        let buttonSize = CGSize(
+            width: size.width * GameplayConfiguration.GamePlayScene.buttonWidthRatio,
+            height: size.width * GameplayConfiguration.GamePlayScene.buttonHeightRatio
+        )
+        let pauseButton = ButtonNode(
+            size: buttonSize,
+            position: .init(x: frame.maxX, y: frame.maxY)
+                + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
+                + .init(dx: -buttonMargin, dy: -buttonMargin),
+            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
+            name: ButtonType.pauseButton.rawValue
+        )
+        pauseButton.zPosition = GameplayConfiguration.GamePlayScene.pauseButtonZPosition
         addNode(pauseButton)
     }
 
-    func buttonPressed(button: ButtonNode) {
-        if button.name == "pauseButton" {
+    func buttonPressed(button: SKSpriteNode) {
+        switch button.name {
+        case ButtonType.pauseButton.rawValue:
             gameStateMachine.enter(GamePauseState.self)
+        case ButtonType.summonButton.rawValue:
+            gameEngine.spawnEnemy()
+        default:
+            print("Unknown button tapped")
         }
     }
 }

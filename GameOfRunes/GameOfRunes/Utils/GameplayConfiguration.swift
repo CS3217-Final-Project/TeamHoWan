@@ -33,18 +33,18 @@ enum GameplayConfiguration {
     enum GamePauseScene {
         static let buttonWidthRatio: CGFloat = 1 / 8
         static let buttonHeightRatio: CGFloat = 1 / 8
-        static let buttomImageName = "continueButton"
     }
 
     enum GameEndScene {
         static let fontSizeRatio: CGFloat = 1 / 12
         static let buttonWidthRatio: CGFloat = 1 / 8
         static let buttonHeightRatio: CGFloat = 1 / 8
-        static let buttonImageName = "restartButton"
     }
 
     enum GamePlayScene {
-        static let buttonWidth: Double = 100
-        static let buttonHeight: Double = 100
+        static let buttonWidthRatio: CGFloat = 1 / 10
+        static let buttonHeightRatio: CGFloat = 1 / 10
+        static let buttonMargin: CGFloat = 10
+        static let pauseButtonZPosition: CGFloat = 1000
     }
 }

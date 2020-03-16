@@ -34,6 +34,8 @@ class PlayerAreaNode: SKSpriteNode {
             layoutPowerUpContainer()
         }
     }
+    var summonNode: SummonNode
+    
     override var size: CGSize {
         // Swift's implementation: didSet can be called if new value is set INSIDE init
         didSet {
@@ -44,6 +46,7 @@ class PlayerAreaNode: SKSpriteNode {
             layoutHealthBar()
             layoutManaBar()
             layoutPowerUpContainer()
+            layoutSummonNode()
         }
     }
     override var position: CGPoint {
@@ -55,6 +58,7 @@ class PlayerAreaNode: SKSpriteNode {
             layoutHealthBar()
             layoutManaBar()
             layoutPowerUpContainer()
+            layoutSummonNode()
         }
     }
     var healthBarSize: CGSize {
@@ -70,6 +74,11 @@ class PlayerAreaNode: SKSpriteNode {
     var powerUpContainerSize: CGSize {
         didSet {
             layoutPowerUpContainer()
+        }
+    }
+    var summonNodeSize: CGSize {
+        didSet {
+            layoutSummonNode()
         }
     }
     // with respect to the center of current node
@@ -88,19 +97,27 @@ class PlayerAreaNode: SKSpriteNode {
             layoutPowerUpContainer()
         }
     }
+    var summonNodePositionOffsetFromCenter: CGVector {
+        didSet {
+            layoutSummonNode()
+        }
+    }
     
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
         powerUpContainerNode = .init(powerUpTypes: [.hellfire, .icePrison, .darkVortex])
+        summonNode = .init()
         
         healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
         manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
         powerUpContainerSize = size.applying(.init(scaleX: 0.45, y: 0.4))
+        summonNodeSize = summonNode.size.scaleTo(height: size.height * 0.4)
         
         healthBarPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: size.height / 4.5)
         manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4.5)
         powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 4.5)
+        summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 4.5)
         
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
@@ -108,6 +125,7 @@ class PlayerAreaNode: SKSpriteNode {
         addChild(healthBarNode)
         addChild(manaBarNode)
         addChild(powerUpContainerNode)
+        addChild(summonNode)
     }
     
     @available(*, unavailable)
@@ -134,5 +152,12 @@ class PlayerAreaNode: SKSpriteNode {
         powerUpContainerNode.size = powerUpContainerSize
         powerUpContainerNode.position = .zero + powerUpContainerPositionOffsetFromCenter
         powerUpContainerNode.zPosition = 100
+    }
+    
+    private func layoutSummonNode() {
+        summonNode.anchorPoint = .init(x: 0.5, y: 0.5)
+        summonNode.size = summonNodeSize
+        summonNode.position = .zero + summonNodePositionOffsetFromCenter
+        summonNode.zPosition = 100
     }
 }

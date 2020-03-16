@@ -14,5 +14,5 @@ import SpriteKit
  is added to.
  */
 protocol ButtonNodeResponderType: AnyObject {
-    func buttonPressed(button: ButtonNode)
+    func buttonPressed(button: SKSpriteNode)
 }

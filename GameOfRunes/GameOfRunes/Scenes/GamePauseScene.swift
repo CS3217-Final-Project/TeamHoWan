@@ -21,8 +21,8 @@ class GamePauseScene: SKScene, ButtonNodeResponderType {
             size: .init(width: size.width * GameplayConfiguration.GamePauseScene.buttonWidthRatio,
                         height: size.width * GameplayConfiguration.GamePauseScene.buttonHeightRatio),
             position: .init(x: frame.midX, y: frame.midY),
-            texture: .init(imageNamed: GameplayConfiguration.GamePauseScene.buttomImageName),
-            name: GameplayConfiguration.GamePauseScene.buttomImageName
+            texture: .init(imageNamed: ButtonType.continueButton.rawValue),
+            name: ButtonType.continueButton.rawValue
         )
         addChild(continueButton)
     }
@@ -36,8 +36,8 @@ class GamePauseScene: SKScene, ButtonNodeResponderType {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func buttonPressed(button: ButtonNode) {
-        if button.name == GameplayConfiguration.GamePauseScene.buttomImageName {
+    func buttonPressed(button: SKSpriteNode) {
+        if button.name == ButtonType.continueButton.rawValue {
             gameStateMachine?.enter(GameInPlayState.self)
         }
     }
