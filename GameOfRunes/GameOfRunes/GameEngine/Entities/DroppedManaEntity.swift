@@ -17,9 +17,10 @@ import GameplayKit
 class DroppedManaEntity: Entity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
+    
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         let node = DroppedManaNode(position: position, responder: gameEngine)
-        node.zPosition = 100
+        node.zPosition = 51
         self.manaPoints = manaPoints
 
         // Create and Animate Sprite Component

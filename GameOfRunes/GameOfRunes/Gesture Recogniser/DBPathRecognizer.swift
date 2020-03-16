@@ -39,7 +39,6 @@ public class GestureRecognizer {
             let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
             return
         }
-        print(customGesture.rawValue)
         gameEngine?.gestureActivated(gesture: customGesture)
     }
 }
@@ -151,6 +150,9 @@ fileprivate class DBPathRecognizer {
     }
     
     fileprivate func costLeven(_ a: [Int], _ b: [Int]) -> Int {
+        if a.count == 0 || b.count == 0 {
+            return Int.max
+        }
         var td = Array2D(cols: a.count + 1, rows: b.count + 1)
         var tw = Array2D(cols: a.count + 1, rows: b.count + 1)
         
