@@ -13,6 +13,15 @@ import CoreGraphics
 struct GameplayConfiguration {
     struct Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
+        static let removalAnimationTimePerFrame: TimeInterval = 0.075
+    }
+
+    struct Mana {
+        static let manaWidth: Double = 75
+        static let manaHeight: Double = 75
+        static let manaDropProbability: Double = 1.0
+        static let manaMinValue: Int = 5
+        static let manaMaxValue: Int = 20
     }
 
     struct SceneManager {

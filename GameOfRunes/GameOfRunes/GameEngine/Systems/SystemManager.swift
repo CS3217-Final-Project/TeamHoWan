@@ -43,13 +43,4 @@ class SystemManager {
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         return healthSystem.minusHealthPoints(for: entity)
     }
-    
-    func addComponent(_ component: GKComponent) {
-        switch component {
-        case is MoveComponent:
-            moveSystem.addComponent(component as! MoveComponent)
-        default:
-            fatalError("Component: \(component) not supported.")
-        }
-    }
 }

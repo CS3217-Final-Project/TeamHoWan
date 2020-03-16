@@ -29,7 +29,8 @@ class RemoveDelegate {
         
         if enemyHealth <= 0 {
             let _ = enemyEntity.removeGesture()
-            gameEngine.remove(enemyEntity)
+            enemyEntity.removeFromGame()
+            gameEngine.dropMana(at: enemyEntity)
             return
         }
         
@@ -41,7 +42,7 @@ class RemoveDelegate {
     }
     
     func removeEnemyReachedLine(_ entity: EnemyEntity) {
-        gameEngine.remove(entity)
+        entity.removeFromGame()
 
         guard let gestureEntity = entity.gestureEntity else {
             return
