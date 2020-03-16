@@ -151,7 +151,6 @@ fileprivate class DBPathRecognizer {
     }
     
     fileprivate func costLeven(_ a: [Int], _ b: [Int]) -> Int {
-        
         var td = Array2D(cols: a.count + 1, rows: b.count + 1)
         var tw = Array2D(cols: a.count + 1, rows: b.count + 1)
         

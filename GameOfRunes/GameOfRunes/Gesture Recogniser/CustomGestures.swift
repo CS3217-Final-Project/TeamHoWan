@@ -15,6 +15,8 @@ enum CustomGesture: String, CaseIterable {
     case contortedCShape
     case pShape
     case lightning
+    case mShape
+    case rShape
     case ribbon
     
     func getPathModel() -> PathModel {
@@ -70,6 +72,19 @@ enum CustomGesture: String, CaseIterable {
             return PathModel(directions: [7, 5, 3, 1], datas: self as AnyObject)
         case .contortedCShape:
             return PathModel(directions: [3, 5, 2, 7, 1], datas: self as AnyObject)
+        case .rShape:
+            return PathModel(directions: [6, 0, 1, 3, 3, 1, 1], datas: self as AnyObject, filter:{
+                (cost:Int, infos:PathInfos) -> Int in
+                guard let last = infos.deltaPoints.last?.y else {
+                    return cost
+                }
+                if last < Int16(0.9 * Double(infos.boundingBox.bottom)) {
+                    return cost + 5
+                }
+                return cost
+            })
+        case .mShape:
+            return PathModel(directions: [6, 7, 1, 2, 6, 7, 1, 2], datas: self as AnyObject)
         }
     }
     
