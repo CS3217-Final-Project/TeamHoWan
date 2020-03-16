@@ -126,8 +126,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
 
         gameEngine.update(with: deltaTime)
-        
-        timerLabel.text = "100"
 
         if let playerHealthComponent =
             gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
@@ -138,10 +136,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             gameEngine.playerManaEntity?.component(ofType: ManaComponent.self) {
             playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameEngine.spawnEnemy()
     }
 }
 

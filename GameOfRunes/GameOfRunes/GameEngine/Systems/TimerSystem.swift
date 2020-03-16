@@ -9,7 +9,10 @@
 import GameplayKit
 
 class TimerSystem: GKComponentSystem<TimerComponent>, System {
-    override init() {
+    private unowned let gameEngine: GameEngine
+    
+    init(gameEngine: GameEngine) {
+        self.gameEngine = gameEngine
         super.init(componentClass: TimerComponent.self)
     }
     
@@ -20,9 +23,18 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
     }
     
     private func updateComponent(_ component: TimerComponent) {
-        if CACurrentMediaTime() - component.lastUpdatedTime >= 1.0 {
-            component.lastUpdatedTime = CACurrentMediaTime()
-            component.updateTimeOneSecond()
+        guard CACurrentMediaTime() - component.lastUpdatedTime >= 1.0 else {
+            return
+        }
+        
+        component.lastUpdatedTime = CACurrentMediaTime()
+        
+        if component.isCountdown {
+            component.currentTime = max(0, component.currentTime - 1)
+            // TODO: Check if is 0, then propagate call to game state machine for lose state.
+        } else {
+            component.currentTime += 1
+            gameEngine.spawnEnemy()
         }
     }
 }

@@ -10,7 +10,7 @@ import GameplayKit
 
 class TimerComponent: GKComponent {
     private let timerNode: SKLabelNode
-    private let isCountdown: Bool
+    let isCountdown: Bool
     var lastUpdatedTime: TimeInterval = 0.0
     var currentTime: Int {
         didSet {
@@ -27,14 +27,5 @@ class TimerComponent: GKComponent {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updateTimeOneSecond() {
-        if isCountdown {
-            currentTime = max(0, currentTime - 1)
-            // TODO: Check if is 0, then propagate call to game state machine for lose state.
-        } else {
-            currentTime = currentTime + 1
-        }
     }
 }

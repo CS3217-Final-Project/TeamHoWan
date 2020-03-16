@@ -50,7 +50,7 @@ class DroppedManaNode: SKSpriteNode {
     /** Determine if any of the touches are within the `DroppedManaNode`. */
     private func containsTouches(touches: Set<UITouch>) -> Bool {
         guard let scene = scene else {
-            fatalError("Button must be used within a scene.")
+            fatalError("Mana must be used within a scene.")
         }
 
         return touches.contains { touch in
