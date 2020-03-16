@@ -24,18 +24,11 @@ public class GestureRecognizer {
     
     func touchesBegan(_ location: CGPoint) {
         rawPoints = []
-        rawPoints.append(Int(location.x))
-        rawPoints.append(Int(location.y))
     }
     
     func touchesMoved(_ location: CGPoint) {
-        if rawPoints.isEmpty {
-            return
-        }
-        if (rawPoints[rawPoints.count-2] != Int(location.x) && rawPoints[rawPoints.count-1] != Int(location.y)) {
-            rawPoints.append(Int(location.x))
-            rawPoints.append(Int(location.y))
-        }
+        rawPoints.append(Int(location.x))
+        rawPoints.append(Int(location.y))
     }
     
     func touchesEnded() {

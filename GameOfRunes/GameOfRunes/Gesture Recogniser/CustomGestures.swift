@@ -9,18 +9,6 @@
 import SpriteKit
 
 enum CustomGesture: String, CaseIterable {
-    //    case horizontalLine
-    //    case horizontalLine2
-    //    case verticalLine2
-    //    case arrowDown
-    //    case arrowRight
-    //    case eShape
-    //    case wShape
-    //    case doubleWShape
-    //    case uShape
-    //    case zShape
-    //    case capitalTShape
-    
     case verticalLine
     case arrowUp
     case arrowLeft
@@ -49,7 +37,17 @@ enum CustomGesture: String, CaseIterable {
         case .bShape:
             return PathModel(directions: [2,6,0,1,2,3,4,0,1,2,3,4], datas: self as AnyObject)
         case .lightning:
-            return PathModel(directions: [2, 7, 2], datas: self as AnyObject)
+            return PathModel(directions: [2, 7, 2], datas: self as AnyObject, filter:{
+                (cost:Int, infos:PathInfos) -> Int in
+                guard let first = infos.deltaPoints.first?.y,
+                    let last = infos.deltaPoints.last?.y else {
+                    return cost
+                }
+                if (last - first < Int16(0.8 * Double(infos.height))) {
+                    return cost + 5
+                }
+                return cost
+            })
         case .diamond:
             return PathModel(directions: [1, 3, 5, 7], datas: self as AnyObject)
         case .ribbon:
@@ -60,28 +58,6 @@ enum CustomGesture: String, CaseIterable {
             return PathModel(directions: [6, 1, 3], datas: self as AnyObject)
         case .rShape:
             return PathModel(directions: [6, 1, 3, 1], datas: self as AnyObject)
-            //        case .arrowDown:
-            //            return PathModel(directions: [1, 7], datas: self as AnyObject)
-            //        case .eShape:
-            //            return PathModel(directions: [4, 3, 2, 1, 0, 4, 3, 2, 1, 0], datas: self as AnyObject)
-            //        case .wShape:
-            //            return PathModel(directions: [2, 7, 1, 6], datas: self as AnyObject)
-            //        case .doubleWShape:
-            //            return PathModel(directions: [2, 7, 1, 6, 2, 7, 1, 6], datas: self as AnyObject)
-            //        case .uShape:
-            //            return PathModel(directions: [2, 1, 0, 7, 6], datas: self as AnyObject)
-            //        case .zShape:
-            //            return PathModel(directions: [0, 3, 0], datas: self as AnyObject)
-            //        case .capitalTShape:
-            //            return PathModel(directions: [0,2], datas: self as AnyObject)
-            //        case .horizontalLine2:
-            //            return PathModel(directions: [4], datas: self as AnyObject)
-            //        case .verticalLine2:
-            //            return PathModel(directions: [6], datas: self as AnyObject)
-            //        case .horizontalLine:
-            //            return PathModel(directions: [0], datas: self as AnyObject)
-            //        case .arrowRight:
-            //            return PathModel(directions: [1, 3], datas: self as AnyObject)
         }
         
     }
