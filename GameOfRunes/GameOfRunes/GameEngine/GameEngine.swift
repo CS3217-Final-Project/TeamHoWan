@@ -22,7 +22,6 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
-    private var droppedManaEntities = Set<DroppedManaEntity>()
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
@@ -109,9 +108,8 @@ class GameEngine {
     
     /** Decrements the Player's health by 1 point. */
     func decreasePlayerHealth() {
-        if let playerHealthEntity = playerHealthEntity,
-            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
-            playerHealthComponent.healthPoints -= 1
+        if let playerHealthEntity = playerHealthEntity {
+            let _ = minusHealthPoints(for: playerHealthEntity)
         }
     }
     
@@ -152,9 +150,8 @@ extension GameEngine: DroppedManaResponderType {
 
         let position = enemySpriteComponent.node.position
         let manaPoints = getRandomManaPoints()
-        let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: manaPoints, gameEngine: self)
-
-        droppedManaEntities.insert(droppedManaEntity)
+        let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: manaPoints,
+                                                  gameEngine: self)
         add(droppedManaEntity)
     }
 
@@ -191,12 +188,15 @@ extension GameEngine: DroppedManaResponderType {
      the player's mana points.
      */
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
-        for droppedManaEntity in droppedManaEntities {
-            if let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
-                droppedManaNode === spriteComponent.node {
-                increaseManaPoints(manaPoints: droppedManaEntity.manaPoints)
-                removeDroppedMana(droppedManaEntity: droppedManaEntity)
+        for droppedManaEntity in entities[.droppedManaEntity] ?? Set() {
+            guard let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
+                droppedManaNode === spriteComponent.node,
+                let manaComponent = droppedManaEntity.component(ofType: ManaComponent.self) else {
+                    continue
             }
+
+            increaseManaPoints(manaPoints: manaComponent.manaPoints)
+            removeDroppedMana(droppedManaEntity: droppedManaEntity)
         }
     }
 

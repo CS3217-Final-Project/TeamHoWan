@@ -15,11 +15,7 @@ import GameplayKit
  when `DroppedManaNode` is tapped
  */
 class DroppedManaEntity: Entity {
-    
-    let manaPoints: Int
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
-        self.manaPoints = manaPoints
-
         super.init()
 
         let node = DroppedManaNode(position: position, responder: gameEngine)
@@ -39,6 +35,7 @@ class DroppedManaEntity: Entity {
         )
         
         addComponent(spriteComponent)
+        addComponent(ManaComponent(manaPoints: manaPoints))
     }
 
     @available(*, unavailable)

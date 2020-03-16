@@ -34,7 +34,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             // TODO: Check if is 0, then propagate call to game state machine for lose state.
         } else {
             component.currentTime += 1
-            gameEngine.spawnEnemy()
+//            gameEngine.spawnEnemy()
         }
     }
 }

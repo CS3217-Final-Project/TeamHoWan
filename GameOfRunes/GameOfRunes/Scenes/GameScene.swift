@@ -137,6 +137,10 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
     }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        gameEngine.spawnEnemy()
+    }
 }
 
 /**
