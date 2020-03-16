@@ -11,7 +11,8 @@ import GameplayKit
 /** State for `GameStateMachine` when the Game has ended (either
  win or lose state has been reached) */
 class GameEndState: GKState {
-    var didWin: Bool = true
+    // initialise with placeholder value
+    var didWin = true
 
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -19,6 +20,8 @@ class GameEndState: GKState {
     }
 
     override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
             return
         }
@@ -27,7 +30,6 @@ class GameEndState: GKState {
             fatalError("No SceneManager associated with GameStateMachine")
         }
 
-        super.didEnter(from: previousState)
         sceneManager.transitionToScene(sceneIdentifier: .end(win: didWin))
     }
 }

@@ -197,6 +197,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A72EB42241FE18B005FA909 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
+				56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		4A8F0AA624191B6D00CD730B /* Player Area */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +311,9 @@
 		4ACC8BA72414C69800F235AE /* GameOfRunes */ = {
 			isa = PBXGroup;
 			children = (
-				8A5CE9B424187BFD00BEC4B9 /* GameState */,
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
+				4A72EB42241FE18B005FA909 /* Utils */,
+				8A5CE9B424187BFD00BEC4B9 /* GameState */,
 				566121DE2416936E00475CE1 /* Scenes */,
 				4AA508D32416213B00D9ADE4 /* Extensions */,
 				566121D7241682C500475CE1 /* Gesture Recogniser */,
@@ -373,8 +383,6 @@
 				8A5CE9C42418874E00BEC4B9 /* GamePauseScene.swift */,
 				8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */,
 				8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */,
-				56E82D6F2417E9D2009172C6 /* GameplayConfiguration.swift */,
-				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

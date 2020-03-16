@@ -67,8 +67,8 @@ class GameEngine {
             playerHealthComponent.healthPoints <= 0,
             let gameStateMachine = gameStateMachine,
             let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
-            gameEndState.didWin = false
-            gameStateMachine.enter(GameEndState.self)
+                gameEndState.didWin = false
+                gameStateMachine.enter(GameEndState.self)
         }
     }
     

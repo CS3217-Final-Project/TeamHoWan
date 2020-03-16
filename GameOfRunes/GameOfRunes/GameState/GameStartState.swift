@@ -19,6 +19,8 @@ class GameStartState: GKState {
     }
 
     override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
             return
         }
@@ -27,7 +29,6 @@ class GameStartState: GKState {
             fatalError("No SceneManager associated with GameStateMachine")
         }
 
-        super.didEnter(from: previousState)
         sceneManager.restartGame()
         gameStateMachine.enter(GameInPlayState.self)
     }

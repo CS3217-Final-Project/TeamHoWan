@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, ControlledByGameStateMachine {
+class GameScene: SKScene {
     private var gameEngine: GameEngine!
     private var lastUpdateTime: TimeInterval = 0.0
     private let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
@@ -30,6 +30,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
 
     deinit {
         unregisterForPauseNotifications()
+        print("deinit game scene")
     }
         
     @available(*, unavailable)
@@ -148,8 +149,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         guard let touch = touches.first else {
             return
         }
-        //gameEngine.spawnEnemy()
-        print(playerAreaNode.powerUpContainerNode.selectedPowerUp)
+        gameEngine.spawnEnemy()
         playerAreaNode.powerUpContainerNode.selectedPowerUp?.runAnimation(
             at: touch.location(in: self),
             with: .init(width: size.width / 3, height: size.width / 3),
