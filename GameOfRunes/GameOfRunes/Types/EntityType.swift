@@ -12,4 +12,5 @@ enum EntityType: CaseIterable {
     case playerHealthEntity
     case playerManaEntity
     case endPointEntity
+    case droppedManaEntity
 }

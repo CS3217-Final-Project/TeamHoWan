@@ -13,23 +13,29 @@ class EnemyEntity: Entity {
     private unowned var gameEngine: GameEngine
     private let enemyType: EnemyType
     private (set) var gestureEntity: GestureEntity?
-    
+
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         self.enemyType = enemyType
-            
+
         super.init()
 
-        let spriteComponent = SpriteComponent(texture: enemyType.staticTexture)
+        let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
-                    with: enemyType.animationTextures,
+                    with: TextureContainer.getEnemyAnimationTextures(enemyType),
                     timePerFrame: 0.1,
                     resize: false,
                     restore: true
                 )
             )
+        )
+
+        let moveComponent = MoveComponent(
+            maxSpeed: 150.0,
+            maxAcceleration: 5.0,
+            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01
         )
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: enemyType.health)
@@ -37,7 +43,7 @@ class EnemyEntity: Entity {
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(healthComponent)
-        addMoveComponent()
+        addComponent(moveComponent)
         setCurrentGesture()
     }
     
@@ -79,19 +85,25 @@ class EnemyEntity: Entity {
         return true
     }
 
-    /** Helper function to remove MoveComponent from EnemyEntity */
-    func removeMoveComponent() {
+    /**
+     Removes the `EnemyEntity` from the game.
+     - Note: This method will first remove the `MoveComponent` to prevent
+     the enemy from continuing to move. Then it will run the removal animation.
+     Upon completion, the `GameEngine`'s `remove` method is called on
+     the `EnemyEntity`.
+     */
+    func removeFromGame() {
         removeComponent(ofType: MoveComponent.self)
-    }
 
-    /** Helper function to add MoveComponent to EnemyEntity */
-    func addMoveComponent() {
-        let moveComponent = MoveComponent(
-            maxSpeed: 150.0,
-            maxAcceleration: 5.0,
-            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01
-        )
-        addComponent(moveComponent)
-        gameEngine.systemManager.addComponent(moveComponent)
+        let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
+                                                timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
+                                                resize: true,
+                                                restore: false)
+        if let spriteComponent = component(ofType: SpriteComponent.self) {
+            spriteComponent.node.run(removalAnimation) {
+                [unowned self] in
+                self.gameEngine.remove(self)
+            }
+        }
     }
 }

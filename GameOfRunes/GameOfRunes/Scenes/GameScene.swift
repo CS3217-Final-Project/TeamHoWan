@@ -38,7 +38,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     override func sceneDidLoad() {
         gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
-        EnemyType.loadEnemiesTextures()
+        TextureContainer.loadTextures()
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealth()
@@ -107,7 +107,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
             healthBarNode.totalLives = healthComponent.healthPoints
             healthBarNode.livesLeft = healthComponent.healthPoints
         }
-        gameEngine.add(PlayerHealthEntity())
+        gameEngine.add(playerHealthEntity)
     }
     
     private func setUpMana() {
