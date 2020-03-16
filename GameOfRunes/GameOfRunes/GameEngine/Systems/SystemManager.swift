@@ -15,17 +15,18 @@ class SystemManager {
     private let moveSystem: MoveSystem
     private let healthSystem = HealthSystem()
     private let spriteSystem: SpriteSystem
+    private let timerSystem = TimerSystem()
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         spriteSystem = SpriteSystem(gameEngine: gameEngine)
         moveSystem = MoveSystem(gameEngine: gameEngine)
-        systems.append(contentsOf: [manaSystem, moveSystem, healthSystem, spriteSystem])
+        systems.append(contentsOf: [manaSystem, moveSystem, healthSystem, spriteSystem, timerSystem])
     }
     
     func update(with deltatime: TimeInterval) {
         moveSystem.update(deltaTime: deltatime)
-        manaSystem.update(deltaTime: deltatime)
+        timerSystem.update(deltaTime: deltatime)
     }
     
     func addComponents(foundIn entity: GKEntity) {

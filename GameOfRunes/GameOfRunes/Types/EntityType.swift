@@ -13,4 +13,5 @@ enum EntityType: CaseIterable {
     case playerManaEntity
     case endPointEntity
     case droppedManaEntity
+    case timerEntity
 }

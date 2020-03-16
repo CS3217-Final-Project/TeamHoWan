@@ -14,7 +14,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     private var lastUpdateTime: TimeInterval = 0.0
     private let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
     var gameStateMachine: GameStateMachine
-    let manaLabel = SKLabelNode(fontNamed: "DragonFire")
+    let timerLabel = SKLabelNode(fontNamed: "DragonFire")
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode?
     private var pauseButton: ButtonNode!
@@ -43,6 +43,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         setUpEndPoint()
         setUpHealth()
         setUpMana()
+        setUpTimer(isCountdown: false)
         setUpPauseButton()
     }
     
@@ -112,15 +113,12 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     private func setUpMana() {
         gameEngine.add(PlayerManaEntity())
-        
-        manaLabel.fontSize = 50
-        manaLabel.fontColor = SKColor.white
-        manaLabel.position = CGPoint(x: size.width / 2, y: 50)
-        manaLabel.zPosition = 300
-        manaLabel.horizontalAlignmentMode = .center
-        manaLabel.verticalAlignmentMode = .center
-        manaLabel.text = "0"
-        addNode(manaLabel)
+    }
+    
+    private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
+        gameEngine.add(TimerEntity(gameEngine: gameEngine,
+                                   isCountdown: isCountdown,
+                                   initialTimerValue: initialTimerValue))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -129,6 +127,7 @@ class GameScene: SKScene, ControlledByGameStateMachine {
 
         gameEngine.update(with: deltaTime)
         
+        timerLabel.text = "100"
 
         if let playerHealthComponent =
             gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
@@ -137,7 +136,6 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         
         if let playerManaComponent =
             gameEngine.playerManaEntity?.component(ofType: ManaComponent.self) {
-            manaLabel.text = "\(playerManaComponent.manaPoints)"
             playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
     }

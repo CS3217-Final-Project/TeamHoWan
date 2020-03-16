@@ -10,20 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class ManaComponent: GKComponent {
-    private var storedManaPoints: Int
-    var manaPoints: Int {
-        get {
-            storedManaPoints
-        }
-        
-        set {
-            storedManaPoints = max(0, newValue)
-        }
-    }
-    var lastUpdateMana: TimeInterval = 0.0
+    var manaPoints: Int
 
-    init(manaPoints: Int) {
-        self.storedManaPoints = max(0, manaPoints)
+    init(manaPoints: Int = 0) {
+        self.manaPoints = manaPoints
         super.init()
     }
     

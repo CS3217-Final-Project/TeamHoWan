@@ -12,8 +12,7 @@ class PlayerManaEntity: Entity {
     override init() {
         super.init()
         
-        let manaComponent = ManaComponent(manaPoints: 0)
-        addComponent(manaComponent)
+        addComponent(ManaComponent())
     }
     
     @available(*, unavailable)
