@@ -12,8 +12,8 @@ import GameplayKit
 class GameEngine {
     private (set) var systemManager: SystemManager!
     private (set) var removeDelegate: RemoveDelegate!
-    private (set) var entities = [EntityType : Set<GKEntity>]()
-    private var toRemoveEntities = Set<GKEntity>()
+    private (set) var entities = [EntityType : Set<Entity>]()
+    private var toRemoveEntities = Set<Entity>()
     weak var scene: SKScene?
     weak var gameStateMachine: GameStateMachine?
     var playerHealthEntity: PlayerHealthEntity? {
@@ -92,7 +92,7 @@ class GameEngine {
     }
     
     /** Gets all entities of a particular `Team`. */
-    func entities(for team: Team) -> [GKEntity] {
+    func entities(for team: Team) -> [Entity] {
         switch team {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
