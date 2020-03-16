@@ -93,8 +93,8 @@ class EnemyEntity: Entity {
      the `EnemyEntity`.
      */
     func removeFromGame() {
-        removeComponent(ofType: MoveComponent.self)
-
+        component(ofType: MoveComponent.self)?.isRemoved = true
+        
         let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
                                                 timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
                                                 resize: true,

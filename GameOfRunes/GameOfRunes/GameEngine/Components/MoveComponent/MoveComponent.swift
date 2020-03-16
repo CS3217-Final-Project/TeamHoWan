@@ -10,6 +10,8 @@ import SpriteKit
 import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate {
+    var isRemoved = false
+    
     init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
         super.init()
         delegate = self
