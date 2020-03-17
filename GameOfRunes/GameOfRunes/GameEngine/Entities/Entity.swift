@@ -9,7 +9,7 @@
 import GameplayKit
 
 class Entity: GKEntity {
-    func getType() -> EntityType {
+    var type: EntityType {
         fatalError("Base Entity getType() not supported.")
     }
 }

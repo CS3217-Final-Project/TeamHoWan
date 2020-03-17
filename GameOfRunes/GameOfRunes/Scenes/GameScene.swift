@@ -23,8 +23,6 @@ class GameScene: SKScene {
     private(set) var manaDropLayer: SKNode!
     private(set) var gestureLayer: SKNode!
     private(set) var highestPriorityLayer: SKNode!
-    let manaLabel = SKLabelNode(fontNamed: "DragonFire")
-    var backgroundNode: SKSpriteNode!
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode!
 
@@ -46,25 +44,34 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         let dispatchGroup = DispatchGroup()
+        // marks the start of possible async block
         dispatchGroup.enter()
         
         // must use other thread queues (not .main) to avoid deadlocks
         DispatchQueue.global(qos: .default).async {
+            // set up animation textures
             TextureContainer.loadTextures()
+            PowerUpType.loadPowerUpCastsTextures()
+            // indicates that the execution is done
             dispatchGroup.leave()
         }
         
-        PowerUpType.loadPowerUpCastsTextures()
-        
         // continue setting up other stuff in .main thread
         gameEngine = GameEngine(gameScene: self, gameStateMachine: gameStateMachine)
-        setUpLayers()
         
-        setUpArenaLayout()
+        // UI
+        buildLayers()
+        setUpBackground()
+        setUpPlayerArea()
+        setUpGestureArea()
+        setUpPauseButton()
+        
+        // Entities
         setUpEndPoint()
         setUpHealth()
         setUpMana()
-        setUpPauseButton()
+        
+        // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
         
         // ensures textures have been loaded
@@ -81,52 +88,78 @@ class GameScene: SKScene {
         bgmNode.removeFromParent()
     }
     
-    private func setUpLayers() {
+    private func buildLayers() {
         backgroundLayer = .init()
         backgroundLayer.zPosition = GameConfig.GamePlayScene.backgroundLayerZPosition
+        addChild(backgroundLayer)
         
         enemyLayer = .init()
         enemyLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
+        addChild(enemyLayer)
         
         powerUpAnimationLayer = .init()
         powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
+        addChild(powerUpAnimationLayer)
         
         playerAreaLayer = .init()
         playerAreaLayer.zPosition = GameConfig.GamePlayScene.playerAreaLayerZPosition
+        addChild(playerAreaLayer)
         
         manaDropLayer = .init()
         manaDropLayer.zPosition = GameConfig.GamePlayScene.manaDropLayerZPosition
+        addChild(manaDropLayer)
         
         gestureLayer = .init()
         gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
+        addChild(gestureLayer)
         
         highestPriorityLayer = .init()
         highestPriorityLayer.zPosition = GameConfig.GamePlayScene.highestPriorityLayerZPosition
+        addChild(highestPriorityLayer)
     }
     
-    private func setUpArenaLayout() {
-        // Add background
-        backgroundNode = .init(
-            texture: ArenaType.allCases.randomElement()?.texture ?? .init(),
+    private func setUpBackground(arenaType: ArenaType? = nil) {
+        let backgroundNode = SKSpriteNode(
+            texture: arenaType?.texture ?? ArenaType.allCases.randomElement()?.texture ?? .init(),
             color: .clear,
             size: size
         )
-        backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
-        backgroundNode.zPosition = -100
-        addChild(backgroundNode)
-
-        let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
-        addChild(gestureAreaNode)
-
-        // Add player area
+        backgroundNode.position = .init(x: frame.midX, y: frame.midY)
+        backgroundNode.name = "background"
+        backgroundLayer.addChild(backgroundNode)
+    }
+    
+    private func setUpPlayerArea() {
         let playerAreaWidth = size.width
-        let playerAreaHeight = size.height / 5
+        let playerAreaHeight = size.height * GameConfig.GamePlayScene.playerAreaHeightRatio
         playerAreaNode = .init(
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
-        playerAreaNode.zPosition = 200
-        addChild(playerAreaNode)
+        playerAreaNode.name = "player area"
+        playerAreaLayer.addChild(playerAreaNode)
+    }
+    
+    private func setUpGestureArea() {
+        let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
+        addChild(gestureAreaNode)
+    }
+    
+    private func setUpPauseButton() {
+        let buttonMargin = GameConfig.GamePlayScene.buttonMargin
+        let buttonSize = CGSize(
+            width: size.width * GameConfig.GamePlayScene.buttonWidthRatio,
+            height: size.width * GameConfig.GamePlayScene.buttonHeightRatio
+        )
+        let pauseButton = ButtonNode(
+            size: buttonSize,
+            position: .init(x: frame.maxX, y: frame.maxY)
+                + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
+                + .init(dx: -buttonMargin, dy: -buttonMargin),
+            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
+            name: ButtonType.pauseButton.rawValue
+        )
+        highestPriorityLayer.addChild(pauseButton)
     }
     
     private func setUpEndPoint() {
@@ -134,7 +167,7 @@ class GameScene: SKScene {
         
         if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
             let newSpriteWidth = size.width
-            let newSpriteHeight = size.height / 40
+            let newSpriteHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
             spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
             spriteComponent.node.position = playerAreaNode.position
                 + .init(dx: 0.0, dy: (playerAreaNode.size.height + newSpriteHeight) / 2)
@@ -157,6 +190,7 @@ class GameScene: SKScene {
     private func setUpMana() {
         gameEngine.add(PlayerManaEntity())
         
+        /*
         manaLabel.fontSize = 50
         manaLabel.fontColor = SKColor.white
         manaLabel.position = CGPoint(x: size.width / 2, y: 50)
@@ -165,6 +199,7 @@ class GameScene: SKScene {
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
         addChild(manaLabel)
+        */
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -203,24 +238,6 @@ class GameScene: SKScene {
  Extension to deal with button-related logic (i.e. the Pause Button)
  */
 extension GameScene: TapResponder {
-    private func setUpPauseButton() {
-        let buttonMargin = GameConfig.GamePlayScene.buttonMargin
-        let buttonSize = CGSize(
-            width: size.width * GameConfig.GamePlayScene.buttonWidthRatio,
-            height: size.width * GameConfig.GamePlayScene.buttonHeightRatio
-        )
-        let pauseButton = ButtonNode(
-            size: buttonSize,
-            position: .init(x: frame.maxX, y: frame.maxY)
-                + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
-                + .init(dx: -buttonMargin, dy: -buttonMargin),
-            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
-            name: ButtonType.pauseButton.rawValue
-        )
-        pauseButton.zPosition = 1000
-        addChild(pauseButton)
-    }
-
     func onTapped(tappedNode: SKSpriteNode) {
         switch tappedNode.name {
         case ButtonType.pauseButton.rawValue:

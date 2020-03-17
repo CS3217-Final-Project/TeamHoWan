@@ -9,6 +9,10 @@
 import GameplayKit
 
 class PlayerManaEntity: Entity {
+    override var type: EntityType {
+        .playerManaEntity
+    }
+    
     override init() {
         super.init()
         
@@ -19,9 +23,5 @@ class PlayerManaEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .playerManaEntity
     }
 }

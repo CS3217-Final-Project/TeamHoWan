@@ -10,6 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class EndPointEntity: Entity {
+    override var type: EntityType {
+        .endPointEntity
+    }
+    
     init(gameEngine: GameEngine) {
         super.init()
         
@@ -30,9 +34,5 @@ class EndPointEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .endPointEntity
     }
 }

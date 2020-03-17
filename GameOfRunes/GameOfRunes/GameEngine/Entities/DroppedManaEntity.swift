@@ -17,6 +17,10 @@ import GameplayKit
 class DroppedManaEntity: Entity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
+    override var type: EntityType {
+        .endPointEntity
+    }
+    
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         let node = DroppedManaNode(position: position, responder: gameEngine)
         node.zPosition = 100
@@ -41,9 +45,5 @@ class DroppedManaEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func getType() -> EntityType {
-        return .droppedManaEntity
     }
 }

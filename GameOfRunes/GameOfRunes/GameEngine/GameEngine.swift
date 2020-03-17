@@ -36,7 +36,7 @@ class GameEngine {
     }
     
     func add(_ entity: Entity) {
-        guard entities[entity.getType()]?.insert(entity).inserted == true else {
+        guard entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -44,7 +44,7 @@ class GameEngine {
     }
     
     func remove(_ entity: Entity) {
-        guard entities[entity.getType()]?.remove(entity) != nil else {
+        guard entities[entity.type]?.remove(entity) != nil else {
             return
         }
 

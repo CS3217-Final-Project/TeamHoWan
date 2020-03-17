@@ -9,6 +9,10 @@
 import GameplayKit
 
 class PlayerHealthEntity: Entity {
+    override var type: EntityType {
+        .playerHealthEntity
+    }
+    
     override init() {
         super.init()
 
@@ -19,9 +23,5 @@ class PlayerHealthEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .playerHealthEntity
     }
 }
