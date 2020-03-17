@@ -14,7 +14,7 @@ class EndPointEntity: Entity {
         .endPointEntity
     }
     
-    init(node: SKSpriteNode) {
+    init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         
         let spriteComponent = SpriteComponent(node: node)

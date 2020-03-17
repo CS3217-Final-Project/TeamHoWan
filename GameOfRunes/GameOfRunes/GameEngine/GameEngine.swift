@@ -14,7 +14,7 @@ class GameEngine {
     private var removeDelegate: RemoveDelegate!
     private var entities = [EntityType : Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
-    unowned var gameScene: GameScene
+    weak var gameScene: GameScene?
     weak var gameStateMachine: GameStateMachine?
 
     var playerHealthEntity: PlayerHealthEntity? {
@@ -79,8 +79,8 @@ class GameEngine {
     
     func spawnEnemy() {
         let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
-            let sceneSize = gameScene.size
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
+            let sceneSize = gameScene?.size {
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
                 y: sceneSize.height - 100

@@ -9,10 +9,14 @@
 import GameplayKit
 
 class TimerEntity: Entity {
+    override var type: EntityType {
+        .timerEntity
+    }
+    
     init(gameEngine: GameEngine, isCountdown: Bool, initialTimerValue: Int) {
         super.init()
         
-        guard let gameScene = gameEngine.scene as? GameScene else {
+        guard let gameScene = gameEngine.gameScene else {
             return
         }
         
@@ -21,12 +25,12 @@ class TimerEntity: Entity {
         timerLabel.fontSize = 50
         timerLabel.fontColor = SKColor.white
         timerLabel.position = CGPoint(x: gameScene.size.width / 2, y: 50)
-        timerLabel.zPosition = 300
+        timerLabel.zPosition = 1
         timerLabel.horizontalAlignmentMode = .center
         timerLabel.verticalAlignmentMode = .center
         timerLabel.text = "\(initialTimerValue)"
         
-        gameScene.addNode(timerLabel)
+        gameScene.playerAreaLayer.addChild(timerLabel)
         
         let timerComponent = TimerComponent(timerNode: timerLabel,
                                             isCountdown: isCountdown,
@@ -37,9 +41,5 @@ class TimerEntity: Entity {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .timerEntity
     }
 }
