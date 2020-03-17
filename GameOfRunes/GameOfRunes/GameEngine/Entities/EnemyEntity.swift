@@ -33,7 +33,7 @@ class EnemyEntity: Entity {
         )
 
         let moveComponent = MoveComponent(
-            systemDelegate: gameEngine.systemDelegate,
+            gameEngine: gameEngine,
             maxSpeed: 150.0,
             maxAcceleration: 5.0,
             radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01

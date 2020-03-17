@@ -10,13 +10,13 @@ import SpriteKit
 import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
-    private weak var systemDelegate: SystemDelegate?
+    private weak var gameEngine: GameEngine?
     var type: ComponentType {
         .moveComponent
     }
     
-    init(systemDelegate: SystemDelegate, maxSpeed: Float, maxAcceleration: Float, radius: Float) {
-        self.systemDelegate = systemDelegate
+    init(gameEngine: GameEngine, maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+        self.gameEngine = gameEngine
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
@@ -31,7 +31,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     }
 
     override func willRemoveFromEntity() {
-        systemDelegate?.remove(self)
+        gameEngine?.removeComponent(self)
     }
     
     func agentWillUpdate(_ agent: GKAgent) {

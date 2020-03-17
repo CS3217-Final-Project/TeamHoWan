@@ -17,7 +17,7 @@ class EndPointEntity: Entity {
         spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
-            systemDelegate: gameEngine.systemDelegate,
+            gameEngine: gameEngine,
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
             radius: .init(spriteComponent.node.size.height)

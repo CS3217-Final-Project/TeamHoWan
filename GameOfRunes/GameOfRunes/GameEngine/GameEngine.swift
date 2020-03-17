@@ -10,9 +10,9 @@ import SpriteKit
 import GameplayKit
 
 class GameEngine {
-    private (set) var systemDelegate: SystemDelegate!
-    private (set) var removeDelegate: RemoveDelegate!
-    private (set) var entities = [EntityType : Set<Entity>]()
+    private var systemDelegate: SystemDelegate!
+    private var removeDelegate: RemoveDelegate!
+    private var entities = [EntityType : Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     weak var scene: SKScene?
     weak var gameStateMachine: GameStateMachine?
@@ -52,6 +52,10 @@ class GameEngine {
         }
 
         toRemoveEntities.insert(entity)
+    }
+    
+    func removeComponent(_ component: Component) {
+        systemDelegate.removeComponent(component)
     }
     
     func update(with deltaTime: TimeInterval) {

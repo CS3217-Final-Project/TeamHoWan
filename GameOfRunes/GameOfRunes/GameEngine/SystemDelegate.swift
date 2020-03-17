@@ -47,7 +47,7 @@ class SystemDelegate {
         }
     }
     
-    func remove(_ component: Component) {
+    func removeComponent(_ component: Component) {
         systems[component.type]?.removeComponent(component)
     }
 
