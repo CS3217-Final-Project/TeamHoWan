@@ -15,7 +15,7 @@ import SpriteKit
 class ButtonNode : SKSpriteNode {
     private var responder: TapResponder {
         guard let responder = scene as? TapResponder else {
-            fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
+            fatalError("This node can only be used within a `TapResponder` scene.")
         }
         return responder
     }

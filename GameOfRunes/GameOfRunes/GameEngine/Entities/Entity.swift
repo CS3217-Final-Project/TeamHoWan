@@ -10,6 +10,6 @@ import GameplayKit
 
 class Entity: GKEntity {
     var type: EntityType {
-        fatalError("Base Entity getType() not supported.")
+        fatalError("Base Entity type not supported.")
     }
 }

@@ -18,7 +18,7 @@ class DroppedManaEntity: Entity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
     override var type: EntityType {
-        .endPointEntity
+        .droppedManaEntity
     }
     
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
