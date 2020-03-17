@@ -68,13 +68,12 @@ class GameEngine {
         toRemoveEntities.removeAll()
         
         // Player Loses the Game
-        if let playerHealthEntity = playerHealthEntity,
-            let playerHealthComponent = playerHealthEntity.component(ofType: HealthComponent.self),
-            playerHealthComponent.healthPoints <= 0,
-            let gameStateMachine = gameStateMachine,
-            let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
+        if let playerHealthPoints =
+            playerHealthEntity?.component(ofType: HealthComponent.self)?.healthPoints,
+            playerHealthPoints <= 0,
+            let gameEndState = gameStateMachine?.state(forClass: GameEndState.self) {
             gameEndState.didWin = false
-            gameStateMachine.enter(GameEndState.self)
+            gameStateMachine?.enter(GameEndState.self)
         }
     }
     
