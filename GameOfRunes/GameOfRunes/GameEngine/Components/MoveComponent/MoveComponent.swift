@@ -11,6 +11,9 @@ import GameplayKit
 
 class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     private weak var systemDelegate: SystemDelegate?
+    var type: ComponentType {
+        return .moveComponent
+    }
     
     init(systemDelegate: SystemDelegate, maxSpeed: Float, maxAcceleration: Float, radius: Float) {
         self.systemDelegate = systemDelegate
@@ -45,9 +48,5 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
         }
         
         spriteComponent.node.position = cgPosition
-    }
-    
-    func getType() -> ComponentType {
-        return .moveComponent
     }
 }

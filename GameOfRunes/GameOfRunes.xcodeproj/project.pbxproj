@@ -437,7 +437,6 @@
 		C6AFF67C241919A00076F02B /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */,
 				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				C6A99CF3241FCD15003AE88A /* TimerSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
@@ -454,6 +453,7 @@
 				4ACC8BD52414D79F00F235AE /* GameEngine.swift */,
 				C6AFF680241923410076F02B /* RemoveDelegate.swift */,
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
+				C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */,
 				C6AFF67C241919A00076F02B /* Systems */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,

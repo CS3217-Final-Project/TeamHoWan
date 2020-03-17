@@ -11,6 +11,9 @@ import GameplayKit
 
 class TeamComponent: GKComponent, Component {
     let team: Team
+    var type: ComponentType {
+        return .teamComponent
+    }
     
     init(team: Team) {
         self.team = team
@@ -20,9 +23,5 @@ class TeamComponent: GKComponent, Component {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getType() -> ComponentType {
-        return .teamComponent
     }
 }

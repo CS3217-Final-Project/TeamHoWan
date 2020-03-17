@@ -17,6 +17,9 @@ class TimerComponent: GKComponent, Component {
             timerNode.text = "\(currentTime)"
         }
     }
+    var type: ComponentType {
+        return .timerComponent
+    }
     
     init(timerNode: SKLabelNode, isCountdown: Bool, initialTimerValue: Int) {
         self.timerNode = timerNode
@@ -27,9 +30,5 @@ class TimerComponent: GKComponent, Component {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getType() -> ComponentType {
-        return .timerComponent
     }
 }

@@ -11,6 +11,9 @@ import GameplayKit
 
 class ManaComponent: GKComponent, Component {
     var manaPoints: Int
+    var type: ComponentType {
+        return .manaComponent
+    }
 
     init(manaPoints: Int = 0) {
         self.manaPoints = manaPoints
@@ -20,9 +23,5 @@ class ManaComponent: GKComponent, Component {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getType() -> ComponentType {
-        return .manaComponent
     }
 }

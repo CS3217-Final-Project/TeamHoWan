@@ -11,6 +11,9 @@ import GameplayKit
 
 class HealthComponent: GKComponent, Component {
     var healthPoints: Int
+    var type: ComponentType {
+        return .healthComponent
+    }
     
     init(healthPoints: Int) {
         self.healthPoints = max(0, healthPoints)
@@ -20,9 +23,5 @@ class HealthComponent: GKComponent, Component {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getType() -> ComponentType {
-        return .healthComponent
     }
 }

@@ -42,7 +42,7 @@ class SystemDelegate {
     }
     
     func remove(_ component: Component) {
-        systems[component.getType()]?.removeComponent(component)
+        systems[component.type]?.removeComponent(component)
     }
 
     func minusHealthPoints(for entity: GKEntity) -> Int? {

@@ -11,6 +11,9 @@ import GameplayKit
 
 class SpriteComponent: GKComponent, Component {
     let node: SKSpriteNode
+    var type: ComponentType {
+        return .spriteComponent
+    }
     
     init(texture: SKTexture?) {
         node = SKSpriteNode(texture: texture, size: texture?.size() ?? .zero)
@@ -41,9 +44,5 @@ class SpriteComponent: GKComponent, Component {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func getType() -> ComponentType {
-        return .spriteComponent
     }
 }

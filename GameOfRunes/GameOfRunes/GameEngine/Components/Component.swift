@@ -7,5 +7,5 @@
 //
 
 protocol Component {
-    func getType() -> ComponentType
+    var type: ComponentType { get }
 }
