@@ -10,7 +10,7 @@
  Protocol implemented by the responder to `DroppedManaNode`
  whenever the node is tapped on.
  */
-protocol DroppedManaResponder: class {
+protocol DroppedManaResponder: AnyObject {
     func droppedManaTapped(droppedManaNode: DroppedManaNode)
 }
 
