@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameEngine {
-    private (set) var systemManager: SystemManager!
+    private (set) var systemDelegate: SystemDelegate!
     private (set) var removeDelegate: RemoveDelegate!
     private (set) var entities = [EntityType : Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
@@ -25,7 +25,7 @@ class GameEngine {
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
-        self.systemManager = SystemManager(gameEngine: self)
+        self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
         self.gameStateMachine = gameStateMachine
         self.gameStateMachine?.gameEngine = self
@@ -40,7 +40,7 @@ class GameEngine {
             return
         }
         
-        systemManager.addComponents(foundIn: entity)
+        systemDelegate.addComponents(foundIn: entity)
     }
     
     func remove(_ entity: Entity) {
@@ -52,10 +52,10 @@ class GameEngine {
     }
     
     func update(with deltaTime: TimeInterval) {
-        systemManager.update(with: deltaTime)
+        systemDelegate.update(with: deltaTime)
 
         toRemoveEntities.forEach { entity in
-            systemManager.removeComponents(foundIn: entity)
+            systemDelegate.removeComponents(foundIn: entity)
         }
 
         toRemoveEntities.removeAll()
@@ -124,7 +124,7 @@ class GameEngine {
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        return systemManager.minusHealthPoints(for: entity)
+        return systemDelegate.minusHealthPoints(for: entity)
     }
     
     func enemyReachedLine(_ entity: GKEntity) {

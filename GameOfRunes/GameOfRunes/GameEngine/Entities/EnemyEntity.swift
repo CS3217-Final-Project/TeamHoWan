@@ -33,6 +33,7 @@ class EnemyEntity: Entity {
         )
 
         let moveComponent = MoveComponent(
+            systemDelegate: gameEngine.systemDelegate,
             maxSpeed: 150.0,
             maxAcceleration: 5.0,
             radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01
@@ -93,7 +94,7 @@ class EnemyEntity: Entity {
      the `EnemyEntity`.
      */
     func removeFromGame() {
-        component(ofType: MoveComponent.self)?.isRemoved = true
+        removeComponent(ofType: MoveComponent.self)
         
         let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
                                                 timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,

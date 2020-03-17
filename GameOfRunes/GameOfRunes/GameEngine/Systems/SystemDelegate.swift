@@ -1,5 +1,5 @@
 //
-//  SystemManager.swift
+//  SystemDelegate.swift
 //  GameOfRunes
 //
 //  Created by Dong SiJi on 11/3/20.
@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-class SystemManager {
+class SystemDelegate {
     private unowned var gameEngine: GameEngine
     private var systems = [ComponentType: System]()
     private var healthSystem: HealthSystem? {

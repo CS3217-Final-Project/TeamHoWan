@@ -74,7 +74,7 @@
 		C6A99CF2241FCC2D003AE88A /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF1241FCC2D003AE88A /* TimerComponent.swift */; };
 		C6A99CF4241FCD15003AE88A /* TimerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF3241FCD15003AE88A /* TimerSystem.swift */; };
 		C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67A2419101B0076F02B /* GestureEntity.swift */; };
-		C6AFF67E24191A2A0076F02B /* SystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemManager.swift */; };
+		C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */; };
 		C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF680241923410076F02B /* RemoveDelegate.swift */; };
 		C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF682241A5FC40076F02B /* GameMetaData.swift */; };
 		C6AFF685241A61650076F02B /* HealthSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF684241A61650076F02B /* HealthSystem.swift */; };
@@ -171,7 +171,7 @@
 		C6A99CF1241FCC2D003AE88A /* TimerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerComponent.swift; sourceTree = "<group>"; };
 		C6A99CF3241FCD15003AE88A /* TimerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSystem.swift; sourceTree = "<group>"; };
 		C6AFF67A2419101B0076F02B /* GestureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntity.swift; sourceTree = "<group>"; };
-		C6AFF67D24191A2A0076F02B /* SystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemManager.swift; sourceTree = "<group>"; };
+		C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDelegate.swift; sourceTree = "<group>"; };
 		C6AFF680241923410076F02B /* RemoveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveDelegate.swift; sourceTree = "<group>"; };
 		C6AFF682241A5FC40076F02B /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		C6AFF684241A61650076F02B /* HealthSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSystem.swift; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 		C6AFF67C241919A00076F02B /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				C6AFF67D24191A2A0076F02B /* SystemManager.swift */,
+				C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */,
 				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				C6A99CF3241FCD15003AE88A /* TimerSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
@@ -653,7 +653,7 @@
 				C6AFF687241A66360076F02B /* System.swift in Sources */,
 				C6A99CF2241FCC2D003AE88A /* TimerComponent.swift in Sources */,
 				4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */,
-				C6AFF67E24191A2A0076F02B /* SystemManager.swift in Sources */,
+				C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */,
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,

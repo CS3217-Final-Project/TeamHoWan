@@ -17,7 +17,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        for component in components where !component.isRemoved {
+        for component in components {
             updateComponent(component)
             // Call to component.update to trigger observer events.
             component.update(deltaTime: seconds)
@@ -64,8 +64,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         }
         
         for enemyEntity in gameEngine.entities(for: .enemy) {
-            guard let componentRemoved = enemyEntity.component(ofType: MoveComponent.self)?.isRemoved,
-                !componentRemoved else {
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
                 continue
             }
 
