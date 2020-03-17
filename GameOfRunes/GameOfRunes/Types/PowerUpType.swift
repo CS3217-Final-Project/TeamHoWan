@@ -16,6 +16,17 @@ enum PowerUpType: String, CaseIterable {
     private static var powerUpCastsTextures = [PowerUpType: [SKTexture]]()
     private static var powerUpsTextures = [PowerUpType: [SKTexture]]()
     
+    var manaUnitCost: Int {
+        switch self {
+        case .hellfire:
+            return 6
+        case .icePrison:
+            return 8
+        case .darkVortex:
+            return 4
+        }
+    }
+    
     // have to preload at the start of the gameplay scene to prevent delay in rendering
     static func loadPowerUpCastsTextures() {
         guard powerUpCastsTextures.isEmpty else {

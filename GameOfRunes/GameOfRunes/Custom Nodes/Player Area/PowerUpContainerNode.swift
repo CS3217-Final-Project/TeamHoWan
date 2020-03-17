@@ -69,7 +69,7 @@ class PowerUpContainerNode: SKSpriteNode {
             return
         }
         
-        let newPowerUpNodeSize = powerUpNodes[0].size.scaleTo(height: size.height)
+        let newPowerUpNodeSize = powerUpNodes[0].size.scaleTo(height: size.height, heightToWidthRatio: 4 / 3)
         powerUpNodes.forEach { $0.size = newPowerUpNodeSize }
         
         let newPowerUpNodeWidth = newPowerUpNodeSize.width

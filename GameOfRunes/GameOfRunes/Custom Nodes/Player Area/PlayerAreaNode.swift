@@ -106,18 +106,18 @@ class PlayerAreaNode: SKSpriteNode {
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
-        powerUpContainerNode = .init(powerUpTypes: [.hellfire, .icePrison, .darkVortex])
+        powerUpContainerNode = .init(powerUpTypes: [.darkVortex, .hellfire, .icePrison])
         summonNode = .init()
         
-        healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
-        manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.4))
-        powerUpContainerSize = size.applying(.init(scaleX: 0.45, y: 0.4))
-        summonNodeSize = summonNode.size.scaleTo(height: size.height * 0.4)
+        healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
+        manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
+        powerUpContainerSize = size.applying(.init(scaleX: 0.45, y: 0.5))
+        summonNodeSize = summonNode.size.scaleTo(height: size.height * 0.5)
         
-        healthBarPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: size.height / 4.5)
-        manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4.5)
-        powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 4.5)
-        summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 4.5)
+        healthBarPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: size.height / 4)
+        manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4)
+        powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
+        summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 5.5)
         
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
