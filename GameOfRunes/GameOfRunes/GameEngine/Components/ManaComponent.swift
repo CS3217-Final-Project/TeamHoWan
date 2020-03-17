@@ -10,20 +10,28 @@ import SpriteKit
 import GameplayKit
 
 class ManaComponent: GKComponent {
-    private var storedManaPoints: Int
+    private weak var manaBarNode: ManaBarNode?
+    private var _manaPoints: Int
+    // if manaBarNode exists, use values from there, else use from _manaPoints
     var manaPoints: Int {
         get {
-            storedManaPoints
+            manaBarNode?.currentManaPoints ?? _manaPoints
         }
-        
         set {
-            storedManaPoints = max(0, newValue)
+            if let manaBarNode = manaBarNode {
+                manaBarNode.currentManaPoints = newValue
+                _manaPoints = manaBarNode.currentManaPoints
+            }
+            else {
+                _manaPoints = max(0, newValue)
+            }
         }
     }
-    var lastUpdateMana: TimeInterval = 0.0
 
-    init(manaPoints: Int) {
-        self.storedManaPoints = max(0, manaPoints)
+    init(manaPoints: Int, manaBarNode: ManaBarNode? = nil) {
+        _manaPoints = max(0, manaPoints)
+        manaBarNode?.currentManaPoints = manaPoints
+        self.manaBarNode = manaBarNode
         super.init()
     }
     

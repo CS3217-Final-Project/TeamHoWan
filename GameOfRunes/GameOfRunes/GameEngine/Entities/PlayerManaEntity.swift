@@ -13,10 +13,10 @@ class PlayerManaEntity: Entity {
         .playerManaEntity
     }
     
-    override init() {
+    init(manaPoints: Int, manaBarNode: ManaBarNode) {
         super.init()
         
-        let manaComponent = ManaComponent(manaPoints: 0)
+        let manaComponent = ManaComponent(manaPoints: manaPoints, manaBarNode: manaBarNode)
         addComponent(manaComponent)
     }
     

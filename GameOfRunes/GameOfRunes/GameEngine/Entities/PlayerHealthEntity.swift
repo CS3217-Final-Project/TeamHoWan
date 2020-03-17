@@ -13,10 +13,10 @@ class PlayerHealthEntity: Entity {
         .playerHealthEntity
     }
     
-    override init() {
+    init(healthPoints: Int, healthBarNode: HealthBarNode) {
         super.init()
 
-        let healthComponent = HealthComponent(healthPoints: 5)
+        let healthComponent = HealthComponent(healthPoints: healthPoints, healthBarNode: healthBarNode)
         addComponent(healthComponent)
     }
     

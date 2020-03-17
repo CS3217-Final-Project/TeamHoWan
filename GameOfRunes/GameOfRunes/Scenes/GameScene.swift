@@ -68,8 +68,8 @@ class GameScene: SKScene {
         
         // Entities
         setUpEndPoint()
-        setUpHealth()
-        setUpMana()
+        setUpPlayerHealth()
+        setUpPlayerMana()
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
@@ -177,18 +177,21 @@ class GameScene: SKScene {
         gameEngine.add(endPointEntity)
     }
     
-    private func setUpHealth() {
-        let playerHealthEntity = PlayerHealthEntity()
-        if let healthComponent = playerHealthEntity.component(ofType: HealthComponent.self) {
-            let healthBarNode = playerAreaNode.healthBarNode
-            healthBarNode.totalLives = healthComponent.healthPoints
-            healthBarNode.livesLeft = healthComponent.healthPoints
-        }
+    private func setUpPlayerHealth() {
+        let healthBarNode = playerAreaNode.healthBarNode
+        // num can be replaced with meta-data
+        healthBarNode.totalLives = 5
+        let playerHealthEntity = PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
     }
     
-    private func setUpMana() {
-        gameEngine.add(PlayerManaEntity())
+    private func setUpPlayerMana() {
+        let manaBarNode = playerAreaNode.manaBarNode
+        // num can be replaced with meta-data
+        manaBarNode.numManaUnits = 8
+        manaBarNode.manaPointsPerUnit = 10
+        let playerManaEntity = PlayerManaEntity(manaPoints: 0, manaBarNode: manaBarNode)
+        gameEngine.add(playerManaEntity)
         
         /*
         manaLabel.fontSize = 50
