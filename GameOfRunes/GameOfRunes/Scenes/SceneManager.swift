@@ -58,7 +58,6 @@ class SceneManager {
             transition = .doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
         }
         
-        
         presentingView.presentScene(scene, transition: transition)
     }
     

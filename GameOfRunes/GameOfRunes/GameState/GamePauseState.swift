@@ -14,18 +14,19 @@ class GamePauseState: GKState {
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass is GameInPlayState.Type
     }
-
+    
     override func didEnter(from previousState: GKState?) {
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
             return
         }
-
+        
         guard let sceneManager = gameStateMachine.sceneManager else {
             fatalError("No SceneManager associated with GameStateMachine")
         }
-
+        
         super.didEnter(from: previousState)
         sceneManager.transitionToScene(sceneIdentifier: .pause)
+        
         sceneManager.gamePlayScene.worldNode.isPaused = true
         sceneManager.gamePlayScene.physicsWorld.speed = 0
     }
@@ -33,11 +34,9 @@ class GamePauseState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return
-        }
-        guard let sceneManager = gameStateMachine.sceneManager else {
-            fatalError("No SceneManager associated with GameStateMachine")
+        guard let gameStateMachine = stateMachine as? GameStateMachine,
+            let sceneManager = gameStateMachine.sceneManager else {
+                return
         }
         sceneManager.gamePlayScene.worldNode.isPaused = false
         sceneManager.gamePlayScene.physicsWorld.speed = 1
