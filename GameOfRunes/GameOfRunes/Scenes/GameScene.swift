@@ -209,14 +209,16 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        guard let touch = touches.first,
+            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
-        playerAreaNode.powerUpContainerNode.selectedPowerUp?.runAnimation(
+        selectedPowerUp.runAnimation(
             at: touch.location(in: powerUpAnimationLayer),
             with: .init(width: size.width / 3, height: size.width / 3),
             on: powerUpAnimationLayer
         )
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
     }
 }
 
