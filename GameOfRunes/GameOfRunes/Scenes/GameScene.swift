@@ -12,12 +12,21 @@ import GameplayKit
 class GameScene: SKScene {
     private var gameEngine: GameEngine!
     private var lastUpdateTime: TimeInterval = 0.0
-    private let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
-    var gameStateMachine: GameStateMachine
+    private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
+    private weak var gameStateMachine: GameStateMachine?
+    
+    // layers
+    private(set) var backgroundLayer: SKNode!
+    private(set) var enemyLayer: SKNode!
+    private(set) var powerUpAnimationLayer: SKNode!
+    private(set) var playerAreaLayer: SKNode!
+    private(set) var manaDropLayer: SKNode!
+    private(set) var gestureLayer: SKNode!
+    private(set) var highestPriorityLayer: SKNode!
     let manaLabel = SKLabelNode(fontNamed: "DragonFire")
     var backgroundNode: SKSpriteNode!
     var playerAreaNode: PlayerAreaNode!
-    var bgmNode: SKAudioNode?
+    var bgmNode: SKAudioNode!
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
@@ -36,21 +45,63 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        gameEngine = GameEngine(scene: self, gameStateMachine: gameStateMachine)
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        
+        // must use other thread queues (not .main) to avoid deadlocks
+        DispatchQueue.global(qos: .default).async {
+            TextureContainer.loadTextures()
+            dispatchGroup.leave()
+        }
+        
         PowerUpType.loadPowerUpCastsTextures()
-        TextureContainer.loadTextures()
+        
+        // continue setting up other stuff in .main thread
+        gameEngine = GameEngine(gameScene: self, gameStateMachine: gameStateMachine)
+        setUpLayers()
+        
         setUpArenaLayout()
         setUpEndPoint()
         setUpHealth()
         setUpMana()
         setUpPauseButton()
+        bgmNode = .init(fileNamed: "Lion King Eldigan")
+        
+        // ensures textures have been loaded
+        dispatchGroup.wait()
     }
     
     override func didMove(to view: SKView) {
-        bgmNode?.removeFromParent()
-        let newBgmNode = SKAudioNode(fileNamed: "Lion King Eldigan")
-        bgmNode = newBgmNode
-        addChild(newBgmNode)
+        addChild(bgmNode)
+    }
+    
+    override func willMove(from view: SKView) {
+        super.willMove(from: view)
+        
+        bgmNode.removeFromParent()
+    }
+    
+    private func setUpLayers() {
+        backgroundLayer = .init()
+        backgroundLayer.zPosition = GameConfig.GamePlayScene.backgroundLayerZPosition
+        
+        enemyLayer = .init()
+        enemyLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
+        
+        powerUpAnimationLayer = .init()
+        powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
+        
+        playerAreaLayer = .init()
+        playerAreaLayer.zPosition = GameConfig.GamePlayScene.playerAreaLayerZPosition
+        
+        manaDropLayer = .init()
+        manaDropLayer.zPosition = GameConfig.GamePlayScene.manaDropLayerZPosition
+        
+        gestureLayer = .init()
+        gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
+        
+        highestPriorityLayer = .init()
+        highestPriorityLayer.zPosition = GameConfig.GamePlayScene.highestPriorityLayerZPosition
     }
     
     private func setUpArenaLayout() {
@@ -119,10 +170,10 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         var deltaTime = currentTime - lastUpdateTime
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
+        lastUpdateTime = currentTime
 
         gameEngine.update(with: deltaTime)
-        
-
+/*
         if let playerHealthComponent =
             gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
@@ -133,6 +184,7 @@ class GameScene: SKScene {
             manaLabel.text = "\(playerManaComponent.manaPoints)"
             playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
         }
+ */
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -165,14 +217,14 @@ extension GameScene: TapResponder {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
-        pauseButton.zPosition = GameConfig.GamePlayScene.pauseButtonZPosition
+        pauseButton.zPosition = 1000
         addChild(pauseButton)
     }
 
     func onTapped(tappedNode: SKSpriteNode) {
         switch tappedNode.name {
         case ButtonType.pauseButton.rawValue:
-            gameStateMachine.enter(GamePauseState.self)
+            gameStateMachine?.enter(GamePauseState.self)
         case ButtonType.summonButton.rawValue:
             gameEngine.spawnEnemy()
         default:
@@ -194,7 +246,7 @@ extension GameScene {
     }
 
     @objc private func pauseGame() {
-        gameStateMachine.enter(GamePauseState.self)
+        gameStateMachine?.enter(GamePauseState.self)
     }
 
     private func unregisterNotifications() {

@@ -10,12 +10,12 @@ import SpriteKit
 import GameplayKit
 
 class GameEngine {
-    private (set) var systemManager: SystemManager!
-    private (set) var removeDelegate: RemoveDelegate!
-    private (set) var entities = [EntityType : Set<GKEntity>]()
+    private(set) var systemManager: SystemManager!
+    private(set) var removeDelegate: RemoveDelegate!
+    private(set) var entities = [EntityType : Set<GKEntity>]()
     private var toRemoveEntities = Set<GKEntity>()
-    weak var scene: SKScene?
-    weak var gameStateMachine: GameStateMachine?
+    unowned var gameScene: GameScene
+    private weak var gameStateMachine: GameStateMachine?
     var playerHealthEntity: PlayerHealthEntity? {
         entities[.playerHealthEntity]?.first as? PlayerHealthEntity
     }
@@ -24,12 +24,11 @@ class GameEngine {
     }
     private var droppedManaEntities = Set<DroppedManaEntity>()
 
-    init(scene: SKScene, gameStateMachine: GameStateMachine) {
-        self.scene = scene
+    init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
+        self.gameScene = gameScene
+        self.gameStateMachine = gameStateMachine
         self.systemManager = SystemManager(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
-        self.gameStateMachine = gameStateMachine
-        self.gameStateMachine?.gameEngine = self
         
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
@@ -74,8 +73,8 @@ class GameEngine {
     
     func spawnEnemy() {
         let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = scene?.size {
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
+            let sceneSize = gameScene.size
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
                 y: sceneSize.height - 100

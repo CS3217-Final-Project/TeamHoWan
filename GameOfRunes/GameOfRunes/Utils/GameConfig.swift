@@ -47,7 +47,12 @@ enum GameConfig {
         static let buttonMargin: CGFloat = 10
         
         // zPositions
-        static let backgroundZPosition: CGFloat = -100
-        static let pauseButtonZPosition: CGFloat = 1000
+        static let backgroundLayerZPosition: CGFloat = -100
+        static let enemyLayerZPosition: CGFloat = 0
+        static let powerUpAnimationLayerZPosition: CGFloat = 100
+        static let playerAreaLayerZPosition: CGFloat = 200
+        static let manaDropLayerZPosition: CGFloat = 300
+        static let gestureLayerZPosition: CGFloat = 400
+        static let highestPriorityLayerZPosition: CGFloat = 1000
     }
 }

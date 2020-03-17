@@ -23,7 +23,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             return
         }
 
-        gameEngine.scene?.addChild(node)
+        gameEngine.gameScene.addChild(node)
     }
     
     override func removeComponent(foundIn entity: GKEntity) {
