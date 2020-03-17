@@ -22,7 +22,7 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
-    var droppedManaResponder: DroppedManaResponderType? {
+    var droppedManaResponder: DroppedManaResponder? {
         systemDelegate.droppedManaResponder
     }
 

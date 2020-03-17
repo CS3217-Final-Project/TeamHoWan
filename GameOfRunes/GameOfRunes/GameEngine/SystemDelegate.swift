@@ -17,7 +17,7 @@ class SystemDelegate {
     var manaSystem: ManaSystem? {
         systems[.manaComponent] as? ManaSystem
     }
-    var droppedManaResponder: DroppedManaResponderType? {
+    var droppedManaResponder: DroppedManaResponder? {
         systems[.manaComponent] as? ManaSystem
     }
 

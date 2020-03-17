@@ -36,7 +36,7 @@ class ManaSystem: GKComponentSystem<ManaComponent>, System {
 }
 
 /** Extension for the ManaSystem to deal with Mana-related events and logic. */
-extension ManaSystem: DroppedManaResponderType {
+extension ManaSystem: DroppedManaResponder {
     /** Function called whenever a monster is killed and mana can be dropped. */
     func dropMana(at enemyEntity: GKEntity) {
         guard shouldDropMana() else {
@@ -83,7 +83,7 @@ extension ManaSystem: DroppedManaResponderType {
 
     /**
      Handler function called whenever the `DroppedManaNode` is tapped
-     as part of conformance to the `DroppedManaResponderType` protocol.
+     as part of conformance to the `DroppedManaResponder` protocol.
      - Note: This function removes the Mana from screen, and increments
      the player's mana points.
      */
