@@ -12,7 +12,7 @@ import SpriteKit
  Scene to be displayed when the game has ended (i.e. either win or lose
  condition has been reached).
  */
-class GameEndScene: SKScene, ButtonNodeResponderType {
+class GameEndScene: SKScene, TapResponder {
     // initialise with placeholder value
     var didWin = true
     private weak var gameStateMachine: GameStateMachine?
@@ -54,8 +54,8 @@ class GameEndScene: SKScene, ButtonNodeResponderType {
         statusLabel.text = didWin ? "You Won!" : "You Lost :("
     }
 
-    func buttonPressed(button: SKSpriteNode) {
-        if button.name == ButtonType.restartButton.rawValue {
+    func onTapped(tappedNode: SKSpriteNode) {
+        if tappedNode.name == ButtonType.restartButton.rawValue {
             gameStateMachine?.enter(GameStartState.self)
         }
     }

@@ -12,8 +12,8 @@ class SummonNode: SKSpriteNode {
     private static let normalImage = SKTexture(imageNamed: "summon")
     private static let tappedImage = SKTexture(imageNamed: "summon-tapped")
     private static let onTappedScaleFactor: CGFloat = 0.9
-    private var responder: ButtonNodeResponderType {
-        guard let responder = scene as? ButtonNodeResponderType else {
+    private var responder: TapResponder {
+        guard let responder = scene as? TapResponder else {
             fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
         }
         return responder
@@ -61,7 +61,7 @@ class SummonNode: SKSpriteNode {
             return
         }
         
-        responder.buttonPressed(button: self)
+        responder.onTapped(tappedNode: self)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

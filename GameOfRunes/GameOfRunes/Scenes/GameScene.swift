@@ -159,7 +159,7 @@ class GameScene: SKScene {
 /**
  Extension to deal with button-related logic (i.e. the Pause Button)
  */
-extension GameScene: ButtonNodeResponderType {
+extension GameScene: TapResponder {
     private func setUpPauseButton() {
         let buttonMargin = GameplayConfiguration.GamePlayScene.buttonMargin
         let buttonSize = CGSize(
@@ -178,14 +178,14 @@ extension GameScene: ButtonNodeResponderType {
         addNode(pauseButton)
     }
 
-    func buttonPressed(button: SKSpriteNode) {
-        switch button.name {
+    func onTapped(tappedNode: SKSpriteNode) {
+        switch tappedNode.name {
         case ButtonType.pauseButton.rawValue:
             gameStateMachine.enter(GamePauseState.self)
         case ButtonType.summonButton.rawValue:
             gameEngine.spawnEnemy()
         default:
-            print("Unknown button tapped")
+            print("Unknown node tapped")
         }
     }
 }
@@ -208,6 +208,4 @@ extension GameScene {
         let pauseNotificationName = UIApplication.willResignActiveNotification
         NotificationCenter.default.removeObserver(self, name: pauseNotificationName, object: nil)
     }
-    
-
 }

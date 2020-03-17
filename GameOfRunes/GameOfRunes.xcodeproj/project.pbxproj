@@ -67,7 +67,7 @@
 		8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */; };
 		8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */; };
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
-		8AAADE4B24191D8D00606298 /* ButtonNodeResponderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */; };
+		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
 		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
 		8AAE9C05241E42D700D29593 /* DroppedManaResponderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C04241E42D600D29593 /* DroppedManaResponderType.swift */; };
@@ -160,7 +160,7 @@
 		8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
-		8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNodeResponderType.swift; sourceTree = "<group>"; };
+		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
 		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
 		8AAE9C04241E42D600D29593 /* DroppedManaResponderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaResponderType.swift; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
-				8AAADE4A24191D8D00606298 /* ButtonNodeResponderType.swift */,
+				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
 			);
 			path = ButtonNode;
 			sourceTree = "<group>";
@@ -645,7 +645,7 @@
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
-				8AAADE4B24191D8D00606298 /* ButtonNodeResponderType.swift in Sources */,
+				8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,

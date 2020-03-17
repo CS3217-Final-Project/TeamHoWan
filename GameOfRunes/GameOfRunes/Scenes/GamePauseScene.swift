@@ -9,7 +9,7 @@
 import SpriteKit
 
 /** Scene to be displayed when the game is paused. */
-class GamePauseScene: SKScene, ButtonNodeResponderType {
+class GamePauseScene: SKScene, TapResponder {
     private weak var gameStateMachine: GameStateMachine?
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
@@ -36,8 +36,8 @@ class GamePauseScene: SKScene, ButtonNodeResponderType {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func buttonPressed(button: SKSpriteNode) {
-        if button.name == ButtonType.continueButton.rawValue {
+    func onTapped(tappedNode: SKSpriteNode) {
+        if tappedNode.name == ButtonType.continueButton.rawValue {
             gameStateMachine?.enter(GameInPlayState.self)
         }
     }
