@@ -146,7 +146,8 @@ class GameScene: SKScene {
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
             gameEngine: gameEngine
         )
-        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) + .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
+        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) +
+            .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
         gestureLayer.addChild(gestureAreaNode)
     }
     
@@ -189,7 +190,8 @@ class GameScene: SKScene {
         let healthBarNode = playerAreaNode.healthBarNode
         // arbitrary num, can be replaced with meta-data
         healthBarNode.totalLives = 5
-        let playerHealthEntity = PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
+        let playerHealthEntity =
+            PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
     }
     

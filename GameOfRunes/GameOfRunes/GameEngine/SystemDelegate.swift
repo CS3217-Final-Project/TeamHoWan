@@ -52,7 +52,7 @@ class SystemDelegate {
     }
 
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        return healthSystem?.minusHealthPoints(for: entity)
+        healthSystem?.minusHealthPoints(for: entity)
     }
 
     func increaseMana(by manaPoint: Int, for entity: GKEntity) {

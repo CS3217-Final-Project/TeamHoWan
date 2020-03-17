@@ -12,7 +12,7 @@ import GameplayKit
 class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
-    private var entities = [EntityType : Set<Entity>]()
+    private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     weak var gameScene: GameScene?
     weak var gameStateMachine: GameStateMachine?
@@ -107,7 +107,7 @@ class GameEngine {
     }
     
     func entities(for type: EntityType) -> Set<Entity> {
-        return entities[type] ?? Set()
+        entities[type] ?? Set()
     }
     
     /** Gets all the `MoveComponents` of entities in a particular `Team` */
@@ -122,12 +122,14 @@ class GameEngine {
             return
         }
         
-        let _ = minusHealthPoints(for: playerHealthEntity)
+        _ = minusHealthPoints(for: playerHealthEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
         for entity in entities[.gestureEntity] ?? Set() {
-            guard let gestureComponent = entity.component(ofType: GestureComponent.self), gestureComponent.gesture == gesture else {
+            guard let gestureComponent =
+                entity.component(ofType: GestureComponent.self),
+                gestureComponent.gesture == gesture else {
                 continue
             }
 
@@ -136,7 +138,7 @@ class GameEngine {
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        return systemDelegate.minusHealthPoints(for: entity)
+        systemDelegate.minusHealthPoints(for: entity)
     }
     
     func enemyReachedLine(_ entity: GKEntity) {

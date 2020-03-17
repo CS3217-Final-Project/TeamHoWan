@@ -28,7 +28,7 @@ class RemoveDelegate {
         gameEngine?.remove(gestureEntity)
         
         if enemyHealth <= 0 {
-            let _ = enemyEntity.removeGesture()
+            _ = enemyEntity.removeGesture()
             removeEnemyFromGame(enemyEntity)
             gameEngine?.dropMana(at: enemyEntity)
             return

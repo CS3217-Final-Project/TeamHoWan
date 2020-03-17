@@ -21,8 +21,7 @@ class HealthComponent: GKComponent, Component {
             if let healthBarNode = healthBarNode {
                 healthBarNode.livesLeft = newValue
                 _healthPoints = healthBarNode.livesLeft
-            }
-            else {
+            } else {
                 _healthPoints = max(0, newValue)
             }
         }

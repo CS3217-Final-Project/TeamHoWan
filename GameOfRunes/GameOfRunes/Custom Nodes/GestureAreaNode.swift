@@ -22,6 +22,7 @@ class GestureAreaNode: SKSpriteNode {
         createSlices()
     }
     
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -94,7 +95,7 @@ class GestureAreaNode: SKSpriteNode {
     fileprivate func createSlices() {
         activeSliceBG = SKShapeNode()
         activeSliceBG.zPosition = 1
-        activeSliceBG.strokeColor = UIColor(red: 93/255.0, green: 188/255.0, blue: 210/255.0, alpha: 0.9)
+        activeSliceBG.strokeColor = UIColor(red: 93 / 255.0, green: 188 / 255.0, blue: 210 / 255.0, alpha: 0.9)
         activeSliceBG.lineWidth = 10
         
         activeSliceFG = SKShapeNode()

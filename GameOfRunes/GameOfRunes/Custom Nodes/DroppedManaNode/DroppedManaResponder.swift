@@ -13,4 +13,3 @@
 protocol DroppedManaResponder: AnyObject {
     func droppedManaTapped(droppedManaNode: DroppedManaNode)
 }
-

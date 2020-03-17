@@ -12,7 +12,7 @@ import SpriteKit
  An `SKSpriteNode` that functions as a button.
  To be added to `SKScene` or it subclasses.
  */
-class ButtonNode : SKSpriteNode {
+class ButtonNode: SKSpriteNode {
     private var responder: TapResponder {
         guard let responder = scene as? TapResponder else {
             fatalError("This node can only be used within a `TapResponder` scene.")
@@ -24,7 +24,9 @@ class ButtonNode : SKSpriteNode {
     var isHighlighted = false {
         // Animate to a pressed / unpressed state when the highlight state changes.
         didSet {
-            guard oldValue != isHighlighted else { return }
+            guard oldValue != isHighlighted else {
+                return
+            }
             removeAllActions()
 
             // Create a scale action to make the button look like it is slightly depressed.
@@ -47,6 +49,7 @@ class ButtonNode : SKSpriteNode {
         isUserInteractionEnabled = true
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -21,8 +21,7 @@ class ManaComponent: GKComponent, Component {
             if let manaBarNode = manaBarNode {
                 manaBarNode.currentManaPoints = newValue
                 _manaPoints = manaBarNode.currentManaPoints
-            }
-            else {
+            } else {
                 _manaPoints = max(0, newValue)
             }
         }

@@ -6,7 +6,6 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-
 import GameplayKit
 
 class ManaSystem: GKComponentSystem<ManaComponent>, System {
