@@ -177,7 +177,7 @@ class GameScene: SKScene {
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
         // TODO: after a layer parameter have been added to sprite component
-        endPointNode.zPosition = 399
+        endPointNode.zPosition = 299
         
         let endPointEntity = EndPointEntity(node: endPointNode)
         gameEngine.add(endPointEntity)
