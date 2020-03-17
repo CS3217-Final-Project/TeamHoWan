@@ -164,6 +164,7 @@ class GameScene: SKScene {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
+        pauseButton.zPosition = 1
         
         highestPriorityLayer.addChild(pauseButton)
     }
@@ -219,6 +220,20 @@ class GameScene: SKScene {
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
         
         guard currentManaPoints >= manaPointsRequired else {
+            // do up the animation for insufficient mana
+            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
+            insufficientManaLabel.text = "Insufficient Mana"
+            insufficientManaLabel.fontSize = size.width / 25
+            insufficientManaLabel.fontColor = .green
+            let animationAction = SKAction.sequence([
+                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+                .fadeOut(withDuration: 0.25),
+                .removeFromParent()
+            ])
+            
+            insufficientManaLabel.run(animationAction)
+            highestPriorityLayer.addChild(insufficientManaLabel)
             return
         }
         
