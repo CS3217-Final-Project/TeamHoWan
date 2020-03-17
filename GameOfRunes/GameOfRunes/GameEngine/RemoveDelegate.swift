@@ -29,7 +29,7 @@ class RemoveDelegate {
         
         if enemyHealth <= 0 {
             let _ = enemyEntity.removeGesture()
-            enemyEntity.removeFromGame()
+            removeEnemyFromGame(enemyEntity)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
@@ -42,7 +42,7 @@ class RemoveDelegate {
     }
     
     func removeEnemyReachedLine(_ entity: EnemyEntity) {
-        entity.removeFromGame()
+        removeEnemyFromGame(entity)
         gameEngine?.decreasePlayerHealth()
 
         guard let gestureEntity = entity.gestureEntity else {
@@ -50,5 +50,29 @@ class RemoveDelegate {
         }
 
         gameEngine?.remove(gestureEntity)
+    }
+    
+    /**
+     Removes the `EnemyEntity` from the game.
+     - Note: This method will first remove the `MoveComponent` to prevent
+     the enemy from continuing to move. Then it will run the removal animation.
+     Upon completion, the `GameEngine`'s `remove` method is called on
+     the `EnemyEntity`.
+     */
+    private func removeEnemyFromGame(_ entity: EnemyEntity) {
+        entity.removeComponent(ofType: MoveComponent.self)
+        
+        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+            return
+        }
+
+        let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
+                                                timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
+                                                resize: true,
+                                                restore: false)
+
+        spriteComponent.node.run(removalAnimation) { [weak self] in
+            self?.gameEngine?.remove(entity)
+        }
     }
 }

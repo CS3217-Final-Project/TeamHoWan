@@ -10,12 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class EnemyEntity: Entity {
-    private weak var gameEngine: GameEngine?
     private let enemyType: EnemyType
     private (set) var gestureEntity: GestureEntity?
 
     init(enemyType: EnemyType, gameEngine: GameEngine) {
-        self.gameEngine = gameEngine
         self.enemyType = enemyType
 
         super.init()
@@ -84,27 +82,5 @@ class EnemyEntity: Entity {
 
         gestureEntity = nil
         return true
-    }
-
-    /**
-     Removes the `EnemyEntity` from the game.
-     - Note: This method will first remove the `MoveComponent` to prevent
-     the enemy from continuing to move. Then it will run the removal animation.
-     Upon completion, the `GameEngine`'s `remove` method is called on
-     the `EnemyEntity`.
-     */
-    func removeFromGame() {
-        removeComponent(ofType: MoveComponent.self)
-        
-        let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
-                                                timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
-                                                resize: true,
-                                                restore: false)
-        if let spriteComponent = component(ofType: SpriteComponent.self) {
-            spriteComponent.node.run(removalAnimation) {
-                [unowned self] in
-                self.gameEngine?.remove(self)
-            }
-        }
     }
 }
