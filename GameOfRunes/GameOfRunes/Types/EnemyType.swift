@@ -27,7 +27,7 @@ enum EnemyType: String, CaseIterable {
     var gesturesAvailable: [CustomGesture] {
         switch self {
         default:
-            return [.arrowUp]
+            return CustomGesture.allCases
         }
     }
 }

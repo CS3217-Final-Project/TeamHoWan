@@ -25,18 +25,18 @@ class GameScene: SKScene {
     private(set) var highestPriorityLayer: SKNode!
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode!
-
+    
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         registerForPauseNotifications()
     }
-
+    
     deinit {
         unregisterNotifications()
         print("deinit game scene")
     }
-        
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

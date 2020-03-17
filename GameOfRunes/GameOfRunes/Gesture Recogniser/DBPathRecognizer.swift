@@ -24,18 +24,11 @@ public class GestureRecognizer {
     
     func touchesBegan(_ location: CGPoint) {
         rawPoints = []
-        rawPoints.append(Int(location.x))
-        rawPoints.append(Int(location.y))
     }
     
     func touchesMoved(_ location: CGPoint) {
-        if rawPoints.isEmpty {
-            return
-        }
-        if (rawPoints[rawPoints.count-2] != Int(location.x) && rawPoints[rawPoints.count-1] != Int(location.y)) {
-            rawPoints.append(Int(location.x))
-            rawPoints.append(Int(location.y))
-        }
+        rawPoints.append(Int(location.x))
+        rawPoints.append(Int(location.y))
     }
     
     func touchesEnded() {
@@ -46,7 +39,6 @@ public class GestureRecognizer {
             let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
             return
         }
-        print(customGesture.rawValue)
         gameEngine?.gestureActivated(gesture: customGesture)
     }
 }
@@ -158,7 +150,9 @@ fileprivate class DBPathRecognizer {
     }
     
     fileprivate func costLeven(_ a: [Int], _ b: [Int]) -> Int {
-        
+        if a.count == 0 || b.count == 0 {
+            return Int.max
+        }
         var td = Array2D(cols: a.count + 1, rows: b.count + 1)
         var tw = Array2D(cols: a.count + 1, rows: b.count + 1)
         
