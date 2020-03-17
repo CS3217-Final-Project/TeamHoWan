@@ -22,6 +22,9 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
+    var droppedManaResponder: DroppedManaResponderType? {
+        systemDelegate.droppedManaResponder
+    }
 
     init(scene: SKScene, gameStateMachine: GameStateMachine) {
         self.scene = scene
@@ -100,6 +103,10 @@ class GameEngine {
         }
     }
     
+    func entities(for type: EntityType) -> Set<Entity> {
+        return entities[type] ?? Set()
+    }
+    
     /** Gets all the `MoveComponents` of entities in a particular `Team` */
     func moveComponents(for team: Team) -> [MoveComponent] {
         let entitiesToMove = entities(for: team)
@@ -108,9 +115,11 @@ class GameEngine {
     
     /** Decrements the Player's health by 1 point. */
     func decreasePlayerHealth() {
-        if let playerHealthEntity = playerHealthEntity {
-            let _ = minusHealthPoints(for: playerHealthEntity)
+        guard let playerHealthEntity = playerHealthEntity else {
+            return
         }
+        
+        let _ = minusHealthPoints(for: playerHealthEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
@@ -134,87 +143,16 @@ class GameEngine {
 
         removeDelegate.removeEnemyReachedLine(enemyEntity)
     }
-}
-
-/** Extension for the Game Engine to deal with Mana-related events and logic. */
-extension GameEngine: DroppedManaResponderType {
-    /** Function called whenever a monster is killed and mana can be dropped. */
-    func dropMana(at enemyEntity: GKEntity) {
-        guard shouldDropMana() else {
+    
+    func dropMana(at entity: GKEntity) {
+        systemDelegate.dropMana(at: entity)
+    }
+    
+    func increasePlayerMana(by manaPoints: Int) {
+        guard let playerManaEntity = playerManaEntity else {
             return
         }
-
-        guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
-            return
-        }
-
-        let position = enemySpriteComponent.node.position
-        let manaPoints = getRandomManaPoints()
-        let droppedManaEntity = DroppedManaEntity(position: position, manaPoints: manaPoints,
-                                                  gameEngine: self)
-        add(droppedManaEntity)
-    }
-
-    /**
-     Checks if the Mana should be dropped.
-     This method utilises a uniform distribution to ensure
-     that the Mana is only dropped with probability determined
-     by the value `GameplayConfiguration.Mana.manaDropProbaility`
-     */
-    private func shouldDropMana() -> Bool {
-        let randNum = Double.random(in: 0.0...1.0)
-        if randNum <= GameplayConfiguration.Mana.manaDropProbability {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    /**
-     Obtains a randomised value for the mana points associated with
-     the `DroppedManaEntity` to be created. The upper and lower
-     bounds for the mana points can be set in `GameplayConfiguration`
-     */
-    private func getRandomManaPoints() -> Int {
-        let lowerBound = GameplayConfiguration.Mana.manaMinValue
-        let upperBound = GameplayConfiguration.Mana.manaMaxValue
-        return Int.random(in: lowerBound...upperBound)
-    }
-
-    /**
-     Handler function called whenever the `DroppedManaNode` is tapped
-     as part of conformance to the `DroppedManaResponderType` protocol.
-     - Note: This function removes the Mana from screen, and increments
-     the player's mana points.
-     */
-    func droppedManaTapped(droppedManaNode: DroppedManaNode) {
-        for droppedManaEntity in entities[.droppedManaEntity] ?? Set() {
-            guard let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
-                droppedManaNode === spriteComponent.node,
-                let manaComponent = droppedManaEntity.component(ofType: ManaComponent.self) else {
-                    continue
-            }
-
-            increaseManaPoints(manaPoints: manaComponent.manaPoints)
-            removeDroppedMana(droppedManaEntity: droppedManaEntity)
-        }
-    }
-
-    /** Increases the Player's Mana points. */
-    func increaseManaPoints(manaPoints: Int) {
-        if let playerManaEntity = playerManaEntity,
-            let playerManaComponent = playerManaEntity.component(ofType: ManaComponent.self) {
-            playerManaComponent.manaPoints += manaPoints
-        }
-    }
-
-    /** Decreaes the Player's Mana points. */
-    func decreaseManaPoints(manaPoints: Int) {
-        increaseManaPoints(manaPoints: -manaPoints)
-    }
-
-    /** Removes the dropped mana from View and Model. */
-    func removeDroppedMana(droppedManaEntity: Entity) {
-        remove(droppedManaEntity)
+        
+        systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
     }
 }

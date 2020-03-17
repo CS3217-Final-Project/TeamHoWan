@@ -18,7 +18,11 @@ class DroppedManaEntity: Entity {
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         super.init()
 
-        let node = DroppedManaNode(position: position, responder: gameEngine)
+        guard let manaResponder = gameEngine.droppedManaResponder else {
+            return
+        }
+
+        let node = DroppedManaNode(position: position, responder: manaResponder)
         node.zPosition = 100
 
         // Create and Animate Sprite Component

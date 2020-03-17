@@ -11,14 +11,20 @@ import GameplayKit
 class SystemDelegate {
     private weak var gameEngine: GameEngine?
     private var systems = [ComponentType: System]()
-    private var healthSystem: HealthSystem? {
-        return systems[.healthComponent] as? HealthSystem
+    var healthSystem: HealthSystem? {
+        systems[.healthComponent] as? HealthSystem
+    }
+    var manaSystem: ManaSystem? {
+        systems[.manaComponent] as? ManaSystem
+    }
+    var droppedManaResponder: DroppedManaResponderType? {
+        systems[.manaComponent] as? ManaSystem
     }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         systems[.healthComponent] = HealthSystem()
-        systems[.manaComponent] = ManaSystem()
+        systems[.manaComponent] = ManaSystem(gameEngine: gameEngine)
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
@@ -47,5 +53,13 @@ class SystemDelegate {
 
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         return healthSystem?.minusHealthPoints(for: entity)
+    }
+
+    func increaseMana(by manaPoint: Int, for entity: GKEntity) {
+        manaSystem?.increaseMana(by: manaPoint, for: entity)
+    }
+    
+    func dropMana(at entity: GKEntity) {
+        manaSystem?.dropMana(at: entity)
     }
 }

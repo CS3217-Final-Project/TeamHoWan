@@ -14,13 +14,13 @@ class HealthSystem: GKComponentSystem<HealthComponent>, System {
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        guard let healthComponent = components.filter({ component in component.entity === entity }).first
-            else {
+        guard let entityHealthComponent = entity.component(ofType: HealthComponent.self) else {
             return nil
         }
-        
-        healthComponent.healthPoints -= 1
-        return healthComponent.healthPoints
+
+        entityHealthComponent.healthPoints -= 1
+        entityHealthComponent.healthPoints = max(0, entityHealthComponent.healthPoints)
+        return entityHealthComponent.healthPoints
     }
     
     func removeComponent(_ component: Component) {
