@@ -213,12 +213,22 @@ class GameScene: SKScene {
             let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
+        
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
+        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        
+        guard currentManaPoints >= manaPointsRequired else {
+            return
+        }
+        
+        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
+        
         selectedPowerUp.runAnimation(
             at: touch.location(in: powerUpAnimationLayer),
             with: .init(width: size.width / 3, height: size.width / 3),
             on: powerUpAnimationLayer
         )
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
     }
 }
 
