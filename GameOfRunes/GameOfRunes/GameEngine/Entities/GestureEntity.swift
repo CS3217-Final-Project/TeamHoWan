@@ -9,7 +9,7 @@
 import GameplayKit
 
 class GestureEntity: Entity {
-    unowned let parentEntity: GKEntity
+    weak var parentEntity: GKEntity?
 
     init(gesture: CustomGesture, parent: GKEntity) {
         self.parentEntity = parent
