@@ -6,6 +6,8 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-protocol Component: class {
+import GameplayKit
+
+protocol Component: GKComponent {
     var type: ComponentType { get }
 }
