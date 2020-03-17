@@ -12,7 +12,7 @@ import GameplayKit
 class TeamComponent: GKComponent, Component {
     let team: Team
     var type: ComponentType {
-        return .teamComponent
+        .teamComponent
     }
     
     init(team: Team) {

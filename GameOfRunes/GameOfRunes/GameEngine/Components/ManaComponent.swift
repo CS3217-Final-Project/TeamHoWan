@@ -12,7 +12,7 @@ import GameplayKit
 class ManaComponent: GKComponent, Component {
     var manaPoints: Int
     var type: ComponentType {
-        return .manaComponent
+        .manaComponent
     }
 
     init(manaPoints: Int = 0) {

@@ -12,7 +12,7 @@ import GameplayKit
 class HealthComponent: GKComponent, Component {
     var healthPoints: Int
     var type: ComponentType {
-        return .healthComponent
+        .healthComponent
     }
     
     init(healthPoints: Int) {

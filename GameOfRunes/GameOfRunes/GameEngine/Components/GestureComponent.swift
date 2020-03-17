@@ -12,7 +12,7 @@ import GameplayKit
 class GestureComponent: GKComponent, Component {
     let gesture: CustomGesture
     var type: ComponentType {
-        return .gestureComponent
+        .gestureComponent
     }
 
     init(gesture: CustomGesture) {
