@@ -13,6 +13,6 @@ import SpriteKit
  This should be implemented by the `SKScene` that the tapped node
  is added to.
  */
-protocol TapResponder: AnyObject {
+protocol TapResponder: class {
     func onTapped(tappedNode: SKSpriteNode)
 }

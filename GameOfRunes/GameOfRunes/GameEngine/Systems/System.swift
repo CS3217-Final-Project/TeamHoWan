@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-protocol System {
+protocol System: class {
     func update(deltaTime: TimeInterval)
     func addComponent(foundIn: GKEntity)
     func removeComponent(foundIn: GKEntity)

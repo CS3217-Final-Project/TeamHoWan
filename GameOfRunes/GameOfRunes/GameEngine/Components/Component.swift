@@ -6,6 +6,6 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-protocol Component {
+protocol Component: class {
     var type: ComponentType { get }
 }
