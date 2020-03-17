@@ -9,7 +9,7 @@
 import GameplayKit
 
 class SystemManager {
-    private unowned var gameEngine: GameEngine
+    private unowned let gameEngine: GameEngine
     private var systems = [System]()
     private let manaSystem = ManaSystem()
     private let moveSystem: MoveSystem

@@ -10,12 +10,12 @@ import SpriteKit
 import GameplayKit
 
 class GameEngine {
-    private (set) var systemManager: SystemManager!
-    private (set) var removeDelegate: RemoveDelegate!
-    private (set) var entities = [EntityType : Set<GKEntity>]()
+    private(set) var systemManager: SystemManager!
+    private(set) var removeDelegate: RemoveDelegate!
+    private(set) var entities = [EntityType : Set<GKEntity>]()
     private var toRemoveEntities = Set<GKEntity>()
-    weak var scene: SKScene?
-    weak var gameStateMachine: GameStateMachine?
+    unowned var gameScene: GameScene
+    private weak var gameStateMachine: GameStateMachine?
     var playerHealthEntity: PlayerHealthEntity? {
         entities[.playerHealthEntity]?.first as? PlayerHealthEntity
     }
@@ -24,12 +24,11 @@ class GameEngine {
     }
     private var droppedManaEntities = Set<DroppedManaEntity>()
 
-    init(scene: SKScene, gameStateMachine: GameStateMachine) {
-        self.scene = scene
+    init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
+        self.gameScene = gameScene
+        self.gameStateMachine = gameStateMachine
         self.systemManager = SystemManager(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
-        self.gameStateMachine = gameStateMachine
-        self.gameStateMachine?.gameEngine = self
         
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
@@ -37,7 +36,7 @@ class GameEngine {
     }
     
     func add(_ entity: Entity) {
-        guard entities[entity.getType()]?.insert(entity).inserted == true else {
+        guard entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -45,7 +44,7 @@ class GameEngine {
     }
     
     func remove(_ entity: Entity) {
-        guard entities[entity.getType()]?.remove(entity) != nil else {
+        guard entities[entity.type]?.remove(entity) != nil else {
             return
         }
 
@@ -67,15 +66,15 @@ class GameEngine {
             playerHealthComponent.healthPoints <= 0,
             let gameStateMachine = gameStateMachine,
             let gameEndState = gameStateMachine.state(forClass: GameEndState.self) {
-            gameEndState.didWin = false
-            gameStateMachine.enter(GameEndState.self)
+                gameEndState.didWin = false
+                gameStateMachine.enter(GameEndState.self)
         }
     }
     
     func spawnEnemy() {
         let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = scene?.size {
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
+            let sceneSize = gameScene.size
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
                 y: sceneSize.height - 100
@@ -166,7 +165,7 @@ extension GameEngine: DroppedManaResponderType {
      */
     private func shouldDropMana() -> Bool {
         let randNum = Double.random(in: 0.0...1.0)
-        if randNum <= GameplayConfiguration.Mana.manaDropProbability {
+        if randNum <= GameConfig.Mana.manaDropProbability {
             return true
         } else {
             return false
@@ -179,8 +178,8 @@ extension GameEngine: DroppedManaResponderType {
      bounds for the mana points can be set in `GameplayConfiguration`
      */
     private func getRandomManaPoints() -> Int {
-        let lowerBound = GameplayConfiguration.Mana.manaMinValue
-        let upperBound = GameplayConfiguration.Mana.manaMaxValue
+        let lowerBound = GameConfig.Mana.manaMinValue
+        let upperBound = GameConfig.Mana.manaMaxValue
         return Int.random(in: lowerBound...upperBound)
     }
 

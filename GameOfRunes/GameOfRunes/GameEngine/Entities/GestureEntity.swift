@@ -10,6 +10,9 @@ import GameplayKit
 
 class GestureEntity: Entity {
     unowned let parentEntity: GKEntity
+    override var type: EntityType {
+        .gestureEntity
+    }
 
     init(gesture: CustomGesture, parent: GKEntity) {
         self.parentEntity = parent
@@ -26,9 +29,5 @@ class GestureEntity: Entity {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .gestureEntity
     }
 }

@@ -17,10 +17,13 @@ import GameplayKit
 class DroppedManaEntity: Entity {
     private let spriteComponent: SpriteComponent
     let manaPoints: Int
+    override var type: EntityType {
+        .droppedManaEntity
+    }
     
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         let node = DroppedManaNode(position: position, responder: gameEngine)
-        node.zPosition = 51
+        node.zPosition = GameConfig.GamePlayScene.manaDropLayerZPosition
         self.manaPoints = manaPoints
 
         // Create and Animate Sprite Component
@@ -29,7 +32,7 @@ class DroppedManaEntity: Entity {
             .repeatForever(
                 .animate(
                     with: TextureContainer.getManaAnimationTextures(),
-                    timePerFrame: 0.1,
+                    timePerFrame: 0.05,
                     resize: false,
                     restore: true
                 )
@@ -42,9 +45,5 @@ class DroppedManaEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func getType() -> EntityType {
-        return .droppedManaEntity
     }
 }

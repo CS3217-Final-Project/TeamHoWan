@@ -14,7 +14,7 @@ import SpriteKit
  loaded once, and leverage the `SKTextureAtlas` for further memory
  optimisations).
  */
-class TextureContainer {
+enum TextureContainer {
     private static var enemiesTextures = [EnemyType: [SKTexture]]()
     private static var enemyRemovalTextures = [SKTexture]()
     private static var manaTextures = [SKTexture]()

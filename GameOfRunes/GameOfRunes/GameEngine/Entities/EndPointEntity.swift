@@ -10,10 +10,14 @@ import SpriteKit
 import GameplayKit
 
 class EndPointEntity: Entity {
-    init(gameEngine: GameEngine) {
+    override var type: EntityType {
+        .endPointEntity
+    }
+    
+    init(node: SKSpriteNode) {
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line"))
+        let spriteComponent = SpriteComponent(node: node)
         spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
@@ -30,9 +34,5 @@ class EndPointEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .endPointEntity
     }
 }

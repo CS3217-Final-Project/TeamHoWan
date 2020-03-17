@@ -13,6 +13,9 @@ class EnemyEntity: Entity {
     private unowned var gameEngine: GameEngine
     private let enemyType: EnemyType
     private (set) var gestureEntity: GestureEntity?
+    override var type: EntityType {
+        .enemyEntity
+    }
 
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -50,10 +53,6 @@ class EnemyEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func getType() -> EntityType {
-        return .enemyEntity
     }
 
     func setCurrentGesture() {
@@ -96,7 +95,7 @@ class EnemyEntity: Entity {
         removeComponent(ofType: MoveComponent.self)
 
         let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
-                                                timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
+                                                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
                                                 resize: true,
                                                 restore: false)
         if let spriteComponent = component(ofType: SpriteComponent.self) {

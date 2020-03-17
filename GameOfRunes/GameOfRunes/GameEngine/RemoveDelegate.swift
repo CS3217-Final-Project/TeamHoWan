@@ -9,7 +9,7 @@
 import GameplayKit
 
 class RemoveDelegate {
-    private unowned var gameEngine: GameEngine
+    private unowned let gameEngine: GameEngine
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
