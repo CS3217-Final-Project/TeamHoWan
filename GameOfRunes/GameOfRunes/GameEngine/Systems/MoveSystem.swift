@@ -9,7 +9,7 @@
 import GameplayKit
 
 class MoveSystem: GKComponentSystem<MoveComponent>, System {
-    private unowned let gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -31,11 +31,10 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         guard let entity = component.entity,
             let teamComponent = entity.component(ofType: TeamComponent.self),
             let enemyMoveComponent = closestMoveComponent(from: component,
-                                                          for: teamComponent.team.oppositeTeam) else {
+                                                          for: teamComponent.team.oppositeTeam),
+            let alliedMoveComponents = gameEngine?.moveComponents(for: teamComponent.team) else {
                 return
         }
-
-        let alliedMoveComponents = gameEngine.moveComponents(for: teamComponent.team)
         
         // Update Entity Movement Behaviour
         component.behavior = MoveBehavior(targetSpeed: component.maxSpeed, seek: enemyMoveComponent,
@@ -46,7 +45,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
         
-        gameEngine.moveComponents(for: team).forEach {
+        gameEngine?.moveComponents(for: team).forEach {
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
                 closestMoveComponent = $0
@@ -58,12 +57,12 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     }
     
     private func checkEnemyEndPointCollision() {
-        guard let endpointComponent = gameEngine.entities(for: .player).first as? EndPointEntity,
+        guard let endpointComponent = gameEngine?.entities(for: .player).first as? EndPointEntity,
             let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
             return
         }
         
-        for enemyEntity in gameEngine.entities(for: .enemy) {
+        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
             guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
                 continue
             }
@@ -73,7 +72,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
                 .node
                 .calculateAccumulatedFrame()
                 .intersects(endpointNode.calculateAccumulatedFrame()) ?? false {
-                gameEngine.enemyReachedLine(enemyEntity)
+                gameEngine?.enemyReachedLine(enemyEntity)
             }
         }
     }

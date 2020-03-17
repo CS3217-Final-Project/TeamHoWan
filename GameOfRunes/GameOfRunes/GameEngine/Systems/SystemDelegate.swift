@@ -9,7 +9,7 @@
 import GameplayKit
 
 class SystemDelegate {
-    private unowned var gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     private var systems = [ComponentType: System]()
     private var healthSystem: HealthSystem? {
         return systems[.healthComponent] as? HealthSystem

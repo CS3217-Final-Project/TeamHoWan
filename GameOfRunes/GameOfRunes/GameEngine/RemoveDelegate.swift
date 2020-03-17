@@ -9,7 +9,7 @@
 import GameplayKit
 
 class RemoveDelegate {
-    private unowned var gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -21,34 +21,34 @@ class RemoveDelegate {
             return
         }
 
-        guard let enemyHealth = gameEngine.minusHealthPoints(for: enemyEntity) else {
+        guard let enemyHealth = gameEngine?.minusHealthPoints(for: enemyEntity) else {
             return
         }
 
-        gameEngine.remove(gestureEntity)
+        gameEngine?.remove(gestureEntity)
         
         if enemyHealth <= 0 {
             let _ = enemyEntity.removeGesture()
             enemyEntity.removeFromGame()
-            gameEngine.dropMana(at: enemyEntity)
+            gameEngine?.dropMana(at: enemyEntity)
             return
         }
         
         enemyEntity.setCurrentGesture()
         
         if let nextGesture = enemyEntity.gestureEntity {
-            gameEngine.add(nextGesture)
+            gameEngine?.add(nextGesture)
         }
     }
     
     func removeEnemyReachedLine(_ entity: EnemyEntity) {
         entity.removeFromGame()
-        gameEngine.decreasePlayerHealth()
+        gameEngine?.decreasePlayerHealth()
 
         guard let gestureEntity = entity.gestureEntity else {
             return
         }
 
-        gameEngine.remove(gestureEntity)
+        gameEngine?.remove(gestureEntity)
     }
 }

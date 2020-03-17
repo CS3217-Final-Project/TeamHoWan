@@ -9,7 +9,7 @@
 import GameplayKit
 
 class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
-    private unowned let gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -23,7 +23,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             return
         }
 
-        gameEngine.scene?.addChild(node)
+        gameEngine?.scene?.addChild(node)
     }
     
     override func removeComponent(foundIn entity: GKEntity) {

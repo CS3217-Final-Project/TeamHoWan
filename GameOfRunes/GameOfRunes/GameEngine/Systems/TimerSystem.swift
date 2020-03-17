@@ -9,7 +9,7 @@
 import GameplayKit
 
 class TimerSystem: GKComponentSystem<TimerComponent>, System {
-    private unowned let gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -34,7 +34,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             // TODO: Check if is 0, then propagate call to game state machine for lose state.
         } else {
             component.currentTime += 1
-//            gameEngine.spawnEnemy()
+//            gameEngine?.spawnEnemy()
         }
     }
     

@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class EnemyEntity: Entity {
-    private unowned var gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     private let enemyType: EnemyType
     private (set) var gestureEntity: GestureEntity?
 
@@ -103,7 +103,7 @@ class EnemyEntity: Entity {
         if let spriteComponent = component(ofType: SpriteComponent.self) {
             spriteComponent.node.run(removalAnimation) {
                 [unowned self] in
-                self.gameEngine.remove(self)
+                self.gameEngine?.remove(self)
             }
         }
     }
