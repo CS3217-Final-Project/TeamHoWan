@@ -50,14 +50,16 @@ enum GameConfig {
         static let backgroundLayerZPosition: CGFloat = -100
         static let enemyLayerZPosition: CGFloat = 0
         static let powerUpAnimationLayerZPosition: CGFloat = 100
-        static let playerAreaLayerZPosition: CGFloat = 200
-        static let manaDropLayerZPosition: CGFloat = 300
-        static let gestureLayerZPosition: CGFloat = 400
+        static let gestureLayerZPosition: CGFloat = 200
+        static let playerAreaLayerZPosition: CGFloat = 300
+        static let manaDropLayerZPosition: CGFloat = 400
         static let highestPriorityLayerZPosition: CGFloat = 1000
         
         // size ratios
         static let playerAreaHeightRatio: CGFloat = 1 / 5
         static let endPointHeightRatio: CGFloat = 1 / 40
-        
+        static var gestureAreaHeightRatio: CGFloat {
+            1 - playerAreaHeightRatio
+        }
     }
 }

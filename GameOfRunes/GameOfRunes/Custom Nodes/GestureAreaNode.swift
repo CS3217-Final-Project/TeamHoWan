@@ -15,11 +15,9 @@ class GestureAreaNode: SKSpriteNode {
     private var recogniser: GestureRecognizer
     
     init(size: CGSize, gameEngine: GameEngine) {
-        self.recogniser = GestureRecognizer(gameEngine: gameEngine)
+        recogniser = GestureRecognizer(gameEngine: gameEngine)
         super.init(texture: .none, color: .clear, size: size)
         
-        position = .init(x: size.width / 2, y: size.height / 2)
-        zPosition = 50
         isUserInteractionEnabled = true
         createSlices()
     }
@@ -95,12 +93,12 @@ class GestureAreaNode: SKSpriteNode {
     
     fileprivate func createSlices() {
         activeSliceBG = SKShapeNode()
-        activeSliceBG.zPosition = 101
+        activeSliceBG.zPosition = 1
         activeSliceBG.strokeColor = UIColor(red: 93/255.0, green: 188/255.0, blue: 210/255.0, alpha: 0.9)
         activeSliceBG.lineWidth = 10
         
         activeSliceFG = SKShapeNode()
-        activeSliceFG.zPosition = 102
+        activeSliceFG.zPosition = 2
         activeSliceFG.strokeColor = .white
         activeSliceFG.lineWidth = 7
         

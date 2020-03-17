@@ -28,10 +28,19 @@ class PowerUpContainerNode: SKSpriteNode {
                 return
             }
             
-            powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
+            if let gameScene = gameScene {
+                if selectedPowerUp == nil {
+                    gameScene.gestureLayer.addChild(gameScene.gestureAreaNode)
+                } else {
+                    gameScene.gestureAreaNode.removeFromParent()
+                }
+            }
             
+            powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
         }
     }
+    
+    weak var gameScene: GameScene?
     
     init(powerUpTypes: [PowerUpType]) {
         super.init(texture: nil, color: .clear, size: .zero)

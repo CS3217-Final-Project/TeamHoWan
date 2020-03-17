@@ -19,11 +19,12 @@ class GameScene: SKScene {
     private(set) var backgroundLayer: SKNode!
     private(set) var enemyLayer: SKNode!
     private(set) var powerUpAnimationLayer: SKNode!
+    private(set) var gestureLayer: SKNode!
     private(set) var playerAreaLayer: SKNode!
     private(set) var manaDropLayer: SKNode!
-    private(set) var gestureLayer: SKNode!
     private(set) var highestPriorityLayer: SKNode!
-    var playerAreaNode: PlayerAreaNode!
+    private(set) var playerAreaNode: PlayerAreaNode!
+    private(set) var gestureAreaNode: GestureAreaNode!
     var bgmNode: SKAudioNode!
     
     init(size: CGSize, gameStateMachine: GameStateMachine) {
@@ -98,8 +99,12 @@ class GameScene: SKScene {
         addChild(enemyLayer)
         
         powerUpAnimationLayer = .init()
-        powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
+        powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.powerUpAnimationLayerZPosition
         addChild(powerUpAnimationLayer)
+        
+        gestureLayer = .init()
+        gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
+        addChild(gestureLayer)
         
         playerAreaLayer = .init()
         playerAreaLayer.zPosition = GameConfig.GamePlayScene.playerAreaLayerZPosition
@@ -108,10 +113,6 @@ class GameScene: SKScene {
         manaDropLayer = .init()
         manaDropLayer.zPosition = GameConfig.GamePlayScene.manaDropLayerZPosition
         addChild(manaDropLayer)
-        
-        gestureLayer = .init()
-        gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
-        addChild(gestureLayer)
         
         highestPriorityLayer = .init()
         highestPriorityLayer.zPosition = GameConfig.GamePlayScene.highestPriorityLayerZPosition
@@ -135,12 +136,17 @@ class GameScene: SKScene {
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
+        playerAreaNode.powerUpContainerNode.gameScene = self
         playerAreaLayer.addChild(playerAreaNode)
     }
     
     private func setUpGestureArea() {
-        let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
-        addChild(gestureAreaNode)
+        gestureAreaNode = .init(
+            size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
+            gameEngine: gameEngine
+        )
+        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) + .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
+        gestureLayer.addChild(gestureAreaNode)
     }
     
     private func setUpPauseButton() {
@@ -171,7 +177,7 @@ class GameScene: SKScene {
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
         // TODO: after a layer parameter have been added to sprite component
-        endPointNode.zPosition = 199
+        endPointNode.zPosition = 399
         
         let endPointEntity = EndPointEntity(node: endPointNode)
         gameEngine.add(endPointEntity)
@@ -207,9 +213,9 @@ class GameScene: SKScene {
             return
         }
         playerAreaNode.powerUpContainerNode.selectedPowerUp?.runAnimation(
-            at: touch.location(in: self),
+            at: touch.location(in: powerUpAnimationLayer),
             with: .init(width: size.width / 3, height: size.width / 3),
-            on: self
+            on: powerUpAnimationLayer
         )
     }
 }

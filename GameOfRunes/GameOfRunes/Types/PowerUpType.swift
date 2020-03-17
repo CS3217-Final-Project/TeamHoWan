@@ -43,7 +43,7 @@ enum PowerUpType: String, CaseIterable {
         powerUpsTextures[darkVortex] = (670000...670019).map { darkVortexAtlas.textureNamed("\($0)") }
     }
     
-    func runAnimation(at position: CGPoint, with size: CGSize, on scene: SKScene) {
+    func runAnimation(at position: CGPoint, with size: CGSize, on node: SKNode) {
         let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size)
         animationNode.position = position
         var powerUpCastAnimation: SKAction?
@@ -72,6 +72,6 @@ enum PowerUpType: String, CaseIterable {
         let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
         
         animationNode.run(SKAction.group([animationAction, soundAction]))
-        scene.addChild(animationNode)
+        node.addChild(animationNode)
     }
 }
