@@ -12,6 +12,11 @@ import GameplayKit
 class SpriteComponent: GKComponent {
     let node: SKSpriteNode
     
+    init(node: SKSpriteNode) {
+        self.node = node
+        super.init()
+    }
+    
     init(texture: SKTexture?) {
         node = SKSpriteNode(texture: texture, size: texture?.size() ?? .zero)
         super.init()

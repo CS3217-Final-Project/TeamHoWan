@@ -125,7 +125,6 @@ class GameScene: SKScene {
             size: size
         )
         backgroundNode.position = .init(x: frame.midX, y: frame.midY)
-        backgroundNode.name = "background"
         backgroundLayer.addChild(backgroundNode)
     }
     
@@ -136,7 +135,6 @@ class GameScene: SKScene {
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
-        playerAreaNode.name = "player area"
         playerAreaLayer.addChild(playerAreaNode)
     }
     
@@ -146,6 +144,7 @@ class GameScene: SKScene {
     }
     
     private func setUpPauseButton() {
+        // re-position and resize
         let buttonMargin = GameConfig.GamePlayScene.buttonMargin
         let buttonSize = CGSize(
             width: size.width * GameConfig.GamePlayScene.buttonWidthRatio,
@@ -159,27 +158,28 @@ class GameScene: SKScene {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
+        
         highestPriorityLayer.addChild(pauseButton)
     }
     
     private func setUpEndPoint() {
-        let endPointEntity = EndPointEntity(gameEngine: gameEngine)
+        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+        // re-position and resize
+        let newEndPointWidth = size.width
+        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+        endPointNode.position = playerAreaNode.position
+            + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
+        // TODO: after a layer parameter have been added to sprite component
+        endPointNode.zPosition = 199
         
-        if let spriteComponent = endPointEntity.component(ofType: SpriteComponent.self) {
-            let newSpriteWidth = size.width
-            let newSpriteHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-            spriteComponent.node.size = .init(width: newSpriteWidth, height: newSpriteHeight)
-            spriteComponent.node.position = playerAreaNode.position
-                + .init(dx: 0.0, dy: (playerAreaNode.size.height + newSpriteHeight) / 2)
-            spriteComponent.node.zPosition = 100
-        }
-        
+        let endPointEntity = EndPointEntity(node: endPointNode)
         gameEngine.add(endPointEntity)
     }
     
     private func setUpPlayerHealth() {
         let healthBarNode = playerAreaNode.healthBarNode
-        // num can be replaced with meta-data
+        // arbitrary num, can be replaced with meta-data
         healthBarNode.totalLives = 5
         let playerHealthEntity = PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
@@ -187,22 +187,11 @@ class GameScene: SKScene {
     
     private func setUpPlayerMana() {
         let manaBarNode = playerAreaNode.manaBarNode
-        // num can be replaced with meta-data
+        // arbitrary num, can be replaced with meta-data
         manaBarNode.numManaUnits = 8
         manaBarNode.manaPointsPerUnit = 10
         let playerManaEntity = PlayerManaEntity(manaPoints: 0, manaBarNode: manaBarNode)
         gameEngine.add(playerManaEntity)
-        
-        /*
-        manaLabel.fontSize = 50
-        manaLabel.fontColor = SKColor.white
-        manaLabel.position = CGPoint(x: size.width / 2, y: 50)
-        manaLabel.zPosition = 300
-        manaLabel.horizontalAlignmentMode = .center
-        manaLabel.verticalAlignmentMode = .center
-        manaLabel.text = "0"
-        addChild(manaLabel)
-        */
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -211,18 +200,6 @@ class GameScene: SKScene {
         lastUpdateTime = currentTime
 
         gameEngine.update(with: deltaTime)
-/*
-        if let playerHealthComponent =
-            gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
-            playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
-        }
-        
-        if let playerManaComponent =
-            gameEngine.playerManaEntity?.component(ofType: ManaComponent.self) {
-            manaLabel.text = "\(playerManaComponent.manaPoints)"
-            playerAreaNode.manaBarNode.currentManaPoints = playerManaComponent.manaPoints
-        }
- */
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

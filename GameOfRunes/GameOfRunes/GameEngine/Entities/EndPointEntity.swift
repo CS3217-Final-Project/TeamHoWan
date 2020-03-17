@@ -14,10 +14,10 @@ class EndPointEntity: Entity {
         .endPointEntity
     }
     
-    init(gameEngine: GameEngine) {
+    init(node: SKSpriteNode) {
         super.init()
         
-        let spriteComponent = SpriteComponent(texture: .init(imageNamed: "finish-line"))
+        let spriteComponent = SpriteComponent(node: node)
         spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
