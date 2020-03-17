@@ -13,9 +13,9 @@ import SpriteKit
  To be added to `SKScene` or it subclasses.
  */
 class ButtonNode : SKSpriteNode {
-    private var responder: ButtonNodeResponderType {
-        guard let responder = scene as? ButtonNodeResponderType else {
-            fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
+    private var responder: TapResponder {
+        guard let responder = scene as? TapResponder else {
+            fatalError("This node can only be used within a `TapResponder` scene.")
         }
         return responder
     }
@@ -54,7 +54,7 @@ class ButtonNode : SKSpriteNode {
     /** Forwards the button press event to the responder. */
     func buttonPressed() {
         if isUserInteractionEnabled {
-            responder.buttonPressed(button: self)
+            responder.onTapped(tappedNode: self)
         }
     }
 

@@ -14,8 +14,9 @@ class GameEngine {
     private var removeDelegate: RemoveDelegate!
     private var entities = [EntityType : Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
-    weak var scene: SKScene?
+    unowned var gameScene: GameScene
     weak var gameStateMachine: GameStateMachine?
+
     var playerHealthEntity: PlayerHealthEntity? {
         entities[.playerHealthEntity]?.first as? PlayerHealthEntity
     }
@@ -26,12 +27,11 @@ class GameEngine {
         systemDelegate.droppedManaResponder
     }
 
-    init(scene: SKScene, gameStateMachine: GameStateMachine) {
-        self.scene = scene
+    init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
+        self.gameScene = gameScene
+        self.gameStateMachine = gameStateMachine
         self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
-        self.gameStateMachine = gameStateMachine
-        self.gameStateMachine?.gameEngine = self
         
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
@@ -39,7 +39,7 @@ class GameEngine {
     }
     
     func add(_ entity: Entity) {
-        guard entities[entity.getType()]?.insert(entity).inserted == true else {
+        guard entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -47,7 +47,7 @@ class GameEngine {
     }
     
     func remove(_ entity: Entity) {
-        guard entities[entity.getType()]?.remove(entity) != nil else {
+        guard entities[entity.type]?.remove(entity) != nil else {
             return
         }
 
@@ -79,8 +79,8 @@ class GameEngine {
     
     func spawnEnemy() {
         let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = scene?.size {
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
+            let sceneSize = gameScene.size
             spriteComponent.node.position = .init(
                 x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
                 y: sceneSize.height - 100

@@ -10,13 +10,31 @@ import SpriteKit
 import GameplayKit
 
 class ManaComponent: GKComponent, Component {
-    var manaPoints: Int
+    private weak var manaBarNode: ManaBarNode?
+    private var _manaPoints: Int
+    // if manaBarNode exists, use values from there, else use from _manaPoints
+    var manaPoints: Int {
+        get {
+            manaBarNode?.currentManaPoints ?? _manaPoints
+        }
+        set {
+            if let manaBarNode = manaBarNode {
+                manaBarNode.currentManaPoints = newValue
+                _manaPoints = manaBarNode.currentManaPoints
+            }
+            else {
+                _manaPoints = max(0, newValue)
+            }
+        }
+    }
     var type: ComponentType {
         .manaComponent
     }
 
-    init(manaPoints: Int = 0) {
-        self.manaPoints = manaPoints
+    init(manaPoints: Int, manaBarNode: ManaBarNode? = nil) {
+        _manaPoints = max(0, manaPoints)
+        manaBarNode?.currentManaPoints = manaPoints
+        self.manaBarNode = manaBarNode
         super.init()
     }
     

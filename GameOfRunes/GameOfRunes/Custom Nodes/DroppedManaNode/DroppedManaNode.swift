@@ -20,8 +20,8 @@ class DroppedManaNode: SKSpriteNode {
         self.responder = responder
         super.init(texture: SKTexture(imageNamed: "mana"),
                    color: .darkGray,
-                   size: CGSize(width: GameplayConfiguration.Mana.manaWidth,
-                                height: GameplayConfiguration.Mana.manaHeight))
+                   size: CGSize(width: GameConfig.Mana.manaWidth,
+                                height: GameConfig.Mana.manaHeight))
         self.position = position
         isUserInteractionEnabled = true
     }

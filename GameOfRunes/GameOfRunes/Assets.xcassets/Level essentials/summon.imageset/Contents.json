@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "runeGrey_slabOutline_002.png",
+      "filename" : "summon@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "summon@2x.png",
       "scale" : "2x"
     },
     {

@@ -67,7 +67,7 @@ class RemoveDelegate {
         }
 
         let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
-                                                timePerFrame: GameplayConfiguration.Enemy.removalAnimationTimePerFrame,
+                                                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
                                                 resize: true,
                                                 restore: false)
 
