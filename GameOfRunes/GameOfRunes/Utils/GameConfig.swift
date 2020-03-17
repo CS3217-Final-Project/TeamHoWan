@@ -1,5 +1,5 @@
 //
-//  GameplayConfiguration.swift
+//  GameConfig.swift
 //  GameOfRunes
 //
 //  Created by Andy on 10/3/20.
@@ -10,7 +10,7 @@ import UIKit
 
 /** Stores all major game settings. */
 // All ratios are relative to the screen width
-enum GameplayConfiguration {
+enum GameConfig {
     static let fontName = "DragonFire"
     
     enum Enemy {
@@ -45,6 +45,9 @@ enum GameplayConfiguration {
         static let buttonWidthRatio: CGFloat = 1 / 10
         static let buttonHeightRatio: CGFloat = 1 / 10
         static let buttonMargin: CGFloat = 10
+        
+        // zPositions
+        static let backgroundZPosition: CGFloat = -100
         static let pauseButtonZPosition: CGFloat = 1000
     }
 }

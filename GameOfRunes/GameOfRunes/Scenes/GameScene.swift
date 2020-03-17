@@ -18,8 +18,6 @@ class GameScene: SKScene {
     var backgroundNode: SKSpriteNode!
     var playerAreaNode: PlayerAreaNode!
     var bgmNode: SKAudioNode?
-    
-    let worldNode = SKNode()
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
@@ -28,7 +26,7 @@ class GameScene: SKScene {
     }
 
     deinit {
-        unregisterForPauseNotifications()
+        unregisterNotifications()
         print("deinit game scene")
     }
         
@@ -50,16 +48,9 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         bgmNode?.removeFromParent()
-        worldNode.removeFromParent()
         let newBgmNode = SKAudioNode(fileNamed: "Lion King Eldigan")
         bgmNode = newBgmNode
         addChild(newBgmNode)
-        worldNode.name = "world"
-        addChild(worldNode)
-    }
-    
-    func addNode(_ node: SKNode) {
-        worldNode.addChild(node)
     }
     
     private func setUpArenaLayout() {
@@ -71,10 +62,10 @@ class GameScene: SKScene {
         )
         backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
         backgroundNode.zPosition = -100
-        addNode(backgroundNode)
+        addChild(backgroundNode)
 
         let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
-        addNode(gestureAreaNode)
+        addChild(gestureAreaNode)
 
         // Add player area
         let playerAreaWidth = size.width
@@ -84,7 +75,7 @@ class GameScene: SKScene {
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
         playerAreaNode.zPosition = 200
-        addNode(playerAreaNode)
+        addChild(playerAreaNode)
     }
     
     private func setUpEndPoint() {
@@ -122,7 +113,7 @@ class GameScene: SKScene {
         manaLabel.horizontalAlignmentMode = .center
         manaLabel.verticalAlignmentMode = .center
         manaLabel.text = "0"
-        addNode(manaLabel)
+        addChild(manaLabel)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -161,10 +152,10 @@ class GameScene: SKScene {
  */
 extension GameScene: TapResponder {
     private func setUpPauseButton() {
-        let buttonMargin = GameplayConfiguration.GamePlayScene.buttonMargin
+        let buttonMargin = GameConfig.GamePlayScene.buttonMargin
         let buttonSize = CGSize(
-            width: size.width * GameplayConfiguration.GamePlayScene.buttonWidthRatio,
-            height: size.width * GameplayConfiguration.GamePlayScene.buttonHeightRatio
+            width: size.width * GameConfig.GamePlayScene.buttonWidthRatio,
+            height: size.width * GameConfig.GamePlayScene.buttonHeightRatio
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
@@ -174,8 +165,8 @@ extension GameScene: TapResponder {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
-        pauseButton.zPosition = GameplayConfiguration.GamePlayScene.pauseButtonZPosition
-        addNode(pauseButton)
+        pauseButton.zPosition = GameConfig.GamePlayScene.pauseButtonZPosition
+        addChild(pauseButton)
     }
 
     func onTapped(tappedNode: SKSpriteNode) {
@@ -192,20 +183,21 @@ extension GameScene: TapResponder {
 
 /** Pause Game when the application becomes inactive */
 extension GameScene {
-    func registerForPauseNotifications() {
+    private func registerForPauseNotifications() {
         let pauseNotificationName = UIApplication.willResignActiveNotification
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(GameScene.pauseGame),
-                                               name: pauseNotificationName,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(pauseGame),
+            name: pauseNotificationName,
+            object: nil
+        )
     }
 
-    @objc func pauseGame() {
+    @objc private func pauseGame() {
         gameStateMachine.enter(GamePauseState.self)
     }
 
-    func unregisterForPauseNotifications() {
-        let pauseNotificationName = UIApplication.willResignActiveNotification
-        NotificationCenter.default.removeObserver(self, name: pauseNotificationName, object: nil)
+    private func unregisterNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
 }

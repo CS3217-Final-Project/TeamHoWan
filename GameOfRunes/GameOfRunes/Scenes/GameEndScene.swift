@@ -26,16 +26,16 @@ class GameEndScene: SKScene, TapResponder {
         
         let center = CGPoint(x: frame.midX, y: frame.midY)
         let restartButton = ButtonNode(
-            size: .init(width: size.width * GameplayConfiguration.GameEndScene.buttonWidthRatio,
-                        height: size.width * GameplayConfiguration.GameEndScene.buttonHeightRatio),
+            size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
+                        height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
             position: center,
             texture: .init(imageNamed: ButtonType.restartButton.rawValue),
             name: ButtonType.restartButton.rawValue
         )
         addChild(restartButton)
         
-        statusLabel.fontName = GameplayConfiguration.fontName
-        statusLabel.fontSize = size.width * GameplayConfiguration.GameEndScene.fontSizeRatio
+        statusLabel.fontName = GameConfig.fontName
+        statusLabel.fontSize = size.width * GameConfig.GameEndScene.fontSizeRatio
         statusLabel.fontColor = .white
         statusLabel.position = center + .init(dx: 0.0, dy: restartButton.size.height / 1.5)
         addChild(statusLabel)

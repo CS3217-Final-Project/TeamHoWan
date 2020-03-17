@@ -50,14 +50,14 @@ class SceneManager {
         switch sceneIdentifier {
         case .play:
             scene = self.gamePlayScene
-            transition = .doorsOpenHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
+            transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .pause:
             scene = self.gamePauseScene
-            transition = .doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
+            transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .end(let didWin):
             self.gameEndScene.didWin = didWin
             scene = self.gameEndScene
-            transition = .doorsCloseHorizontal(withDuration: GameplayConfiguration.SceneManager.sceneTransitionDuration)
+            transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
         
         presentingView.presentScene(scene, transition: transition)

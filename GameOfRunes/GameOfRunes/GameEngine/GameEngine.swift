@@ -166,7 +166,7 @@ extension GameEngine: DroppedManaResponderType {
      */
     private func shouldDropMana() -> Bool {
         let randNum = Double.random(in: 0.0...1.0)
-        if randNum <= GameplayConfiguration.Mana.manaDropProbability {
+        if randNum <= GameConfig.Mana.manaDropProbability {
             return true
         } else {
             return false
@@ -179,8 +179,8 @@ extension GameEngine: DroppedManaResponderType {
      bounds for the mana points can be set in `GameplayConfiguration`
      */
     private func getRandomManaPoints() -> Int {
-        let lowerBound = GameplayConfiguration.Mana.manaMinValue
-        let upperBound = GameplayConfiguration.Mana.manaMaxValue
+        let lowerBound = GameConfig.Mana.manaMinValue
+        let upperBound = GameConfig.Mana.manaMaxValue
         return Int.random(in: lowerBound...upperBound)
     }
 

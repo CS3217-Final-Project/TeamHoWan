@@ -1,5 +1,5 @@
 //
-//  GameInPlay.swift
+//  GameInPlayState.swift
 //  GameOfRunes
 //
 //  Created by Brian Yen on 11/3/20.
@@ -19,16 +19,13 @@ class GameInPlayState: GKState {
             return false
         }
     }
-
+    
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return
-        }
-
-        guard let sceneManager = gameStateMachine.sceneManager else {
-            fatalError("No SceneManager associated with GameStateMachine")
+        guard let gameStateMachine = stateMachine as? GameStateMachine,
+            let sceneManager = gameStateMachine.sceneManager else {
+                fatalError("No SceneManager associated with GameStateMachine")
         }
         
         sceneManager.transitionToScene(sceneIdentifier: .play)
