@@ -78,4 +78,12 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
             }
         }
     }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? MoveComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
 }

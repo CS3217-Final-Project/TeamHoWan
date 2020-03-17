@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GestureComponent: GKComponent {
+class GestureComponent: GKComponent, Component {
     let gesture: CustomGesture
 
     init(gesture: CustomGesture) {
@@ -20,5 +20,9 @@ class GestureComponent: GKComponent {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getType() -> ComponentType {
+        return .gestureComponent
     }
 }

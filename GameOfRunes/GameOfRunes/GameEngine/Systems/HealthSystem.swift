@@ -22,4 +22,12 @@ class HealthSystem: GKComponentSystem<HealthComponent>, System {
         healthComponent.healthPoints -= 1
         return healthComponent.healthPoints
     }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? HealthComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
 }

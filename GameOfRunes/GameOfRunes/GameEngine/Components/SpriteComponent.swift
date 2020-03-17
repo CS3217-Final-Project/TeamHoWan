@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class SpriteComponent: GKComponent {
+class SpriteComponent: GKComponent, Component {
     let node: SKSpriteNode
     
     init(texture: SKTexture?) {
@@ -41,5 +41,9 @@ class SpriteComponent: GKComponent {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getType() -> ComponentType {
+        return .spriteComponent
     }
 }

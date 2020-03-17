@@ -10,39 +10,42 @@ import GameplayKit
 
 class SystemManager {
     private unowned var gameEngine: GameEngine
-    private var systems = [System]()
-    private let manaSystem = ManaSystem()
-    private let moveSystem: MoveSystem
-    private let healthSystem = HealthSystem()
-    private let spriteSystem: SpriteSystem
-    private let timerSystem: TimerSystem
+    private var systems = [ComponentType: System]()
+    private var healthSystem: HealthSystem? {
+        return systems[.healthComponent] as? HealthSystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-        moveSystem = MoveSystem(gameEngine: gameEngine)
-        spriteSystem = SpriteSystem(gameEngine: gameEngine)
-        timerSystem = TimerSystem(gameEngine: gameEngine)
-        systems.append(contentsOf: [manaSystem, moveSystem, healthSystem, spriteSystem, timerSystem])
+        systems[.healthComponent] = HealthSystem()
+        systems[.manaComponent] = ManaSystem()
+        systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
+        systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
+        systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
-        moveSystem.update(deltaTime: deltatime)
-        timerSystem.update(deltaTime: deltatime)
+        systems[.moveComponent]?.update(deltaTime: deltatime)
+        systems[.timerComponent]?.update(deltaTime: deltatime)
     }
     
     func addComponents(foundIn entity: GKEntity) {
-        systems.forEach { system in
+        systems.values.forEach { system in
             system.addComponent(foundIn: entity)
         }
     }
     
     func removeComponents(foundIn entity: GKEntity) {
-        systems.forEach { system in
+        systems.values.forEach { system in
             system.removeComponent(foundIn: entity)
         }
     }
+    
+    func remove(_ component: Component) {
+        systems[component.getType()]?.removeComponent(component)
+    }
 
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        return healthSystem.minusHealthPoints(for: entity)
+        return healthSystem?.minusHealthPoints(for: entity)
     }
 }

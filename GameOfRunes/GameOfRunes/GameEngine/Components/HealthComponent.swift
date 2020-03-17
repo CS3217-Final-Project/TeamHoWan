@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class HealthComponent: GKComponent {
+class HealthComponent: GKComponent, Component {
     var healthPoints: Int
     
     init(healthPoints: Int) {
@@ -20,5 +20,9 @@ class HealthComponent: GKComponent {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getType() -> ComponentType {
+        return .healthComponent
     }
 }

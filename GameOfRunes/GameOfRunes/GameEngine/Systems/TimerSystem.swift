@@ -37,4 +37,12 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
 //            gameEngine.spawnEnemy()
         }
     }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? TimerComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
 }

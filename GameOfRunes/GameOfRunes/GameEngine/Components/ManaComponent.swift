@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class ManaComponent: GKComponent {
+class ManaComponent: GKComponent, Component {
     var manaPoints: Int
 
     init(manaPoints: Int = 0) {
@@ -20,5 +20,9 @@ class ManaComponent: GKComponent {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getType() -> ComponentType {
+        return .manaComponent
     }
 }

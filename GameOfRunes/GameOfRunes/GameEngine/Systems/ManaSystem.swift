@@ -13,4 +13,12 @@ class ManaSystem: GKComponentSystem<ManaComponent>, System {
     override init() {
         super.init(componentClass: ManaComponent.self)
     }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? ManaComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
 }

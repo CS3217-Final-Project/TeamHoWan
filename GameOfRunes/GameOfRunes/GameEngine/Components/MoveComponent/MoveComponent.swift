@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class MoveComponent: GKAgent2D, GKAgentDelegate {
+class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     var isRemoved = false
     
     init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
@@ -40,5 +40,9 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
         }
         
         spriteComponent.node.position = cgPosition
+    }
+    
+    func getType() -> ComponentType {
+        return .moveComponent
     }
 }

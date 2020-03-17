@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19D664C924207DDD00351C92 /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D664C824207DDD00351C92 /* ComponentType.swift */; };
+		19D664CB24207ECE00351C92 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D664CA24207ECE00351C92 /* Component.swift */; };
 		1F1298E922021B12A5C71EE7 /* libPods-GameOfRunes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */; };
 		4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */; };
 		4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */; };
@@ -96,6 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19D664C824207DDD00351C92 /* ComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
+		19D664CA24207ECE00351C92 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaNode.swift; sourceTree = "<group>"; };
 		4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HVD_Comic_Serif_Pro.otf; sourceTree = "<group>"; };
 		4AA508C72415E0FF00D9ADE4 /* Dragon Fire.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dragon Fire.ttf"; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			children = (
 				4AA508CA2416170600D9ADE4 /* ArenaType.swift */,
 				C6B322DD241BC7AB001072AE /* EntityType.swift */,
+				19D664C824207DDD00351C92 /* ComponentType.swift */,
 				4AA508CC24161A1900D9ADE4 /* EnemyType.swift */,
 				4AC87A4B241A3EB100D79639 /* PowerUpType.swift */,
 				4AA5B36124164FC9008D4953 /* Team.swift */,
@@ -340,6 +345,7 @@
 				566121DC24168ADC00475CE1 /* GestureComponent.swift */,
 				4ACC8BD92415322400F235AE /* HealthComponent.swift */,
 				4ACC8BDD2415324400F235AE /* ManaComponent.swift */,
+				19D664CA24207ECE00351C92 /* Component.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
+				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameplayConfiguration.swift in Sources */,
 				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
 				8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */,
@@ -640,6 +647,7 @@
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
+				19D664C924207DDD00351C92 /* ComponentType.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
 				C6AFF687241A66360076F02B /* System.swift in Sources */,

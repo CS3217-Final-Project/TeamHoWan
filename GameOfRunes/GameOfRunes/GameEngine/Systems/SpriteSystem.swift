@@ -30,4 +30,12 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         super.removeComponent(foundIn: entity)
         entity.component(ofType: SpriteComponent.self)?.node.removeFromParent()
     }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? SpriteComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
 }
