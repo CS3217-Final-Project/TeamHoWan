@@ -20,17 +20,17 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     private var pauseButton: ButtonNode!
     
     let worldNode = SKNode()
-
+    
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         registerForPauseNotifications()
     }
-
+    
     deinit {
         unregisterForPauseNotifications()
     }
-        
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -48,10 +48,11 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     
     override func didMove(to view: SKView) {
         bgmNode?.removeFromParent()
-        worldNode.removeFromParent()
         let newBgmNode = SKAudioNode(fileNamed: "Lion King Eldigan")
         bgmNode = newBgmNode
         addChild(newBgmNode)
+        
+        worldNode.removeFromParent()
         worldNode.name = "world"
         addChild(worldNode)
     }
@@ -70,10 +71,10 @@ class GameScene: SKScene, ControlledByGameStateMachine {
         backgroundNode.position = .init(x: size.width / 2, y: size.height / 2)
         backgroundNode.zPosition = -100
         addNode(backgroundNode)
-
+        
         let gestureAreaNode = GestureAreaNode(size: size, gameEngine: gameEngine)
         addNode(gestureAreaNode)
-
+        
         // Add player area
         let playerAreaWidth = size.width
         let playerAreaHeight = size.height / 6
@@ -124,12 +125,14 @@ class GameScene: SKScene, ControlledByGameStateMachine {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        if self.worldNode.isPaused {
+            return
+        }
+
         var deltaTime = currentTime - lastUpdateTime
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
-
         gameEngine.update(with: deltaTime)
         
-
         if let playerHealthComponent =
             gameEngine.playerHealthEntity?.component(ofType: HealthComponent.self) {
             playerAreaNode.healthBarNode.livesLeft = playerHealthComponent.healthPoints
@@ -155,7 +158,7 @@ extension GameScene: ButtonNodeResponderType {
         let buttonSize = CGSize(width: GameplayConfiguration.GamePlayScene.buttonWidth,
                                 height: GameplayConfiguration.GamePlayScene.buttonHeight)
         let buttonPosition = CGPoint(x: frame.maxX -
-                                        CGFloat(GameplayConfiguration.GamePlayScene.buttonWidth/2),
+            CGFloat(GameplayConfiguration.GamePlayScene.buttonWidth/2),
                                      y: frame.maxY -
                                         CGFloat(GameplayConfiguration.GamePlayScene.buttonHeight/2))
         let pauseButton = ButtonNode(size: buttonSize,
@@ -166,7 +169,7 @@ extension GameScene: ButtonNodeResponderType {
         self.pauseButton = pauseButton
         addNode(pauseButton)
     }
-
+    
     func buttonPressed(button: ButtonNode) {
         if button.name == "pauseButton" {
             gameStateMachine.enter(GamePauseState.self)
@@ -183,15 +186,13 @@ extension GameScene {
                                                name: pauseNotificationName,
                                                object: nil)
     }
-
+    
     @objc func pauseGame() {
         gameStateMachine.enter(GamePauseState.self)
     }
-
+    
     func unregisterForPauseNotifications() {
         let pauseNotificationName = UIApplication.willResignActiveNotification
         NotificationCenter.default.removeObserver(self, name: pauseNotificationName, object: nil)
     }
-    
-
 }
