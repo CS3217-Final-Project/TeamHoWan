@@ -217,43 +217,6 @@ class GameScene: SKScene {
 
         gameEngine.update(with: deltaTime)
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
-            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
-            return
-        }
-        
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
-        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        
-        guard currentManaPoints >= manaPointsRequired else {
-            // do up the animation for insufficient mana
-            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
-            insufficientManaLabel.text = "Insufficient Mana"
-            insufficientManaLabel.fontSize = size.width / 25
-            insufficientManaLabel.fontColor = .green
-            let animationAction = SKAction.sequence([
-                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
-                .fadeOut(withDuration: 0.25),
-                .removeFromParent()
-            ])
-            
-            insufficientManaLabel.run(animationAction)
-            highestPriorityLayer.addChild(insufficientManaLabel)
-            return
-        }
-        
-        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
-        
-        selectedPowerUp.runAnimation(
-            at: touch.location(in: powerUpAnimationLayer),
-            with: .init(width: size.width / 3, height: size.width / 3),
-            on: powerUpAnimationLayer
-        )
-    }
 }
 
 /**
@@ -290,5 +253,51 @@ extension GameScene {
 
     private func unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+/**
+Extension to deal with power-up related logic
+*/
+extension GameScene {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first,
+            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
+            return
+        }
+        
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
+        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        
+        guard currentManaPoints >= manaPointsRequired else {
+            // do up the animation for insufficient mana
+            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
+            insufficientManaLabel.text = "Insufficient Mana"
+            insufficientManaLabel.fontSize = size.width / 25
+            insufficientManaLabel.fontColor = .green
+            let animationAction = SKAction.sequence([
+                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+                .fadeOut(withDuration: 0.25),
+                .removeFromParent()
+            ])
+            
+            insufficientManaLabel.run(animationAction)
+            highestPriorityLayer.addChild(insufficientManaLabel)
+            return
+        }
+        
+        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
+        
+        selectedPowerUp.runAnimation(
+            at: touch.location(in: powerUpAnimationLayer),
+            with: .init(width: size.width / 3, height: size.width / 3),
+            on: powerUpAnimationLayer
+        )
+    }
+    
+    func powerUpIsSelected() -> Bool {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp != nil
     }
 }

@@ -32,7 +32,7 @@ class PowerUpContainerNode: SKSpriteNode {
                 if selectedPowerUp == nil {
                     gameScene.gestureLayer.addChild(gameScene.gestureAreaNode)
                 } else {
-                    gameScene.gestureAreaNode.removeFromParent()
+                    // gameScene.gestureAreaNode.removeFromParent()
                 }
             }
             
