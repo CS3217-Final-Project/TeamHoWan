@@ -9,7 +9,7 @@
 import GameplayKit
 
 class MoveSystem: GKComponentSystem<MoveComponent>, System {
-    private unowned let gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -22,45 +22,30 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
             // Call to component.update to trigger observer events.
             component.update(deltaTime: seconds)
         }
+        
+        checkEnemyEndPointCollision()
     }
     
+    // Note: end-point entity also has a move component.
     private func updateComponent(_ component: MoveComponent) {
         guard let entity = component.entity,
             let teamComponent = entity.component(ofType: TeamComponent.self),
             let enemyMoveComponent = closestMoveComponent(from: component,
                                                           for: teamComponent.team.oppositeTeam),
-            let endpointComponent = gameEngine.entities(for: .player).first as? EndPointEntity,
-            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
+            let alliedMoveComponents = gameEngine?.moveComponents(for: teamComponent.team) else {
                 return
         }
-
-        let alliedMoveComponents = gameEngine.moveComponents(for: teamComponent.team)
         
         // Update Entity Movement Behaviour
         component.behavior = MoveBehavior(targetSpeed: component.maxSpeed, seek: enemyMoveComponent,
                                           avoid: alliedMoveComponents)
-        
-        // Check for Enemy-Endpoint Collision
-        for enemyEntity in gameEngine.entities(for: .enemy) {
-            guard let enemySpriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
-                continue
-            }
-            
-            if enemySpriteComponent
-                .node
-                .calculateAccumulatedFrame()
-                .intersects(endpointNode.calculateAccumulatedFrame()) {
-                gameEngine.enemyReachedLine(enemyEntity)
-                gameEngine.decreasePlayerHealth()
-            }
-        }
     }
     
     private func closestMoveComponent(from component: MoveComponent, for team: Team) -> GKAgent2D? {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
         
-        gameEngine.moveComponents(for: team).forEach {
+        gameEngine?.moveComponents(for: team).forEach {
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
                 closestMoveComponent = $0
@@ -69,5 +54,34 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         }
         
         return closestMoveComponent
+    }
+    
+    private func checkEnemyEndPointCollision() {
+        guard let endpointComponent = gameEngine?.entities(for: .player).first as? EndPointEntity,
+            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
+            return
+        }
+        
+        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
+                continue
+            }
+
+            if enemyEntity
+                .component(ofType: SpriteComponent.self)?
+                .node
+                .calculateAccumulatedFrame()
+                .intersects(endpointNode.calculateAccumulatedFrame()) ?? false {
+                gameEngine?.enemyReachedLine(enemyEntity)
+            }
+        }
+    }
+    
+    func removeComponent(_ component: Component) {
+        guard let component = component as? MoveComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
     }
 }

@@ -11,12 +11,12 @@ import SpriteKit
 /**
  An `SKSpriteNode` that represents Mana dropped by a monster
  when the monster is killed. To be added to `SKScene` or its subclasses
- that implement the `DroppedManaResponderType` protocol (i.e. `GameScene`)
+ that implement the `DroppedManaResponder` protocol (i.e. `GameScene`)
  */
 class DroppedManaNode: SKSpriteNode {
-    private weak var responder: DroppedManaResponderType?
+    private weak var responder: DroppedManaResponder?
 
-    init(position: CGPoint, responder: DroppedManaResponderType) {
+    init(position: CGPoint, responder: DroppedManaResponder) {
         self.responder = responder
         super.init(texture: SKTexture(imageNamed: "mana"),
                    color: .darkGray,
@@ -26,6 +26,7 @@ class DroppedManaNode: SKSpriteNode {
         isUserInteractionEnabled = true
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,7 +51,7 @@ class DroppedManaNode: SKSpriteNode {
     /** Determine if any of the touches are within the `DroppedManaNode`. */
     private func containsTouches(touches: Set<UITouch>) -> Bool {
         guard let scene = scene else {
-            fatalError("Button must be used within a scene.")
+            fatalError("Mana must be used within a scene.")
         }
 
         return touches.contains { touch in

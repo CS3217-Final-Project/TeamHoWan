@@ -41,6 +41,6 @@ class SystemManager {
     }
 
     func minusHealthPoints(for entity: GKEntity) -> Int? {
-        return healthSystem.minusHealthPoints(for: entity)
+        healthSystem.minusHealthPoints(for: entity)
     }
 }

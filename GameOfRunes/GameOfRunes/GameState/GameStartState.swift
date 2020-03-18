@@ -15,7 +15,7 @@ import GameplayKit
 class GameStartState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass is GameInPlayState.Type
+        stateClass is GameInPlayState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
@@ -30,4 +30,3 @@ class GameStartState: GKState {
         gameStateMachine.enter(GameInPlayState.self)
     }
 }
-

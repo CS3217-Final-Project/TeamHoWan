@@ -9,7 +9,7 @@
 import GameplayKit
 
 class RemoveDelegate {
-    private unowned let gameEngine: GameEngine
+    private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -21,33 +21,58 @@ class RemoveDelegate {
             return
         }
 
-        guard let enemyHealth = gameEngine.minusHealthPoints(for: enemyEntity) else {
+        guard let enemyHealth = gameEngine?.minusHealthPoints(for: enemyEntity) else {
             return
         }
 
-        gameEngine.remove(gestureEntity)
+        gameEngine?.remove(gestureEntity)
         
         if enemyHealth <= 0 {
-            let _ = enemyEntity.removeGesture()
-            enemyEntity.removeFromGame()
-            gameEngine.dropMana(at: enemyEntity)
+            _ = enemyEntity.removeGesture()
+            removeEnemyFromGame(enemyEntity)
+            gameEngine?.dropMana(at: enemyEntity)
             return
         }
         
         enemyEntity.setCurrentGesture()
         
         if let nextGesture = enemyEntity.gestureEntity {
-            gameEngine.add(nextGesture)
+            gameEngine?.add(nextGesture)
         }
     }
     
     func removeEnemyReachedLine(_ entity: EnemyEntity) {
-        entity.removeFromGame()
+        removeEnemyFromGame(entity)
+        gameEngine?.decreasePlayerHealth()
 
         guard let gestureEntity = entity.gestureEntity else {
             return
         }
 
-        gameEngine.remove(gestureEntity)
+        gameEngine?.remove(gestureEntity)
+    }
+    
+    /**
+     Removes the `EnemyEntity` from the game.
+     - Note: This method will first remove the `MoveComponent` to prevent
+     the enemy from continuing to move. Then it will run the removal animation.
+     Upon completion, the `GameEngine`'s `remove` method is called on
+     the `EnemyEntity`.
+     */
+    private func removeEnemyFromGame(_ entity: EnemyEntity) {
+        entity.removeComponent(ofType: MoveComponent.self)
+        
+        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+            return
+        }
+
+        let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
+                                                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                                                resize: true,
+                                                restore: false)
+
+        spriteComponent.node.run(removalAnimation) { [weak self] in
+            self?.gameEngine?.remove(entity)
+        }
     }
 }

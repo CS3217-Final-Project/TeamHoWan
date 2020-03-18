@@ -15,19 +15,22 @@ import GameplayKit
  when `DroppedManaNode` is tapped
  */
 class DroppedManaEntity: Entity {
-    private let spriteComponent: SpriteComponent
-    let manaPoints: Int
     override var type: EntityType {
         .droppedManaEntity
     }
-    
+
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
-        let node = DroppedManaNode(position: position, responder: gameEngine)
+        super.init()
+
+        guard let manaResponder = gameEngine.droppedManaResponder else {
+            return
+        }
+
+        let node = DroppedManaNode(position: position, responder: manaResponder)
         node.zPosition = GameConfig.GamePlayScene.manaDropLayerZPosition
-        self.manaPoints = manaPoints
 
         // Create and Animate Sprite Component
-        self.spriteComponent = SpriteComponent(droppedManaNode: node)
+        let spriteComponent = SpriteComponent(droppedManaNode: node)
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
@@ -38,8 +41,9 @@ class DroppedManaEntity: Entity {
                 )
             )
         )
-        super.init()
-        addComponent(self.spriteComponent)
+        
+        addComponent(spriteComponent)
+        addComponent(ManaComponent(manaPoints: manaPoints))
     }
 
     @available(*, unavailable)

@@ -48,10 +48,10 @@ enum PowerUpType: String, CaseIterable {
             return
         }
         let hellfireAtlas = SKTextureAtlas(named: hellfire.rawValue)
-        powerUpsTextures[hellfire] = (690000...690019).map { hellfireAtlas.textureNamed("\($0)") }
+        powerUpsTextures[hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
         
         let darkVortexAtlas = SKTextureAtlas(named: darkVortex.rawValue)
-        powerUpsTextures[darkVortex] = (670000...670019).map { darkVortexAtlas.textureNamed("\($0)") }
+        powerUpsTextures[darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)") }
     }
     
     func runAnimation(at position: CGPoint, with size: CGSize, on node: SKNode) {

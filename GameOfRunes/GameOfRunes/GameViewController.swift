@@ -1,5 +1,4 @@
-  
-  //
+//
   //  GameViewController.swift
   //  GameOfRunes
   //

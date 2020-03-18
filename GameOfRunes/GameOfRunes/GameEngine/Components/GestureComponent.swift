@@ -9,8 +9,11 @@
 import SpriteKit
 import GameplayKit
 
-class GestureComponent: GKComponent {
+class GestureComponent: GKComponent, Component {
     let gesture: CustomGesture
+    var type: ComponentType {
+        .gestureComponent
+    }
 
     init(gesture: CustomGesture) {
         self.gesture = gesture

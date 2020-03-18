@@ -9,8 +9,11 @@
 import SpriteKit
 import GameplayKit
 
-class SpriteComponent: GKComponent {
+class SpriteComponent: GKComponent, Component {
     let node: SKSpriteNode
+    var type: ComponentType {
+        .spriteComponent
+    }
     
     init(node: SKSpriteNode) {
         self.node = node
@@ -24,7 +27,6 @@ class SpriteComponent: GKComponent {
     
     init(gesture: CustomGesture) {
         node = GestureNode(gesture: gesture)
-
         super.init()
     }
 

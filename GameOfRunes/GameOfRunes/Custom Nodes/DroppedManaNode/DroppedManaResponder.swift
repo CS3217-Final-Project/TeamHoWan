@@ -1,5 +1,5 @@
 //
-//  DroppedManaResponderType.swift
+//  DroppedManaResponder.swift
 //  GameOfRunes
 //
 //  Created by Brian Yen on 15/3/20.
@@ -10,7 +10,6 @@
  Protocol implemented by the responder to `DroppedManaNode`
  whenever the node is tapped on.
  */
-protocol DroppedManaResponderType: class {
+protocol DroppedManaResponder: AnyObject {
     func droppedManaTapped(droppedManaNode: DroppedManaNode)
 }
-

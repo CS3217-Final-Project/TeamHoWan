@@ -9,7 +9,7 @@
 import GameplayKit
 
 class GestureEntity: Entity {
-    unowned let parentEntity: GKEntity
+    weak var parentEntity: GKEntity?
     override var type: EntityType {
         .gestureEntity
     }

@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class HealthComponent: GKComponent {
+class HealthComponent: GKComponent, Component {
     private weak var healthBarNode: HealthBarNode?
     private var _healthPoints: Int
     // if healthBarNode exists, use values from there, else use from _healthPoints
@@ -21,11 +21,13 @@ class HealthComponent: GKComponent {
             if let healthBarNode = healthBarNode {
                 healthBarNode.livesLeft = newValue
                 _healthPoints = healthBarNode.livesLeft
-            }
-            else {
+            } else {
                 _healthPoints = max(0, newValue)
             }
         }
+    }
+    var type: ComponentType {
+        .healthComponent
     }
     
     init(healthPoints: Int, healthBarNode: HealthBarNode? = nil) {

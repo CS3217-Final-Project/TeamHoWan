@@ -71,6 +71,7 @@ class GameScene: SKScene {
         setUpEndPoint()
         setUpPlayerHealth()
         setUpPlayerMana()
+        setUpTimer(isCountdown: false)
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
@@ -145,7 +146,8 @@ class GameScene: SKScene {
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
             gameEngine: gameEngine
         )
-        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) + .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
+        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) +
+            .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
         gestureLayer.addChild(gestureAreaNode)
     }
     
@@ -180,7 +182,7 @@ class GameScene: SKScene {
         // TODO: after a layer parameter have been added to sprite component
         endPointNode.zPosition = 299
         
-        let endPointEntity = EndPointEntity(node: endPointNode)
+        let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
         gameEngine.add(endPointEntity)
     }
     
@@ -188,10 +190,17 @@ class GameScene: SKScene {
         let healthBarNode = playerAreaNode.healthBarNode
         // arbitrary num, can be replaced with meta-data
         healthBarNode.totalLives = 5
-        let playerHealthEntity = PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
+        let playerHealthEntity =
+            PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
     }
     
+    private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
+        gameEngine.add(TimerEntity(gameEngine: gameEngine,
+                                   isCountdown: isCountdown,
+                                   initialTimerValue: initialTimerValue))
+    }
+
     private func setUpPlayerMana() {
         let manaBarNode = playerAreaNode.manaBarNode
         // arbitrary num, can be replaced with meta-data

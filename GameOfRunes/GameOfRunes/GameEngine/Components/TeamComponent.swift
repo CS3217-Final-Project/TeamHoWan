@@ -9,8 +9,11 @@
 import SpriteKit
 import GameplayKit
 
-class TeamComponent: GKComponent {
+class TeamComponent: GKComponent, Component {
     let team: Team
+    var type: ComponentType {
+        .teamComponent
+    }
     
     init(team: Team) {
         self.team = team

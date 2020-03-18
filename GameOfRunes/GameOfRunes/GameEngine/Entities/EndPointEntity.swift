@@ -14,13 +14,14 @@ class EndPointEntity: Entity {
         .endPointEntity
     }
     
-    init(node: SKSpriteNode) {
+    init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         
         let spriteComponent = SpriteComponent(node: node)
         spriteComponent.node.addGlow()
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
+            gameEngine: gameEngine,
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
             radius: .init(spriteComponent.node.size.height)

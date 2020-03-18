@@ -9,8 +9,14 @@
 import SpriteKit
 import GameplayKit
 
-class MoveComponent: GKAgent2D, GKAgentDelegate {
-    init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
+    private weak var gameEngine: GameEngine?
+    var type: ComponentType {
+        .moveComponent
+    }
+    
+    init(gameEngine: GameEngine, maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+        self.gameEngine = gameEngine
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed
@@ -22,6 +28,10 @@ class MoveComponent: GKAgent2D, GKAgentDelegate {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func willRemoveFromEntity() {
+        gameEngine?.removeComponent(self)
     }
     
     func agentWillUpdate(_ agent: GKAgent) {
