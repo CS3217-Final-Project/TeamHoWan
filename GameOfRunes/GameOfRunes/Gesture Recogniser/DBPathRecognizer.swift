@@ -12,7 +12,7 @@ import UIKit
 
 public class GestureRecognizer {
     private var rawPoints: [CGPoint] = []
-    private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)    
+    private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)
     private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
@@ -27,7 +27,6 @@ public class GestureRecognizer {
     }
     
     func touchesMoved(_ location: CGPoint) {
-        print(location)
         rawPoints.append(location)
     }
     
@@ -40,15 +39,23 @@ public class GestureRecognizer {
                 return
         }
         
-        if gameScene.powerUpIsSelected() {
-            print(CircleGestureRecognizer.isCircle(touchedPoints: rawPoints, rawPoints: rawPoints))
-        }
-        
-        guard let gesture: PathModel = self.recognizer.recognizePath(path),
-            let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
+        if let powerUp = gameScene.powerUp() {
+            switch powerUp {
+            case .hellfire, .icePrison:
+                guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints, rawPoints: rawPoints) else {
+                    return
+                }
+                gameEngine.gameScene?.activatePowerUpCircle(location: circle.center, circle: circle)
+            default:
                 return
+            }
+        } else {
+            guard let gesture: PathModel = self.recognizer.recognizePath(path),
+                let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
+                    return
+            }
+            gameEngine.gestureActivated(gesture: customGesture)
         }
-        gameEngine.gestureActivated(gesture: customGesture)
     }
 }
 
@@ -286,8 +293,6 @@ fileprivate struct Path {
     }
 }
 
-/* Path Infos */
-
 public struct PathInfos {
     let deltaPoints: [PathPoint]
     let boundingBox: Rect
@@ -306,8 +311,6 @@ public struct PathInfos {
     }
 }
 
-/* PathModel */
-
 public struct PathModel {
     
     var directions: [Int]
@@ -321,8 +324,6 @@ public struct PathModel {
     }
     
 }
-
-/* Array2D */
 
 fileprivate struct Array2D {
     var cols: Int

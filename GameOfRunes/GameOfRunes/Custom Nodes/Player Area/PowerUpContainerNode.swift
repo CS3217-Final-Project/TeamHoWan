@@ -27,15 +27,15 @@ class PowerUpContainerNode: SKSpriteNode {
             guard oldValue != selectedPowerUp else {
                 return
             }
-            
-            if let gameScene = gameScene {
-                if selectedPowerUp == nil {
-                    gameScene.gestureLayer.addChild(gameScene.gestureAreaNode)
-                } else {
-                    // gameScene.gestureAreaNode.removeFromParent()
-                }
-            }
-            
+
+//            if let gameScene = gameScene {
+//                if selectedPowerUp == nil {
+//                    gameScene.gestureLayer.addChild(gameScene.gestureAreaNode)
+//                } else {
+//                   gameScene.gestureAreaNode.removeFromParent()
+//                }
+//            }
+
             powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
         }
     }

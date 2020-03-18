@@ -28,7 +28,6 @@ class CircleGestureRecognizer {
         
         let percentOverlap = calculateBoundingOverlap(fitResult: fitResult, path: path)
         if fitResult.error <= tolerance && !hasInside && percentOverlap > (1-tolerance) {
-            print(fitResult)
             return fitResult
         }
         return nil

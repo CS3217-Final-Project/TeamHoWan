@@ -260,20 +260,19 @@ extension GameScene {
 Extension to deal with power-up related logic
 */
 extension GameScene {
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
-            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
+    func activatePowerUpCircle(location: CGPoint, circle: CircleResult) {
+        guard let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
-        
+    
         let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
         let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        
+
         guard currentManaPoints >= manaPointsRequired else {
             // do up the animation for insufficient mana
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
+            insufficientManaLabel.position = location
             insufficientManaLabel.text = "Insufficient Mana"
             insufficientManaLabel.fontSize = size.width / 25
             insufficientManaLabel.fontColor = .green
@@ -282,22 +281,22 @@ extension GameScene {
                 .fadeOut(withDuration: 0.25),
                 .removeFromParent()
             ])
-            
+
             insufficientManaLabel.run(animationAction)
             highestPriorityLayer.addChild(insufficientManaLabel)
             return
         }
-        
+
         playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
-        
         selectedPowerUp.runAnimation(
-            at: touch.location(in: powerUpAnimationLayer),
+            at: location,
             with: .init(width: size.width / 3, height: size.width / 3),
             on: powerUpAnimationLayer
         )
     }
+
     
-    func powerUpIsSelected() -> Bool {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp != nil
+    func powerUp() -> PowerUpType? {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp
     }
 }
