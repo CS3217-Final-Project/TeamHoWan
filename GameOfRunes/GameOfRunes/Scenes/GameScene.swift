@@ -260,11 +260,13 @@ extension GameScene {
 Extension to deal with power-up related logic
 */
 extension GameScene {
+    // TODO: Should categorise power ups for their requirement gestures
     func activatePowerUpCircle(location: CGPoint, circle: CircleResult) {
         guard let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
         
+        // Invert the y-axis from the recognizer to the scene - a bit hacky
         let loc = CGPoint(x: location.x, y: gestureAreaNode.size.height - location.y)
     
         let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
@@ -292,7 +294,7 @@ extension GameScene {
         playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
         selectedPowerUp.runAnimation(
             at: loc,
-            with: .init(width: size.width / 3, height: size.width / 3),
+            with: .init(width: circle.radius * 2, height: circle.radius * 2),
             on: powerUpAnimationLayer
         )
     }

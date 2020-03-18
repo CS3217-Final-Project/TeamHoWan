@@ -43,6 +43,7 @@ class GestureAreaNode: SKSpriteNode {
         activeSliceFG.removeAllActions()
         activeSliceBG.alpha = 1.0
         activeSliceFG.alpha = 1.0
+        // Invert the y-axis from SpriteKit for the recognizer
         recogniser.touchesBegan(CGPoint(x: location.x, y: -location.y + size.height))
     }
     
@@ -56,6 +57,7 @@ class GestureAreaNode: SKSpriteNode {
 
         // Bezier Curve Construction
         redrawActiveSlice()
+        // Invert the y-axis from SpriteKit for the recognizer
         recogniser.touchesMoved(CGPoint(x: location.x, y: -location.y + size.height))
     }
     
