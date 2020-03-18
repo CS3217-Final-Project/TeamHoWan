@@ -13,17 +13,17 @@ class CircleGestureRecognizer {
     private static let tolerance: CGFloat = 0.25 // circle wiggle room
     private static let maxIteration = 8
     
-    static func isCircle(touchedPoints: [CGPoint], rawPoints: [CGPoint]) -> CircleResult? {
+    static func isCircle(touchedPoints: [CGPoint]) -> CircleResult? {
         let fitResult = fitCircle(points: touchedPoints)
         let hasInside = anyPointsInTheMiddle(touchedPoints: touchedPoints, fitResult: fitResult)
         let path = CGMutablePath()
         
-        guard let first = rawPoints.first else {
+        guard let first = touchedPoints.first else {
             return nil
         }
         path.move(to: first)
-        for i in 1..<rawPoints.count {
-            path.addLine(to: rawPoints[i])
+        for i in 1..<touchedPoints.count {
+            path.addLine(to: touchedPoints[i])
         }
         
         let percentOverlap = calculateBoundingOverlap(fitResult: fitResult, path: path)
@@ -49,7 +49,6 @@ class CircleGestureRecognizer {
         }
         return hasInside
     }
-    
     
     private static func calculateBoundingOverlap(fitResult: CircleResult, path: CGPath) -> CGFloat {
         let fitBoundingBox = CGRect(

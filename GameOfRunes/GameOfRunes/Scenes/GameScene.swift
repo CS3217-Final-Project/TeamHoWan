@@ -264,6 +264,8 @@ extension GameScene {
         guard let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
+        
+        let loc = CGPoint(x: location.x, y: gestureAreaNode.size.height - location.y)
     
         let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
         let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
@@ -272,7 +274,7 @@ extension GameScene {
         guard currentManaPoints >= manaPointsRequired else {
             // do up the animation for insufficient mana
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = location
+            insufficientManaLabel.position = loc
             insufficientManaLabel.text = "Insufficient Mana"
             insufficientManaLabel.fontSize = size.width / 25
             insufficientManaLabel.fontColor = .green
@@ -289,7 +291,7 @@ extension GameScene {
 
         playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
         selectedPowerUp.runAnimation(
-            at: location,
+            at: loc,
             with: .init(width: size.width / 3, height: size.width / 3),
             on: powerUpAnimationLayer
         )

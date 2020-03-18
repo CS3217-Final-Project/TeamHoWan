@@ -42,10 +42,11 @@ public class GestureRecognizer {
         if let powerUp = gameScene.powerUp() {
             switch powerUp {
             case .hellfire, .icePrison:
-                guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints, rawPoints: rawPoints) else {
+                guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints) else {
                     return
                 }
-                gameEngine.gameScene?.activatePowerUpCircle(location: circle.center, circle: circle)
+                print(circle.center)
+                gameScene.activatePowerUpCircle(location: circle.center, circle: circle)
             default:
                 return
             }
