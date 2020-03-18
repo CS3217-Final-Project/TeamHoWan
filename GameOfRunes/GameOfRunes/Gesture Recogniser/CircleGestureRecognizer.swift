@@ -10,13 +10,28 @@ import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
 class CircleGestureRecognizer {
-    private static let tolerance: CGFloat = 0.2 // circle wiggle room
+    private static let tolerance: CGFloat = 0.25 // circle wiggle room
     private static let maxIteration = 8
-
-    static func isCircle(touchedPoints: [CGPoint]) -> Bool {
+    
+    static func isCircle(touchedPoints: [CGPoint], rawPoints: [CGPoint]) -> CircleResult? {
         let fitResult = fitCircle(points: touchedPoints)
         let hasInside = anyPointsInTheMiddle(touchedPoints: touchedPoints, fitResult: fitResult)
-        return fitResult.error <= tolerance && !hasInside
+        let path = CGMutablePath()
+        
+        guard let first = rawPoints.first else {
+            return nil
+        }
+        path.move(to: first)
+        for i in 1..<rawPoints.count {
+            path.addLine(to: rawPoints[i])
+        }
+        
+        let percentOverlap = calculateBoundingOverlap(fitResult: fitResult, path: path)
+        if fitResult.error <= tolerance && !hasInside && percentOverlap > (1-tolerance) {
+            print(fitResult)
+            return fitResult
+        }
+        return nil
     }
     
     private static func anyPointsInTheMiddle(touchedPoints: [CGPoint], fitResult: CircleResult) -> Bool {
@@ -34,6 +49,22 @@ class CircleGestureRecognizer {
             }
         }
         return hasInside
+    }
+    
+    
+    private static func calculateBoundingOverlap(fitResult: CircleResult, path: CGPath) -> CGFloat {
+        let fitBoundingBox = CGRect(
+            x: fitResult.center.x - fitResult.radius,
+            y: fitResult.center.y - fitResult.radius,
+            width: 2 * fitResult.radius,
+            height: 2 * fitResult.radius)
+        let pathBoundingBox = path.boundingBox
+        let overlapRect = fitBoundingBox.intersection(pathBoundingBox)
+        let overlapRectArea = overlapRect.width * overlapRect.height
+        let circleBoxArea = fitBoundingBox.height * fitBoundingBox.width
+        
+        let percentOverlap = overlapRectArea / circleBoxArea
+        return percentOverlap
     }
     
     private static func fitCircle(points: [CGPoint]) -> CircleResult {
