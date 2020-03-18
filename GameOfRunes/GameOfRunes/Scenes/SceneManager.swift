@@ -23,7 +23,7 @@ class SceneManager {
     
     private let presentingView: SKView
     private let gameStateMachine: GameStateMachine
-    var gamePlayScene: GameScene
+    private var gamePlayScene: GameScene
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
     
