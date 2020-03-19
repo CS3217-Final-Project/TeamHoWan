@@ -34,7 +34,7 @@ class DroppedManaEntity: Entity {
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
-                    with: TextureContainer.getManaAnimationTextures(),
+                    with: TextureContainer.manaTextures,
                     timePerFrame: 0.05,
                     resize: false,
                     restore: true

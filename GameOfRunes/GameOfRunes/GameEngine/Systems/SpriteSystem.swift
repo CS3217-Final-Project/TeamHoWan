@@ -33,7 +33,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         case .manaDropLayer:
             gameEngine?.gameScene?.manaDropLayer.addChild(node)
         default:
-            gameEngine?.gameScene?.addChild(spriteComponent.node)
+            gameEngine?.gameScene?.addChild(node)
         }
     }
     

@@ -29,7 +29,7 @@ class RemoveDelegate {
         
         if enemyHealth <= 0 {
             _ = enemyEntity.removeGesture()
-            removeEnemyFromGame(enemyEntity)
+            removeEnemyFromGame(enemyEntity, fullAnimation: false)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
@@ -59,14 +59,17 @@ class RemoveDelegate {
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeEnemyFromGame(_ entity: EnemyEntity) {
+    private func removeEnemyFromGame(_ entity: EnemyEntity, fullAnimation: Bool = true) {
         entity.removeComponent(ofType: MoveComponent.self)
         
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-
-        let removalAnimation = SKAction.animate(with: TextureContainer.getEnemyRemovalAnimationTextures(),
+        
+        let animationTextures = fullAnimation
+            ? TextureContainer.fullEnemyRemovalTextures
+            : TextureContainer.halfEnemyRemovalTextures
+        let removalAnimation = SKAction.animate(with: animationTextures,
                                                 timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
                                                 resize: true,
                                                 restore: false)
