@@ -11,13 +11,16 @@ import SpriteKit
 /**
  Container for all the different `SKTexture`s used in the Game.
  This is to facilitate more efficient memory usage (the textures are only
- loaded once, and leverage the `SKTextureAtlas` for further memory
+ loaded once with a single call to `loadTextures` when the game is
+ first loaded, and leverage the `SKTextureAtlas` for further memory
  optimisations).
  */
 enum TextureContainer {
     private static var enemiesTextures = [EnemyType: [SKTexture]]()
     private static var enemyRemovalTextures = [SKTexture]()
     private static var manaTextures = [SKTexture]()
+    private static var powerUpCastTextures = [PowerUpType: [SKTexture]]()
+    private static var powerUpTextures = [PowerUpType: [SKTexture]]()
 
     static func loadTextures() {
         // Load `enemiesTextures`
@@ -29,11 +32,28 @@ enum TextureContainer {
 
         // Load `manaTextures`
         let manaAtlas = SKTextureAtlas(named: "manaEssence")
-        manaTextures = (0...29).map { manaAtlas.textureNamed("tile\($0)") }
+        manaTextures = (0...29).map { manaAtlas.textureNamed(.init(format: "tile%03d", $0)) }
 
         // Load `enemyRemovalTextures`
         let enemyRemovalAtlas = SKTextureAtlas(named: "removeEnemy")
-        enemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed("tile\($0)") }
+        enemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed(.init(format: "tile%03d", $0)) }
+
+        // Load `powerUpCastTextures`
+        PowerUpType.allCases.forEach { powerUpType in
+            let powerUpCastAtlas = SKTextureAtlas(named: "\(powerUpType)Cast")
+            let castTextures = (0...19).map {
+                powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0))
+            }
+            powerUpCastTextures[powerUpType] = castTextures
+        }
+
+        // Load `powerUpTextures`
+        let hellfireAtlas = SKTextureAtlas(named: PowerUpType.hellfire.rawValue)
+        powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)")
+        }
+        let darkVortexAtlas = SKTextureAtlas(named: PowerUpType.darkVortex.rawValue)
+        powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)")
+        }
     }
 
     /** Get the Animation Textures for the `enemyType` */
@@ -59,5 +79,15 @@ enum TextureContainer {
     /** Get Animation Textures for Enemy Removal */
     static func getEnemyRemovalAnimationTextures() -> [SKTexture] {
         enemyRemovalTextures
+    }
+
+    /** Get the Animation Textures for Power Up Casting */
+    static func getPowerUpCastTextures(powerUpType: PowerUpType) -> [SKTexture] {
+        powerUpCastTextures[powerUpType] ?? []
+    }
+
+    /** Get the Animation Textures for Power Up (when in effect) */
+    static func getPowerUpTextures(powerUpType: PowerUpType) -> [SKTexture] {
+        powerUpTextures[powerUpType] ?? []
     }
 }

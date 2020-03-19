@@ -8,8 +8,10 @@
 
 import UIKit
 
-/** Stores all major game settings. */
-// All ratios are relative to the screen width
+/**
+ Stores all major game settings.
+ - Note: All ratios are relative to the screen width
+ */
 enum GameConfig {
     static let fontName = "DragonFire"
     
@@ -24,6 +26,20 @@ enum GameConfig {
         static let manaDropProbability: Double = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
+    }
+
+    enum DarkVortexPowerUp {
+        static let powerUpDuration: TimeInterval = 5.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 4
+    }
+
+    enum HellFirePowerUp {
+        static let manaUnitCost: Int = 6
+    }
+
+    enum IcePrisonPowerUp {
+        static let manaUnitCost: Int = 8
     }
 
     enum SceneManager {

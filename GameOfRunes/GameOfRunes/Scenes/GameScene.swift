@@ -52,7 +52,6 @@ class GameScene: SKScene {
         DispatchQueue.global(qos: .default).async {
             // set up animation textures
             TextureContainer.loadTextures()
-            PowerUpType.loadPowerUpCastsTextures()
             // indicates that the execution is done
             dispatchGroup.leave()
         }
@@ -220,7 +219,7 @@ class GameScene: SKScene {
 }
 
 /**
- Extension to deal with button-related logic (i.e. the Pause Button)
+ Extension to deal with button-related logic (when buttons are tapped)
  */
 extension GameScene: TapResponder {
     func onTapped(tappedNode: SKSpriteNode) {

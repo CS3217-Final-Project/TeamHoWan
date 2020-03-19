@@ -102,7 +102,11 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            return Array(entities[.endPointEntity] ?? Set())
+            if let endPointEntity = entities[.endPointEntity],
+                let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
+                return Array(endPointEntity.union(darkVortexPowerUpEntities))
+            }
+            return []
         }
     }
     
@@ -159,5 +163,25 @@ class GameEngine {
         }
         
         systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
+    }
+
+    func decreasePlayerMana(by manaPoints: Int) {
+        increasePlayerMana(by: -manaPoints)
+    }
+
+    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint,
+                         with size: CGSize, manaPointsRequired: Int) {
+        switch powerUp {
+        case .darkVortex:
+            let powerUpEntity = DarkVortexPowerUpEntity(gameEngine: self,
+                                                        at: position,
+                                                        with: size)
+            decreasePlayerMana(by: manaPointsRequired)
+            add(powerUpEntity)
+        case .hellfire:
+            print("Not Implemented Yet")
+        case .icePrison:
+            print("Not Implemented Yet")
+        }
     }
 }
