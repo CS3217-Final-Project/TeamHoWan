@@ -102,9 +102,10 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
+            //TODO: Update/clean this
              //Update this to be darkVortexPowerUpEntity
             if let endPointEntity = entities[.endPointEntity],
-                let darkVortexPowerUpEntities = entities[.powerUpEntity] {
+                let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
                 return Array(endPointEntity.union(darkVortexPowerUpEntities))
             }
             return []
@@ -160,6 +161,7 @@ class GameEngine {
     }
     
     func increasePlayerMana(by manaPoints: Int) {
+        assert(manaPoints >= 0)
         guard let playerManaEntity = playerManaEntity else {
             return
         }
@@ -167,13 +169,23 @@ class GameEngine {
         systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
     }
 
-    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint,
-                         with size: CGSize, on node: SKNode) {
-        let powerUpEntity = PowerUpEntity(gameEngine: self,
-                                          powerUpType: powerUp,
-                                          at: position,
-                                          with: size,
-                                          on: node)
-        add(powerUpEntity)
+    func decreasePlayerMana(by manaPoints: Int) {
+        assert(manaPoints >= 0)
+        increasePlayerMana(by: -manaPoints)
+    }
+
+    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize) {
+        switch powerUp {
+        case .darkVortex:
+            let powerUpEntity = DarkVortexPowerUpEntity(gameEngine: self,
+                                                        at: position,
+                                                        with: size)
+            decreasePlayerMana(by: PowerUpType.darkVortex.manaUnitCost)
+            add(powerUpEntity)
+        case .hellfire:
+            print("Not Implemented Yet")
+        case .icePrison:
+            print("Not Implemented Yet")
+        }
     }
 }

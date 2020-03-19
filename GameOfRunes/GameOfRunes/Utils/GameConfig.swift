@@ -26,6 +26,20 @@ enum GameConfig {
         static let manaMaxValue: Int = 20
     }
 
+    enum DarkVortexPowerUp {
+        static let powerUpDuration: TimeInterval = 5.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 0 //TODO: Change this back to 4
+    }
+
+    enum HellFirePowerUp {
+        static let manaUnitCost: Int = 6
+    }
+
+    enum IcePrisonPowerUp {
+        static let manaUnitCost: Int = 8
+    }
+
     enum SceneManager {
         static let sceneTransitionDuration: TimeInterval = 0.5
     }

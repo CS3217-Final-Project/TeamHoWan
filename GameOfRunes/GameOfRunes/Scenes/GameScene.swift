@@ -52,7 +52,6 @@ class GameScene: SKScene {
         DispatchQueue.global(qos: .default).async {
             // set up animation textures
             TextureContainer.loadTextures()
-            PowerUpType.loadPowerUpCastsTextures()
             // indicates that the execution is done
             dispatchGroup.leave()
         }
@@ -217,22 +216,23 @@ class GameScene: SKScene {
 
         gameEngine.update(with: deltaTime)
     }
-    
+
+    /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,
             let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
 
-        print("tapped on a mana thing") //TODO: DEBUG
         let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
         let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        
+
+        // Check that Mana is Sufficient
         guard currentManaPoints >= manaPointsRequired else {
-            // do up the animation for insufficient mana
+            // Show Insufficient Mana Animation
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
+            insufficientManaLabel.position = touch.location(in: powerUpAnimationLayer)
             insufficientManaLabel.text = "Insufficient Mana"
             insufficientManaLabel.fontSize = size.width / 25
             insufficientManaLabel.fontColor = .green
@@ -243,26 +243,14 @@ class GameScene: SKScene {
             ])
             
             insufficientManaLabel.run(animationAction)
-            highestPriorityLayer.addChild(insufficientManaLabel)
+            powerUpAnimationLayer.addChild(insufficientManaLabel)
             return
         }
 
-//        //TODO: This should be refactored (don't do direct access)
-//        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
-//
-//        //TODO: Delete selectedPOwerUP class?
-//        selectedPowerUp.runAnimation(
-//            at: touch.location(in: powerUpAnimationLayer),
-//            with: .init(width: size.width / 3, height: size.width / 3),
-//            on: powerUpAnimationLayer
-//        )
-
         gameEngine.activatePowerUp(powerUp: selectedPowerUp,
                                    at: touch.location(in: powerUpAnimationLayer),
-                                   with: .init(width: size.width / 3, height: size.width / 3),
-                                   on: powerUpAnimationLayer)
-
-
+                                   with: .init(width: size.width / 3,
+                                               height: size.width / 3))
     }
 }
 
