@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+/** Entity to represent the Dark Vortex Power Up */
 class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType
     private weak var gameEngine: GameEngine?
@@ -36,6 +37,7 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
         addComponent(teamComponent)
         addComponent(moveComponent)
 
+        // Timer will expire and cause the removal of the Power Up
         Timer.scheduledTimer(withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
                              repeats: false,
                              block: {_ in

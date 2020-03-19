@@ -32,11 +32,11 @@ enum TextureContainer {
 
         // Load `manaTextures`
         let manaAtlas = SKTextureAtlas(named: "manaEssence")
-        manaTextures = (0...29).map { manaAtlas.textureNamed("tile\($0)") }
+        manaTextures = (0...29).map { manaAtlas.textureNamed(.init(format: "tile%03d", $0)) }
 
         // Load `enemyRemovalTextures`
         let enemyRemovalAtlas = SKTextureAtlas(named: "removeEnemy")
-        enemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed("tile\($0)") }
+        enemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed(.init(format: "tile%03d", $0)) }
 
         // Load `powerUpCastTextures`
         PowerUpType.allCases.forEach { powerUpType in

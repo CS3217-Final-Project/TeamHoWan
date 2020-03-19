@@ -39,11 +39,9 @@ extension PowerUpEntity {
         )
 
         let animationAction = SKAction.sequence([powerUpCastAnimation, powerUpAnimation])
-
-        // TODO: Remember to fade out and remove animations from parent (`.removeFromParent()`?
         let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
-
         animationNode.run(SKAction.group([animationAction, soundAction]))
+
         return animationNode
     }
 }

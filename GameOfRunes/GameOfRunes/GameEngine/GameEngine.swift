@@ -102,14 +102,11 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            //TODO: Update/clean this
-             //Update this to be darkVortexPowerUpEntity
             if let endPointEntity = entities[.endPointEntity],
                 let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
                 return Array(endPointEntity.union(darkVortexPowerUpEntities))
             }
             return []
-            //            return Array((entities[.endPointEntity]).union( entities[.powerUpEntity]) ?? Set())
         }
     }
     
