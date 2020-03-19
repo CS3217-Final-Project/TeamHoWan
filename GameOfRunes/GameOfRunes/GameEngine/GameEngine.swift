@@ -169,36 +169,48 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
 
-    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize? = nil) -> Bool {
+    func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
-            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
+            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),
+            let selectedPowerUp = gameScene.powerUp() else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
-        // TODO: change this once game meta-data is up
-        let manaPointsRequired = powerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
         
+        // TODO: change this once game meta-data is up
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        gameScene.deselectPowerUp()
         guard currentManaPoints >= manaPointsRequired else {
             // did not activate
             return false
         }
+
+        var powerUpEntity: Entity
         
-        switch powerUp {
+        switch selectedPowerUp {
         case .darkVortex:
             let radius = gameScene.size.width / 3
-            let powerUpEntity = DarkVortexPowerUpEntity(
+            powerUpEntity = DarkVortexPowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: radius, height: radius)
             )
-            decreasePlayerMana(by: manaPointsRequired)
-            add(powerUpEntity)
         case .hellfire:
-            print("Not Implemented Yet")
+            powerUpEntity = HellfirePowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
+            )
         case .icePrison:
-            print("Not Implemented Yet")
+            powerUpEntity = IcePrisonPowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
+            )
         }
-        
+        decreasePlayerMana(by: manaPointsRequired)
+        add(powerUpEntity)
+
         // did activate
         return true
     }

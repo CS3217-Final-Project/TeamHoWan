@@ -10,7 +10,7 @@ import SpriteKit
 
 /** Protocol common to all Power-Ups. */
 protocol PowerUpEntity {
-    var powerUpType: PowerUpType { get set }
+    var powerUpType: PowerUpType { get }
 }
 
 extension PowerUpEntity {

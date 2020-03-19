@@ -56,6 +56,8 @@
 		4ACC8BE02415325200F235AE /* PlayerManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */; };
 		561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */; };
 		563F3DED24171B4A009381B9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F3DEC24171B49009381B9 /* GameScene.swift */; };
+		565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */; };
+		565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */; };
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGesture.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
@@ -159,6 +161,8 @@
 		4ACC8BDF2415325200F235AE /* PlayerManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManaEntity.swift; sourceTree = "<group>"; };
 		561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGestureRecognizer.swift; sourceTree = "<group>"; };
 		563F3DEC24171B49009381B9 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUpEntity.swift; sourceTree = "<group>"; };
+		565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcePrisonPowerUpEntity.swift; sourceTree = "<group>"; };
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGesture.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
@@ -455,6 +459,8 @@
 			children = (
 				8A712E7F24235EB000B3824E /* PowerUpEntity.swift */,
 				8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */,
+				565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */,
+				565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */,
 			);
 			path = PowerUps;
 			sourceTree = "<group>";
@@ -704,6 +710,7 @@
 				C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */,
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
+				565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
@@ -726,6 +733,7 @@
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
+				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,

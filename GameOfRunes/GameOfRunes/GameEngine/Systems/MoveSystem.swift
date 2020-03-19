@@ -24,6 +24,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         }
         
         checkEnemyEndPointCollision()
+
     }
     
     // Note: end-point entity also has a move component.

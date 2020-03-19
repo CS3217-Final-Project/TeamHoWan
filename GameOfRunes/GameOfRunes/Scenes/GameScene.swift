@@ -282,20 +282,21 @@ extension GameScene {
 extension GameScene {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
-            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
-                return
+        guard let touch = touches.first else {
+            return
+        }
+        activatePowerUp(at: touch.location(in: self))
+    }
+    
+    func activatePowerUp(at location: CGPoint, size: CGFloat? = nil) -> Bool {
+        guard powerUp() != nil else {
+            return false
         }
         
-        // De-select the power up
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        
-        // If insufficient mana
-        if !gameEngine.didActivatePowerUp(powerUp: selectedPowerUp,
-                                          at: touch.location(in: self.powerUpAnimationLayer)) {
+        if !gameEngine.didActivatePowerUp(at: location, size: size) {
             // Show Insufficient Mana Animation
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: self.highestPriorityLayer)
+            insufficientManaLabel.position = location
             insufficientManaLabel.text = "Insufficient Mana"
             insufficientManaLabel.fontSize = self.size.width / 25
             insufficientManaLabel.fontColor = .green
@@ -307,7 +308,13 @@ extension GameScene {
             
             insufficientManaLabel.run(animationAction)
             self.highestPriorityLayer.addChild(insufficientManaLabel)
+            return true
         }
+        return false
+    }
+    
+    func deselectPowerUp() {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
     }
     
     func powerUp() -> PowerUpType? {
