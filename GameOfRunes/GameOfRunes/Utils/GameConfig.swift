@@ -29,7 +29,7 @@ enum GameConfig {
     }
 
     enum DarkVortexPowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+        static let powerUpDuration: TimeInterval = 10.0
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 4
     }

@@ -29,8 +29,11 @@ class ManaSystem: GKComponentSystem<ManaComponent>, System {
             return
         }
         
-        entityManaComponent.manaPoints += manaPoints
-        entityManaComponent.manaPoints = max(0, entityManaComponent.manaPoints)
+        entityManaComponent.manaPoints = max(0, entityManaComponent.manaPoints + manaPoints)
+    }
+    
+    func getMana(for entity: GKEntity) -> Int? {
+        entity.component(ofType: ManaComponent.self)?.manaPoints
     }
 }
 
@@ -62,11 +65,7 @@ extension ManaSystem: DroppedManaResponder {
      */
     private func shouldDropMana() -> Bool {
         let randNum = Double.random(in: 0.0...1.0)
-        if randNum <= GameConfig.Mana.manaDropProbability {
-            return true
-        } else {
-            return false
-        }
+        return randNum <= GameConfig.Mana.manaDropProbability
     }
 
     /**

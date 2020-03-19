@@ -235,6 +235,33 @@ class GameScene: SKScene {
             highestPriorityLayer.addChild(node)
         default:
             addChild(node)
+
+    /** Detects the activation of Power Ups */
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first,
+            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
+            return
+        }
+
+        // toggle it back to gesture mode
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        
+        // if insufficient mana
+        if !gameEngine.didActivatePowerUp(powerUp: selectedPowerUp, at: touch.location(in: powerUpAnimationLayer)) {
+            // Show Insufficient Mana Animation
+            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
+            insufficientManaLabel.text = "Insufficient Mana"
+            insufficientManaLabel.fontSize = size.width / 25
+            insufficientManaLabel.fontColor = .green
+            let animationAction = SKAction.sequence([
+                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+                .fadeOut(withDuration: 0.25),
+                .removeFromParent()
+            ])
+            
+            insufficientManaLabel.run(animationAction)
+            highestPriorityLayer.addChild(insufficientManaLabel)
         }
     }
 }

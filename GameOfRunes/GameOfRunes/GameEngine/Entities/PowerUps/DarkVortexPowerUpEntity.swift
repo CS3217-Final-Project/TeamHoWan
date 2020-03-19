@@ -30,22 +30,29 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
             gameEngine: gameEngine,
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.height)
+            radius: .init(spriteComponent.node.size.width)
         )
 
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)
-
+        
         // Timer will expire and cause the removal of the Power Up
-        Timer.scheduledTimer(withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
-                             repeats: false,
-                             block: {_ in
-                                animationNode.run(.fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration),
-                                                  completion: {
-                                    gameEngine.remove(self)
-                                })
-        })
+        Timer.scheduledTimer(
+            withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
+            repeats: false,
+            block: { [weak self] _ in
+                animationNode.run(
+                    .fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration),
+                    completion: {
+                        guard let entity = self else {
+                            return
+                        }
+                        gameEngine.remove(entity)
+                    }
+                )
+            }
+        )
     }
 
     @available(*, unavailable)
