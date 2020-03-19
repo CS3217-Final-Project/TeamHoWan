@@ -31,31 +31,20 @@ public class GestureRecognizer {
     }
     
     func touchesEnded() {
-        var path: Path = Path()
+        var path = Path()
         path.addPointFromRaw(rawPoints)
         
-        guard let gameEngine = gameEngine,
-            let gameScene = gameEngine.gameScene else {
-                return
+        guard let gameEngine = gameEngine else {
+            return
         }
         
-        if let powerUp = gameScene.powerUp() {
-            switch powerUp {
-            case .hellfire, .icePrison:
-                guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints) else {
-                    return
-                }
-                print(circle.center)
-                gameScene.activatePowerUpCircle(location: circle.center, circle: circle)
-            default:
-                return
-            }
-        } else {
+        guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints) else {
             guard let gesture: PathModel = self.recognizer.recognizePath(path),
                 let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
                     return
             }
             gameEngine.gestureActivated(gesture: customGesture)
+            return
         }
     }
 }

@@ -168,48 +168,4 @@ class GameEngine {
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
     }
-
-    func activatePowerUp(powerUp: PowerUpType, at location: CGPoint,
-                         with size: CGSize, manaPointsRequired: Int, circle: CircleResult? = nil) {
-        guard let selectedPowerUp = gameScene?.playerAreaNode.powerUpContainerNode.selectedPowerUp else {
-            return
-        }
-
-//        let loc = CGPoint(x: location.x, y: gestureAreaNode.size.height - location.y)
-        
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
-        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-
-        guard currentManaPoints >= manaPointsRequired else {
-            // do up the animation for insufficient mana
-            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = loc
-            insufficientManaLabel.text = "Insufficient Mana"
-            insufficientManaLabel.fontSize = size.width / 25
-            insufficientManaLabel.fontColor = .green
-            let animationAction = SKAction.sequence([
-                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
-                .fadeOut(withDuration: 0.25),
-                .removeFromParent()
-            ])
-
-            insufficientManaLabel.run(animationAction)
-            gameScene?.highestPriorityLayer.addChild(insufficientManaLabel)
-            return
-        }
-        
-        switch powerUp {
-        case .darkVortex:
-            let powerUpEntity = DarkVortexPowerUpEntity(gameEngine: self,
-                                                        at: location,
-                                                        with: size)
-            decreasePlayerMana(by: manaPointsRequired)
-            add(powerUpEntity)
-        case .hellfire:
-            print("Not Implemented Yet")
-        case .icePrison:
-            print("Not Implemented Yet")
-        }
-    }
 }
