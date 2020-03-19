@@ -216,6 +216,27 @@ class GameScene: SKScene {
 
         gameEngine.update(with: deltaTime)
     }
+    
+    func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {
+        switch layer {
+        case .enemyLayer:
+            enemyLayer.addChild(node)
+        case .powerUpAnimationLayer:
+            powerUpAnimationLayer.addChild(node)
+        case .manaDropLayer:
+            manaDropLayer.addChild(node)
+        case .backgroundLayer:
+            backgroundLayer.addChild(node)
+        case .gestureLayer:
+            gestureLayer.addChild(node)
+        case .playerAreaLayer:
+            playerAreaLayer.addChild(node)
+        case .highestPriorityLayer:
+            highestPriorityLayer.addChild(node)
+        default:
+            addChild(node)
+        }
+    }
 }
 
 /**
