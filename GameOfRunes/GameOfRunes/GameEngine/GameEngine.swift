@@ -158,7 +158,6 @@ class GameEngine {
     }
     
     func increasePlayerMana(by manaPoints: Int) {
-        assert(manaPoints >= 0)
         guard let playerManaEntity = playerManaEntity else {
             return
         }
@@ -167,7 +166,6 @@ class GameEngine {
     }
 
     func decreasePlayerMana(by manaPoints: Int) {
-        assert(manaPoints >= 0)
         increasePlayerMana(by: -manaPoints)
     }
 
