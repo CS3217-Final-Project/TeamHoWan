@@ -223,7 +223,8 @@ class GameScene: SKScene {
             let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
-        
+
+        print("tapped on a mana thing") //TODO: DEBUG
         let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
         let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
@@ -245,19 +246,28 @@ class GameScene: SKScene {
             highestPriorityLayer.addChild(insufficientManaLabel)
             return
         }
-        
-        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
-        
-        selectedPowerUp.runAnimation(
-            at: touch.location(in: powerUpAnimationLayer),
-            with: .init(width: size.width / 3, height: size.width / 3),
-            on: powerUpAnimationLayer
-        )
+
+//        //TODO: This should be refactored (don't do direct access)
+//        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
+//
+//        //TODO: Delete selectedPOwerUP class?
+//        selectedPowerUp.runAnimation(
+//            at: touch.location(in: powerUpAnimationLayer),
+//            with: .init(width: size.width / 3, height: size.width / 3),
+//            on: powerUpAnimationLayer
+//        )
+
+        gameEngine.activatePowerUp(powerUp: selectedPowerUp,
+                                   at: touch.location(in: powerUpAnimationLayer),
+                                   with: .init(width: size.width / 3, height: size.width / 3),
+                                   on: powerUpAnimationLayer)
+
+
     }
 }
 
 /**
- Extension to deal with button-related logic (i.e. the Pause Button)
+ Extension to deal with button-related logic (when buttons are tapped)
  */
 extension GameScene: TapResponder {
     func onTapped(tappedNode: SKSpriteNode) {

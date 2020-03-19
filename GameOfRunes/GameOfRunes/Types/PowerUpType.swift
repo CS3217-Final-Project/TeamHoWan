@@ -12,9 +12,10 @@ enum PowerUpType: String, CaseIterable {
     case hellfire
     case icePrison
     case darkVortex
-    
-    private static var powerUpCastsTextures = [PowerUpType: [SKTexture]]()
-    private static var powerUpsTextures = [PowerUpType: [SKTexture]]()
+
+    //TODO: Move loading of power up textures to TextureContainer?
+    static var powerUpCastsTextures = [PowerUpType: [SKTexture]]()
+    static var powerUpsTextures = [PowerUpType: [SKTexture]]()
     
     var manaUnitCost: Int {
         switch self {
@@ -23,7 +24,8 @@ enum PowerUpType: String, CaseIterable {
         case .icePrison:
             return 8
         case .darkVortex:
-            return 4
+            // TODO: Change this back to 4
+            return 0
         }
     }
     

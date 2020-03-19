@@ -102,7 +102,13 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            return Array(entities[.endPointEntity] ?? Set())
+             //Update this to be darkVortexPowerUpEntity
+            if let endPointEntity = entities[.endPointEntity],
+                let darkVortexPowerUpEntities = entities[.powerUpEntity] {
+                return Array(endPointEntity.union(darkVortexPowerUpEntities))
+            }
+            return []
+            //            return Array((entities[.endPointEntity]).union( entities[.powerUpEntity]) ?? Set())
         }
     }
     
@@ -159,5 +165,15 @@ class GameEngine {
         }
         
         systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
+    }
+
+    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint,
+                         with size: CGSize, on node: SKNode) {
+        let powerUpEntity = PowerUpEntity(gameEngine: self,
+                                          powerUpType: powerUp,
+                                          at: position,
+                                          with: size,
+                                          on: node)
+        add(powerUpEntity)
     }
 }
