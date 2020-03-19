@@ -24,7 +24,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         }
         
         checkEnemyEndPointCollision()
-
+        checkFireVortexCollision()
     }
     
     // Note: end-point entity also has a move component.
@@ -45,7 +45,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     private func closestMoveComponent(from component: MoveComponent, for team: Team) -> GKAgent2D? {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
-
+        
         gameEngine?.moveComponents(for: team).forEach {
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
@@ -57,17 +57,39 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         return closestMoveComponent
     }
     
-    private func checkEnemyEndPointCollision() {
-        guard let endpointComponent = gameEngine?.entities(for: .player).first as? EndPointEntity,
-            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
-            return
+    private func checkFireVortexCollision() {
+        guard let hellfireComponent = gameEngine?.entities(for: .player)
+            .compactMap({ $0 as? HellfirePowerUpEntity }).first,
+            let hellfireNode = hellfireComponent.component(ofType: SpriteComponent.self)?.node else {
+                return
         }
         
         for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
             guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
                 continue
             }
-
+            
+            if enemyEntity
+                .component(ofType: SpriteComponent.self)?
+                .node
+                .calculateAccumulatedFrame()
+                .intersects(hellfireNode.calculateAccumulatedFrame()) ?? false {
+                gameEngine?.removeEnemy(enemyEntity)
+            }
+        }
+    }
+    
+    private func checkEnemyEndPointCollision() {
+        guard let endpointComponent = gameEngine?.entities(for: .player).compactMap({ $0 as? EndPointEntity }).first,
+            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
+                return
+        }
+        
+        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
+                continue
+            }
+            
             if enemyEntity
                 .component(ofType: SpriteComponent.self)?
                 .node

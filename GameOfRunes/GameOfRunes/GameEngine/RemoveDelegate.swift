@@ -40,10 +40,9 @@ class RemoveDelegate {
             gameEngine?.add(nextGesture)
         }
     }
-    
+
     func removeEnemyReachedLine(_ entity: EnemyEntity) {
         removeEnemyFromGame(entity)
-        gameEngine?.decreasePlayerHealth()
 
         guard let gestureEntity = entity.gestureEntity else {
             return

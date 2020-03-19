@@ -22,11 +22,19 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         super.init()
 
         let animationNode = getAnimationNode(at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
+        let animationSpriteComponent = SpriteComponent(node: animationNode)
+        animationSpriteComponent.layerType = .powerUpAnimationLayer
+        
+        let node = SKSpriteNode(texture: nil, color: .clear, size: size)
+        node.position = position
+        
+        let spriteComponent = SpriteComponent(node: node)
         spriteComponent.layerType = .powerUpAnimationLayer
+
         let teamComponent = TeamComponent(team: .player)
 
         addComponent(spriteComponent)
+        addComponent(animationSpriteComponent)
         addComponent(teamComponent)
 
         // Timer will expire and cause the removal of the Power Up

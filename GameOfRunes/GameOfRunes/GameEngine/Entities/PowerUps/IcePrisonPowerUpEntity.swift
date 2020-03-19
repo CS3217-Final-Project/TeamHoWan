@@ -16,18 +16,27 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     override var type: EntityType {
         .icePrisonPowerUpEntity
     }
-
+    
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
         self.gameEngine = gameEngine
         super.init()
-
-        let animationNode = getAnimationNode(at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
+        
+        let animationNode = getCastingAnimationNode(at: position, with: size)
+        let animationSpriteComponent = SpriteComponent(node: animationNode)
+        animationSpriteComponent.layerType = .powerUpAnimationLayer
+        
+        let node = SKSpriteNode(texture: nil, color: .clear, size: size)
+        node.position = position
+        
+        let spriteComponent = SpriteComponent(node: node)
         spriteComponent.layerType = .powerUpAnimationLayer
+        
         let teamComponent = TeamComponent(team: .player)
-
+        
         addComponent(spriteComponent)
+        addComponent(animationSpriteComponent)
         addComponent(teamComponent)
+        
         
         // Timer will expire and cause the removal of the Power Up
         Timer.scheduledTimer(
@@ -41,12 +50,12 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
                             return
                         }
                         gameEngine.remove(entity)
-                    }
+                }
                 )
             }
         )
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

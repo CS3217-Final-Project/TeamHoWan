@@ -102,11 +102,21 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            if let endPointEntity = entities[.endPointEntity],
-                let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
-                return Array(endPointEntity.union(darkVortexPowerUpEntities))
+            var res = Set<Entity>()
+            if let endPointEntity = entities[.endPointEntity] {
+                res = res.union(endPointEntity)
             }
-            return []
+            if let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
+                res = res.union(darkVortexPowerUpEntities)
+            }
+            if let hellfirePowerUpEntities = entities[.hellFirePowerUpEntity] {
+                res = res.union(hellfirePowerUpEntities)
+            }
+            if let icePrisonPowerUpEntities = entities[.icePrisonPowerUpEntity] {
+                res = res.union(icePrisonPowerUpEntities)
+            }
+
+            return Array(res)
         }
     }
     
@@ -145,12 +155,16 @@ class GameEngine {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
-    func enemyReachedLine(_ entity: GKEntity) {
+    func removeEnemy(_ entity: GKEntity) {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
-
         removeDelegate.removeEnemyReachedLine(enemyEntity)
+    }
+    
+    func enemyReachedLine(_ entity: GKEntity) {
+        removeEnemy(entity)
+        decreasePlayerHealth()
     }
     
     func dropMana(at entity: GKEntity) {

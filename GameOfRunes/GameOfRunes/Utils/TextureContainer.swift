@@ -47,11 +47,9 @@ enum TextureContainer {
 
         // Load `powerUpTextures`
         let hellfireAtlas = SKTextureAtlas(named: PowerUpType.hellfire.rawValue)
-        powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)")
-        }
+        powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
         let darkVortexAtlas = SKTextureAtlas(named: PowerUpType.darkVortex.rawValue)
-        powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)")
-        }
+        powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)") }
     }
 
     /** Get the Animation Textures for the `enemyType` */
