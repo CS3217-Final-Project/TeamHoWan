@@ -169,13 +169,13 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
 
-    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize) -> Bool {
+    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize? = nil) -> Bool {
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
             let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
-                                                        // TODO: change this once game meta-data is up
+        // TODO: change this once game meta-data is up
         let manaPointsRequired = powerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
         
         guard currentManaPoints >= manaPointsRequired else {
