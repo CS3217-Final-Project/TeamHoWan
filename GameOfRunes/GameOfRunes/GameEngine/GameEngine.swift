@@ -23,9 +23,6 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
-    var droppedManaResponder: DroppedManaResponder? {
-        systemDelegate.droppedManaResponder
-    }
 
     init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
         self.gameScene = gameScene
@@ -136,7 +133,7 @@ class GameEngine {
                 gestureComponent.gesture == gesture else {
                 continue
             }
-
+            
             removeDelegate.removeGesture(for: entity)
         }
     }
@@ -201,5 +198,23 @@ class GameEngine {
         
         // did activate
         return true
+    }
+}
+
+extension GameEngine: DroppedManaResponder {
+    /**
+     Handler function called whenever the `DroppedManaNode` is tapped
+     as part of conformance to the `DroppedManaResponder` protocol.
+     - Note: This function removes the Mana from screen, and increments
+     the player's mana points.
+     */
+    func droppedManaTapped(droppedManaNode: DroppedManaNode) {
+        guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
+            let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
+            return
+        }
+        
+        increasePlayerMana(by: manaPoints)
+        removeDelegate?.removeDroppedMana(droppedManaEntity)
     }
 }

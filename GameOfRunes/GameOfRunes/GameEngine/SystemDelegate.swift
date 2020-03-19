@@ -17,9 +17,6 @@ class SystemDelegate {
     var manaSystem: ManaSystem? {
         systems[.manaComponent] as? ManaSystem
     }
-    var droppedManaResponder: DroppedManaResponder? {
-        manaSystem
-    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
