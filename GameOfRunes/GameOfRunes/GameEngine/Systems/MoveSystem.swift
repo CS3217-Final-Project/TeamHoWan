@@ -44,7 +44,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     private func closestMoveComponent(from component: MoveComponent, for team: Team) -> GKAgent2D? {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
-        
+
         gameEngine?.moveComponents(for: team).forEach {
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {

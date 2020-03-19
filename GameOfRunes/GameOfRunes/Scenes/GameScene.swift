@@ -52,7 +52,6 @@ class GameScene: SKScene {
         DispatchQueue.global(qos: .default).async {
             // set up animation textures
             TextureContainer.loadTextures()
-            PowerUpType.loadPowerUpCastsTextures()
             // indicates that the execution is done
             dispatchGroup.leave()
         }
@@ -217,19 +216,20 @@ class GameScene: SKScene {
 
         gameEngine.update(with: deltaTime)
     }
-    
+
+    /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,
             let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
             return
         }
-        
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
-        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
+
+        // toggle it back to gesture mode
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
         
-        guard currentManaPoints >= manaPointsRequired else {
-            // do up the animation for insufficient mana
+        // if insufficient mana
+        if !gameEngine.didActivatePowerUp(powerUp: selectedPowerUp, at: touch.location(in: powerUpAnimationLayer)) {
+            // Show Insufficient Mana Animation
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
             insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
             insufficientManaLabel.text = "Insufficient Mana"
@@ -243,21 +243,12 @@ class GameScene: SKScene {
             
             insufficientManaLabel.run(animationAction)
             highestPriorityLayer.addChild(insufficientManaLabel)
-            return
         }
-        
-        playerAreaNode.manaBarNode.currentManaPoints -= manaPointsRequired
-        
-        selectedPowerUp.runAnimation(
-            at: touch.location(in: powerUpAnimationLayer),
-            with: .init(width: size.width / 3, height: size.width / 3),
-            on: powerUpAnimationLayer
-        )
     }
 }
 
 /**
- Extension to deal with button-related logic (i.e. the Pause Button)
+ Extension to deal with button-related logic (when buttons are tapped)
  */
 extension GameScene: TapResponder {
     func onTapped(tappedNode: SKSpriteNode) {

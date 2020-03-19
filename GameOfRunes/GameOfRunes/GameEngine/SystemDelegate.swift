@@ -62,4 +62,8 @@ class SystemDelegate {
     func dropMana(at entity: GKEntity) {
         manaSystem?.dropMana(at: entity)
     }
+    
+    func getMana(for entity: GKEntity) -> Int? {
+        manaSystem?.getMana(for: entity)
+    }
 }

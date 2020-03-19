@@ -14,7 +14,9 @@ class SpriteComponent: GKComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
-    
+    // Specifies which `GameScene` layer node to add `node` to
+    var layerType: SpriteLayerType = .defaultLayer
+
     init(node: SKSpriteNode) {
         self.node = node
         super.init()

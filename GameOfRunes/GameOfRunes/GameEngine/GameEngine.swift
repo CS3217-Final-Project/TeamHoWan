@@ -102,7 +102,11 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            return Array(entities[.endPointEntity] ?? Set())
+            if let endPointEntity = entities[.endPointEntity],
+                let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
+                return Array(endPointEntity.union(darkVortexPowerUpEntities))
+            }
+            return []
         }
     }
     
@@ -159,5 +163,43 @@ class GameEngine {
         }
         
         systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
+    }
+
+    func decreasePlayerMana(by manaPoints: Int) {
+        increasePlayerMana(by: -manaPoints)
+    }
+
+    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize = .zero) -> Bool {
+        guard let gameScene = gameScene,
+            let playerManaEntity = playerManaEntity,
+            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
+                fatalError("Invalid call to didActivatePowerUp")
+        }
+                                                        // TODO: change this once game meta-data is up
+        let manaPointsRequired = powerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        
+        guard currentManaPoints >= manaPointsRequired else {
+            // did not activate
+            return false
+        }
+        
+        switch powerUp {
+        case .darkVortex:
+            let radius = gameScene.size.width / 3
+            let powerUpEntity = DarkVortexPowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: radius, height: radius)
+            )
+            decreasePlayerMana(by: manaPointsRequired)
+            add(powerUpEntity)
+        case .hellfire:
+            print("Not Implemented Yet")
+        case .icePrison:
+            print("Not Implemented Yet")
+        }
+        
+        // did activate
+        return true
     }
 }
