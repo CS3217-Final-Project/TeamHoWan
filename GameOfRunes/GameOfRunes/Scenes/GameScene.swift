@@ -247,10 +247,12 @@ class GameScene: SKScene {
             return
         }
 
+        // Activate PowerUp after verifying sufficient mana
         gameEngine.activatePowerUp(powerUp: selectedPowerUp,
                                    at: touch.location(in: powerUpAnimationLayer),
                                    with: .init(width: size.width / 3,
-                                               height: size.width / 3))
+                                               height: size.width / 3),
+                                   manaPointsRequired: manaPointsRequired)
     }
 }
 

@@ -169,13 +169,14 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
 
-    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize) {
+    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint,
+                         with size: CGSize, manaPointsRequired: Int) {
         switch powerUp {
         case .darkVortex:
             let powerUpEntity = DarkVortexPowerUpEntity(gameEngine: self,
                                                         at: position,
                                                         with: size)
-            decreasePlayerMana(by: PowerUpType.darkVortex.manaUnitCost)
+            decreasePlayerMana(by: manaPointsRequired)
             add(powerUpEntity)
         case .hellfire:
             print("Not Implemented Yet")
