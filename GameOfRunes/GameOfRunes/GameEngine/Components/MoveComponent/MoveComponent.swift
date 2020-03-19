@@ -29,9 +29,19 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func willRemoveFromEntity() {
         gameEngine?.removeComponent(self)
+    }
+    
+    func stopMovement() -> Float {
+        let temp = self.maxSpeed
+        self.maxSpeed = 0
+        return temp
+    }
+    
+    func startMovement(maxSpeed: Float) {
+        self.maxSpeed = 0
     }
     
     func agentWillUpdate(_ agent: GKAgent) {

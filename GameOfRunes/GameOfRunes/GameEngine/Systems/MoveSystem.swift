@@ -23,8 +23,9 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
             component.update(deltaTime: seconds)
         }
         
-        checkEnemyEndPointCollision()
         checkFireVortexCollision()
+        checkIcePrisonCollision()
+        checkEnemyEndPointCollision()
     }
     
     // Note: end-point entity also has a move component.
@@ -55,6 +56,30 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         }
         
         return closestMoveComponent
+    }
+    
+    private func checkIcePrisonCollision() {
+        guard let icePrisonComponent = gameEngine?.entities(for: .player)
+            .compactMap({ $0 as? IcePrisonPowerUpEntity }).first,
+            let icePrisonNode = icePrisonComponent.component(ofType: SpriteComponent.self)?.node else {
+                return
+        }
+        
+        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
+                continue
+            }
+            
+            if enemyEntity.component(ofType: SpriteComponent.self)?
+                .node
+                .calculateAccumulatedFrame()
+                .intersects(icePrisonNode.calculateAccumulatedFrame()) ?? false {
+                guard let enemyEntity = enemyEntity as? EnemyEntity else {
+                    return
+                }
+                enemyEntity.stopMovement()
+            }
+        }
     }
     
     private func checkFireVortexCollision() {

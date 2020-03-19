@@ -53,6 +53,20 @@ class EnemyEntity: Entity {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func stopMovement() -> Float {
+        guard let movement = component(ofType: MoveComponent.self) else {
+            return 0
+        }
+        return movement.stopMovement()
+    }
+    
+    func startMovement(maxSpeed: Float) {
+        guard let movement = component(ofType: MoveComponent.self) else {
+            return
+        }
+        movement.startMovement(maxSpeed: maxSpeed)
+    }
 
     func setCurrentGesture() {
         guard let enemyNode = component(ofType: SpriteComponent.self)?.node else {
