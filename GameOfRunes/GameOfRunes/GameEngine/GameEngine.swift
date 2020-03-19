@@ -169,7 +169,7 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
 
-    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize) -> Bool {
+    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize = .zero) -> Bool {
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
             let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
