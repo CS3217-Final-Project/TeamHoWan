@@ -169,13 +169,28 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
 
-    func activatePowerUp(powerUp: PowerUpType, at position: CGPoint,
-                         with size: CGSize, manaPointsRequired: Int) {
+    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize) -> Bool {
+        guard let gameScene = gameScene,
+            let playerManaEntity = playerManaEntity,
+            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
+                fatalError("Invalid call to didActivatePowerUp")
+        }
+                                                        // TODO: change this once game meta-data is up
+        let manaPointsRequired = powerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        
+        guard currentManaPoints >= manaPointsRequired else {
+            // did not activate
+            return false
+        }
+        
         switch powerUp {
         case .darkVortex:
-            let powerUpEntity = DarkVortexPowerUpEntity(gameEngine: self,
-                                                        at: position,
-                                                        with: size)
+            let radius = gameScene.size.width / 3
+            let powerUpEntity = DarkVortexPowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: radius, height: radius)
+            )
             decreasePlayerMana(by: manaPointsRequired)
             add(powerUpEntity)
         case .hellfire:
@@ -183,5 +198,8 @@ class GameEngine {
         case .icePrison:
             print("Not Implemented Yet")
         }
+        
+        // did activate
+        return true
     }
 }

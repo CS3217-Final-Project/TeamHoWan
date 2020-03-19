@@ -224,15 +224,14 @@ class GameScene: SKScene {
             return
         }
 
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * playerAreaNode.manaBarNode.manaPointsPerUnit
-        let currentManaPoints = playerAreaNode.manaBarNode.currentManaPoints
+        // toggle it back to gesture mode
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-
-        // Check that Mana is Sufficient
-        guard currentManaPoints >= manaPointsRequired else {
+        
+        // if insufficient mana
+        if !gameEngine.didActivatePowerUp(powerUp: selectedPowerUp, at: touch.location(in: powerUpAnimationLayer)) {
             // Show Insufficient Mana Animation
             let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: powerUpAnimationLayer)
+            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
             insufficientManaLabel.text = "Insufficient Mana"
             insufficientManaLabel.fontSize = size.width / 25
             insufficientManaLabel.fontColor = .green
@@ -243,16 +242,8 @@ class GameScene: SKScene {
             ])
             
             insufficientManaLabel.run(animationAction)
-            powerUpAnimationLayer.addChild(insufficientManaLabel)
-            return
+            highestPriorityLayer.addChild(insufficientManaLabel)
         }
-
-        // Activate PowerUp after verifying sufficient mana
-        gameEngine.activatePowerUp(powerUp: selectedPowerUp,
-                                   at: touch.location(in: powerUpAnimationLayer),
-                                   with: .init(width: size.width / 3,
-                                               height: size.width / 3),
-                                   manaPointsRequired: manaPointsRequired)
     }
 }
 

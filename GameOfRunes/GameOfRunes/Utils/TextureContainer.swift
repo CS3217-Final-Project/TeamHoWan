@@ -41,9 +41,7 @@ enum TextureContainer {
         // Load `powerUpCastTextures`
         PowerUpType.allCases.forEach { powerUpType in
             let powerUpCastAtlas = SKTextureAtlas(named: "\(powerUpType)Cast")
-            let castTextures = (0...19).map {
-                powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0))
-            }
+            let castTextures = (0...19).map { powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0)) }
             powerUpCastTextures[powerUpType] = castTextures
         }
 
