@@ -19,6 +19,7 @@ class GameScene: SKScene {
     private(set) var backgroundLayer: SKNode!
     private(set) var enemyLayer: SKNode!
     private(set) var powerUpAnimationLayer: SKNode!
+    private(set) var removalAnimationLayer: SKNode!
     private(set) var gestureLayer: SKNode!
     private(set) var playerAreaLayer: SKNode!
     private(set) var manaDropLayer: SKNode!
@@ -101,6 +102,10 @@ class GameScene: SKScene {
         powerUpAnimationLayer = .init()
         powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.powerUpAnimationLayerZPosition
         addChild(powerUpAnimationLayer)
+        
+        removalAnimationLayer = .init()
+        removalAnimationLayer.zPosition = GameConfig.GamePlayScene.removalAnimationLayerZPosition
+        addChild(removalAnimationLayer)
         
         gestureLayer = .init()
         gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
@@ -221,18 +226,20 @@ class GameScene: SKScene {
     
     func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {
         switch layer {
+        case .backgroundLayer:
+            backgroundLayer.addChild(node)
         case .enemyLayer:
             enemyLayer.addChild(node)
         case .powerUpAnimationLayer:
             powerUpAnimationLayer.addChild(node)
-        case .manaDropLayer:
-            manaDropLayer.addChild(node)
-        case .backgroundLayer:
-            backgroundLayer.addChild(node)
+        case .removalAnimationLayer:
+            removalAnimationLayer.addChild(node)
         case .gestureLayer:
             gestureLayer.addChild(node)
         case .playerAreaLayer:
             playerAreaLayer.addChild(node)
+        case .manaDropLayer:
+            manaDropLayer.addChild(node)
         case .highestPriorityLayer:
             highestPriorityLayer.addChild(node)
         default:

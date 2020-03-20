@@ -14,6 +14,7 @@ enum SpriteLayerType {
     case backgroundLayer
     case enemyLayer
     case powerUpAnimationLayer
+    case removalAnimationLayer
     case gestureLayer
     case playerAreaLayer
     case highestPriorityLayer

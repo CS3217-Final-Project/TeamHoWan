@@ -70,11 +70,11 @@ class RemoveDelegate {
             .removeFromParent()
         ])
         
-        // temporary hack to prevent the dropped mana from being tapped multiple times during the removal animation
+        // separate removal animation from entity
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
-        gameEngine?.gameScene?.enemyLayer.addChild(animationNode)
+        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
         
         gameEngine?.remove(entity)
     }
@@ -87,8 +87,6 @@ class RemoveDelegate {
      the `EnemyEntity`.
      */
     private func removeEnemyFromGame(_ entity: EnemyEntity, fullAnimation: Bool = true) {
-        entity.removeComponent(ofType: MoveComponent.self)
-        
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
@@ -96,15 +94,23 @@ class RemoveDelegate {
         let animationTextures = fullAnimation
             ? TextureContainer.fullEnemyRemovalTextures
             : TextureContainer.halfEnemyRemovalTextures
-        let removalAnimation = SKAction.animate(
-            with: animationTextures,
-            timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
-            resize: true,
-            restore: false
-        )
         
-        spriteComponent.node.run(removalAnimation) { [weak self] in
-            self?.gameEngine?.remove(entity)
-        }
+        let removalAnimation = SKAction.sequence([
+            .animate(
+                with: animationTextures,
+                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                resize: true,
+                restore: false
+            ),
+            .removeFromParent()
+        ])
+        
+        // separate removal animation from entity
+        let animationNode = SKSpriteNode()
+        animationNode.position = spriteComponent.node.position
+        animationNode.run(removalAnimation)
+        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
+        
+        gameEngine?.remove(entity)
     }
 }
