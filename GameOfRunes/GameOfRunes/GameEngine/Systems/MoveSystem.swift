@@ -77,7 +77,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
                 guard let enemyEntity = enemyEntity as? EnemyEntity else {
                     return
                 }
-                enemyEntity.stopMovement()
+                enemyEntity.stopMovement(GameConfig.IcePrisonPowerUp.powerUpDuration)
             }
         }
     }

@@ -54,18 +54,11 @@ class EnemyEntity: Entity {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func stopMovement() -> Float {
-        guard let movement = component(ofType: MoveComponent.self) else {
-            return 0
-        }
-        return movement.stopMovement()
-    }
-    
-    func startMovement(maxSpeed: Float) {
+    func stopMovement(_ duration: TimeInterval) {
         guard let movement = component(ofType: MoveComponent.self) else {
             return
         }
-        movement.startMovement(maxSpeed: maxSpeed)
+        movement.stopMovement(duration)
     }
 
     func setCurrentGesture() {

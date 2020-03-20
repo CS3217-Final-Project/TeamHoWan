@@ -34,14 +34,15 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
         gameEngine?.removeComponent(self)
     }
     
-    func stopMovement() -> Float {
+    func stopMovement(_ duration: TimeInterval) {
+        if self.maxSpeed == 0 {
+            return
+        }
         let temp = self.maxSpeed
         self.maxSpeed = 0
-        return temp
-    }
-    
-    func startMovement(maxSpeed: Float) {
-        self.maxSpeed = 0
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
+            self.maxSpeed = temp
+        })
     }
     
     func agentWillUpdate(_ agent: GKAgent) {

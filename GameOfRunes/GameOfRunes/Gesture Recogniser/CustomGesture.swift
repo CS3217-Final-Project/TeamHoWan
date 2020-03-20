@@ -103,7 +103,7 @@ enum PowerUpGesture: CaseIterable {
     func getPathModel() -> PathModel {
         switch self {
         case .circle:
-            return PathModel(directions: [1,2] , datas: self as AnyObject)
+            return PathModel(directions: [1, 2], datas: self as AnyObject)
         }
     }
     

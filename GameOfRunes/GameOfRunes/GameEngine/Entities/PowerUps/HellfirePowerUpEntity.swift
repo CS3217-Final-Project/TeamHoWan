@@ -25,8 +25,10 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
         
-        let node = SKSpriteNode(texture: nil, color: .clear, size: size)
+        let node = SKSpriteNode(texture: nil)
         node.position = position
+        node.physicsBody = .init(circleOfRadius: size.width / 2)
+        node.physicsBody?.affectedByGravity = false
         
         let spriteComponent = SpriteComponent(node: node)
         spriteComponent.layerType = .powerUpAnimationLayer
