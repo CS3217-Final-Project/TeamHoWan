@@ -90,18 +90,17 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 /** Extension for Power Up implementations */
 extension MoveSystem {
     private func checkFireVortexCollision() {
-        guard let hellfireNode = gameEngine?.entities(for: .hellFirePowerUpEntity)
-            .first?
-            .component(ofType: SpriteComponent.self)?
-            .node else {
+        guard let hellFireNodeFrames = gameEngine?.entities(for: .hellFirePowerUpEntity)
+            .compactMap({ $0.component(ofType: SpriteComponent.self)?.node.calculateAccumulatedFrame() }),
+            !hellFireNodeFrames.isEmpty else {
                 return
         }
         
         for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
             guard enemyEntity.component(ofType: MoveComponent.self) != nil,
-                enemyEntity.component(ofType: SpriteComponent.self)?.node
-                    .calculateAccumulatedFrame()
-                    .intersects(hellfireNode.calculateAccumulatedFrame()) ?? false,
+                let enemyEntityNodeFrame = enemyEntity.component(ofType: SpriteComponent.self)?.node
+                    .calculateAccumulatedFrame(),
+                hellFireNodeFrames.contains(where: { $0.intersects(enemyEntityNodeFrame) }),
                 let enemyEntity = enemyEntity as? EnemyEntity else {
                     continue
             }
