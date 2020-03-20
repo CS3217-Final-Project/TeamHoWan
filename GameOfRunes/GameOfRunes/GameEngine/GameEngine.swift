@@ -171,6 +171,10 @@ class GameEngine {
         systemDelegate.dropMana(at: entity)
     }
     
+    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+        systemDelegate.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+    }
+    
     func increasePlayerMana(by manaPoints: Int) {
         guard let playerManaEntity = playerManaEntity else {
             return
@@ -254,7 +258,7 @@ extension GameEngine {
                 guard let enemyEntity = enemyEntity as? EnemyEntity else {
                     return
                 }
-                enemyEntity.stopMovement(GameConfig.IcePrisonPowerUp.powerUpDuration)
+                systemDelegate.stopMovement(for: enemyEntity, duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
             }
         }
     }

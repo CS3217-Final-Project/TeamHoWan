@@ -20,6 +20,13 @@ class SystemDelegate {
     var droppedManaResponder: DroppedManaResponder? {
         manaSystem
     }
+    var moveSystem: MoveSystem? {
+        systems[.moveComponent] as? MoveSystem
+    }
+    var spriteSystem: SpriteSystem? {
+        systems[.spriteComponent] as? SpriteSystem
+    }
+
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -65,5 +72,13 @@ class SystemDelegate {
     
     func getMana(for entity: Entity) -> Int? {
         manaSystem?.getMana(for: entity)
+    }
+    
+    func stopMovement(for entity: Entity, duration: TimeInterval) {
+        moveSystem?.stopMovementForDuration(for: entity, duration: duration)
+    }
+    
+    func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+        spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
 }

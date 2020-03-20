@@ -14,6 +14,9 @@ class SpriteComponent: GKComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
+    // Key for SKAction for animations for the node, if any
+    var animationNodeKey: String?
+    
     // Specifies which `GameScene` layer node to add `node` to
     var layerType: SpriteLayerType = .defaultLayer
 
@@ -35,16 +38,6 @@ class SpriteComponent: GKComponent, Component {
     init(droppedManaNode: DroppedManaNode) {
         node = droppedManaNode
         super.init()
-    }
-    
-    func stopAnimationForDuration(_ duration: TimeInterval) {
-        guard let animation = node.action(forKey: GameConfig.AnimationNodeNames.enemy_walking) else {
-            return
-        }
-        animation.speed = 0
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
-            animation.speed = 1
-        })
     }
     
     func setGestureConstraint(referenceNode: SKSpriteNode) {

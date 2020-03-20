@@ -22,6 +22,8 @@ class EnemyEntity: Entity {
         super.init()
 
         let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
+        spriteComponent.animationNodeKey = GameConfig.AnimationNodeKey.enemy_walking
+
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
@@ -31,7 +33,7 @@ class EnemyEntity: Entity {
                     restore: true
                 )
             ),
-            withKey: GameConfig.AnimationNodeNames.enemy_walking
+            withKey: spriteComponent.animationNodeKey ?? ""
         )
 
         let moveComponent = MoveComponent(
@@ -53,15 +55,6 @@ class EnemyEntity: Entity {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func stopMovement(_ duration: TimeInterval) {
-        guard let movement = component(ofType: MoveComponent.self),
-        let spriteComponent = component(ofType: SpriteComponent.self) else {
-            return
-        }
-        movement.stopMovementForDuration(duration)
-        spriteComponent.stopAnimationForDuration(duration)
     }
 
     func setCurrentGesture() {

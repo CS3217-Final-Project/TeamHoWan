@@ -15,7 +15,7 @@ import UIKit
 enum GameConfig {
     static let fontName = "DragonFire"
     
-    enum AnimationNodeNames {
+    enum AnimationNodeKey {
         static let enemy_walking = "enemy-walking-animation"
     }
     
@@ -35,19 +35,19 @@ enum GameConfig {
     enum DarkVortexPowerUp {
         static let powerUpDuration: TimeInterval = 5.0
         static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 4
+        static let manaUnitCost: Int = 1
     }
 
     enum HellFirePowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+        static let powerUpDuration: TimeInterval = 4
         static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 0
+        static let manaUnitCost: Int = 2
     }
 
     enum IcePrisonPowerUp {
-        static let powerUpDuration: TimeInterval = 4
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 1
-        static let manaUnitCost: Int = 1
+        static let manaUnitCost: Int = 3
     }
 
     enum SceneManager {

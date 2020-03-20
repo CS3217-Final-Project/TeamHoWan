@@ -33,15 +33,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     override func willRemoveFromEntity() {
         gameEngine?.removeComponent(self)
     }
-    
-    func stopMovementForDuration(_ duration: TimeInterval) {
-        let temp = self.maxSpeed
-        self.maxSpeed = 0
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
-            self.maxSpeed = temp
-        })
-    }
-    
+        
     func agentWillUpdate(_ agent: GKAgent) {
         guard let spriteComponent = entity?.component(ofType: SpriteComponent.self) else {
             return
