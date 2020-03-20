@@ -101,8 +101,6 @@ class GameEngine {
         case .player:
             let res = entities(for: .endPointEntity)
                 .union(entities(for: .darkVortexPowerUpEntity))
-                .union(entities(for: .hellFirePowerUpEntity))
-                .union(entities(for: .icePrisonPowerUpEntity))
             return Array(res)
         }
     }
