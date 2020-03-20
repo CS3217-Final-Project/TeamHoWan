@@ -15,6 +15,10 @@ import UIKit
 enum GameConfig {
     static let fontName = "DragonFire"
     
+    enum AnimationNodeKey {
+        static let enemy_walking = "enemy-walking-animation"
+    }
+    
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
@@ -29,17 +33,21 @@ enum GameConfig {
     }
 
     enum DarkVortexPowerUp {
-        static let powerUpDuration: TimeInterval = 10.0
+        static let powerUpDuration: TimeInterval = 8.0
         static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 4
+        static let manaUnitCost: Int = 1
     }
 
     enum HellFirePowerUp {
-        static let manaUnitCost: Int = 6
+        static let powerUpDuration: TimeInterval = 8.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 1
     }
 
     enum IcePrisonPowerUp {
-        static let manaUnitCost: Int = 8
+        static let powerUpDuration: TimeInterval = 5.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 1
     }
 
     enum SceneManager {
@@ -66,9 +74,10 @@ enum GameConfig {
         static let backgroundLayerZPosition: CGFloat = -100
         static let enemyLayerZPosition: CGFloat = 0
         static let powerUpAnimationLayerZPosition: CGFloat = 100
-        static let gestureLayerZPosition: CGFloat = 200
-        static let playerAreaLayerZPosition: CGFloat = 300
-        static let manaDropLayerZPosition: CGFloat = 400
+        static let removalAnimationLayerZPosition: CGFloat = 200
+        static let gestureLayerZPosition: CGFloat = 300
+        static let playerAreaLayerZPosition: CGFloat = 400
+        static let manaDropLayerZPosition: CGFloat = 500
         static let highestPriorityLayerZPosition: CGFloat = 1_000
         
         // size ratios

@@ -19,6 +19,7 @@ class EndPointEntity: Entity {
         
         let spriteComponent = SpriteComponent(node: node)
         spriteComponent.node.addGlow()
+        spriteComponent.layerType = .playerAreaLayer
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,

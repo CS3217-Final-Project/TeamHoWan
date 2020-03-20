@@ -1,50 +1,41 @@
 //
-//  DarkVortexPowerUpEntity.swift
+//  IcePrisonPowerUpEntity.swift
 //  GameOfRunes
 //
-//  Created by Brian Yen on 19/3/20.
+//  Created by Andy on 19/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-/** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
+/** Entity to represent the Hellfire Power Up */
+class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
-        .darkVortex
+        .icePrison
     }
     private weak var gameEngine: GameEngine?
     override var type: EntityType {
-        .darkVortexPowerUpEntity
+        .icePrisonPowerUpEntity
     }
-
+    
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
         self.gameEngine = gameEngine
         super.init()
-
-        let animationNode = getAnimationNode(at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
-        spriteComponent.layerType = .powerUpAnimationLayer
-        let teamComponent = TeamComponent(team: .player)
-        let moveComponent = MoveComponent(
-            gameEngine: gameEngine,
-            maxSpeed: 0.0,
-            maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.width)
-        )
-
-        addComponent(spriteComponent)
-        addComponent(teamComponent)
-        addComponent(moveComponent)
+        
+        let animationNode = getCastingAnimationNode(at: position, with: size)
+        let animationSpriteComponent = SpriteComponent(node: animationNode)
+        animationSpriteComponent.layerType = .powerUpAnimationLayer
+        
+        addComponent(animationSpriteComponent)
         
         // Timer will expire and cause the removal of the Power Up
         Timer.scheduledTimer(
-            withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
+            withTimeInterval: GameConfig.IcePrisonPowerUp.powerUpDuration,
             repeats: false,
             block: { [weak self] _ in
                 animationNode.run(
-                    .fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration),
+                    .fadeOut(withDuration: GameConfig.IcePrisonPowerUp.fadeOutDuration),
                     completion: {
                         guard let entity = self else {
                             return
@@ -55,7 +46,7 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
             }
         )
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

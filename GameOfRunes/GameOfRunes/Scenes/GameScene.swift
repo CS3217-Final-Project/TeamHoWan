@@ -19,6 +19,7 @@ class GameScene: SKScene {
     private(set) var backgroundLayer: SKNode!
     private(set) var enemyLayer: SKNode!
     private(set) var powerUpAnimationLayer: SKNode!
+    private(set) var removalAnimationLayer: SKNode!
     private(set) var gestureLayer: SKNode!
     private(set) var playerAreaLayer: SKNode!
     private(set) var manaDropLayer: SKNode!
@@ -57,7 +58,7 @@ class GameScene: SKScene {
         }
         
         // continue setting up other stuff in .main thread
-        gameEngine = GameEngine(gameScene: self, gameStateMachine: gameStateMachine)
+        gameEngine = GameEngine(gameScene: self)
         
         // UI
         buildLayers()
@@ -101,6 +102,10 @@ class GameScene: SKScene {
         powerUpAnimationLayer = .init()
         powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.powerUpAnimationLayerZPosition
         addChild(powerUpAnimationLayer)
+        
+        removalAnimationLayer = .init()
+        removalAnimationLayer.zPosition = GameConfig.GamePlayScene.removalAnimationLayerZPosition
+        addChild(removalAnimationLayer)
         
         gestureLayer = .init()
         gestureLayer.zPosition = GameConfig.GamePlayScene.gestureLayerZPosition
@@ -151,7 +156,7 @@ class GameScene: SKScene {
     }
     
     private func setUpPauseButton() {
-        // re-position and resize
+        // Re-position and resize
         let buttonMargin = GameConfig.GamePlayScene.buttonMargin
         let buttonSize = CGSize(
             width: size.width * GameConfig.GamePlayScene.buttonWidthRatio,
@@ -165,6 +170,7 @@ class GameScene: SKScene {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
+        // relative to the layer
         pauseButton.zPosition = 1
         
         highestPriorityLayer.addChild(pauseButton)
@@ -178,10 +184,11 @@ class GameScene: SKScene {
         endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
-        // TODO: after a layer parameter have been added to sprite component
-        endPointNode.zPosition = 299
+        // relative to the layer
+        endPointNode.zPosition = -1
         
         let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+
         gameEngine.add(endPointEntity)
     }
     
@@ -199,7 +206,7 @@ class GameScene: SKScene {
                                    isCountdown: isCountdown,
                                    initialTimerValue: initialTimerValue))
     }
-
+    
     private func setUpPlayerMana() {
         let manaBarNode = playerAreaNode.manaBarNode
         // arbitrary num, can be replaced with meta-data
@@ -213,37 +220,36 @@ class GameScene: SKScene {
         var deltaTime = currentTime - lastUpdateTime
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         lastUpdateTime = currentTime
-
+        
         gameEngine.update(with: deltaTime)
     }
-
-    /** Detects the activation of Power Ups */
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first,
-            let selectedPowerUp = playerAreaNode.powerUpContainerNode.selectedPowerUp else {
-            return
+    
+    func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {
+        switch layer {
+        case .backgroundLayer:
+            backgroundLayer.addChild(node)
+        case .enemyLayer:
+            enemyLayer.addChild(node)
+        case .powerUpAnimationLayer:
+            powerUpAnimationLayer.addChild(node)
+        case .removalAnimationLayer:
+            removalAnimationLayer.addChild(node)
+        case .gestureLayer:
+            gestureLayer.addChild(node)
+        case .playerAreaLayer:
+            playerAreaLayer.addChild(node)
+        case .manaDropLayer:
+            manaDropLayer.addChild(node)
+        case .highestPriorityLayer:
+            highestPriorityLayer.addChild(node)
+        default:
+            addChild(node)
         }
-
-        // toggle it back to gesture mode
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        
-        // if insufficient mana
-        if !gameEngine.didActivatePowerUp(powerUp: selectedPowerUp, at: touch.location(in: powerUpAnimationLayer)) {
-            // Show Insufficient Mana Animation
-            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = touch.location(in: highestPriorityLayer)
-            insufficientManaLabel.text = "Insufficient Mana"
-            insufficientManaLabel.fontSize = size.width / 25
-            insufficientManaLabel.fontColor = .green
-            let animationAction = SKAction.sequence([
-                .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
-                .fadeOut(withDuration: 0.25),
-                .removeFromParent()
-            ])
-            
-            insufficientManaLabel.run(animationAction)
-            highestPriorityLayer.addChild(insufficientManaLabel)
-        }
+    }
+    
+    func gameDidEnd(didWin: Bool) {
+        gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
+        gameStateMachine?.enter(GameEndState.self)
     }
 }
 
@@ -274,12 +280,71 @@ extension GameScene {
             object: nil
         )
     }
-
+    
     @objc private func pauseGame() {
         gameStateMachine?.enter(GamePauseState.self)
     }
-
+    
     private func unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+/**
+ Extension to deal with power-up related logic
+ */
+extension GameScene {
+    /** Detects the activation of Power Ups */
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        _ = didActivatePowerUp(at: touch.location(in: self))
+    }
+    
+    func didActivatePowerUp(at location: CGPoint, size: CGFloat? = nil) -> Bool {
+        guard selectedPowerUp != nil else {
+            return false
+        }
+        
+        if gameEngine.didActivatePowerUp(at: location, size: size) {
+            return true
+        } else {
+            showInsufficientMana(at: location)
+            return false
+        }
+    }
+    
+    func deselectPowerUp() {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+    }
+    
+    var selectedPowerUp: PowerUpType? {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp
+    }
+    
+    func deactivateGestureDetection() {
+        gestureAreaNode.isUserInteractionEnabled = false
+    }
+    
+    func activateGestureDetection() {
+        gestureAreaNode.isUserInteractionEnabled = true
+    }
+    
+    func showInsufficientMana(at location: CGPoint) {
+        let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+        insufficientManaLabel.position = location
+        insufficientManaLabel.text = "Insufficient Mana"
+        insufficientManaLabel.fontSize = size.width / 25
+        insufficientManaLabel.fontColor = .green
+        let animationAction = SKAction.sequence([
+            .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+            .fadeOut(withDuration: 0.25),
+            .removeFromParent()
+        ])
+        
+        insufficientManaLabel.run(animationAction)
+        highestPriorityLayer.addChild(insufficientManaLabel)
     }
 }

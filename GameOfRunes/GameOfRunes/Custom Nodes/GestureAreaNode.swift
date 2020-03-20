@@ -29,11 +29,12 @@ class GestureAreaNode: SKSpriteNode {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         activeSlicePoints.removeAll(keepingCapacity: true)
-        guard let touch = touches.first else {
+        guard let touch = touches.first,
+            let parent = self.parent else {
             return
         }
-        let location = touch.location(in: self)
-        activeSlicePoints.append(location)
+        let location = touch.location(in: parent)
+        activeSlicePoints.append(touch.location(in: self))
 
         // Bezier Curve Construction
         redrawActiveSlice()
@@ -42,26 +43,28 @@ class GestureAreaNode: SKSpriteNode {
         activeSliceFG.removeAllActions()
         activeSliceBG.alpha = 1.0
         activeSliceFG.alpha = 1.0
-        recogniser.touchesBegan(CGPoint(x: location.x + size.width / 2.0, y: location.y + size.height / 2.0))
-
+        // Invert the y-axis from SpriteKit for the recognizer
+        recogniser.touchesBegan(CGPoint(x: location.x, y: -location.y + size.height))
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        guard let touch = touches.first,
+            let parent = self.parent else {
             return
         }
-        let location = touch.location(in: self)
-        activeSlicePoints.append(location)
-        
+        let location = touch.location(in: parent)
+        activeSlicePoints.append(touch.location(in: self))
+
         // Bezier Curve Construction
         redrawActiveSlice()
-        recogniser.touchesMoved(CGPoint(x: location.x + size.width / 2.0, y: size.height / 2.0 - location.y))
+        // Invert the y-axis from SpriteKit for the recognizer
+        recogniser.touchesMoved(CGPoint(x: location.x, y: -location.y + size.height))
     }
     
     override func touchesEnded(_ touches: Set<UITouch>?, with event: UIEvent?) {
         activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
         activeSliceFG.run(SKAction.fadeOut(withDuration: 0.25))
-        recogniser.touchesEnded()
+        recogniser.touchesEnded(offset: size.height)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {

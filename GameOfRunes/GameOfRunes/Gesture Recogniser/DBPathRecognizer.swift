@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 public class GestureRecognizer {
-    private var rawPoints:[Int] = []
+    private var rawPoints: [CGPoint] = []
     private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)
     private weak var gameEngine: GameEngine?
     
@@ -27,19 +27,30 @@ public class GestureRecognizer {
     }
     
     func touchesMoved(_ location: CGPoint) {
-        rawPoints.append(Int(location.x))
-        rawPoints.append(Int(location.y))
+        rawPoints.append(location)
     }
     
-    func touchesEnded() {
-        var path: Path = Path()
+    func touchesEnded(offset: CGFloat) {
+        var path = Path()
         path.addPointFromRaw(rawPoints)
         
-        guard let gesture: PathModel = self.recognizer.recognizePath(path),
-            let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
+        guard let gameEngine = gameEngine, let gameScene = gameEngine.gameScene else {
             return
         }
-        gameEngine?.gestureActivated(gesture: customGesture)
+        
+        if let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints),
+            gameScene.didActivatePowerUp(
+                at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
+                size: circle.radius
+            ) {
+            // power-up activated
+            return
+        }
+        
+        if let gesture = self.recognizer.recognizePath(path),
+            let customGesture: CustomGesture = gesture.datas as? CustomGesture {
+            gameEngine.gestureActivated(gesture: customGesture)
+        }
     }
 }
 
@@ -58,7 +69,6 @@ fileprivate class DBPathRecognizer {
     }
     
     fileprivate func recognizePath(_ path: Path) -> PathModel? {
-        
         self.path = path
         if path.count < 2 {
             return nil
@@ -261,24 +271,21 @@ fileprivate struct Path {
         points.append(point)
     }
     
-    fileprivate mutating func addPointFromRaw(_ rawDatas: [Int]) {
+    fileprivate mutating func addPointFromRaw(_ rawDatas: [CGPoint]) {
         let rawDatas = rawDatas
         var i = 0
-        var _:PathPoint
+        var _: PathPoint
         
         while i < rawDatas.count {
-            let px = rawDatas[i]
-            let py = rawDatas[i + 1]
+            let px = rawDatas[i].x
+            let py = rawDatas[i].y
             let pt = PathPoint(x: Int16(px), y: Int16(py))
             
             addPoint(pt)
-            
-            i += 2
+            i += 1
         }
     }
 }
-
-/* Path Infos */
 
 public struct PathInfos {
     let deltaPoints: [PathPoint]
@@ -298,8 +305,6 @@ public struct PathInfos {
     }
 }
 
-/* PathModel */
-
 public struct PathModel {
     
     var directions: [Int]
@@ -313,8 +318,6 @@ public struct PathModel {
     }
     
 }
-
-/* Array2D */
 
 fileprivate struct Array2D {
     var cols: Int

@@ -44,7 +44,7 @@ class SummonNode: SKSpriteNode {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
+
         texture = Self.tappedImage
         run(.scale(to: Self.onTappedScaleFactor, duration: 0.05))
     }

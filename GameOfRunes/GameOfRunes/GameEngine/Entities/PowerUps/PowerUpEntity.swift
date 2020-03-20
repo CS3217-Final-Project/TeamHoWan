@@ -10,10 +10,30 @@ import SpriteKit
 
 /** Protocol common to all Power-Ups. */
 protocol PowerUpEntity {
-    var powerUpType: PowerUpType { get set }
+    var powerUpType: PowerUpType { get }
 }
 
 extension PowerUpEntity {
+    func getCastingAnimationNode(at position: CGPoint, with size: CGSize) -> SKSpriteNode {
+        let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size)
+        animationNode.position = position
+
+        // Create Animations (Casting of Power-Up)
+        let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
+        let powerUpCastAnimation: SKAction = .animate(
+            with: powerUpCastTextures,
+            timePerFrame: 0.05,
+            resize: false,
+            restore: false
+        )
+        
+        let animationAction = SKAction.sequence([powerUpCastAnimation])
+        let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
+        animationNode.run(SKAction.group([animationAction, soundAction]))
+
+        return animationNode
+    }
+    
     /**
      Returns the Animation Node with animation
      for "casting" phase and "in-effect" phase.
@@ -26,7 +46,7 @@ extension PowerUpEntity {
         let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,
-            timePerFrame: 0.1,
+            timePerFrame: 0.05,
             resize: false,
             restore: false
         )

@@ -1,22 +1,22 @@
 //
-//  DarkVortexPowerUpEntity.swift
+//  HellfireEntity.swift
 //  GameOfRunes
 //
-//  Created by Brian Yen on 19/3/20.
+//  Created by Andy on 19/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-/** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
+/** Entity to represent the Hellfire Power Up */
+class HellfirePowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
-        .darkVortex
+        .hellfire
     }
     private weak var gameEngine: GameEngine?
     override var type: EntityType {
-        .darkVortexPowerUpEntity
+        .hellFirePowerUpEntity
     }
 
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
@@ -24,27 +24,18 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
         super.init()
 
         let animationNode = getAnimationNode(at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
-        spriteComponent.layerType = .powerUpAnimationLayer
-        let teamComponent = TeamComponent(team: .player)
-        let moveComponent = MoveComponent(
-            gameEngine: gameEngine,
-            maxSpeed: 0.0,
-            maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.width)
-        )
+        let animationSpriteComponent = SpriteComponent(node: animationNode)
+        animationSpriteComponent.layerType = .powerUpAnimationLayer
 
-        addComponent(spriteComponent)
-        addComponent(teamComponent)
-        addComponent(moveComponent)
-        
+        addComponent(animationSpriteComponent)
+
         // Timer will expire and cause the removal of the Power Up
         Timer.scheduledTimer(
-            withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
+            withTimeInterval: GameConfig.HellFirePowerUp.powerUpDuration,
             repeats: false,
             block: { [weak self] _ in
                 animationNode.run(
-                    .fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration),
+                    .fadeOut(withDuration: GameConfig.HellFirePowerUp.fadeOutDuration),
                     completion: {
                         guard let entity = self else {
                             return

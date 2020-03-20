@@ -15,8 +15,7 @@ class GameEngine {
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     weak var gameScene: GameScene?
-    weak var gameStateMachine: GameStateMachine?
-
+    
     var playerHealthEntity: PlayerHealthEntity? {
         entities[.playerHealthEntity]?.first as? PlayerHealthEntity
     }
@@ -24,9 +23,8 @@ class GameEngine {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
 
-    init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
+    init(gameScene: GameScene) {
         self.gameScene = gameScene
-        self.gameStateMachine = gameStateMachine
         self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
         
@@ -47,7 +45,7 @@ class GameEngine {
         guard entities[entity.type]?.remove(entity) != nil else {
             return
         }
-
+        
         toRemoveEntities.insert(entity)
     }
     
@@ -57,7 +55,7 @@ class GameEngine {
     
     func update(with deltaTime: TimeInterval) {
         systemDelegate.update(with: deltaTime)
-
+        
         toRemoveEntities.forEach { entity in
             systemDelegate.removeComponents(foundIn: entity)
         }
@@ -67,10 +65,8 @@ class GameEngine {
         // Player Loses the Game
         if let playerHealthPoints =
             playerHealthEntity?.component(ofType: HealthComponent.self)?.healthPoints,
-            playerHealthPoints <= 0,
-            let gameEndState = gameStateMachine?.state(forClass: GameEndState.self) {
-            gameEndState.didWin = false
-            gameStateMachine?.enter(GameEndState.self)
+            playerHealthPoints <= 0 {
+            gameScene?.gameDidEnd(didWin: false)
         }
     }
     
@@ -99,11 +95,9 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            if let endPointEntity = entities[.endPointEntity],
-                let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
-                return Array(endPointEntity.union(darkVortexPowerUpEntities))
-            }
-            return []
+            let res = entities(for: .endPointEntity)
+                .union(entities(for: .darkVortexPowerUpEntity))
+            return Array(res)
         }
     }
     
@@ -127,11 +121,11 @@ class GameEngine {
     }
     
     func gestureActivated(gesture: CustomGesture) {
-        for entity in entities[.gestureEntity] ?? Set() {
+        for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
-                continue
+                    continue
             }
             
             removeDelegate.removeGesture(for: entity)
@@ -142,16 +136,26 @@ class GameEngine {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
+    func enemyForceRemoved(_ entity: GKEntity) {
+        guard let enemyEntity = entity as? EnemyEntity else {
+            return
+        }
+        removeDelegate.removeEnemy(enemyEntity)
+    }
+    
     func enemyReachedLine(_ entity: GKEntity) {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
-
-        removeDelegate.removeEnemyReachedLine(enemyEntity)
+        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
     }
     
     func dropMana(at entity: GKEntity) {
         systemDelegate.dropMana(at: entity)
+    }
+    
+    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+        systemDelegate.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
     func increasePlayerMana(by manaPoints: Int) {
@@ -161,43 +165,84 @@ class GameEngine {
         
         systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
     }
-
+    
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
     }
+}
 
-    func didActivatePowerUp(powerUp: PowerUpType, at position: CGPoint, with size: CGSize = .zero) -> Bool {
+/** Extension to the GameEngine for PowerUps */
+extension GameEngine {
+    func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
+        // must only be called when a power up is selected
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
-            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity) else {
+            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),
+            let selectedPowerUp = gameScene.selectedPowerUp else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
-                                                        // TODO: change this once game meta-data is up
-        let manaPointsRequired = powerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
         
+        // TODO: change this once game meta-data is up
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        gameScene.deselectPowerUp()
         guard currentManaPoints >= manaPointsRequired else {
             // did not activate
             return false
         }
         
-        switch powerUp {
+        var powerUpEntity: Entity
+        
+        switch selectedPowerUp {
         case .darkVortex:
             let radius = gameScene.size.width / 3
-            let powerUpEntity = DarkVortexPowerUpEntity(
+            powerUpEntity = DarkVortexPowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: radius, height: radius)
             )
-            decreasePlayerMana(by: manaPointsRequired)
             add(powerUpEntity)
         case .hellfire:
-            print("Not Implemented Yet")
+            powerUpEntity = HellfirePowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
+            )
+            add(powerUpEntity)
         case .icePrison:
-            print("Not Implemented Yet")
+            powerUpEntity = IcePrisonPowerUpEntity(
+                gameEngine: self,
+                at: position,
+                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
+            )
+            add(powerUpEntity)
+            activateIcePrison(powerUpEntity)
         }
+        
+        decreasePlayerMana(by: manaPointsRequired)
         
         // did activate
         return true
+    }
+    
+    private func activateIcePrison(_ entity: Entity) {
+        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
+            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
+                return
+        }
+        
+        for enemyEntity in entities(for: .enemy) {
+            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
+                    .calculateAccumulatedFrame()
+                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
+                let enemyEntity = enemyEntity as? EnemyEntity else {
+                    continue
+            }
+            
+            systemDelegate.stopMovement(
+                for: enemyEntity,
+                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+            )
+        }
     }
 }
 

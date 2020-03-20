@@ -23,18 +23,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             return
         }
 
-        // Check which `GameScene` layer to add node to
-        let node = spriteComponent.node
-        switch spriteComponent.layerType {
-        case .enemyLayer:
-            gameEngine?.gameScene?.enemyLayer.addChild(node)
-        case .powerUpAnimationLayer:
-            gameEngine?.gameScene?.powerUpAnimationLayer.addChild(node)
-        case .manaDropLayer:
-            gameEngine?.gameScene?.manaDropLayer.addChild(node)
-        default:
-            gameEngine?.gameScene?.addChild(node)
-        }
+        gameEngine?.gameScene?.addNodeToLayer(layer: spriteComponent.layerType, node: spriteComponent.node)
     }
     
     override func removeComponent(foundIn entity: GKEntity) {
@@ -48,5 +37,22 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         }
         
         super.removeComponent(component)
+    }
+    
+    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+        guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
+            let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
+            return
+        }
+        
+        // Hack
+        entitySpriteComponent.activePauses += 1
+        animation.speed = 0
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
+            entitySpriteComponent.activePauses -= 1
+            if entitySpriteComponent.activePauses == 0 {
+                animation.speed = 1
+            }
+        })
     }
 }
