@@ -15,7 +15,6 @@ class GameEngine {
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     weak var gameScene: GameScene?
-    weak var gameStateMachine: GameStateMachine?
     
     var playerHealthEntity: PlayerHealthEntity? {
         entities[.playerHealthEntity]?.first as? PlayerHealthEntity
@@ -24,9 +23,8 @@ class GameEngine {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
 
-    init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
+    init(gameScene: GameScene) {
         self.gameScene = gameScene
-        self.gameStateMachine = gameStateMachine
         self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
         
@@ -67,10 +65,8 @@ class GameEngine {
         // Player Loses the Game
         if let playerHealthPoints =
             playerHealthEntity?.component(ofType: HealthComponent.self)?.healthPoints,
-            playerHealthPoints <= 0,
-            let gameEndState = gameStateMachine?.state(forClass: GameEndState.self) {
-            gameEndState.didWin = false
-            gameStateMachine?.enter(GameEndState.self)
+            playerHealthPoints <= 0 {
+            gameScene?.gameDidEnd(didWin: false)
         }
     }
     

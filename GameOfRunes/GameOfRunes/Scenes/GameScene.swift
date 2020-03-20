@@ -57,7 +57,7 @@ class GameScene: SKScene {
         }
         
         // continue setting up other stuff in .main thread
-        gameEngine = GameEngine(gameScene: self, gameStateMachine: gameStateMachine)
+        gameEngine = GameEngine(gameScene: self)
         
         // UI
         buildLayers()
@@ -238,6 +238,11 @@ class GameScene: SKScene {
         default:
             addChild(node)
         }
+    }
+    
+    func gameDidEnd(didWin: Bool) {
+        gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
+        gameStateMachine?.enter(GameEndState.self)
     }
 }
 
