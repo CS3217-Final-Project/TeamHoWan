@@ -22,7 +22,7 @@ extension PowerUpEntity {
         let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,
-            timePerFrame: 0.1,
+            timePerFrame: 0.05,
             resize: false,
             restore: false
         )
@@ -46,7 +46,7 @@ extension PowerUpEntity {
         let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,
-            timePerFrame: 0.1,
+            timePerFrame: 0.05,
             resize: false,
             restore: false
         )
