@@ -30,7 +30,7 @@ public class GestureRecognizer {
         rawPoints.append(location)
     }
     
-    func touchesEnded() {
+    func touchesEnded(offset: CGFloat) {
         var path = Path()
         path.addPointFromRaw(rawPoints)
         
@@ -39,7 +39,8 @@ public class GestureRecognizer {
         }
         
         guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints),
-            gameScene.activatePowerUp(at: circle.center, size: circle.radius) else {
+            gameScene.activatePowerUp(at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
+                                      size: circle.radius) else {
                 guard let gesture: PathModel = self.recognizer.recognizePath(path),
                     let customGesture: CustomGesture = gesture.datas as? CustomGesture else {
                         return
@@ -65,7 +66,6 @@ fileprivate class DBPathRecognizer {
     }
     
     fileprivate func recognizePath(_ path: Path) -> PathModel? {
-        
         self.path = path
         if path.count < 2 {
             return nil

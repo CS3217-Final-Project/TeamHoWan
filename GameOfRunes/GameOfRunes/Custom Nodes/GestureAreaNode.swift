@@ -64,7 +64,7 @@ class GestureAreaNode: SKSpriteNode {
     override func touchesEnded(_ touches: Set<UITouch>?, with event: UIEvent?) {
         activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
         activeSliceFG.run(SKAction.fadeOut(withDuration: 0.25))
-        recogniser.touchesEnded()
+        recogniser.touchesEnded(offset: size.height)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
