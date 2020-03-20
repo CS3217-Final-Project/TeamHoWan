@@ -38,7 +38,7 @@ class ManaSystem: GKComponentSystem<ManaComponent>, System {
 }
 
 /** Extension for the ManaSystem to deal with DroppedMana-related events and logic. */
-extension ManaSystem: DroppedManaResponder {
+extension ManaSystem {
     /** Function called whenever a monster is killed and mana can be dropped. */
     func dropMana(at enemyEntity: GKEntity) {
         guard shouldDropMana() else {
@@ -78,26 +78,7 @@ extension ManaSystem: DroppedManaResponder {
         let upperBound = GameConfig.Mana.manaMaxValue
         return Int.random(in: lowerBound...upperBound)
     }
-
-    /**
-     Handler function called whenever the `DroppedManaNode` is tapped
-     as part of conformance to the `DroppedManaResponder` protocol.
-     - Note: This function removes the Mana from screen, and increments
-     the player's mana points.
-     */
-    func droppedManaTapped(droppedManaNode: DroppedManaNode) {
-        for droppedManaEntity in gameEngine?.entities(for: .droppedManaEntity) ?? Set() {
-            guard let spriteComponent = droppedManaEntity.component(ofType: SpriteComponent.self),
-                droppedManaNode === spriteComponent.node,
-                let manaComponent = droppedManaEntity.component(ofType: ManaComponent.self) else {
-                    continue
-            }
-
-            increasePlayerManaPoints(manaPoints: manaComponent.manaPoints)
-            removeDroppedMana(droppedManaEntity: droppedManaEntity)
-        }
-    }
-
+/*
     /** Increases the Player's Mana points. */
     func increasePlayerManaPoints(manaPoints: Int) {
         gameEngine?.increasePlayerMana(by: manaPoints)
@@ -107,9 +88,5 @@ extension ManaSystem: DroppedManaResponder {
     func decreasePlayerManaPoints(manaPoints: Int) {
         increasePlayerManaPoints(manaPoints: -manaPoints)
     }
-
-    /** Removes the dropped mana from View and Model. */
-    func removeDroppedMana(droppedManaEntity: Entity) {
-        gameEngine?.remove(droppedManaEntity)
-    }
+ */
 }
