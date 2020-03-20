@@ -11,14 +11,15 @@ import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
 class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
-    var powerUpType: PowerUpType
+    var powerUpType: PowerUpType {
+        .darkVortex
+    }
     private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
 
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
-        self.powerUpType = .darkVortex
         self.gameEngine = gameEngine
         super.init()
 

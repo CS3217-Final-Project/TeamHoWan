@@ -11,7 +11,9 @@ import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
 class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
-    var powerUpType: PowerUpType = .icePrison
+    var powerUpType: PowerUpType {
+        .icePrison
+    }
     private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .icePrisonPowerUpEntity

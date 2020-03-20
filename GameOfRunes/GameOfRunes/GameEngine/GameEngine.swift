@@ -99,20 +99,10 @@ class GameEngine {
         case .enemy:
             return Array(entities[.enemyEntity] ?? Set())
         case .player:
-            var res = Set<Entity>()
-            if let endPointEntity = entities[.endPointEntity] {
-                res = res.union(endPointEntity)
-            }
-            if let darkVortexPowerUpEntities = entities[.darkVortexPowerUpEntity] {
-                res = res.union(darkVortexPowerUpEntities)
-            }
-            if let hellfirePowerUpEntities = entities[.hellFirePowerUpEntity] {
-                res = res.union(hellfirePowerUpEntities)
-            }
-            if let icePrisonPowerUpEntities = entities[.icePrisonPowerUpEntity] {
-                res = res.union(icePrisonPowerUpEntities)
-            }
-            
+            let res = entities(for: .endPointEntity)
+                .union(entities(for: .darkVortexPowerUpEntity))
+                .union(entities(for: .hellFirePowerUpEntity))
+                .union(entities(for: .icePrisonPowerUpEntity))
             return Array(res)
         }
     }
@@ -137,7 +127,7 @@ class GameEngine {
     }
     
     func gestureActivated(gesture: CustomGesture) {
-        for entity in entities[.gestureEntity] ?? Set() {
+        for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
@@ -152,16 +142,18 @@ class GameEngine {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
-    func removeEnemy(_ entity: GKEntity) {
+    func enemyForceRemoved(_ entity: GKEntity) {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
-        removeDelegate.removeEnemyReachedLine(enemyEntity)
+        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false)
     }
     
     func enemyReachedLine(_ entity: GKEntity) {
-        removeEnemy(entity)
-        decreasePlayerHealth()
+        guard let enemyEntity = entity as? EnemyEntity else {
+            return
+        }
+        removeDelegate.removeEnemy(enemyEntity)
     }
     
     func dropMana(at entity: GKEntity) {
@@ -188,6 +180,7 @@ class GameEngine {
 /** Extension to the GameEngine for PowerUps */
 extension GameEngine {
     func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
+        // must only be called when a power up is selected
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
             let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),

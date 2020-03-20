@@ -165,6 +165,7 @@ class GameScene: SKScene {
             texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
             name: ButtonType.pauseButton.rawValue
         )
+        // relative to the layer
         pauseButton.zPosition = 1
         
         highestPriorityLayer.addChild(pauseButton)
@@ -178,10 +179,11 @@ class GameScene: SKScene {
         endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
-        // TODO: after a layer parameter have been added to sprite component
-        endPointNode.zPosition = 299
+        // relative to the layer
+        endPointNode.zPosition = -1
         
         let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+
         gameEngine.add(endPointEntity)
     }
     

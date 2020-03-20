@@ -106,7 +106,7 @@ extension MoveSystem {
                 .node
                 .calculateAccumulatedFrame()
                 .intersects(hellfireNode.calculateAccumulatedFrame()) ?? false {
-                gameEngine?.removeEnemy(enemyEntity)
+                gameEngine?.enemyForceRemoved(enemyEntity)
             }
         }
     }

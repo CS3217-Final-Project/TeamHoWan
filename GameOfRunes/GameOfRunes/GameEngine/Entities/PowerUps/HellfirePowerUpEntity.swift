@@ -11,7 +11,9 @@ import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
 class HellfirePowerUpEntity: Entity, PowerUpEntity {
-    var powerUpType: PowerUpType = .hellfire
+    var powerUpType: PowerUpType {
+        .hellfire
+    }
     private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .hellFirePowerUpEntity

@@ -27,16 +27,12 @@ class PowerUpContainerNode: SKSpriteNode {
             guard oldValue != selectedPowerUp else {
                 return
             }
-            guard let gameScene = gameScene else {
-                return
-            }
+
             // Deactivate and activate gesture detection when tap-activated power ups are selected 
             if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-                    gameScene.deactivateGestureDetection()
-            } else {
-                if let oldValue = oldValue, oldValue == .darkVortex {
-                    gameScene.activateGestureDetection()
-                }
+                    gameScene?.deactivateGestureDetection()
+            } else if oldValue == .darkVortex {
+                    gameScene?.activateGestureDetection()
             }
             powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
         }
