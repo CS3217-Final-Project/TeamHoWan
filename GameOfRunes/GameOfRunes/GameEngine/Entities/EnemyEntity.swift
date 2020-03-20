@@ -30,7 +30,8 @@ class EnemyEntity: Entity {
                     resize: false,
                     restore: true
                 )
-            )
+            ),
+            withKey: GameConfig.AnimationNodeNames.enemy_walking
         )
 
         let moveComponent = MoveComponent(
@@ -55,10 +56,12 @@ class EnemyEntity: Entity {
     }
     
     func stopMovement(_ duration: TimeInterval) {
-        guard let movement = component(ofType: MoveComponent.self) else {
+        guard let movement = component(ofType: MoveComponent.self),
+        let spriteComponent = component(ofType: SpriteComponent.self) else {
             return
         }
-        movement.stopMovement(duration)
+        movement.stopMovementForDuration(duration)
+        spriteComponent.stopAnimationForDuration(duration)
     }
 
     func setCurrentGesture() {

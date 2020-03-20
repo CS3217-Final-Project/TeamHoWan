@@ -34,10 +34,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
         gameEngine?.removeComponent(self)
     }
     
-    func stopMovement(_ duration: TimeInterval) {
-        if self.maxSpeed == 0 {
-            return
-        }
+    func stopMovementForDuration(_ duration: TimeInterval) {
         let temp = self.maxSpeed
         self.maxSpeed = 0
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in

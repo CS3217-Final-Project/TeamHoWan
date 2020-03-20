@@ -15,6 +15,10 @@ import UIKit
 enum GameConfig {
     static let fontName = "DragonFire"
     
+    enum AnimationNodeNames {
+        static let enemy_walking = "enemy-walking-animation"
+    }
+    
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075

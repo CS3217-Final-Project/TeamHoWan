@@ -37,6 +37,16 @@ class SpriteComponent: GKComponent, Component {
         super.init()
     }
     
+    func stopAnimationForDuration(_ duration: TimeInterval) {
+        guard let animation = node.action(forKey: GameConfig.AnimationNodeNames.enemy_walking) else {
+            return
+        }
+        animation.speed = 0
+        Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
+            animation.speed = 1
+        })
+    }
+    
     func setGestureConstraint(referenceNode: SKSpriteNode) {
         let xRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.x)
         let yRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.y)
