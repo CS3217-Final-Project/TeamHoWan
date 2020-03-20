@@ -74,7 +74,7 @@ class RemoveDelegate {
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
-        gameEngine?.gameScene?.manaDropLayer.addChild(animationNode)
+        gameEngine?.gameScene?.enemyLayer.addChild(animationNode)
         
         gameEngine?.remove(entity)
     }

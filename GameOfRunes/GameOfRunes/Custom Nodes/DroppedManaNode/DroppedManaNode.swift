@@ -32,34 +32,17 @@ class DroppedManaNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /** Forwards the node tap event to the responder. */
-    func droppedManaTapped() {
-        if let responder = responder,
-            isUserInteractionEnabled {
-            responder.droppedManaTapped(droppedManaNode: self)
-        }
-    }
-
     /** UIResponder touch handling. */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-
-        if containsTouches(touches: touches) {
-            droppedManaTapped()
+        
+        guard let touch = touches.first,
+            let manaLayer = parent,
+            manaLayer.atPoint(touch.location(in: manaLayer)) === self else {
+            return
         }
-    }
-
-    /** Determine if any of the touches are within the `DroppedManaNode`. */
-    private func containsTouches(touches: Set<UITouch>) -> Bool {
-        guard let scene = scene else {
-            fatalError("Mana must be used within a scene.")
-        }
-
-        return touches.contains { touch in
-            let touchPoint = touch.location(in: scene)
-            let touchedNode = scene.atPoint(touchPoint)
-
-            return touchedNode === self || touchedNode.inParentHierarchy(self)
-        }
+        
+        // forwards the node tap event to the responder
+        responder?.droppedManaTapped(droppedManaNode: self)
     }
 }
