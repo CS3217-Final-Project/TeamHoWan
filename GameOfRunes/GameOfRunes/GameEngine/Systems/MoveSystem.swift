@@ -113,7 +113,7 @@ extension MoveSystem {
         guard let entityMoveComponent = entity.component(ofType: MoveComponent.self) else {
             return
         }
-        
+
         let defaultSpeed = entityMoveComponent.maxSpeed
         entityMoveComponent.maxSpeed = 0
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in

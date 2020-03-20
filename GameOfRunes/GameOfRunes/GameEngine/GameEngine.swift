@@ -221,7 +221,7 @@ extension GameEngine {
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
             add(powerUpEntity)
-            activateIcePrison()
+            activateIcePrison(powerUpEntity)
         }
         
         decreasePlayerMana(by: manaPointsRequired)
@@ -230,19 +230,16 @@ extension GameEngine {
         return true
     }
     
-    private func activateIcePrison() {
-        guard let icePrisonNode = entities(for: .icePrisonPowerUpEntity)
-            .first?
-            .component(ofType: SpriteComponent.self)?
-            .node else {
+    private func activateIcePrison(_ entity: Entity) {
+        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
+            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
                 return
         }
         
         for enemyEntity in entities(for: .enemy) {
-            guard enemyEntity.component(ofType: MoveComponent.self) != nil,
-                enemyEntity.component(ofType: SpriteComponent.self)?.node
+            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
                     .calculateAccumulatedFrame()
-                    .intersects(icePrisonNode.calculateAccumulatedFrame()) ?? false,
+                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
                 let enemyEntity = enemyEntity as? EnemyEntity else {
                     continue
             }
