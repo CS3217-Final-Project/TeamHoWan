@@ -22,7 +22,6 @@ class EnemyEntity: Entity {
         super.init()
 
         let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
-        spriteComponent.animationNodeKey = GameConfig.AnimationNodeKey.enemy_walking
 
         spriteComponent.node.run(
             .repeatForever(
@@ -33,7 +32,7 @@ class EnemyEntity: Entity {
                     restore: true
                 )
             ),
-            withKey: spriteComponent.animationNodeKey ?? ""
+            withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
 
         let moveComponent = MoveComponent(

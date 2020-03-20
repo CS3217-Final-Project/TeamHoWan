@@ -58,7 +58,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     }
     
     private func checkEnemyEndPointCollision() {
-        guard let endpointComponent = gameEngine?.entities(for: .player).compactMap({ $0 as? EndPointEntity }).first,
+        guard let endpointComponent = gameEngine?.entities(for: .endPointEntity).first,
             let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
                 return
         }
@@ -121,10 +121,7 @@ extension MoveSystem {
             entityMoveComponent.maxSpeed = defaultSpeed
         })
         
-        guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
-        let animationNodeKey = entitySpriteComponent.animationNodeKey else {
-            return
-        }
-        gameEngine?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+        gameEngine?.stopAnimationForDuration(for: entity, duration: duration,
+                                             animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
     }
 }
