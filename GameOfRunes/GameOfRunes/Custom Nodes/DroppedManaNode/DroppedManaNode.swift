@@ -15,10 +15,11 @@ import SpriteKit
  */
 class DroppedManaNode: SKSpriteNode {
     private weak var responder: DroppedManaResponder?
+    weak var droppedManaEntity: DroppedManaEntity?
 
     init(position: CGPoint, responder: DroppedManaResponder) {
         self.responder = responder
-        super.init(texture: SKTexture(imageNamed: "mana"),
+        super.init(texture: nil,
                    color: .darkGray,
                    size: CGSize(width: GameConfig.Mana.manaWidth,
                                 height: GameConfig.Mana.manaHeight))

@@ -39,7 +39,7 @@ public class GestureRecognizer {
         }
         
         guard let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints),
-            gameScene.activatePowerUp(at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
+            gameScene.didActivatePowerUp(at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
                                       size: circle.radius) else {
                 guard let gesture: PathModel = self.recognizer.recognizePath(path),
                     let customGesture: CustomGesture = gesture.datas as? CustomGesture else {

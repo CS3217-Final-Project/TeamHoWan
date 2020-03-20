@@ -285,39 +285,28 @@ extension GameScene {
         guard let touch = touches.first else {
             return
         }
-        activatePowerUp(at: touch.location(in: self))
+        
+        _ = didActivatePowerUp(at: touch.location(in: self))
     }
     
-    func activatePowerUp(at location: CGPoint, size: CGFloat? = nil) -> Bool {
-        guard powerUp() != nil else {
+    func didActivatePowerUp(at location: CGPoint, size: CGFloat? = nil) -> Bool {
+        guard selectedPowerUp != nil else {
             return false
         }
         
-        if !gameEngine.didActivatePowerUp(at: location, size: size) {
-            // Show Insufficient Mana Animation
-            let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
-            insufficientManaLabel.position = location
-            insufficientManaLabel.text = "Insufficient Mana"
-            insufficientManaLabel.fontSize = self.size.width / 25
-            insufficientManaLabel.fontColor = .green
-            let animationAction = SKAction.sequence([
-                .move(by: .init(dx: 0.0, dy: self.size.width / 100), duration: 1.5),
-                .fadeOut(withDuration: 0.25),
-                .removeFromParent()
-            ])
-            
-            insufficientManaLabel.run(animationAction)
-            self.highestPriorityLayer.addChild(insufficientManaLabel)
+        if gameEngine.didActivatePowerUp(at: location, size: size) {
             return true
+        } else {
+            showInsufficientMana(at: location)
+            return false
         }
-        return false
     }
     
     func deselectPowerUp() {
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
     }
     
-    func powerUp() -> PowerUpType? {
+    var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
     }
     
@@ -327,5 +316,21 @@ extension GameScene {
     
     func activateGestureDetection() {
         gestureAreaNode.isUserInteractionEnabled = true
+    }
+    
+    func showInsufficientMana(at location: CGPoint) {
+        let insufficientManaLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+        insufficientManaLabel.position = location
+        insufficientManaLabel.text = "Insufficient Mana"
+        insufficientManaLabel.fontSize = size.width / 25
+        insufficientManaLabel.fontColor = .green
+        let animationAction = SKAction.sequence([
+            .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+            .fadeOut(withDuration: 0.25),
+            .removeFromParent()
+        ])
+        
+        insufficientManaLabel.run(animationAction)
+        highestPriorityLayer.addChild(insufficientManaLabel)
     }
 }

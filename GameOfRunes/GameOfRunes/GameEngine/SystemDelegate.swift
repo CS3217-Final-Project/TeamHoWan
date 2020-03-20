@@ -17,16 +17,12 @@ class SystemDelegate {
     var manaSystem: ManaSystem? {
         systems[.manaComponent] as? ManaSystem
     }
-    var droppedManaResponder: DroppedManaResponder? {
-        manaSystem
-    }
     var moveSystem: MoveSystem? {
         systems[.moveComponent] as? MoveSystem
     }
     var spriteSystem: SpriteSystem? {
         systems[.spriteComponent] as? SpriteSystem
     }
-
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine

@@ -23,10 +23,7 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
-    var droppedManaResponder: DroppedManaResponder? {
-        systemDelegate.droppedManaResponder
-    }
-    
+
     init(gameScene: GameScene, gameStateMachine: GameStateMachine?) {
         self.gameScene = gameScene
         self.gameStateMachine = gameStateMachine
@@ -64,8 +61,8 @@ class GameEngine {
         toRemoveEntities.forEach { entity in
             systemDelegate.removeComponents(foundIn: entity)
         }
-        
-        toRemoveEntities.removeAll()
+
+        toRemoveEntities = []
         
         // Player Loses the Game
         if let playerHealthPoints =
@@ -194,7 +191,7 @@ extension GameEngine {
         guard let gameScene = gameScene,
             let playerManaEntity = playerManaEntity,
             let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),
-            let selectedPowerUp = gameScene.powerUp() else {
+            let selectedPowerUp = gameScene.selectedPowerUp else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
         
@@ -233,6 +230,7 @@ extension GameEngine {
             add(powerUpEntity)
             activateIcePrison()
         }
+        
         decreasePlayerMana(by: manaPointsRequired)
         
         // did activate
@@ -261,5 +259,23 @@ extension GameEngine {
                 systemDelegate.stopMovement(for: enemyEntity, duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
             }
         }
+    }
+}
+
+extension GameEngine: DroppedManaResponder {
+    /**
+     Handler function called whenever the `DroppedManaNode` is tapped
+     as part of conformance to the `DroppedManaResponder` protocol.
+     - Note: This function removes the Mana from screen, and increments
+     the player's mana points.
+     */
+    func droppedManaTapped(droppedManaNode: DroppedManaNode) {
+        guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
+            let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
+            return
+        }
+        
+        increasePlayerMana(by: manaPoints)
+        removeDelegate?.removeDroppedMana(droppedManaEntity)
     }
 }

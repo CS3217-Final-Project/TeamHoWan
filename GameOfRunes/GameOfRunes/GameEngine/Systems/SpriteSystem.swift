@@ -22,6 +22,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
+
         gameEngine?.gameScene?.addNodeToLayer(layer: spriteComponent.layerType, node: spriteComponent.node)
     }
     
