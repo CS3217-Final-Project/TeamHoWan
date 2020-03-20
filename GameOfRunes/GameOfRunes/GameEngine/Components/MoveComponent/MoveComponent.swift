@@ -14,6 +14,7 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
     var type: ComponentType {
         .moveComponent
     }
+    var activePauses = 0
     
     init(gameEngine: GameEngine, maxSpeed: Float, maxAcceleration: Float, radius: Float) {
         self.gameEngine = gameEngine

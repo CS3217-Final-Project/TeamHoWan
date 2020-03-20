@@ -44,9 +44,15 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
             return
         }
+        
+        // Hack
+        entitySpriteComponent.activePauses += 1
         animation.speed = 0
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
-            animation.speed = 1
+            entitySpriteComponent.activePauses -= 1
+            if entitySpriteComponent.activePauses == 0 {
+                animation.speed = 1
+            }
         })
     }
 }

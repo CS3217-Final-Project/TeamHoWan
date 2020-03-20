@@ -14,6 +14,7 @@ class SpriteComponent: GKComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
+    var activePauses = 0
     
     // Specifies which `GameScene` layer node to add `node` to
     var layerType: SpriteLayerType = .defaultLayer

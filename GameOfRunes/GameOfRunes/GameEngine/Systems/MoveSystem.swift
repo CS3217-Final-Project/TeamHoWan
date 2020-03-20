@@ -114,10 +114,14 @@ extension MoveSystem {
             return
         }
 
-        let defaultSpeed = entityMoveComponent.maxSpeed
+        // Hack
+        entityMoveComponent.activePauses += 1
         entityMoveComponent.maxSpeed = 0
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
-            entityMoveComponent.maxSpeed = defaultSpeed
+            entityMoveComponent.activePauses -= 1
+            if entityMoveComponent.activePauses == 0 {
+                entityMoveComponent.maxSpeed = 150.0 // arbitrary constant, will be refactored to meta-data
+            }
         })
         
         gameEngine?.stopAnimationForDuration(for: entity, duration: duration,
