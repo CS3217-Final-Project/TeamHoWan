@@ -41,7 +41,7 @@ class RemoveDelegate {
         }
     }
 
-    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = true) {
+    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false) {
         removeEnemyFromGame(entity)
         
         if shouldDecreasePlayerHealth {

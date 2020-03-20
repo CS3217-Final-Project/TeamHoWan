@@ -14,8 +14,6 @@ class SpriteComponent: GKComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
-    // Key for SKAction for animations for the node, if any
-    var animationNodeKey: String?
     
     // Specifies which `GameScene` layer node to add `node` to
     var layerType: SpriteLayerType = .defaultLayer

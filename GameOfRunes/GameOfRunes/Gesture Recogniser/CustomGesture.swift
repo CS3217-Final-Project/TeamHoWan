@@ -96,18 +96,3 @@ enum CustomGesture: String, CaseIterable {
         allCases.map({ $0.getPathModel() })
     }
 }
-
-enum PowerUpGesture: CaseIterable {
-    case circle
-
-    func getPathModel() -> PathModel {
-        switch self {
-        case .circle:
-            return PathModel(directions: [1, 2], datas: self as AnyObject)
-        }
-    }
-    
-    static func getAllGesturePathModels() -> [PathModel] {
-        allCases.map({ $0.getPathModel() })
-    }
-}

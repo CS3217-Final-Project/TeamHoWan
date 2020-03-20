@@ -161,17 +161,3 @@ class CircleGestureRecognizer {
         return sqrt(sum / CGFloat(data.count))
     }
 }
-
-struct CircleResult {
-    var center: CGPoint
-    var radius: CGFloat
-    var error: CGFloat
-    var j: Int
-    
-    init() {
-        center = CGPoint(x: 0, y: 0)
-        radius = 0
-        error = 0
-        j = 0
-    }
-}

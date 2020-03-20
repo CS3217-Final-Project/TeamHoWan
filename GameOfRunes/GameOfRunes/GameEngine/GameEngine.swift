@@ -146,14 +146,14 @@ class GameEngine {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
-        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false)
+        removeDelegate.removeEnemy(enemyEntity)
     }
     
     func enemyReachedLine(_ entity: GKEntity) {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
-        removeDelegate.removeEnemy(enemyEntity)
+        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
     }
     
     func dropMana(at entity: GKEntity) {
