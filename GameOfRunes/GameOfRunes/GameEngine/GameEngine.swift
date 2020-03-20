@@ -231,26 +231,26 @@ extension GameEngine {
     }
     
     private func activateIcePrison() {
-        guard let icePrisonComponent = entities(for: .player)
-            .compactMap({ $0 as? IcePrisonPowerUpEntity }).first,
-            let icePrisonNode = icePrisonComponent.component(ofType: SpriteComponent.self)?.node else {
+        guard let icePrisonNode = entities(for: .icePrisonPowerUpEntity)
+            .first?
+            .component(ofType: SpriteComponent.self)?
+            .node else {
                 return
         }
         
         for enemyEntity in entities(for: .enemy) {
-            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
-                continue
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil,
+                enemyEntity.component(ofType: SpriteComponent.self)?.node
+                    .calculateAccumulatedFrame()
+                    .intersects(icePrisonNode.calculateAccumulatedFrame()) ?? false,
+                let enemyEntity = enemyEntity as? EnemyEntity else {
+                    continue
             }
             
-            if enemyEntity.component(ofType: SpriteComponent.self)?
-                .node
-                .calculateAccumulatedFrame()
-                .intersects(icePrisonNode.calculateAccumulatedFrame()) ?? false {
-                guard let enemyEntity = enemyEntity as? EnemyEntity else {
-                    return
-                }
-                systemDelegate.stopMovement(for: enemyEntity, duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
-            }
+            systemDelegate.stopMovement(
+                for: enemyEntity,
+                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+            )
         }
     }
 }

@@ -90,24 +90,23 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 /** Extension for Power Up implementations */
 extension MoveSystem {
     private func checkFireVortexCollision() {
-        guard let hellfireComponent = gameEngine?.entities(for: .player)
-            .compactMap({ $0 as? HellfirePowerUpEntity }).first,
-            let hellfireNode = hellfireComponent.component(ofType: SpriteComponent.self)?.node else {
+        guard let hellfireNode = gameEngine?.entities(for: .hellFirePowerUpEntity)
+            .first?
+            .component(ofType: SpriteComponent.self)?
+            .node else {
                 return
         }
         
         for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
-            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
-                continue
+            guard enemyEntity.component(ofType: MoveComponent.self) != nil,
+                enemyEntity.component(ofType: SpriteComponent.self)?.node
+                    .calculateAccumulatedFrame()
+                    .intersects(hellfireNode.calculateAccumulatedFrame()) ?? false,
+                let enemyEntity = enemyEntity as? EnemyEntity else {
+                    continue
             }
             
-            if enemyEntity
-                .component(ofType: SpriteComponent.self)?
-                .node
-                .calculateAccumulatedFrame()
-                .intersects(hellfireNode.calculateAccumulatedFrame()) ?? false {
-                gameEngine?.enemyForceRemoved(enemyEntity)
-            }
+            gameEngine?.enemyForceRemoved(enemyEntity)
         }
     }
     
@@ -116,10 +115,10 @@ extension MoveSystem {
             return
         }
         
-        let temp = entityMoveComponent.maxSpeed
+        let defaultSpeed = entityMoveComponent.maxSpeed
         entityMoveComponent.maxSpeed = 0
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
-            entityMoveComponent.maxSpeed = temp
+            entityMoveComponent.maxSpeed = defaultSpeed
         })
         
         guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
