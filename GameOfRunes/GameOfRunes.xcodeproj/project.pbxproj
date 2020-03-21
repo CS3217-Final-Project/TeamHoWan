@@ -84,7 +84,8 @@
 		8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C06241E450300D29593 /* TextureContainer.swift */; };
 		C632912E2424ED4F005C11D1 /* CircleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C632912D2424ED4F005C11D1 /* CircleResult.swift */; };
 		C69B1D5E2426804C00D8D0D3 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D5D2426804C00D8D0D3 /* GeneratedMocks.swift */; };
-		C69B1D60242680FD00D8D0D3 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D5F242680FD00D8D0D3 /* BaseTest.swift */; };
+		C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */; };
+		C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D652426855400D8D0D3 /* GameEngineTest.swift */; };
 		C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */; };
 		C6A99CF2241FCC2D003AE88A /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF1241FCC2D003AE88A /* TimerComponent.swift */; };
 		C6A99CF4241FCD15003AE88A /* TimerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF3241FCD15003AE88A /* TimerSystem.swift */; };
@@ -197,7 +198,8 @@
 		BC87BA623B43C19839764DCB /* libPods-GameOfRunesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C632912D2424ED4F005C11D1 /* CircleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleResult.swift; sourceTree = "<group>"; };
 		C69B1D5D2426804C00D8D0D3 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
-		C69B1D5F242680FD00D8D0D3 /* BaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
+		C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUnitTest.swift; sourceTree = "<group>"; };
+		C69B1D652426855400D8D0D3 /* GameEngineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineTest.swift; sourceTree = "<group>"; };
 		C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEntity.swift; sourceTree = "<group>"; };
 		C6A99CF1241FCC2D003AE88A /* TimerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerComponent.swift; sourceTree = "<group>"; };
 		C6A99CF3241FCD15003AE88A /* TimerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSystem.swift; sourceTree = "<group>"; };
@@ -381,7 +383,8 @@
 			children = (
 				C69B1D5D2426804C00D8D0D3 /* GeneratedMocks.swift */,
 				4ACC8BC52414C69B00F235AE /* Info.plist */,
-				C69B1D5F242680FD00D8D0D3 /* BaseTest.swift */,
+				C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */,
+				C69B1D652426855400D8D0D3 /* GameEngineTest.swift */,
 			);
 			path = GameOfRunesTests;
 			sourceTree = "<group>";
@@ -690,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/GameEngine/GameEngine.swift\" \\\n\"${INPUT_DIR}/Scenes/GameScene.swift\" \\\n\"${INPUT_DIR}/GameState/GameStateMachine.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/GameEngine/GameEngine.swift\" \\\n\"${INPUT_DIR}/GameEngine/SystemDelegate.swift\" \\\n\"${INPUT_DIR}/GameEngine/RemoveDelegate.swift\" \\\n\"${INPUT_DIR}/Scenes/GameScene.swift\" \\\n\"${INPUT_DIR}/GameState/GameStateMachine.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
 		FA8F529B5241D8ECCE054955 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -807,8 +810,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C69B1D60242680FD00D8D0D3 /* BaseTest.swift in Sources */,
 				C69B1D5E2426804C00D8D0D3 /* GeneratedMocks.swift in Sources */,
+				C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */,
+				C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

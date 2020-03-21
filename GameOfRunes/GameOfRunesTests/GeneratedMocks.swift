@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-21 17:14:28 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-21 17:51:19 +0000
 
 //
 //  GameEngine.swift
@@ -693,7 +693,677 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-21 17:14:28 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-21 17:51:19 +0000
+
+//
+//  RemoveDelegate.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 11/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockRemoveDelegate: RemoveDelegate, Cuckoo.ClassMock {
+    
+     typealias MocksType = RemoveDelegate
+    
+     typealias Stubbing = __StubbingProxy_RemoveDelegate
+     typealias Verification = __VerificationProxy_RemoveDelegate
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: RemoveDelegate?
+
+     func enableDefaultImplementation(_ stub: RemoveDelegate) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func removeGesture(for entity: GKEntity)  {
+        
+    return cuckoo_manager.call("removeGesture(for: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.removeGesture(for: entity)
+                ,
+            defaultCall: __defaultImplStub!.removeGesture(for: entity))
+        
+    }
+    
+    
+    
+     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)  {
+        
+    return cuckoo_manager.call("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)",
+            parameters: (entity, shouldDecreasePlayerHealth),
+            escapingParameters: (entity, shouldDecreasePlayerHealth),
+            superclassCall:
+                
+                super.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth)
+                ,
+            defaultCall: __defaultImplStub!.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth))
+        
+    }
+    
+    
+    
+     override func removeDroppedMana(_ entity: DroppedManaEntity)  {
+        
+    return cuckoo_manager.call("removeDroppedMana(_: DroppedManaEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.removeDroppedMana(entity)
+                ,
+            defaultCall: __defaultImplStub!.removeDroppedMana(entity))
+        
+    }
+    
+
+	 struct __StubbingProxy_RemoveDelegate: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func removeGesture<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeGesture(for: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2) -> Cuckoo.ClassStubNoReturnFunction<(EnemyEntity, Bool)> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool {
+	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeDroppedMana<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(DroppedManaEntity)> where M1.MatchedType == DroppedManaEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(DroppedManaEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeDroppedMana(_: DroppedManaEntity)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_RemoveDelegate: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func removeGesture<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("removeGesture(for: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2) -> Cuckoo.__DoNotUse<(EnemyEntity, Bool), Void> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool {
+	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }]
+	        return cuckoo_manager.verify("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeDroppedMana<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(DroppedManaEntity), Void> where M1.MatchedType == DroppedManaEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(DroppedManaEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("removeDroppedMana(_: DroppedManaEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class RemoveDelegateStub: RemoveDelegate {
+    
+
+    
+
+    
+     override func removeGesture(for entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeDroppedMana(_ entity: DroppedManaEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-21 17:51:19 +0000
+
+//
+//  SystemDelegate.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 11/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockSystemDelegate: SystemDelegate, Cuckoo.ClassMock {
+    
+     typealias MocksType = SystemDelegate
+    
+     typealias Stubbing = __StubbingProxy_SystemDelegate
+     typealias Verification = __VerificationProxy_SystemDelegate
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: SystemDelegate?
+
+     func enableDefaultImplementation(_ stub: SystemDelegate) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var healthSystem: HealthSystem? {
+        get {
+            return cuckoo_manager.getter("healthSystem",
+                superclassCall:
+                    
+                    super.healthSystem
+                    ,
+                defaultCall: __defaultImplStub!.healthSystem)
+        }
+        
+    }
+    
+    
+    
+     override var manaSystem: ManaSystem? {
+        get {
+            return cuckoo_manager.getter("manaSystem",
+                superclassCall:
+                    
+                    super.manaSystem
+                    ,
+                defaultCall: __defaultImplStub!.manaSystem)
+        }
+        
+    }
+    
+    
+    
+     override var moveSystem: MoveSystem? {
+        get {
+            return cuckoo_manager.getter("moveSystem",
+                superclassCall:
+                    
+                    super.moveSystem
+                    ,
+                defaultCall: __defaultImplStub!.moveSystem)
+        }
+        
+    }
+    
+    
+    
+     override var spriteSystem: SpriteSystem? {
+        get {
+            return cuckoo_manager.getter("spriteSystem",
+                superclassCall:
+                    
+                    super.spriteSystem
+                    ,
+                defaultCall: __defaultImplStub!.spriteSystem)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func update(with deltatime: TimeInterval)  {
+        
+    return cuckoo_manager.call("update(with: TimeInterval)",
+            parameters: (deltatime),
+            escapingParameters: (deltatime),
+            superclassCall:
+                
+                super.update(with: deltatime)
+                ,
+            defaultCall: __defaultImplStub!.update(with: deltatime))
+        
+    }
+    
+    
+    
+     override func addComponents(foundIn entity: GKEntity)  {
+        
+    return cuckoo_manager.call("addComponents(foundIn: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.addComponents(foundIn: entity)
+                ,
+            defaultCall: __defaultImplStub!.addComponents(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func removeComponents(foundIn entity: GKEntity)  {
+        
+    return cuckoo_manager.call("removeComponents(foundIn: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.removeComponents(foundIn: entity)
+                ,
+            defaultCall: __defaultImplStub!.removeComponents(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+    
+    
+     override func minusHealthPoints(for entity: GKEntity) -> Int? {
+        
+    return cuckoo_manager.call("minusHealthPoints(for: GKEntity) -> Int?",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.minusHealthPoints(for: entity)
+                ,
+            defaultCall: __defaultImplStub!.minusHealthPoints(for: entity))
+        
+    }
+    
+    
+    
+     override func increaseMana(by manaPoint: Int, for entity: GKEntity)  {
+        
+    return cuckoo_manager.call("increaseMana(by: Int, for: GKEntity)",
+            parameters: (manaPoint, entity),
+            escapingParameters: (manaPoint, entity),
+            superclassCall:
+                
+                super.increaseMana(by: manaPoint, for: entity)
+                ,
+            defaultCall: __defaultImplStub!.increaseMana(by: manaPoint, for: entity))
+        
+    }
+    
+    
+    
+     override func dropMana(at entity: GKEntity)  {
+        
+    return cuckoo_manager.call("dropMana(at: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.dropMana(at: entity)
+                ,
+            defaultCall: __defaultImplStub!.dropMana(at: entity))
+        
+    }
+    
+    
+    
+     override func getMana(for entity: GKEntity) -> Int? {
+        
+    return cuckoo_manager.call("getMana(for: GKEntity) -> Int?",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.getMana(for: entity)
+                ,
+            defaultCall: __defaultImplStub!.getMana(for: entity))
+        
+    }
+    
+    
+    
+     override func stopMovement(for entity: Entity, duration: TimeInterval)  {
+        
+    return cuckoo_manager.call("stopMovement(for: Entity, duration: TimeInterval)",
+            parameters: (entity, duration),
+            escapingParameters: (entity, duration),
+            superclassCall:
+                
+                super.stopMovement(for: entity, duration: duration)
+                ,
+            defaultCall: __defaultImplStub!.stopMovement(for: entity, duration: duration))
+        
+    }
+    
+    
+    
+     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+        
+    return cuckoo_manager.call("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)",
+            parameters: (entity, duration, animationNodeKey),
+            escapingParameters: (entity, duration, animationNodeKey),
+            superclassCall:
+                
+                super.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+                ,
+            defaultCall: __defaultImplStub!.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey))
+        
+    }
+    
+
+	 struct __StubbingProxy_SystemDelegate: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var healthSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, HealthSystem?> {
+	        return .init(manager: cuckoo_manager, name: "healthSystem")
+	    }
+	    
+	    
+	    var manaSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, ManaSystem?> {
+	        return .init(manager: cuckoo_manager, name: "manaSystem")
+	    }
+	    
+	    
+	    var moveSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, MoveSystem?> {
+	        return .init(manager: cuckoo_manager, name: "moveSystem")
+	    }
+	    
+	    
+	    var spriteSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, SpriteSystem?> {
+	        return .init(manager: cuckoo_manager, name: "spriteSystem")
+	    }
+	    
+	    
+	    func update<M1: Cuckoo.Matchable>(with deltatime: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: deltatime) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "update(with: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponents<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "addComponents(foundIn: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponents<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "removeComponents(foundIn: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "minusHealthPoints(for: GKEntity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	    func increaseMana<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by manaPoint: M1, for entity: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, GKEntity)> where M1.MatchedType == Int, M2.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, GKEntity)>] = [wrap(matchable: manaPoint) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "increaseMana(by: Int, for: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func dropMana<M1: Cuckoo.Matchable>(at entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "dropMana(at: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func getMana<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "getMana(for: GKEntity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	    func stopMovement<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(for entity: M1, duration: M2) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "stopMovement(for: Entity, duration: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func stopAnimation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_SystemDelegate: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var healthSystem: Cuckoo.VerifyReadOnlyProperty<HealthSystem?> {
+	        return .init(manager: cuckoo_manager, name: "healthSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var manaSystem: Cuckoo.VerifyReadOnlyProperty<ManaSystem?> {
+	        return .init(manager: cuckoo_manager, name: "manaSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var moveSystem: Cuckoo.VerifyReadOnlyProperty<MoveSystem?> {
+	        return .init(manager: cuckoo_manager, name: "moveSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var spriteSystem: Cuckoo.VerifyReadOnlyProperty<SpriteSystem?> {
+	        return .init(manager: cuckoo_manager, name: "spriteSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func update<M1: Cuckoo.Matchable>(with deltatime: M1) -> Cuckoo.__DoNotUse<(TimeInterval), Void> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: deltatime) { $0 }]
+	        return cuckoo_manager.verify("update(with: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func addComponents<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("addComponents(foundIn: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponents<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("removeComponents(foundIn: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("minusHealthPoints(for: GKEntity) -> Int?", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func increaseMana<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by manaPoint: M1, for entity: M2) -> Cuckoo.__DoNotUse<(Int, GKEntity), Void> where M1.MatchedType == Int, M2.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, GKEntity)>] = [wrap(matchable: manaPoint) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return cuckoo_manager.verify("increaseMana(by: Int, for: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func dropMana<M1: Cuckoo.Matchable>(at entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("dropMana(at: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func getMana<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("getMana(for: GKEntity) -> Int?", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func stopMovement<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(for entity: M1, duration: M2) -> Cuckoo.__DoNotUse<(Entity, TimeInterval), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }]
+	        return cuckoo_manager.verify("stopMovement(for: Entity, duration: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func stopAnimation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
+	        return cuckoo_manager.verify("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class SystemDelegateStub: SystemDelegate {
+    
+    
+     override var healthSystem: HealthSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (HealthSystem?).self)
+        }
+        
+    }
+    
+    
+     override var manaSystem: ManaSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ManaSystem?).self)
+        }
+        
+    }
+    
+    
+     override var moveSystem: MoveSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (MoveSystem?).self)
+        }
+        
+    }
+    
+    
+     override var spriteSystem: SpriteSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (SpriteSystem?).self)
+        }
+        
+    }
+    
+
+    
+
+    
+     override func update(with deltatime: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func addComponents(foundIn entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponents(foundIn entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func minusHealthPoints(for entity: GKEntity) -> Int?  {
+        return DefaultValueRegistry.defaultValue(for: (Int?).self)
+    }
+    
+     override func increaseMana(by manaPoint: Int, for entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func dropMana(at entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func getMana(for entity: GKEntity) -> Int?  {
+        return DefaultValueRegistry.defaultValue(for: (Int?).self)
+    }
+    
+     override func stopMovement(for entity: Entity, duration: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-21 17:51:19 +0000
 
 //
 //  GameStateMachine.swift
@@ -857,7 +1527,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-21 17:14:28 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-21 17:51:19 +0000
 
 //
 //  GameScene.swift
