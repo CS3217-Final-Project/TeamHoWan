@@ -32,7 +32,8 @@ class GameStateMachineTest: BaseUnitTest {
                                                          gameEndState]
         ).withEnabledSuperclassSpy()
 
-        sceneManager = MockSceneManager(presentingView: SKView(), gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
+        sceneManager = MockSceneManager(presentingView: SKView(),
+                                        gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
     }
 
