@@ -102,7 +102,7 @@ class ManaBarNode: SKSpriteNode {
     ) {
         _numManaUnits = max(1, numManaUnits)
         _manaPointsPerUnit = max(1, manaPointsPerUnit)
-        _currentManaPoints = initialManaPoints
+        _currentManaPoints = min(_numManaUnits * _manaPointsPerUnit, initialManaPoints)
         self.manaColor = manaColor
         let texture = SKTexture(imageNamed: "mana-container")
         super.init(texture: texture, color: .clear, size: texture.size())
