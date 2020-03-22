@@ -37,6 +37,8 @@
 		4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */; };
 		4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3832417BA71008D4953 /* SKSpriteNode+addGlow.swift */; };
 		4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB47A3E2423F0F700EDADC1 /* ManaType.swift */; };
+		4AB6BDF5242789D80046F5AB /* HealthBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */; };
+		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
 		4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */; };
@@ -142,6 +144,8 @@
 		4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDividerNode.swift; sourceTree = "<group>"; };
 		4AA5B3832417BA71008D4953 /* SKSpriteNode+addGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+addGlow.swift"; sourceTree = "<group>"; };
 		4AB47A3E2423F0F700EDADC1 /* ManaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaType.swift; sourceTree = "<group>"; };
+		4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNodeTest.swift; sourceTree = "<group>"; };
+		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
 		4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 				4ACC8BC52414C69B00F235AE /* Info.plist */,
 				C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */,
 				C69B1D652426855400D8D0D3 /* GameEngineTest.swift */,
+				4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */,
+				4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */,
 			);
 			path = GameOfRunesTests;
 			sourceTree = "<group>";
@@ -810,9 +816,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */,
 				C69B1D5E2426804C00D8D0D3 /* GeneratedMocks.swift in Sources */,
 				C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */,
 				C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */,
+				4AB6BDF5242789D80046F5AB /* HealthBarNodeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
