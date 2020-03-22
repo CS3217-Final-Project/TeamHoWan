@@ -1,4 +1,3275 @@
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-21 17:51:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  DroppedManaNode.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 15/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockDroppedManaNode: DroppedManaNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = DroppedManaNode
+    
+     typealias Stubbing = __StubbingProxy_DroppedManaNode
+     typealias Verification = __VerificationProxy_DroppedManaNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: DroppedManaNode?
+
+     func enableDefaultImplementation(_ stub: DroppedManaNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var droppedManaEntity: DroppedManaEntity? {
+        get {
+            return cuckoo_manager.getter("droppedManaEntity",
+                superclassCall:
+                    
+                    super.droppedManaEntity
+                    ,
+                defaultCall: __defaultImplStub!.droppedManaEntity)
+        }
+        
+        set {
+            cuckoo_manager.setter("droppedManaEntity",
+                value: newValue,
+                superclassCall:
+                    
+                    super.droppedManaEntity = newValue
+                    ,
+                defaultCall: __defaultImplStub!.droppedManaEntity = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
+        
+    return cuckoo_manager.call("touchesEnded(_: Set<UITouch>, with: UIEvent?)",
+            parameters: (touches, event),
+            escapingParameters: (touches, event),
+            superclassCall:
+                
+                super.touchesEnded(touches, with: event)
+                ,
+            defaultCall: __defaultImplStub!.touchesEnded(touches, with: event))
+        
+    }
+    
+
+	 struct __StubbingProxy_DroppedManaNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var droppedManaEntity: Cuckoo.ClassToBeStubbedOptionalProperty<MockDroppedManaNode, DroppedManaEntity> {
+	        return .init(manager: cuckoo_manager, name: "droppedManaEntity")
+	    }
+	    
+	    
+	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.ClassStubNoReturnFunction<(Set<UITouch>, UIEvent?)> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
+	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockDroppedManaNode.self, method: "touchesEnded(_: Set<UITouch>, with: UIEvent?)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_DroppedManaNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var droppedManaEntity: Cuckoo.VerifyOptionalProperty<DroppedManaEntity> {
+	        return .init(manager: cuckoo_manager, name: "droppedManaEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.__DoNotUse<(Set<UITouch>, UIEvent?), Void> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
+	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
+	        return cuckoo_manager.verify("touchesEnded(_: Set<UITouch>, with: UIEvent?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class DroppedManaNodeStub: DroppedManaNode {
+    
+    
+     override var droppedManaEntity: DroppedManaEntity? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (DroppedManaEntity?).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  HealthBarNode.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 10/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockHealthBarNode: HealthBarNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = HealthBarNode
+    
+     typealias Stubbing = __StubbingProxy_HealthBarNode
+     typealias Verification = __VerificationProxy_HealthBarNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: HealthBarNode?
+
+     func enableDefaultImplementation(_ stub: HealthBarNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var totalLives: Int {
+        get {
+            return cuckoo_manager.getter("totalLives",
+                superclassCall:
+                    
+                    super.totalLives
+                    ,
+                defaultCall: __defaultImplStub!.totalLives)
+        }
+        
+        set {
+            cuckoo_manager.setter("totalLives",
+                value: newValue,
+                superclassCall:
+                    
+                    super.totalLives = newValue
+                    ,
+                defaultCall: __defaultImplStub!.totalLives = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var livesLeft: Int {
+        get {
+            return cuckoo_manager.getter("livesLeft",
+                superclassCall:
+                    
+                    super.livesLeft
+                    ,
+                defaultCall: __defaultImplStub!.livesLeft)
+        }
+        
+        set {
+            cuckoo_manager.setter("livesLeft",
+                value: newValue,
+                superclassCall:
+                    
+                    super.livesLeft = newValue
+                    ,
+                defaultCall: __defaultImplStub!.livesLeft = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var size: CGSize {
+        get {
+            return cuckoo_manager.getter("size",
+                superclassCall:
+                    
+                    super.size
+                    ,
+                defaultCall: __defaultImplStub!.size)
+        }
+        
+        set {
+            cuckoo_manager.setter("size",
+                value: newValue,
+                superclassCall:
+                    
+                    super.size = newValue
+                    ,
+                defaultCall: __defaultImplStub!.size = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_HealthBarNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var totalLives: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "totalLives")
+	    }
+	    
+	    
+	    var livesLeft: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "livesLeft")
+	    }
+	    
+	    
+	    var size: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_HealthBarNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var totalLives: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "totalLives", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var livesLeft: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "livesLeft", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var size: Cuckoo.VerifyProperty<CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class HealthBarNodeStub: HealthBarNode {
+    
+    
+     override var totalLives: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var livesLeft: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var size: CGSize {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  ManaBarNode.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 10/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockManaBarNode: ManaBarNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = ManaBarNode
+    
+     typealias Stubbing = __StubbingProxy_ManaBarNode
+     typealias Verification = __VerificationProxy_ManaBarNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: ManaBarNode?
+
+     func enableDefaultImplementation(_ stub: ManaBarNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var numManaUnits: Int {
+        get {
+            return cuckoo_manager.getter("numManaUnits",
+                superclassCall:
+                    
+                    super.numManaUnits
+                    ,
+                defaultCall: __defaultImplStub!.numManaUnits)
+        }
+        
+        set {
+            cuckoo_manager.setter("numManaUnits",
+                value: newValue,
+                superclassCall:
+                    
+                    super.numManaUnits = newValue
+                    ,
+                defaultCall: __defaultImplStub!.numManaUnits = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var manaPointsPerUnit: Int {
+        get {
+            return cuckoo_manager.getter("manaPointsPerUnit",
+                superclassCall:
+                    
+                    super.manaPointsPerUnit
+                    ,
+                defaultCall: __defaultImplStub!.manaPointsPerUnit)
+        }
+        
+        set {
+            cuckoo_manager.setter("manaPointsPerUnit",
+                value: newValue,
+                superclassCall:
+                    
+                    super.manaPointsPerUnit = newValue
+                    ,
+                defaultCall: __defaultImplStub!.manaPointsPerUnit = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var currentManaPoints: Int {
+        get {
+            return cuckoo_manager.getter("currentManaPoints",
+                superclassCall:
+                    
+                    super.currentManaPoints
+                    ,
+                defaultCall: __defaultImplStub!.currentManaPoints)
+        }
+        
+        set {
+            cuckoo_manager.setter("currentManaPoints",
+                value: newValue,
+                superclassCall:
+                    
+                    super.currentManaPoints = newValue
+                    ,
+                defaultCall: __defaultImplStub!.currentManaPoints = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var totalManaPoints: Int {
+        get {
+            return cuckoo_manager.getter("totalManaPoints",
+                superclassCall:
+                    
+                    super.totalManaPoints
+                    ,
+                defaultCall: __defaultImplStub!.totalManaPoints)
+        }
+        
+    }
+    
+    
+    
+     override var size: CGSize {
+        get {
+            return cuckoo_manager.getter("size",
+                superclassCall:
+                    
+                    super.size
+                    ,
+                defaultCall: __defaultImplStub!.size)
+        }
+        
+        set {
+            cuckoo_manager.setter("size",
+                value: newValue,
+                superclassCall:
+                    
+                    super.size = newValue
+                    ,
+                defaultCall: __defaultImplStub!.size = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var manaColor: UIColor {
+        get {
+            return cuckoo_manager.getter("manaColor",
+                superclassCall:
+                    
+                    super.manaColor
+                    ,
+                defaultCall: __defaultImplStub!.manaColor)
+        }
+        
+        set {
+            cuckoo_manager.setter("manaColor",
+                value: newValue,
+                superclassCall:
+                    
+                    super.manaColor = newValue
+                    ,
+                defaultCall: __defaultImplStub!.manaColor = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_ManaBarNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var numManaUnits: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "numManaUnits")
+	    }
+	    
+	    
+	    var manaPointsPerUnit: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit")
+	    }
+	    
+	    
+	    var currentManaPoints: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "currentManaPoints")
+	    }
+	    
+	    
+	    var totalManaPoints: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "totalManaPoints")
+	    }
+	    
+	    
+	    var size: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size")
+	    }
+	    
+	    
+	    var manaColor: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, UIColor> {
+	        return .init(manager: cuckoo_manager, name: "manaColor")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_ManaBarNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var numManaUnits: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "numManaUnits", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var manaPointsPerUnit: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var currentManaPoints: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "currentManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var totalManaPoints: Cuckoo.VerifyReadOnlyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "totalManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var size: Cuckoo.VerifyProperty<CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var manaColor: Cuckoo.VerifyProperty<UIColor> {
+	        return .init(manager: cuckoo_manager, name: "manaColor", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class ManaBarNodeStub: ManaBarNode {
+    
+    
+     override var numManaUnits: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var manaPointsPerUnit: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var currentManaPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var totalManaPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+    }
+    
+    
+     override var size: CGSize {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var manaColor: UIColor {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UIColor).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  GestureComponent.swift
+//  GameOfRunes
+//
+//  Created by Andy on 9/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockGestureComponent: GestureComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = GestureComponent
+    
+     typealias Stubbing = __StubbingProxy_GestureComponent
+     typealias Verification = __VerificationProxy_GestureComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: GestureComponent?
+
+     func enableDefaultImplementation(_ stub: GestureComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_GestureComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGestureComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_GestureComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class GestureComponentStub: GestureComponent {
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  HealthComponent.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockHealthComponent: HealthComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = HealthComponent
+    
+     typealias Stubbing = __StubbingProxy_HealthComponent
+     typealias Verification = __VerificationProxy_HealthComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: HealthComponent?
+
+     func enableDefaultImplementation(_ stub: HealthComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var healthPoints: Int {
+        get {
+            return cuckoo_manager.getter("healthPoints",
+                superclassCall:
+                    
+                    super.healthPoints
+                    ,
+                defaultCall: __defaultImplStub!.healthPoints)
+        }
+        
+        set {
+            cuckoo_manager.setter("healthPoints",
+                value: newValue,
+                superclassCall:
+                    
+                    super.healthPoints = newValue
+                    ,
+                defaultCall: __defaultImplStub!.healthPoints = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_HealthComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var healthPoints: Cuckoo.ClassToBeStubbedProperty<MockHealthComponent, Int> {
+	        return .init(manager: cuckoo_manager, name: "healthPoints")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockHealthComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_HealthComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var healthPoints: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "healthPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class HealthComponentStub: HealthComponent {
+    
+    
+     override var healthPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  ManaComponent.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockManaComponent: ManaComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = ManaComponent
+    
+     typealias Stubbing = __StubbingProxy_ManaComponent
+     typealias Verification = __VerificationProxy_ManaComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: ManaComponent?
+
+     func enableDefaultImplementation(_ stub: ManaComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var manaPoints: Int {
+        get {
+            return cuckoo_manager.getter("manaPoints",
+                superclassCall:
+                    
+                    super.manaPoints
+                    ,
+                defaultCall: __defaultImplStub!.manaPoints)
+        }
+        
+        set {
+            cuckoo_manager.setter("manaPoints",
+                value: newValue,
+                superclassCall:
+                    
+                    super.manaPoints = newValue
+                    ,
+                defaultCall: __defaultImplStub!.manaPoints = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_ManaComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var manaPoints: Cuckoo.ClassToBeStubbedProperty<MockManaComponent, Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPoints")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockManaComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_ManaComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var manaPoints: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class ManaComponentStub: ManaComponent {
+    
+    
+     override var manaPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  MoveBehavior.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 9/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockMoveBehavior: MoveBehavior, Cuckoo.ClassMock {
+    
+     typealias MocksType = MoveBehavior
+    
+     typealias Stubbing = __StubbingProxy_MoveBehavior
+     typealias Verification = __VerificationProxy_MoveBehavior
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: MoveBehavior?
+
+     func enableDefaultImplementation(_ stub: MoveBehavior) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_MoveBehavior: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_MoveBehavior: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	}
+}
+
+ class MoveBehaviorStub: MoveBehavior {
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  MoveComponent.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 9/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockMoveComponent: MoveComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = MoveComponent
+    
+     typealias Stubbing = __StubbingProxy_MoveComponent
+     typealias Verification = __VerificationProxy_MoveComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: MoveComponent?
+
+     func enableDefaultImplementation(_ stub: MoveComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+    
+    
+     override var activePauses: Int {
+        get {
+            return cuckoo_manager.getter("activePauses",
+                superclassCall:
+                    
+                    super.activePauses
+                    ,
+                defaultCall: __defaultImplStub!.activePauses)
+        }
+        
+        set {
+            cuckoo_manager.setter("activePauses",
+                value: newValue,
+                superclassCall:
+                    
+                    super.activePauses = newValue
+                    ,
+                defaultCall: __defaultImplStub!.activePauses = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func willRemoveFromEntity()  {
+        
+    return cuckoo_manager.call("willRemoveFromEntity()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.willRemoveFromEntity()
+                ,
+            defaultCall: __defaultImplStub!.willRemoveFromEntity())
+        
+    }
+    
+    
+    
+     override func agentWillUpdate(_ agent: GKAgent)  {
+        
+    return cuckoo_manager.call("agentWillUpdate(_: GKAgent)",
+            parameters: (agent),
+            escapingParameters: (agent),
+            superclassCall:
+                
+                super.agentWillUpdate(agent)
+                ,
+            defaultCall: __defaultImplStub!.agentWillUpdate(agent))
+        
+    }
+    
+    
+    
+     override func agentDidUpdate(_ agent: GKAgent)  {
+        
+    return cuckoo_manager.call("agentDidUpdate(_: GKAgent)",
+            parameters: (agent),
+            escapingParameters: (agent),
+            superclassCall:
+                
+                super.agentDidUpdate(agent)
+                ,
+            defaultCall: __defaultImplStub!.agentDidUpdate(agent))
+        
+    }
+    
+
+	 struct __StubbingProxy_MoveComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockMoveComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	    var activePauses: Cuckoo.ClassToBeStubbedProperty<MockMoveComponent, Int> {
+	        return .init(manager: cuckoo_manager, name: "activePauses")
+	    }
+	    
+	    
+	    func willRemoveFromEntity() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveComponent.self, method: "willRemoveFromEntity()", parameterMatchers: matchers))
+	    }
+	    
+	    func agentWillUpdate<M1: Cuckoo.Matchable>(_ agent: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKAgent)> where M1.MatchedType == GKAgent {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKAgent)>] = [wrap(matchable: agent) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveComponent.self, method: "agentWillUpdate(_: GKAgent)", parameterMatchers: matchers))
+	    }
+	    
+	    func agentDidUpdate<M1: Cuckoo.Matchable>(_ agent: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKAgent)> where M1.MatchedType == GKAgent {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKAgent)>] = [wrap(matchable: agent) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveComponent.self, method: "agentDidUpdate(_: GKAgent)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_MoveComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var activePauses: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "activePauses", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func willRemoveFromEntity() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("willRemoveFromEntity()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func agentWillUpdate<M1: Cuckoo.Matchable>(_ agent: M1) -> Cuckoo.__DoNotUse<(GKAgent), Void> where M1.MatchedType == GKAgent {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKAgent)>] = [wrap(matchable: agent) { $0 }]
+	        return cuckoo_manager.verify("agentWillUpdate(_: GKAgent)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func agentDidUpdate<M1: Cuckoo.Matchable>(_ agent: M1) -> Cuckoo.__DoNotUse<(GKAgent), Void> where M1.MatchedType == GKAgent {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKAgent)>] = [wrap(matchable: agent) { $0 }]
+	        return cuckoo_manager.verify("agentDidUpdate(_: GKAgent)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class MoveComponentStub: MoveComponent {
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+    
+     override var activePauses: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+     override func willRemoveFromEntity()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func agentWillUpdate(_ agent: GKAgent)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func agentDidUpdate(_ agent: GKAgent)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  SpriteComponent.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockSpriteComponent: SpriteComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = SpriteComponent
+    
+     typealias Stubbing = __StubbingProxy_SpriteComponent
+     typealias Verification = __VerificationProxy_SpriteComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: SpriteComponent?
+
+     func enableDefaultImplementation(_ stub: SpriteComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+    
+    
+     override var activePauses: Int {
+        get {
+            return cuckoo_manager.getter("activePauses",
+                superclassCall:
+                    
+                    super.activePauses
+                    ,
+                defaultCall: __defaultImplStub!.activePauses)
+        }
+        
+        set {
+            cuckoo_manager.setter("activePauses",
+                value: newValue,
+                superclassCall:
+                    
+                    super.activePauses = newValue
+                    ,
+                defaultCall: __defaultImplStub!.activePauses = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var layerType: SpriteLayerType {
+        get {
+            return cuckoo_manager.getter("layerType",
+                superclassCall:
+                    
+                    super.layerType
+                    ,
+                defaultCall: __defaultImplStub!.layerType)
+        }
+        
+        set {
+            cuckoo_manager.setter("layerType",
+                value: newValue,
+                superclassCall:
+                    
+                    super.layerType = newValue
+                    ,
+                defaultCall: __defaultImplStub!.layerType = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func setGestureConstraint(referenceNode: SKSpriteNode)  {
+        
+    return cuckoo_manager.call("setGestureConstraint(referenceNode: SKSpriteNode)",
+            parameters: (referenceNode),
+            escapingParameters: (referenceNode),
+            superclassCall:
+                
+                super.setGestureConstraint(referenceNode: referenceNode)
+                ,
+            defaultCall: __defaultImplStub!.setGestureConstraint(referenceNode: referenceNode))
+        
+    }
+    
+
+	 struct __StubbingProxy_SpriteComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSpriteComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	    var activePauses: Cuckoo.ClassToBeStubbedProperty<MockSpriteComponent, Int> {
+	        return .init(manager: cuckoo_manager, name: "activePauses")
+	    }
+	    
+	    
+	    var layerType: Cuckoo.ClassToBeStubbedProperty<MockSpriteComponent, SpriteLayerType> {
+	        return .init(manager: cuckoo_manager, name: "layerType")
+	    }
+	    
+	    
+	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.ClassStubNoReturnFunction<(SKSpriteNode)> where M1.MatchedType == SKSpriteNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode)>] = [wrap(matchable: referenceNode) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteComponent.self, method: "setGestureConstraint(referenceNode: SKSpriteNode)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_SpriteComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var activePauses: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "activePauses", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var layerType: Cuckoo.VerifyProperty<SpriteLayerType> {
+	        return .init(manager: cuckoo_manager, name: "layerType", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.__DoNotUse<(SKSpriteNode), Void> where M1.MatchedType == SKSpriteNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode)>] = [wrap(matchable: referenceNode) { $0 }]
+	        return cuckoo_manager.verify("setGestureConstraint(referenceNode: SKSpriteNode)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class SpriteComponentStub: SpriteComponent {
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+    
+     override var activePauses: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var layerType: SpriteLayerType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (SpriteLayerType).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+     override func setGestureConstraint(referenceNode: SKSpriteNode)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  TeamComponent.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 9/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockTeamComponent: TeamComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = TeamComponent
+    
+     typealias Stubbing = __StubbingProxy_TeamComponent
+     typealias Verification = __VerificationProxy_TeamComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: TeamComponent?
+
+     func enableDefaultImplementation(_ stub: TeamComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_TeamComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockTeamComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_TeamComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class TeamComponentStub: TeamComponent {
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  TimerComponent.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 16/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockTimerComponent: TimerComponent, Cuckoo.ClassMock {
+    
+     typealias MocksType = TimerComponent
+    
+     typealias Stubbing = __StubbingProxy_TimerComponent
+     typealias Verification = __VerificationProxy_TimerComponent
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: TimerComponent?
+
+     func enableDefaultImplementation(_ stub: TimerComponent) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var lastUpdatedTime: TimeInterval {
+        get {
+            return cuckoo_manager.getter("lastUpdatedTime",
+                superclassCall:
+                    
+                    super.lastUpdatedTime
+                    ,
+                defaultCall: __defaultImplStub!.lastUpdatedTime)
+        }
+        
+        set {
+            cuckoo_manager.setter("lastUpdatedTime",
+                value: newValue,
+                superclassCall:
+                    
+                    super.lastUpdatedTime = newValue
+                    ,
+                defaultCall: __defaultImplStub!.lastUpdatedTime = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var currentTime: Int {
+        get {
+            return cuckoo_manager.getter("currentTime",
+                superclassCall:
+                    
+                    super.currentTime
+                    ,
+                defaultCall: __defaultImplStub!.currentTime)
+        }
+        
+        set {
+            cuckoo_manager.setter("currentTime",
+                value: newValue,
+                superclassCall:
+                    
+                    super.currentTime = newValue
+                    ,
+                defaultCall: __defaultImplStub!.currentTime = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var type: ComponentType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_TimerComponent: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var lastUpdatedTime: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "lastUpdatedTime")
+	    }
+	    
+	    
+	    var currentTime: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, Int> {
+	        return .init(manager: cuckoo_manager, name: "currentTime")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockTimerComponent, ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_TimerComponent: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var lastUpdatedTime: Cuckoo.VerifyProperty<TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "lastUpdatedTime", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var currentTime: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "currentTime", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<ComponentType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class TimerComponentStub: TimerComponent {
+    
+    
+     override var lastUpdatedTime: TimeInterval {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (TimeInterval).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var currentTime: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var type: ComponentType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  DroppedManaEntity.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 15/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockDroppedManaEntity: DroppedManaEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = DroppedManaEntity
+    
+     typealias Stubbing = __StubbingProxy_DroppedManaEntity
+     typealias Verification = __VerificationProxy_DroppedManaEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: DroppedManaEntity?
+
+     func enableDefaultImplementation(_ stub: DroppedManaEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_DroppedManaEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockDroppedManaEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_DroppedManaEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class DroppedManaEntityStub: DroppedManaEntity {
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  EndPointEntity.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 9/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockEndPointEntity: EndPointEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = EndPointEntity
+    
+     typealias Stubbing = __StubbingProxy_EndPointEntity
+     typealias Verification = __VerificationProxy_EndPointEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: EndPointEntity?
+
+     func enableDefaultImplementation(_ stub: EndPointEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_EndPointEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockEndPointEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_EndPointEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class EndPointEntityStub: EndPointEntity {
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  EnemyEntity.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockEnemyEntity: EnemyEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = EnemyEntity
+    
+     typealias Stubbing = __StubbingProxy_EnemyEntity
+     typealias Verification = __VerificationProxy_EnemyEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: EnemyEntity?
+
+     func enableDefaultImplementation(_ stub: EnemyEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var gestureEntity: GestureEntity? {
+        get {
+            return cuckoo_manager.getter("gestureEntity",
+                superclassCall:
+                    
+                    super.gestureEntity
+                    ,
+                defaultCall: __defaultImplStub!.gestureEntity)
+        }
+        
+    }
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func setCurrentGesture()  {
+        
+    return cuckoo_manager.call("setCurrentGesture()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.setCurrentGesture()
+                ,
+            defaultCall: __defaultImplStub!.setCurrentGesture())
+        
+    }
+    
+    
+    
+     override func removeGesture() -> Bool {
+        
+    return cuckoo_manager.call("removeGesture() -> Bool",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.removeGesture()
+                ,
+            defaultCall: __defaultImplStub!.removeGesture())
+        
+    }
+    
+
+	 struct __StubbingProxy_EnemyEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var gestureEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockEnemyEntity, GestureEntity?> {
+	        return .init(manager: cuckoo_manager, name: "gestureEntity")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockEnemyEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	    func setCurrentGesture() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockEnemyEntity.self, method: "setCurrentGesture()", parameterMatchers: matchers))
+	    }
+	    
+	    func removeGesture() -> Cuckoo.ClassStubFunction<(), Bool> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockEnemyEntity.self, method: "removeGesture() -> Bool", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_EnemyEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var gestureEntity: Cuckoo.VerifyReadOnlyProperty<GestureEntity?> {
+	        return .init(manager: cuckoo_manager, name: "gestureEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func setCurrentGesture() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("setCurrentGesture()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeGesture() -> Cuckoo.__DoNotUse<(), Bool> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("removeGesture() -> Bool", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class EnemyEntityStub: EnemyEntity {
+    
+    
+     override var gestureEntity: GestureEntity? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (GestureEntity?).self)
+        }
+        
+    }
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+     override func setCurrentGesture()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeGesture() -> Bool  {
+        return DefaultValueRegistry.defaultValue(for: (Bool).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  GestureEntity.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 11/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockGestureEntity: GestureEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = GestureEntity
+    
+     typealias Stubbing = __StubbingProxy_GestureEntity
+     typealias Verification = __VerificationProxy_GestureEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: GestureEntity?
+
+     func enableDefaultImplementation(_ stub: GestureEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var parentEntity: GKEntity? {
+        get {
+            return cuckoo_manager.getter("parentEntity",
+                superclassCall:
+                    
+                    super.parentEntity
+                    ,
+                defaultCall: __defaultImplStub!.parentEntity)
+        }
+        
+        set {
+            cuckoo_manager.setter("parentEntity",
+                value: newValue,
+                superclassCall:
+                    
+                    super.parentEntity = newValue
+                    ,
+                defaultCall: __defaultImplStub!.parentEntity = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_GestureEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var parentEntity: Cuckoo.ClassToBeStubbedOptionalProperty<MockGestureEntity, GKEntity> {
+	        return .init(manager: cuckoo_manager, name: "parentEntity")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGestureEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_GestureEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var parentEntity: Cuckoo.VerifyOptionalProperty<GKEntity> {
+	        return .init(manager: cuckoo_manager, name: "parentEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class GestureEntityStub: GestureEntity {
+    
+    
+     override var parentEntity: GKEntity? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (GKEntity?).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerHealthEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  PlayerHealthEntity.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockPlayerHealthEntity: PlayerHealthEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = PlayerHealthEntity
+    
+     typealias Stubbing = __StubbingProxy_PlayerHealthEntity
+     typealias Verification = __VerificationProxy_PlayerHealthEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: PlayerHealthEntity?
+
+     func enableDefaultImplementation(_ stub: PlayerHealthEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_PlayerHealthEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockPlayerHealthEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_PlayerHealthEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class PlayerHealthEntityStub: PlayerHealthEntity {
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerManaEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  PlayerManaEntity.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockPlayerManaEntity: PlayerManaEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = PlayerManaEntity
+    
+     typealias Stubbing = __StubbingProxy_PlayerManaEntity
+     typealias Verification = __VerificationProxy_PlayerManaEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: PlayerManaEntity?
+
+     func enableDefaultImplementation(_ stub: PlayerManaEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_PlayerManaEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockPlayerManaEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_PlayerManaEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class PlayerManaEntityStub: PlayerManaEntity {
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  DarkVortexPowerUpEntity.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 19/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockDarkVortexPowerUpEntity: DarkVortexPowerUpEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = DarkVortexPowerUpEntity
+    
+     typealias Stubbing = __StubbingProxy_DarkVortexPowerUpEntity
+     typealias Verification = __VerificationProxy_DarkVortexPowerUpEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: DarkVortexPowerUpEntity?
+
+     func enableDefaultImplementation(_ stub: DarkVortexPowerUpEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return cuckoo_manager.getter("powerUpType",
+                superclassCall:
+                    
+                    super.powerUpType
+                    ,
+                defaultCall: __defaultImplStub!.powerUpType)
+        }
+        
+    }
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_DarkVortexPowerUpEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockDarkVortexPowerUpEntity, PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockDarkVortexPowerUpEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_DarkVortexPowerUpEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class DarkVortexPowerUpEntityStub: DarkVortexPowerUpEntity {
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (PowerUpType).self)
+        }
+        
+    }
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  HellfireEntity.swift
+//  GameOfRunes
+//
+//  Created by Andy on 19/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockHellfirePowerUpEntity: HellfirePowerUpEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = HellfirePowerUpEntity
+    
+     typealias Stubbing = __StubbingProxy_HellfirePowerUpEntity
+     typealias Verification = __VerificationProxy_HellfirePowerUpEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: HellfirePowerUpEntity?
+
+     func enableDefaultImplementation(_ stub: HellfirePowerUpEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return cuckoo_manager.getter("powerUpType",
+                superclassCall:
+                    
+                    super.powerUpType
+                    ,
+                defaultCall: __defaultImplStub!.powerUpType)
+        }
+        
+    }
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_HellfirePowerUpEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockHellfirePowerUpEntity, PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockHellfirePowerUpEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_HellfirePowerUpEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class HellfirePowerUpEntityStub: HellfirePowerUpEntity {
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (PowerUpType).self)
+        }
+        
+    }
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  IcePrisonPowerUpEntity.swift
+//  GameOfRunes
+//
+//  Created by Andy on 19/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+import SpriteKit
+
+
+ class MockIcePrisonPowerUpEntity: IcePrisonPowerUpEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = IcePrisonPowerUpEntity
+    
+     typealias Stubbing = __StubbingProxy_IcePrisonPowerUpEntity
+     typealias Verification = __VerificationProxy_IcePrisonPowerUpEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: IcePrisonPowerUpEntity?
+
+     func enableDefaultImplementation(_ stub: IcePrisonPowerUpEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return cuckoo_manager.getter("powerUpType",
+                superclassCall:
+                    
+                    super.powerUpType
+                    ,
+                defaultCall: __defaultImplStub!.powerUpType)
+        }
+        
+    }
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_IcePrisonPowerUpEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockIcePrisonPowerUpEntity, PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType")
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockIcePrisonPowerUpEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_IcePrisonPowerUpEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
+	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class IcePrisonPowerUpEntityStub: IcePrisonPowerUpEntity {
+    
+    
+     override var powerUpType: PowerUpType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (PowerUpType).self)
+        }
+        
+    }
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  TimerEntity.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 16/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockTimerEntity: TimerEntity, Cuckoo.ClassMock {
+    
+     typealias MocksType = TimerEntity
+    
+     typealias Stubbing = __StubbingProxy_TimerEntity
+     typealias Verification = __VerificationProxy_TimerEntity
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: TimerEntity?
+
+     func enableDefaultImplementation(_ stub: TimerEntity) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var type: EntityType {
+        get {
+            return cuckoo_manager.getter("type",
+                superclassCall:
+                    
+                    super.type
+                    ,
+                defaultCall: __defaultImplStub!.type)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_TimerEntity: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockTimerEntity, EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_TimerEntity: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
+	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class TimerEntityStub: TimerEntity {
+    
+    
+     override var type: EntityType {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-22 09:50:56 +0000
 
 //
 //  GameEngine.swift
@@ -693,7 +3964,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-21 17:51:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-22 09:50:56 +0000
 
 //
 //  RemoveDelegate.swift
@@ -859,7 +4130,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-21 17:51:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-22 09:50:56 +0000
 
 //
 //  SystemDelegate.swift
@@ -1363,7 +4634,777 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-21 17:51:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  HealthSystem.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 12/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockHealthSystem: HealthSystem, Cuckoo.ClassMock {
+    
+     typealias MocksType = HealthSystem
+    
+     typealias Stubbing = __StubbingProxy_HealthSystem
+     typealias Verification = __VerificationProxy_HealthSystem
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: HealthSystem?
+
+     func enableDefaultImplementation(_ stub: HealthSystem) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func minusHealthPoints(for entity: GKEntity) -> Int? {
+        
+    return cuckoo_manager.call("minusHealthPoints(for: GKEntity) -> Int?",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.minusHealthPoints(for: entity)
+                ,
+            defaultCall: __defaultImplStub!.minusHealthPoints(for: entity))
+        
+    }
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+
+	 struct __StubbingProxy_HealthSystem: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "minusHealthPoints(for: GKEntity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_HealthSystem: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("minusHealthPoints(for: GKEntity) -> Int?", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class HealthSystemStub: HealthSystem {
+    
+
+    
+
+    
+     override func minusHealthPoints(for entity: GKEntity) -> Int?  {
+        return DefaultValueRegistry.defaultValue(for: (Int?).self)
+    }
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  ManaSystem.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 12/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockManaSystem: ManaSystem, Cuckoo.ClassMock {
+    
+     typealias MocksType = ManaSystem
+    
+     typealias Stubbing = __StubbingProxy_ManaSystem
+     typealias Verification = __VerificationProxy_ManaSystem
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: ManaSystem?
+
+     func enableDefaultImplementation(_ stub: ManaSystem) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+    
+    
+     override func increaseMana(by manaPoints: Int, for entity: GKEntity)  {
+        
+    return cuckoo_manager.call("increaseMana(by: Int, for: GKEntity)",
+            parameters: (manaPoints, entity),
+            escapingParameters: (manaPoints, entity),
+            superclassCall:
+                
+                super.increaseMana(by: manaPoints, for: entity)
+                ,
+            defaultCall: __defaultImplStub!.increaseMana(by: manaPoints, for: entity))
+        
+    }
+    
+    
+    
+     override func getMana(for entity: GKEntity) -> Int? {
+        
+    return cuckoo_manager.call("getMana(for: GKEntity) -> Int?",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.getMana(for: entity)
+                ,
+            defaultCall: __defaultImplStub!.getMana(for: entity))
+        
+    }
+    
+
+	 struct __StubbingProxy_ManaSystem: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	    func increaseMana<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by manaPoints: M1, for entity: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, GKEntity)> where M1.MatchedType == Int, M2.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, GKEntity)>] = [wrap(matchable: manaPoints) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "increaseMana(by: Int, for: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func getMana<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "getMana(for: GKEntity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_ManaSystem: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func increaseMana<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by manaPoints: M1, for entity: M2) -> Cuckoo.__DoNotUse<(Int, GKEntity), Void> where M1.MatchedType == Int, M2.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, GKEntity)>] = [wrap(matchable: manaPoints) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return cuckoo_manager.verify("increaseMana(by: Int, for: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func getMana<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Int?> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("getMana(for: GKEntity) -> Int?", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class ManaSystemStub: ManaSystem {
+    
+
+    
+
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func increaseMana(by manaPoints: Int, for entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func getMana(for entity: GKEntity) -> Int?  {
+        return DefaultValueRegistry.defaultValue(for: (Int?).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  MoveSystem.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 12/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockMoveSystem: MoveSystem, Cuckoo.ClassMock {
+    
+     typealias MocksType = MoveSystem
+    
+     typealias Stubbing = __StubbingProxy_MoveSystem
+     typealias Verification = __VerificationProxy_MoveSystem
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: MoveSystem?
+
+     func enableDefaultImplementation(_ stub: MoveSystem) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func update(deltaTime seconds: TimeInterval)  {
+        
+    return cuckoo_manager.call("update(deltaTime: TimeInterval)",
+            parameters: (seconds),
+            escapingParameters: (seconds),
+            superclassCall:
+                
+                super.update(deltaTime: seconds)
+                ,
+            defaultCall: __defaultImplStub!.update(deltaTime: seconds))
+        
+    }
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+
+	 struct __StubbingProxy_MoveSystem: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "update(deltaTime: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_MoveSystem: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.__DoNotUse<(TimeInterval), Void> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
+	        return cuckoo_manager.verify("update(deltaTime: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class MoveSystemStub: MoveSystem {
+    
+
+    
+
+    
+     override func update(deltaTime seconds: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  SpriteSystem.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 12/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockSpriteSystem: SpriteSystem, Cuckoo.ClassMock {
+    
+     typealias MocksType = SpriteSystem
+    
+     typealias Stubbing = __StubbingProxy_SpriteSystem
+     typealias Verification = __VerificationProxy_SpriteSystem
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: SpriteSystem?
+
+     func enableDefaultImplementation(_ stub: SpriteSystem) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func addComponent(foundIn entity: GKEntity)  {
+        
+    return cuckoo_manager.call("addComponent(foundIn: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.addComponent(foundIn: entity)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func removeComponent(foundIn entity: GKEntity)  {
+        
+    return cuckoo_manager.call("removeComponent(foundIn: GKEntity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.removeComponent(foundIn: entity)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+    
+    
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+        
+    return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
+            parameters: (entity, duration, animationNodeKey),
+            escapingParameters: (entity, duration, animationNodeKey),
+            superclassCall:
+                
+                super.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+                ,
+            defaultCall: __defaultImplStub!.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey))
+        
+    }
+    
+
+	 struct __StubbingProxy_SpriteSystem: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "addComponent(foundIn: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKEntity)> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(foundIn: GKEntity)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_SpriteSystem: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("addComponent(foundIn: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(foundIn entity: M1) -> Cuckoo.__DoNotUse<(GKEntity), Void> where M1.MatchedType == GKEntity {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKEntity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(foundIn: GKEntity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
+	        return cuckoo_manager.verify("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class SpriteSystemStub: SpriteSystem {
+    
+
+    
+
+    
+     override func addComponent(foundIn entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponent(foundIn entity: GKEntity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-22 09:50:56 +0000
+
+//
+//  TimerSystem.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 16/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockTimerSystem: TimerSystem, Cuckoo.ClassMock {
+    
+     typealias MocksType = TimerSystem
+    
+     typealias Stubbing = __StubbingProxy_TimerSystem
+     typealias Verification = __VerificationProxy_TimerSystem
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: TimerSystem?
+
+     func enableDefaultImplementation(_ stub: TimerSystem) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func update(deltaTime seconds: TimeInterval)  {
+        
+    return cuckoo_manager.call("update(deltaTime: TimeInterval)",
+            parameters: (seconds),
+            escapingParameters: (seconds),
+            superclassCall:
+                
+                super.update(deltaTime: seconds)
+                ,
+            defaultCall: __defaultImplStub!.update(deltaTime: seconds))
+        
+    }
+    
+    
+    
+     override func removeComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("removeComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.removeComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.removeComponent(component))
+        
+    }
+    
+
+	 struct __StubbingProxy_TimerSystem: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "update(deltaTime: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_TimerSystem: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.__DoNotUse<(TimeInterval), Void> where M1.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
+	        return cuckoo_manager.verify("update(deltaTime: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class TimerSystemStub: TimerSystem {
+    
+
+    
+
+    
+     override func update(deltaTime seconds: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func removeComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-22 09:50:56 +0000
 
 //
 //  GameStateMachine.swift
@@ -1527,7 +5568,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-21 17:51:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-22 09:50:56 +0000
 
 //
 //  GameScene.swift
