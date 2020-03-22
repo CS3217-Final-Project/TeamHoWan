@@ -1,0 +1,6 @@
+module Pods_GameOfRunesTests {
+  umbrella header "Pods-GameOfRunesTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

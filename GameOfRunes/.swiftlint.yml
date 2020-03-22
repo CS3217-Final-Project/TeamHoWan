@@ -1,6 +1,7 @@
 excluded:
   - Pods
   - GameOfRunes/Gesture Recogniser/DBPathRecognizer.swift
+  - GameOfRunesTests/GeneratedMocks.swift
 
 opt_in_rules:
   - anyobject_protocol
