@@ -4,9 +4,9 @@ use_modular_headers!
 target "GameOfRunes" do
   pod "SwiftLint"
   pod "SnapKit"
-end
-
-target "GameOfRunesTests" do
-  pod "Cuckoo"
-
+  
+  target "GameOfRunesTests" do
+    inherit! :search_paths
+    pod "Cuckoo"
+  end
 end

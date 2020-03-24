@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftLint;
+			productName = SwiftLint;
 		};
 /* End PBXAggregateTarget section */
 
@@ -28,7 +29,6 @@
 		113351A8BEC3B57AACC4AC5493A1025A /* Cuckoo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8381312F9B6B9D14502875EE0842C7C6 /* Cuckoo-dummy.m */; };
 		13B4985507EAACF299C56FC2C5B34169 /* Array+matchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C993CB37E1BE234E89BAD5FF6610BBA /* Array+matchers.swift */; };
 		1423E740F6B74D3103E8A731F3BEF10B /* StubFunctionThenThrowTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108B8324C2BC13F557E5CE7001C3394 /* StubFunctionThenThrowTrait.swift */; };
-		166B6501A2D3B6986F462B3182CB6E8D /* Pods-GameOfRunesTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B395F661284B388D6B1741B80C7C12DE /* Pods-GameOfRunesTests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1D046508A1989B37044B29B388C19F73 /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5369669C350F68E05B98B08BDDB58616 /* SnapKit-dummy.m */; };
 		1FE7B11A669ABCD517A333A4FAE36529 /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4D804228A25AD04F437A37B892CFA8 /* ConstraintDirectionalInsetTarget.swift */; };
 		20FDC1D108E244015C2C196CAB1B8EAA /* VerifyReadOnlyProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58882EF630D45F3D362BC4FE4028D33 /* VerifyReadOnlyProperty.swift */; };
@@ -50,6 +50,7 @@
 		43B3D6A6FC5E054214F08871DA619EFF /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ACB55F6BD34F71D923C0A3AB94545D /* ConstraintConfig.swift */; };
 		442B56D64E291E6BF23EA5A04D95527B /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74BD251D36E5FDD54C0E22787927BB5 /* ConstraintOffsetTarget.swift */; };
 		44381E0E43B904AC2C7184977997D243 /* ToBeStubbedProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290DDC4EB1D18644DCDFBB25D83ACB65 /* ToBeStubbedProperty.swift */; };
+		448C996C24FDDA859D24AC80FEC9310A /* Pods-GameOfRunesTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B395F661284B388D6B1741B80C7C12DE /* Pods-GameOfRunesTests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		452D9E07985DF47BFCA2991A79E7B580 /* StubNoReturnThrowingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B924BA71284988111AB5D5351AA1DCE /* StubNoReturnThrowingFunction.swift */; };
 		498EA2B4F1116EEB5E545B7C88210264 /* MockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F056ABB466AF33C78DC52B692CD40 /* MockManager.swift */; };
 		4BAE6A3C9C925AEA2CD4424F852AE43F /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74BE4A00BB42EEFA614E33D524EE3C8 /* ConstraintPriorityTarget.swift */; };
@@ -59,7 +60,6 @@
 		5C5295DC7159DF8CD7D53498D79EEFFD /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB486B6BCB2AE69DCB0D9738C41B4B /* ConstraintAttributes.swift */; };
 		5FB3E004722E03F129073A1A61A2EBA0 /* __DoNotUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290BE2174D5D5E9E8FA19CA901D964DE /* __DoNotUse.swift */; };
 		63A31BD2D36344473E815DEBF9AC3D2E /* Pods-GameOfRunes-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069472B917BF8DC33A9D3039538B67B /* Pods-GameOfRunes-dummy.m */; };
-		650512C67E49780FDDFD87A10B1C21A9 /* Pods-GameOfRunesTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC4F9D9B7D7B94C2E8042CA7AA52679 /* Pods-GameOfRunesTests-dummy.m */; };
 		66A4CE113D9412019D9DE8055E4CB792 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16C15AE61DFAECC94355790700B455E /* Matchable.swift */; };
 		6941C83364730E76B8465E5B02B0C77B /* CreateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456D8F8669B6D772EFD546393B3E7EB /* CreateMock.swift */; };
 		6C7FFBDB87E9977121D711004A2738F9 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8658B3A9AE32F6041A165741DA383AF /* ConstraintMakerExtendable.swift */; };
@@ -70,6 +70,7 @@
 		86FFA48C0BAD3F2C16633F5324985CC1 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C6172AAB8E5DE5163CE3B4C0ECF6E /* ConstraintDSL.swift */; };
 		8DA263424D14A86B02A2A09C38A1C9BE /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB772396930B798E3AC50E5E8A55899 /* ConstraintView+Extensions.swift */; };
 		8E1DEE46EE6AE940C9BCFEC34DA0E20E /* StubFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513315DA81BC75772D9AA309A0878C80 /* StubFunction.swift */; };
+		8FE8A1DF456CA28430823A5C1461B56B /* Pods-GameOfRunesTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC4F9D9B7D7B94C2E8042CA7AA52679 /* Pods-GameOfRunesTests-dummy.m */; };
 		931CD4E55E94746FD19BBE3D92B71F66 /* DefaultValueRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DCBD4B22985371EA3495E955DD930 /* DefaultValueRegistry.swift */; };
 		95A288E13B4934B502F701F078A20F09 /* CuckooFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0BBDA189D886E2FFC76381591F09A2 /* CuckooFunctions.swift */; };
 		9A315B11EDC2F0E1210CD1DAB7E3108F /* ParameterMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F320E289D269824DF2CF2BEC91BC84 /* ParameterMatcher.swift */; };
@@ -113,13 +114,6 @@
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
-		5B0985BCC8FEA57582EA16524FACAF00 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CFCA8CA494372A14108299CE150648B8;
-			remoteInfo = Cuckoo;
-		};
 		B6424093F6E7DCDAFF64AC548FB63B01 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -127,13 +121,27 @@
 			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
 			remoteInfo = SnapKit;
 		};
+		C13235082830E50BC06D85EEE1B03B0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFCA8CA494372A14108299CE150648B8;
+			remoteInfo = Cuckoo;
+		};
+		CB269AC904ECFAF4B968FB7670A164D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DDA91E237AE4C494716334C857278CB;
+			remoteInfo = "Pods-GameOfRunes";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00B535C1188447C0B04CE957F393835D /* Cuckoo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cuckoo.xcconfig; sourceTree = "<group>"; };
 		023D678B4AF3BE2560F8E9635E1DEB51 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		0356DC5FC416A60532336DAA1F174D68 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
-		06BBD3298EFC08D95EEFE526BDDCDBD1 /* libCuckoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCuckoo.a; path = libCuckoo.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		06BBD3298EFC08D95EEFE526BDDCDBD1 /* libCuckoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCuckoo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		097F66F60358131947248520FE5C9F24 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		0A68454A4CFC7496F93E0AECD140D721 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Source/Utils.swift; sourceTree = "<group>"; };
 		10D7FCF7B5CD6CC4CA61DE89E8891A52 /* StubThrowingFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubThrowingFunction.swift; path = Source/Stubbing/StubFunction/StubThrowingFunction.swift; sourceTree = "<group>"; };
@@ -194,10 +202,10 @@
 		9069472B917BF8DC33A9D3039538B67B /* Pods-GameOfRunes-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GameOfRunes-dummy.m"; sourceTree = "<group>"; };
 		965C6172AAB8E5DE5163CE3B4C0ECF6E /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		96EA45646EEC41C9A79B0B22EE71655C /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* libSnapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSnapKit.a; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		979486118B3E90C08386079D57962701 /* libSnapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D04F714C62227667B001778D438076C /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9FF349B972A0728606A73F81A15B5180 /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GameOfRunes.a"; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FF349B972A0728606A73F81A15B5180 /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12EA053735BDF559C0CE14DE677E931 /* CallMatcherFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CallMatcherFunctions.swift; path = Source/Matching/CallMatcherFunctions.swift; sourceTree = "<group>"; };
 		A15321C7D8CF0212E65432EE24EC415B /* StubFunctionThenReturnTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenReturnTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenReturnTrait.swift; sourceTree = "<group>"; };
 		A84743A64FFCCCF6E8B51400BAA5378B /* Pods-GameOfRunes-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GameOfRunes-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -208,7 +216,7 @@
 		BCD3BD373AD908B51BC4FB47E26EE3B7 /* MockBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockBuilder.swift; path = Source/Initialization/MockBuilder.swift; sourceTree = "<group>"; };
 		BD7811A907B0E8F16CC0E4D81A95DD81 /* Pods-GameOfRunesTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GameOfRunesTests.modulemap"; sourceTree = "<group>"; };
 		C108B8324C2BC13F557E5CE7001C3394 /* StubFunctionThenThrowTrait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubFunctionThenThrowTrait.swift; path = Source/Stubbing/StubFunction/Trait/StubFunctionThenThrowTrait.swift; sourceTree = "<group>"; };
-		C6172F8BAF5ADA8A11EB56B1CF3970AE /* libPods-GameOfRunesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GameOfRunesTests.a"; path = "libPods-GameOfRunesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6172F8BAF5ADA8A11EB56B1CF3970AE /* libPods-GameOfRunesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74BE4A00BB42EEFA614E33D524EE3C8 /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
 		C7C2FA5B4963A5306553CD6E88D5A38B /* Pods-GameOfRunes-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GameOfRunes-umbrella.h"; sourceTree = "<group>"; };
 		CC57ED582843B27B6C9DBDCCC91F4917 /* StubNoReturnFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StubNoReturnFunction.swift; path = Source/Stubbing/StubFunction/StubNoReturnFunction.swift; sourceTree = "<group>"; };
@@ -253,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		70AC7CDC7A9A2AFB96706F7E1F415B21 /* Frameworks */ = {
+		81A995DCBD20EA3E0073CE331185D14E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -323,7 +331,6 @@
 				DDA2B8782117D28A926AD35856A729C5 /* Support Files */,
 				16EE44F377F64E20F30401BFF02E930C /* Swift */,
 			);
-			name = Cuckoo;
 			path = Cuckoo;
 			sourceTree = "<group>";
 		};
@@ -368,7 +375,6 @@
 				D55F897B8F04FAEE8CFE2D54A7839458 /* UILayoutSupport+Extensions.swift */,
 				6EC6A4693638FCBDCC5E339ED2040244 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -440,7 +446,6 @@
 			children = (
 				4ABABF416C73315786CFDEBDB0D453CD /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -505,11 +510,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47F079FA8EF0B8D0B840B9BA11E1CC7B /* Headers */ = {
+		255572715A75E52D1FF26E02BCA8F23A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				166B6501A2D3B6986F462B3182CB6E8D /* Pods-GameOfRunesTests-umbrella.h in Headers */,
+				448C996C24FDDA859D24AC80FEC9310A /* Pods-GameOfRunesTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,16 +539,17 @@
 /* Begin PBXNativeTarget section */
 		12C6FD0749CD6CC88FC3D3E4EA62FA17 /* Pods-GameOfRunesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACBBF172734F6DC2CF13D0E420C94E1D /* Build configuration list for PBXNativeTarget "Pods-GameOfRunesTests" */;
+			buildConfigurationList = 0DEE84305C59F925E8DE578980A09DEE /* Build configuration list for PBXNativeTarget "Pods-GameOfRunesTests" */;
 			buildPhases = (
-				47F079FA8EF0B8D0B840B9BA11E1CC7B /* Headers */,
-				07C95233C5CEA0D880CEC6268F8953E8 /* Sources */,
-				70AC7CDC7A9A2AFB96706F7E1F415B21 /* Frameworks */,
+				255572715A75E52D1FF26E02BCA8F23A /* Headers */,
+				73A9B6B87F78B802DE5946AF94C68D3D /* Sources */,
+				81A995DCBD20EA3E0073CE331185D14E /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EBADCA40820567AE169697B4A66F2264 /* PBXTargetDependency */,
+				1B69AEBE955300F76431EC6F30532657 /* PBXTargetDependency */,
+				430B783920E14BFD3212E883E86988C1 /* PBXTargetDependency */,
 			);
 			name = "Pods-GameOfRunesTests";
 			productName = "Pods-GameOfRunesTests";
@@ -612,7 +618,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1130;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -688,19 +694,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07C95233C5CEA0D880CEC6268F8953E8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				650512C67E49780FDDFD87A10B1C21A9 /* Pods-GameOfRunesTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		193953C44D58A3E5A7453206050177DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				63A31BD2D36344473E815DEBF9AC3D2E /* Pods-GameOfRunes-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73A9B6B87F78B802DE5946AF94C68D3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE8A1DF456CA28430823A5C1461B56B /* Pods-GameOfRunesTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +805,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1B69AEBE955300F76431EC6F30532657 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cuckoo;
+			target = CFCA8CA494372A14108299CE150648B8 /* Cuckoo */;
+			targetProxy = C13235082830E50BC06D85EEE1B03B0F /* PBXContainerItemProxy */;
+		};
+		430B783920E14BFD3212E883E86988C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GameOfRunes";
+			target = 9DDA91E237AE4C494716334C857278CB /* Pods-GameOfRunes */;
+			targetProxy = CB269AC904ECFAF4B968FB7670A164D1 /* PBXContainerItemProxy */;
+		};
 		9F2C5B09867DE0AF4DCECB0A609DCE56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
@@ -811,18 +829,12 @@
 			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
 			targetProxy = B6424093F6E7DCDAFF64AC548FB63B01 /* PBXContainerItemProxy */;
 		};
-		EBADCA40820567AE169697B4A66F2264 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cuckoo;
-			target = CFCA8CA494372A14108299CE150648B8 /* Cuckoo */;
-			targetProxy = 5B0985BCC8FEA57582EA16524FACAF00 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		026FBE7AA51B992B16B8EF41202B66F8 /* Debug */ = {
+		0092EAE2064FBFCED013A749BA46BB66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F9F29153133D51F052FF78C30932BC7 /* Pods-GameOfRunesTests.debug.xcconfig */;
+			baseConfigurationReference = 56B666777631231AE267796C68EFE55D /* Pods-GameOfRunesTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -840,8 +852,9 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		05A517976CC5EEB4B5DF41AD15BD4E79 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -850,7 +863,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -935,30 +948,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
-		};
-		6134A22651DBF78BF6BA6FC2F71963A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56B666777631231AE267796C68EFE55D /* Pods-GameOfRunesTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GameOfRunesTests/Pods-GameOfRunesTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		83B85B28B10AACD5C906235D7EED4E4F /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1079,12 +1068,35 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2182D473F89789822559729AA9DEB61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F9F29153133D51F052FF78C30932BC7 /* Pods-GameOfRunesTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GameOfRunesTests/Pods-GameOfRunesTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1178,6 +1190,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0DEE84305C59F925E8DE578980A09DEE /* Build configuration list for PBXNativeTarget "Pods-GameOfRunesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2182D473F89789822559729AA9DEB61 /* Debug */,
+				0092EAE2064FBFCED013A749BA46BB66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		20AD94827FEF3BC55DAB0A5EA2D7A958 /* Build configuration list for PBXNativeTarget "Cuckoo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1201,15 +1222,6 @@
 			buildConfigurations = (
 				83B85B28B10AACD5C906235D7EED4E4F /* Debug */,
 				20E5BB18FCA25C5542CB9E998CA13C66 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ACBBF172734F6DC2CF13D0E420C94E1D /* Build configuration list for PBXNativeTarget "Pods-GameOfRunesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				026FBE7AA51B992B16B8EF41202B66F8 /* Debug */,
-				6134A22651DBF78BF6BA6FC2F71963A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

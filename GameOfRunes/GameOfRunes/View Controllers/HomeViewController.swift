@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setUpHomeBackground()
+    }
+    
+    private func setUpHomeBackground() {
+        let background = UIImageView(image: UIImage(named: "relic-guardian"))
+        background.clipsToBounds = true
+        background.contentMode = .scaleAspectFill
+        
+        view.addSubview(background)
+        background.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
