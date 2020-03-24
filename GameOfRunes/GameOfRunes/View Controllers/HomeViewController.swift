@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-    var viewPortWidth: CGFloat {
+    private var viewPortWidth: CGFloat {
         view.frame.size.width
     }
-    var viewPortHeight: CGFloat {
+    private var viewPortHeight: CGFloat {
         view.frame.size.height
     }
-    let startButton = UIButton()
+    private let startButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +46,12 @@ class HomeViewController: UIViewController {
         let gameIcon = UIImageView(image: UIImage(named: "GameOfRunes-logo-transparent"))
         gameIcon.contentMode = .scaleAspectFit
         
-        let iconSize = gameIcon.frame.size.scaleTo(width: viewPortWidth * 0.8)
-        
         view.addSubview(gameIcon)
         view.bringSubviewToFront(gameIcon)
         gameIcon.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("gameIconCenterX")
             make.centerY.equalToSuperview().multipliedBy(0.75).labeled("gameIconCenterY")
-            make.width.equalTo(iconSize.width).labeled("gameIconWidth")
-            make.height.equalTo(iconSize.height).labeled("gameIconHeight")
+            make.size.equalTo(gameIcon.frame.size.scaleTo(width: viewPortWidth * 0.8)).labeled("gameIconSize")
         }
     }
     
@@ -62,7 +59,6 @@ class HomeViewController: UIViewController {
         view.addSubview(startButton)
         view.bringSubviewToFront(startButton)
         addImageConstraints()
-        addTitle()
         addActions()
     }
 }
@@ -70,24 +66,18 @@ class HomeViewController: UIViewController {
 // MARK: - button setup
 extension HomeViewController {
     private func addImageConstraints() {
-        guard let buttonImage = UIImage(named: "start-button") else {
+        guard let buttonImage = UIImage(named: "start-button-glow") else {
             return
         }
-        
-        let buttonSize = buttonImage.size.scaleTo(width: viewPortWidth * 0.8)
         
         startButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("startButtonCenterX")
             make.centerY.equalToSuperview().multipliedBy(1.6).labeled("startButtonCenterY")
-            make.width.equalTo(buttonSize.width).labeled("startButtonWidth")
-            make.height.equalTo(buttonSize.height).labeled("startButtonHeight")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.8)).labeled("startButtonSize")
         }
         
         startButton.adjustsImageWhenHighlighted = false
         startButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
-    private func addTitle() {
     }
     
     private func addActions() {
