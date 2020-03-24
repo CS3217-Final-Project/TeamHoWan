@@ -22,7 +22,14 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setUpHomeBackground()
+        setUpGameIcon()
         setUpStartButton()
+        
+        // temporary load here to reduce delay in starting game
+        DispatchQueue.global(qos: .default).async {
+            // set up animation textures in background
+            TextureContainer.loadTextures()
+        }
     }
     
     private func setUpHomeBackground() {
@@ -32,6 +39,22 @@ class HomeViewController: UIViewController {
         view.addSubview(background)
         background.snp.makeConstraints { make in
             make.edges.equalToSuperview().labeled("backgroundEdges")
+        }
+    }
+    
+    private func setUpGameIcon() {
+        let gameIcon = UIImageView(image: UIImage(named: "GameOfRunes-logo-transparent"))
+        gameIcon.contentMode = .scaleAspectFit
+        
+        let iconSize = gameIcon.frame.size.scaleTo(width: viewPortWidth * 0.8)
+        
+        view.addSubview(gameIcon)
+        view.bringSubviewToFront(gameIcon)
+        gameIcon.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().labeled("gameIconCenterX")
+            make.centerY.equalToSuperview().multipliedBy(0.75).labeled("gameIconCenterY")
+            make.width.equalTo(iconSize.width).labeled("gameIconWidth")
+            make.height.equalTo(iconSize.height).labeled("gameIconHeight")
         }
     }
     
@@ -51,14 +74,13 @@ extension HomeViewController {
             return
         }
         
-        let buttonWidth = viewPortWidth / 1.25
-        let buttonHeight = buttonWidth / buttonImage.size.widthToHeightRatio
+        let buttonSize = buttonImage.size.scaleTo(width: viewPortWidth * 0.8)
         
         startButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("startButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.5).labeled("startButtonCenterY")
-            make.width.equalTo(buttonWidth).labeled("startButtonWidth")
-            make.height.equalTo(buttonHeight).labeled("startButtonHeight")
+            make.centerY.equalToSuperview().multipliedBy(1.6).labeled("startButtonCenterY")
+            make.width.equalTo(buttonSize.width).labeled("startButtonWidth")
+            make.height.equalTo(buttonSize.height).labeled("startButtonHeight")
         }
         
         startButton.adjustsImageWhenHighlighted = false
@@ -76,7 +98,7 @@ extension HomeViewController {
     
     @objc private func onTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 0.05) {
-            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.88)
+            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
         }
     }
     
