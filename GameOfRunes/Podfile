@@ -3,6 +3,7 @@ use_modular_headers!
 
 target "GameOfRunes" do
   pod "SwiftLint"
+  pod "SnapKit"
 end
 
 target "GameOfRunesTests" do
