@@ -10,8 +10,8 @@
         <!--Home View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="HomeViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                <viewController storyboardIdentifier="HomeVC" id="BV1-FR-VrT" customClass="HomeViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -21,6 +21,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="89"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="0RJ-kr-sZp">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQq-VS-aJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="GameVC" id="YdL-8S-BLy" customClass="GameViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GY3-bA-5kC" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ElN-mG-Xag"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1083" y="88"/>
         </scene>
     </scenes>
 </document>

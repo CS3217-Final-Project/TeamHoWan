@@ -347,8 +347,8 @@
 		4ACAF529242A71BB0062DDBA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				4ACAF52A242A727F0062DDBA /* HomeViewController.swift */,
+				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
