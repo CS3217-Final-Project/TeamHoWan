@@ -1,5 +1,5 @@
 //
-//  MultiplierComponent.swift
+//  ScoreComponent.swift
 //  GameOfRunes
 //
 //  Created by Andy on 25/3/20.
@@ -9,23 +9,24 @@
 import SpriteKit
 import GameplayKit
 
-class MultiplerComponent: GKComponent, Component {
+class EnemyScoreComponent: GKComponent, Component {
     var type: ComponentType {
-        .multiplerComponent
+        .scoreComponent
     }
     
-    private var _multipler: Int = 1
+    private var _scorePoints: Int
     
-    var multiplier: Int {
+    var scorePoints: Int {
         get {
-            self._multipler
+            self._scorePoints
         }
         set {
-            self._multipler = newValue
+            self._scorePoints = newValue
         }
     }
     
-    override init() {
+    init(scorePoints: Int) {
+        self._scorePoints = max(0, scorePoints)
         super.init()
     }
     
