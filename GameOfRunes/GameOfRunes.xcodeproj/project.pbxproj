@@ -47,6 +47,7 @@
 		4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */; };
 		4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A4F241BF31C00D79639 /* cast power up.mp3 */; };
 		4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */; };
+		4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACAF52A242A727F0062DDBA /* HomeViewController.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
 		4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB22414C69800F235AE /* Main.storyboard */; };
@@ -156,6 +157,7 @@
 		4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpIconNode.swift; sourceTree = "<group>"; };
 		4AC87A4F241BF31C00D79639 /* cast power up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cast power up.mp3"; sourceTree = "<group>"; };
 		4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpContainerNode.swift; sourceTree = "<group>"; };
+		4ACAF52A242A727F0062DDBA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ACC8BB02414C69800F235AE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +344,15 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		4ACAF529242A71BB0062DDBA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4ACAF52A242A727F0062DDBA /* HomeViewController.swift */,
+				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		4ACC8B9C2414C69800F235AE = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +386,7 @@
 				C6AFF67F241923040076F02B /* GameEngine */,
 				4AA508C9241614D500D9ADE4 /* Types */,
 				4AA5B3702416BB54008D4953 /* Custom Nodes */,
-				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
+				4ACAF529242A71BB0062DDBA /* View Controllers */,
 				4AA5B37F2417879B008D4953 /* Assets.xcassets */,
 				4ACC8BB22414C69800F235AE /* Main.storyboard */,
 				4ACC8BB72414C69B00F235AE /* LaunchScreen.storyboard */,
@@ -812,6 +823,7 @@
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
+				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				4ACC8BDC2415323800F235AE /* PlayerHealthEntity.swift in Sources */,
 				8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */,

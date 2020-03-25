@@ -45,6 +45,7 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
+        // TO NOTE: Unnecessary loading of texture, had to do this to pass tests
         let dispatchGroup = DispatchGroup()
         // marks the start of possible async block
         dispatchGroup.enter()

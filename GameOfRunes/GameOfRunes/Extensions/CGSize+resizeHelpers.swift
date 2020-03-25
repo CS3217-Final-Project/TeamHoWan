@@ -25,4 +25,8 @@ extension CGSize {
         }
         return .init(width: width, height: width / ratio)
     }
+    
+    var widthToHeightRatio: CGFloat {
+        width / height
+    }
 }
