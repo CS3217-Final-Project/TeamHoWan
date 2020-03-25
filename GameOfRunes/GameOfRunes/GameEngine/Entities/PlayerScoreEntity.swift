@@ -17,7 +17,10 @@ class PlayerScoreEntity: Entity {
         super.init()
 
         let scoreComponent = ScoreComponent(scorePoints: 0)
+        let multiplierComponent = MultiplerComponent()
+        
         addComponent(scoreComponent)
+        addComponent(multiplierComponent)
     }
     
     @available(*, unavailable)

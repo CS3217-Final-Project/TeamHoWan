@@ -23,6 +23,9 @@ class SystemDelegate {
     var spriteSystem: SpriteSystem? {
         systems[.spriteComponent] as? SpriteSystem
     }
+    var scoreSystem: ScoreSystem? {
+        systems[.scoreComponent] as? ScoreSystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -31,6 +34,7 @@ class SystemDelegate {
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
+        systems[.scoreComponent] = ScoreSystem()
     }
     
     func update(with deltatime: TimeInterval) {
@@ -76,5 +80,9 @@ class SystemDelegate {
     
     func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+    }
+    
+    func addScore(by points: Int, for entity: Entity) {
+        scoreSystem?.addScore(by: points, for: entity)
     }
 }

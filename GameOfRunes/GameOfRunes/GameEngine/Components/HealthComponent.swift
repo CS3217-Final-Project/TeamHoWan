@@ -18,11 +18,12 @@ class HealthComponent: GKComponent, Component {
             healthBarNode?.livesLeft ?? _healthPoints
         }
         set {
+            let value = max(0, newValue)
             if let healthBarNode = healthBarNode {
-                healthBarNode.livesLeft = newValue
-                _healthPoints = healthBarNode.livesLeft
+                healthBarNode.livesLeft = value
+                _healthPoints = value
             } else {
-                _healthPoints = max(0, newValue)
+                _healthPoints = value
             }
         }
     }

@@ -9,11 +9,26 @@
 import GameplayKit
 
 class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
-    private weak var gameEngine: GameEngine?
-    
-    init(gameEngine: GameEngine) {
-        self.gameEngine = gameEngine
+    override init() {
         super.init(componentClass: MoveComponent.self)
+    }
+    
+    func setMultiplier(multiplier: Int, for entity: GKEntity) {
+        guard let multiplerComponent = entity.component(ofType: MultiplerComponent.self) else {
+            return
+        }
+        
+        multiplerComponent.multiplier = max(1, multiplier)
+    }
+    
+    func addScore(by points: Int, for entity: GKEntity) {
+        guard let scoreComponent = entity.component(ofType: ScoreComponent.self),
+            let multiplerComponent = entity.component(ofType: MultiplerComponent.self) else {
+            return
+        }
+        
+        let multiplier = multiplerComponent.multiplier
+        scoreComponent.scorePoints = max(0, scoreComponent.scorePoints + points * multiplier)
     }
     
     func removeComponent(_ component: Component) {
