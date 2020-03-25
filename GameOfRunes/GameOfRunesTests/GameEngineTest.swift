@@ -14,6 +14,7 @@ import GameplayKit
 class GameEngineTest: BaseUnitTest {
     override func setUp() {
         super.setUp()
+        TextureContainer.loadTextures()
         stub(gameEngine) { stub in
             when(stub.playerHealthEntity.get).thenReturn(playerHealthEntity)
             when(stub.playerManaEntity.get).thenReturn(playerManaEntity)
