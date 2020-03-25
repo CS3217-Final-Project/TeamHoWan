@@ -9,9 +9,9 @@
 import SpriteKit
 import GameplayKit
 
-class MultiplerComponent: GKComponent, Component {
+class MultiplierComponent: GKComponent, Component {
     var type: ComponentType {
-        .multiplerComponent
+        .multiplierComponent
     }
     
     private var _multipler: Int = 1

@@ -22,6 +22,10 @@ class GameEngine {
     var playerManaEntity: PlayerManaEntity? {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
+    var playerScoreEntity: PlayerScoreEntity? {
+        entities[.playerScoreEntity]?.first as? PlayerScoreEntity
+    }
+
 
     init(gameScene: GameScene) {
         self.gameScene = gameScene
@@ -118,6 +122,14 @@ class GameEngine {
         }
         
         _ = minusHealthPoints(for: playerHealthEntity)
+    }
+    
+    func addScore(by points: Int) {
+        guard let playerScoreEntity = playerScoreEntity else {
+            return
+        }
+        
+        systemDelegate.addScore(by: points, for: playerScoreEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {

@@ -31,6 +31,10 @@ class RemoveDelegate {
             _ = enemyEntity.removeGesture()
             removeEnemyFromGame(enemyEntity, fullAnimation: false)
             gameEngine?.dropMana(at: enemyEntity)
+            guard let scoreComponent = enemyEntity.component(ofType: ScoreComponent.self) else {
+                return
+            }
+            gameEngine?.addScore(by: scoreComponent.scorePoints)
             return
         }
         

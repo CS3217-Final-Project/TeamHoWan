@@ -31,12 +31,11 @@ class PlayerScoreEntity: Entity {
         scoreLabelNode.text = "0"
         gameScene.playerAreaLayer.addChild(scoreLabelNode)
 
-        let playerScoreComponent = PlayerScoreComponent(scoreNode: scoreLabelNode)
-        let multiplierComponent = MultiplerComponent()
+        let scoreComponent = ScoreComponent(scorePoints: 0, scoreNode: scoreLabelNode)
+        let multiplierComponent = MultiplierComponent()
                 
         addComponent(scoreComponent)
         addComponent(multiplierComponent)
-        addComponent(playerScoreComponent)
     }
     
     @available(*, unavailable)

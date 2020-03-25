@@ -14,20 +14,20 @@ class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
     }
     
     func setMultiplier(multiplier: Int, for entity: GKEntity) {
-        guard let multiplerComponent = entity.component(ofType: MultiplerComponent.self) else {
+        guard let multiplierComponent = entity.component(ofType: MultiplierComponent.self) else {
             return
         }
         
-        multiplerComponent.multiplier = max(1, multiplier)
+        multiplierComponent.multiplier = max(1, multiplier)
     }
     
     func addScore(by points: Int, for entity: GKEntity) {
         guard let scoreComponent = entity.component(ofType: ScoreComponent.self),
-            let multiplerComponent = entity.component(ofType: MultiplerComponent.self) else {
+            let multiplierComponent = entity.component(ofType: MultiplierComponent.self) else {
             return
         }
         
-        let multiplier = multiplerComponent.multiplier
+        let multiplier = multiplierComponent.multiplier
         scoreComponent.scorePoints = max(0, scoreComponent.scorePoints + points * multiplier)
     }
     

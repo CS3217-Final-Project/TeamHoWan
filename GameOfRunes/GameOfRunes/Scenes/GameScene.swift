@@ -72,6 +72,7 @@ class GameScene: SKScene {
         setUpPlayerHealth()
         setUpPlayerMana()
         setUpTimer(isCountdown: false)
+        setUpScore()
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
@@ -199,6 +200,10 @@ class GameScene: SKScene {
         let playerHealthEntity =
             PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
+    }
+    
+    private func setUpScore() {
+        gameEngine.add(PlayerScoreEntity(gameEngine: gameEngine))
     }
     
     private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {

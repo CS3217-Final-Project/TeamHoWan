@@ -15,6 +15,5 @@ enum ComponentType {
     case healthComponent
     case manaComponent
     case scoreComponent
-    case labelComponent
     case multiplierComponent
 }
