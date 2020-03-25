@@ -22,6 +22,7 @@ enum GameConfig {
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
+        static let normalScore = 4
     }
 
     enum Mana {

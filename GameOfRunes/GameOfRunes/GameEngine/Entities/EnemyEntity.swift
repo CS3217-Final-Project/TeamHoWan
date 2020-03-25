@@ -43,7 +43,7 @@ class EnemyEntity: Entity {
         )
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: enemyType.health)
-        let scoreComponent = ScoreComponent(scorePoints: 1)
+        let scoreComponent = ScoreComponent(scorePoints: GameConfig.Enemy.normalScore)
 
         addComponent(spriteComponent)
         addComponent(scoreComponent)

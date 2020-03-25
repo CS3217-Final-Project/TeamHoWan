@@ -4020,7 +4020,7 @@ import GameplayKit
     
     
     
-     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)  {
+    override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)  {
         
     return cuckoo_manager.call("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)",
             parameters: (entity, shouldDecreasePlayerHealth),
@@ -4119,7 +4119,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)   {
+    override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     

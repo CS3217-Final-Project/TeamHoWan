@@ -24,7 +24,7 @@ class PlayerScoreEntity: Entity {
         
         scoreLabelNode.fontSize = 50
         scoreLabelNode.fontColor = SKColor.white
-        scoreLabelNode.position = CGPoint(x: 2 * gameScene.size.width / 3, y: 50)
+        scoreLabelNode.position = CGPoint(x: 5 * gameScene.size.width / 6, y: 50)
         scoreLabelNode.zPosition = 75
         scoreLabelNode.horizontalAlignmentMode = .center
         scoreLabelNode.verticalAlignmentMode = .center

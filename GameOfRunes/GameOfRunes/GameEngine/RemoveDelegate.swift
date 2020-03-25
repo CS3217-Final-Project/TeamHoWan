@@ -29,12 +29,8 @@ class RemoveDelegate {
         
         if enemyHealth <= 0 {
             _ = enemyEntity.removeGesture()
-            removeEnemyFromGame(enemyEntity, fullAnimation: false)
+            removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
-            guard let scoreComponent = enemyEntity.component(ofType: ScoreComponent.self) else {
-                return
-            }
-            gameEngine?.addScore(by: scoreComponent.scorePoints)
             return
         }
         
@@ -45,17 +41,25 @@ class RemoveDelegate {
         }
     }
 
-    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false) {
+    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false,
+                     shouldIncreaseScore: Bool = false) {
         removeEnemyFromGame(entity)
         
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
         }
+        
+        if shouldIncreaseScore {
+            guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
+                return
+            }
+            gameEngine?.addScore(by: scoreComponent.scorePoints)
+        }
 
         guard let gestureEntity = entity.gestureEntity else {
             return
         }
-        
+        _ = entity.removeGesture()
         gameEngine?.remove(gestureEntity)
     }
     

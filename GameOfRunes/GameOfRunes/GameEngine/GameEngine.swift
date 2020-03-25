@@ -26,7 +26,6 @@ class GameEngine {
         entities[.playerScoreEntity]?.first as? PlayerScoreEntity
     }
 
-
     init(gameScene: GameScene) {
         self.gameScene = gameScene
         self.systemDelegate = SystemDelegate(gameEngine: self)
@@ -133,14 +132,22 @@ class GameEngine {
     }
     
     func gestureActivated(gesture: CustomGesture) {
+        var count = 0
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
                     continue
             }
-            
             removeDelegate.removeGesture(for: entity)
+            count += 1
+        }
+        // Five or more monsters removed with single gesture, +50 points
+        if count >= 5 {
+            addScore(by: 50)
+        } else if count >= 3 {
+            // Three or more monsters removed with single gesture, +30 points
+            addScore(by: 30)
         }
     }
     
