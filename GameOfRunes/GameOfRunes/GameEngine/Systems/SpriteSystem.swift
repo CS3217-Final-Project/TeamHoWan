@@ -39,7 +39,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         super.removeComponent(component)
     }
     
-    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+    func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
         guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
             let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
             return

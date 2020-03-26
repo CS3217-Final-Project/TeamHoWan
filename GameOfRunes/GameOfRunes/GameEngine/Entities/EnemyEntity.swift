@@ -21,15 +21,17 @@ class EnemyEntity: Entity {
 
         super.init()
 
-        let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
-        let node = spriteComponent.node
+        let node = CollisionNode(texture: TextureContainer.getEnemyTexture(enemyType))
+        let spriteComponent = SpriteComponent(node: node)
+        node.component = spriteComponent
         
         guard let texture = node.texture else {
             return
         }
         node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
-        node.physicsBody?.categoryBitMask = ColliderType.enemy.rawValue
-        node.physicsBody?.contactTestBitMask = ColliderType.endpoint.rawValue | ColliderType.powerUp.rawValue
+        node.physicsBody?.affectedByGravity = false
+        node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
         node.physicsBody?.collisionBitMask = 0
         
         node.run(

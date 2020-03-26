@@ -74,11 +74,11 @@ class SystemDelegate {
         manaSystem?.getMana(for: entity)
     }
     
-    func stopMovement(for entity: Entity, duration: TimeInterval) {
+    func stopMovement(for entity: GKEntity, duration: TimeInterval) {
         moveSystem?.stopMovementForDuration(for: entity, duration: duration)
     }
     
-    func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+    func stopAnimation(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     

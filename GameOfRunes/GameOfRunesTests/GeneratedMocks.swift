@@ -3573,7 +3573,7 @@ import SpriteKit
     
     
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -3949,7 +3949,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -4347,7 +4347,7 @@ import GameplayKit
     
     
     
-     override func stopMovement(for entity: Entity, duration: TimeInterval)  {
+     override func stopMovement(for entity: GKEntity, duration: TimeInterval)  {
         
     return cuckoo_manager.call("stopMovement(for: Entity, duration: TimeInterval)",
             parameters: (entity, duration),
@@ -4362,7 +4362,7 @@ import GameplayKit
     
     
     
-     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimation(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -4623,11 +4623,11 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Int?).self)
     }
     
-     override func stopMovement(for entity: Entity, duration: TimeInterval)   {
+     override func stopMovement(for entity: GKEntity, duration: TimeInterval)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func stopAnimation(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -5158,7 +5158,7 @@ import GameplayKit
     
     
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -5261,7 +5261,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     

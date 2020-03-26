@@ -17,12 +17,16 @@ class EndPointEntity: Entity {
     init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         
-        let spriteComponent = SpriteComponent(node: node)
-        let node = spriteComponent.node
+        guard let node = node as? CollisionNode else {
+            return
+        }
         
+        let spriteComponent = SpriteComponent(node: node)
+        node.component = spriteComponent
         node.physicsBody = SKPhysicsBody(rectangleOf: node.size, center: node.position)
-        node.physicsBody?.categoryBitMask = ColliderType.endpoint.rawValue
-        node.physicsBody?.contactTestBitMask = ColliderType.enemy.rawValue
+        node.physicsBody?.affectedByGravity = false
+        node.physicsBody?.categoryBitMask = CollisionType.endpoint.rawValue
+        node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         node.physicsBody?.collisionBitMask = 0
 
         node.addGlow()

@@ -179,7 +179,7 @@ class GameScene: SKScene {
     }
     
     private func setUpEndPoint() {
-        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+        let endPointNode = CollisionNode(imageNamed: "finish-line")
         // re-position and resize
         let newEndPointWidth = size.width
         let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio

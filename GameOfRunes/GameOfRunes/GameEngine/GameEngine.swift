@@ -175,7 +175,7 @@ class GameEngine {
         systemDelegate.dropMana(at: entity)
     }
     
-    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+    func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
         systemDelegate.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
@@ -189,6 +189,13 @@ class GameEngine {
     
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
+    }
+    
+    func stopMovement(for enemyEntity: GKEntity, duration: TimeInterval) {
+        systemDelegate.stopMovement(
+            for: enemyEntity,
+            duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+        )
     }
 }
 
@@ -236,7 +243,7 @@ extension GameEngine {
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
             add(powerUpEntity)
-            activateIcePrison(powerUpEntity)
+//            activateIcePrison(powerUpEntity)
         }
         
         decreasePlayerMana(by: manaPointsRequired)
@@ -245,26 +252,26 @@ extension GameEngine {
         return true
     }
     
-    private func activateIcePrison(_ entity: Entity) {
-        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
-            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
-                return
-        }
-        
-        for enemyEntity in entities(for: .enemy) {
-            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
-                    .calculateAccumulatedFrame()
-                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
-                let enemyEntity = enemyEntity as? EnemyEntity else {
-                    continue
-            }
-            
-            systemDelegate.stopMovement(
-                for: enemyEntity,
-                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
-            )
-        }
-    }
+//    private func activateIcePrison(_ entity: Entity) {
+//        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
+//            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
+//                return
+//        }
+//
+//        for enemyEntity in entities(for: .enemy) {
+//            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
+//                    .calculateAccumulatedFrame()
+//                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
+//                let enemyEntity = enemyEntity as? EnemyEntity else {
+//                    continue
+//            }
+//
+//            systemDelegate.stopMovement(
+//                for: enemyEntity,
+//                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+//            )
+//        }
+//    }
 }
 
 extension GameEngine: DroppedManaResponder {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ColliderType: UInt32 {
+enum CollisionType: UInt32 {
     case enemy = 0b000001
     case endpoint = 0b000010
     case powerUp = 0b000100
