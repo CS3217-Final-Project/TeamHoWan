@@ -55,7 +55,7 @@ class BaseUnitTest: XCTestCase {
         
         timerEntity = MockTimerEntity(gameEngine: gameEngine, isCountdown: false, initialTimerValue: 0)
             .withEnabledSuperclassSpy()
-        enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
+        enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine, scale: CGFloat(1))
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
             .withEnabledSuperclassSpy()
         playerHealthEntity = MockPlayerHealthEntity(healthPoints: healthBarNode.livesLeft, healthBarNode: healthBarNode)

@@ -23,7 +23,9 @@ class EndPointEntity: Entity {
         
         let spriteComponent = SpriteComponent(node: node)
         node.component = spriteComponent
-        node.physicsBody = SKPhysicsBody(rectangleOf: node.size, center: node.position)
+        // TODO: Height decrease by 100 to let collision be closer to actual line, not glow
+        // CGSize height can be negative?
+        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width, height: node.size.height - 100))
         node.physicsBody?.affectedByGravity = false
         node.physicsBody?.categoryBitMask = CollisionType.endpoint.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue

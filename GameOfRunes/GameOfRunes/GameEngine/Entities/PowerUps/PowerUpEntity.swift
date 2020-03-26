@@ -14,7 +14,7 @@ protocol PowerUpEntity {
 }
 
 extension PowerUpEntity {
-    func getCastingAnimationNode(at position: CGPoint, with size: CGSize) -> SKSpriteNode {
+    func getCastingAnimationNode(at position: CGPoint, with size: CGSize) -> CollisionNode {
         let animationNode = CollisionNode(texture: nil, color: .clear, size: size)
         animationNode.position = position
 
@@ -38,7 +38,7 @@ extension PowerUpEntity {
      Returns the Animation Node with animation
      for "casting" phase and "in-effect" phase.
      */
-    func getAnimationNode(at position: CGPoint, with size: CGSize) -> SKSpriteNode {
+    func getAnimationNode(at position: CGPoint, with size: CGSize) -> CollisionNode {
         let animationNode = CollisionNode(texture: nil, color: .clear, size: size)
         animationNode.position = position
 

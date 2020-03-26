@@ -76,14 +76,17 @@ class GameEngine {
     }
     
     func spawnEnemy() {
-        let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameScene?.size {
+        guard let gameScene = gameScene else {
+            return
+        }
+        let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1,
+                                      gameEngine: self,
+                                      scale: gameScene.size.width / 6)
+        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = .init(
-                x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
-                y: sceneSize.height - 100
+                x: .random(in: gameScene.size.width * 0.25 ... gameScene.size.width * 0.75),
+                y: gameScene.size.height - 100
             )
-            spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
         }
         
         guard let gestureEntity = enemyEntity.gestureEntity else {

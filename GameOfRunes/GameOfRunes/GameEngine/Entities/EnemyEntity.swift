@@ -16,19 +16,17 @@ class EnemyEntity: Entity {
         .enemyEntity
     }
 
-    init(enemyType: EnemyType, gameEngine: GameEngine) {
+    init(enemyType: EnemyType, gameEngine: GameEngine, scale: CGFloat) {
         self.enemyType = enemyType
 
         super.init()
 
         let node = CollisionNode(texture: TextureContainer.getEnemyTexture(enemyType))
         let spriteComponent = SpriteComponent(node: node)
-        node.component = spriteComponent
         
-        guard let texture = node.texture else {
-            return
-        }
-        node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        node.component = spriteComponent
+        node.size = node.size.scaleTo(width: scale)
+        node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.height)
         node.physicsBody?.affectedByGravity = false
         node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue

@@ -34,7 +34,7 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
             maxAcceleration: 0.0,
             radius: .init(spriteComponent.node.size.width)
         )
-
+    
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)

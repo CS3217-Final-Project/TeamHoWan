@@ -26,16 +26,16 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         let animationNode = getCastingAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
-        
-        let node = animationSpriteComponent.node
-        guard let texture = node.texture else {
+        animationNode.component = animationSpriteComponent
+
+        guard let texture = animationNode.texture else {
             return
         }
-        node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
-        node.physicsBody?.affectedByGravity = false
-        node.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
-        node.physicsBody?.collisionBitMask = 0
+        animationNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        animationNode.physicsBody?.affectedByGravity = false
+        animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
+        animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+        animationNode.physicsBody?.collisionBitMask = 0
         
         addComponent(animationSpriteComponent)
         
