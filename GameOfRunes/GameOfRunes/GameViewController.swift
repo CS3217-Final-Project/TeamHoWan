@@ -22,7 +22,7 @@
                          GamePauseState(),
                          GameEndState()]
             )
-            
+            view.isMultipleTouchEnabled = false
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
             gameStateMachine.enter(GameInPlayState.self)

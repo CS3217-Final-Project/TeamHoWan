@@ -15,7 +15,7 @@ protocol PowerUpEntity {
 
 extension PowerUpEntity {
     func getCastingAnimationNode(at position: CGPoint, with size: CGSize) -> CollisionNode {
-        let animationNode = CollisionNode(texture: nil, color: .clear, size: size)
+        let animationNode = CollisionNode(texture: nil, color: .black, size: size)
         animationNode.position = position
 
         // Create Animations (Casting of Power-Up)
@@ -26,7 +26,7 @@ extension PowerUpEntity {
             resize: false,
             restore: false
         )
-        
+
         let animationAction = SKAction.sequence([powerUpCastAnimation])
         let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
         animationNode.run(SKAction.group([animationAction, soundAction]))

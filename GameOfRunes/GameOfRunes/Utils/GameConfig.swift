@@ -42,13 +42,13 @@ enum GameConfig {
     enum HellFirePowerUp {
         static let powerUpDuration: TimeInterval = 8.0
         static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
+        static let manaUnitCost: Int = 0
     }
 
     enum IcePrisonPowerUp {
         static let powerUpDuration: TimeInterval = 5.0
         static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
+        static let manaUnitCost: Int = 0
     }
 
     enum SceneManager {

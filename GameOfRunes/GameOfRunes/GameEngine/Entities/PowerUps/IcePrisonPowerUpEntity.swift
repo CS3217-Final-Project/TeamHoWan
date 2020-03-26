@@ -27,11 +27,8 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
         animationNode.component = animationSpriteComponent
-
-        guard let texture = animationNode.texture else {
-            return
-        }
-        animationNode.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+       
+        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
         animationNode.physicsBody?.affectedByGravity = false
         animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
         animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
@@ -41,7 +38,7 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         
         // Timer will expire and cause the removal of the Power Up
         Timer.scheduledTimer(
-            withTimeInterval: GameConfig.IcePrisonPowerUp.powerUpDuration,
+            withTimeInterval: GameConfig.IcePrisonPowerUp.fadeOutDuration,
             repeats: false,
             block: { [weak self] _ in
                 animationNode.run(
