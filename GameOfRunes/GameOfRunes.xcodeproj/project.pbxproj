@@ -71,6 +71,7 @@
 		566121DB2416838000475CE1 /* CustomGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGesture.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
 		56D2A647242BBAAE00BDD5DC /* ColliderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A646242BBAAE00BDD5DC /* ColliderEnum.swift */; };
+		56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */; };
 		56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6D2417E7B7009172C6 /* GestureNode.swift */; };
 		56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E82D6F2417E9D2009172C6 /* GameConfig.swift */; };
 		56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */; };
@@ -190,6 +191,7 @@
 		566121DA2416838000475CE1 /* CustomGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGesture.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
 		56D2A646242BBAAE00BDD5DC /* ColliderEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColliderEnum.swift; sourceTree = "<group>"; };
+		56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDelegate.swift; sourceTree = "<group>"; };
 		56E82D6D2417E7B7009172C6 /* GestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureNode.swift; sourceTree = "<group>"; };
 		56E82D6F2417E9D2009172C6 /* GameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConfig.swift; sourceTree = "<group>"; };
 		56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureAreaNode.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BD52414D79F00F235AE /* GameEngine.swift */,
+				56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */,
 				C6AFF680241923410076F02B /* RemoveDelegate.swift */,
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
 				C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */,
@@ -768,6 +771,7 @@
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
+				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				C6A99CF4241FCD15003AE88A /* TimerSystem.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,

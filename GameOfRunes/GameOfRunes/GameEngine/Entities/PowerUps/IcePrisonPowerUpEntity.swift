@@ -31,6 +31,7 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         guard let texture = node.texture else {
             return
         }
+        node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
         node.physicsBody?.categoryBitMask = ColliderType.powerUp.rawValue
         node.physicsBody?.contactTestBitMask = ColliderType.enemy.rawValue
         node.physicsBody?.collisionBitMask = 0

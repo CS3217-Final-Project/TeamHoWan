@@ -12,6 +12,7 @@ import GameplayKit
 class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
+    var contactDelegate: ContactDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     weak var gameScene: GameScene?
@@ -30,6 +31,7 @@ class GameEngine {
         self.gameScene = gameScene
         self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
+        self.contactDelegate = ContactDelegate(gameEngine: self)
         
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
