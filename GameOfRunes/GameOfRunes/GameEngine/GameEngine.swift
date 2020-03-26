@@ -231,50 +231,25 @@ extension GameEngine {
                 at: position,
                 with: .init(width: radius, height: radius)
             )
-            add(powerUpEntity)
         case .hellfire:
             powerUpEntity = HellfirePowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
-            add(powerUpEntity)
         case .icePrison:
             powerUpEntity = IcePrisonPowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
-            add(powerUpEntity)
-//            activateIcePrison(powerUpEntity)
         }
-        
+        add(powerUpEntity)
         decreasePlayerMana(by: manaPointsRequired)
         
         // did activate
         return true
     }
-    
-//    private func activateIcePrison(_ entity: Entity) {
-//        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
-//            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
-//                return
-//        }
-//
-//        for enemyEntity in entities(for: .enemy) {
-//            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
-//                    .calculateAccumulatedFrame()
-//                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
-//                let enemyEntity = enemyEntity as? EnemyEntity else {
-//                    continue
-//            }
-//
-//            systemDelegate.stopMovement(
-//                for: enemyEntity,
-//                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
-//            )
-//        }
-//    }
 }
 
 extension GameEngine: DroppedManaResponder {
