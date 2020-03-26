@@ -26,6 +26,15 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         let animationNode = getAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
+        
+        let node = animationSpriteComponent.node
+        guard let texture = node.texture else {
+            return
+        }
+        node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        node.physicsBody?.categoryBitMask = ColliderType.powerUp.rawValue
+        node.physicsBody?.contactTestBitMask = ColliderType.enemy.rawValue
+        node.physicsBody?.collisionBitMask = 0
 
         addComponent(animationSpriteComponent)
 

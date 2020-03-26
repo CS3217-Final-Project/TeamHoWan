@@ -27,6 +27,14 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
         
+        let node = animationSpriteComponent.node
+        guard let texture = node.texture else {
+            return
+        }
+        node.physicsBody?.categoryBitMask = ColliderType.powerUp.rawValue
+        node.physicsBody?.contactTestBitMask = ColliderType.enemy.rawValue
+        node.physicsBody?.collisionBitMask = 0
+        
         addComponent(animationSpriteComponent)
         
         // Timer will expire and cause the removal of the Power Up

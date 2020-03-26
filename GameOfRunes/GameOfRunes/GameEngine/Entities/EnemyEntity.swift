@@ -22,8 +22,17 @@ class EnemyEntity: Entity {
         super.init()
 
         let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
-
-        spriteComponent.node.run(
+        let node = spriteComponent.node
+        
+        guard let texture = node.texture else {
+            return
+        }
+        node.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
+        node.physicsBody?.categoryBitMask = ColliderType.enemy.rawValue
+        node.physicsBody?.contactTestBitMask = ColliderType.endpoint.rawValue | ColliderType.powerUp.rawValue
+        node.physicsBody?.collisionBitMask = 0
+        
+        node.run(
             .repeatForever(
                 .animate(
                     with: TextureContainer.getEnemyAnimationTextures(enemyType),

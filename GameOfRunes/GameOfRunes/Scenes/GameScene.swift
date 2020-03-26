@@ -59,6 +59,7 @@ class GameScene: SKScene {
         
         // continue setting up other stuff in .main thread
         gameEngine = GameEngine(gameScene: self)
+        self.physicsWorld.contactDelegate = gameEngine.contactDelegate
         
         // UI
         buildLayers()

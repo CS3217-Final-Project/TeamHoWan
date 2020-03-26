@@ -18,7 +18,14 @@ class EndPointEntity: Entity {
         super.init()
         
         let spriteComponent = SpriteComponent(node: node)
-        spriteComponent.node.addGlow()
+        let node = spriteComponent.node
+        
+        node.physicsBody = SKPhysicsBody(rectangleOf: node.size, center: node.position)
+        node.physicsBody?.categoryBitMask = ColliderType.endpoint.rawValue
+        node.physicsBody?.contactTestBitMask = ColliderType.enemy.rawValue
+        node.physicsBody?.collisionBitMask = 0
+
+        node.addGlow()
         spriteComponent.layerType = .playerAreaLayer
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
