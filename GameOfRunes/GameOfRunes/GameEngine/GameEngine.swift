@@ -56,8 +56,6 @@ class GameEngine {
     }
     
     func update(with deltaTime: TimeInterval) {
-        print("health: \(metadata.playerHealth), mana:\(metadata.playerMana)")
-        
         systemDelegate.update(with: deltaTime)
         
         toRemoveEntities.forEach { entity in

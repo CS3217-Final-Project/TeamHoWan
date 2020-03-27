@@ -31,6 +31,7 @@ class SystemDelegate {
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
+        systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
