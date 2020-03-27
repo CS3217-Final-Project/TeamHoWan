@@ -70,8 +70,7 @@ class GameScene: SKScene {
         
         // Entities
         setUpEndPoint()
-        setUpPlayerHealth()
-        setUpPlayerMana()
+        setUpPlayer()
         setUpTimer(isCountdown: false)
         
         // set up bgm
@@ -193,28 +192,31 @@ class GameScene: SKScene {
         gameEngine.add(endPointEntity)
     }
     
-    private func setUpPlayerHealth() {
+    private func setUpPlayer() {
+        let healthNode = setUpPlayerHealth()
+        let manaNode = setUpPlayerMana()
+        let playerEntity = PlayerEntity(gameEngine: gameEngine, healthNode: healthNode, manaNode: manaNode)
+        gameEngine.add(playerEntity)
+    }
+    
+    private func setUpPlayerHealth() -> HealthBarNode {
         let healthBarNode = playerAreaNode.healthBarNode
         // arbitrary num, can be replaced with meta-data
-        healthBarNode.totalLives = 5
-        let playerHealthEntity =
-            PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
-        gameEngine.add(playerHealthEntity)
+        healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
+        return healthBarNode
+    }
+    
+    private func setUpPlayerMana() -> ManaBarNode {
+        let manaBarNode = playerAreaNode.manaBarNode
+        manaBarNode.numManaUnits = GameConfig.Mana.numManaUnits
+        manaBarNode.manaPointsPerUnit = GameConfig.Mana.manaPerManaUnit
+        return manaBarNode
     }
     
     private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
         gameEngine.add(TimerEntity(gameEngine: gameEngine,
                                    isCountdown: isCountdown,
                                    initialTimerValue: initialTimerValue))
-    }
-    
-    private func setUpPlayerMana() {
-        let manaBarNode = playerAreaNode.manaBarNode
-        // arbitrary num, can be replaced with meta-data
-        manaBarNode.numManaUnits = 8
-        manaBarNode.manaPointsPerUnit = 10
-        let playerManaEntity = PlayerManaEntity(manaPoints: 0, manaBarNode: manaBarNode)
-        gameEngine.add(playerManaEntity)
     }
     
     override func update(_ currentTime: TimeInterval) {

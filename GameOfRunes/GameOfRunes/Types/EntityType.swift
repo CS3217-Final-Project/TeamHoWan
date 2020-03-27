@@ -9,8 +9,7 @@
 enum EntityType: CaseIterable {
     case enemyEntity
     case gestureEntity
-    case playerHealthEntity
-    case playerManaEntity
+    case playerEntity
     case endPointEntity
     case droppedManaEntity
     case timerEntity
