@@ -14,6 +14,7 @@ class GameEngine {
     private var removeDelegate: RemoveDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
+    private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
     
     var playerHealthEntity: PlayerHealthEntity? {
@@ -23,11 +24,16 @@ class GameEngine {
         entities[.playerManaEntity]?.first as? PlayerManaEntity
     }
 
+    // TODO: pass in avatar, and use it to determine powerups.
     init(gameScene: GameScene) {
         self.gameScene = gameScene
-        self.systemDelegate = SystemDelegate(gameEngine: self)
-        self.removeDelegate = RemoveDelegate(gameEngine: self)
-        
+        metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
+                                numManaUnits: GameConfig.Mana.numManaUnits,
+                                manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
+                                powerUps: [.darkVortex, .hellfire, .icePrison])
+        systemDelegate = SystemDelegate(gameEngine: self)
+        removeDelegate = RemoveDelegate(gameEngine: self)
+
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
         }

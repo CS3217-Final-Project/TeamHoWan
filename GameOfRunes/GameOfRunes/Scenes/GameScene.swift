@@ -196,7 +196,7 @@ class GameScene: SKScene {
     private func setUpPlayerHealth() {
         let healthBarNode = playerAreaNode.healthBarNode
         // arbitrary num, can be replaced with meta-data
-        healthBarNode.totalLives = 5
+        healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
         let playerHealthEntity =
             PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
         gameEngine.add(playerHealthEntity)
@@ -210,9 +210,8 @@ class GameScene: SKScene {
     
     private func setUpPlayerMana() {
         let manaBarNode = playerAreaNode.manaBarNode
-        // arbitrary num, can be replaced with meta-data
-        manaBarNode.numManaUnits = 8
-        manaBarNode.manaPointsPerUnit = 10
+        manaBarNode.numManaUnits = GameConfig.Mana.numManaUnits
+        manaBarNode.manaPointsPerUnit = GameConfig.Mana.manaPerManaUnit
         let playerManaEntity = PlayerManaEntity(manaPoints: 0, manaBarNode: manaBarNode)
         gameEngine.add(playerManaEntity)
     }

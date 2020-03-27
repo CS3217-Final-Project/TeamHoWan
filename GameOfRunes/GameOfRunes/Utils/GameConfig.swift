@@ -24,12 +24,18 @@ enum GameConfig {
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
     }
 
+    enum Health {
+        static let maxPlayerHealth: Int = 5
+    }
+    
     enum Mana {
         static let manaWidth: Double = 75
         static let manaHeight: Double = 75
         static let manaDropProbability: Double = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
+        static let numManaUnits: Int = 8
+        static let manaPerManaUnit: Int = 10
     }
 
     enum DarkVortexPowerUp {
