@@ -17,6 +17,7 @@ class GameStateMachineTest: BaseUnitTest {
     var gameStartState: MockGameStartState!
     var gamePauseState: MockGamePauseState!
     var gameEndState: MockGameEndState!
+    var gameSelectionState: MockGameSelectionState!
     var sceneManager: MockSceneManager!
 
     override func setUp() {
@@ -25,11 +26,13 @@ class GameStateMachineTest: BaseUnitTest {
         gameStartState = MockGameStartState().withEnabledSuperclassSpy()
         gamePauseState = MockGamePauseState().withEnabledSuperclassSpy()
         gameEndState = MockGameEndState().withEnabledSuperclassSpy()
+        gameSelectionState = MockGameSelectionState().withEnabledSuperclassSpy()
 
         gameStateMachine = MockGameStateMachine(states: [gameInPlayState,
                                                          gameStartState,
                                                          gamePauseState,
-                                                         gameEndState]
+                                                         gameEndState,
+                                                         gameSelectionState]
         ).withEnabledSuperclassSpy()
 
         sceneManager = MockSceneManager(presentingView: SKView(),
@@ -58,6 +61,12 @@ class GameStateMachineTest: BaseUnitTest {
     func testEndState() {
         gameStateMachine.enter(MockGameEndState.self)
         verify(gameEndState, times(1)).didEnter(from: any(GKState.self))
+        verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
+    }
+    
+    func testSelectionState() {
+        gameStateMachine.enter(MockGameSelectionState.self)
+        verify(gameSelectionState, times(1)).didEnter(from: any(GKState.self))
         verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
     }
 }
