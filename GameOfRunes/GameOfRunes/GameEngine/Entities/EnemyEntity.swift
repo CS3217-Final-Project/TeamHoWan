@@ -26,7 +26,7 @@ class EnemyEntity: Entity {
         
         node.component = spriteComponent
         node.size = node.size.scaleTo(width: scale)
-        node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.height)
+        node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
         node.physicsBody?.affectedByGravity = false
         node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue

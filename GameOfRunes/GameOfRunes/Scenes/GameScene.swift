@@ -303,6 +303,7 @@ extension GameScene {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // TODO: Hacky fix for crash issue when tapping on game area when selectedPowerUp is .hellfire or .icePrison
+        // Issue something to do with .physicsBody of the HellFireEntity or IcePrisonEntity
         guard let touch = touches.first, selectedPowerUp == .darkVortex else {
             return
         }
@@ -315,7 +316,12 @@ extension GameScene {
             return false
         }
         
-        if gameEngine.didActivatePowerUp(at: location, size: size) {
+        var newSize: CGFloat?
+        if let size = size {
+            newSize = min(self.size.width / 6, max(self.size.width / 12, size))
+        }
+        
+        if gameEngine.didActivatePowerUp(at: location, size: newSize) {
             return true
         } else {
             showInsufficientMana(at: location)
