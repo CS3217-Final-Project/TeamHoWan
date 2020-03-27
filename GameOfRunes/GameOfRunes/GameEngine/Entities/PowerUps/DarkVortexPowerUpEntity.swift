@@ -11,7 +11,6 @@ import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
 class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
-    var animationNode: SKSpriteNode!
     var fading = false
     var powerUpType: PowerUpType {
         .darkVortex
@@ -20,12 +19,12 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
-
+    
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
         self.gameEngine = gameEngine
         super.init()
-
-        animationNode = getAnimationNode(at: position, with: size)
+        
+        let animationNode = getAnimationNode(at: position, with: size)
         let spriteComponent = SpriteComponent(node: animationNode)
         spriteComponent.layerType = .powerUpAnimationLayer
         let teamComponent = TeamComponent(team: .player)
@@ -43,12 +42,6 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
         addComponent(moveComponent)
     }
     
-    func runFadingAnimation() {
-        animationNode.run(
-            .fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration)
-        )
-    }
-
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

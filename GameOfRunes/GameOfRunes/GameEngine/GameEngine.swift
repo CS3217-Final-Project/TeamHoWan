@@ -169,6 +169,10 @@ class GameEngine {
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
     }
+    
+    func runFadingAnimation(_ entity: Entity) {
+        systemDelegate.runFadingAnimation(entity)
+    }
 }
 
 /** Extension to the GameEngine for PowerUps */

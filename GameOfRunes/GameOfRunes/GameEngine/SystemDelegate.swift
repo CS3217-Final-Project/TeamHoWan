@@ -81,4 +81,8 @@ class SystemDelegate {
     func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
+    
+    func runFadingAnimation(_ entity: Entity) {
+        spriteSystem?.runFadingAnimation(entity)
+    }
 }

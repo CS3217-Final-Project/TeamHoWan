@@ -33,7 +33,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             if !powerUpEntity.fading {
                 component.timeLeft = powerUpEntity.powerUpType.getFadeOutDuration
                 powerUpEntity.fading = true
-                powerUpEntity.runFadingAnimation()
+                gameEngine?.runFadingAnimation(entity)
             } else {
                 gameEngine?.remove(entity)
             }

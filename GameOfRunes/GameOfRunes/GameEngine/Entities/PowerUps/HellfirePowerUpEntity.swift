@@ -11,7 +11,6 @@ import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
 class HellfirePowerUpEntity: Entity, PowerUpEntity {
-    var animationNode: SKSpriteNode!
     var fading = false
     var powerUpType: PowerUpType {
         .hellfire
@@ -22,21 +21,16 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
     }
     
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
-        super.init()
         self.gameEngine = gameEngine
-        self.animationNode = getAnimationNode(at: position, with: size)
+        super.init()
+
+        let animationNode = getAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
         addComponent(animationSpriteComponent)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
         addComponent(timerComponent)
-    }
-    
-    func runFadingAnimation() {
-        animationNode.run(
-            .fadeOut(withDuration: GameConfig.HellFirePowerUp.fadeOutDuration)
-        )
     }
     
     @available(*, unavailable)
