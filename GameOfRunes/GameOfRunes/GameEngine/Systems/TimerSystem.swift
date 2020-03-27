@@ -18,7 +18,12 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
     
     override func update(deltaTime seconds: TimeInterval) {
         for component in components {
-            component.timeLeft -= seconds
+            if component.isCountDown {
+                component.timeLeft -= seconds
+            } else {
+                component.timeLeft += seconds
+            }
+
             if component.timeLeft <= 0 {
                 updateComponent(component)
             }

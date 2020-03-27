@@ -13,28 +13,11 @@ class TimerEntity: Entity {
         .timerEntity
     }
     
-    init(gameEngine: GameEngine, isCountdown: Bool, initialTimerValue: Int) {
+    init(gameEngine: GameEngine, timerNode: SKLabelNode, isCountdown: Bool, initialTimerValue: Int) {
         super.init()
         
-        guard let gameScene = gameEngine.gameScene else {
-            return
-        }
-        
-        let timerLabel = SKLabelNode(fontNamed: "DragonFire")
-        
-        timerLabel.fontSize = 50
-        timerLabel.fontColor = SKColor.white
-        timerLabel.position = CGPoint(x: gameScene.size.width / 2, y: 50)
-        timerLabel.zPosition = 75
-        timerLabel.horizontalAlignmentMode = .center
-        timerLabel.verticalAlignmentMode = .center
-        timerLabel.text = "\(initialTimerValue)"
-        
-        gameScene.playerAreaLayer.addChild(timerLabel)
-        
-        let timerComponent = TimerLabelComponent(timerNode: timerLabel,
-                                            isCountdown: isCountdown,
-                                            initialTimerValue: initialTimerValue)
+        let timerComponent = TimerLabelComponent(timerNode: timerNode, isCountdown: isCountdown,
+                                                 initialTimerValue: initialTimerValue)
         addComponent(timerComponent)
     }
     

@@ -214,7 +214,19 @@ class GameScene: SKScene {
     }
     
     private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
+        let timerNode = SKLabelNode(fontNamed: "DragonFire")
+        
+        timerNode.fontSize = 50
+        timerNode.fontColor = SKColor.white
+        timerNode.position = CGPoint(x: size.width / 2, y: 50)
+        timerNode.zPosition = 75
+        timerNode.horizontalAlignmentMode = .center
+        timerNode.verticalAlignmentMode = .center
+        timerNode.text = "\(initialTimerValue)"
+        
+        playerAreaLayer.addChild(timerNode)
         gameEngine.add(TimerEntity(gameEngine: gameEngine,
+                                   timerNode: timerNode,
                                    isCountdown: isCountdown,
                                    initialTimerValue: initialTimerValue))
     }
