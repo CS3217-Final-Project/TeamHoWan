@@ -46,20 +46,6 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        // TO NOTE: Unnecessary loading of texture, had to do this to pass tests
-        let dispatchGroup = DispatchGroup()
-        // marks the start of possible async block
-        dispatchGroup.enter()
-        
-        // must use other thread queues (not .main) to avoid deadlocks
-        DispatchQueue.global(qos: .default).async {
-            // set up animation textures
-            TextureContainer.loadTextures()
-            // indicates that the execution is done
-            dispatchGroup.leave()
-        }
-        
-        // continue setting up other stuff in .main thread
         gameEngine = GameEngine(gameScene: self)
         
         // UI
@@ -77,9 +63,6 @@ class GameScene: SKScene {
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
-        
-        // ensures textures have been loaded
-        dispatchGroup.wait()
     }
     
     override func didMove(to view: SKView) {

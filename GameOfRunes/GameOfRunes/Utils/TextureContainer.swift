@@ -16,48 +16,92 @@ import SpriteKit
  optimisations).
  */
 enum TextureContainer {
-    private static var enemiesTextures = [EnemyType: [SKTexture]]()
-    private(set) static var fullEnemyRemovalTextures = [SKTexture]()
+    private static var enemiesTextures = loadEnemiesTextures()
+    private(set) static var fullEnemyRemovalTextures = loadFullEnemyRemovalTextures()
     private(set) static var halfEnemyRemovalTextures = { Array(Self.fullEnemyRemovalTextures[0...7]) }()
-    private static var manaTextures = [ManaType: [SKTexture]]()
+    private static var manaTextures = loadManaTextures()
     private(set) static var manaRemovalTextures: [SKTexture] = {
         let numTextures = Self.fullEnemyRemovalTextures.count
         return Array(Self.fullEnemyRemovalTextures[7..<numTextures])
     }()
-    private static var powerUpCastTextures = [PowerUpType: [SKTexture]]()
-    private static var powerUpTextures = [PowerUpType: [SKTexture]]()
-
-    static func loadTextures() {
-        // Load `enemiesTextures`
+    private static var powerUpCastTextures = loadPowerUpCastTextures()
+    private static var powerUpTextures = loadPowerUpTextures()
+    
+    private static func loadEnemiesTextures() -> [EnemyType: [SKTexture]] {
+        var enemiesTextures = [EnemyType: [SKTexture]]()
+        
         EnemyType.allCases.forEach { enemyType in
             let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
             let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
             enemiesTextures[enemyType] = enemyTextures
         }
-
-        // Load `manaTextures`
+        
+        return enemiesTextures
+    }
+    
+    private static func loadManaTextures() -> [ManaType: [SKTexture]] {
+        var manaTextures = [ManaType: [SKTexture]]()
+        
         ManaType.allCases.forEach { manaType in
             let manaAtlas = SKTextureAtlas(named: "\(manaType)Mana")
             let textures = (0...29).map { manaAtlas.textureNamed(.init(format: "tile%03d", $0)) }
             manaTextures[manaType] = textures
         }
-
-        // Load `enemyRemovalTextures`
+        
+        return manaTextures
+    }
+    
+    private static func loadFullEnemyRemovalTextures() -> [SKTexture] {
         let enemyRemovalAtlas = SKTextureAtlas(named: "removeEnemyFull")
-        fullEnemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed(.init(format: "tile%03d", $0)) }
-
-        // Load `powerUpCastTextures`
+        let fullEnemyRemovalTextures = (0...24).map { enemyRemovalAtlas.textureNamed(.init(format: "tile%03d", $0)) }
+        
+        return fullEnemyRemovalTextures
+    }
+    
+    private static func loadPowerUpCastTextures() -> [PowerUpType: [SKTexture]] {
+        var powerUpCastTextures = [PowerUpType: [SKTexture]]()
+        
         PowerUpType.allCases.forEach { powerUpType in
             let powerUpCastAtlas = SKTextureAtlas(named: "\(powerUpType)Cast")
             let castTextures = (0...19).map { powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0)) }
             powerUpCastTextures[powerUpType] = castTextures
         }
-
-        // Load `powerUpTextures`
+        
+        return powerUpCastTextures
+    }
+    
+    private static func loadPowerUpTextures() -> [PowerUpType: [SKTexture]] {
+        var powerUpTextures = [PowerUpType: [SKTexture]]()
+        
         let hellfireAtlas = SKTextureAtlas(named: PowerUpType.hellfire.rawValue)
         powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
         let darkVortexAtlas = SKTextureAtlas(named: PowerUpType.darkVortex.rawValue)
         powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)") }
+        
+        return powerUpTextures
+    }
+
+    static func loadTextures() {
+        // force load `enemiesTextures`
+        _ = enemiesTextures
+
+        // force load `manaTextures`
+        _ = manaTextures
+
+        // force load `fullEnemyRemovalTextures`
+        _ = fullEnemyRemovalTextures
+        
+        // force load `halfEnemyRemovalTextures`
+        _ = halfEnemyRemovalTextures
+        
+        // force load `manaRemovalTextures`
+        _ = manaRemovalTextures
+        
+        // force load `powerUpCastTextures`
+        _ = powerUpCastTextures
+
+        // force load `powerUpTextures`
+        _ = powerUpTextures
     }
 
     /** Get the Animation Textures for the `enemyType` */

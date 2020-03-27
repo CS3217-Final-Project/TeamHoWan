@@ -24,7 +24,9 @@ class SceneManager {
     
     private let presentingView: SKView
     private let gameStateMachine: GameStateMachine
-    private var gamePlayScene: GameScene!
+    private lazy var gamePlayScene: GameScene = .init(
+        size: self.presentingView.bounds.size, gameStateMachine: gameStateMachine
+    )
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
     private let gameMapScene: GameMapScene
@@ -72,6 +74,6 @@ class SceneManager {
      Resets the `GameScene` by creating a new `GameScene` object,
      */
     func restartGame() {
-        gamePlayScene = GameScene(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
+        gamePlayScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
     }
 }
