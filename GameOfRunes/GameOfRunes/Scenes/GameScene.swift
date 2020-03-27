@@ -166,11 +166,11 @@ class GameScene: SKScene {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
+            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
+            buttonType: .pauseButton,
             position: .init(x: frame.maxX, y: frame.maxY)
                 + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
-                + .init(dx: -buttonMargin, dy: -buttonMargin),
-            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
-            name: ButtonType.pauseButton.rawValue
+                + .init(dx: -buttonMargin, dy: -buttonMargin)
         )
         // relative to the layer
         pauseButton.zPosition = 1
@@ -259,11 +259,11 @@ class GameScene: SKScene {
  Extension to deal with button-related logic (when buttons are tapped)
  */
 extension GameScene: TapResponder {
-    func onTapped(tappedNode: SKSpriteNode) {
-        switch tappedNode.name {
-        case ButtonType.pauseButton.rawValue:
+    func onTapped(tappedNode: ButtonNode) {
+        switch tappedNode.buttonType {
+        case .pauseButton:
             gameStateMachine?.enter(GamePauseState.self)
-        case ButtonType.summonButton.rawValue:
+        case .summonButton:
             gameEngine.spawnEnemy()
         default:
             print("Unknown node tapped")

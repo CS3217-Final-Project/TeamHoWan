@@ -14,5 +14,5 @@ import SpriteKit
  is added to.
  */
 protocol TapResponder: AnyObject {
-    func onTapped(tappedNode: SKSpriteNode)
+    func onTapped(tappedNode: ButtonNode)
 }
