@@ -11,7 +11,7 @@ import GameplayKit
 class TimerComponent: GKComponent, Component {
     var timeLeft: TimeInterval
     var type: ComponentType {
-        .timerComponent
+        .gameTimerComponent
     }
     
     init(initialTimerValue: TimeInterval) {

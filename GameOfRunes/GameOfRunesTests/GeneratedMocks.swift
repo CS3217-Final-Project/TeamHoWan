@@ -5176,9 +5176,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerSystem: TimerSystem, Cuckoo.ClassMock {
+ class MockTimerSystem: GameTimerSystem, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerSystem
+     typealias MocksType = GameTimerSystem
     
      typealias Stubbing = __StubbingProxy_TimerSystem
      typealias Verification = __VerificationProxy_TimerSystem
@@ -5186,9 +5186,9 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerSystem?
+    private var __defaultImplStub: GameTimerSystem?
 
-     func enableDefaultImplementation(_ stub: TimerSystem) {
+     func enableDefaultImplementation(_ stub: GameTimerSystem) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -5279,7 +5279,7 @@ import GameplayKit
 	}
 }
 
- class TimerSystemStub: TimerSystem {
+ class TimerSystemStub: GameTimerSystem {
     
 
     

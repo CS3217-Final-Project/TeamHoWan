@@ -18,7 +18,7 @@ class TimerLabelComponent: GKComponent, Component {
         }
     }
     var type: ComponentType {
-        .timerComponent
+        .gameTimerComponent
     }
     
     init(timerNode: SKLabelNode, isCountdown: Bool, initialTimerValue: Int) {
