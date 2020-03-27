@@ -1771,9 +1771,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerComponent: TimerComponent, Cuckoo.ClassMock {
+ class MockTimerComponent: TimerLabelComponent, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerComponent
+     typealias MocksType = TimerLabelComponent
     
      typealias Stubbing = __StubbingProxy_TimerComponent
      typealias Verification = __VerificationProxy_TimerComponent
@@ -1781,9 +1781,9 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerComponent?
+    private var __defaultImplStub: TimerLabelComponent?
 
-     func enableDefaultImplementation(_ stub: TimerComponent) {
+     func enableDefaultImplementation(_ stub: TimerLabelComponent) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -1914,7 +1914,7 @@ import GameplayKit
 	}
 }
 
- class TimerComponentStub: TimerComponent {
+ class TimerComponentStub: TimerLabelComponent {
     
     
      override var lastUpdatedTime: TimeInterval {

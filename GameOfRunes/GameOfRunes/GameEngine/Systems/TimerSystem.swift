@@ -8,12 +8,12 @@
 
 import GameplayKit
 
-class TimerSystem: GKComponentSystem<TimerComponent>, System {
+class TimerSystem: GKComponentSystem<TimerLabelComponent>, System {
     private weak var gameEngine: GameEngine?
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-        super.init(componentClass: TimerComponent.self)
+        super.init(componentClass: TimerLabelComponent.self)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
@@ -22,7 +22,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         }
     }
     
-    private func updateComponent(_ component: TimerComponent) {
+    private func updateComponent(_ component: TimerLabelComponent) {
         guard CACurrentMediaTime() - component.lastUpdatedTime >= 1.0 else {
             return
         }
@@ -34,12 +34,11 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             // TODO: Check if is 0, then propagate call to game state machine for lose state.
         } else {
             component.currentTime += 1
-//            gameEngine?.spawnEnemy()
         }
     }
     
     func removeComponent(_ component: Component) {
-        guard let component = component as? TimerComponent else {
+        guard let component = component as? TimerLabelComponent else {
             return
         }
         

@@ -32,7 +32,7 @@ class TimerEntity: Entity {
         
         gameScene.playerAreaLayer.addChild(timerLabel)
         
-        let timerComponent = TimerComponent(timerNode: timerLabel,
+        let timerComponent = TimerLabelComponent(timerNode: timerLabel,
                                             isCountdown: isCountdown,
                                             initialTimerValue: initialTimerValue)
         addComponent(timerComponent)
