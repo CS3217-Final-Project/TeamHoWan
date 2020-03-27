@@ -147,13 +147,11 @@ class GameEngine {
             removeDelegate.removeGesture(for: entity)
             count += 1
         }
-        // Five or more monsters removed with single gesture, +50 points
-        if count >= 5 {
-            addScore(by: 50)
-        } else if count >= 3 {
-            // Three or more monsters removed with single gesture, +30 points
-            addScore(by: 30)
+        guard let playerScoreEntity = playerScoreEntity else {
+            return
         }
+
+        systemDelegate.addMultiKillScore(count: count, for: playerScoreEntity)
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {

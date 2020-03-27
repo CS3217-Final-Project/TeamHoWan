@@ -15,25 +15,19 @@ class PlayerScoreEntity: Entity {
     
     init(gameEngine: GameEngine) {
         super.init()
-
+        
         guard let gameScene = gameEngine.gameScene else {
             return
         }
         
-        let scoreLabelNode = SKLabelNode(fontNamed: "DragonFire")
-        
-        scoreLabelNode.fontSize = 50
-        scoreLabelNode.fontColor = SKColor.white
-        scoreLabelNode.position = CGPoint(x: 5 * gameScene.size.width / 6, y: 50)
-        scoreLabelNode.zPosition = 75
-        scoreLabelNode.horizontalAlignmentMode = .center
-        scoreLabelNode.verticalAlignmentMode = .center
-        scoreLabelNode.text = "0"
-        gameScene.playerAreaLayer.addChild(scoreLabelNode)
+        let scoreNode = ScoreNode()
+        scoreNode.position = CGPoint(x: 5 * gameScene.size.width / 6, y: 9 * gameScene.playerAreaNode.size.height / 22)
 
-        let scoreComponent = ScoreComponent(scorePoints: 0, scoreNode: scoreLabelNode)
+        gameScene.playerAreaLayer.addChild(scoreNode)
+        
+        let scoreComponent = ScoreComponent(scorePoints: 0, scoreNode: scoreNode)
         let multiplierComponent = MultiplierComponent()
-                
+        
         addComponent(scoreComponent)
         addComponent(multiplierComponent)
     }

@@ -85,4 +85,14 @@ class SystemDelegate {
     func addScore(by points: Int, for entity: Entity) {
         scoreSystem?.addScore(by: points, for: entity)
     }
+    
+    func addMultiKillScore(count: Int, for entity: Entity) {
+        var score = 0
+        if count >= 5 {
+            score = 50
+        } else if count >= 3 {
+            score = 30
+        }
+        addScore(by: score, for: entity)
+    }
 }
