@@ -31,6 +31,7 @@ class GameScene: SKScene {
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
+        
         registerForPauseNotifications()
     }
     
