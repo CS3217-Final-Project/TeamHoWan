@@ -302,10 +302,11 @@ extension GameScene {
 extension GameScene {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        // TODO: Hacky fix for crash issue when tapping on game area when selectedPowerUp is .hellfire or .icePrison
+        guard let touch = touches.first, selectedPowerUp == .darkVortex else {
             return
         }
-        
+
         _ = didActivatePowerUp(at: touch.location(in: self))
     }
     
