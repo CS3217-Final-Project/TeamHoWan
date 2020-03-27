@@ -8,12 +8,22 @@
 
 import SpriteKit
 
-class GameMapScene: SKScene {
+class GameMapScene: SKScene, TapResponder {
     private weak var gameStateMachine: GameStateMachine?
     
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
+        
+        let texture = SKTexture(imageNamed: "play-button")
+        let playButton = ButtonNode(
+            size: texture.size(),
+            texture: texture,
+            buttonType: .playButton,
+            position: .init(x: frame.midX, y: frame.midY)
+        )
+        
+        addChild(playButton)
     }
     
     deinit {
@@ -25,8 +35,8 @@ class GameMapScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onTapped(tappedNode: SKSpriteNode) {
-        if tappedNode.name == ButtonType.playButton.rawValue {
+    func onTapped(tappedNode: ButtonNode) {
+        if tappedNode.buttonType == .playButton {
             gameStateMachine?.enter(GameStartState.self)
         }
     }

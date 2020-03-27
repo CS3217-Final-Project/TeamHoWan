@@ -12,6 +12,7 @@
 		1F1298E922021B12A5C71EE7 /* libPods-GameOfRunes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */; };
 		49CE1447C4255E7ECBF5CCDB /* libPods-GameOfRunesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC87BA623B43C19839764DCB /* libPods-GameOfRunesTests.a */; };
 		4A09C4EC242E465200CA7625 /* GameMapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4EB242E465200CA7625 /* GameMapScene.swift */; };
+		4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
 		4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4724211F57005FA909 /* PowerUpNode.swift */; };
@@ -123,6 +124,7 @@
 		19D664C824207DDD00351C92 /* ComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentType.swift; sourceTree = "<group>"; };
 		19D664CA24207ECE00351C92 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		4A09C4EB242E465200CA7625 /* GameMapScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMapScene.swift; sourceTree = "<group>"; };
+		4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionState.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		4A72EB4724211F57005FA909 /* PowerUpNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpNode.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */,
 				8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */,
 				8A5CE9BB24187EE600BEC4B9 /* GameEndState.swift */,
+				4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */,
 				8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */,
 			);
 			path = GameState;
@@ -767,6 +770,7 @@
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
 				8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */,
 				56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */,
+				4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */,
 				4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */,
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */,

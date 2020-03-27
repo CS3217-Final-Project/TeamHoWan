@@ -19,13 +19,15 @@ class SceneManager {
         case play
         case pause
         case end(win: Bool)
+        case map
     }
     
     private let presentingView: SKView
     private let gameStateMachine: GameStateMachine
-    private var gamePlayScene: GameScene
+    private var gamePlayScene: GameScene!
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
+    private let gameMapScene: GameMapScene
     
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
         // TODO: The following can be removed once the code is in production
@@ -38,9 +40,9 @@ class SceneManager {
         self.gameStateMachine = gameStateMachine
         
         let sceneSize = self.presentingView.bounds.size
-        self.gamePlayScene = GameScene(size: sceneSize, gameStateMachine: gameStateMachine)
-        self.gamePauseScene = GamePauseScene(size: sceneSize, gameStateMachine: gameStateMachine)
-        self.gameEndScene = GameEndScene(size: sceneSize, gameStateMachine: gameStateMachine)
+        self.gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        self.gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        self.gameMapScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
     }
     
     func transitionToScene(sceneIdentifier: SceneIdentifier) {
@@ -49,15 +51,18 @@ class SceneManager {
         
         switch sceneIdentifier {
         case .play:
-            scene = self.gamePlayScene
+            scene = gamePlayScene
             transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .pause:
-            scene = self.gamePauseScene
+            scene = gamePauseScene
             transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .end(let didWin):
             self.gameEndScene.didWin = didWin
-            scene = self.gameEndScene
+            scene = gameEndScene
             transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        case .map:
+            scene = gameMapScene
+            transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
         
         presentingView.presentScene(scene, transition: transition)
