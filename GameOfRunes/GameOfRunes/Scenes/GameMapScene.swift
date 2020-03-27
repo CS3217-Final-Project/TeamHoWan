@@ -15,6 +15,23 @@ class GameMapScene: SKScene, TapResponder {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         
+        setUpScene()
+    }
+    
+    private func setUpScene() {
+        // add map
+        let mapNode = SKSpriteNode(
+            texture: .init(imageNamed: "game-map"),
+            color: .clear,
+            size: size
+        )
+        
+        mapNode.aspectFillToSize(fillSize: size)
+        mapNode.position = .init(x: frame.midX, y: frame.midY)
+        mapNode.zPosition = -1
+        addChild(mapNode)
+        
+        // add play button
         let texture = SKTexture(imageNamed: "play-button")
         let playButton = ButtonNode(
             size: texture.size(),

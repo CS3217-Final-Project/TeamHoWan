@@ -114,6 +114,7 @@ class GameScene: SKScene {
             color: .clear,
             size: size
         )
+        backgroundNode.aspectFillToSize(fillSize: size)
         backgroundNode.position = .init(x: frame.midX, y: frame.midY)
         backgroundLayer.addChild(backgroundNode)
     }

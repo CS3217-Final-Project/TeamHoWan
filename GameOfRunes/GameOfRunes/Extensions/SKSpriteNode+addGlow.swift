@@ -16,4 +16,16 @@ extension SKSpriteNode {
         effectNode.addChild(SKSpriteNode(texture: texture))
         effectNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": radius])
     }
+    
+    func aspectFillToSize(fillSize: CGSize) {
+        guard let texture = texture else {
+            return
+        }
+        
+        size = texture.size()
+        let verticalRatio = fillSize.height / size.height
+        let horizontalRatio = fillSize.width / size.width
+        let scaleRatio = horizontalRatio > verticalRatio ? horizontalRatio : verticalRatio
+        setScale(scaleRatio)
+    }
 }
