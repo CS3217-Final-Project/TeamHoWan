@@ -10,24 +10,72 @@ import SpriteKit
 
 class GameMapScene: SKScene, TapResponder {
     private weak var gameStateMachine: GameStateMachine?
+    private var previousCameraPosition: CGPoint = .zero
+    private var mapSize: CGSize!
     
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         
+        anchorPoint = .init(x: 0.5, y: 0.5)
         setUpScene()
     }
     
+    override func didMove(to view: SKView) {
+        let panGesture = UIPanGestureRecognizer()
+        panGesture.addTarget(self, action: #selector(onPan))
+        view.addGestureRecognizer(panGesture)
+        
+        guard let camera = camera else {
+            return
+        }
+        
+        let viewWidth = size.width * camera.xScale
+        let mapWidth = mapSize.width
+        let viewHeight = size.height * camera.yScale
+        let mapHeight = mapSize.height
+        let xRange = SKRange(lowerLimit: (-mapWidth + viewWidth) / 2, upperLimit: (mapWidth - viewWidth) / 2)
+        let yRange = SKRange(lowerLimit: (-mapHeight + viewHeight) / 2, upperLimit: (mapHeight - viewHeight) / 2)
+        
+        camera.constraints = [.positionX(xRange, y: yRange)]
+    }
+    
+    override func willMove(from view: SKView) {
+        view.gestureRecognizers?.forEach { view.removeGestureRecognizer($0) }
+    }
+    
+    @objc private func onPan(_ sender: UIPanGestureRecognizer) {
+        guard let camera = camera else {
+            return
+        }
+        
+        if sender.state == .began {
+            previousCameraPosition = camera.position
+        }
+        
+        let translation = sender.translation(in: view)
+        camera.position = .init(
+            x: previousCameraPosition.x + translation.x * -1,
+            y: previousCameraPosition.y + translation.y
+        )
+    }
+    
     private func setUpScene() {
+        // add camera node
+        let cameraNode = SKCameraNode()
+        cameraNode.setScale(0.75)
+        camera = cameraNode
+        addChild(cameraNode)
+        
         // add map
+        let mapTexture = SKTexture(imageNamed: "game-map")
+        mapSize = mapTexture.size()
         let mapNode = SKSpriteNode(
-            texture: .init(imageNamed: "game-map"),
+            texture: mapTexture,
             color: .clear,
-            size: size
+            size: mapSize
         )
         
-        mapNode.aspectFillToSize(fillSize: size)
-        mapNode.position = .init(x: frame.midX, y: frame.midY)
         mapNode.zPosition = -1
         addChild(mapNode)
         
@@ -36,8 +84,7 @@ class GameMapScene: SKScene, TapResponder {
         let playButton = ButtonNode(
             size: texture.size(),
             texture: texture,
-            buttonType: .playButton,
-            position: .init(x: frame.midX, y: frame.midY)
+            buttonType: .playButton
         )
         
         addChild(playButton)
