@@ -1,5 +1,5 @@
 //
-//  TimerComponent.swift
+//  NewTimerSystem.swift
 //  GameOfRunes
 //
 //  Created by Andy on 27/3/20.
