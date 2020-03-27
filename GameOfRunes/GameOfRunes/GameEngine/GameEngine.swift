@@ -16,12 +16,8 @@ class GameEngine {
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
-    
-    var playerHealthEntity: PlayerHealthEntity? {
-        entities[.playerHealthEntity]?.first as? PlayerHealthEntity
-    }
-    var playerManaEntity: PlayerManaEntity? {
-        entities[.playerManaEntity]?.first as? PlayerManaEntity
+    var playerEntity: PlayerEntity? {
+        entities[.playerEntity]?.first as? PlayerEntity
     }
 
     // TODO: pass in avatar, and use it to determine powerups.
@@ -60,6 +56,8 @@ class GameEngine {
     }
     
     func update(with deltaTime: TimeInterval) {
+        print("health: \(metadata.playerHealth), mana:\(metadata.playerMana)")
+        
         systemDelegate.update(with: deltaTime)
         
         toRemoveEntities.forEach { entity in
@@ -69,9 +67,7 @@ class GameEngine {
         toRemoveEntities = []
         
         // Player Loses the Game
-        if let playerHealthPoints =
-            playerHealthEntity?.component(ofType: HealthComponent.self)?.healthPoints,
-            playerHealthPoints <= 0 {
+        if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false)
         }
     }
@@ -119,11 +115,11 @@ class GameEngine {
     
     /** Decrements the Player's health by 1 point. */
     func decreasePlayerHealth() {
-        guard let playerHealthEntity = playerHealthEntity else {
+        guard let playerEntity = playerEntity else {
             return
         }
         
-        _ = minusHealthPoints(for: playerHealthEntity)
+        _ = minusHealthPoints(for: playerEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
@@ -165,11 +161,11 @@ class GameEngine {
     }
     
     func increasePlayerMana(by manaPoints: Int) {
-        guard let playerManaEntity = playerManaEntity else {
+        guard let playerEntity = playerEntity else {
             return
         }
         
-        systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
+        systemDelegate.increaseMana(by: manaPoints, for: playerEntity)
     }
     
     func decreasePlayerMana(by manaPoints: Int) {
@@ -182,16 +178,13 @@ extension GameEngine {
     func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
         // must only be called when a power up is selected
         guard let gameScene = gameScene,
-            let playerManaEntity = playerManaEntity,
-            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),
             let selectedPowerUp = gameScene.selectedPowerUp else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
         
-        // TODO: change this once game meta-data is up
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
         gameScene.deselectPowerUp()
-        guard currentManaPoints >= manaPointsRequired else {
+        guard metadata.playerMana >= manaPointsRequired else {
             // did not activate
             return false
         }

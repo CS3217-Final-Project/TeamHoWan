@@ -36,6 +36,7 @@ class SystemDelegate {
     func update(with deltatime: TimeInterval) {
         systems[.moveComponent]?.update(deltaTime: deltatime)
         systems[.timerComponent]?.update(deltaTime: deltatime)
+        systems[.playerComponent]?.update(deltaTime: deltatime)
     }
     
     func addComponents(foundIn entity: GKEntity) {

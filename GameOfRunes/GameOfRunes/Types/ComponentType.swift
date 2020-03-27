@@ -14,4 +14,5 @@ enum ComponentType {
     case gestureComponent
     case healthComponent
     case manaComponent
+    case playerComponent
 }
