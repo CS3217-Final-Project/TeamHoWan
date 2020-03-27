@@ -31,11 +31,13 @@ class SystemDelegate {
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
+        systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
         systems[.moveComponent]?.update(deltaTime: deltatime)
         systems[.timerComponent]?.update(deltaTime: deltatime)
+        systems[.playerComponent]?.update(deltaTime: deltatime)
     }
     
     func addComponents(foundIn entity: GKEntity) {

@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         DispatchQueue.global(qos: .default).async {
             // set up animation textures in background
             TextureContainer.loadTextures()
+            print("Done loading textures")
         }
     }
     
