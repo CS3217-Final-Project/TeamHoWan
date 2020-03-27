@@ -13,12 +13,13 @@ class TimerEntity: Entity {
         .timerEntity
     }
     
-    init(gameEngine: GameEngine, timerNode: SKLabelNode, isCountdown: Bool, initialTimerValue: Int) {
+    init(gameEngine: GameEngine, timerNode: SKLabelNode, initialTimerValue: TimeInterval) {
         super.init()
         
-        let timerComponent = TimerLabelComponent(timerNode: timerNode, isCountdown: isCountdown,
-                                                 initialTimerValue: initialTimerValue)
+        let labelComponent = LabelComponent(labelNode: timerNode)
+        let timerComponent = TimerComponent(initialTimerValue: initialTimerValue, isCountDown: false)
         addComponent(timerComponent)
+        addComponent(labelComponent)
     }
     
     @available(*, unavailable)

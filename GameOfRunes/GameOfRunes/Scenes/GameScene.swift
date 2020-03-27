@@ -213,7 +213,7 @@ class GameScene: SKScene {
         return manaBarNode
     }
     
-    private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
+    private func setUpTimer(isCountdown: Bool, initialTimerValue: TimeInterval = 0) {
         let timerNode = SKLabelNode(fontNamed: "DragonFire")
         
         timerNode.fontSize = 50
@@ -225,10 +225,7 @@ class GameScene: SKScene {
         timerNode.text = "\(initialTimerValue)"
         
         playerAreaLayer.addChild(timerNode)
-        gameEngine.add(TimerEntity(gameEngine: gameEngine,
-                                   timerNode: timerNode,
-                                   isCountdown: isCountdown,
-                                   initialTimerValue: initialTimerValue))
+        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
     }
     
     override func update(_ currentTime: TimeInterval) {

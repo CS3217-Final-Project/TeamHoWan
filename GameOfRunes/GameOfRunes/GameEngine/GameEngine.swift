@@ -173,6 +173,10 @@ class GameEngine {
     func runFadingAnimation(_ entity: Entity) {
         systemDelegate.runFadingAnimation(entity)
     }
+    
+    func setLabel(_ entity: Entity, label: String) {
+        systemDelegate?.setLabel(entity, label: label)
+    }
 }
 
 /** Extension to the GameEngine for PowerUps */

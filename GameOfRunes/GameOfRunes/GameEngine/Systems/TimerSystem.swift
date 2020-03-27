@@ -19,28 +19,33 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
     override func update(deltaTime seconds: TimeInterval) {
         for component in components {
             if component.isCountDown {
-                component.timeLeft -= seconds
+                component.time -= seconds
             } else {
-                component.timeLeft += seconds
+                component.time += seconds
             }
 
-            if component.timeLeft <= 0 {
-                updateComponent(component)
-            }
+            updateComponent(component, seconds)
         }
     }
     
-    func updateComponent(_ component: TimerComponent) {
+    func updateComponent(_ component: TimerComponent, _ seconds: TimeInterval) {
         guard let entity = component.entity as? Entity else {
             return
         }
-        if var powerUpEntity = entity as? PowerUpEntity {
+        if component.time <= 0, var powerUpEntity = entity as? PowerUpEntity {
             if !powerUpEntity.fading {
-                component.timeLeft = powerUpEntity.powerUpType.getFadeOutDuration
+                component.time = powerUpEntity.powerUpType.getFadeOutDuration
                 powerUpEntity.fading = true
                 gameEngine?.runFadingAnimation(entity)
             } else {
                 gameEngine?.remove(entity)
+            }
+            return
+        }
+        if entity is TimerEntity {
+            let currentTime = component.time
+            if Int(currentTime) != Int(currentTime - seconds) {
+                gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
             }
         }
     }

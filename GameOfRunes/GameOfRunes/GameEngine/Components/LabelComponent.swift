@@ -2,22 +2,29 @@
 //  TimerComponent.swift
 //  GameOfRunes
 //
-//  Created by Andy on 27/3/20.
+//  Created by Dong SiJi on 16/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import GameplayKit
 
-class TimerComponent: GKComponent, Component {
-    var time: TimeInterval
-    var isCountDown: Bool
+class LabelComponent: GKComponent, Component {
+    private let labelNode: SKLabelNode
+    var label: String {
+        get {
+            labelNode.text ?? ""
+        }
+        set {
+            labelNode.text = newValue
+        }
+    }
+    
     var type: ComponentType {
         .labelComponent
     }
     
-    init(initialTimerValue: TimeInterval, isCountDown: Bool = true) {
-        self.time = initialTimerValue
-        self.isCountDown = isCountDown
+    init(labelNode: SKLabelNode) {
+        self.labelNode = labelNode
         super.init()
     }
     
