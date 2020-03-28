@@ -8,10 +8,11 @@
 
 import SpriteKit
 
-class GameMapScene: SKScene, TapResponder {
+class GameMapScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
     private var previousCameraPosition: CGPoint = .zero
     private var mapSize: CGSize!
+    private var selectedStageNode: StageNode?
     
     // layers
     private var backgroundLayer: SKNode!
@@ -38,10 +39,6 @@ class GameMapScene: SKScene, TapResponder {
         let panGesture = UIPanGestureRecognizer()
         panGesture.addTarget(self, action: #selector(onPan))
         view.addGestureRecognizer(panGesture)
-        
-        let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(onTap))
-        view.addGestureRecognizer(tapGesture)
     }
     
     override func willMove(from view: SKView) {
@@ -72,9 +69,35 @@ class GameMapScene: SKScene, TapResponder {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        guard let touch = touches.first else {
+            return
+        }
+        
+        let tapPosition = touch.location(in: self)
+        print("Tap position:", tapPosition)
+        print("xRatio:", tapPosition.x / (mapSize.width / 2))
+        print("yRatio:", tapPosition.y / (mapSize.height / 2))
+        print("---------------------------")
+        
+        resetSelectedStageNode()
+    }
+    
+    private func resetSelectedStageNode() {
+        selectedStageNode?.selected = false
+        selectedStageNode = nil
+    }
+}
+
+// MARK: - Tap Responder
+extension GameMapScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
-        if tappedNode.buttonType == .playButton {
-            gameStateMachine?.enter(GameStartState.self)
+        if tappedNode.buttonType == .stageNode {
+            resetSelectedStageNode()
+            selectedStageNode = tappedNode as? StageNode
+            selectedStageNode?.selected = true
         }
     }
 }
@@ -192,13 +215,5 @@ extension GameMapScene {
             x: previousCameraPosition.x + translation.x * -1,
             y: previousCameraPosition.y + translation.y
         )
-    }
-    
-    @objc private func onTap(_ sender: UITapGestureRecognizer) {
-        let tapPosition = convertPoint(fromView: sender.location(in: view))
-        print("Tap position:", tapPosition)
-        print("xRatio:", tapPosition.x / (mapSize.width / 2))
-        print("yRatio:", tapPosition.y / (mapSize.height / 2))
-        print("---------------------------")
     }
 }

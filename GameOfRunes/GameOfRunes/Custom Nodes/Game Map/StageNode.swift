@@ -10,9 +10,19 @@ import SpriteKit
 
 class StageNode: ButtonNode {
     var stage: Stage
+    var selected: Bool {
+        didSet {
+            guard oldValue != selected else {
+                return
+            }
+            
+            texture = .init(imageNamed: "stage-node-\(stage.category)\(selected ? "-selected" : "")")
+        }
+    }
     
     init(stage: Stage, mapSize: CGSize) {
         self.stage = stage
+        selected = false
         
         let mapHalfWidth = mapSize.width / 2
         let mapHalfHeight = mapSize.height / 2
@@ -26,11 +36,5 @@ class StageNode: ButtonNode {
         let nodePosition = CGPoint(x: mapHalfWidth * positionRatio.x, y: mapHalfHeight * positionRatio.y)
         
         super.init(size: nodeSize, texture: nodeImage, buttonType: .stageNode, position: nodePosition)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        texture = .init(imageNamed: "stage-node-\(stage.category)-selected")
     }
 }
