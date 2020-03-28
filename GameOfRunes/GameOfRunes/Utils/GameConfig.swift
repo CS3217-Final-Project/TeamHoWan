@@ -101,6 +101,10 @@ enum GameConfig {
             1 - playerAreaHeightRatio
         }
 
+        // Spawning of Enemies
         static let numLanes: Int = 3
+        static let horizontalOffSet: Double = 100.0
+        static let verticalOffSet: Double = 100.0
+        static let numEndPoints: Int = 2
     }
 }

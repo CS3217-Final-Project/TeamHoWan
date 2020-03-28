@@ -67,8 +67,12 @@ class SpawnDelegate {
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
             let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
-            spriteComponent.node.position = CGPoint(x: Double(sceneSize.width) * xPositionRatio,
-                                                    y: Double(sceneSize.height - 100))
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let xPosition = (Double(sceneSize.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
+            let yPosition = Double(sceneSize.height) - GameConfig.GamePlayScene.verticalOffSet
+
+            spriteComponent.node.position = CGPoint(x: xPosition,
+                                                    y: yPosition)
             spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
         }
 
