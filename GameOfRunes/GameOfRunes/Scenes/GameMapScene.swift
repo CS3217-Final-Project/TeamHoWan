@@ -25,19 +25,6 @@ class GameMapScene: SKScene, TapResponder {
         let panGesture = UIPanGestureRecognizer()
         panGesture.addTarget(self, action: #selector(onPan))
         view.addGestureRecognizer(panGesture)
-        
-        guard let camera = camera else {
-            return
-        }
-        
-        let viewWidth = size.width * camera.xScale
-        let mapWidth = mapSize.width
-        let viewHeight = size.height * camera.yScale
-        let mapHeight = mapSize.height
-        let xRange = SKRange(lowerLimit: (-mapWidth + viewWidth) / 2, upperLimit: (mapWidth - viewWidth) / 2)
-        let yRange = SKRange(lowerLimit: (-mapHeight + viewHeight) / 2, upperLimit: (mapHeight - viewHeight) / 2)
-        
-        camera.constraints = [.positionX(xRange, y: yRange)]
     }
     
     override func willMove(from view: SKView) {
@@ -61,12 +48,6 @@ class GameMapScene: SKScene, TapResponder {
     }
     
     private func setUpScene() {
-        // add camera node
-        let cameraNode = SKCameraNode()
-        cameraNode.setScale(0.75)
-        camera = cameraNode
-        addChild(cameraNode)
-        
         // add map
         let mapTexture = SKTexture(imageNamed: "game-map")
         mapSize = mapTexture.size()
@@ -78,6 +59,22 @@ class GameMapScene: SKScene, TapResponder {
         
         mapNode.zPosition = -1
         addChild(mapNode)
+        
+        // add camera node
+        let camera = SKCameraNode()
+        camera.setScale(0.75)
+        
+        let viewWidth = size.width * camera.xScale
+        let mapWidth = mapSize.width
+        let viewHeight = size.height * camera.yScale
+        let mapHeight = mapSize.height
+        let xRange = SKRange(lowerLimit: (-mapWidth + viewWidth) / 2, upperLimit: (mapWidth - viewWidth) / 2)
+        let yRange = SKRange(lowerLimit: (-mapHeight + viewHeight) / 2, upperLimit: (mapHeight - viewHeight) / 2)
+        
+        camera.constraints = [.positionX(xRange, y: yRange)]
+        
+        self.camera = camera
+        addChild(camera)
         
         // add play button
         let texture = SKTexture(imageNamed: "play-button")
