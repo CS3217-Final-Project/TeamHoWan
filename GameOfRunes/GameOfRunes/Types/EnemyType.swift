@@ -16,6 +16,7 @@ enum EnemyType: String, CaseIterable {
     case troll1
     case troll2
     case troll3
+    case none
 
     var health: Int {
         switch self {
@@ -30,4 +31,7 @@ enum EnemyType: String, CaseIterable {
             return CustomGesture.allCases
         }
     }
+
+    
+
 }

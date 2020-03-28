@@ -22,6 +22,14 @@ enum GameConfig {
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
+
+        static let evilKnightDifficulty: Int = 1
+        static let orc1Difficulty: Int = 1
+        static let orc2Difficulty: Int = 1
+        static let orc3Difficulty: Int = 1
+        static let troll1Difficulty: Int = 1
+        static let troll2Difficulty: Int = 1
+        static let troll3Difficulty: Int = 1
     }
 
     enum Health {
@@ -92,5 +100,7 @@ enum GameConfig {
         static var gestureAreaHeightRatio: CGFloat {
             1 - playerAreaHeightRatio
         }
+
+        static let numLanes: Int = 3
     }
 }
