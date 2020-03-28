@@ -56,7 +56,7 @@ class BaseUnitTest: XCTestCase {
         droppedManaNode = MockDroppedManaNode(position: CGPoint(), responder: gameEngine)
             .withEnabledSuperclassSpy()
         
-        timerEntity = MockTimerEntity(gameEngine: gameEngine, isCountdown: false, initialTimerValue: 0)
+        timerEntity = MockTimerEntity(gameEngine: gameEngine, timerNode: SKLabelNode(), initialTimerValue: 0)
             .withEnabledSuperclassSpy()
         enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
