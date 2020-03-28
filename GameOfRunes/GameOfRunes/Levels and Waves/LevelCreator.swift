@@ -7,9 +7,14 @@
 //
 
 import Foundation
+
+/**
+ Creates and stored Level-related data.
+ */
 struct LevelCreator {
+    // TODO: Get rid of this once Level Selector is up
     static func getRandomLevelNumber() -> Int {
-        return Int.random(in: 1...3)
+        Int.random(in: 1...3)
     }
 
     static func getLevelData(levelNumber: Int) throws -> EnemySpawnUnit {
@@ -111,15 +116,19 @@ extension LevelCreator {
         GameConfig.Enemy.troll3Difficulty: .troll3
     ]
 
+    /**
+     Creates a Level whose total difficulty approaches `targetDifficulty` using the
+     monsters found in `availableMonsters`.
+     */
     static func createLevel(targetDifficulty: Int, availableMonsters: [EnemyType]) -> EnemySpawnUnit {
         let availableMonsterDifficulties = convertMonsterToDifficulties(monsters: availableMonsters)
         let bucket = createProbabilityBuckets(availableMonsterDifficulties: availableMonsterDifficulties)
-        let chunkedMonsterDifficulties = allocateMonsterDifficulties(targetDifficulty: targetDifficulty,
-                                                                     availableMonsterDifficulties: availableMonsterDifficulties,
-                                                                     bucket: bucket)
+        let chunkedDifficulties = allocateMonsterDifficulties(targetDifficulty: targetDifficulty,
+                                                              monsterDifficulties: availableMonsterDifficulties,
+                                                              bucket: bucket)
 
         var level = EnemySpawnUnit()
-        for spawnWaveDifficulty in chunkedMonsterDifficulties {
+        for spawnWaveDifficulty in chunkedDifficulties {
             let spawnWaveMonsters = LevelCreator.convertDifficultiesToMonsters(difficulties: spawnWaveDifficulty)
             do {
                 let enemyUnit = try EnemySpawnUnit(spawnWaveMonsters)
@@ -132,6 +141,9 @@ extension LevelCreator {
         return level
     }
 
+    /**
+     Helper function to convert an array of monsters to an array of their associated difficulties.
+     */
     static func convertMonsterToDifficulties(monsters: [EnemyType]) -> [Int] {
         var monsterDifficulties: [Int] = []
         for monster in monsters {
@@ -144,6 +156,9 @@ extension LevelCreator {
         return monsterDifficulties
     }
 
+    /**
+     Helper function to convert an array of monster difficulties to an array of monsters.
+     */
     static func convertDifficultiesToMonsters(difficulties: [Int]) -> [EnemyType] {
         var monsters: [EnemyType] = []
         for difficulty in difficulties {
@@ -155,6 +170,12 @@ extension LevelCreator {
         return monsters
     }
 
+    /**
+     Creates the probability demarcation for each monster difficulty.
+     - Note: The bucket is used to determine which monster difficulty should be selected
+     after sampling from a normal distribution. Hence, the demarcation determines the relative
+     proportion of each monster difficulty in the resulting sample.
+     */
     private static func createProbabilityBuckets(availableMonsterDifficulties: [Int]) -> [Double] {
         let totalNumMonsters = Double(availableMonsterDifficulties.count)
         let denominator: Double = 0.5 * (totalNumMonsters) * (totalNumMonsters + 1)
@@ -170,18 +191,29 @@ extension LevelCreator {
         return bucket
     }
 
+    /**
+     Gets the index of the bucket in which `probability` lies.
+     */
     private static func getProbabilityBucketIndex(bucket: [Double], probability: Double) -> Int {
         let convenienceBucket = [0] + bucket
         for i in (1...(convenienceBucket.count - 1)) {
-            if probability <= convenienceBucket[i] && probability >= convenienceBucket[i-1] {
+            if probability <= convenienceBucket[i] && probability >= convenienceBucket[i - 1] {
                 return i - 1
             }
         }
         return -1
     }
 
+    /**
+     The actual stochastic process that allocates monster difficulties.
+     - Note: This process samples from a uniform distribution and then uses the bucket's demarcation
+     points to determine which monster difficulty to sample. This is done repeatedly until `targetDifficulty`
+     is reached/breached. The monster difficulties are then sorted and chunked in
+     `GameConfig.GamePlayScene.numLanes`-sized
+     chunks.
+     */
     private static func allocateMonsterDifficulties(targetDifficulty: Int,
-                                                    availableMonsterDifficulties: [Int],
+                                                    monsterDifficulties: [Int],
                                                     bucket: [Double]) -> [[Int]] {
         var allocatedMonsterDifficulties: [Int] = []
         var totalDifficulty = targetDifficulty
@@ -190,12 +222,12 @@ extension LevelCreator {
         while totalDifficulty > 0 {
             let probValue = Double.random(in: 0...1)
             let index = getProbabilityBucketIndex(bucket: bucket, probability: probValue)
-            let monsterDifficulty = availableMonsterDifficulties[index]
+            let monsterDifficulty = monsterDifficulties[index]
             allocatedMonsterDifficulties.append(monsterDifficulty)
             totalDifficulty -= monsterDifficulty
 
-            if totalDifficulty < availableMonsterDifficulties[0] {
-                totalDifficulty -= availableMonsterDifficulties[0]
+            if totalDifficulty < monsterDifficulties[0] {
+                totalDifficulty -= monsterDifficulties[0]
             }
         }
 
@@ -211,13 +243,15 @@ extension LevelCreator {
             let gap = ((numFullWaves + 1) * GameConfig.GamePlayScene.numLanes) -
                        allocatedMonsterDifficulties.count
             for _ in 1...gap {
-                allocatedMonsterDifficulties.insert(0, at: Int.random(in: 0...allocatedMonsterDifficulties.count-1))
+                allocatedMonsterDifficulties.insert(0, at: Int.random(in: 0...allocatedMonsterDifficulties.count - 1))
             }
         }
 
         //Split into individual spawn waves
-        let chunkedMonsterDifficulties = stride(from: 0, to: allocatedMonsterDifficulties.count, by: GameConfig.GamePlayScene.numLanes).map {
-            Array(allocatedMonsterDifficulties[$0..<min($0 + GameConfig.GamePlayScene.numLanes, allocatedMonsterDifficulties.count)])
+        let chunkedMonsterDifficulties = stride(from: 0, to: allocatedMonsterDifficulties.count,
+                                                by: GameConfig.GamePlayScene.numLanes).map {
+            Array(allocatedMonsterDifficulties[$0..<min($0 + GameConfig.GamePlayScene.numLanes,
+                                                        allocatedMonsterDifficulties.count)])
         }
 
         return chunkedMonsterDifficulties

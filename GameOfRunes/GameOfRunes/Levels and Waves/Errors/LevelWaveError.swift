@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-// TODO: Add class description
+// Errors associated with Level and Wave-related logic.
 enum LevelWaveError: Error {
     case tooManyEnemyUnits
     case invalidLevelNumber

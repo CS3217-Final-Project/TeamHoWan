@@ -31,7 +31,4 @@ enum EnemyType: String, CaseIterable {
             return CustomGesture.allCases
         }
     }
-
-    
-
 }

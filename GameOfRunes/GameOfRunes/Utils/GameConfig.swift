@@ -23,6 +23,7 @@ enum GameConfig {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
 
+        // Note: monster difficulties must be unique
         static let evilKnightDifficulty: Int = 1
         static let orc1Difficulty: Int = 2
         static let orc2Difficulty: Int = 3
@@ -105,6 +106,6 @@ enum GameConfig {
         static let numLanes: Int = 3
         static let horizontalOffSet: Double = 100.0
         static let verticalOffSet: Double = 100.0
-        static let numEndPoints: Int = 2
+        static let numEndPoints: Int = 3
     }
 }

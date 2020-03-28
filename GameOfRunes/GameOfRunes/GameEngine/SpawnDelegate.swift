@@ -8,6 +8,10 @@
 
 import GameplayKit
 
+/**
+ This class deals with the spawning of enemies. Level data is accessed via
+ `GameMetaData` and is updated at periodic time intervals.
+ */
 class SpawnDelegate {
     private weak var gameEngine: GameEngine?
     private weak var gameMetaData: GameMetaData?
@@ -20,7 +24,7 @@ class SpawnDelegate {
     }
 
     func update(with deltaTime: TimeInterval) {
-        // Send next spawn wave when playing field is empty or timer is up
+        // Send next spawn wave when timer is up
         if self.timeTillNextSpawn <= 0 {
             startNextSpawnWave()
         } else {
@@ -49,6 +53,10 @@ class SpawnDelegate {
         }
     }
 
+    /**
+     Creates the `EnemyEntity` at the correct spawn location (determined by the
+     `laneIndex` and adds it to `GameEngine`.
+     */
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType) {
         // No need to spawn enemy if type is `.none`
         guard enemyType != .none else {
@@ -64,6 +72,7 @@ class SpawnDelegate {
         if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = gameEngine.gameScene?.size {
 
+            // Determine spawn location
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
             let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
@@ -80,7 +89,9 @@ class SpawnDelegate {
             return
         }
 
+        // Update GameMetaData
         gameMetaData.numEnemiesOnField += 1
+
         gameEngine.add(enemyEntity)
         gameEngine.add(gestureEntity)
     }

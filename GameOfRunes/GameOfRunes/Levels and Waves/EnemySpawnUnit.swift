@@ -7,16 +7,23 @@
 //
 
 /**
- TODO: Add more information here
- The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]
+ This struct is used as the basic unit for creating a level. Different instances
+ of it can be concatenated together to create different types of levels. See
+ `LevelCreator` for more examples on how `EnemySpawnUnit` can
+  be used to create interesting levels.
+
+ - Note: The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]
  in `unit` will determine the spawn position of the enemy (which lane the
  enemy will be spawned at).
  */
 struct EnemySpawnUnit {
     var unit: [[EnemyType]]
+    // The number of individual spawn waves in `EnemySpawnUnit`
     var count: Int {
         unit.count
     }
+
+    // Checks if the number of individual spawn waves is zero
     var isEmpty: Bool {
         unit.isEmpty
     }
@@ -58,6 +65,9 @@ struct EnemySpawnUnit {
         assert(checkRepresentation())
     }
 
+    /**
+     Removes the first spawn wave from `unit` and returns it.
+     */
     mutating func removeFirstSpawnWave() -> [EnemyType] {
         assert(checkRepresentation())
         guard !isEmpty else {
@@ -89,7 +99,7 @@ struct EnemySpawnUnit {
      - Each spawn wave cannot exceed `GameConfig.GamePlayScene.numLanes` monsters
      */
     private func checkRepresentation() -> Bool {
-        let noEmptyWavesCheck = unit.filter({ $0.allSatisfy({ $0 == .none }) }).isEmpty
+        let noEmptyWavesCheck = !unit.contains(where: { $0.allSatisfy({ $0 == .none }) })
         let doesNotExceedNumLanesCheck = unit.allSatisfy({ $0.count == GameConfig.GamePlayScene.numLanes })
 
         return noEmptyWavesCheck && doesNotExceedNumLanesCheck

@@ -78,7 +78,6 @@ class GameEngineTest: BaseUnitTest {
         verify(gameEngine, times(1)).update(with: any(TimeInterval.self))
     }
 
-    //TODO: Check this
     func testSpawnEnemy() {
         gameEngine.startNextSpawnWave()
         verify(gameEngine, times(1)).startNextSpawnWave()
@@ -118,7 +117,6 @@ class GameEngineTest: BaseUnitTest {
         verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
     }
 
-    //TODO: Check startNextSpawnWave Logic
     func testEnemyForceRemoved() {
         gameEngine.startNextSpawnWave()
 

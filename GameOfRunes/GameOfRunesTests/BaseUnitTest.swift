@@ -36,7 +36,6 @@ class BaseUnitTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        //TODO: Consider removing
         TextureContainer.loadTextures()
 
         gameStateMachine = MockGameStateMachine(states: [])
