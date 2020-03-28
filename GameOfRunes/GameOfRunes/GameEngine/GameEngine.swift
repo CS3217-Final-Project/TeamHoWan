@@ -20,9 +20,6 @@ class GameEngine {
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
-    var playerScoreEntity: PlayerScoreEntity? {
-        entities[.playerScoreEntity]?.first as? PlayerScoreEntity
-    }
     
     // TODO: pass in avatar, and use it to determine powerups.
     init(gameScene: GameScene) {
@@ -129,11 +126,11 @@ class GameEngine {
     }
     
     func addScore(by points: Int) {
-        guard let playerScoreEntity = playerScoreEntity else {
+        guard let playerEntity = playerEntity else {
             return
         }
         
-        systemDelegate.addScore(by: points, for: playerScoreEntity)
+        systemDelegate.addScore(by: points, for: playerEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
@@ -147,7 +144,7 @@ class GameEngine {
             removeDelegate.removeGesture(for: entity)
             count += 1
         }
-        guard let playerScoreEntity = playerScoreEntity else {
+        guard let playerScoreEntity = playerEntity else {
             return
         }
         

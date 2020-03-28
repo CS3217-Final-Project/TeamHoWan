@@ -73,7 +73,6 @@ class GameScene: SKScene {
         setUpEndPoint()
         setUpPlayer()
         setUpTimer(isCountdown: false)
-        setUpScore()
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
@@ -197,7 +196,9 @@ class GameScene: SKScene {
     private func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
-        let playerEntity = PlayerEntity(gameEngine: gameEngine, healthNode: healthNode, manaNode: manaNode)
+        let scoreNode = playerAreaNode.scoreNode
+        let playerEntity = PlayerEntity(gameEngine: gameEngine,
+                                        healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
         gameEngine.add(playerEntity)
     }
     
@@ -206,10 +207,6 @@ class GameScene: SKScene {
         // arbitrary num, can be replaced with meta-data
         healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
         return healthBarNode
-    }
-    
-    private func setUpScore() {
-        gameEngine.add(PlayerScoreEntity(gameEngine: gameEngine))
     }
     
     private func setUpPlayerMana() -> ManaBarNode {
@@ -228,7 +225,7 @@ class GameScene: SKScene {
         timerNode.zPosition = 75
         timerNode.horizontalAlignmentMode = .center
         timerNode.verticalAlignmentMode = .center
-        timerNode.text = "\(initialTimerValue)"
+        timerNode.text = "\(Int(initialTimerValue))"
         
         playerAreaLayer.addChild(timerNode)
         gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))

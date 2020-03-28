@@ -35,6 +35,7 @@ class PlayerAreaNode: SKSpriteNode {
         }
     }
     var summonNode: SummonNode
+    var scoreNode: ScoreNode
     
     override var size: CGSize {
         // Swift's implementation: didSet can be called if new value is set INSIDE init
@@ -108,6 +109,7 @@ class PlayerAreaNode: SKSpriteNode {
         manaBarNode = .init()
         powerUpContainerNode = .init(powerUpTypes: [.darkVortex, .hellfire, .icePrison])
         summonNode = .init()
+        scoreNode = .init()
         
         healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
         manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
@@ -118,6 +120,9 @@ class PlayerAreaNode: SKSpriteNode {
         manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4)
         powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
         summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 5.5)
+        // SCORENODE FRONTEND TAG FOR JEREMY
+        scoreNode.position = CGPoint(x: size.width / 3, y: -size.height / 5.5)
+        scoreNode.zPosition = 100
         
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
@@ -126,6 +131,7 @@ class PlayerAreaNode: SKSpriteNode {
         addChild(manaBarNode)
         addChild(powerUpContainerNode)
         addChild(summonNode)
+        addChild(scoreNode)
     }
     
     @available(*, unavailable)

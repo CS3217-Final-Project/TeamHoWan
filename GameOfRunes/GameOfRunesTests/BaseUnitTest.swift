@@ -18,6 +18,7 @@ class BaseUnitTest: XCTestCase {
     var systemDelegate: MockSystemDelegate!
     var removeDelegate: MockRemoveDelegate!
     
+    var scoreNode: ScoreNode!
     var healthBarNode: HealthBarNode!
     var manaBarNode: ManaBarNode!
     var droppedManaNode: MockDroppedManaNode!
@@ -49,6 +50,7 @@ class BaseUnitTest: XCTestCase {
         
         healthBarNode = HealthBarNode()
         manaBarNode = ManaBarNode()
+        scoreNode = ScoreNode()
         droppedManaNode = MockDroppedManaNode(position: CGPoint(), responder: gameEngine)
             .withEnabledSuperclassSpy()
         
@@ -57,7 +59,8 @@ class BaseUnitTest: XCTestCase {
         enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine, scale: CGFloat(1))
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
             .withEnabledSuperclassSpy()
-        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode)
+        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode,
+                                        scoreNode: scoreNode)
             .withEnabledSuperclassSpy()
         endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: SKSpriteNode())
             .withEnabledSuperclassSpy()

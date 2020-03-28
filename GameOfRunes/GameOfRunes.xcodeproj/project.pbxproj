@@ -59,7 +59,6 @@
 		560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560DED99242B902400A6D9A6 /* ScoreSystem.swift */; };
 		560DED9C242B902D00A6D9A6 /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560DED9B242B902D00A6D9A6 /* ScoreComponent.swift */; };
 		560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560DED9F242B9AC600A6D9A6 /* MultiplierComponent.swift */; };
-		561AA9BE242EF283007CFFA5 /* PlayerScoreEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560DED9D242B962700A6D9A6 /* PlayerScoreEntity.swift */; };
 		561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF3241FCD15003AE88A /* LabelSystem.swift */; };
 		561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */; };
 		563F3DED24171B4A009381B9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F3DEC24171B49009381B9 /* GameScene.swift */; };
@@ -184,7 +183,6 @@
 		4ACC8BDD2415324400F235AE /* ManaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaComponent.swift; sourceTree = "<group>"; };
 		560DED99242B902400A6D9A6 /* ScoreSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSystem.swift; sourceTree = "<group>"; };
 		560DED9B242B902D00A6D9A6 /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
-		560DED9D242B962700A6D9A6 /* PlayerScoreEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreEntity.swift; sourceTree = "<group>"; };
 		560DED9F242B9AC600A6D9A6 /* MultiplierComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplierComponent.swift; sourceTree = "<group>"; };
 		561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGestureRecognizer.swift; sourceTree = "<group>"; };
 		563F3DEC24171B49009381B9 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -464,7 +462,6 @@
 				C6AFF67A2419101B0076F02B /* GestureEntity.swift */,
 				C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */,
 				C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */,
-				560DED9D242B962700A6D9A6 /* PlayerScoreEntity.swift */,
 				C6B322E9241DFF4D001072AE /* Entity.swift */,
 				4AA5B35F241646DF008D4953 /* EndPointEntity.swift */,
 				8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */,
@@ -782,7 +779,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */,
-				561AA9BE242EF283007CFFA5 /* PlayerScoreEntity.swift in Sources */,
 				56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */,
 				8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */,
 				C6AFF685241A61650076F02B /* HealthSystem.swift in Sources */,

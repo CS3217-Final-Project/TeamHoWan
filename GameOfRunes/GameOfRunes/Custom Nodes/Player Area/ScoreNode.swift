@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+// SCORENODE FRONTEND TAG FOR JEREMY
 class ScoreNode: SKSpriteNode {
     init() {
         super.init(texture: nil, color: .clear, size: .init(width: 100, height: 100))
