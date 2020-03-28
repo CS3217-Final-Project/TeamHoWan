@@ -15,6 +15,12 @@ import UIKit
 enum GameConfig {
     static let fontName = "DragonFire"
     
+    enum Score {
+        static let comboTimer: TimeInterval = 2.0
+        static let tripleKillScore: Int = 30
+        static let pentaKillScore: Int = 50
+    }
+    
     enum AnimationNodeKey {
         static let enemy_walking = "enemy-walking-animation"
     }

@@ -23,6 +23,10 @@ class LabelComponent: GKComponent, Component {
         .labelComponent
     }
     
+    func decreaseOpacity() {
+        labelNode.alpha -= 1/120
+    }
+    
     init(labelNode: SKLabelNode) {
         self.labelNode = labelNode
         super.init()

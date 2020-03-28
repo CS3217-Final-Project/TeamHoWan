@@ -22,6 +22,13 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         }
         labelComponent.label = label
     }
+
+    func decreaseLabelOpacity(_ entity: Entity) {
+        guard let labelComponent = entity.component(ofType: LabelComponent.self) else {
+            return
+        }
+        labelComponent.decreaseOpacity()
+    }
     
     func removeComponent(_ component: Component) {
         guard let component = component as? LabelComponent else {

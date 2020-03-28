@@ -95,9 +95,9 @@ class SystemDelegate {
     func addMultiKillScore(count: Int, for entity: Entity) {
         var score = 0
         if count >= 5 {
-            score = 50
+            score = GameConfig.Score.pentaKillScore
         } else if count >= 3 {
-            score = 30
+            score = GameConfig.Score.tripleKillScore
         }
         addScore(by: score, for: entity)
     }
@@ -108,5 +108,9 @@ class SystemDelegate {
     
     func setLabel(_ entity: Entity, label: String) {
         labelSystem?.setLabel(entity: entity, label: label)
+    }
+    
+    func decreaseLabelOpacity(_ entity: Entity) {
+        labelSystem?.decreaseLabelOpacity(entity)
     }
 }

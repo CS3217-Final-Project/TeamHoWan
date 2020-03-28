@@ -17,6 +17,7 @@ class GameEngine {
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
+    
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
@@ -202,6 +203,16 @@ class GameEngine {
     
     func setLabel(_ entity: Entity, label: String) {
         systemDelegate?.setLabel(entity, label: label)
+    }
+    
+    func addComboScore(count: Int) {
+        // TODO: Better combo score multiplier system
+        let totalScore = count * GameConfig.Enemy.normalScore
+        addScore(by: totalScore)
+    }
+    
+    func decreaseLabelOpacity(_ entity: Entity) {
+        systemDelegate?.decreaseLabelOpacity(entity)
     }
 }
 

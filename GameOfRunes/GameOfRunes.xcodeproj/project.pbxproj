@@ -62,6 +62,7 @@
 		561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF3241FCD15003AE88A /* LabelSystem.swift */; };
 		561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */; };
 		563F3DED24171B4A009381B9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F3DEC24171B49009381B9 /* GameScene.swift */; };
+		56445ECE242EFCE600D5DCBE /* ComboEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56445ECD242EFCE600D5DCBE /* ComboEntity.swift */; };
 		565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */; };
 		565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */; };
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
@@ -186,6 +187,7 @@
 		560DED9F242B9AC600A6D9A6 /* MultiplierComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplierComponent.swift; sourceTree = "<group>"; };
 		561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGestureRecognizer.swift; sourceTree = "<group>"; };
 		563F3DEC24171B49009381B9 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		56445ECD242EFCE600D5DCBE /* ComboEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboEntity.swift; sourceTree = "<group>"; };
 		565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUpEntity.swift; sourceTree = "<group>"; };
 		565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcePrisonPowerUpEntity.swift; sourceTree = "<group>"; };
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			children = (
 				8A712E8324236B3800B3824E /* PowerUps */,
 				4ACC8BD32414D71100F235AE /* EnemyEntity.swift */,
+				56445ECD242EFCE600D5DCBE /* ComboEntity.swift */,
 				C6AFF67A2419101B0076F02B /* GestureEntity.swift */,
 				C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */,
 				C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */,
@@ -790,6 +793,7 @@
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
+				56445ECE242EFCE600D5DCBE /* ComboEntity.swift in Sources */,
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,

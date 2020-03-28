@@ -32,7 +32,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         guard let entity = component.entity as? Entity else {
             return
         }
-        if component.time <= 0, var powerUpEntity = entity as? PowerUpEntity {
+        if var powerUpEntity = entity as? PowerUpEntity, component.time <= 0 {
             if !powerUpEntity.fading {
                 component.time = powerUpEntity.powerUpType.getFadeOutDuration
                 powerUpEntity.fading = true
@@ -40,12 +40,19 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             } else {
                 gameEngine?.remove(entity)
             }
-            return
-        }
-        if entity is TimerEntity {
+        } else if entity is TimerEntity {
             let currentTime = component.time
             if Int(currentTime) != Int(currentTime - seconds) {
                 gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
+            }
+        } else if let comboEntity = entity as? ComboEntity {
+            if component.time <= 0, let labelComponent = comboEntity.component(ofType: LabelComponent.self) {
+                // If timer runs out, remove entity and add combo score
+                gameEngine?.remove(entity)
+                gameEngine?.addComboScore(count: Int(labelComponent.label) ?? 0)
+            } else {
+                // Decrease opacity
+                gameEngine?.decreaseLabelOpacity(entity)
             }
         }
     }

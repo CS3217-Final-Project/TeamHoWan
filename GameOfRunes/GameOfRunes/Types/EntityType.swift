@@ -16,4 +16,5 @@ enum EntityType: CaseIterable {
     case icePrisonPowerUpEntity
     case hellFirePowerUpEntity
     case darkVortexPowerUpEntity
+    case comboEntity
 }
