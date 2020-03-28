@@ -73,25 +73,17 @@ class GameEngine {
         if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false)
         }
+
+        // Player Wins the Game
+        if (metadata.playerHealth > 0) &&
+            (metadata.numEnemiesOnField == 0) &&
+            metadata.levelWaves.isEmpty {
+            gameScene?.gameDidEnd(didWin: true)
+        }
     }
     
-    func spawnEnemy() {
-        let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1, gameEngine: self)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameScene?.size {
-            spriteComponent.node.position = .init(
-                x: .random(in: sceneSize.width * 0.25 ... sceneSize.width * 0.75),
-                y: sceneSize.height - 100
-            )
-            spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
-        }
-        
-        guard let gestureEntity = enemyEntity.gestureEntity else {
-            return
-        }
-        
-        add(enemyEntity)
-        add(gestureEntity)
+    func startNextSpawnWave() {
+        spawnDelegate.startNextSpawnWave()
     }
     
     /** Gets all entities of a particular `Team`. */

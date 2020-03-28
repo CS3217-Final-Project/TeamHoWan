@@ -11,15 +11,24 @@ import GameplayKit
 class SpawnDelegate {
     private weak var gameEngine: GameEngine?
     private weak var gameMetaData: GameMetaData?
-    private var timeSinceLastUpdate: TimeInterval
+    private var timeTillNextSpawn: TimeInterval
 
     init(gameEngine: GameEngine, gameMetaData: GameMetaData) {
         self.gameEngine = gameEngine
         self.gameMetaData = gameMetaData
-        self.timeSinceLastUpdate = 0
+        self.timeTillNextSpawn = 0
     }
 
-    func update(with deltatime: TimeInterval) {
+    func update(with deltaTime: TimeInterval) {
+        // Send next spawn wave when playing field is empty or timer is up
+        if self.timeTillNextSpawn <= 0 {
+            startNextSpawnWave()
+        } else {
+            self.timeTillNextSpawn -= deltaTime
+        }
+    }
+
+    func startNextSpawnWave() {
         guard let gameMetaData = gameMetaData else {
             return
         }
@@ -29,14 +38,9 @@ class SpawnDelegate {
             return
         }
 
-        //TODO: spawn next wave when playing field is empty
-
-        self.timeSinceLastUpdate += deltatime
-        if self.timeSinceLastUpdate >= gameMetaData.levelSpawnInterval {
-            self.timeSinceLastUpdate -= gameMetaData.levelSpawnInterval
-            let enemySpawnWave = gameMetaData.levelWaves.removeFirstSpawnWave()
-            spawnEnemyWave(enemySpawnWave)
-        }
+        let enemySpawnWave = gameMetaData.levelWaves.removeFirstSpawnWave()
+        spawnEnemyWave(enemySpawnWave)
+        self.timeTillNextSpawn = gameMetaData.levelSpawnInterval
     }
 
     private func spawnEnemyWave(_ enemyWave: [EnemyType]) {
@@ -51,7 +55,8 @@ class SpawnDelegate {
             return
         }
 
-        guard let gameEngine = gameEngine else {
+        guard let gameEngine = gameEngine,
+            let gameMetaData = gameMetaData else {
             return
         }
 
@@ -61,7 +66,7 @@ class SpawnDelegate {
 
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
-            let xPositionRatio: Double = Double(xPositionNumerator) / Double(xPositionDenominator)
+            let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
             spriteComponent.node.position = CGPoint(x: Double(sceneSize.width) * xPositionRatio,
                                                     y: Double(sceneSize.height - 100))
             spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
@@ -71,6 +76,7 @@ class SpawnDelegate {
             return
         }
 
+        gameMetaData.numEnemiesOnField += 1
         gameEngine.add(enemyEntity)
         gameEngine.add(gestureEntity)
     }

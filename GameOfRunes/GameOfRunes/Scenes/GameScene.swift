@@ -271,7 +271,7 @@ extension GameScene: TapResponder {
         case ButtonType.pauseButton.rawValue:
             gameStateMachine?.enter(GamePauseState.self)
         case ButtonType.summonButton.rawValue:
-            gameEngine.spawnEnemy()
+            gameEngine.startNextSpawnWave()
         default:
             print("Unknown node tapped")
         }
