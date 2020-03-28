@@ -32,6 +32,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         guard let entity = component.entity as? Entity else {
             return
         }
+        // TODO: Refactor fading into a future PowerUpComponent as entities should not have variables
         if component.time <= 0, var powerUpEntity = entity as? PowerUpEntity {
             if !powerUpEntity.fading {
                 component.time = powerUpEntity.powerUpType.getFadeOutDuration
