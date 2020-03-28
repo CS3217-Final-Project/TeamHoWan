@@ -18,6 +18,7 @@
 		4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */; };
 		4A09C4FD242FE4DF00CA7625 /* StagePreviewLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */; };
 		4A09C4FF242FE50300CA7625 /* StageBattleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */; };
+		4A09C50324300D8700CA7625 /* StageAchievementNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C50224300D8700CA7625 /* StageAchievementNode.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
 		4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4724211F57005FA909 /* PowerUpNode.swift */; };
@@ -136,6 +137,7 @@
 		4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePreviewNode.swift; sourceTree = "<group>"; };
 		4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePreviewLabelNode.swift; sourceTree = "<group>"; };
 		4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageBattleNode.swift; sourceTree = "<group>"; };
+		4A09C50224300D8700CA7625 /* StageAchievementNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageAchievementNode.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		4A72EB4724211F57005FA909 /* PowerUpNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpNode.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */,
 				4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */,
 				4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */,
+				4A09C50224300D8700CA7625 /* StageAchievementNode.swift */,
 			);
 			path = "Game Map";
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
+				4A09C50324300D8700CA7625 /* StageAchievementNode.swift in Sources */,
 				19D664C924207DDD00351C92 /* ComponentType.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				8A712E8024235EB000B3824E /* PowerUpEntity.swift in Sources */,

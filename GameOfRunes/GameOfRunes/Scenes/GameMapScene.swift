@@ -114,7 +114,6 @@ extension GameMapScene: TapResponder {
             selectedStageNode = tappedNode as? StageNode
             selectedStageNode?.selected = true
         }
-        print("tapped")
     }
 }
 
@@ -155,7 +154,8 @@ extension GameMapScene {
             relativePositionRatioInMap: (x: 0.6, y: -0.55),
             arena: .arena1,
             difficulty: 100,
-            numWaves: 7
+            numWaves: 7,
+            achievement: .A
         )
         
         let stage2 = Stage(
@@ -165,7 +165,8 @@ extension GameMapScene {
             relativePositionRatioInMap: (x: 0.17, y: -0.43),
             arena: .arena1,
             difficulty: 100,
-            numWaves: 7
+            numWaves: 7,
+            achievement: .C
         )
         
         let stage3 = Stage(
@@ -175,7 +176,8 @@ extension GameMapScene {
             relativePositionRatioInMap: (x: 0.66, y: -0.28),
             arena: .arena1,
             difficulty: 100,
-            numWaves: 7
+            numWaves: 7,
+            achievement: .empty
         )
         
         let stage4 = Stage(
@@ -185,7 +187,8 @@ extension GameMapScene {
             relativePositionRatioInMap: (x: 0.25, y: -0.22),
             arena: .arena1,
             difficulty: 100,
-            numWaves: 7
+            numWaves: 7,
+            achievement: .S
         )
         
         let stages = [stage1, stage2, stage3, stage4]

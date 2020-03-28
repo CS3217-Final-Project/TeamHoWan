@@ -10,6 +10,7 @@ import SpriteKit
 
 class StagePreviewNode: SKSpriteNode {
     private let labelNode: StagePreviewLabelNode
+    private let achievementLevelNode: StageAchievementNode
     private let battleNode: StageBattleNode
     var selectedStage: Stage? {
         didSet {
@@ -19,6 +20,8 @@ class StagePreviewNode: SKSpriteNode {
             labelNode.category = stage.category
             labelNode.nameLabelNode.text = stage.name
             labelNode.idLabelNode.text = stage.id
+            
+            achievementLevelNode.achievementLevel = stage.achievement
         }
     }
     override var size: CGSize {
@@ -27,13 +30,16 @@ class StagePreviewNode: SKSpriteNode {
                 return
             }
             layoutLabelNode()
+            layoutAchievementLevelNode()
             layoutBattleNode()
         }
     }
     
     init(width: CGFloat, position: CGPoint = .zero) {
         labelNode = .init()
+        achievementLevelNode = .init()
         battleNode = .init()
+        
         let texture = SKTexture(imageNamed: "stage-preview")
         let size = texture.size().scaleTo(width: width)
         super.init(texture: texture, color: .clear, size: size)
@@ -41,6 +47,7 @@ class StagePreviewNode: SKSpriteNode {
         isUserInteractionEnabled = true
         self.position = position
         addChild(labelNode)
+        addChild(achievementLevelNode)
         addChild(battleNode)
     }
     
@@ -51,13 +58,19 @@ class StagePreviewNode: SKSpriteNode {
     
     private func layoutLabelNode() {
         labelNode.size = size.applying(.init(scaleX: 0.5, y: 0.55))
-        labelNode.position = .zero + .init(dx: -size.width / 10, dy: 0.0)
+        labelNode.position = .zero + .init(dx: -size.width / 7, dy: 0.0)
         labelNode.zPosition = 1
+    }
+    
+    private func layoutAchievementLevelNode() {
+        achievementLevelNode.size = achievementLevelNode.size.scaleTo(height: size.height * 0.5)
+        achievementLevelNode.position = .zero + .init(dx: size.width / 5.85, dy: 0.0)
+        achievementLevelNode.zPosition = 1
     }
     
     private func layoutBattleNode() {
         battleNode.size = battleNode.size.scaleTo(height: size.height * 0.5)
-        battleNode.position = .zero + .init(dx: size.width / 4, dy: 0.0)
+        battleNode.position = .zero + .init(dx: size.width / 3.25, dy: 0.0)
         battleNode.zPosition = 1
     }
 }
