@@ -12,7 +12,13 @@ class GameMapScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
     private var previousCameraPosition: CGPoint = .zero
     private var mapSize: CGSize!
-    private var selectedStageNode: StageNode?
+    private var stagePreviewNode: StagePreviewNode!
+    private var selectedStageNode: StageNode? {
+        didSet {
+            stagePreviewNode.selectedStage = selectedStageNode?.stage
+            stagePreviewNode.isHidden = selectedStageNode == nil
+        }
+    }
     
     // layers
     private var backgroundLayer: SKNode!
@@ -31,6 +37,7 @@ class GameMapScene: SKScene {
         setUpMap()
         setUpStageNodes()
         setUpCamera()
+        setUpStagePreview()
     }
     
     override func didMove(to view: SKView) {
@@ -134,7 +141,7 @@ extension GameMapScene {
         // TODO: change to access from storage when persistence is implemented
         let stage1 = Stage(
             name: "The Beginning",
-            id: "1-1",
+            id: "Peasant Land 1",
             category: .normal,
             relativePositionRatioInMap: (x: 0.6, y: -0.55),
             arena: .arena1,
@@ -143,8 +150,8 @@ extension GameMapScene {
         )
         
         let stage2 = Stage(
-            name: "Warrior's Arena",
-            id: "1-2",
+            name: "Warrior Arena",
+            id: "Peasant Land 2",
             category: .normal,
             relativePositionRatioInMap: (x: 0.17, y: -0.43),
             arena: .arena1,
@@ -153,20 +160,20 @@ extension GameMapScene {
         )
         
         let stage3 = Stage(
-            name: "The crossing",
-            id: "1-3",
+            name: "Cathedral Mayhem",
+            id: "Peasant Land 3",
             category: .normal,
-            relativePositionRatioInMap: (x: 0.25, y: -0.22),
+            relativePositionRatioInMap: (x: 0.66, y: -0.28),
             arena: .arena1,
             difficulty: 100,
             numWaves: 7
         )
         
         let stage4 = Stage(
-            name: "The first boss",
-            id: "1-4",
+            name: "The Crossing",
+            id: "Peasant Land 4",
             category: .boss,
-            relativePositionRatioInMap: (x: 0.09, y: 0.05),
+            relativePositionRatioInMap: (x: 0.25, y: -0.22),
             arena: .arena1,
             difficulty: 100,
             numWaves: 7
@@ -196,6 +203,13 @@ extension GameMapScene {
         camera.constraints = [.positionX(xRange, y: yRange)]
         
         cameraLayer.addChild(camera)
+    }
+    
+    private func setUpStagePreview() {
+        stagePreviewNode = .init(width: size.width)
+        stagePreviewNode.position = .init(x: 0.0, y: (size.height - stagePreviewNode.size.height) / 2)
+        camera?.addChild(stagePreviewNode)
+        selectedStageNode = nil
     }
 }
 

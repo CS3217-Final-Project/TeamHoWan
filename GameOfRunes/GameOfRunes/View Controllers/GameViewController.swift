@@ -26,7 +26,7 @@
             
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
-            gameStateMachine.enter(GameStartState.self)
+            gameStateMachine.enter(GameSelectionState.self)
         }
     }
     

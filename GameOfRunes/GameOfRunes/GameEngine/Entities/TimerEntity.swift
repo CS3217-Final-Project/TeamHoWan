@@ -25,7 +25,7 @@ class TimerEntity: Entity {
         timerLabel.fontSize = 50
         timerLabel.fontColor = SKColor.white
         timerLabel.position = CGPoint(x: gameScene.size.width / 2, y: 50)
-        timerLabel.zPosition = 75
+        timerLabel.zPosition = 25
         timerLabel.horizontalAlignmentMode = .center
         timerLabel.verticalAlignmentMode = .center
         timerLabel.text = "\(initialTimerValue)"

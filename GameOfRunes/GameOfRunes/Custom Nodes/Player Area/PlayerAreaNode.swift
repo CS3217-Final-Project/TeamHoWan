@@ -71,30 +71,26 @@ class PlayerAreaNode: SKSpriteNode {
     }
     
     private func layoutHealthBar() {
-        healthBarNode.anchorPoint = .init(x: 0.5, y: 0.5)
         healthBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.325))
         healthBarNode.position = .zero + .init(dx: -size.width / 4.5, dy: size.height / 4)
-        healthBarNode.zPosition = 100
+        healthBarNode.zPosition = 50
     }
     
     private func layoutManaBar() {
-        manaBarNode.anchorPoint = .init(x: 0.5, y: 0.5)
         manaBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.325))
         manaBarNode.position = .zero + .init(dx: size.width / 4.5, dy: size.height / 4)
-        manaBarNode.zPosition = 100
+        manaBarNode.zPosition = 50
     }
     
     private func layoutPowerUpContainer() {
-        powerUpContainerNode.anchorPoint = .init(x: 0.5, y: 0.5)
         powerUpContainerNode.size = size.applying(.init(scaleX: 0.45, y: 0.5))
         powerUpContainerNode.position = .zero + .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
-        powerUpContainerNode.zPosition = 100
+        powerUpContainerNode.zPosition = 50
     }
     
     private func layoutSummonNode() {
-        summonNode.anchorPoint = .init(x: 0.5, y: 0.5)
         summonNode.size = summonNode.size.scaleTo(height: size.height * 0.5)
         summonNode.position = .zero + .init(dx: size.width / 4.5, dy: -size.height / 5.5)
-        summonNode.zPosition = 100
+        summonNode.zPosition = 50
     }
 }

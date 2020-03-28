@@ -25,15 +25,19 @@ class StagePreviewLabelNode: SKSpriteNode {
             guard oldValue != size else {
                 return
             }
-            layoutLabelNodes()
+            layoutNameLabelNode()
+            layoutIdLabelNode()
         }
     }
     
     init() {
         nameLabelNode = .init(fontNamed: GameConfig.fontName)
         nameLabelNode.fontColor = .white
+        nameLabelNode.zPosition = 1
+        
         idLabelNode = .init(fontNamed: GameConfig.fontName)
         idLabelNode.fontColor = .white
+        idLabelNode.zPosition = 1
         super.init(texture: nil, color: .clear, size: .zero)
         
         addChild(nameLabelNode)
@@ -45,7 +49,13 @@ class StagePreviewLabelNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layoutLabelNodes() {
-        
+    private func layoutNameLabelNode() {
+        nameLabelNode.position = .init(x: 0.0, y: -size.height / 40)
+        nameLabelNode.fontSize = size.height / 4
+    }
+    
+    private func layoutIdLabelNode() {
+        idLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
+        idLabelNode.fontSize = size.height / 7
     }
 }
