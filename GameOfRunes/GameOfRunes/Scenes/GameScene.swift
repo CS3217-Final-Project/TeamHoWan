@@ -182,19 +182,53 @@ class GameScene: SKScene {
     }
     
     private func setUpEndPoint() {
-        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
-        // re-position and resize
-        let newEndPointWidth = size.width
-        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
-        endPointNode.position = playerAreaNode.position
-            + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
-        // relative to the layer
-        endPointNode.zPosition = -1
-        
-        let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+        guard GameConfig.GamePlayScene.numLanes > 0 else {
+            fatalError("There must be more than 1 lane")
+        }
 
-        gameEngine.add(endPointEntity)
+        for laneIndex in 0..<(GameConfig.GamePlayScene.numLanes) {
+            //TODO: Clean this code up
+            let xPositionNumerator = 2 * laneIndex + 1
+            let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
+            let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
+
+            let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+//            if laneIndex == 0 {
+//                endPointNode = SKSpriteNode(imageNamed: "finish-line")
+//            }
+
+            // re-position and resize
+            let newEndPointWidth = size.width
+            let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+            endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+            endPointNode.position = CGPoint(x: Double(size.width) * xPositionRatio,
+                                            y: Double(playerAreaNode.position.y) +
+                                                Double((playerAreaNode.size.height + newEndPointHeight) / 2))
+//
+//
+//            endPointNode.position = playerAreaNode.position
+//                + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
+            // relative to the layer
+            endPointNode.zPosition = -1
+
+            let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+
+            gameEngine.add(endPointEntity)
+        }
+
+//        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+//        // re-position and resize
+//        let newEndPointWidth = size.width
+//        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+//        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+//        endPointNode.position = playerAreaNode.position
+//            + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
+//        // relative to the layer
+//        endPointNode.zPosition = -1
+//
+//        let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+//
+//        gameEngine.add(endPointEntity)
     }
     
     private func setUpPlayer() {
