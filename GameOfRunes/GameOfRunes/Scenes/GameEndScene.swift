@@ -16,7 +16,7 @@ class GameEndScene: SKScene, TapResponder {
     // initialise with placeholder value
     var didWin = true
     private weak var gameStateMachine: GameStateMachine?
-    private let statusLabel = SKLabelNode()
+    private let statusLabel = SKLabelNode(fontNamed: GameConfig.fontName)
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
@@ -34,7 +34,6 @@ class GameEndScene: SKScene, TapResponder {
         
         addChild(restartButton)
         
-        statusLabel.fontName = GameConfig.fontName
         statusLabel.fontSize = size.width * GameConfig.GameEndScene.fontSizeRatio
         statusLabel.fontColor = .white
         statusLabel.position = center + .init(dx: 0.0, dy: restartButton.size.height / 1.5)

@@ -49,75 +49,12 @@ class PlayerAreaNode: SKSpriteNode {
             layoutSummonNode()
         }
     }
-    override var position: CGPoint {
-        didSet {
-            guard oldValue != position else {
-                return
-            }
-            print("Re-position player area")
-            layoutHealthBar()
-            layoutManaBar()
-            layoutPowerUpContainer()
-            layoutSummonNode()
-        }
-    }
-    var healthBarSize: CGSize {
-        didSet {
-            layoutHealthBar()
-        }
-    }
-    var manaBarSize: CGSize {
-        didSet {
-            layoutManaBar()
-        }
-    }
-    var powerUpContainerSize: CGSize {
-        didSet {
-            layoutPowerUpContainer()
-        }
-    }
-    var summonNodeSize: CGSize {
-        didSet {
-            layoutSummonNode()
-        }
-    }
-    // with respect to the center of current node
-    var healthBarPositionOffsetFromCenter: CGVector {
-        didSet {
-            layoutHealthBar()
-        }
-    }
-    var manaBarPositionOffsetFromCenter: CGVector {
-        didSet {
-            layoutManaBar()
-        }
-    }
-    var powerUpContainerPositionOffsetFromCenter: CGVector {
-        didSet {
-            layoutPowerUpContainer()
-        }
-    }
-    var summonNodePositionOffsetFromCenter: CGVector {
-        didSet {
-            layoutSummonNode()
-        }
-    }
     
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
         powerUpContainerNode = .init(powerUpTypes: [.darkVortex, .hellfire, .icePrison])
         summonNode = .init()
-        
-        healthBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
-        manaBarSize = size.applying(.init(scaleX: 0.45, y: 0.325))
-        powerUpContainerSize = size.applying(.init(scaleX: 0.45, y: 0.5))
-        summonNodeSize = summonNode.size.scaleTo(height: size.height * 0.5)
-        
-        healthBarPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: size.height / 4)
-        manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4)
-        powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
-        summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 5.5)
         
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
@@ -135,29 +72,29 @@ class PlayerAreaNode: SKSpriteNode {
     
     private func layoutHealthBar() {
         healthBarNode.anchorPoint = .init(x: 0.5, y: 0.5)
-        healthBarNode.size = healthBarSize
-        healthBarNode.position = .zero + healthBarPositionOffsetFromCenter
+        healthBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.325))
+        healthBarNode.position = .zero + .init(dx: -size.width / 4.5, dy: size.height / 4)
         healthBarNode.zPosition = 100
     }
     
     private func layoutManaBar() {
         manaBarNode.anchorPoint = .init(x: 0.5, y: 0.5)
-        manaBarNode.size = manaBarSize
-        manaBarNode.position = .zero + manaBarPositionOffsetFromCenter
+        manaBarNode.size = size.applying(.init(scaleX: 0.45, y: 0.325))
+        manaBarNode.position = .zero + .init(dx: size.width / 4.5, dy: size.height / 4)
         manaBarNode.zPosition = 100
     }
     
     private func layoutPowerUpContainer() {
         powerUpContainerNode.anchorPoint = .init(x: 0.5, y: 0.5)
-        powerUpContainerNode.size = powerUpContainerSize
-        powerUpContainerNode.position = .zero + powerUpContainerPositionOffsetFromCenter
+        powerUpContainerNode.size = size.applying(.init(scaleX: 0.45, y: 0.5))
+        powerUpContainerNode.position = .zero + .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
         powerUpContainerNode.zPosition = 100
     }
     
     private func layoutSummonNode() {
         summonNode.anchorPoint = .init(x: 0.5, y: 0.5)
-        summonNode.size = summonNodeSize
-        summonNode.position = .zero + summonNodePositionOffsetFromCenter
+        summonNode.size = summonNode.size.scaleTo(height: size.height * 0.5)
+        summonNode.position = .zero + .init(dx: size.width / 4.5, dy: -size.height / 5.5)
         summonNode.zPosition = 100
     }
 }

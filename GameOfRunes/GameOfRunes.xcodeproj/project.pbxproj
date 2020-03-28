@@ -15,6 +15,9 @@
 		4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */; };
 		4A09C4F3242FC36300CA7625 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F2242FC36200CA7625 /* Stage.swift */; };
 		4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F7242FCBDD00CA7625 /* StageNode.swift */; };
+		4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */; };
+		4A09C4FD242FE4DF00CA7625 /* StagePreviewLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */; };
+		4A09C4FF242FE50300CA7625 /* StageBattleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
 		4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4724211F57005FA909 /* PowerUpNode.swift */; };
@@ -130,6 +133,9 @@
 		4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionState.swift; sourceTree = "<group>"; };
 		4A09C4F2242FC36200CA7625 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		4A09C4F7242FCBDD00CA7625 /* StageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNode.swift; sourceTree = "<group>"; };
+		4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePreviewNode.swift; sourceTree = "<group>"; };
+		4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePreviewLabelNode.swift; sourceTree = "<group>"; };
+		4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageBattleNode.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		4A72EB4724211F57005FA909 /* PowerUpNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpNode.swift; sourceTree = "<group>"; };
@@ -270,6 +276,9 @@
 			isa = PBXGroup;
 			children = (
 				4A09C4F7242FCBDD00CA7625 /* StageNode.swift */,
+				4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */,
+				4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */,
+				4A09C4FE242FE50300CA7625 /* StageBattleNode.swift */,
 			);
 			path = "Game Map";
 			sourceTree = "<group>";
@@ -793,9 +802,11 @@
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
 				C6A99CF4241FCD15003AE88A /* TimerSystem.swift in Sources */,
+				4A09C4FF242FE50300CA7625 /* StageBattleNode.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
 				8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */,
 				C60EAF64242E26A00037BEAC /* PlayerComponent.swift in Sources */,
+				4A09C4FD242FE4DF00CA7625 /* StagePreviewLabelNode.swift in Sources */,
 				56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */,
 				4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */,
 				C60EAF66242E2A350037BEAC /* PlayerSystem.swift in Sources */,
@@ -806,6 +817,7 @@
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
+				4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */,
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,
 				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
