@@ -40,7 +40,7 @@ class BaseUnitTest: XCTestCase {
             .withEnabledSuperclassSpy()
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(), gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene)
+        gameEngine = MockGameEngine(gameScene: gameScene, levelNumber: 1)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()

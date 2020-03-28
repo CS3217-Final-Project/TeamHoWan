@@ -17,21 +17,24 @@ struct EnemySpawnUnit {
     var count: Int {
         unit.count
     }
+    var isEmpty: Bool {
+        unit.isEmpty
+    }
+
+    /** Initialiser to create an empty `EnemySpawnUnit` */
+    init() {
+        unit = []
+        assert(checkRepresentation())
+    }
 
     /**
      Initialiser to create a single spawn wave.
-     - Note: At least 1 monster must be provided otherwise
-     an error is thrown.
      - Note: At most `GameConfig.GamePlayScene.numLanes`
      monsters can be provided otherwise an error is thrown.
      - Note: Can specify `.none` in order to keep the lane empty,
      subject to the constraints stated above.
      */
     init(_ monsters: EnemyType...) throws {
-        guard !monsters.isEmpty else {
-            throw LevelWaveError.insufficientEnemyUnits
-        }
-
         guard monsters.count <= GameConfig.GamePlayScene.numLanes else {
             throw LevelWaveError.tooManyEnemyUnits
         }
@@ -48,11 +51,22 @@ struct EnemySpawnUnit {
         assert(checkRepresentation())
     }
 
+    mutating func removeFirstSpawnWave() -> [EnemyType] {
+        assert(checkRepresentation())
+        guard !isEmpty else {
+            return []
+        }
+        
+        let firstSpawnWave = unit.removeFirst()
+        assert(checkRepresentation())
+        return firstSpawnWave
+    }
+
     /**
      Concantenate the spawn waves encapsulated within each `EnemySpawnUnit` together.
      */
     static func + (left: EnemySpawnUnit, right: EnemySpawnUnit) -> EnemySpawnUnit {
-        var newEnemySpawnUnit = left
+        var newEnemySpawnUnit = EnemySpawnUnit()
         newEnemySpawnUnit.unit = left.unit + right.unit
         return newEnemySpawnUnit
     }

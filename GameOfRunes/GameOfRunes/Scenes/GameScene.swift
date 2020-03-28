@@ -27,9 +27,14 @@ class GameScene: SKScene {
     private(set) var playerAreaNode: PlayerAreaNode!
     private(set) var gestureAreaNode: GestureAreaNode!
     var bgmNode: SKAudioNode!
-    
+
+    //TODO: Shift this around
+    private let levelNumber: Int
+
+    //TODO: Add level number to initialiser
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
+        self.levelNumber = 1 //TODO: Change this
         super.init(size: size)
         registerForPauseNotifications()
     }
@@ -59,7 +64,8 @@ class GameScene: SKScene {
         }
         
         // continue setting up other stuff in .main thread
-        gameEngine = GameEngine(gameScene: self)
+        //TODO: Add level number to initialiser
+        gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
         
         // UI
         buildLayers()

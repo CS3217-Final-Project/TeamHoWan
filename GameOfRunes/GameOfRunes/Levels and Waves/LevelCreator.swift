@@ -7,6 +7,11 @@
 //
 
 struct LevelCreator {
+    static func getLevelData(levelNumber: Int) -> EnemySpawnUnit {
+        // TODO: Create new Levels
+        // TODO: Add defensive programming code to ensure that un-created levels will throw an error/be made known
+        return LevelCreator.defaultLevel
+    }
     static var defaultLevel: EnemySpawnUnit {
         do {
             let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc1, .orc1)

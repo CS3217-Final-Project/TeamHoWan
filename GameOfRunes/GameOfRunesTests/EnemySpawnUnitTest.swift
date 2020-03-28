@@ -28,13 +28,6 @@ class EnemySpawnUnitTest: XCTestCase {
         super.tearDown()
     }
 
-    func testInit_insufficientEnemyUnits() {
-        XCTAssertThrowsError(try EnemySpawnUnit(),
-                             "EnemySpawnUnit should not be initialisable with zero monsters") { error in
-                                XCTAssertEqual(error as? LevelWaveError, LevelWaveError.insufficientEnemyUnits)
-        }
-    }
-
     func testInit_tooManyEnemyUnits() {
         let errorMessage = "EnemySpawnUnit cannot have more than GameConfig.GamePlayScene.numLane monsters"
         XCTAssertThrowsError(try EnemySpawnUnit(.orc1, .orc2, .orc3, .orc1, .orc2),
@@ -85,12 +78,30 @@ class EnemySpawnUnitTest: XCTestCase {
         }
 
         let combinedUnit = firstSquad + secondSquad
-        let firstSquadAtomicUnit = firstSquad.unit[0]
-        let secondSquadAtomicUnit = secondSquad.unit[0]
+        let firstSquadSpawnWave = firstSquad.unit[0]
+        let secondSquadSpawnWave = secondSquad.unit[0]
+        XCTAssertEqual(firstSquad.unit, [[.orc1, .orc2, .orc3]])
+        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, .none]])
+
         XCTAssertEqual(combinedUnit.count, 2)
-        XCTAssertEqual(combinedUnit.unit[0], firstSquadAtomicUnit)
-        XCTAssertEqual(combinedUnit.unit[1], secondSquadAtomicUnit)
+        XCTAssertEqual(combinedUnit.unit[0], firstSquadSpawnWave)
+        XCTAssertEqual(combinedUnit.unit[1], secondSquadSpawnWave)
         let unit: [[EnemyType]] = [[.orc1, .orc2, .orc3], [.troll1, .troll2, .none]]
         XCTAssertEqual(combinedUnit.unit, unit)
+    }
+
+    func testRemoveFirstSpawnWave_empty() {
+        var emptyEnemySpawnUnit = EnemySpawnUnit()
+        XCTAssertEqual(emptyEnemySpawnUnit.removeFirstSpawnWave(), [])
+    }
+
+    func testRemoveFirstSpawnWave_success() {
+        if var singleSquad = singleSquad {
+            let firstSpawnWave = singleSquad.removeFirstSpawnWave()
+            XCTAssertEqual(firstSpawnWave, [.orc1, .orc2, .orc3])
+            XCTAssertEqual(singleSquad.unit, [])
+        } else {
+            XCTFail("Should be able to initialise EnemySpawnUnit")
+        }
     }
 }

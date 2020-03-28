@@ -12,6 +12,7 @@ import GameplayKit
 class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
+    private var spawnDelegate: SpawnDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
@@ -21,14 +22,17 @@ class GameEngine {
     }
 
     // TODO: pass in avatar, and use it to determine powerups.
-    init(gameScene: GameScene) {
+    init(gameScene: GameScene, levelNumber: Int) {
         self.gameScene = gameScene
         metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
                                 numManaUnits: GameConfig.Mana.numManaUnits,
                                 manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-                                powerUps: [.darkVortex, .hellfire, .icePrison])
+                                powerUps: [.darkVortex, .hellfire, .icePrison],
+                                levelNumber: levelNumber)
         systemDelegate = SystemDelegate(gameEngine: self)
         removeDelegate = RemoveDelegate(gameEngine: self)
+        spawnDelegate = SpawnDelegate(gameEngine: self,
+                                      gameMetaData: metadata)
 
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
@@ -56,6 +60,7 @@ class GameEngine {
     }
     
     func update(with deltaTime: TimeInterval) {
+        spawnDelegate.update(with: deltaTime)
         systemDelegate.update(with: deltaTime)
         
         toRemoveEntities.forEach { entity in

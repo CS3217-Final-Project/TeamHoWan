@@ -6,8 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
+// TODO: Add class description
 enum LevelWaveError: Error {
-    case insufficientEnemyUnits
     case tooManyEnemyUnits
-    case cannotCreateLevel
 }
