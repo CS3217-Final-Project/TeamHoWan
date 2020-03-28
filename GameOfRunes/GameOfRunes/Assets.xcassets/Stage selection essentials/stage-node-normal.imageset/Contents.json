@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "peg-blue-glow@1x.png",
+      "filename" : "stage-node-normal@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-blue-glow@2x.png",
+      "filename" : "stage-node-normal@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

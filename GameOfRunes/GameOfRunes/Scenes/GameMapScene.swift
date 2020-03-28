@@ -28,6 +28,7 @@ class GameMapScene: SKScene, TapResponder {
     override func sceneDidLoad() {
         buildLayers()
         setUpMap()
+        setUpStageNodes()
         setUpCamera()
     }
     
@@ -100,6 +101,11 @@ extension GameMapScene {
         )
         
         backgroundLayer.addChild(mapNode)
+    }
+    
+    private func setUpStageNodes() {
+        // TODO: change to access from storage when persistence is implemented
+        
     }
     
     private func setUpCamera() {

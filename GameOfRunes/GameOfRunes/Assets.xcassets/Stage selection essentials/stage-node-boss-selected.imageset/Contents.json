@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "peg-purple-normal@1x.png",
+      "filename" : "stage-node-boss-selected@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-purple-normal@2x.png",
+      "filename" : "stage-node-boss-selected@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
