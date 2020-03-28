@@ -175,7 +175,7 @@ class GameEngine {
     }
     
     func setLabel(_ entity: Entity, label: String) {
-        systemDelegate?.setLabel(entity, label: label)
+        systemDelegate.setLabel(entity, label: label)
     }
 }
 

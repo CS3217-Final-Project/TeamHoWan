@@ -12,7 +12,7 @@ class TimerComponent: GKComponent, Component {
     var time: TimeInterval
     var isCountDown: Bool
     var type: ComponentType {
-        .labelComponent
+        .timerComponent
     }
     
     init(initialTimerValue: TimeInterval, isCountDown: Bool = true) {
