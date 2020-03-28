@@ -13,7 +13,7 @@ class EndPointEntity: Entity {
     override var type: EntityType {
         .endPointEntity
     }
-    
+
     init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         

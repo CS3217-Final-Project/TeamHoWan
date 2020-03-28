@@ -3315,16 +3315,16 @@ import SpriteKit
     
     
     
-     override func spawnEnemy()  {
+     override func startNextSpawnWave()  {
         
-    return cuckoo_manager.call("spawnEnemy()",
+    return cuckoo_manager.call("startNextSpawnWave()",
             parameters: (),
             escapingParameters: (),
             superclassCall:
                 
-                super.spawnEnemy()
+                super.startNextSpawnWave()
                 ,
-            defaultCall: __defaultImplStub!.spawnEnemy())
+            defaultCall: __defaultImplStub!.startNextSpawnWave())
         
     }
     
@@ -3552,9 +3552,9 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "update(with: TimeInterval)", parameterMatchers: matchers))
 	    }
 	    
-	    func spawnEnemy() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	    func startNextSpawnWave() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "spawnEnemy()", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "startNextSpawnWave()", parameterMatchers: matchers))
 	    }
 	    
 	    func entities<M1: Cuckoo.Matchable>(for team: M1) -> Cuckoo.ClassStubFunction<(Team), [Entity]> where M1.MatchedType == Team {
@@ -3673,9 +3673,9 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func spawnEnemy() -> Cuckoo.__DoNotUse<(), Void> {
+	    func startNextSpawnWave() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return cuckoo_manager.verify("spawnEnemy()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("startNextSpawnWave()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3801,7 +3801,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func spawnEnemy()   {
+     override func startNextSpawnWave()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     

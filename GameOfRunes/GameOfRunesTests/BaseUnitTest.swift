@@ -36,11 +36,16 @@ class BaseUnitTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        //TODO: Consider removing
+        TextureContainer.loadTextures()
+
         gameStateMachine = MockGameStateMachine(states: [])
             .withEnabledSuperclassSpy()
         // Can't mock gameScene.
-        gameScene = GameScene(size: CGSize(), gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene, levelNumber: 1)
+        gameScene = GameScene(size: CGSize(),
+                              gameStateMachine: gameStateMachine,
+                              levelNumber: LevelCreator.getRandomLevelNumber())
+        gameEngine = MockGameEngine(gameScene: gameScene, levelNumber: -1)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()

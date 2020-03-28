@@ -81,7 +81,8 @@ class GameEngine {
             gameScene?.gameDidEnd(didWin: true)
         }
     }
-    
+
+    /** Will start the next Spawn Wave. Function called when Summon button is presesd. */
     func startNextSpawnWave() {
         spawnDelegate.startNextSpawnWave()
     }

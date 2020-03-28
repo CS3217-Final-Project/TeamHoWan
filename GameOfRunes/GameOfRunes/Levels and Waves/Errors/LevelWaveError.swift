@@ -9,4 +9,5 @@
 // TODO: Add class description
 enum LevelWaveError: Error {
     case tooManyEnemyUnits
+    case invalidLevelNumber
 }

@@ -32,9 +32,9 @@ class GameScene: SKScene {
     private let levelNumber: Int
 
     //TODO: Add level number to initialiser
-    init(size: CGSize, gameStateMachine: GameStateMachine) {
+    init(size: CGSize, gameStateMachine: GameStateMachine, levelNumber: Int) {
         self.gameStateMachine = gameStateMachine
-        self.levelNumber = 1 //TODO: Change this
+        self.levelNumber = levelNumber
         super.init(size: size)
         registerForPauseNotifications()
     }
@@ -64,7 +64,6 @@ class GameScene: SKScene {
         }
         
         // continue setting up other stuff in .main thread
-        //TODO: Add level number to initialiser
         gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
         
         // UI

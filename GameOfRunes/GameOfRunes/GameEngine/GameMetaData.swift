@@ -20,8 +20,8 @@ class GameMetaData {
     var playerMana: Int
     var score: Int
     var selectedPowerUp: PowerUpType?
-    var levelWaves: EnemySpawnUnit //TODO: Add spawn interval?
-    var levelSpawnInterval: Double = 2 //TODO: Change this
+    var levelWaves: EnemySpawnUnit
+    var levelSpawnInterval: Double
     var numEnemiesOnField: Int
 
     init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
@@ -34,6 +34,12 @@ class GameMetaData {
         playerMana = 0
         score = 0
         numEnemiesOnField = 0
-        levelWaves = LevelCreator.getLevelData(levelNumber: levelNumber)
+
+        do {
+            levelWaves = try LevelCreator.getLevelData(levelNumber: levelNumber)
+            levelSpawnInterval = try LevelCreator.getLevelSpawnInterval(levelNumber: levelNumber)
+        } catch {
+            fatalError("An Unexpected Error Occured: \(error)")
+        }
     }
 }
