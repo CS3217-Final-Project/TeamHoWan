@@ -10,6 +10,7 @@ import SpriteKit
 
 /** Protocol common to all Power-Ups. */
 protocol PowerUpEntity {
+    var fading: Bool { get set }
     var powerUpType: PowerUpType { get }
 }
 

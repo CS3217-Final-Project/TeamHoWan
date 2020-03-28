@@ -12,7 +12,7 @@ enum PowerUpType: String, CaseIterable {
     case hellfire
     case icePrison
     case darkVortex
-
+    
     var manaUnitCost: Int {
         switch self {
         case .hellfire:
@@ -21,6 +21,28 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.manaUnitCost
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.manaUnitCost
+        }
+    }
+    
+    var getFadeOutDuration: TimeInterval {
+        switch self {
+        case .hellfire:
+            return GameConfig.HellFirePowerUp.fadeOutDuration
+        case .icePrison:
+            return GameConfig.IcePrisonPowerUp.fadeOutDuration
+        case .darkVortex:
+            return GameConfig.DarkVortexPowerUp.fadeOutDuration
+        }
+    }
+    
+    var getPowerUpDuration: TimeInterval {
+        switch self {
+        case .hellfire:
+            return GameConfig.HellFirePowerUp.powerUpDuration
+        case .icePrison:
+            return GameConfig.IcePrisonPowerUp.powerUpDuration
+        case .darkVortex:
+            return GameConfig.DarkVortexPowerUp.powerUpDuration
         }
     }
 }
