@@ -227,7 +227,6 @@ class GameScene: SKScene {
         timerNode.verticalAlignmentMode = .center
         timerNode.text = "\(Int(initialTimerValue))"
         
-        playerAreaLayer.addChild(timerNode)
         gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
     }
     

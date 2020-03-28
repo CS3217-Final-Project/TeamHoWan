@@ -17,11 +17,22 @@ class ComboEntity: Entity {
     init(gameEngine: GameEngine) {
         super.init()
         
+        guard let gameScene = gameEngine.gameScene else {
+            return
+        }
+        
         // SCORENODE FRONTEND TAG FOR JEREMY
-        let labelNode = SKLabelNode(text: "0")
-        let labelComponent = LabelComponent(labelNode: labelNode)
+        let labelNode = SKLabelNode(fontNamed: "DragonFire")
+        let labelComponent = LabelComponent(node: labelNode)
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.Score.comboTimer)
-        gameEngine.gameScene?.addNodeToLayer(layer: .highestPriorityLayer, node: labelNode)
+        
+        labelNode.text = "0"
+        labelNode.position = .init(x: 5 * gameScene.size.width / 6, y: gameScene.size.height / 2)
+        labelNode.fontSize = 75
+        labelNode.fontColor = SKColor.red
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.verticalAlignmentMode = .center
+
         addComponent(labelComponent)
         addComponent(timerComponent)
     }

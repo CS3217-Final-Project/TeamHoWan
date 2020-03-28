@@ -21,6 +21,9 @@ class GameEngine {
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
+    var comboEntity: ComboEntity? {
+        entities[.comboEntity]?.first as? ComboEntity
+    }
     
     // TODO: pass in avatar, and use it to determine powerups.
     init(gameScene: GameScene) {
@@ -212,7 +215,24 @@ class GameEngine {
     }
     
     func decreaseLabelOpacity(_ entity: Entity) {
-        systemDelegate?.decreaseLabelOpacity(entity)
+        systemDelegate.decreaseLabelOpacity(entity)
+    }
+    
+    func incrementCombo() {
+        if comboEntity == nil {
+            add(ComboEntity(gameEngine: self))
+        }
+        guard let comboEntity = comboEntity else {
+            return
+        }
+        systemDelegate.incrementCombo(comboEntity)
+    }
+    
+    func endCombo() {
+        guard let comboEntity = comboEntity else {
+            return
+        }
+        remove(comboEntity)
     }
 }
 

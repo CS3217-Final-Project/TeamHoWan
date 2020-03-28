@@ -9,13 +9,13 @@
 import GameplayKit
 
 class LabelComponent: GKComponent, Component {
-    private let labelNode: SKLabelNode
+    let node: SKLabelNode
     var label: String {
         get {
-            labelNode.text ?? ""
+            node.text ?? ""
         }
         set {
-            labelNode.text = newValue
+            node.text = newValue
         }
     }
     
@@ -24,11 +24,15 @@ class LabelComponent: GKComponent, Component {
     }
     
     func decreaseOpacity() {
-        labelNode.alpha -= 1/120
+        node.alpha -= 1 / 120
     }
     
-    init(labelNode: SKLabelNode) {
-        self.labelNode = labelNode
+    func resetOpacity() {
+        node.alpha = 1
+    }
+    
+    init(node: SKLabelNode) {
+        self.node = node
         super.init()
     }
     

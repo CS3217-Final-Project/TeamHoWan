@@ -23,7 +23,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             } else {
                 component.time += seconds
             }
-
+            
             updateComponent(component, seconds)
         }
     }
@@ -32,29 +32,44 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         guard let entity = component.entity as? Entity else {
             return
         }
-        if var powerUpEntity = entity as? PowerUpEntity, component.time <= 0 {
-            if !powerUpEntity.fading {
-                component.time = powerUpEntity.powerUpType.getFadeOutDuration
-                powerUpEntity.fading = true
-                gameEngine?.runFadingAnimation(entity)
-            } else {
-                gameEngine?.remove(entity)
+        
+        switch entity.type {
+        case .icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity:
+            if var powerUpEntity = entity as? PowerUpEntity, component.time <= 0 {
+                if !powerUpEntity.fading {
+                    component.time = powerUpEntity.powerUpType.getFadeOutDuration
+                    powerUpEntity.fading = true
+                    gameEngine?.runFadingAnimation(entity)
+                } else {
+                    gameEngine?.remove(entity)
+                }
             }
-        } else if entity is TimerEntity {
+        case .timerEntity:
             let currentTime = component.time
             if Int(currentTime) != Int(currentTime - seconds) {
                 gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
             }
-        } else if let comboEntity = entity as? ComboEntity {
-            if component.time <= 0, let labelComponent = comboEntity.component(ofType: LabelComponent.self) {
-                // If timer runs out, remove entity and add combo score
-                gameEngine?.remove(entity)
-                gameEngine?.addComboScore(count: Int(labelComponent.label) ?? 0)
-            } else {
-                // Decrease opacity
-                gameEngine?.decreaseLabelOpacity(entity)
+        case .comboEntity:
+            if let comboEntity = entity as? ComboEntity {
+                if component.time <= 0, let labelComponent = comboEntity.component(ofType: LabelComponent.self) {
+                    // If timer runs out, remove entity and add combo score
+                    gameEngine?.addComboScore(count: Int(labelComponent.label) ?? 0)
+                    gameEngine?.endCombo()
+                } else {
+                    // Decrease opacity of label
+                    gameEngine?.decreaseLabelOpacity(entity)
+                }
             }
+        default:
+            return
         }
+    }
+    
+    func resetCombo(_ entity: Entity) {
+        guard let timerComponent = entity.component(ofType: TimerComponent.self) else {
+            return
+        }
+        timerComponent.time = GameConfig.Score.comboTimer
     }
     
     func removeComponent(_ component: Component) {

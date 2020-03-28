@@ -29,6 +29,9 @@ class SystemDelegate {
     var labelSystem: LabelSystem? {
         systems[.labelComponent] as? LabelSystem
     }
+    var timerSystem: TimerSystem? {
+        systems[.timerComponent] as? TimerSystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -112,5 +115,10 @@ class SystemDelegate {
     
     func decreaseLabelOpacity(_ entity: Entity) {
         labelSystem?.decreaseLabelOpacity(entity)
+    }
+    
+    func incrementCombo(_ entity: Entity) {
+        labelSystem?.incrementCombo(entity)
+        timerSystem?.resetCombo(entity)
     }
 }

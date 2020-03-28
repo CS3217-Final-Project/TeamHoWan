@@ -47,6 +47,8 @@ class RemoveDelegate {
         
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
+        } else {
+            gameEngine?.incrementCombo()
         }
         
         if shouldIncreaseScore {
