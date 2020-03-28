@@ -38,6 +38,10 @@ class GameMapScene: SKScene, TapResponder {
         let panGesture = UIPanGestureRecognizer()
         panGesture.addTarget(self, action: #selector(onPan))
         view.addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(onTap))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func willMove(from view: SKView) {
@@ -105,12 +109,58 @@ extension GameMapScene {
     
     private func setUpStageNodes() {
         // TODO: change to access from storage when persistence is implemented
+        let stage1 = Stage(
+            name: "The Beginning",
+            id: "1-1",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.6, y: -0.55),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7
+        )
         
+        let stage2 = Stage(
+            name: "Warrior's Arena",
+            id: "1-2",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.17, y: -0.43),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7
+        )
+        
+        let stage3 = Stage(
+            name: "The crossing",
+            id: "1-3",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.25, y: -0.22),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7
+        )
+        
+        let stage4 = Stage(
+            name: "The first boss",
+            id: "1-4",
+            category: .boss,
+            relativePositionRatioInMap: (x: 0.09, y: 0.05),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7
+        )
+        
+        let stages = [stage1, stage2, stage3, stage4]
+        let stageNodes = stages.map { StageNode(stage: $0, mapSize: mapSize) }
+        stageNodes.forEach { stageNodeLayer.addChild($0) }
+        
+        // make camera start at first stage
+        previousCameraPosition = stageNodes[0].position
     }
     
     private func setUpCamera() {
         let camera = SKCameraNode()
         camera.setScale(GameConfig.GameMapScene.cameraScale)
+        camera.position = previousCameraPosition
         self.camera = camera
         
         // ensures camera does not go out of map boundary
@@ -126,7 +176,7 @@ extension GameMapScene {
     }
 }
 
-// MARK: - Pan logic
+// MARK: - Gesture logic
 extension GameMapScene {
     @objc private func onPan(_ sender: UIPanGestureRecognizer) {
         guard let camera = camera else {
@@ -142,5 +192,13 @@ extension GameMapScene {
             x: previousCameraPosition.x + translation.x * -1,
             y: previousCameraPosition.y + translation.y
         )
+    }
+    
+    @objc private func onTap(_ sender: UITapGestureRecognizer) {
+        let tapPosition = convertPoint(fromView: sender.location(in: view))
+        print("Tap position:", tapPosition)
+        print("xRatio:", tapPosition.x / (mapSize.width / 2))
+        print("yRatio:", tapPosition.y / (mapSize.height / 2))
+        print("---------------------------")
     }
 }

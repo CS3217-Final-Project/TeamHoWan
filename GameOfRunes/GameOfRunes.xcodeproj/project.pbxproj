@@ -14,6 +14,7 @@
 		4A09C4EC242E465200CA7625 /* GameMapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4EB242E465200CA7625 /* GameMapScene.swift */; };
 		4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */; };
 		4A09C4F3242FC36300CA7625 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F2242FC36200CA7625 /* Stage.swift */; };
+		4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C4F7242FCBDD00CA7625 /* StageNode.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
 		4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4724211F57005FA909 /* PowerUpNode.swift */; };
@@ -128,6 +129,7 @@
 		4A09C4EB242E465200CA7625 /* GameMapScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMapScene.swift; sourceTree = "<group>"; };
 		4A09C4ED242E5E0900CA7625 /* GameSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionState.swift; sourceTree = "<group>"; };
 		4A09C4F2242FC36200CA7625 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		4A09C4F7242FCBDD00CA7625 /* StageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNode.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		4A72EB4724211F57005FA909 /* PowerUpNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpNode.swift; sourceTree = "<group>"; };
@@ -264,6 +266,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4A09C4F4242FCB9D00CA7625 /* Game Map */ = {
+			isa = PBXGroup;
+			children = (
+				4A09C4F7242FCBDD00CA7625 /* StageNode.swift */,
+			);
+			path = "Game Map";
+			sourceTree = "<group>";
+		};
 		4A72EB42241FE18B005FA909 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +353,7 @@
 				8AAE9BFF241E2DE200D29593 /* DroppedManaNode */,
 				4A8F0AA624191B6D00CD730B /* Player Area */,
 				8AAADE4924191D7A00606298 /* ButtonNode */,
+				4A09C4F4242FCB9D00CA7625 /* Game Map */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
 				56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */,
 			);
@@ -849,6 +860,7 @@
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
+				4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */,
 				C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */,

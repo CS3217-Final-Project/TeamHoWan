@@ -12,4 +12,5 @@ enum ButtonType: String {
     case continueButton
     case restartButton
     case playButton
+    case stageNode
 }

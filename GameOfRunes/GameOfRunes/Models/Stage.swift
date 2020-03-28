@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import SpriteKit
+import UIKit
 
 struct Stage {
     enum Category: String {
@@ -30,6 +30,6 @@ struct Stage {
     let numWaves: Int
     // might want to add the array of enemies here? But how do we determine the numWaves?
     
-    var achievement: AchievementLevel
-    var highScore: Int
+    var achievement: AchievementLevel = .empty
+    var highScore: Int = 0
 }
