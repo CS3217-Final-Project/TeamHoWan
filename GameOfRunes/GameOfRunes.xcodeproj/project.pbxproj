@@ -86,6 +86,7 @@
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
 		8A712E8024235EB000B3824E /* PowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7F24235EB000B3824E /* PowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
+		8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */; };
 		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
 		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
@@ -207,6 +208,7 @@
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
 		8A712E7F24235EB000B3824E /* PowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PowerUpEntity.swift; path = GameOfRunes/GameEngine/Entities/PowerUps/PowerUpEntity.swift; sourceTree = SOURCE_ROOT; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
+		8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCreatorTest.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
 		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				8A1EB6C3242782F700CA6AC8 /* GameStateMachineTest.swift */,
 				8A1EB6C52427900000CA6AC8 /* GameStateTest.swift */,
 				8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */,
+				8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */,
 			);
 			path = GameOfRunesTests;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */,
 				8A2C0342242EF19000A8EC96 /* EnemySpawnUnitTest.swift in Sources */,
 				8A1EB6C62427900000CA6AC8 /* GameStateTest.swift in Sources */,
+				8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */,
 				8A1EB6C4242782F700CA6AC8 /* GameStateMachineTest.swift in Sources */,
 				C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */,
 				C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */,

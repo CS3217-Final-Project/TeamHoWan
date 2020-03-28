@@ -24,12 +24,12 @@ enum GameConfig {
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
 
         static let evilKnightDifficulty: Int = 1
-        static let orc1Difficulty: Int = 1
-        static let orc2Difficulty: Int = 1
-        static let orc3Difficulty: Int = 1
-        static let troll1Difficulty: Int = 1
-        static let troll2Difficulty: Int = 1
-        static let troll3Difficulty: Int = 1
+        static let orc1Difficulty: Int = 2
+        static let orc2Difficulty: Int = 3
+        static let orc3Difficulty: Int = 4
+        static let troll1Difficulty: Int = 5
+        static let troll2Difficulty: Int = 6
+        static let troll3Difficulty: Int = 7
     }
 
     enum Health {

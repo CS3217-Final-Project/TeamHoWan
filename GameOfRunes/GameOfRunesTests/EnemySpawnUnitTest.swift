@@ -17,7 +17,7 @@ class EnemySpawnUnitTest: XCTestCase {
     override func setUp() {
         super.setUp()
         singleSquad = try? EnemySpawnUnit(.orc1, .orc2, .orc3)
-        singleSquadWithPlaceholder = try? EnemySpawnUnit(.orc1)
+        singleSquadWithPlaceholder = try? EnemySpawnUnit([.orc1])
         singleSquadWithNoneInInit = try? EnemySpawnUnit(.orc1, .none, .orc2)
     }
 
@@ -88,6 +88,23 @@ class EnemySpawnUnitTest: XCTestCase {
         XCTAssertEqual(combinedUnit.unit[1], secondSquadSpawnWave)
         let unit: [[EnemyType]] = [[.orc1, .orc2, .orc3], [.troll1, .troll2, .none]]
         XCTAssertEqual(combinedUnit.unit, unit)
+    }
+
+    func testAdditionAndAssignment() {
+        guard var firstSquad = singleSquad else {
+            XCTFail("Failed to create `singleSquad`")
+            return
+        }
+
+        guard let secondSquad = try? EnemySpawnUnit(.troll1, .troll2) else {
+            XCTFail("Failed to create EnemySpawnUnit")
+            return
+        }
+
+        firstSquad += secondSquad
+        XCTAssertEqual(firstSquad.unit, [[.orc1, .orc2, .orc3],
+                                         [.troll1, .troll2, .none]])
+        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, .none]])
     }
 
     func testRemoveFirstSpawnWave_empty() {
