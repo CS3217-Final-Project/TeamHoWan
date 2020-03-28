@@ -93,4 +93,13 @@ enum GameConfig {
             1 - playerAreaHeightRatio
         }
     }
+    
+    enum GameMapScene {
+        static let cameraScale: CGFloat = 0.75
+        
+        // zPositions
+        static let backgroundLayerZPosition: CGFloat = -100
+        static let stageNodeLayerZPosition: CGFloat = 0
+        static let cameraLayerZPosition: CGFloat = 100
+    }
 }
