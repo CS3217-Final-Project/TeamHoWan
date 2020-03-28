@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  MoveComponent.swift
@@ -1419,7 +1419,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  SpriteComponent.swift
@@ -1646,7 +1646,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  TeamComponent.swift
@@ -1755,7 +1755,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  TimerComponent.swift
@@ -1771,9 +1771,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerComponent: TimerComponent, Cuckoo.ClassMock {
+ class MockTimerComponent: LabelComponent, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerComponent
+     typealias MocksType = LabelComponent
     
      typealias Stubbing = __StubbingProxy_TimerComponent
      typealias Verification = __VerificationProxy_TimerComponent
@@ -1781,64 +1781,12 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerComponent?
+    private var __defaultImplStub: LabelComponent?
 
-     func enableDefaultImplementation(_ stub: TimerComponent) {
+     func enableDefaultImplementation(_ stub: LabelComponent) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
-    
-
-    
-    
-    
-     override var lastUpdatedTime: TimeInterval {
-        get {
-            return cuckoo_manager.getter("lastUpdatedTime",
-                superclassCall:
-                    
-                    super.lastUpdatedTime
-                    ,
-                defaultCall: __defaultImplStub!.lastUpdatedTime)
-        }
-        
-        set {
-            cuckoo_manager.setter("lastUpdatedTime",
-                value: newValue,
-                superclassCall:
-                    
-                    super.lastUpdatedTime = newValue
-                    ,
-                defaultCall: __defaultImplStub!.lastUpdatedTime = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var currentTime: Int {
-        get {
-            return cuckoo_manager.getter("currentTime",
-                superclassCall:
-                    
-                    super.currentTime
-                    ,
-                defaultCall: __defaultImplStub!.currentTime)
-        }
-        
-        set {
-            cuckoo_manager.setter("currentTime",
-                value: newValue,
-                superclassCall:
-                    
-                    super.currentTime = newValue
-                    ,
-                defaultCall: __defaultImplStub!.currentTime = newValue)
-        }
-        
-    }
-    
-    
     
      override var type: ComponentType {
         get {
@@ -1851,8 +1799,6 @@ import GameplayKit
         }
         
     }
-    
-
     
 
     
@@ -1914,44 +1860,17 @@ import GameplayKit
 	}
 }
 
- class TimerComponentStub: TimerComponent {
-    
-    
-     override var lastUpdatedTime: TimeInterval {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (TimeInterval).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var currentTime: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
+ class TimerComponentStub: LabelComponent {
      override var type: ComponentType {
         get {
             return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
         }
         
     }
-    
-
-    
-
-    
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -2060,7 +1979,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  EndPointEntity.swift
@@ -2169,7 +2088,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  EnemyEntity.swift
@@ -2370,7 +2289,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GestureEntity.swift
@@ -2522,13 +2441,13 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerHealthEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
-//  PlayerHealthEntity.swift
+//  PlayerEntity.swift
 //  GameOfRunes
 //
-//  Created by Jermy on 8/3/20.
+//  Created by Dong SiJi on 27/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
@@ -2538,19 +2457,19 @@ import Cuckoo
 import GameplayKit
 
 
- class MockPlayerHealthEntity: PlayerHealthEntity, Cuckoo.ClassMock {
+ class MockPlayerEntity: PlayerEntity, Cuckoo.ClassMock {
     
-     typealias MocksType = PlayerHealthEntity
+     typealias MocksType = PlayerEntity
     
-     typealias Stubbing = __StubbingProxy_PlayerHealthEntity
-     typealias Verification = __VerificationProxy_PlayerHealthEntity
+     typealias Stubbing = __StubbingProxy_PlayerEntity
+     typealias Verification = __VerificationProxy_PlayerEntity
 
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: PlayerHealthEntity?
+    private var __defaultImplStub: PlayerEntity?
 
-     func enableDefaultImplementation(_ stub: PlayerHealthEntity) {
+     func enableDefaultImplementation(_ stub: PlayerEntity) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -2576,7 +2495,7 @@ import GameplayKit
 
     
 
-	 struct __StubbingProxy_PlayerHealthEntity: Cuckoo.StubbingProxy {
+	 struct __StubbingProxy_PlayerEntity: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	
 	     init(manager: Cuckoo.MockManager) {
@@ -2584,14 +2503,14 @@ import GameplayKit
 	    }
 	    
 	    
-	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockPlayerHealthEntity, EntityType> {
+	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockPlayerEntity, EntityType> {
 	        return .init(manager: cuckoo_manager, name: "type")
 	    }
 	    
 	    
 	}
 
-	 struct __VerificationProxy_PlayerHealthEntity: Cuckoo.VerificationProxy {
+	 struct __VerificationProxy_PlayerEntity: Cuckoo.VerificationProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	    private let callMatcher: Cuckoo.CallMatcher
 	    private let sourceLocation: Cuckoo.SourceLocation
@@ -2613,7 +2532,7 @@ import GameplayKit
 	}
 }
 
- class PlayerHealthEntityStub: PlayerHealthEntity {
+ class PlayerEntityStub: PlayerEntity {
     
     
      override var type: EntityType {
@@ -2630,115 +2549,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerManaEntity.swift at 2020-03-22 13:23:31 +0000
-
-//
-//  PlayerManaEntity.swift
-//  GameOfRunes
-//
-//  Created by Jermy on 8/3/20.
-//  Copyright © 2020 TeamHoWan. All rights reserved.
-//
-
-import Cuckoo
-@testable import GameOfRunes
-
-import GameplayKit
-
-
- class MockPlayerManaEntity: PlayerManaEntity, Cuckoo.ClassMock {
-    
-     typealias MocksType = PlayerManaEntity
-    
-     typealias Stubbing = __StubbingProxy_PlayerManaEntity
-     typealias Verification = __VerificationProxy_PlayerManaEntity
-
-     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
-
-    
-    private var __defaultImplStub: PlayerManaEntity?
-
-     func enableDefaultImplementation(_ stub: PlayerManaEntity) {
-        __defaultImplStub = stub
-        cuckoo_manager.enableDefaultStubImplementation()
-    }
-    
-
-    
-    
-    
-     override var type: EntityType {
-        get {
-            return cuckoo_manager.getter("type",
-                superclassCall:
-                    
-                    super.type
-                    ,
-                defaultCall: __defaultImplStub!.type)
-        }
-        
-    }
-    
-
-    
-
-    
-
-	 struct __StubbingProxy_PlayerManaEntity: Cuckoo.StubbingProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	
-	     init(manager: Cuckoo.MockManager) {
-	        self.cuckoo_manager = manager
-	    }
-	    
-	    
-	    var type: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockPlayerManaEntity, EntityType> {
-	        return .init(manager: cuckoo_manager, name: "type")
-	    }
-	    
-	    
-	}
-
-	 struct __VerificationProxy_PlayerManaEntity: Cuckoo.VerificationProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	    private let callMatcher: Cuckoo.CallMatcher
-	    private let sourceLocation: Cuckoo.SourceLocation
-	
-	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-	        self.cuckoo_manager = manager
-	        self.callMatcher = callMatcher
-	        self.sourceLocation = sourceLocation
-	    }
-	
-	    
-	    
-	    var type: Cuckoo.VerifyReadOnlyProperty<EntityType> {
-	        return .init(manager: cuckoo_manager, name: "type", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	
-	    
-	}
-}
-
- class PlayerManaEntityStub: PlayerManaEntity {
-    
-    
-     override var type: EntityType {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (EntityType).self)
-        }
-        
-    }
-    
-
-    
-
-    
-}
-
-
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2879,7 +2690,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  HellfireEntity.swift
@@ -3020,7 +2831,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -3161,7 +2972,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  TimerEntity.swift
@@ -3269,7 +3080,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameEngine.swift
@@ -3307,6 +3118,20 @@ import SpriteKit
     
     
     
+     override var metadata: GameMetaData {
+        get {
+            return cuckoo_manager.getter("metadata",
+                superclassCall:
+                    
+                    super.metadata
+                    ,
+                defaultCall: __defaultImplStub!.metadata)
+        }
+        
+    }
+    
+    
+    
      override var gameScene: GameScene? {
         get {
             return cuckoo_manager.getter("gameScene",
@@ -3331,28 +3156,14 @@ import SpriteKit
     
     
     
-     override var playerHealthEntity: PlayerHealthEntity? {
+     override var playerEntity: PlayerEntity? {
         get {
-            return cuckoo_manager.getter("playerHealthEntity",
+            return cuckoo_manager.getter("playerEntity",
                 superclassCall:
                     
-                    super.playerHealthEntity
+                    super.playerEntity
                     ,
-                defaultCall: __defaultImplStub!.playerHealthEntity)
-        }
-        
-    }
-    
-    
-    
-     override var playerManaEntity: PlayerManaEntity? {
-        get {
-            return cuckoo_manager.getter("playerManaEntity",
-                superclassCall:
-                    
-                    super.playerManaEntity
-                    ,
-                defaultCall: __defaultImplStub!.playerManaEntity)
+                defaultCall: __defaultImplStub!.playerEntity)
         }
         
     }
@@ -3573,7 +3384,7 @@ import SpriteKit
     
     
     
-     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -3625,18 +3436,18 @@ import SpriteKit
 	    }
 	    
 	    
+	    var metadata: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, GameMetaData> {
+	        return .init(manager: cuckoo_manager, name: "metadata")
+	    }
+	    
+	    
 	    var gameScene: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameEngine, GameScene> {
 	        return .init(manager: cuckoo_manager, name: "gameScene")
 	    }
 	    
 	    
-	    var playerHealthEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, PlayerHealthEntity?> {
-	        return .init(manager: cuckoo_manager, name: "playerHealthEntity")
-	    }
-	    
-	    
-	    var playerManaEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, PlayerManaEntity?> {
-	        return .init(manager: cuckoo_manager, name: "playerManaEntity")
+	    var playerEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, PlayerEntity?> {
+	        return .init(manager: cuckoo_manager, name: "playerEntity")
 	    }
 	    
 	    
@@ -3740,18 +3551,18 @@ import SpriteKit
 	
 	    
 	    
+	    var metadata: Cuckoo.VerifyReadOnlyProperty<GameMetaData> {
+	        return .init(manager: cuckoo_manager, name: "metadata", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var gameScene: Cuckoo.VerifyOptionalProperty<GameScene> {
 	        return .init(manager: cuckoo_manager, name: "gameScene", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
-	    var playerHealthEntity: Cuckoo.VerifyReadOnlyProperty<PlayerHealthEntity?> {
-	        return .init(manager: cuckoo_manager, name: "playerHealthEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var playerManaEntity: Cuckoo.VerifyReadOnlyProperty<PlayerManaEntity?> {
-	        return .init(manager: cuckoo_manager, name: "playerManaEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var playerEntity: Cuckoo.VerifyReadOnlyProperty<PlayerEntity?> {
+	        return .init(manager: cuckoo_manager, name: "playerEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -3864,6 +3675,14 @@ import SpriteKit
  class GameEngineStub: GameEngine {
     
     
+     override var metadata: GameMetaData {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (GameMetaData).self)
+        }
+        
+    }
+    
+    
      override var gameScene: GameScene? {
         get {
             return DefaultValueRegistry.defaultValue(for: (GameScene?).self)
@@ -3874,17 +3693,9 @@ import SpriteKit
     }
     
     
-     override var playerHealthEntity: PlayerHealthEntity? {
+     override var playerEntity: PlayerEntity? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (PlayerHealthEntity?).self)
-        }
-        
-    }
-    
-    
-     override var playerManaEntity: PlayerManaEntity? {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (PlayerManaEntity?).self)
+            return DefaultValueRegistry.defaultValue(for: (PlayerEntity?).self)
         }
         
     }
@@ -3949,7 +3760,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)   {
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -3964,7 +3775,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4130,7 +3941,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  SystemDelegate.swift
@@ -4347,7 +4158,7 @@ import GameplayKit
     
     
     
-     override func stopMovement(for entity: GKEntity, duration: TimeInterval)  {
+     override func stopMovement(for entity: Entity, duration: TimeInterval)  {
         
     return cuckoo_manager.call("stopMovement(for: Entity, duration: TimeInterval)",
             parameters: (entity, duration),
@@ -4362,7 +4173,7 @@ import GameplayKit
     
     
     
-     override func stopAnimation(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -4623,7 +4434,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Int?).self)
     }
     
-     override func stopMovement(for entity: GKEntity, duration: TimeInterval)   {
+     override func stopMovement(for entity: Entity, duration: TimeInterval)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -4634,7 +4445,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  HealthSystem.swift
@@ -4770,7 +4581,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  ManaSystem.swift
@@ -4936,7 +4747,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  MoveSystem.swift
@@ -5072,7 +4883,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  SpriteSystem.swift
@@ -5158,7 +4969,7 @@ import GameplayKit
     
     
     
-     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)  {
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
             parameters: (entity, duration, animationNodeKey),
@@ -5261,14 +5072,14 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String)   {
+     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  TimerSystem.swift
@@ -5284,9 +5095,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerSystem: TimerSystem, Cuckoo.ClassMock {
+ class MockTimerSystem: LabelSystem, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerSystem
+     typealias MocksType = LabelSystem
     
      typealias Stubbing = __StubbingProxy_TimerSystem
      typealias Verification = __VerificationProxy_TimerSystem
@@ -5294,9 +5105,9 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerSystem?
+    private var __defaultImplStub: LabelSystem?
 
-     func enableDefaultImplementation(_ stub: TimerSystem) {
+     func enableDefaultImplementation(_ stub: LabelSystem) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -5387,7 +5198,7 @@ import GameplayKit
 	}
 }
 
- class TimerSystemStub: TimerSystem {
+ class TimerSystemStub: LabelSystem {
     
 
     
@@ -5404,7 +5215,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameEndState.swift
@@ -5584,7 +5395,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameInPlayState.swift
@@ -5720,7 +5531,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GamePauseState.swift
@@ -5856,7 +5667,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameStartState.swift
@@ -5992,7 +5803,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameStateMachine.swift
@@ -6112,7 +5923,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  GameScene.swift
@@ -6733,7 +6544,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-22 13:23:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-27 13:29:34 +0000
 
 //
 //  SceneManager.swift

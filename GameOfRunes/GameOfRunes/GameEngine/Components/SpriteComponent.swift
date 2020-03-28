@@ -32,6 +32,7 @@ class SpriteComponent: GKComponent, Component {
     init(gesture: CustomGesture) {
         node = GestureNode(gesture: gesture)
         super.init()
+        layerType = .enemyLayer
     }
 
     init(droppedManaNode: DroppedManaNode) {

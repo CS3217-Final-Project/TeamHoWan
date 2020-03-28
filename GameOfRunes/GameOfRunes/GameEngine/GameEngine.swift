@@ -15,24 +15,26 @@ class GameEngine {
     var contactDelegate: ContactDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
+    private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
-    
-    var playerHealthEntity: PlayerHealthEntity? {
-        entities[.playerHealthEntity]?.first as? PlayerHealthEntity
-    }
-    var playerManaEntity: PlayerManaEntity? {
-        entities[.playerManaEntity]?.first as? PlayerManaEntity
+    var playerEntity: PlayerEntity? {
+        entities[.playerEntity]?.first as? PlayerEntity
     }
     var playerScoreEntity: PlayerScoreEntity? {
         entities[.playerScoreEntity]?.first as? PlayerScoreEntity
     }
-
+    
+    // TODO: pass in avatar, and use it to determine powerups.
     init(gameScene: GameScene) {
         self.gameScene = gameScene
+        self.metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
+                                  numManaUnits: GameConfig.Mana.numManaUnits,
+                                  manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
+                                  powerUps: [.darkVortex, .hellfire, .icePrison])
+        
         self.systemDelegate = SystemDelegate(gameEngine: self)
         self.removeDelegate = RemoveDelegate(gameEngine: self)
         self.contactDelegate = ContactDelegate(gameEngine: self)
-        
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
         }
@@ -64,13 +66,11 @@ class GameEngine {
         toRemoveEntities.forEach { entity in
             systemDelegate.removeComponents(foundIn: entity)
         }
-
+        
         toRemoveEntities = []
         
         // Player Loses the Game
-        if let playerHealthPoints =
-            playerHealthEntity?.component(ofType: HealthComponent.self)?.healthPoints,
-            playerHealthPoints <= 0 {
+        if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false)
         }
     }
@@ -121,11 +121,11 @@ class GameEngine {
     
     /** Decrements the Player's health by 1 point. */
     func decreasePlayerHealth() {
-        guard let playerHealthEntity = playerHealthEntity else {
+        guard let playerEntity = playerEntity else {
             return
         }
         
-        _ = minusHealthPoints(for: playerHealthEntity)
+        _ = minusHealthPoints(for: playerEntity)
     }
     
     func addScore(by points: Int) {
@@ -150,7 +150,7 @@ class GameEngine {
         guard let playerScoreEntity = playerScoreEntity else {
             return
         }
-
+        
         systemDelegate.addMultiKillScore(count: count, for: playerScoreEntity)
     }
     
@@ -176,27 +176,35 @@ class GameEngine {
         systemDelegate.dropMana(at: entity)
     }
     
-    func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
+    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
         systemDelegate.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
     func increasePlayerMana(by manaPoints: Int) {
-        guard let playerManaEntity = playerManaEntity else {
+        guard let playerEntity = playerEntity else {
             return
         }
         
-        systemDelegate.increaseMana(by: manaPoints, for: playerManaEntity)
+        systemDelegate.increaseMana(by: manaPoints, for: playerEntity)
     }
     
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
     }
     
-    func stopMovement(for enemyEntity: GKEntity, duration: TimeInterval) {
+    func stopMovement(for enemyEntity: Entity, duration: TimeInterval) {
         systemDelegate.stopMovement(
             for: enemyEntity,
             duration: GameConfig.IcePrisonPowerUp.powerUpDuration
         )
+    }
+    
+    func runFadingAnimation(_ entity: Entity) {
+        systemDelegate.runFadingAnimation(entity)
+    }
+    
+    func setLabel(_ entity: Entity, label: String) {
+        systemDelegate?.setLabel(entity, label: label)
     }
 }
 
@@ -205,16 +213,13 @@ extension GameEngine {
     func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
         // must only be called when a power up is selected
         guard let gameScene = gameScene,
-            let playerManaEntity = playerManaEntity,
-            let currentManaPoints = systemDelegate.getMana(for: playerManaEntity),
             let selectedPowerUp = gameScene.selectedPowerUp else {
                 fatalError("Invalid call to didActivatePowerUp")
         }
         
-        // TODO: change this once game meta-data is up
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * gameScene.playerAreaNode.manaBarNode.manaPointsPerUnit
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
         gameScene.deselectPowerUp()
-        guard currentManaPoints >= manaPointsRequired else {
+        guard metadata.playerMana >= manaPointsRequired else {
             // did not activate
             return false
         }
@@ -260,7 +265,7 @@ extension GameEngine: DroppedManaResponder {
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
         guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
             let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
-            return
+                return
         }
         
         increasePlayerMana(by: manaPoints)

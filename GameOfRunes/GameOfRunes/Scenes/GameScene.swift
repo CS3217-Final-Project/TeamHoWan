@@ -45,6 +45,7 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
+        // TO NOTE: Unnecessary loading of texture, had to do this to pass tests
         let dispatchGroup = DispatchGroup()
         // marks the start of possible async block
         dispatchGroup.enter()
@@ -70,8 +71,7 @@ class GameScene: SKScene {
         
         // Entities
         setUpEndPoint()
-        setUpPlayerHealth()
-        setUpPlayerMana()
+        setUpPlayer()
         setUpTimer(isCountdown: false)
         setUpScore()
         
@@ -194,32 +194,44 @@ class GameScene: SKScene {
         gameEngine.add(endPointEntity)
     }
     
-    private func setUpPlayerHealth() {
+    private func setUpPlayer() {
+        let healthNode = setUpPlayerHealth()
+        let manaNode = setUpPlayerMana()
+        let playerEntity = PlayerEntity(gameEngine: gameEngine, healthNode: healthNode, manaNode: manaNode)
+        gameEngine.add(playerEntity)
+    }
+    
+    private func setUpPlayerHealth() -> HealthBarNode {
         let healthBarNode = playerAreaNode.healthBarNode
         // arbitrary num, can be replaced with meta-data
-        healthBarNode.totalLives = 5
-        let playerHealthEntity =
-            PlayerHealthEntity(healthPoints: healthBarNode.totalLives, healthBarNode: healthBarNode)
-        gameEngine.add(playerHealthEntity)
+        healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
+        return healthBarNode
     }
     
     private func setUpScore() {
         gameEngine.add(PlayerScoreEntity(gameEngine: gameEngine))
     }
     
-    private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
-        gameEngine.add(TimerEntity(gameEngine: gameEngine,
-                                   isCountdown: isCountdown,
-                                   initialTimerValue: initialTimerValue))
+    private func setUpPlayerMana() -> ManaBarNode {
+        let manaBarNode = playerAreaNode.manaBarNode
+        manaBarNode.numManaUnits = GameConfig.Mana.numManaUnits
+        manaBarNode.manaPointsPerUnit = GameConfig.Mana.manaPerManaUnit
+        return manaBarNode
     }
     
-    private func setUpPlayerMana() {
-        let manaBarNode = playerAreaNode.manaBarNode
-        // arbitrary num, can be replaced with meta-data
-        manaBarNode.numManaUnits = 8
-        manaBarNode.manaPointsPerUnit = 10
-        let playerManaEntity = PlayerManaEntity(manaPoints: 0, manaBarNode: manaBarNode)
-        gameEngine.add(playerManaEntity)
+    private func setUpTimer(isCountdown: Bool, initialTimerValue: TimeInterval = 0) {
+        let timerNode = SKLabelNode(fontNamed: "DragonFire")
+        
+        timerNode.fontSize = 50
+        timerNode.fontColor = SKColor.white
+        timerNode.position = CGPoint(x: size.width / 2, y: 50)
+        timerNode.zPosition = 75
+        timerNode.horizontalAlignmentMode = .center
+        timerNode.verticalAlignmentMode = .center
+        timerNode.text = "\(initialTimerValue)"
+        
+        playerAreaLayer.addChild(timerNode)
+        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
     }
     
     override func update(_ currentTime: TimeInterval) {

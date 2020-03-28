@@ -18,8 +18,7 @@ class HealthSystem: GKComponentSystem<HealthComponent>, System {
             return nil
         }
 
-        entityHealthComponent.healthPoints -= 1
-        entityHealthComponent.healthPoints = max(0, entityHealthComponent.healthPoints)
+        entityHealthComponent.healthPoints = max(0, entityHealthComponent.healthPoints - 1)
         return entityHealthComponent.healthPoints
     }
     

@@ -26,6 +26,9 @@ class SystemDelegate {
     var scoreSystem: ScoreSystem? {
         systems[.scoreComponent] as? ScoreSystem
     }
+    var labelSystem: LabelSystem? {
+        systems[.labelComponent] as? LabelSystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -33,12 +36,15 @@ class SystemDelegate {
         systems[.manaComponent] = ManaSystem(gameEngine: gameEngine)
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
+        systems[.labelComponent] = LabelSystem(gameEngine: gameEngine)
+        systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
         systems[.scoreComponent] = ScoreSystem()
     }
     
     func update(with deltatime: TimeInterval) {
         systems[.moveComponent]?.update(deltaTime: deltatime)
+        systems[.playerComponent]?.update(deltaTime: deltatime)
         systems[.timerComponent]?.update(deltaTime: deltatime)
     }
     
@@ -74,11 +80,11 @@ class SystemDelegate {
         manaSystem?.getMana(for: entity)
     }
     
-    func stopMovement(for entity: GKEntity, duration: TimeInterval) {
+    func stopMovement(for entity: Entity, duration: TimeInterval) {
         moveSystem?.stopMovementForDuration(for: entity, duration: duration)
     }
     
-    func stopAnimation(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
+    func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
@@ -94,5 +100,13 @@ class SystemDelegate {
             score = 30
         }
         addScore(by: score, for: entity)
+    }
+    
+    func runFadingAnimation(_ entity: Entity) {
+        spriteSystem?.runFadingAnimation(entity)
+    }
+    
+    func setLabel(_ entity: Entity, label: String) {
+        labelSystem?.setLabel(entity: entity, label: label)
     }
 }

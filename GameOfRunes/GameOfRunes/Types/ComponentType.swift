@@ -10,10 +10,12 @@ enum ComponentType {
     case moveComponent
     case spriteComponent
     case teamComponent
-    case timerComponent
+    case labelComponent
     case gestureComponent
     case healthComponent
     case manaComponent
     case scoreComponent
     case multiplierComponent
+    case playerComponent
+    case timerComponent
 }

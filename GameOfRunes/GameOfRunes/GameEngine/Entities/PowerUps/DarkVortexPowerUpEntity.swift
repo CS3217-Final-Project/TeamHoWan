@@ -11,6 +11,7 @@ import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
 class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
+    var fading = false
     var powerUpType: PowerUpType {
         .darkVortex
     }
@@ -18,11 +19,11 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
-
+    
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
         self.gameEngine = gameEngine
         super.init()
-
+        
         let animationNode = getAnimationNode(at: position, with: size)
         let spriteComponent = SpriteComponent(node: animationNode)
         spriteComponent.layerType = .powerUpAnimationLayer
@@ -34,29 +35,14 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
             maxAcceleration: 0.0,
             radius: .init(spriteComponent.node.size.width)
         )
-    
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        
+        addComponent(timerComponent)
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)
-        
-        // Timer will expire and cause the removal of the Power Up
-        Timer.scheduledTimer(
-            withTimeInterval: GameConfig.DarkVortexPowerUp.powerUpDuration,
-            repeats: false,
-            block: { [weak self] _ in
-                animationNode.run(
-                    .fadeOut(withDuration: GameConfig.DarkVortexPowerUp.fadeOutDuration),
-                    completion: {
-                        guard let entity = self else {
-                            return
-                        }
-                        gameEngine.remove(entity)
-                    }
-                )
-            }
-        )
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

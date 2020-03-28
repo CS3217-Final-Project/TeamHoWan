@@ -2,7 +2,7 @@
 //  TimerSystem.swift
 //  GameOfRunes
 //
-//  Created by Dong SiJi on 16/3/20.
+//  Created by Andy on 27/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
@@ -18,23 +18,35 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
     
     override func update(deltaTime seconds: TimeInterval) {
         for component in components {
-            updateComponent(component)
+            if component.isCountDown {
+                component.time -= seconds
+            } else {
+                component.time += seconds
+            }
+
+            updateComponent(component, seconds)
         }
     }
     
-    private func updateComponent(_ component: TimerComponent) {
-        guard CACurrentMediaTime() - component.lastUpdatedTime >= 1.0 else {
+    func updateComponent(_ component: TimerComponent, _ seconds: TimeInterval) {
+        guard let entity = component.entity as? Entity else {
             return
         }
-        
-        component.lastUpdatedTime = CACurrentMediaTime()
-        
-        if component.isCountdown {
-            component.currentTime = max(0, component.currentTime - 1)
-            // TODO: Check if is 0, then propagate call to game state machine for lose state.
-        } else {
-            component.currentTime += 1
-//            gameEngine?.spawnEnemy()
+        if component.time <= 0, var powerUpEntity = entity as? PowerUpEntity {
+            if !powerUpEntity.fading {
+                component.time = powerUpEntity.powerUpType.getFadeOutDuration
+                powerUpEntity.fading = true
+                gameEngine?.runFadingAnimation(entity)
+            } else {
+                gameEngine?.remove(entity)
+            }
+            return
+        }
+        if entity is TimerEntity {
+            let currentTime = component.time
+            if Int(currentTime) != Int(currentTime - seconds) {
+                gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
+            }
         }
     }
     

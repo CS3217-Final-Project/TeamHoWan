@@ -26,8 +26,7 @@ class BaseUnitTest: XCTestCase {
     var enemyEntity: EnemyEntity!
     // Note: This is not the gesture entity from enemyEntity.
     var gestureEntity: MockGestureEntity!
-    var playerHealthEntity: MockPlayerHealthEntity!
-    var playerManaEntity: MockPlayerManaEntity!
+    var playerEntity: PlayerEntity!
     var endPointEntity: MockEndPointEntity!
     var darkVortexPowerUpEntity: DarkVortexPowerUpEntity!
     var droppedManaEntity: MockDroppedManaEntity!
@@ -53,14 +52,12 @@ class BaseUnitTest: XCTestCase {
         droppedManaNode = MockDroppedManaNode(position: CGPoint(), responder: gameEngine)
             .withEnabledSuperclassSpy()
         
-        timerEntity = MockTimerEntity(gameEngine: gameEngine, isCountdown: false, initialTimerValue: 0)
+        timerEntity = MockTimerEntity(gameEngine: gameEngine, timerNode: SKLabelNode(), initialTimerValue: 0)
             .withEnabledSuperclassSpy()
         enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine, scale: CGFloat(1))
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
             .withEnabledSuperclassSpy()
-        playerHealthEntity = MockPlayerHealthEntity(healthPoints: healthBarNode.livesLeft, healthBarNode: healthBarNode)
-            .withEnabledSuperclassSpy()
-        playerManaEntity = MockPlayerManaEntity(manaPoints: manaBarNode.currentManaPoints, manaBarNode: manaBarNode)
+        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode)
             .withEnabledSuperclassSpy()
         endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: SKSpriteNode())
             .withEnabledSuperclassSpy()
@@ -68,9 +65,9 @@ class BaseUnitTest: XCTestCase {
         droppedManaEntity = MockDroppedManaEntity(position: CGPoint(), manaPoints: 10, gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
         
-        healthComponent = MockHealthComponent(healthPoints: healthBarNode.livesLeft, healthBarNode: healthBarNode)
+        healthComponent = MockHealthComponent(healthPoints: healthBarNode.livesLeft)
             .withEnabledSuperclassSpy()
-        manaComponent = MockManaComponent(manaPoints: manaBarNode.currentManaPoints, manaBarNode: manaBarNode)
+        manaComponent = MockManaComponent(manaPoints: manaBarNode.currentManaPoints)
             .withEnabledSuperclassSpy()
     }
     
@@ -88,8 +85,7 @@ class BaseUnitTest: XCTestCase {
         timerEntity = nil
         enemyEntity = nil
         gestureEntity = nil
-        playerHealthEntity = nil
-        playerManaEntity = nil
+        playerEntity = nil
         endPointEntity = nil
         darkVortexPowerUpEntity = nil
         droppedManaEntity = nil

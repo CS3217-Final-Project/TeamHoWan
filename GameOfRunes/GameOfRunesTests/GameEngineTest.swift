@@ -15,8 +15,7 @@ class GameEngineTest: BaseUnitTest {
     override func setUp() {
         super.setUp()
         stub(gameEngine) { stub in
-            when(stub.playerHealthEntity.get).thenReturn(playerHealthEntity)
-            when(stub.playerManaEntity.get).thenReturn(playerManaEntity)
+            when(stub.playerEntity.get).thenReturn(playerEntity)
         }
     }
     
@@ -105,7 +104,7 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.decreasePlayerHealth()
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
-        XCTAssertTrue(playerHealthEntity.component(ofType: HealthComponent.self)?.healthPoints == 2)
+        XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 4)
     }
     
     func testMinusHealthPoints() {
@@ -206,23 +205,23 @@ class GameEngineTest: BaseUnitTest {
     func testIncreasePlayerMana() {
         gameEngine.increasePlayerMana(by: 10)
         verify(gameEngine, times(1)).increasePlayerMana(by: anyInt())
-        XCTAssertTrue(playerManaEntity.component(ofType: ManaComponent.self)?.manaPoints == 10)
+        XCTAssertTrue(playerEntity.component(ofType: ManaComponent.self)?.manaPoints == 10)
     }
     
     func testDecreasePlayerMana() {
         gameEngine.increasePlayerMana(by: 10)
         verify(gameEngine, times(1)).increasePlayerMana(by: anyInt())
-        XCTAssertTrue(playerManaEntity.component(ofType: ManaComponent.self)?.manaPoints == 10)
+        XCTAssertTrue(playerEntity.component(ofType: ManaComponent.self)?.manaPoints == 10)
         
         gameEngine.decreasePlayerMana(by: 10)
         verify(gameEngine, times(2)).increasePlayerMana(by: anyInt())
         verify(gameEngine, times(1)).decreasePlayerMana(by: anyInt())
-        XCTAssertTrue(playerManaEntity.component(ofType: ManaComponent.self)?.manaPoints == 0)
+        XCTAssertTrue(playerEntity.component(ofType: ManaComponent.self)?.manaPoints == 0)
         
         gameEngine.decreasePlayerMana(by: 10)
         verify(gameEngine, times(3)).increasePlayerMana(by: anyInt())
         verify(gameEngine, times(2)).decreasePlayerMana(by: anyInt())
-        XCTAssertTrue(playerManaEntity.component(ofType: ManaComponent.self)?.manaPoints == 0)
+        XCTAssertTrue(playerEntity.component(ofType: ManaComponent.self)?.manaPoints == 0)
     }
     
     func testDroppedManaTapped() {

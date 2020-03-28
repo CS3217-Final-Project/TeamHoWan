@@ -31,7 +31,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
         
         if isBodyAEnemy {
-            guard let enemyEntity = nodeA.component?.entity else {
+            guard let enemyEntity = nodeA.component?.entity as? Entity else {
                 return
             }
             if isBodyBEndPoint {
@@ -43,7 +43,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
                 activatePowerUp(on: enemyEntity, powerUpType: powerUpEntity.powerUpType)
             }
         } else if isBodyBEnemy {
-            guard let enemyEntity = nodeB.component?.entity else {
+            guard let enemyEntity = nodeB.component?.entity as? Entity else {
                 return
             }
             if isBodyAEndPoint {
@@ -57,7 +57,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
-    func activatePowerUp(on enemy: GKEntity, powerUpType: PowerUpType) {
+    func activatePowerUp(on enemy: Entity, powerUpType: PowerUpType) {
         switch powerUpType {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)

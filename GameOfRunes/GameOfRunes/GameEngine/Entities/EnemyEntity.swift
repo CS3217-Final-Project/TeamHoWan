@@ -43,6 +43,8 @@ class EnemyEntity: Entity {
             ),
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
+        
+        spriteComponent.layerType = .enemyLayer
 
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,

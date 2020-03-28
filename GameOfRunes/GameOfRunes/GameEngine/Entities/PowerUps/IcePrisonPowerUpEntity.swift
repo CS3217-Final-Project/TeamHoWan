@@ -11,6 +11,7 @@ import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
 class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
+    var fading = false
     var powerUpType: PowerUpType {
         .icePrison
     }
@@ -20,8 +21,8 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     }
     
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
-        self.gameEngine = gameEngine
         super.init()
+        self.gameEngine = gameEngine
         
         let animationNode = getCastingAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
@@ -36,22 +37,8 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         
         addComponent(animationSpriteComponent)
         
-        // Timer will expire and cause the removal of the Power Up
-        Timer.scheduledTimer(
-            withTimeInterval: GameConfig.IcePrisonPowerUp.fadeOutDuration,
-            repeats: false,
-            block: { [weak self] _ in
-                animationNode.run(
-                    .fadeOut(withDuration: GameConfig.IcePrisonPowerUp.fadeOutDuration),
-                    completion: {
-                        guard let entity = self else {
-                            return
-                        }
-                        gameEngine.remove(entity)
-                    }
-                )
-            }
-        )
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
+        addComponent(timerComponent)
     }
     
     @available(*, unavailable)

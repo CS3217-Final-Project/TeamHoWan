@@ -10,19 +10,19 @@ import GameplayKit
 
 class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     private weak var gameEngine: GameEngine?
-
+    
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         super.init(componentClass: SpriteComponent.self)
     }
-
+    
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
-
+        
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-
+        
         gameEngine?.gameScene?.addNodeToLayer(layer: spriteComponent.layerType, node: spriteComponent.node)
     }
     
@@ -39,10 +39,20 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         super.removeComponent(component)
     }
     
-    func stopAnimationForDuration(for entity: GKEntity, duration: TimeInterval, animationNodeKey: String) {
+    func runFadingAnimation(_ entity: Entity) {
+        guard let powerUpEntity = entity as? PowerUpEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+                return
+        }
+        spriteComponent.node.run(
+            .fadeOut(withDuration: powerUpEntity.powerUpType.getFadeOutDuration)
+        )
+    }
+    
+    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
         guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
             let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
-            return
+                return
         }
         
         // Hack

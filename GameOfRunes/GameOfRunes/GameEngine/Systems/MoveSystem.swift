@@ -65,7 +65,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 
 /** Extension for Power Up implementations */
 extension MoveSystem {
-    func stopMovementForDuration(for entity: GKEntity, duration: TimeInterval) {
+    func stopMovementForDuration(for entity: Entity, duration: TimeInterval) {
         guard let entityMoveComponent = entity.component(ofType: MoveComponent.self) else {
             return
         }
