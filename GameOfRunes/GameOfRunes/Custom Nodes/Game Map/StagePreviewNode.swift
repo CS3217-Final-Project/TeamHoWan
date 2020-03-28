@@ -14,7 +14,6 @@ class StagePreviewNode: SKSpriteNode {
     var selectedStage: Stage? {
         didSet {
             guard let stage = selectedStage else {
-                
                 return
             }
             labelNode.category = stage.category
@@ -32,13 +31,14 @@ class StagePreviewNode: SKSpriteNode {
         }
     }
     
-    init(width: CGFloat , position: CGPoint = .zero) {
+    init(width: CGFloat, position: CGPoint = .zero) {
         labelNode = .init()
         battleNode = .init()
         let texture = SKTexture(imageNamed: "stage-preview")
         let size = texture.size().scaleTo(width: width)
         super.init(texture: texture, color: .clear, size: size)
         
+        isUserInteractionEnabled = true
         self.position = position
         addChild(labelNode)
         addChild(battleNode)

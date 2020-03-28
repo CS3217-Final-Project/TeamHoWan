@@ -15,8 +15,20 @@ class GameMapScene: SKScene {
     private var stagePreviewNode: StagePreviewNode!
     private var selectedStageNode: StageNode? {
         didSet {
-            stagePreviewNode.selectedStage = selectedStageNode?.stage
-            stagePreviewNode.isHidden = selectedStageNode == nil
+            if oldValue == nil, selectedStageNode == nil {
+                return
+            }
+            
+            guard let stageNode = selectedStageNode else {
+                stagePreviewNode.selectedStage = nil
+                stagePreviewNode.run(.fadeOut(withDuration: 0.25))
+                return
+            }
+            
+            stagePreviewNode.selectedStage = stageNode.stage
+            if stagePreviewNode.alpha.isZero {
+                stagePreviewNode.run(.fadeIn(withDuration: 0.25))
+            }
         }
     }
     
@@ -89,10 +101,6 @@ class GameMapScene: SKScene {
         print("yRatio:", tapPosition.y / (mapSize.height / 2))
         print("---------------------------")
         
-        resetSelectedStageNode()
-    }
-    
-    private func resetSelectedStageNode() {
         selectedStageNode?.selected = false
         selectedStageNode = nil
     }
@@ -102,10 +110,11 @@ class GameMapScene: SKScene {
 extension GameMapScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         if tappedNode.buttonType == .stageNode {
-            resetSelectedStageNode()
+            selectedStageNode?.selected = false
             selectedStageNode = tappedNode as? StageNode
             selectedStageNode?.selected = true
         }
+        print("tapped")
     }
 }
 
@@ -208,8 +217,8 @@ extension GameMapScene {
     private func setUpStagePreview() {
         stagePreviewNode = .init(width: size.width)
         stagePreviewNode.position = .init(x: 0.0, y: (size.height - stagePreviewNode.size.height) / 2)
+        stagePreviewNode.alpha = .zero
         camera?.addChild(stagePreviewNode)
-        selectedStageNode = nil
     }
 }
 
