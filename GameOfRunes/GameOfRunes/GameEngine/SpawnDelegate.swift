@@ -64,7 +64,7 @@ class SpawnDelegate {
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = gameEngine.gameScene?.size,
-            let gestureEntity = enemyEntity.gestureEntity else {
+            let gestureEntity = enemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
                 return
         }
 

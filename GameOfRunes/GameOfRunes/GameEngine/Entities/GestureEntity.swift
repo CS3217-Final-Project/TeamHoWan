@@ -9,21 +9,20 @@
 import GameplayKit
 
 class GestureEntity: Entity {
-    weak var parentEntity: GKEntity?
     override var type: EntityType {
         .gestureEntity
     }
 
-    init(gesture: CustomGesture, parent: GKEntity) {
-        self.parentEntity = parent
-
+    init(gesture: CustomGesture, parent: Entity) {
         super.init()
         
         let spriteComponent = SpriteComponent(gesture: gesture)
         let gestureComponent = GestureComponent(gesture: gesture)
+        let parentEntityComponent = ParentEntityComponent(parent)
 
         addComponent(spriteComponent)
         addComponent(gestureComponent)
+        addComponent(parentEntityComponent)
     }
 
     @available(*, unavailable)

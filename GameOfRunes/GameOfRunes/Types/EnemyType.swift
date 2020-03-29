@@ -19,15 +19,49 @@ enum EnemyType: String, CaseIterable {
 
     var health: Int {
         switch self {
-        default:
+        // normal monsters
+        case .orc1, .orc2:
+            return 2
+        // faster but less hp
+        case .orc3:
             return 1
+            
+        // elite monsters
+        case .troll1, .troll2:
+            return 3
+        // faster but less hp
+        case .troll3:
+            return 2
+        
+        // boss
+        case .evilKnight:
+            return 5
+        }
+    }
+    
+    var speed: Float {
+        switch self {
+        case .orc1, .troll1:
+            return GameConfig.Enemy.slowMovementSpeed
+        case .orc2, .troll2:
+            return GameConfig.Enemy.normalMovementSpeed
+        case .orc3, .troll3:
+            return GameConfig.Enemy.fastMovementSpeed
+        case .evilKnight:
+            return GameConfig.Enemy.bossMovementSpeed
         }
     }
     
     var gesturesAvailable: [CustomGesture] {
         switch self {
-        default:
-            return CustomGesture.allCases
+        case .orc1, .orc2, .orc3:
+            return [.verticalLine, .arrowUp, .arrowLeft, .lightning]
+        case .troll1, .troll2, .troll3:
+            return [.pShape, .mShape, .rShape]
+        case .evilKnight:
+            // can remove first row for increased difficulty
+            return [.verticalLine, .arrowUp, .arrowLeft, .lightning] +
+                [.pShape, .mShape, .rShape, .ribbon, .contortedCShape]
         }
     }
 

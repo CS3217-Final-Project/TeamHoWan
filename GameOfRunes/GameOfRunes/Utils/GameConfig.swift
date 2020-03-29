@@ -25,13 +25,18 @@ enum GameConfig {
 
         // Note: monster difficulties must be unique
         static let nilDifficulty: Int = 0
-        static let evilKnightDifficulty: Int = 1
-        static let orc1Difficulty: Int = 2
-        static let orc2Difficulty: Int = 3
-        static let orc3Difficulty: Int = 4
-        static let troll1Difficulty: Int = 5
-        static let troll2Difficulty: Int = 6
-        static let troll3Difficulty: Int = 7
+        static let orc1Difficulty: Int = 1
+        static let orc2Difficulty: Int = 2
+        static let orc3Difficulty: Int = 3
+        static let troll1Difficulty: Int = 4
+        static let troll2Difficulty: Int = 5
+        static let troll3Difficulty: Int = 6
+        static let evilKnightDifficulty: Int = 7
+        
+        static let slowMovementSpeed: Float = 125.0
+        static let normalMovementSpeed: Float = 150.0
+        static let fastMovementSpeed: Float = 200.0
+        static let bossMovementSpeed: Float = 75.0
     }
 
     enum Health {

@@ -85,7 +85,7 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         let gestureEntity = gameEngine.entities(for: .gestureEntity).first as? GestureEntity
         let enemyEntity = gameEngine.entities(for: .enemyEntity).first as? EnemyEntity
-        XCTAssertTrue(gestureEntity?.parentEntity == enemyEntity)
+        XCTAssertTrue(gestureEntity?.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
     }
     
     func testMoveComponents() {
@@ -130,7 +130,7 @@ class GameEngineTest: BaseUnitTest {
                 return
         }
         
-        XCTAssertTrue(gestureEntity.parentEntity == enemyEntity)
+        XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
         gameEngine.enemyForceRemoved(enemyEntity)
         verify(gameEngine, times(1)).enemyForceRemoved(any(GKEntity.self))
@@ -155,7 +155,7 @@ class GameEngineTest: BaseUnitTest {
                 return
         }
         
-        XCTAssertTrue(gestureEntity.parentEntity == enemyEntity)
+        XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
         gameEngine.enemyReachedLine(enemyEntity)
         verify(gameEngine, times(1)).enemyReachedLine(any(GKEntity.self))
@@ -175,7 +175,7 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         let gestureEntity = gameEngine.entities(for: .gestureEntity).first as? GestureEntity
         let enemyEntity = gameEngine.entities(for: .enemyEntity).first as? EnemyEntity
-        XCTAssertTrue(gestureEntity?.parentEntity == enemyEntity)
+        XCTAssertTrue(gestureEntity?.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
 
         guard let gesture = gestureEntity?.component(ofType: GestureComponent.self)?.gesture else {
             XCTFail("Fatal Error, gesture entity does not have a gesture.")

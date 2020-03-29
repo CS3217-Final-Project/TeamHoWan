@@ -110,7 +110,8 @@ extension MoveSystem {
     }
     
     func stopMovementForDuration(for entity: Entity, duration: TimeInterval) {
-        guard let entityMoveComponent = entity.component(ofType: MoveComponent.self) else {
+        guard let entityMoveComponent = entity.component(ofType: MoveComponent.self),
+            let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType else {
             return
         }
 
@@ -120,7 +121,7 @@ extension MoveSystem {
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entityMoveComponent.activePauses -= 1
             if entityMoveComponent.activePauses == 0 {
-                entityMoveComponent.maxSpeed = 150.0 // arbitrary constant, will be refactored to meta-data
+                entityMoveComponent.maxSpeed = enemyType.speed
             }
         })
         
