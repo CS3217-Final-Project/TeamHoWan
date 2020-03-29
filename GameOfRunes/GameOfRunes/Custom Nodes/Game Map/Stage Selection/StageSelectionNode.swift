@@ -37,6 +37,11 @@ class StageSelectionNode: SKSpriteNode {
         
         isUserInteractionEnabled = true
         self.position = position
+        
+        stageOverviewNode.zPosition = 50
+        cancelNode.zPosition = 50
+        playNode.zPosition = 50
+        
         addChild(stageOverviewNode)
         addChild(cancelNode)
         addChild(playNode)
@@ -49,8 +54,7 @@ class StageSelectionNode: SKSpriteNode {
     
     private func layoutStageOverviewNode() {
         stageOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.775))
-        stageOverviewNode.position = .zero + .init(dx: -size.width / 4.5, dy: size.height / 11)
-        stageOverviewNode.zPosition = 50
+        stageOverviewNode.position = .init(x: -size.width / 4.5, y: size.height / 11)
     }
     
     private func layoutAvatarOverviewNode() {
@@ -59,13 +63,11 @@ class StageSelectionNode: SKSpriteNode {
     
     private func layoutCancelNode() {
         cancelNode.size = cancelNode.size.scaleTo(width: size.width * 0.4)
-        cancelNode.position = .zero + .init(dx: -size.width / 4.5, dy: -size.height / 2.75)
-        cancelNode.zPosition = 50
+        cancelNode.position = .init(x: -size.width / 4.5, y: -size.height / 2.75)
     }
     
     private func layoutPlayNode() {
         playNode.size = playNode.size.scaleTo(width: size.width * 0.4)
-        playNode.position = .zero + .init(dx: size.width / 4.5, dy: -size.height / 2.75)
-        playNode.zPosition = 50
+        playNode.position = .init(x: size.width / 4.5, y: -size.height / 2.75)
     }
 }

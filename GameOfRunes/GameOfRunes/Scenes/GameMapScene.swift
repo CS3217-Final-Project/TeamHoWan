@@ -166,7 +166,7 @@ extension GameMapScene {
         // TODO: change to access from storage when persistence is implemented
         let stage1 = Stage(
             name: "The Beginning",
-            id: "Peasant Land 1",
+            groupName: "Peasant Land 1",
             category: .normal,
             relativePositionRatioInMap: (x: 0.6, y: -0.55),
             arena: .arena1,
@@ -177,7 +177,7 @@ extension GameMapScene {
         
         let stage2 = Stage(
             name: "Warrior Arena",
-            id: "Peasant Land 2",
+            groupName: "Peasant Land 2",
             category: .normal,
             relativePositionRatioInMap: (x: 0.17, y: -0.43),
             arena: .arena1,
@@ -188,7 +188,7 @@ extension GameMapScene {
         
         let stage3 = Stage(
             name: "Cathedral Mayhem",
-            id: "Peasant Land 3",
+            groupName: "Peasant Land 3",
             category: .normal,
             relativePositionRatioInMap: (x: 0.66, y: -0.28),
             arena: .arena1,
@@ -199,7 +199,7 @@ extension GameMapScene {
         
         let stage4 = Stage(
             name: "The Crossing",
-            id: "Peasant Land 4",
+            groupName: "Peasant Land 4",
             category: .boss,
             relativePositionRatioInMap: (x: 0.25, y: -0.22),
             arena: .arena1,

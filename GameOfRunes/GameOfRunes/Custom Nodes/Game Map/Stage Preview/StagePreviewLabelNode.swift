@@ -9,8 +9,24 @@
 import SpriteKit
 
 class StagePreviewLabelNode: SKSpriteNode {
-    let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    let idLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    private let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    private let groupNameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    var stageName: String {
+        get {
+            nameLabelNode.text ?? ""
+        }
+        set {
+            nameLabelNode.text = newValue
+        }
+    }
+    var stageGroupName: String {
+        get {
+            groupNameLabelNode.text ?? ""
+        }
+        set {
+            groupNameLabelNode.text = newValue
+        }
+    }
     var category: Stage.Category? {
         didSet {
             guard let category = category, oldValue != category else {
@@ -26,7 +42,7 @@ class StagePreviewLabelNode: SKSpriteNode {
                 return
             }
             layoutNameLabelNode()
-            layoutIdLabelNode()
+            layoutGroupLabelNode()
         }
     }
     
@@ -35,11 +51,11 @@ class StagePreviewLabelNode: SKSpriteNode {
         
         nameLabelNode.fontColor = .white
         nameLabelNode.zPosition = 1
-        idLabelNode.fontColor = .white
-        idLabelNode.zPosition = 1
+        groupNameLabelNode.fontColor = .white
+        groupNameLabelNode.zPosition = 1
         
         addChild(nameLabelNode)
-        addChild(idLabelNode)
+        addChild(groupNameLabelNode)
     }
     
     @available(*, unavailable)
@@ -52,8 +68,8 @@ class StagePreviewLabelNode: SKSpriteNode {
         nameLabelNode.fontSize = size.height / 4
     }
     
-    private func layoutIdLabelNode() {
-        idLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
-        idLabelNode.fontSize = size.height / 7
+    private func layoutGroupLabelNode() {
+        groupNameLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
+        groupNameLabelNode.fontSize = size.height / 7
     }
 }

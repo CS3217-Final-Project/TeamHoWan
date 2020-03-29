@@ -9,15 +9,31 @@
 import SpriteKit
 
 class StageOverviewLabelNode: SKSpriteNode {
-    let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    let idLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    private let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    private let groupNameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+    var stageName: String {
+        get {
+            nameLabelNode.text ?? ""
+        }
+        set {
+            nameLabelNode.text = newValue
+        }
+    }
+    var stageGroupName: String {
+        get {
+            groupNameLabelNode.text ?? ""
+        }
+        set {
+            groupNameLabelNode.text = newValue
+        }
+    }
     override var size: CGSize {
         didSet {
             guard oldValue != size else {
                 return
             }
             layoutNameLabelNode()
-            layoutIdLabelNode()
+            layoutGroupNameLabelNode()
         }
     }
     
@@ -27,11 +43,11 @@ class StageOverviewLabelNode: SKSpriteNode {
         
         nameLabelNode.fontColor = .black
         nameLabelNode.zPosition = 1
-        idLabelNode.fontColor = .black
-        idLabelNode.zPosition = 1
+        groupNameLabelNode.fontColor = .black
+        groupNameLabelNode.zPosition = 1
         
         addChild(nameLabelNode)
-        addChild(idLabelNode)
+        addChild(groupNameLabelNode)
     }
     
     @available(*, unavailable)
@@ -44,8 +60,8 @@ class StageOverviewLabelNode: SKSpriteNode {
         nameLabelNode.fontSize = size.height / 9
     }
     
-    private func layoutIdLabelNode() {
-        idLabelNode.position = .init(x: 0.0, y: size.height / 10)
-        idLabelNode.fontSize = size.height / 11
+    private func layoutGroupNameLabelNode() {
+        groupNameLabelNode.position = .init(x: 0.0, y: size.height / 10)
+        groupNameLabelNode.fontSize = size.height / 11
     }
 }

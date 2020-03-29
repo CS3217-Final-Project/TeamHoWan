@@ -27,6 +27,8 @@
 		4A768F172430173C000F3F05 /* PlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F162430173C000F3F05 /* PlayNode.swift */; };
 		4A768F1924302079000F3F05 /* StageOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1824302079000F3F05 /* StageOverviewNode.swift */; };
 		4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */; };
+		4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */; };
+		4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */; };
 		4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */; };
 		4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */; };
 		4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA508C72415E0FF00D9ADE4 /* Dragon Fire.ttf */; };
@@ -151,6 +153,8 @@
 		4A768F162430173C000F3F05 /* PlayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayNode.swift; sourceTree = "<group>"; };
 		4A768F1824302079000F3F05 /* StageOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewNode.swift; sourceTree = "<group>"; };
 		4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewLabelNode.swift; sourceTree = "<group>"; };
+		4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewDescriptionNode.swift; sourceTree = "<group>"; };
+		4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedLabelsNode.swift; sourceTree = "<group>"; };
 		4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaNode.swift; sourceTree = "<group>"; };
 		4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HVD_Comic_Serif_Pro.otf; sourceTree = "<group>"; };
 		4AA508C72415E0FF00D9ADE4 /* Dragon Fire.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dragon Fire.ttf"; sourceTree = "<group>"; };
@@ -288,15 +292,10 @@
 			isa = PBXGroup;
 			children = (
 				4A09C4F7242FCBDD00CA7625 /* StageNode.swift */,
-				4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */,
-				4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */,
-				4A09C4FE242FE50300CA7625 /* BattleNode.swift */,
 				4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */,
-				4A768F102430148E000F3F05 /* StageSelectionNode.swift */,
-				4A768F142430157F000F3F05 /* CancelNode.swift */,
-				4A768F162430173C000F3F05 /* PlayNode.swift */,
-				4A768F1824302079000F3F05 /* StageOverviewNode.swift */,
-				4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */,
+				4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */,
+				4A768F2124308D08000F3F05 /* Stage Preview */,
+				4A768F2224308D23000F3F05 /* Stage Selection */,
 			);
 			path = "Game Map";
 			sourceTree = "<group>";
@@ -308,6 +307,37 @@
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A768F2024308CF5000F3F05 /* Stage Overview */ = {
+			isa = PBXGroup;
+			children = (
+				4A768F1824302079000F3F05 /* StageOverviewNode.swift */,
+				4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */,
+				4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */,
+			);
+			path = "Stage Overview";
+			sourceTree = "<group>";
+		};
+		4A768F2124308D08000F3F05 /* Stage Preview */ = {
+			isa = PBXGroup;
+			children = (
+				4A09C4F9242FE41900CA7625 /* StagePreviewNode.swift */,
+				4A09C4FC242FE4DF00CA7625 /* StagePreviewLabelNode.swift */,
+				4A09C4FE242FE50300CA7625 /* BattleNode.swift */,
+			);
+			path = "Stage Preview";
+			sourceTree = "<group>";
+		};
+		4A768F2224308D23000F3F05 /* Stage Selection */ = {
+			isa = PBXGroup;
+			children = (
+				4A768F102430148E000F3F05 /* StageSelectionNode.swift */,
+				4A768F162430173C000F3F05 /* PlayNode.swift */,
+				4A768F142430157F000F3F05 /* CancelNode.swift */,
+				4A768F2024308CF5000F3F05 /* Stage Overview */,
+			);
+			path = "Stage Selection";
 			sourceTree = "<group>";
 		};
 		4A8F0AA624191B6D00CD730B /* Player Area */ = {
@@ -848,6 +878,7 @@
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */,
 				C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */,
+				4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+addGlow.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
@@ -889,6 +920,7 @@
 				4AA5B37A2417625D008D4953 /* ManaBarNode.swift in Sources */,
 				4A768F1924302079000F3F05 /* StageOverviewNode.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
+				4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */,
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,

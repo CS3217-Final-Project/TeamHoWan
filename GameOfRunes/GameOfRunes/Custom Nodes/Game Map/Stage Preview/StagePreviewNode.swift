@@ -18,8 +18,8 @@ class StagePreviewNode: SKSpriteNode {
                 return
             }
             labelNode.category = stage.category
-            labelNode.nameLabelNode.text = stage.name
-            labelNode.idLabelNode.text = stage.id
+            labelNode.stageName = stage.name
+            labelNode.stageGroupName = stage.groupName
             
             achievementBadgeNode.achievementLevel = stage.achievement
         }
@@ -46,6 +46,11 @@ class StagePreviewNode: SKSpriteNode {
         
         isUserInteractionEnabled = true
         self.position = position
+        
+        labelNode.zPosition = 1
+        achievementBadgeNode.zPosition = 1
+        battleNode.zPosition = 1
+        
         addChild(labelNode)
         addChild(achievementBadgeNode)
         addChild(battleNode)
@@ -58,19 +63,16 @@ class StagePreviewNode: SKSpriteNode {
     
     private func layoutLabelNode() {
         labelNode.size = size.applying(.init(scaleX: 0.5, y: 0.55))
-        labelNode.position = .zero + .init(dx: -size.width / 7, dy: 0.0)
-        labelNode.zPosition = 1
+        labelNode.position = .init(x: -size.width / 7, y: 0.0)
     }
     
     private func layoutAchievementLevelNode() {
         achievementBadgeNode.size = achievementBadgeNode.size.scaleTo(height: size.height * 0.5)
-        achievementBadgeNode.position = .zero + .init(dx: size.width / 5.85, dy: 0.0)
-        achievementBadgeNode.zPosition = 1
+        achievementBadgeNode.position = .init(x: size.width / 5.85, y: 0.0)
     }
     
     private func layoutBattleNode() {
         battleNode.size = battleNode.size.scaleTo(height: size.height * 0.5)
-        battleNode.position = .zero + .init(dx: size.width / 3.25, dy: 0.0)
-        battleNode.zPosition = 1
+        battleNode.position = .init(x: size.width / 3.25, y: 0.0)
     }
 }
