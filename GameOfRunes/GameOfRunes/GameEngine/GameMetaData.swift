@@ -6,6 +6,8 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
+import Foundation
+
 class GameMetaData {
     // TODO: maybe change this to current avatar.
     private (set) var availablePowerUps: [PowerUpType]
@@ -21,7 +23,7 @@ class GameMetaData {
     var score: Int
     var selectedPowerUp: PowerUpType?
     var levelWaves: EnemySpawnUnit
-    var levelSpawnInterval: Double
+    var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int
 
     init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,

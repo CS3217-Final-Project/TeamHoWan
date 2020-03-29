@@ -33,12 +33,9 @@ class SpawnDelegate {
     }
 
     func startNextSpawnWave() {
-        guard let gameMetaData = gameMetaData else {
-            return
-        }
-
         // Check that there are still waves left
-        guard !gameMetaData.levelWaves.isEmpty else {
+        guard let gameMetaData = gameMetaData,
+            !gameMetaData.levelWaves.isEmpty else {
             return
         }
 
@@ -59,11 +56,8 @@ class SpawnDelegate {
      */
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType) {
         // No need to spawn enemy if type is `.none`
-        guard enemyType != .none else {
-            return
-        }
-
-        guard let gameEngine = gameEngine,
+        guard enemyType != .none,
+            let gameEngine = gameEngine,
             let gameMetaData = gameMetaData else {
             return
         }

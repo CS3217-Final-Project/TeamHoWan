@@ -22,12 +22,12 @@ struct LevelCreator {
         return levelData
     }
 
-    static func getLevelSpawnInterval(levelNumber: Int) throws -> Double {
+    static func getLevelSpawnInterval(levelNumber: Int) throws -> TimeInterval {
         let (_, levelSpawnInterval) = try getLevelDataAndSpawnInterval(levelNumber: levelNumber)
         return levelSpawnInterval
     }
 
-    private static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, Double) {
+    private static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
         switch levelNumber {
         case -1:
             return testLevel
@@ -42,7 +42,7 @@ struct LevelCreator {
         }
     }
 
-    static var level1: (EnemySpawnUnit, Double) {
+    static var level1: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicOrcUnit = try EnemySpawnUnit(.orc1)
             let basicTrollUnit = try EnemySpawnUnit(.troll1)
@@ -55,7 +55,7 @@ struct LevelCreator {
         }
     }
 
-    static var level2: (EnemySpawnUnit, Double) {
+    static var level2: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2)
             let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .none, .evilKnight)
@@ -68,7 +68,7 @@ struct LevelCreator {
         }
     }
 
-    static var level3: (EnemySpawnUnit, Double) {
+    static var level3: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .evilKnight, .evilKnight)
             let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2, .orc1)
@@ -81,7 +81,7 @@ struct LevelCreator {
         }
     }
 
-    static var testLevel: (EnemySpawnUnit, Double) {
+    static var testLevel: (EnemySpawnUnit, TimeInterval) {
         do {
             let fullLevel = try EnemySpawnUnit(.orc1)
             let levelSpawnInterval = 1.0
@@ -94,28 +94,6 @@ struct LevelCreator {
 
 /** Extension for automatically creating levels based on desired difficulty */
 extension LevelCreator {
-    private static var monsterToDifficultyMap: [EnemyType: Int] = [
-        .evilKnight: GameConfig.Enemy.evilKnightDifficulty,
-        .orc1: GameConfig.Enemy.orc1Difficulty,
-        .orc2: GameConfig.Enemy.orc2Difficulty,
-        .orc3: GameConfig.Enemy.orc3Difficulty,
-        .troll1: GameConfig.Enemy.troll1Difficulty,
-        .troll2: GameConfig.Enemy.troll2Difficulty,
-        .troll3: GameConfig.Enemy.troll3Difficulty,
-        .none: 0
-    ]
-
-    private static var difficultyToMonsterMap: [Int: EnemyType] = [
-        0: .none,
-        GameConfig.Enemy.evilKnightDifficulty: .evilKnight,
-        GameConfig.Enemy.orc1Difficulty: .orc1,
-        GameConfig.Enemy.orc2Difficulty: .orc2,
-        GameConfig.Enemy.orc3Difficulty: .orc3,
-        GameConfig.Enemy.troll1Difficulty: .troll1,
-        GameConfig.Enemy.troll2Difficulty: .troll2,
-        GameConfig.Enemy.troll3Difficulty: .troll3
-    ]
-
     /**
      Creates a Level whose total difficulty approaches `targetDifficulty` using the
      monsters found in `availableMonsters`.
@@ -147,10 +125,7 @@ extension LevelCreator {
     static func convertMonsterToDifficulties(monsters: [EnemyType]) -> [Int] {
         var monsterDifficulties: [Int] = []
         for monster in monsters {
-            assert(monsterToDifficultyMap[monster] != nil)
-            if let monsterDifficulty = monsterToDifficultyMap[monster] {
-                monsterDifficulties.append(monsterDifficulty)
-            }
+            monsterDifficulties.append(monster.difficulty)
         }
         monsterDifficulties.sort()
         return monsterDifficulties
@@ -162,10 +137,8 @@ extension LevelCreator {
     static func convertDifficultiesToMonsters(difficulties: [Int]) -> [EnemyType] {
         var monsters: [EnemyType] = []
         for difficulty in difficulties {
-            assert(difficultyToMonsterMap[difficulty] != nil)
-            if let monster = difficultyToMonsterMap[difficulty] {
-                monsters.append(monster)
-            }
+            let monster = EnemyType.getMonsterTypeFromDifficulty(difficulty: difficulty)
+            monsters.append(monster)
         }
         return monsters
     }
@@ -196,7 +169,7 @@ extension LevelCreator {
      */
     private static func getProbabilityBucketIndex(bucket: [Double], probability: Double) -> Int {
         let convenienceBucket = [0] + bucket
-        for i in (1...(convenienceBucket.count - 1)) {
+        for i in 1..<convenienceBucket.count {
             if probability <= convenienceBucket[i] && probability >= convenienceBucket[i - 1] {
                 return i - 1
             }
