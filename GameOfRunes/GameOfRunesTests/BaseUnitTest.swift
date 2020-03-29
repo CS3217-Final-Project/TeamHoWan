@@ -62,7 +62,7 @@ class BaseUnitTest: XCTestCase {
         playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode,
                                         scoreNode: scoreNode)
             .withEnabledSuperclassSpy()
-        endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: SKSpriteNode())
+        endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: CollisionNode())
             .withEnabledSuperclassSpy()
         darkVortexPowerUpEntity = DarkVortexPowerUpEntity(gameEngine: gameEngine, at: CGPoint(), with: CGSize())
         droppedManaEntity = MockDroppedManaEntity(position: CGPoint(), manaPoints: 10, gameEngine: gameEngine)
