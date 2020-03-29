@@ -13,7 +13,7 @@ class MultiplierComponent: GKComponent, Component {
     var type: ComponentType {
         .multiplierComponent
     }
-    private var multipler: Int = 1
+    var multiplier: Int = 1
     
     override init() {
         super.init()
