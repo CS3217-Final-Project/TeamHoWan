@@ -41,7 +41,7 @@ class StageOverviewNode: SKSpriteNode {
     }
     
     init(size: CGSize) {
-        super.init(texture: nil, color: .clear, size: size)
+        super.init(texture: nil, color: .cyan, size: size)
         
         stageLabelNode.zPosition = 1
         arenaViewNode.zPosition = 1
