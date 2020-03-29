@@ -24,7 +24,7 @@ enum GameConfig {
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
 
         // Note: monster difficulties must be unique
-        static let noneDifficulty: Int = 0
+        static let nilDifficulty: Int = 0
         static let evilKnightDifficulty: Int = 1
         static let orc1Difficulty: Int = 2
         static let orc2Difficulty: Int = 3

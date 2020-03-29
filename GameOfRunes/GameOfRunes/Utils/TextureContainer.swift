@@ -30,11 +30,9 @@ enum TextureContainer {
     static func loadTextures() {
         // Load `enemiesTextures`
         EnemyType.allCases.forEach { enemyType in
-            if enemyType != .none {
-                let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
-                let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
-                enemiesTextures[enemyType] = enemyTextures
-            }
+            let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
+            let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
+            enemiesTextures[enemyType] = enemyTextures
         }
 
         // Load `manaTextures`

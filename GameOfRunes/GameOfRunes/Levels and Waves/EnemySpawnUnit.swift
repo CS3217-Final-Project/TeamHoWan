@@ -15,9 +15,11 @@
  - Note: The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]
  in `unit` will determine the spawn position of the enemy (which lane the
  enemy will be spawned at).
+ - Note: The type is optional (i.e. EnemyType?) because `nil` is used to represent
+ an empty lane. 
  */
 struct EnemySpawnUnit {
-    var unit: [[EnemyType]]
+    var unit: [[EnemyType?]]
     // The number of individual spawn waves in `EnemySpawnUnit`
     var count: Int {
         unit.count
@@ -37,7 +39,7 @@ struct EnemySpawnUnit {
     /**
     Initialiser with variadic parameters
      */
-    init(_ monsters: EnemyType...) throws {
+    init(_ monsters: EnemyType?...) throws {
         try self.init(monsters)
     }
 
@@ -45,19 +47,19 @@ struct EnemySpawnUnit {
     Initialiser to create a single spawn wave.
     - Note: At most `GameConfig.GamePlayScene.numLanes`
     monsters can be provided otherwise an error is thrown.
-    - Note: Can specify `.none` in order to keep the lane empty,
+    - Note: Can specify `nil` in order to keep the lane empty,
     subject to the constraints stated above.
     */
-    init(_ monsters: [EnemyType]) throws {
+    init(_ monsters: [EnemyType?]) throws {
         guard monsters.count <= GameConfig.GamePlayScene.numLanes else {
             throw LevelWaveError.tooManyEnemyUnits
         }
 
-        // Fill Up with `.none` placeholders
-        var emptyPlaceholders: [EnemyType] = []
+        // Fill Up with nil placeholders
+        var emptyPlaceholders: [EnemyType?] = []
         let numEmptyPlaceholders = GameConfig.GamePlayScene.numLanes - monsters.count
         if numEmptyPlaceholders != 0 {
-            emptyPlaceholders = Array(repeating: .none,
+            emptyPlaceholders = Array(repeating: nil,
                                       count: numEmptyPlaceholders)
         }
 
@@ -68,7 +70,7 @@ struct EnemySpawnUnit {
     /**
      Removes the first spawn wave from `unit` and returns it.
      */
-    mutating func removeFirstSpawnWave() -> [EnemyType] {
+    mutating func removeFirstSpawnWave() -> [EnemyType?] {
         assert(checkRepresentation())
         guard !isEmpty else {
             return []
@@ -95,11 +97,11 @@ struct EnemySpawnUnit {
     /**
      Checks that the ADT's representation invariants are not violated.
      Invariants are:
-     - Each spawn wave cannot be completely empty (i.e. only concists of `.none`)
+     - Each spawn wave cannot be completely empty (i.e. only consists of `nil`)
      - Each spawn wave cannot exceed `GameConfig.GamePlayScene.numLanes` monsters
      */
     private func checkRepresentation() -> Bool {
-        let noEmptyWavesCheck = !unit.contains(where: { $0.allSatisfy({ $0 == .none }) })
+        let noEmptyWavesCheck = !unit.contains(where: { $0.allSatisfy({ $0 == nil }) })
         let doesNotExceedNumLanesCheck = unit.allSatisfy({ $0.count == GameConfig.GamePlayScene.numLanes })
 
         return noEmptyWavesCheck && doesNotExceedNumLanesCheck

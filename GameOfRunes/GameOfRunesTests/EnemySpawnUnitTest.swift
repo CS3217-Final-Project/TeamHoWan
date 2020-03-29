@@ -12,19 +12,19 @@ import XCTest
 class EnemySpawnUnitTest: XCTestCase {
     var singleSquad: EnemySpawnUnit?
     var singleSquadWithPlaceholder: EnemySpawnUnit?
-    var singleSquadWithNoneInInit: EnemySpawnUnit?
+    var singleSquadWithNilInInit: EnemySpawnUnit?
 
     override func setUp() {
         super.setUp()
         singleSquad = try? EnemySpawnUnit(.orc1, .orc2, .orc3)
         singleSquadWithPlaceholder = try? EnemySpawnUnit([.orc1])
-        singleSquadWithNoneInInit = try? EnemySpawnUnit(.orc1, .none, .orc2)
+        singleSquadWithNilInInit = try? EnemySpawnUnit(.orc1, nil, .orc2)
     }
 
     override func tearDown() {
         singleSquad = nil
         singleSquadWithPlaceholder = nil
-        singleSquadWithNoneInInit = nil
+        singleSquadWithNilInInit = nil
         super.tearDown()
     }
 
@@ -39,7 +39,7 @@ class EnemySpawnUnitTest: XCTestCase {
     func testInit_success() {
         if let singleSquad = singleSquad {
             XCTAssertEqual(singleSquad.count, 1)
-            let unit: [EnemyType] = [.orc1, .orc2, .orc3]
+            let unit: [EnemyType?] = [.orc1, .orc2, .orc3]
             XCTAssertEqual(singleSquad.unit, [unit])
         } else {
             XCTFail("Should be able to initialise EnemySpawnUnit")
@@ -49,7 +49,7 @@ class EnemySpawnUnitTest: XCTestCase {
     func testInitWithPlaceholder_success() {
         if let singleSquadWithPlaceholder = singleSquadWithPlaceholder {
             XCTAssertEqual(singleSquadWithPlaceholder.count, 1)
-            let unit: [EnemyType] = [.orc1, .none, .none]
+            let unit: [EnemyType?] = [.orc1, nil, nil]
             XCTAssertEqual(singleSquadWithPlaceholder.unit, [unit])
         } else {
             XCTFail("Should be able to initialise with less than `GameConfig.GamePlayScene.numLanes` monsters")
@@ -57,12 +57,12 @@ class EnemySpawnUnitTest: XCTestCase {
     }
 
     func testInitWithNone_success() {
-        if let singleSquadWithNoneInInit = singleSquadWithNoneInInit {
-            XCTAssertEqual(singleSquadWithNoneInInit.count, 1)
-            let unit: [EnemyType] = [.orc1, .none, .orc2]
-            XCTAssertEqual(singleSquadWithNoneInInit.unit, [unit])
+        if let singleSquadWithNilInInit = singleSquadWithNilInInit {
+            XCTAssertEqual(singleSquadWithNilInInit.count, 1)
+            let unit: [EnemyType?] = [.orc1, nil, .orc2]
+            XCTAssertEqual(singleSquadWithNilInInit.unit, [unit])
         } else {
-            XCTFail("Should be able to initialise EnemySpawnUnit with .none")
+            XCTFail("Should be able to initialise EnemySpawnUnit with nil")
         }
     }
 
@@ -81,12 +81,12 @@ class EnemySpawnUnitTest: XCTestCase {
         let firstSquadSpawnWave = firstSquad.unit[0]
         let secondSquadSpawnWave = secondSquad.unit[0]
         XCTAssertEqual(firstSquad.unit, [[.orc1, .orc2, .orc3]])
-        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, .none]])
+        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, nil]])
 
         XCTAssertEqual(combinedUnit.count, 2)
         XCTAssertEqual(combinedUnit.unit[0], firstSquadSpawnWave)
         XCTAssertEqual(combinedUnit.unit[1], secondSquadSpawnWave)
-        let unit: [[EnemyType]] = [[.orc1, .orc2, .orc3], [.troll1, .troll2, .none]]
+        let unit: [[EnemyType?]] = [[.orc1, .orc2, .orc3], [.troll1, .troll2, nil]]
         XCTAssertEqual(combinedUnit.unit, unit)
     }
 
@@ -103,8 +103,8 @@ class EnemySpawnUnitTest: XCTestCase {
 
         firstSquad += secondSquad
         XCTAssertEqual(firstSquad.unit, [[.orc1, .orc2, .orc3],
-                                         [.troll1, .troll2, .none]])
-        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, .none]])
+                                         [.troll1, .troll2, nil]])
+        XCTAssertEqual(secondSquad.unit, [[.troll1, .troll2, nil]])
     }
 
     func testRemoveFirstSpawnWave_empty() {

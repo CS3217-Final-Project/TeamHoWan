@@ -34,9 +34,10 @@ struct LevelCreator {
 
     static var level1: (EnemySpawnUnit, TimeInterval) {
         do {
-            let basicOrcUnit = try EnemySpawnUnit(.orc1)
+            let basicOrcUnit = try EnemySpawnUnit(nil, .orc1, nil)
             let basicTrollUnit = try EnemySpawnUnit(.troll1)
-            let alternatingUnit = basicOrcUnit + basicTrollUnit
+            let basicKnightUnit = try EnemySpawnUnit(nil, nil, .evilKnight)
+            let alternatingUnit = basicOrcUnit + basicTrollUnit + basicKnightUnit
             let fullLevel = alternatingUnit + basicOrcUnit
             let levelSpawnInterval = 3.0
             return (fullLevel, levelSpawnInterval)
@@ -48,7 +49,7 @@ struct LevelCreator {
     static var level2: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2)
-            let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .none, .evilKnight)
+            let basicKnightUnit = try EnemySpawnUnit(.evilKnight, nil, .evilKnight)
             let alternatingUnit = basicOrcUnit + basicKnightUnit
             let fullLevel = alternatingUnit + alternatingUnit
             let levelSpawnInterval = 2.0
@@ -89,7 +90,7 @@ extension LevelCreator {
      monsters found in `availableMonsters`.
      */
     static func createLevel(targetDifficulty: Int, availableMonsters: [EnemyType]) -> EnemySpawnUnit {
-        let availableMonsterDifficulties = convertMonsterToDifficulties(monsters: availableMonsters)
+        let availableMonsterDifficulties = convertMonstersToDifficulties(monsters: availableMonsters)
         let bucket = createProbabilityBuckets(availableMonsterDifficulties: availableMonsterDifficulties)
         let chunkedDifficulties = allocateMonsterDifficulties(targetDifficulty: targetDifficulty,
                                                               monsterDifficulties: availableMonsterDifficulties,
@@ -112,10 +113,14 @@ extension LevelCreator {
     /**
      Helper function to convert an array of monsters to an array of their associated difficulties.
      */
-    static func convertMonsterToDifficulties(monsters: [EnemyType]) -> [Int] {
+    static func convertMonstersToDifficulties(monsters: [EnemyType?]) -> [Int] {
         var monsterDifficulties: [Int] = []
         for monster in monsters {
-            monsterDifficulties.append(monster.difficulty)
+            if let monster = monster {
+                monsterDifficulties.append(monster.difficulty)
+            } else {
+                monsterDifficulties.append(GameConfig.Enemy.nilDifficulty)
+            }
         }
         monsterDifficulties.sort()
         return monsterDifficulties
@@ -124,8 +129,8 @@ extension LevelCreator {
     /**
      Helper function to convert an array of monster difficulties to an array of monsters.
      */
-    static func convertDifficultiesToMonsters(difficulties: [Int]) -> [EnemyType] {
-        var monsters: [EnemyType] = []
+    static func convertDifficultiesToMonsters(difficulties: [Int]) -> [EnemyType?] {
+        var monsters: [EnemyType?] = []
         for difficulty in difficulties {
             let monster = EnemyType.getMonsterTypeFromDifficulty(difficulty: difficulty)
             monsters.append(monster)

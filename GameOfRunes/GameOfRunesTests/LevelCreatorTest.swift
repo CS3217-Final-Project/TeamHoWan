@@ -10,16 +10,28 @@ import XCTest
 @testable import GameOfRunes
 
 class LevelCreatorTest: XCTestCase {
-    func testCreateLevel() {
+    func testCreateLevel_testClosenessToTargetDifficulty() {
         let targetDifficulty = 80
         let threshold = 10
         let level = LevelCreator.createLevel(targetDifficulty: targetDifficulty,
                                              availableMonsters: [.orc1, .orc2])
         let allMonsters = level.unit.flatMap({ $0 })
-        let allMonsterDifficulties = LevelCreator.convertMonsterToDifficulties(monsters: allMonsters)
+        let allMonsterDifficulties = LevelCreator.convertMonstersToDifficulties(monsters: allMonsters)
         let totalDifficulty = allMonsterDifficulties.reduce(0, +)
         XCTAssertEqual(Double(totalDifficulty),
                        Double(targetDifficulty),
                        accuracy: Double(threshold))
+    }
+
+    // Difficulty (ignoring empty lanes) should be non-decreasing
+    func testCreateLevel_testMonoticity() {
+        let targetDifficulty = 80
+        let level = LevelCreator.createLevel(targetDifficulty: targetDifficulty,
+                                             availableMonsters: [.orc1, .orc2])
+        let allMonsters = level.unit.flatMap({ $0 })
+        let allMonsterDifficulties = LevelCreator.convertMonstersToDifficulties(monsters: allMonsters)
+        for (index, difficulty) in allMonsterDifficulties.enumerated() where (index != 0 && difficulty != 0) {
+            XCTAssertTrue(difficulty >= allMonsterDifficulties[index - 1])
+        }
     }
 }

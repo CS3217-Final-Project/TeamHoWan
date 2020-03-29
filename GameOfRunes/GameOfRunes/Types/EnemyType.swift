@@ -16,7 +16,6 @@ enum EnemyType: String, CaseIterable {
     case troll1
     case troll2
     case troll3
-    case none
 
     var health: Int {
         switch self {
@@ -49,13 +48,11 @@ enum EnemyType: String, CaseIterable {
             return GameConfig.Enemy.troll2Difficulty
         case .troll3:
             return GameConfig.Enemy.troll3Difficulty
-        case .none:
-            return GameConfig.Enemy.noneDifficulty
         }
     }
 
     /** Provides Difficulty to Monster Mapping */
-    static func getMonsterTypeFromDifficulty(difficulty: Int) -> EnemyType {
+    static func getMonsterTypeFromDifficulty(difficulty: Int) -> EnemyType? {
         switch difficulty {
         case GameConfig.Enemy.evilKnightDifficulty:
             return .evilKnight
@@ -72,7 +69,7 @@ enum EnemyType: String, CaseIterable {
         case GameConfig.Enemy.troll3Difficulty:
             return .troll3
         default:
-            return .none
+            return nil
         }
     }
 }
