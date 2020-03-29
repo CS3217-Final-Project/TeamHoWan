@@ -14,7 +14,8 @@ class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
-    
+    private let levelNumber: Int
+
     // layers
     private(set) var backgroundLayer: SKNode!
     private(set) var enemyLayer: SKNode!
@@ -27,9 +28,10 @@ class GameScene: SKScene {
     private(set) var playerAreaNode: PlayerAreaNode!
     private(set) var gestureAreaNode: GestureAreaNode!
     var bgmNode: SKAudioNode!
-    
-    init(size: CGSize, gameStateMachine: GameStateMachine) {
+
+    init(size: CGSize, gameStateMachine: GameStateMachine, levelNumber: Int) {
         self.gameStateMachine = gameStateMachine
+        self.levelNumber = levelNumber
         super.init(size: size)
         
         registerForPauseNotifications()
@@ -46,7 +48,7 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        gameEngine = GameEngine(gameScene: self)
+        gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
         
         // UI
         buildLayers()
@@ -164,19 +166,31 @@ class GameScene: SKScene {
     }
     
     private func setUpEndPoint() {
-        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
-        // re-position and resize
-        let newEndPointWidth = size.width
-        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
-        endPointNode.position = playerAreaNode.position
-            + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
-        // relative to the layer
-        endPointNode.zPosition = -1
-        
-        let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+        guard GameConfig.GamePlayScene.numEndPoints > 0 else {
+            fatalError("There must be more than 1 lane")
+        }
 
-        gameEngine.add(endPointEntity)
+        for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
+            let xPositionNumerator = 2 * laneIndex + 1
+            let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
+            let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let xPosition = (Double(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
+            let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+
+            // re-position and resize
+            let newEndPointWidth = size.width
+            let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+            let yPosition = Double(playerAreaNode.position.y) +
+                Double((playerAreaNode.size.height + newEndPointHeight) / 2)
+            endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+            endPointNode.position = CGPoint(x: xPosition,
+                                            y: yPosition)
+            endPointNode.zPosition = -1
+
+            let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
+            gameEngine.add(endPointEntity)
+        }
     }
     
     private func setUpPlayer() {
@@ -200,10 +214,19 @@ class GameScene: SKScene {
         return manaBarNode
     }
     
-    private func setUpTimer(isCountdown: Bool, initialTimerValue: Int = 0) {
-        gameEngine.add(TimerEntity(gameEngine: gameEngine,
-                                   isCountdown: isCountdown,
-                                   initialTimerValue: initialTimerValue))
+    private func setUpTimer(isCountdown: Bool, initialTimerValue: TimeInterval = 0) {
+        let timerNode = SKLabelNode(fontNamed: "DragonFire")
+        
+        timerNode.fontSize = 50
+        timerNode.fontColor = SKColor.white
+        timerNode.position = CGPoint(x: size.width / 2, y: 50)
+        timerNode.zPosition = 75
+        timerNode.horizontalAlignmentMode = .center
+        timerNode.verticalAlignmentMode = .center
+        timerNode.text = "\(initialTimerValue)"
+        
+        playerAreaLayer.addChild(timerNode)
+        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -252,7 +275,7 @@ extension GameScene: TapResponder {
         case .pauseButton:
             gameStateMachine?.enter(GamePauseState.self)
         case .summonButton:
-            gameEngine.spawnEnemy()
+            gameEngine.startNextSpawnWave()
         default:
             print("Unknown node tapped")
         }

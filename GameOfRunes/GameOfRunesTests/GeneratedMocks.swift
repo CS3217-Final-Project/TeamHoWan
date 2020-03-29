@@ -1771,9 +1771,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerComponent: TimerComponent, Cuckoo.ClassMock {
+ class MockTimerComponent: LabelComponent, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerComponent
+     typealias MocksType = LabelComponent
     
      typealias Stubbing = __StubbingProxy_TimerComponent
      typealias Verification = __VerificationProxy_TimerComponent
@@ -1781,64 +1781,12 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerComponent?
+    private var __defaultImplStub: LabelComponent?
 
-     func enableDefaultImplementation(_ stub: TimerComponent) {
+     func enableDefaultImplementation(_ stub: LabelComponent) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
-    
-
-    
-    
-    
-     override var lastUpdatedTime: TimeInterval {
-        get {
-            return cuckoo_manager.getter("lastUpdatedTime",
-                superclassCall:
-                    
-                    super.lastUpdatedTime
-                    ,
-                defaultCall: __defaultImplStub!.lastUpdatedTime)
-        }
-        
-        set {
-            cuckoo_manager.setter("lastUpdatedTime",
-                value: newValue,
-                superclassCall:
-                    
-                    super.lastUpdatedTime = newValue
-                    ,
-                defaultCall: __defaultImplStub!.lastUpdatedTime = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var currentTime: Int {
-        get {
-            return cuckoo_manager.getter("currentTime",
-                superclassCall:
-                    
-                    super.currentTime
-                    ,
-                defaultCall: __defaultImplStub!.currentTime)
-        }
-        
-        set {
-            cuckoo_manager.setter("currentTime",
-                value: newValue,
-                superclassCall:
-                    
-                    super.currentTime = newValue
-                    ,
-                defaultCall: __defaultImplStub!.currentTime = newValue)
-        }
-        
-    }
-    
-    
     
      override var type: ComponentType {
         get {
@@ -1851,8 +1799,6 @@ import GameplayKit
         }
         
     }
-    
-
     
 
     
@@ -1914,40 +1860,13 @@ import GameplayKit
 	}
 }
 
- class TimerComponentStub: TimerComponent {
-    
-    
-     override var lastUpdatedTime: TimeInterval {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (TimeInterval).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var currentTime: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
+ class TimerComponentStub: LabelComponent {
      override var type: ComponentType {
         get {
             return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
         }
         
     }
-    
-
-    
-
-    
 }
 
 
@@ -3315,16 +3234,16 @@ import SpriteKit
     
     
     
-     override func spawnEnemy()  {
+     override func startNextSpawnWave()  {
         
-    return cuckoo_manager.call("spawnEnemy()",
+    return cuckoo_manager.call("startNextSpawnWave()",
             parameters: (),
             escapingParameters: (),
             superclassCall:
                 
-                super.spawnEnemy()
+                super.startNextSpawnWave()
                 ,
-            defaultCall: __defaultImplStub!.spawnEnemy())
+            defaultCall: __defaultImplStub!.startNextSpawnWave())
         
     }
     
@@ -3552,9 +3471,9 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "update(with: TimeInterval)", parameterMatchers: matchers))
 	    }
 	    
-	    func spawnEnemy() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	    func startNextSpawnWave() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "spawnEnemy()", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "startNextSpawnWave()", parameterMatchers: matchers))
 	    }
 	    
 	    func entities<M1: Cuckoo.Matchable>(for team: M1) -> Cuckoo.ClassStubFunction<(Team), [Entity]> where M1.MatchedType == Team {
@@ -3673,9 +3592,9 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func spawnEnemy() -> Cuckoo.__DoNotUse<(), Void> {
+	    func startNextSpawnWave() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return cuckoo_manager.verify("spawnEnemy()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("startNextSpawnWave()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3801,7 +3720,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func spawnEnemy()   {
+     override func startNextSpawnWave()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -5176,9 +5095,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerSystem: TimerSystem, Cuckoo.ClassMock {
+ class MockTimerSystem: LabelSystem, Cuckoo.ClassMock {
     
-     typealias MocksType = TimerSystem
+     typealias MocksType = LabelSystem
     
      typealias Stubbing = __StubbingProxy_TimerSystem
      typealias Verification = __VerificationProxy_TimerSystem
@@ -5186,9 +5105,9 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: TimerSystem?
+    private var __defaultImplStub: LabelSystem?
 
-     func enableDefaultImplementation(_ stub: TimerSystem) {
+     func enableDefaultImplementation(_ stub: LabelSystem) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -5279,7 +5198,7 @@ import GameplayKit
 	}
 }
 
- class TimerSystemStub: TimerSystem {
+ class TimerSystemStub: LabelSystem {
     
 
     

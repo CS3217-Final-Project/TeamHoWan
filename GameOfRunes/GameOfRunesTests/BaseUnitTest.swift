@@ -36,11 +36,15 @@ class BaseUnitTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        TextureContainer.loadTextures()
+
         gameStateMachine = MockGameStateMachine(states: [])
             .withEnabledSuperclassSpy()
         // Can't mock gameScene.
-        gameScene = GameScene(size: CGSize(), gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene)
+        gameScene = GameScene(size: CGSize(),
+                              gameStateMachine: gameStateMachine,
+                              levelNumber: LevelCreator.getRandomLevelNumber())
+        gameEngine = MockGameEngine(gameScene: gameScene, levelNumber: -1)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
@@ -52,7 +56,7 @@ class BaseUnitTest: XCTestCase {
         droppedManaNode = MockDroppedManaNode(position: CGPoint(), responder: gameEngine)
             .withEnabledSuperclassSpy()
         
-        timerEntity = MockTimerEntity(gameEngine: gameEngine, isCountdown: false, initialTimerValue: 0)
+        timerEntity = MockTimerEntity(gameEngine: gameEngine, timerNode: SKLabelNode(), initialTimerValue: 0)
             .withEnabledSuperclassSpy()
         enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)

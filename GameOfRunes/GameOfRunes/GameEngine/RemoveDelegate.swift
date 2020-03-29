@@ -51,7 +51,7 @@ class RemoveDelegate {
         guard let gestureEntity = entity.gestureEntity else {
             return
         }
-        
+
         gameEngine?.remove(gestureEntity)
     }
     
@@ -110,7 +110,8 @@ class RemoveDelegate {
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
         gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-        
+
+        gameEngine?.metadata.numEnemiesOnField -= 1
         gameEngine?.remove(entity)
     }
 }

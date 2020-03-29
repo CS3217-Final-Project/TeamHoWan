@@ -25,7 +25,9 @@ class SceneManager {
     private let presentingView: SKView
     private let gameStateMachine: GameStateMachine
     private lazy var gamePlayScene: GameScene = .init(
-        size: self.presentingView.bounds.size, gameStateMachine: gameStateMachine
+        size: self.presentingView.bounds.size,
+        gameStateMachine: gameStateMachine,
+        levelNumber: LevelCreator.getRandomLevelNumber()
     )
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
@@ -42,6 +44,7 @@ class SceneManager {
         self.gameStateMachine = gameStateMachine
         
         let sceneSize = self.presentingView.bounds.size
+        
         self.gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameMapScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
@@ -74,6 +77,10 @@ class SceneManager {
      Resets the `GameScene` by creating a new `GameScene` object,
      */
     func restartGame() {
-        gamePlayScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
+        gamePlayScene = .init(
+            size: presentingView.bounds.size,
+            gameStateMachine: gameStateMachine,
+            levelNumber: LevelCreator.getRandomLevelNumber()
+        )
     }
 }

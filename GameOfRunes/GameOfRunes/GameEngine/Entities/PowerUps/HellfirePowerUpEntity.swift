@@ -11,6 +11,7 @@ import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
 class HellfirePowerUpEntity: Entity, PowerUpEntity {
+    var fading = false
     var powerUpType: PowerUpType {
         .hellfire
     }
@@ -18,7 +19,7 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
     override var type: EntityType {
         .hellFirePowerUpEntity
     }
-
+    
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
         self.gameEngine = gameEngine
         super.init()
@@ -26,27 +27,12 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         let animationNode = getAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
-
         addComponent(animationSpriteComponent)
-
-        // Timer will expire and cause the removal of the Power Up
-        Timer.scheduledTimer(
-            withTimeInterval: GameConfig.HellFirePowerUp.powerUpDuration,
-            repeats: false,
-            block: { [weak self] _ in
-                animationNode.run(
-                    .fadeOut(withDuration: GameConfig.HellFirePowerUp.fadeOutDuration),
-                    completion: {
-                        guard let entity = self else {
-                            return
-                        }
-                        gameEngine.remove(entity)
-                    }
-                )
-            }
-        )
+        
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        addComponent(timerComponent)
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
