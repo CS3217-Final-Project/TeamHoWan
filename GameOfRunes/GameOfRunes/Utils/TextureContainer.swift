@@ -26,6 +26,7 @@ enum TextureContainer {
     }()
     private static var powerUpCastTextures = loadPowerUpCastTextures()
     private static var powerUpTextures = loadPowerUpTextures()
+    private static var avatarsTextures = loadAvatarsTextures()
     
     private static func loadEnemiesTextures() -> [EnemyType: [SKTexture]] {
         var enemiesTextures = [EnemyType: [SKTexture]]()
@@ -80,6 +81,18 @@ enum TextureContainer {
         
         return powerUpTextures
     }
+    
+    private static func loadAvatarsTextures() -> [Avatar: [SKTexture]] {
+        var avatarsTextures = [Avatar: [SKTexture]]()
+        
+        Avatar.allCases.forEach { avatar in
+            let avatarAtlas = SKTextureAtlas(named: "avatar\(avatar)")
+            let avatarTextures = (0...9).map { avatarAtlas.textureNamed("IDLE_00\($0)") }
+            avatarsTextures[avatar] = avatarTextures
+        }
+        
+        return avatarsTextures
+    }
 
     static func loadTextures() {
         // force load `enemiesTextures`
@@ -102,6 +115,9 @@ enum TextureContainer {
 
         // force load `powerUpTextures`
         _ = powerUpTextures
+        
+        // force load `avatarsTextures`
+        _ = avatarsTextures
     }
 
     /** Get the Animation Textures for the `enemyType` */
