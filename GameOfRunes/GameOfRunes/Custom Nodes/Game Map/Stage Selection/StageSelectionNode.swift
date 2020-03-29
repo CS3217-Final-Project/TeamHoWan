@@ -12,9 +12,18 @@ class StageSelectionNode: SKSpriteNode {
     private let cancelNode: CancelNode
     private let playNode: PlayNode
     private let stageOverviewNode: StageOverviewNode
+    private let avatarOverviewNode: AvatarOverviewNode
     var selectedStage: Stage? {
         didSet {
             stageOverviewNode.selectedStage = selectedStage
+        }
+    }
+    var selectedAvatar: Avatar? {
+        get {
+            avatarOverviewNode.selectedAvatar
+        }
+        set {
+            avatarOverviewNode.selectedAvatar = newValue
         }
     }
     override var size: CGSize {
@@ -30,7 +39,8 @@ class StageSelectionNode: SKSpriteNode {
     }
     
     init(size: CGSize, position: CGPoint = .zero) {
-        stageOverviewNode = .init(size: size)
+        stageOverviewNode = .init()
+        avatarOverviewNode = .init()
         cancelNode = .init()
         playNode = .init()
         super.init(texture: .init(imageNamed: "stage-selection-board"), color: .clear, size: size)
@@ -39,10 +49,12 @@ class StageSelectionNode: SKSpriteNode {
         self.position = position
         
         stageOverviewNode.zPosition = 50
+        avatarOverviewNode.zPosition = 50
         cancelNode.zPosition = 50
         playNode.zPosition = 50
         
         addChild(stageOverviewNode)
+        addChild(avatarOverviewNode)
         addChild(cancelNode)
         addChild(playNode)
     }
@@ -58,7 +70,8 @@ class StageSelectionNode: SKSpriteNode {
     }
     
     private func layoutAvatarOverviewNode() {
-        
+        avatarOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.75))
+        avatarOverviewNode.position = .init(x: size.width / 4.5, y: size.height / 12.75)
     }
     
     private func layoutCancelNode() {

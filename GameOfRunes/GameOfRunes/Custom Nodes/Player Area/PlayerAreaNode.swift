@@ -53,7 +53,7 @@ class PlayerAreaNode: SKSpriteNode {
     init(size: CGSize = .zero, position: CGPoint = .zero) {
         healthBarNode = .init()
         manaBarNode = .init()
-        powerUpContainerNode = .init(powerUpTypes: [.darkVortex, .hellfire, .icePrison])
+        powerUpContainerNode = .init()
         summonNode = .init()
         
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)

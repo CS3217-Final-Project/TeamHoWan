@@ -9,16 +9,26 @@
 import SpriteKit
 
 class AvatarOverviewNode: SKSpriteNode {
-    private let avatarLabelNode = StageOverviewLabelNode()
+    private let avatarLabelNode = AvatarLabelNode()
     private let avatarSelectionNode = AvatarSelectionNode()
     private let healthBarNode = HealthBarNode()
     private let manaBarNode = ManaBarNode()
-    var selectedAvatar: Stage? {
+    private let powerUpDescriptionNode = PowerUpDescriptionNode()
+    var selectedAvatar: Avatar? {
         didSet {
-            guard let stage = selectedStage else {
+            guard let avatar = selectedAvatar else {
                 return
             }
             
+            avatarLabelNode.avatarName = avatar.name
+            
+            healthBarNode.totalLives = avatar.health
+            healthBarNode.livesLeft = avatar.health
+            
+            manaBarNode.numManaUnits = avatar.manaUnits
+            manaBarNode.currentManaPoints = manaBarNode.totalManaPoints
+            
+            powerUpDescriptionNode.powerUpContainerNode.powerUpTypes = avatar.powerUps
         }
     }
     override var size: CGSize {
@@ -26,22 +36,28 @@ class AvatarOverviewNode: SKSpriteNode {
             guard oldValue != size else {
                 return
             }
-            layoutStageLabelNode()
-            layoutArenaViewNode()
-            layoutStageDescriptionNode()
+            layoutAvatarLabelNode()
+            layoutAvatarSelectionNode()
+            layoutHealthBarNode()
+            layoutManaBarNode()
+            layoutPowerUpDescriptionNode()
         }
     }
     
-    init(size: CGSize) {
-        super.init(texture: nil, color: .clear, size: size)
+    init() {
+        super.init(texture: nil, color: .clear, size: .zero)
         
-        stageLabelNode.zPosition = 1
-        arenaViewNode.zPosition = 1
-        stageDescriptionNode.zPosition = 1
+        avatarLabelNode.zPosition = 1
+        avatarSelectionNode.zPosition = 1
+        healthBarNode.zPosition = 1
+        manaBarNode.zPosition = 3
+        powerUpDescriptionNode.zPosition = 1
         
-        addChild(stageLabelNode)
-        addChild(arenaViewNode)
-        addChild(stageDescriptionNode)
+        addChild(avatarLabelNode)
+        addChild(avatarSelectionNode)
+        addChild(healthBarNode)
+        addChild(manaBarNode)
+        addChild(powerUpDescriptionNode)
     }
     
     @available(*, unavailable)
@@ -49,18 +65,32 @@ class AvatarOverviewNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layoutStageLabelNode() {
-        stageLabelNode.size = stageLabelNode.size.scaleTo(width: size.width * 1.2)
-        stageLabelNode.position = .init(x: 0.0, y: (size.height - stageLabelNode.size.height) / 2)
+    private func layoutAvatarLabelNode() {
+        avatarLabelNode.size = avatarLabelNode.size.scaleTo(width: size.width)
+        avatarLabelNode.position = .init(x: 0.0, y: (size.height - avatarLabelNode.size.height) / 2)
     }
     
-    private func layoutArenaViewNode() {
-        arenaViewNode.size = size.applying(.init(scaleX: 1.0, y: 0.4))
-        arenaViewNode.position = .init(x: 0.0, y: size.height / 30)
+    private func layoutAvatarSelectionNode() {
+        avatarSelectionNode.size = size.applying(.init(scaleX: 1.0, y: 0.35))
+        // avatarSelectionNode.position = .init(x: 0.0, y: size.height / 7)
+        avatarSelectionNode.position = .init(
+            x: 0.0,
+            y: (size.height - avatarSelectionNode.size.height) / 2 - avatarLabelNode.size.height
+        )
     }
     
-    private func layoutStageDescriptionNode() {
-        stageDescriptionNode.size = size.applying(.init(scaleX: 1.0, y: 0.325))
-        stageDescriptionNode.position = .init(x: 0.0, y: (-size.height + stageDescriptionNode.size.height) / 2)
+    private func layoutHealthBarNode() {
+        healthBarNode.size = size.applying(.init(scaleX: 1.0, y: 0.08))
+        healthBarNode.position = .init(x: 0.0, y: -size.height / 13.5)
+    }
+    
+    private func layoutManaBarNode() {
+        manaBarNode.size = size.applying(.init(scaleX: 1.0, y: 0.08))
+        manaBarNode.position = .init(x: 0.0, y: -size.height / 5.5)
+    }
+    
+    private func layoutPowerUpDescriptionNode() {
+        powerUpDescriptionNode.size = size.applying(.init(scaleX: 1.0, y: 0.25))
+        powerUpDescriptionNode.position = .init(x: 0.0, y: (-size.height + powerUpDescriptionNode.size.height) / 2)
     }
 }

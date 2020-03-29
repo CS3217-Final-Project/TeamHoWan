@@ -118,16 +118,22 @@ extension GameMapScene: TapResponder {
             selectedStageNode?.selected = true
         case .battleButton:
             stageSelectionNode.selectedStage = selectedStageNode?.stage
+            stageSelectionNode.selectedAvatar = .elementalWizard
             stageSelectionNode.run(.fadeIn(withDuration: 0.25))
         case .cancelButton:
             stageSelectionNode.run(.fadeOut(withDuration: 0.25))
         case .playButton:
+            // Here is the place to load the selected stage and selected avatar
             stageSelectionNode.run(
                 .fadeOut(withDuration: 0.25),
                 completion: { [weak self] in
                     self?.gameStateMachine?.enter(GameStartState.self)
                 }
             )
+        case .leftButton:
+            stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.prevAvatar
+        case .rightButton:
+            stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
         default:
             print("do nth")
         }

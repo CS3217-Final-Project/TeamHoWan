@@ -21,7 +21,12 @@
 		4A09C50324300D8700CA7625 /* AchievementBadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
-		4A6213E024309CDE00FABB48 /* AvatarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* AvatarType.swift */; };
+		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
+		4A6213E22430A9BB00FABB48 /* PowerUpDescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E12430A9BB00FABB48 /* PowerUpDescriptionNode.swift */; };
+		4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E32430B61700FABB48 /* AvatarLabelNode.swift */; };
+		4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E92430BDD600FABB48 /* ArrowNode.swift */; };
+		4A6213EC2430D19500FABB48 /* SelectedPowerUpResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */; };
+		4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213ED2430DA8E00FABB48 /* DescriptionNode.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
 		4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4724211F57005FA909 /* PowerUpNode.swift */; };
@@ -150,7 +155,12 @@
 		4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeNode.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
-		4A6213DF24309CDE00FABB48 /* AvatarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarType.swift; sourceTree = "<group>"; };
+		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		4A6213E12430A9BB00FABB48 /* PowerUpDescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpDescriptionNode.swift; sourceTree = "<group>"; };
+		4A6213E32430B61700FABB48 /* AvatarLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarLabelNode.swift; sourceTree = "<group>"; };
+		4A6213E92430BDD600FABB48 /* ArrowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
+		4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPowerUpResponder.swift; sourceTree = "<group>"; };
+		4A6213ED2430DA8E00FABB48 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		4A72EB4724211F57005FA909 /* PowerUpNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpNode.swift; sourceTree = "<group>"; };
@@ -310,7 +320,11 @@
 			isa = PBXGroup;
 			children = (
 				4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */,
+				4A6213E32430B61700FABB48 /* AvatarLabelNode.swift */,
 				4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */,
+				4A6213E12430A9BB00FABB48 /* PowerUpDescriptionNode.swift */,
+				4A6213ED2430DA8E00FABB48 /* DescriptionNode.swift */,
+				4A6213E92430BDD600FABB48 /* ArrowNode.swift */,
 			);
 			path = "Avatar Overview";
 			sourceTree = "<group>";
@@ -366,6 +380,7 @@
 				4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */,
 				4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */,
 				4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */,
+				4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */,
 				4A72EB4724211F57005FA909 /* PowerUpNode.swift */,
 				4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */,
 				4A72EB432420061A005FA909 /* SummonNode.swift */,
@@ -394,7 +409,7 @@
 				4AB47A3E2423F0F700EDADC1 /* ManaType.swift */,
 				4AA5B36124164FC9008D4953 /* Team.swift */,
 				4A72EB4524200BE6005FA909 /* ButtonType.swift */,
-				4A6213DF24309CDE00FABB48 /* AvatarType.swift */,
+				4A6213DF24309CDE00FABB48 /* Avatar.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -853,8 +868,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A6213E024309CDE00FABB48 /* AvatarType.swift in Sources */,
+				4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */,
 				8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */,
+				4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */,
 				C6AFF685241A61650076F02B /* HealthSystem.swift in Sources */,
 				C6AFF689241A67430076F02B /* ManaSystem.swift in Sources */,
 				8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */,
@@ -888,6 +904,7 @@
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,
 				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
+				4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */,
 				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
 				8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
@@ -924,6 +941,7 @@
 				8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */,
 				4A768F152430157F000F3F05 /* CancelNode.swift in Sources */,
 				4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */,
+				4A6213EC2430D19500FABB48 /* SelectedPowerUpResponder.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,
@@ -944,6 +962,7 @@
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
+				4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */,
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
@@ -952,6 +971,7 @@
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */,
 				C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */,
+				4A6213E22430A9BB00FABB48 /* PowerUpDescriptionNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

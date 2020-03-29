@@ -126,7 +126,9 @@ class GameScene: SKScene {
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
-        playerAreaNode.powerUpContainerNode.gameScene = self
+        
+        playerAreaNode.powerUpContainerNode.powerUpTypes = Avatar.elementalWizard.powerUps
+        playerAreaNode.powerUpContainerNode.selectedPowerUpResponder = self
         playerAreaLayer.addChild(playerAreaNode)
     }
     
@@ -281,7 +283,7 @@ extension GameScene {
 /**
  Extension to deal with power-up related logic
  */
-extension GameScene {
+extension GameScene: SelectedPowerUpResponder {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
@@ -310,6 +312,15 @@ extension GameScene {
     
     var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
+    }
+    
+    func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
+        // Deactivate and activate gesture detection when tap-activated power ups are selected
+        if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
+                deactivateGestureDetection()
+        } else if oldValue == .darkVortex {
+                activateGestureDetection()
+        }
     }
     
     func deactivateGestureDetection() {

@@ -1,12 +1,12 @@
 //
-//  AvatarType.swift
+//  Avatar.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 29/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum AvatarType: String, CaseIterable {
+enum Avatar: Int, CaseIterable {
     case elementalWizard
     case holyKnight
     
@@ -45,5 +45,15 @@ enum AvatarType: String, CaseIterable {
             // will change when we implement new power ups
             return [.darkVortex, .hellfire, .icePrison]
         }
+    }
+    
+    var nextAvatar: Avatar {
+        let count = Self.allCases.count
+        return Self.allCases[(rawValue + 1) % count]
+    }
+    
+    var prevAvatar: Avatar {
+        let count = Self.allCases.count
+        return Self.allCases[(rawValue + count - 1) % count]
     }
 }

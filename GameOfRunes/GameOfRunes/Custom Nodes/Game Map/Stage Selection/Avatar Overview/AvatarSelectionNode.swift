@@ -9,5 +9,52 @@
 import SpriteKit
 
 class AvatarSelectionNode: SKSpriteNode {
+    let leftArrowNode = ArrowNode(buttonType: .leftButton)
+    let rightArrowNode = ArrowNode(buttonType: .rightButton)
+    let avatarSpriteNode = SKSpriteNode()
     
+    override var size: CGSize {
+        didSet {
+            guard oldValue != size else {
+                return
+            }
+            layoutLeftArrowNode()
+            layoutRightArrowNode()
+            layoutAvatarSpriteNode()
+        }
+    }
+    
+    init() {
+        super.init(texture: nil, color: .clear, size: .zero)
+        
+        avatarSpriteNode.color = .darkGray
+        
+        leftArrowNode.zPosition = 1
+        rightArrowNode.zPosition = 1
+        avatarSpriteNode.zPosition = 1
+        
+        addChild(leftArrowNode)
+        addChild(rightArrowNode)
+        addChild(avatarSpriteNode)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func layoutLeftArrowNode() {
+        leftArrowNode.size = leftArrowNode.size.scaleTo(width: size.width * 0.2)
+        leftArrowNode.position = .init(x: (-size.width + leftArrowNode.size.width) / 2, y: 0.0)
+    }
+    
+    private func layoutRightArrowNode() {
+        rightArrowNode.size = rightArrowNode.size.scaleTo(width: size.width * 0.2)
+        rightArrowNode.position = .init(x: (size.width - rightArrowNode.size.width) / 2, y: 0.0)
+    }
+    
+    private func layoutAvatarSpriteNode() {
+        avatarSpriteNode.size = size.applying(.init(scaleX: 0.6, y: 1.0))
+        avatarSpriteNode.position = .zero
+    }
 }

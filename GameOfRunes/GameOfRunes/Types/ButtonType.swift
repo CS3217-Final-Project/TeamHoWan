@@ -15,4 +15,6 @@ enum ButtonType: String {
     case cancelButton
     case stageNode
     case battleButton
+    case leftButton
+    case rightButton
 }
