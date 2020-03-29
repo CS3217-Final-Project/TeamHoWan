@@ -84,6 +84,31 @@ enum EnemyType: String, CaseIterable {
             return GameConfig.Enemy.troll3Difficulty
         }
     }
+    
+    var isFastMonster: Bool {
+        switch self {
+        case .orc3, .troll3:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    var disablePowerUps: [PowerUpType] {
+        switch self {
+        default:
+            return []
+        }
+    }
+    
+    var powerUpImmunity: Bool {
+        switch self {
+        case .evilKnight:
+            return true
+        default:
+            return false
+        }
+    }
 
     /** Provides Difficulty to Monster Mapping */
     static func getMonsterTypeFromDifficulty(difficulty: Int) -> EnemyType? {
