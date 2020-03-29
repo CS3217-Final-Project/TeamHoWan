@@ -13,6 +13,7 @@ class GameMapScene: SKScene {
     private var previousCameraPosition: CGPoint = .zero
     private var mapSize: CGSize!
     private var stagePreviewNode: StagePreviewNode!
+    private var stageSelectionNode: StageSelectionNode!
     private var selectedStageNode: StageNode? {
         didSet {
             if oldValue == nil, selectedStageNode == nil {
@@ -50,6 +51,7 @@ class GameMapScene: SKScene {
         setUpStageNodes()
         setUpCamera()
         setUpStagePreview()
+        setUpStageSelection()
     }
     
     override func didMove(to view: SKView) {
@@ -109,10 +111,25 @@ class GameMapScene: SKScene {
 // MARK: - Tap Responder
 extension GameMapScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
-        if tappedNode.buttonType == .stageNode {
+        switch tappedNode.buttonType {
+        case .stageNode:
             selectedStageNode?.selected = false
             selectedStageNode = tappedNode as? StageNode
             selectedStageNode?.selected = true
+        case .battleButton:
+            stageSelectionNode.selectedStage = selectedStageNode?.stage
+            stageSelectionNode.run(.fadeIn(withDuration: 0.25))
+        case .cancelButton:
+            stageSelectionNode.run(.fadeOut(withDuration: 0.25))
+        case .playButton:
+            stageSelectionNode.run(
+                .fadeOut(withDuration: 0.25),
+                completion: { [weak self] in
+                    self?.gameStateMachine?.enter(GameStartState.self)
+                }
+            )
+        default:
+            print("do nth")
         }
     }
 }
@@ -222,6 +239,13 @@ extension GameMapScene {
         stagePreviewNode.position = .init(x: 0.0, y: (size.height - stagePreviewNode.size.height) / 2)
         stagePreviewNode.alpha = .zero
         camera?.addChild(stagePreviewNode)
+    }
+    
+    private func setUpStageSelection() {
+        stageSelectionNode = .init(size: size)
+        stageSelectionNode.alpha = .zero
+        stageSelectionNode.zPosition = 100
+        camera?.addChild(stageSelectionNode)
     }
 }
 

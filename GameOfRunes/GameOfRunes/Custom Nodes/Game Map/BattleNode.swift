@@ -1,5 +1,5 @@
 //
-//  StageBattleNode.swift
+//  BattleNode.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 29/3/20.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class StageBattleNode: ButtonNode {
+class BattleNode: ButtonNode {
     private static let normalImage = SKTexture(imageNamed: "battle-button")
     private static let tappedImage = SKTexture(imageNamed: "battle-button-tapped")
     

@@ -1,5 +1,5 @@
 //
-//  StagePreviewLabelNode.swift
+//  StageOverviewLabelNode.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 29/3/20.
@@ -8,18 +8,9 @@
 
 import SpriteKit
 
-class StagePreviewLabelNode: SKSpriteNode {
+class StageOverviewLabelNode: SKSpriteNode {
     let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
     let idLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    var category: Stage.Category? {
-        didSet {
-            guard let category = category, oldValue != category else {
-                return
-            }
-            
-            texture = .init(imageNamed: "stage-name-preview-\(category)")
-        }
-    }
     override var size: CGSize {
         didSet {
             guard oldValue != size else {
@@ -31,11 +22,12 @@ class StagePreviewLabelNode: SKSpriteNode {
     }
     
     init() {
-        super.init(texture: nil, color: .clear, size: .zero)
+        let texture = SKTexture(imageNamed: "stage-label")
+        super.init(texture: texture, color: .clear, size: texture.size())
         
-        nameLabelNode.fontColor = .white
+        nameLabelNode.fontColor = .black
         nameLabelNode.zPosition = 1
-        idLabelNode.fontColor = .white
+        idLabelNode.fontColor = .black
         idLabelNode.zPosition = 1
         
         addChild(nameLabelNode)
@@ -48,12 +40,12 @@ class StagePreviewLabelNode: SKSpriteNode {
     }
     
     private func layoutNameLabelNode() {
-        nameLabelNode.position = .init(x: 0.0, y: -size.height / 40)
-        nameLabelNode.fontSize = size.height / 4
+        nameLabelNode.position = .init(x: 0.0, y: -size.height / 5.5)
+        nameLabelNode.fontSize = size.height / 9
     }
     
     private func layoutIdLabelNode() {
-        idLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
-        idLabelNode.fontSize = size.height / 7
+        idLabelNode.position = .init(x: 0.0, y: size.height / 10)
+        idLabelNode.fontSize = size.height / 11
     }
 }

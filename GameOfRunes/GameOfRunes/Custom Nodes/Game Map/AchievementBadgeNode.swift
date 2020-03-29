@@ -1,5 +1,5 @@
 //
-//  StageAchievementNode.swift
+//  AchievementBadgeNode.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 29/3/20.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class StageAchievementNode: SKSpriteNode {
+class AchievementBadgeNode: SKSpriteNode {
     var achievementLevel: Stage.AchievementLevel {
         didSet {
             guard oldValue != achievementLevel else {

@@ -10,8 +10,8 @@ import SpriteKit
 
 class StagePreviewNode: SKSpriteNode {
     private let labelNode: StagePreviewLabelNode
-    private let achievementLevelNode: StageAchievementNode
-    private let battleNode: StageBattleNode
+    private let achievementBadgeNode: AchievementBadgeNode
+    private let battleNode: BattleNode
     var selectedStage: Stage? {
         didSet {
             guard let stage = selectedStage else {
@@ -21,7 +21,7 @@ class StagePreviewNode: SKSpriteNode {
             labelNode.nameLabelNode.text = stage.name
             labelNode.idLabelNode.text = stage.id
             
-            achievementLevelNode.achievementLevel = stage.achievement
+            achievementBadgeNode.achievementLevel = stage.achievement
         }
     }
     override var size: CGSize {
@@ -37,7 +37,7 @@ class StagePreviewNode: SKSpriteNode {
     
     init(width: CGFloat, position: CGPoint = .zero) {
         labelNode = .init()
-        achievementLevelNode = .init()
+        achievementBadgeNode = .init()
         battleNode = .init()
         
         let texture = SKTexture(imageNamed: "stage-preview")
@@ -47,7 +47,7 @@ class StagePreviewNode: SKSpriteNode {
         isUserInteractionEnabled = true
         self.position = position
         addChild(labelNode)
-        addChild(achievementLevelNode)
+        addChild(achievementBadgeNode)
         addChild(battleNode)
     }
     
@@ -63,9 +63,9 @@ class StagePreviewNode: SKSpriteNode {
     }
     
     private func layoutAchievementLevelNode() {
-        achievementLevelNode.size = achievementLevelNode.size.scaleTo(height: size.height * 0.5)
-        achievementLevelNode.position = .zero + .init(dx: size.width / 5.85, dy: 0.0)
-        achievementLevelNode.zPosition = 1
+        achievementBadgeNode.size = achievementBadgeNode.size.scaleTo(height: size.height * 0.5)
+        achievementBadgeNode.position = .zero + .init(dx: size.width / 5.85, dy: 0.0)
+        achievementBadgeNode.zPosition = 1
     }
     
     private func layoutBattleNode() {
