@@ -17,17 +17,7 @@ struct LevelCreator {
         Int.random(in: 1...3)
     }
 
-    static func getLevelData(levelNumber: Int) throws -> EnemySpawnUnit {
-        let (levelData, _) = try getLevelDataAndSpawnInterval(levelNumber: levelNumber)
-        return levelData
-    }
-
-    static func getLevelSpawnInterval(levelNumber: Int) throws -> TimeInterval {
-        let (_, levelSpawnInterval) = try getLevelDataAndSpawnInterval(levelNumber: levelNumber)
-        return levelSpawnInterval
-    }
-
-    private static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
+    static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
         switch levelNumber {
         case -1:
             return testLevel

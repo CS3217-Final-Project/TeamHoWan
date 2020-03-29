@@ -38,8 +38,7 @@ class GameMetaData {
         numEnemiesOnField = 0
 
         do {
-            levelWaves = try LevelCreator.getLevelData(levelNumber: levelNumber)
-            levelSpawnInterval = try LevelCreator.getLevelSpawnInterval(levelNumber: levelNumber)
+            (levelWaves, levelSpawnInterval) = try LevelCreator.getLevelDataAndSpawnInterval(levelNumber: levelNumber)
         } catch {
             fatalError("An Unexpected Error Occured: \(error)")
         }
