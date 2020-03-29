@@ -38,7 +38,9 @@ class SceneManager {
         self.gameStateMachine = gameStateMachine
         
         let sceneSize = self.presentingView.bounds.size
-        self.gamePlayScene = GameScene(size: sceneSize, gameStateMachine: gameStateMachine)
+        self.gamePlayScene = GameScene(size: sceneSize,
+                                       gameStateMachine: gameStateMachine,
+                                       levelNumber: LevelCreator.getRandomLevelNumber())
         self.gamePauseScene = GamePauseScene(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameEndScene = GameEndScene(size: sceneSize, gameStateMachine: gameStateMachine)
     }
@@ -67,6 +69,8 @@ class SceneManager {
      Resets the `GameScene` by creating a new `GameScene` object,
      */
     func restartGame() {
-        gamePlayScene = GameScene(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
+        gamePlayScene = GameScene(size: presentingView.bounds.size,
+                                  gameStateMachine: gameStateMachine,
+                                  levelNumber: LevelCreator.getRandomLevelNumber())
     }
 }
