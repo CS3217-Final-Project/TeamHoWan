@@ -100,7 +100,7 @@ class RemoveDelegate {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-        
+        spriteComponent.node.removeFromParent()
         let animationTextures = fullAnimation
             ? TextureContainer.fullEnemyRemovalTextures
             : TextureContainer.halfEnemyRemovalTextures
@@ -120,7 +120,8 @@ class RemoveDelegate {
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
         gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-        
+
+        gameEngine?.metadata.numEnemiesOnField -= 1
         gameEngine?.remove(entity)
     }
 }

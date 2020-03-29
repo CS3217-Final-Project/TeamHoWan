@@ -77,10 +77,10 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.update(with: 1)
         verify(gameEngine, times(1)).update(with: any(TimeInterval.self))
     }
-    
+
     func testSpawnEnemy() {
-        gameEngine.spawnEnemy()
-        verify(gameEngine, times(1)).spawnEnemy()
+        gameEngine.startNextSpawnWave()
+        verify(gameEngine, times(1)).startNextSpawnWave()
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).count == 1)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         let gestureEntity = gameEngine.entities(for: .gestureEntity).first as? GestureEntity
@@ -116,11 +116,11 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.dropMana(at: enemyEntity)
         verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
     }
-    
-    func testEnemyForceRemoved() {
-        gameEngine.spawnEnemy()
 
-        verify(gameEngine, times(1)).spawnEnemy()
+    func testEnemyForceRemoved() {
+        gameEngine.startNextSpawnWave()
+
+        verify(gameEngine, times(1)).startNextSpawnWave()
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).count == 1)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         
@@ -143,9 +143,9 @@ class GameEngineTest: BaseUnitTest {
     }
     
     func testEnemyReachedLine() {
-        gameEngine.spawnEnemy()
+        gameEngine.startNextSpawnWave()
 
-        verify(gameEngine, times(1)).spawnEnemy()
+        verify(gameEngine, times(1)).startNextSpawnWave()
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).count == 1)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         
@@ -168,9 +168,9 @@ class GameEngineTest: BaseUnitTest {
     }
     
     func testGestureActivated() {
-        gameEngine.spawnEnemy()
+        gameEngine.startNextSpawnWave()
 
-        verify(gameEngine, times(1)).spawnEnemy()
+        verify(gameEngine, times(1)).startNextSpawnWave()
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).count == 1)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         let gestureEntity = gameEngine.entities(for: .gestureEntity).first as? GestureEntity

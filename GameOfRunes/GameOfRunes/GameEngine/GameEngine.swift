@@ -13,6 +13,7 @@ class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
     var contactDelegate: ContactDelegate!
+    private var spawnDelegate: SpawnDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
@@ -26,16 +27,19 @@ class GameEngine {
     }
     
     // TODO: pass in avatar, and use it to determine powerups.
-    init(gameScene: GameScene) {
+    init(gameScene: GameScene, levelNumber: Int) {
         self.gameScene = gameScene
-        self.metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
-                                  numManaUnits: GameConfig.Mana.numManaUnits,
-                                  manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-                                  powerUps: [.darkVortex, .hellfire, .icePrison])
-        
-        self.systemDelegate = SystemDelegate(gameEngine: self)
-        self.removeDelegate = RemoveDelegate(gameEngine: self)
-        self.contactDelegate = ContactDelegate(gameEngine: self)
+        metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
+                                numManaUnits: GameConfig.Mana.numManaUnits,
+                                manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
+                                powerUps: [.darkVortex, .hellfire, .icePrison],
+                                levelNumber: levelNumber)
+        systemDelegate = SystemDelegate(gameEngine: self)
+        removeDelegate = RemoveDelegate(gameEngine: self)
+        spawnDelegate = SpawnDelegate(gameEngine: self,
+                                      gameMetaData: metadata)
+        contactDelegate = ContactDelegate(gameEngine: self)
+
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
         }
@@ -62,6 +66,7 @@ class GameEngine {
     }
     
     func update(with deltaTime: TimeInterval) {
+        spawnDelegate.update(with: deltaTime)
         systemDelegate.update(with: deltaTime)
         
         toRemoveEntities.forEach { entity in
@@ -74,28 +79,18 @@ class GameEngine {
         if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false)
         }
+
+        // Player Wins the Game
+        if (metadata.playerHealth > 0) &&
+            (metadata.numEnemiesOnField == 0) &&
+            metadata.levelWaves.isEmpty {
+            gameScene?.gameDidEnd(didWin: true)
+        }
     }
-    
-    func spawnEnemy() {
-        guard let gameScene = gameScene else {
-            return
-        }
-        let enemyEntity = EnemyEntity(enemyType: EnemyType.allCases.randomElement() ?? .orc1,
-                                      gameEngine: self,
-                                      scale: gameScene.size.width / 6)
-        if let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) {
-            spriteComponent.node.position = .init(
-                x: .random(in: gameScene.size.width * 0.25 ... gameScene.size.width * 0.75),
-                y: gameScene.size.height - 100
-            )
-        }
-        
-        guard let gestureEntity = enemyEntity.gestureEntity else {
-            return
-        }
-        
-        add(enemyEntity)
-        add(gestureEntity)
+
+    /** Will start the next Spawn Wave. Function called when Summon button is presesd. */
+    func startNextSpawnWave() {
+        spawnDelegate.startNextSpawnWave()
     }
     
     /** Gets all entities of a particular `Team`. */

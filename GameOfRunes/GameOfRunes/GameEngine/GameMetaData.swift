@@ -6,6 +6,8 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
+import Foundation
+
 class GameMetaData {
     // TODO: maybe change this to current avatar.
     private (set) var availablePowerUps: [PowerUpType]
@@ -21,12 +23,22 @@ class GameMetaData {
     var score: Int = 0
     var selectedPowerUp: PowerUpType?
     var multiplier: Double = 1.0
+    var levelWaves: EnemySpawnUnit
+    var levelSpawnInterval: TimeInterval
+    var numEnemiesOnField: Int = 0
 
-    init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int, powerUps: [PowerUpType]) {
+    init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
+         powerUps: [PowerUpType], levelNumber: Int) {
         self.maxPlayerHealth = maxPlayerHealth
         self.numManaUnits = numManaUnits
         self.manaPerManaUnit = manaPerManaUnit
         availablePowerUps = powerUps
         playerHealth = maxPlayerHealth
+
+        do {
+            (levelWaves, levelSpawnInterval) = try LevelCreator.getLevelDataAndSpawnInterval(levelNumber: levelNumber)
+        } catch {
+            fatalError("An Unexpected Error Occured: \(error)")
+        }
     }
 }
