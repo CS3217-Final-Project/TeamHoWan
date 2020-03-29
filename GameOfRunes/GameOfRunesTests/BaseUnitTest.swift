@@ -23,7 +23,7 @@ class BaseUnitTest: XCTestCase {
     var droppedManaNode: MockDroppedManaNode!
     
     var timerEntity: MockTimerEntity!
-    var enemyEntity: EnemyEntity!
+    var bossEnemyEntity: EnemyEntity!
     // Note: This is not the gesture entity from enemyEntity.
     var gestureEntity: MockGestureEntity!
     var playerEntity: PlayerEntity!
@@ -58,8 +58,8 @@ class BaseUnitTest: XCTestCase {
         
         timerEntity = MockTimerEntity(gameEngine: gameEngine, timerNode: SKLabelNode(), initialTimerValue: 0)
             .withEnabledSuperclassSpy()
-        enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
-        gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
+        bossEnemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
+        gestureEntity = MockGestureEntity(gesture: .lightning, parent: bossEnemyEntity)
             .withEnabledSuperclassSpy()
         playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode)
             .withEnabledSuperclassSpy()
@@ -87,7 +87,7 @@ class BaseUnitTest: XCTestCase {
         droppedManaNode = nil
         
         timerEntity = nil
-        enemyEntity = nil
+        bossEnemyEntity = nil
         gestureEntity = nil
         playerEntity = nil
         endPointEntity = nil
