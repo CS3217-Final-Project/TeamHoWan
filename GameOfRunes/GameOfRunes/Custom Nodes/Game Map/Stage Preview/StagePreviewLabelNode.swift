@@ -8,23 +8,21 @@
 
 import SpriteKit
 
-class StagePreviewLabelNode: SKSpriteNode {
-    private let nameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    private let groupNameLabelNode = SKLabelNode(fontNamed: GameConfig.fontName)
+class StagePreviewLabelNode: StackedLabelsNode {
     var stageName: String {
         get {
-            nameLabelNode.text ?? ""
+            topLabelNode.text ?? ""
         }
         set {
-            nameLabelNode.text = newValue
+            topLabelNode.text = newValue
         }
     }
     var stageGroupName: String {
         get {
-            groupNameLabelNode.text ?? ""
+            bottomLabelNode.text ?? ""
         }
         set {
-            groupNameLabelNode.text = newValue
+            bottomLabelNode.text = newValue
         }
     }
     var category: Stage.Category? {
@@ -36,40 +34,21 @@ class StagePreviewLabelNode: SKSpriteNode {
             texture = .init(imageNamed: "stage-name-preview-\(category)")
         }
     }
-    override var size: CGSize {
-        didSet {
-            guard oldValue != size else {
-                return
-            }
-            layoutNameLabelNode()
-            layoutGroupLabelNode()
-        }
-    }
     
     init() {
-        super.init(texture: nil, color: .clear, size: .zero)
+        super.init()
         
-        nameLabelNode.fontColor = .white
-        nameLabelNode.zPosition = 1
-        groupNameLabelNode.fontColor = .white
-        groupNameLabelNode.zPosition = 1
-        
-        addChild(nameLabelNode)
-        addChild(groupNameLabelNode)
+        topLabelNode.fontColor = .white
+        bottomLabelNode.fontColor = .white
     }
     
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func layoutTopLabelNode() {
+        topLabelNode.position = .init(x: 0.0, y: -size.height / 40)
+        topLabelNode.fontSize = size.height / 4
     }
     
-    private func layoutNameLabelNode() {
-        nameLabelNode.position = .init(x: 0.0, y: -size.height / 40)
-        nameLabelNode.fontSize = size.height / 4
-    }
-    
-    private func layoutGroupLabelNode() {
-        groupNameLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
-        groupNameLabelNode.fontSize = size.height / 7
+    override func layoutBottomLabelNode() {
+        bottomLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
+        bottomLabelNode.fontSize = size.height / 7
     }
 }

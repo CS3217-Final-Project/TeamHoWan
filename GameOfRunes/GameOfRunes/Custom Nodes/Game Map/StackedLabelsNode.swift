@@ -27,6 +27,9 @@ class StackedLabelsNode: SKSpriteNode {
         topLabelNode.fontColor = .init(hex: "#fefb9e", alpha: 1.0)
         bottomLabelNode.fontColor = .init(hex: "#fefb9e", alpha: 1.0)
         
+        topLabelNode.zPosition = 1
+        bottomLabelNode.zPosition = 1
+        
         addChild(topLabelNode)
         addChild(bottomLabelNode)
     }
@@ -36,15 +39,13 @@ class StackedLabelsNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layoutTopLabelNode() {
+    func layoutTopLabelNode() {
         topLabelNode.position = .init(x: 0.0, y: size.height / 6)
         topLabelNode.fontSize = size.height / 4
-        topLabelNode.zPosition = 1
     }
     
-    private func layoutBottomLabelNode() {
+    func layoutBottomLabelNode() {
         bottomLabelNode.position = .init(x: 0.0, y: -size.height / 6)
         bottomLabelNode.fontSize = size.height / 4
-        bottomLabelNode.zPosition = 1
     }
 }
