@@ -8,12 +8,21 @@
 
 import SpriteKit
 
-// SCORENODE FRONTEND TAG FOR JEREMY
+// FRONT-END TAG
 class ScoreNode: SKSpriteNode {
+    private let labelNodeKey: String = "label"
+    
     init() {
         super.init(texture: nil, color: .clear, size: .init(width: 100, height: 100))
         buildCoinNode()
         buildLabelNode()
+    }
+    
+    func setLabel(label: String) {
+        guard let labelNode = childNode(withName: labelNodeKey) as? SKLabelNode else {
+            return
+        }
+        labelNode.text = label
     }
     
     func buildCoinNode() {
@@ -27,7 +36,7 @@ class ScoreNode: SKSpriteNode {
     func buildLabelNode() {
         let scoreLabelNode = SKLabelNode(fontNamed: "DragonFire")
         scoreLabelNode.position = CGPoint()
-        scoreLabelNode.name = "label"
+        scoreLabelNode.name = labelNodeKey
         scoreLabelNode.fontSize = 50
         scoreLabelNode.fontColor = SKColor.yellow
         scoreLabelNode.zPosition = 2

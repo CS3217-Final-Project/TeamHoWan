@@ -134,7 +134,7 @@ class GameEngine {
             return
         }
         
-        systemDelegate.addScore(by: points, for: playerEntity)
+        systemDelegate.addScore(by: points, multiplier: metadata.multiplier, for: playerEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
@@ -147,12 +147,13 @@ class GameEngine {
             }
             removeDelegate.removeGesture(for: entity)
             count += 1
+            
         }
-        guard let playerScoreEntity = playerEntity else {
-            return
+        guard let playerEntity = playerEntity else {
+            fatalError("Player entity is nil.")
         }
         
-        systemDelegate.addMultiKillScore(count: count, for: playerScoreEntity)
+        systemDelegate.addMultiKillScore(count: count, for: playerEntity)
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
@@ -208,14 +209,12 @@ class GameEngine {
         systemDelegate.setLabel(entity, label: label)
     }
     
-    func addComboScore(count: Int) {
-        // TODO: Better combo score multiplier system
-        let totalScore = count * GameConfig.Enemy.normalScore
-        addScore(by: totalScore)
-    }
-    
     func decreaseLabelOpacity(_ entity: Entity) {
         systemDelegate.decreaseLabelOpacity(entity)
+    }
+    
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        systemDelegate.incrementLabelIntegerValue(entity)
     }
     
     func incrementCombo() {
@@ -223,9 +222,16 @@ class GameEngine {
             add(ComboEntity(gameEngine: self))
         }
         guard let comboEntity = comboEntity else {
+            fatalError("ComboEntity does not exist even though it was just added.")
+        }
+        incrementLabelIntegerValue(comboEntity)
+    }
+    
+    func incrementMultiplier() {
+        guard let comboEntity = comboEntity else {
             return
         }
-        systemDelegate.incrementCombo(comboEntity)
+        systemDelegate.incrementMultiplier(comboEntity)
     }
     
     func endCombo() {

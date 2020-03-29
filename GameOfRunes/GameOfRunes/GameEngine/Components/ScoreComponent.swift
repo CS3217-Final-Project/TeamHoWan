@@ -13,25 +13,10 @@ class ScoreComponent: GKComponent, Component {
     var type: ComponentType {
         .scoreComponent
     }
-    
-    private var _scorePoints: Int
-    private let scoreNode: SKNode?
-    
-    var scorePoints: Int {
-        get {
-            self._scorePoints
-        }
-        set {
-            if let labelNode = self.scoreNode?.childNode(withName: "label") as? SKLabelNode {
-                labelNode.text = "\(newValue)"
-            }
-            self._scorePoints = newValue
-        }
-    }
+    var scorePoints: Int
     
     init(scorePoints: Int, scoreNode: SKNode? = nil) {
-        self._scorePoints = max(0, scorePoints)
-        self.scoreNode = scoreNode
+        self.scorePoints = max(0, scorePoints)
         super.init()
     }
     

@@ -120,7 +120,7 @@ class PlayerAreaNode: SKSpriteNode {
         manaBarPositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: size.height / 4)
         powerUpContainerPositionOffsetFromCenter = .init(dx: -size.width / 4.5, dy: -size.height / 5.5)
         summonNodePositionOffsetFromCenter = .init(dx: size.width / 4.5, dy: -size.height / 5.5)
-        // SCORENODE FRONTEND TAG FOR JEREMY
+        // FRONT-END TAG
         scoreNode.position = CGPoint(x: size.width / 3, y: -size.height / 5.5)
         scoreNode.zPosition = 100
         

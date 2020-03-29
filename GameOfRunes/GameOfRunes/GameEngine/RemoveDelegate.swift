@@ -53,7 +53,7 @@ class RemoveDelegate {
         
         if shouldIncreaseScore {
             guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
-                return
+                fatalError("EnemyEntity does not have a score component.")
             }
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }

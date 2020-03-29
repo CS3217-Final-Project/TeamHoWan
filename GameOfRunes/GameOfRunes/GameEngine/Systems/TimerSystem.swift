@@ -51,10 +51,11 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             }
         case .comboEntity:
             if let comboEntity = entity as? ComboEntity {
-                if component.time <= 0, let labelComponent = comboEntity.component(ofType: LabelComponent.self) {
-                    // If timer runs out, remove entity and add combo score
-                    gameEngine?.addComboScore(count: Int(labelComponent.label) ?? 0)
+                if component.time <= 0,
+                    let multiplierComponent = comboEntity.component(ofType: MultiplierComponent.self) {
+                    // If timer runs out, end combo and reset multiplier
                     gameEngine?.endCombo()
+                    multiplierComponent.multiplier = 1.0
                 } else {
                     // Decrease opacity of label
                     gameEngine?.decreaseLabelOpacity(entity)
@@ -65,11 +66,11 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         }
     }
     
-    func resetCombo(_ entity: Entity) {
+    func resetTimer(_ entity: Entity) {
         guard let timerComponent = entity.component(ofType: TimerComponent.self) else {
             return
         }
-        timerComponent.time = GameConfig.Score.comboTimer
+        timerComponent.time = timerComponent.initialTimerValue
     }
     
     func removeComponent(_ component: Component) {

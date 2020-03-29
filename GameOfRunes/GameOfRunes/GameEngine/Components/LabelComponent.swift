@@ -22,6 +22,7 @@ class LabelComponent: GKComponent, Component {
     var type: ComponentType {
         .labelComponent
     }
+    let layerType: SpriteLayerType = .highestPriorityLayer
     
     func decreaseOpacity() {
         node.alpha -= 1 / 120

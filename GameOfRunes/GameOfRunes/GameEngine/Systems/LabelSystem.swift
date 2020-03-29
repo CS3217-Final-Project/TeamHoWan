@@ -23,7 +23,7 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
             return
         }
         
-        gameEngine?.gameScene?.addNodeToLayer(layer: .highestPriorityLayer, node: labelComponent.node)
+        gameEngine?.gameScene?.addNodeToLayer(layer: labelComponent.layerType, node: labelComponent.node)
     }
     
     func setLabel(entity: Entity, label: String) {
@@ -40,14 +40,17 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         labelComponent.decreaseOpacity()
     }
     
-    func incrementCombo(_ entity: Entity) {
-        guard entity is ComboEntity,
-            let labelComponent = entity.component(ofType: LabelComponent.self),
-            let newValue = Int(labelComponent.label) else {
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        guard let labelComponent = entity.component(ofType: LabelComponent.self),
+            let oldValue = Int(labelComponent.label) else {
             return
         }
+        let newValue = oldValue + 1
         labelComponent.resetOpacity()
-        labelComponent.label = "\(newValue + 1)"
+        labelComponent.label = "\(newValue)"
+        if entity is ComboEntity, newValue.isMultiple(of: 10) {
+            gameEngine?.incrementMultiplier()
+        }
     }
     
     override func removeComponent(foundIn entity: GKEntity) {

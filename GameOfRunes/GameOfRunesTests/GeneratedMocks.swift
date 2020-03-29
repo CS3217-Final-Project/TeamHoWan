@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  MoveComponent.swift
@@ -1419,7 +1419,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  SpriteComponent.swift
@@ -1646,7 +1646,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  TeamComponent.swift
@@ -1755,7 +1755,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  TimerComponent.swift
@@ -1951,7 +1951,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -2060,7 +2060,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  EndPointEntity.swift
@@ -2169,7 +2169,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  EnemyEntity.swift
@@ -2370,7 +2370,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GestureEntity.swift
@@ -2522,7 +2522,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  PlayerEntity.swift
@@ -2630,7 +2630,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2815,7 +2815,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  HellfireEntity.swift
@@ -3000,7 +3000,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -3185,7 +3185,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  TimerEntity.swift
@@ -3293,7 +3293,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameEngine.swift
@@ -3740,21 +3740,6 @@ import SpriteKit
     
     
     
-     override func addComboScore(count: Int)  {
-        
-    return cuckoo_manager.call("addComboScore(count: Int)",
-            parameters: (count),
-            escapingParameters: (count),
-            superclassCall:
-                
-                super.addComboScore(count: count)
-                ,
-            defaultCall: __defaultImplStub!.addComboScore(count: count))
-        
-    }
-    
-    
-    
      override func decreaseLabelOpacity(_ entity: Entity)  {
         
     return cuckoo_manager.call("decreaseLabelOpacity(_: Entity)",
@@ -3765,6 +3750,21 @@ import SpriteKit
                 super.decreaseLabelOpacity(entity)
                 ,
             defaultCall: __defaultImplStub!.decreaseLabelOpacity(entity))
+        
+    }
+    
+    
+    
+     override func incrementLabelIntegerValue(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("incrementLabelIntegerValue(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.incrementLabelIntegerValue(entity)
+                ,
+            defaultCall: __defaultImplStub!.incrementLabelIntegerValue(entity))
         
     }
     
@@ -3937,14 +3937,14 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "setLabel(_: Entity, label: String)", parameterMatchers: matchers))
 	    }
 	    
-	    func addComboScore<M1: Cuckoo.Matchable>(count: M1) -> Cuckoo.ClassStubNoReturnFunction<(Int)> where M1.MatchedType == Int {
-	        let matchers: [Cuckoo.ParameterMatcher<(Int)>] = [wrap(matchable: count) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "addComboScore(count: Int)", parameterMatchers: matchers))
-	    }
-	    
 	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "decreaseLabelOpacity(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "incrementLabelIntegerValue(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
 	    func incrementCombo() -> Cuckoo.ClassStubNoReturnFunction<()> {
@@ -4125,15 +4125,15 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func addComboScore<M1: Cuckoo.Matchable>(count: M1) -> Cuckoo.__DoNotUse<(Int), Void> where M1.MatchedType == Int {
-	        let matchers: [Cuckoo.ParameterMatcher<(Int)>] = [wrap(matchable: count) { $0 }]
-	        return cuckoo_manager.verify("addComboScore(count: Int)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-	    }
-	    
-	    @discardableResult
 	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return cuckoo_manager.verify("decreaseLabelOpacity(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("incrementLabelIntegerValue(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -4285,11 +4285,11 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func addComboScore(count: Int)   {
+     override func decreaseLabelOpacity(_ entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func decreaseLabelOpacity(_ entity: Entity)   {
+     override func incrementLabelIntegerValue(_ entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -4304,7 +4304,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4470,7 +4470,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  SystemDelegate.swift
@@ -4759,16 +4759,16 @@ import GameplayKit
     
     
     
-     override func addScore(by points: Int, for entity: Entity)  {
+     override func addScore(by points: Int, multiplier: Double, for entity: Entity)  {
         
-    return cuckoo_manager.call("addScore(by: Int, for: Entity)",
-            parameters: (points, entity),
-            escapingParameters: (points, entity),
+    return cuckoo_manager.call("addScore(by: Int, multiplier: Double, for: Entity)",
+            parameters: (points, multiplier, entity),
+            escapingParameters: (points, multiplier, entity),
             superclassCall:
                 
-                super.addScore(by: points, for: entity)
+                super.addScore(by: points, multiplier: multiplier, for: entity)
                 ,
-            defaultCall: __defaultImplStub!.addScore(by: points, for: entity))
+            defaultCall: __defaultImplStub!.addScore(by: points, multiplier: multiplier, for: entity))
         
     }
     
@@ -4834,16 +4834,31 @@ import GameplayKit
     
     
     
-     override func incrementCombo(_ entity: Entity)  {
+     override func incrementLabelIntegerValue(_ entity: Entity)  {
         
-    return cuckoo_manager.call("incrementCombo(_: Entity)",
+    return cuckoo_manager.call("incrementLabelIntegerValue(_: Entity)",
             parameters: (entity),
             escapingParameters: (entity),
             superclassCall:
                 
-                super.incrementCombo(entity)
+                super.incrementLabelIntegerValue(entity)
                 ,
-            defaultCall: __defaultImplStub!.incrementCombo(entity))
+            defaultCall: __defaultImplStub!.incrementLabelIntegerValue(entity))
+        
+    }
+    
+    
+    
+     override func incrementMultiplier(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("incrementMultiplier(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.incrementMultiplier(entity)
+                ,
+            defaultCall: __defaultImplStub!.incrementMultiplier(entity))
         
     }
     
@@ -4941,9 +4956,9 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
 	    }
 	    
-	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by points: M1, for entity: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, Entity)> where M1.MatchedType == Int, M2.MatchedType == Entity {
-	        let matchers: [Cuckoo.ParameterMatcher<(Int, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: entity) { $0.1 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "addScore(by: Int, for: Entity)", parameterMatchers: matchers))
+	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(by points: M1, multiplier: M2, for entity: M3) -> Cuckoo.ClassStubNoReturnFunction<(Int, Double, Entity)> where M1.MatchedType == Int, M2.MatchedType == Double, M3.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Double, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: multiplier) { $0.1 }, wrap(matchable: entity) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "addScore(by: Int, multiplier: Double, for: Entity)", parameterMatchers: matchers))
 	    }
 	    
 	    func addMultiKillScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(count: M1, for entity: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, Entity)> where M1.MatchedType == Int, M2.MatchedType == Entity {
@@ -4966,9 +4981,14 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "decreaseLabelOpacity(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
-	    func incrementCombo<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "incrementCombo(_: Entity)", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "incrementLabelIntegerValue(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementMultiplier<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "incrementMultiplier(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
 	}
@@ -5083,9 +5103,9 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(by points: M1, for entity: M2) -> Cuckoo.__DoNotUse<(Int, Entity), Void> where M1.MatchedType == Int, M2.MatchedType == Entity {
-	        let matchers: [Cuckoo.ParameterMatcher<(Int, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: entity) { $0.1 }]
-	        return cuckoo_manager.verify("addScore(by: Int, for: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(by points: M1, multiplier: M2, for entity: M3) -> Cuckoo.__DoNotUse<(Int, Double, Entity), Void> where M1.MatchedType == Int, M2.MatchedType == Double, M3.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Double, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: multiplier) { $0.1 }, wrap(matchable: entity) { $0.2 }]
+	        return cuckoo_manager.verify("addScore(by: Int, multiplier: Double, for: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -5113,9 +5133,15 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func incrementCombo<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return cuckoo_manager.verify("incrementCombo(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("incrementLabelIntegerValue(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementMultiplier<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("incrementMultiplier(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	}
@@ -5223,7 +5249,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func addScore(by points: Int, for entity: Entity)   {
+     override func addScore(by points: Int, multiplier: Double, for entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -5243,14 +5269,18 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func incrementCombo(_ entity: Entity)   {
+     override func incrementLabelIntegerValue(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementMultiplier(_ entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  HealthSystem.swift
@@ -5386,7 +5416,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  ManaSystem.swift
@@ -5552,7 +5582,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  MoveSystem.swift
@@ -5688,7 +5718,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  SpriteSystem.swift
@@ -5914,7 +5944,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  TimerSystem.swift
@@ -5985,16 +6015,16 @@ import GameplayKit
     
     
     
-     override func resetCombo(_ entity: Entity)  {
+     override func resetTimer(_ entity: Entity)  {
         
-    return cuckoo_manager.call("resetCombo(_: Entity)",
+    return cuckoo_manager.call("resetTimer(_: Entity)",
             parameters: (entity),
             escapingParameters: (entity),
             superclassCall:
                 
-                super.resetCombo(entity)
+                super.resetTimer(entity)
                 ,
-            defaultCall: __defaultImplStub!.resetCombo(entity))
+            defaultCall: __defaultImplStub!.resetTimer(entity))
         
     }
     
@@ -6032,9 +6062,9 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "updateComponent(_: TimerComponent, _: TimeInterval)", parameterMatchers: matchers))
 	    }
 	    
-	    func resetCombo<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "resetCombo(_: Entity)", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "resetTimer(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -6071,9 +6101,9 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func resetCombo<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return cuckoo_manager.verify("resetCombo(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("resetTimer(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -6099,7 +6129,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func resetCombo(_ entity: Entity)   {
+     override func resetTimer(_ entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -6110,7 +6140,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameEndState.swift
@@ -6290,7 +6320,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameInPlayState.swift
@@ -6426,7 +6456,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GamePauseState.swift
@@ -6562,7 +6592,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameStartState.swift
@@ -6698,7 +6728,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameStateMachine.swift
@@ -6818,7 +6848,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  GameScene.swift
@@ -7439,7 +7469,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-29 07:38:07 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-29 13:58:41 +0000
 
 //
 //  SceneManager.swift

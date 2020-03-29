@@ -91,8 +91,8 @@ class SystemDelegate {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
-    func addScore(by points: Int, for entity: Entity) {
-        scoreSystem?.addScore(by: points, for: entity)
+    func addScore(by points: Int, multiplier: Double, for entity: Entity) {
+        scoreSystem?.addScore(by: points, multiplier: multiplier, for: entity)
     }
     
     func addMultiKillScore(count: Int, for entity: Entity) {
@@ -102,7 +102,7 @@ class SystemDelegate {
         } else if count >= 3 {
             score = GameConfig.Score.tripleKillScore
         }
-        addScore(by: score, for: entity)
+        addScore(by: score, multiplier: 1, for: entity)
     }
     
     func runFadingAnimation(_ entity: Entity) {
@@ -117,8 +117,12 @@ class SystemDelegate {
         labelSystem?.decreaseLabelOpacity(entity)
     }
     
-    func incrementCombo(_ entity: Entity) {
-        labelSystem?.incrementCombo(entity)
-        timerSystem?.resetCombo(entity)
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        labelSystem?.incrementLabelIntegerValue(entity)
+        timerSystem?.resetTimer(entity)
+    }
+    
+    func incrementMultiplier(_ entity: Entity) {
+        scoreSystem?.incrementMultiplier(for: entity)
     }
 }

@@ -13,9 +13,18 @@ class MultiplierComponent: GKComponent, Component {
     var type: ComponentType {
         .multiplierComponent
     }
-    var multiplier: Int = 1
+    private var metaData: GameMetaData
+    var multiplier: Double {
+        get {
+            metaData.multiplier
+        }
+        set {
+            metaData.multiplier = max(1, newValue)
+        }
+    }
     
-    override init() {
+    init(metaData: GameMetaData) {
+        self.metaData = metaData
         super.init()
     }
     

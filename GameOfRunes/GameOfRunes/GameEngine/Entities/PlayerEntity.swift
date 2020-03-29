@@ -17,11 +17,9 @@ class PlayerEntity: Entity {
         super.init()
         let healthComponent = HealthComponent(healthPoints: gameEngine.metadata.playerHealth)
         let manaComponent = ManaComponent(manaPoints: gameEngine.metadata.playerMana)
-        let scoreComponent = ScoreComponent(scorePoints: gameEngine.metadata.score, scoreNode: scoreNode)
+        let scoreComponent = ScoreComponent(scorePoints: gameEngine.metadata.score)
         let playerComponent = PlayerComponent(healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
-        let multiplierComponent = MultiplierComponent()
 
-        addComponent(multiplierComponent)
         addComponent(healthComponent)
         addComponent(scoreComponent)
         addComponent(manaComponent)
