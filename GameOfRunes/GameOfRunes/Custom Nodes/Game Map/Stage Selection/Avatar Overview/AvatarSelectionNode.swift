@@ -13,6 +13,22 @@ class AvatarSelectionNode: SKSpriteNode {
     let rightArrowNode = ArrowNode(buttonType: .rightButton)
     let avatarSpriteNode = SKSpriteNode()
     
+    var avatar: Avatar? {
+        didSet {
+            guard let avatar = avatar, oldValue != avatar else {
+                return
+            }
+            
+            avatarSpriteNode.run(
+                .repeatForever(
+                    .animate(
+                        with: TextureContainer.getAvatarTextures(avatar: avatar),
+                        timePerFrame: 0.1
+                    )
+                )
+            )
+        }
+    }
     override var size: CGSize {
         didSet {
             guard oldValue != size else {
@@ -29,8 +45,8 @@ class AvatarSelectionNode: SKSpriteNode {
         
         avatarSpriteNode.color = .darkGray
         
-        leftArrowNode.zPosition = 1
-        rightArrowNode.zPosition = 1
+        leftArrowNode.zPosition = 2
+        rightArrowNode.zPosition = 2
         avatarSpriteNode.zPosition = 1
         
         addChild(leftArrowNode)
@@ -54,7 +70,7 @@ class AvatarSelectionNode: SKSpriteNode {
     }
     
     private func layoutAvatarSpriteNode() {
-        avatarSpriteNode.size = size.applying(.init(scaleX: 0.6, y: 1.0))
+        avatarSpriteNode.size = size.scaleTo(width: size.width, widthToHeightRatio: 1)
         avatarSpriteNode.position = .zero
     }
 }

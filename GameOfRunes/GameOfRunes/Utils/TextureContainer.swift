@@ -86,7 +86,7 @@ enum TextureContainer {
         var avatarsTextures = [Avatar: [SKTexture]]()
         
         Avatar.allCases.forEach { avatar in
-            let avatarAtlas = SKTextureAtlas(named: "avatar\(avatar)")
+            let avatarAtlas = SKTextureAtlas(named: "\(avatar)")
             let avatarTextures = (0...9).map { avatarAtlas.textureNamed("IDLE_00\($0)") }
             avatarsTextures[avatar] = avatarTextures
         }
@@ -142,5 +142,10 @@ enum TextureContainer {
     /** Get the Animation Textures for Power Up (when in effect) */
     static func getPowerUpTextures(powerUpType: PowerUpType) -> [SKTexture] {
         powerUpTextures[powerUpType] ?? []
+    }
+    
+    /** Get the Animation Textures for the `Avatar` */
+    static func getAvatarTextures(avatar: Avatar) -> [SKTexture] {
+        avatarsTextures[avatar] ?? []
     }
 }

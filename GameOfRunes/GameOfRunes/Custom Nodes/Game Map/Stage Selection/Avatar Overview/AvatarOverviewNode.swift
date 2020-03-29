@@ -22,6 +22,8 @@ class AvatarOverviewNode: SKSpriteNode {
             
             avatarLabelNode.avatarName = avatar.name
             
+            avatarSelectionNode.avatar = avatar
+            
             healthBarNode.totalLives = avatar.health
             healthBarNode.livesLeft = avatar.health
             
