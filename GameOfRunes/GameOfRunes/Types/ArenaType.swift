@@ -16,6 +16,8 @@ enum ArenaType: String, CaseIterable {
     case arena5
     case arena6
     case arena7
+    case arena8
+    case arena9
     case finalArena
     
     var texture: SKTexture {

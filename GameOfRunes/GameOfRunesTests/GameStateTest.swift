@@ -14,6 +14,7 @@ class GameStateTest: BaseUnitTest {
     var gameStartState: MockGameStartState!
     var gamePauseState: MockGamePauseState!
     var gameEndState: MockGameEndState!
+    var gameSelectionState: MockGameSelectionState!
 
     override func setUp() {
         super.setUp()
@@ -21,6 +22,7 @@ class GameStateTest: BaseUnitTest {
         gameStartState = MockGameStartState().withEnabledSuperclassSpy()
         gamePauseState = MockGamePauseState().withEnabledSuperclassSpy()
         gameEndState = MockGameEndState().withEnabledSuperclassSpy()
+        gameSelectionState = MockGameSelectionState().withEnabledSuperclassSpy()
     }
 
     func testStartStateNextValidState() {
@@ -28,6 +30,7 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameStartState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gameStartState.isValidNextState(MockGameEndState.self))
         XCTAssertFalse(gameStartState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gameStartState.isValidNextState(MockGameSelectionState.self))
     }
 
     func testInPlayStateNextValidState() {
@@ -35,6 +38,7 @@ class GameStateTest: BaseUnitTest {
         XCTAssertTrue(gameInPlayState.isValidNextState(MockGamePauseState.self))
         XCTAssertTrue(gameInPlayState.isValidNextState(MockGameEndState.self))
         XCTAssertFalse(gameInPlayState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gameInPlayState.isValidNextState(MockGameSelectionState.self))
     }
 
     func testPauseStateNextValidState() {
@@ -42,6 +46,7 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gamePauseState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gamePauseState.isValidNextState(MockGameEndState.self))
         XCTAssertFalse(gamePauseState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gamePauseState.isValidNextState(MockGameSelectionState.self))
     }
 
     func testEndStateNextValidState() {
@@ -49,5 +54,14 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameEndState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gameEndState.isValidNextState(MockGameEndState.self))
         XCTAssertTrue(gameEndState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gameEndState.isValidNextState(MockGameSelectionState.self))
+    }
+    
+    func testSelectionStateNextValidState() {
+        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameInPlayState.self))
+        XCTAssertFalse(gameSelectionState.isValidNextState(MockGamePauseState.self))
+        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameEndState.self))
+        XCTAssertTrue(gameSelectionState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameSelectionState.self))
     }
 }
