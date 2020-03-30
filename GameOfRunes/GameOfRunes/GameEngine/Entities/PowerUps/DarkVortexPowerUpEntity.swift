@@ -15,29 +15,22 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
         .darkVortex
     }
-    private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
     
     init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
-        self.gameEngine = gameEngine
         super.init()
         
         let animationNode = getAnimationNode(at: position, with: size)
-<<<<<<< HEAD
-        let spriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-=======
-        let spriteComponent = SpriteComponent(node: animationNode)
-        spriteComponent.layerType = .powerUpAnimationLayer
         
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
+        let spriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.width)
+            radius: .zero
         )
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
         

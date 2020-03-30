@@ -145,7 +145,7 @@ class GameEngine {
             
         }
         guard let playerEntity = playerEntity else {
-            fatalError("Player entity is nil.")
+            return
         }
         
         systemDelegate.addMultiKillScore(count: count, for: playerEntity)
@@ -217,7 +217,7 @@ class GameEngine {
             add(ComboEntity(gameEngine: self))
         }
         guard let comboEntity = comboEntity else {
-            fatalError("ComboEntity does not exist even though it was just added.")
+            return
         }
         incrementLabelIntegerValue(comboEntity)
     }
@@ -243,7 +243,7 @@ extension GameEngine {
         // must only be called when a power up is selected
         guard let gameScene = gameScene,
             let selectedPowerUp = gameScene.selectedPowerUp else {
-                fatalError("Invalid call to didActivatePowerUp")
+                return false
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
@@ -265,13 +265,11 @@ extension GameEngine {
             )
         case .hellfire:
             powerUpEntity = HellfirePowerUpEntity(
-                gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
         case .icePrison:
             powerUpEntity = IcePrisonPowerUpEntity(
-                gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )

@@ -7,10 +7,9 @@
 //
 
 import SpriteKit
-import GameplayKit
-
+/*
 class CollisionNode: SKSpriteNode {
-    weak var component: GKComponent?
+    weak var associatedEntity: Entity?
     
     init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
@@ -30,3 +29,4 @@ class CollisionNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 }
+*/

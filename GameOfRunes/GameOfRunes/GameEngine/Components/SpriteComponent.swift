@@ -9,8 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class SpriteComponent: GKComponent, Component {
-    let node: SKSpriteNode
+class SpriteComponent: GKSKNodeComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
@@ -20,12 +19,13 @@ class SpriteComponent: GKComponent, Component {
     let layerType: SpriteLayerType
 
     init(node: SKSpriteNode, layerType: SpriteLayerType) {
-        self.node = node
         self.layerType = layerType
         super.init()
+        
+        self.node = node
     }
     
-    func setGestureConstraint(referenceNode: SKSpriteNode) {
+    func setGestureConstraint(referenceNode: SKNode) {
         let xRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.x)
         let yRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.y)
 

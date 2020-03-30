@@ -56,14 +56,12 @@ class SpawnDelegate {
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?) {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
         guard let enemyType = enemyType,
-            let gameEngine = gameEngine,
-            let gameScene = gameEngine.gameScene else {
+            let gameEngine = gameEngine else {
             return
         }
 
         let gameMetaData = gameEngine.metadata
-        // TODO: Refactor the scaling of enemy entity. Calculation of scale should not be here.
-        let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine, scale: gameScene.size.width / 6)
+        let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = gameEngine.gameScene?.size,
             let gestureEntity = enemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
@@ -73,10 +71,10 @@ class SpawnDelegate {
         // Determine spawn location
         let xPositionNumerator = 2 * laneIndex + 1
         let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
-        let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
+        let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
         let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-        let xPosition = (Double(sceneSize.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-        let yPosition = Double(sceneSize.height) - GameConfig.GamePlayScene.verticalOffSet
+        let xPosition = (sceneSize.width - 2 * edgeOffset) * xPositionRatio + edgeOffset
+        let yPosition = sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
 
         spriteComponent.node.position = CGPoint(x: xPosition,
                                                 y: yPosition)

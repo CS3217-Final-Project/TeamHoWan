@@ -60,18 +60,12 @@ class BaseUnitTest: XCTestCase {
         
         timerEntity = MockTimerEntity(gameEngine: gameEngine, timerNode: SKLabelNode(), initialTimerValue: 0)
             .withEnabledSuperclassSpy()
-<<<<<<< HEAD
         bossEnemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: bossEnemyEntity)
-=======
-        enemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine, scale: CGFloat(1))
-        gestureEntity = MockGestureEntity(gesture: .lightning, parent: enemyEntity)
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
             .withEnabledSuperclassSpy()
-        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode,
-                                        scoreNode: scoreNode)
+        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode, scoreNode: scoreNode)
             .withEnabledSuperclassSpy()
-        endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: CollisionNode())
+        endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: SKSpriteNode())
             .withEnabledSuperclassSpy()
         darkVortexPowerUpEntity = DarkVortexPowerUpEntity(gameEngine: gameEngine, at: CGPoint(), with: CGSize())
         droppedManaEntity = MockDroppedManaEntity(position: CGPoint(), manaPoints: 10, gameEngine: gameEngine)

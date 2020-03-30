@@ -51,9 +51,9 @@ enum GameConfig {
     }
     
     enum Mana {
-        static let manaWidth: Double = 75
-        static let manaHeight: Double = 75
-        static let manaDropProbability: Double = 1.0
+        static let manaWidth: CGFloat = 75
+        static let manaHeight: CGFloat = 75
+        static let manaDropProbability: CGFloat = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
         static let numManaUnits: Int = 8
@@ -132,8 +132,8 @@ enum GameConfig {
 
         // Spawning of Enemies
         static let numLanes: Int = 3
-        static let horizontalOffSet: Double = 100.0
-        static let verticalOffSet: Double = 100.0
+        static let horizontalOffSet: CGFloat = 100.0
+        static let verticalOffSet: CGFloat = 100.0
         static let numEndPoints: Int = 3
     }
     

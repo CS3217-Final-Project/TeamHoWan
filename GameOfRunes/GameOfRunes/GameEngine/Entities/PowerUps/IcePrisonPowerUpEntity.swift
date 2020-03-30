@@ -15,33 +15,25 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
         .icePrison
     }
-    private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .icePrisonPowerUpEntity
     }
     
-    init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
+    init(at position: CGPoint, with size: CGSize) {
         super.init()
-        self.gameEngine = gameEngine
         
         let animationNode = getCastingAnimationNode(at: position, with: size)
-<<<<<<< HEAD
-        let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-=======
-        let animationSpriteComponent = SpriteComponent(node: animationNode)
-        animationSpriteComponent.layerType = .powerUpAnimationLayer
-        animationNode.component = animationSpriteComponent
-       
-        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
+        
+        animationNode.physicsBody = .init(circleOfRadius: size.width)
         animationNode.physicsBody?.affectedByGravity = false
         animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
         animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         animationNode.physicsBody?.collisionBitMask = 0
         
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
-        addComponent(animationSpriteComponent)
-        
+        let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
+        
+        addComponent(animationSpriteComponent)
         addComponent(timerComponent)
     }
     

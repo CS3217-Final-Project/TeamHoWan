@@ -19,39 +19,35 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     
     // Contact detected by SpriteKit's physics system
     func didBegin(_ contact: SKPhysicsContact) {
-        let isBodyAEnemy = contact.bodyA.categoryBitMask == CollisionType.enemy.rawValue
-        let isBodyBEnemy = contact.bodyB.categoryBitMask == CollisionType.enemy.rawValue
-    
-        guard let nodeA = contact.bodyA.node as? CollisionNode,
-            let nodeB = contact.bodyB.node as? CollisionNode else {
-                return
+        guard let nodeA = contact.bodyA.node, let nodeB = contact.bodyB.node else {
+            return
         }
         
-        // Only concerned if one of the nodes are enemy nodes
-        if isBodyAEnemy {
+        let isBodyAEnemy = contact.bodyA.categoryBitMask == CollisionType.enemy.rawValue
+        let isBodyBEnemy = contact.bodyB.categoryBitMask == CollisionType.enemy.rawValue
+        
+        // Only concerned if one of the nodes are enemy nodes (XOR), BUT NOT BOTH (shouldn't occur)
+        if isBodyAEnemy, !isBodyBEnemy {
             enemyNodeContactWithOther(enemyNode: nodeA, other: nodeB)
-        } else if isBodyBEnemy {
+        } else if !isBodyAEnemy, isBodyBEnemy {
             enemyNodeContactWithOther(enemyNode: nodeB, other: nodeA)
         }
     }
     
-    private func enemyNodeContactWithOther(enemyNode: CollisionNode, other: CollisionNode) {
-        guard let enemyEntity = enemyNode.component?.entity as? Entity else {
+    private func enemyNodeContactWithOther(enemyNode: SKNode, other: SKNode) {
+        guard let enemyEntity = enemyNode.entity as? EnemyEntity else {
             return
         }
-        
-        if other.component?.entity is PowerUpEntity {
-            guard let powerUpEntity = other.component?.entity as? PowerUpEntity else {
-                return
-            }
-            activatePowerUp(on: enemyEntity, powerUpType: powerUpEntity.powerUpType)
-        } else if other.component?.entity is EndPointEntity {
+       
+        if let powerUpEntity = other.entity as? PowerUpEntity {
+            didActivate(powerUp: powerUpEntity.powerUpType, on: enemyEntity)
+        } else if other.entity is EndPointEntity {
             gameEngine?.enemyReachedLine(enemyEntity)
         }
     }
     
-    private func activatePowerUp(on enemy: Entity, powerUpType: PowerUpType) {
-        switch powerUpType {
+    private func didActivate(powerUp: PowerUpType, on enemy: EnemyEntity) {
+        switch powerUp {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)
         case .icePrison:

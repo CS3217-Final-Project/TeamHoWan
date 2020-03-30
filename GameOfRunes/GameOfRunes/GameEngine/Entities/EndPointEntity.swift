@@ -17,31 +17,20 @@ class EndPointEntity: Entity {
     init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         
-<<<<<<< HEAD
-        let spriteComponent = SpriteComponent(node: node, layerType: .playerAreaLayer)
-        spriteComponent.node.addGlow()
-=======
-        guard let node = node as? CollisionNode else {
-            return
-        }
-        
-        let spriteComponent = SpriteComponent(node: node)
-        node.component = spriteComponent
-        node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+        node.physicsBody = .init(rectangleOf: node.size)
         node.physicsBody?.affectedByGravity = false
         node.physicsBody?.categoryBitMask = CollisionType.endpoint.rawValue
         node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
         node.physicsBody?.collisionBitMask = 0
-
         node.addGlow()
-        spriteComponent.layerType = .playerAreaLayer
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
+        
+        let spriteComponent = SpriteComponent(node: node, layerType: .playerAreaLayer)
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,
             maxSpeed: 0.0,
             maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.height)
+            radius: .zero
         )
         
         addComponent(spriteComponent)

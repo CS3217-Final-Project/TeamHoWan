@@ -174,19 +174,17 @@ class GameScene: SKScene {
         for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
-            let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
+            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
             let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-            let xPosition = (Double(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            let endPointNode = CollisionNode(imageNamed: "finish-line")
+            let xPosition = (.init(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
+            let endPointNode = SKSpriteNode(imageNamed: "finish-line")
 
             // re-position and resize
             let newEndPointWidth = size.width
             let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-            let yPosition = Double(playerAreaNode.position.y) +
-                Double((playerAreaNode.size.height + newEndPointHeight) / 2)
+            let yPosition = playerAreaNode.position.y + (playerAreaNode.size.height + newEndPointHeight) / 2
             endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
-            endPointNode.position = CGPoint(x: xPosition,
-                                            y: yPosition)
+            endPointNode.position = .init(x: xPosition, y: yPosition)
             endPointNode.zPosition = -1
 
             let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)

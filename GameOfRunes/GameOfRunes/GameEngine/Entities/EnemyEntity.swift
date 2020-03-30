@@ -14,35 +14,20 @@ class EnemyEntity: Entity {
         .enemyEntity
     }
 
-<<<<<<< HEAD
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
         
         let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
+        
         let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
-        spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
-
-        spriteComponent.node.run(
-=======
-    init(enemyType: EnemyType, gameEngine: GameEngine, scale: CGFloat) {
-        self.enemyType = enemyType
-
-        super.init()
-
-        let node = CollisionNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        let spriteComponent = SpriteComponent(node: node)
+        enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
+        enemyNode.physicsBody = .init(rectangleOf: enemyNode.size)
+        enemyNode.physicsBody?.affectedByGravity = false
+        enemyNode.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
+        enemyNode.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
+        enemyNode.physicsBody?.collisionBitMask = 0
         
-        node.component = spriteComponent
-        node.size = node.size.scaleTo(width: scale)
-        node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
-        node.physicsBody?.affectedByGravity = false
-        node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
-        node.physicsBody?.collisionBitMask = 0
-        
-        node.run(
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
+        enemyNode.run(
             .repeatForever(
                 .animate(
                     with: TextureContainer.getEnemyAnimationTextures(enemyType),
@@ -53,20 +38,18 @@ class EnemyEntity: Entity {
             ),
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
-
+        
+        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,
             maxSpeed: enemyType.speed,
             maxAcceleration: 5.0,
-            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01
+            radius: .init(enemyNode.size.height / 2)
         )
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: enemyType.health)
-<<<<<<< HEAD
         let enemyTypeComponent = EnemyTypeComponent(enemyType)
-=======
         let scoreComponent = ScoreComponent(scorePoints: GameConfig.Enemy.normalScore)
->>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
 
         addComponent(spriteComponent)
         addComponent(scoreComponent)
