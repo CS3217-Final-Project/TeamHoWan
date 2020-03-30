@@ -16,4 +16,7 @@ enum ComponentType {
     case manaComponent
     case playerComponent
     case timerComponent
+    case enemyTypeComponent
+    case parentEntityComponent
+    case gestureEntityComponent
 }

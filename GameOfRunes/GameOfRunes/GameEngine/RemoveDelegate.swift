@@ -17,7 +17,7 @@ class RemoveDelegate {
     
     func removeGesture(for entity: GKEntity) {
         guard let gestureEntity = entity as? GestureEntity,
-            let enemyEntity = gestureEntity.parentEntity as? EnemyEntity else {
+            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent as? EnemyEntity else {
                 return
         }
         
@@ -28,27 +28,24 @@ class RemoveDelegate {
         gameEngine?.remove(gestureEntity)
         
         if enemyHealth <= 0 {
-            _ = enemyEntity.removeGesture()
             removeEnemyFromGame(enemyEntity, fullAnimation: false)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
         
-        enemyEntity.setCurrentGesture()
-        
-        if let nextGesture = enemyEntity.gestureEntity {
+        if let nextGesture = enemyEntity.setNextGesture() {
             gameEngine?.add(nextGesture)
         }
     }
 
     func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false) {
         removeEnemyFromGame(entity)
-        
+
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
         }
 
-        guard let gestureEntity = entity.gestureEntity else {
+        guard let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
             return
         }
 

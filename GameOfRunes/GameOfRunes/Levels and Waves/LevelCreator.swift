@@ -74,7 +74,7 @@ struct LevelCreator {
 
     static var testLevel: (EnemySpawnUnit, TimeInterval) {
         do {
-            let fullLevel = try EnemySpawnUnit(.orc1)
+            let fullLevel = try EnemySpawnUnit(.orc3)
             let levelSpawnInterval = 1.0
             return (fullLevel, levelSpawnInterval)
         } catch {
