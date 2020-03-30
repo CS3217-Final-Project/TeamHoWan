@@ -17,7 +17,7 @@ class RemoveDelegate {
     
     func removeGesture(for entity: GKEntity) {
         guard let gestureEntity = entity as? GestureEntity,
-            let enemyEntity = gestureEntity.parentEntity as? EnemyEntity else {
+            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent as? EnemyEntity else {
                 return
         }
         
@@ -25,44 +25,39 @@ class RemoveDelegate {
             return
         }
         
-        gameEngine?.remove(gestureEntity)
-        
         if enemyHealth <= 0 {
-            _ = enemyEntity.removeGesture()
             removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
         
-        enemyEntity.setCurrentGesture()
-        
-        if let nextGesture = enemyEntity.gestureEntity {
+        gameEngine?.remove(gestureEntity)
+        if let nextGesture = enemyEntity.setNextGesture() {
             gameEngine?.add(nextGesture)
         }
     }
 
     func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false,
                      shouldIncreaseScore: Bool = false) {
-        removeEnemyFromGame(entity)
-        
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
         } else {
             gameEngine?.incrementCombo()
         }
-        
+
         if shouldIncreaseScore {
             guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
-                fatalError("EnemyEntity does not have a score component.")
+                return
             }
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
-        guard let gestureEntity = entity.gestureEntity else {
+        guard let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
             return
         }
-        _ = entity.removeGesture()
+
         gameEngine?.remove(gestureEntity)
+        removeEnemyFromGame(entity)
     }
     
     func removeDroppedMana(_ entity: DroppedManaEntity) {

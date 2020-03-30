@@ -18,4 +18,7 @@ enum ComponentType {
     case multiplierComponent
     case playerComponent
     case timerComponent
+    case enemyTypeComponent
+    case parentEntityComponent
+    case gestureEntityComponent
 }
