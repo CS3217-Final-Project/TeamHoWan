@@ -14,8 +14,6 @@ enum CollisionType: UInt32 {
     case powerUp = 0b000100
     
     func setPhysicsBody(for node: SKSpriteNode, with size: CGSize) {
-        print(node.size)
-        print(size)
         switch self {
         case .enemy:
             node.physicsBody = .init(circleOfRadius: size.height / 2)
