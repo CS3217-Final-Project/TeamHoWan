@@ -20,6 +20,7 @@
 		4A09C50324300D8700CA7625 /* AchievementBadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */; };
 		4A1B33372432397600B67B91 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B33362432397600B67B91 /* GeneratedMocks.swift */; };
 		4A1B33392432615C00B67B91 /* AttractionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B33382432615C00B67B91 /* AttractionEntity.swift */; };
+		4A1B333C24327FFE00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333B24327FFE00B67B91 /* Storage.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
 		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
@@ -175,6 +176,7 @@
 		4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeNode.swift; sourceTree = "<group>"; };
 		4A1B33362432397600B67B91 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		4A1B33382432615C00B67B91 /* AttractionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntity.swift; sourceTree = "<group>"; };
+		4A1B333B24327FFE00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
 		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -357,6 +359,13 @@
 			path = "Game Map";
 			sourceTree = "<group>";
 		};
+		4A1B333A24327D5300B67B91 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4A6213DA243093D400FABB48 /* Avatar Overview */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +384,7 @@
 			children = (
 				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
+				4A1B333B24327FFE00B67B91 /* Storage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -539,6 +549,7 @@
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
 				4A72EB42241FE18B005FA909 /* Utils */,
+				4A1B333A24327D5300B67B91 /* Protocols */,
 				8A2C033E242EF0D400A8EC96 /* Errors */,
 				8A2C033B242EF08E00A8EC96 /* Levels and Waves */,
 				8A5CE9B424187BFD00BEC4B9 /* GameState */,
@@ -1099,6 +1110,7 @@
 				4AA5B37A2417625D008D4953 /* ManaBarNode.swift in Sources */,
 				4A768F1924302079000F3F05 /* StageOverviewNode.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
+				4A1B333C24327FFE00B67B91 /* Storage.swift in Sources */,
 				4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */,
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
