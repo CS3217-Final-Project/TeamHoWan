@@ -19,7 +19,7 @@ class StageOverviewNode: SKSpriteNode {
             }
             
             stageLabelNode.stageName = stage.name
-            stageLabelNode.stageGroupName = stage.groupName
+            stageLabelNode.stageChapter = stage.chapter
             
             arenaViewNode.texture = .init(imageNamed: "\(stage.arena)")
             

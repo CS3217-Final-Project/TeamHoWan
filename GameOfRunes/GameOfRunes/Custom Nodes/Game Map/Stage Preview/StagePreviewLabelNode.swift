@@ -17,7 +17,7 @@ class StagePreviewLabelNode: StackedLabelsNode {
             topLabelNode.text = newValue
         }
     }
-    var stageGroupName: String {
+    var stageChapter: String {
         get {
             bottomLabelNode.text ?? ""
         }

@@ -22,7 +22,7 @@ struct Stage {
     }
     
     let name: String
-    let groupName: String
+    let chapter: String
     let category: Category
     let relativePositionRatioInMap: (x: CGFloat, y: CGFloat)
     let arena: ArenaType

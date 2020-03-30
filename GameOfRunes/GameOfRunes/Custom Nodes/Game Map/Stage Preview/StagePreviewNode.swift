@@ -19,7 +19,7 @@ class StagePreviewNode: SKSpriteNode {
             }
             labelNode.category = stage.category
             labelNode.stageName = stage.name
-            labelNode.stageGroupName = stage.groupName
+            labelNode.stageChapter = stage.chapter
             
             achievementBadgeNode.achievementLevel = stage.achievement
         }
