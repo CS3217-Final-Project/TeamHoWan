@@ -25,8 +25,7 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
         super.init()
         
         let animationNode = getAnimationNode(at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
-        spriteComponent.layerType = .powerUpAnimationLayer
+        let spriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,

@@ -78,7 +78,6 @@ class SpawnDelegate {
 
         spriteComponent.node.position = CGPoint(x: xPosition,
                                                 y: yPosition)
-        spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
 
         // Update GameMetaData
         gameMetaData.numEnemiesOnField += 1

@@ -25,8 +25,7 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         super.init()
 
         let animationNode = getAnimationNode(at: position, with: size)
-        let animationSpriteComponent = SpriteComponent(node: animationNode)
-        animationSpriteComponent.layerType = .powerUpAnimationLayer
+        let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         addComponent(animationSpriteComponent)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)

@@ -17,26 +17,11 @@ class SpriteComponent: GKComponent, Component {
     var activePauses = 0
     
     // Specifies which `GameScene` layer node to add `node` to
-    var layerType: SpriteLayerType = .defaultLayer
+    let layerType: SpriteLayerType
 
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, layerType: SpriteLayerType) {
         self.node = node
-        super.init()
-    }
-    
-    init(texture: SKTexture?) {
-        node = SKSpriteNode(texture: texture, size: texture?.size() ?? .zero)
-        super.init()
-    }
-    
-    init(gesture: CustomGesture) {
-        node = GestureNode(gesture: gesture)
-        super.init()
-        layerType = .enemyLayer
-    }
-
-    init(droppedManaNode: DroppedManaNode) {
-        node = droppedManaNode
+        self.layerType = layerType
         super.init()
     }
     

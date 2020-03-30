@@ -17,14 +17,14 @@ class GameScene: SKScene {
     private let levelNumber: Int
 
     // layers
-    private(set) var backgroundLayer: SKNode!
-    private(set) var powerUpAnimationLayer: SKNode!
-    private(set) var enemyLayer: SKNode!
-    private(set) var removalAnimationLayer: SKNode!
-    private(set) var gestureLayer: SKNode!
-    private(set) var playerAreaLayer: SKNode!
-    private(set) var manaDropLayer: SKNode!
-    private(set) var highestPriorityLayer: SKNode!
+    private var backgroundLayer: SKNode!
+    private var powerUpAnimationLayer: SKNode!
+    private var enemyLayer: SKNode!
+    private var removalAnimationLayer: SKNode!
+    private var gestureLayer: SKNode!
+    private var playerAreaLayer: SKNode!
+    private var manaDropLayer: SKNode!
+    private var highestPriorityLayer: SKNode!
     private(set) var playerAreaNode: PlayerAreaNode!
     private(set) var gestureAreaNode: GestureAreaNode!
     var bgmNode: SKAudioNode!
@@ -255,8 +255,6 @@ class GameScene: SKScene {
             manaDropLayer.addChild(node)
         case .highestPriorityLayer:
             highestPriorityLayer.addChild(node)
-        default:
-            addChild(node)
         }
     }
     

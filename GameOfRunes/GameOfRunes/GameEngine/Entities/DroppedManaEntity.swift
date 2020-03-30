@@ -22,11 +22,12 @@ class DroppedManaEntity: Entity {
     init(position: CGPoint, manaPoints: Int, gameEngine: GameEngine) {
         super.init()
 
-        let node = DroppedManaNode(position: position, responder: gameEngine)
+        let manaNode = DroppedManaNode(position: position, responder: gameEngine)
+        // save a weak reference to itself inside the node
+        manaNode.droppedManaEntity = self
 
         // Create and Animate Sprite Component
-        let spriteComponent = SpriteComponent(droppedManaNode: node)
-        spriteComponent.layerType = .manaDropLayer
+        let spriteComponent = SpriteComponent(node: manaNode, layerType: .manaDropLayer)
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
@@ -37,9 +38,6 @@ class DroppedManaEntity: Entity {
                 )
             )
         )
-        
-        // save a weak reference to itself inside the node
-        node.droppedManaEntity = self
         
         addComponent(spriteComponent)
         addComponent(ManaComponent(manaPoints: manaPoints))

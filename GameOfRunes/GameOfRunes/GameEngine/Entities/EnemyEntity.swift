@@ -16,8 +16,11 @@ class EnemyEntity: Entity {
 
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
-
-        let spriteComponent = SpriteComponent(texture: TextureContainer.getEnemyTexture(enemyType))
+        
+        let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
+        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
+        let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
+        spriteComponent.node.size = spriteComponent.node.size.scaleTo(width: sceneSize.width / 6)
 
         spriteComponent.node.run(
             .repeatForever(
@@ -30,8 +33,6 @@ class EnemyEntity: Entity {
             ),
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
-        
-        spriteComponent.layerType = .enemyLayer
 
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,

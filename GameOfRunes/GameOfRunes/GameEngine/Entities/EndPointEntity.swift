@@ -17,9 +17,8 @@ class EndPointEntity: Entity {
     init(gameEngine: GameEngine, node: SKSpriteNode) {
         super.init()
         
-        let spriteComponent = SpriteComponent(node: node)
+        let spriteComponent = SpriteComponent(node: node, layerType: .playerAreaLayer)
         spriteComponent.node.addGlow()
-        spriteComponent.layerType = .playerAreaLayer
         let teamComponent = TeamComponent(team: .player)
         let moveComponent = MoveComponent(
             gameEngine: gameEngine,
