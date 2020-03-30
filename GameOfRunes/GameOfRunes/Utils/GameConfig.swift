@@ -108,8 +108,8 @@ enum GameConfig {
         
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
-        static let enemyLayerZPosition: CGFloat = 0
-        static let powerUpAnimationLayerZPosition: CGFloat = 100
+        static let powerUpAnimationLayerZPosition: CGFloat = 0
+        static let enemyLayerZPosition: CGFloat = 100
         static let removalAnimationLayerZPosition: CGFloat = 200
         static let gestureLayerZPosition: CGFloat = 300
         static let playerAreaLayerZPosition: CGFloat = 400
