@@ -325,10 +325,15 @@ extension GameScene: SelectedPowerUpResponder {
             return false
         }
         
-        var newSize: CGFloat?
+        var newSize: CGFloat
+
         if let size = size {
             newSize = min(self.size.width / 6, max(self.size.width / 12, size))
+        } else {
+            newSize = 0
         }
+
+        deselectPowerUp()
         
         if gameEngine.didActivatePowerUp(at: location, size: newSize) {
             return true
@@ -348,10 +353,12 @@ extension GameScene: SelectedPowerUpResponder {
     
     func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
         // Deactivate and activate gesture detection when tap-activated power ups are selected
+        gameEngine.changeSelectedPowerUp(to: newSelectedPowerUp)
+        
         if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-                deactivateGestureDetection()
+            deactivateGestureDetection()
         } else if oldValue == .darkVortex {
-                activateGestureDetection()
+            activateGestureDetection()
         }
     }
     

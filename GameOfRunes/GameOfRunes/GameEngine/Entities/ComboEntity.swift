@@ -25,7 +25,7 @@ class ComboEntity: Entity {
         let labelNode = SKLabelNode(fontNamed: "DragonFire")
         let labelComponent = LabelComponent(node: labelNode)
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.Score.comboTimer)
-        let multiplierComponent = MultiplierComponent(metaData: gameEngine.metadata)
+        let multiplierComponent = MultiplierComponent(gameEngine: gameEngine)
 
         labelNode.text = "0"
         labelNode.position = .init(x: 5 * gameScene.size.width / 6, y: gameScene.size.height / 2)

@@ -134,6 +134,7 @@ class GameEngine {
     
     func gestureActivated(gesture: CustomGesture) {
         var count = 0
+
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
@@ -159,6 +160,7 @@ class GameEngine {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
+
         removeDelegate.removeEnemy(enemyEntity)
     }
     
@@ -166,6 +168,7 @@ class GameEngine {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
+
         removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
     }
     
@@ -192,7 +195,7 @@ class GameEngine {
     func stopMovement(for enemyEntity: Entity, duration: TimeInterval) {
         systemDelegate.stopMovement(
             for: enemyEntity,
-            duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+            duration: duration
         )
     }
     
@@ -235,51 +238,26 @@ class GameEngine {
         }
         remove(comboEntity)
     }
-}
-
-/** Extension to the GameEngine for PowerUps */
-extension GameEngine {
-    func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
-        // must only be called when a power up is selected
-        guard let gameScene = gameScene,
-            let selectedPowerUp = gameScene.selectedPowerUp else {
-                return false
-        }
-        
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
-        gameScene.deselectPowerUp()
-        guard metadata.playerMana >= manaPointsRequired else {
-            // did not activate
+    
+    func changeSelectedPowerUp(to powerUp: PowerUpType?) {
+        metadata.selectedPowerUp = powerUp
+    }
+    
+    func didActivatePowerUp(at position: CGPoint, size: CGFloat) -> Bool {
+        guard let selectedPowerUp = metadata.selectedPowerUp else {
             return false
         }
         
-        var powerUpEntity: Entity
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
         
-        switch selectedPowerUp {
-        case .darkVortex:
-            let radius = gameScene.size.width / 3
-            powerUpEntity = DarkVortexPowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: radius, height: radius)
-            )
-        case .hellfire:
-            powerUpEntity = HellfirePowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
-            )
-        case .icePrison:
-            powerUpEntity = IcePrisonPowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
-            )
+        guard metadata.playerMana >= manaPointsRequired else {
+            return false
         }
+        
+        let powerUpEntity = selectedPowerUp.instantiate(gameEngine: self, at: position, size: size)
         add(powerUpEntity)
         decreasePlayerMana(by: manaPointsRequired)
         
-        // did activate
         return true
     }
 }

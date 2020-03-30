@@ -96,13 +96,11 @@ class SystemDelegate {
     }
     
     func addMultiKillScore(count: Int, for entity: Entity) {
-        var score = 0
         if count >= 5 {
-            score = GameConfig.Score.pentaKillScore
+            addScore(by: GameConfig.Score.pentaKillScore, multiplier: 1, for: entity)
         } else if count >= 3 {
-            score = GameConfig.Score.tripleKillScore
+            addScore(by: GameConfig.Score.tripleKillScore, multiplier: 1, for: entity)
         }
-        addScore(by: score, multiplier: 1, for: entity)
     }
     
     func runFadingAnimation(_ entity: Entity) {

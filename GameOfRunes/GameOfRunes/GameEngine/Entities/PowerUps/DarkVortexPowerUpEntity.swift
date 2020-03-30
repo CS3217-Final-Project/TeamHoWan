@@ -20,10 +20,12 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
         .darkVortexPowerUpEntity
     }
     
-    init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
+    init(gameEngine: GameEngine, at position: CGPoint) {
         self.gameEngine = gameEngine
         super.init()
         
+        let radius = (gameEngine.gameScene?.size.width ?? 0) / 3
+        let size = CGSize(width: radius, height: radius)
         let animationNode = getAnimationNode(at: position, with: size)
         let spriteComponent = SpriteComponent(node: animationNode)
         spriteComponent.layerType = .powerUpAnimationLayer

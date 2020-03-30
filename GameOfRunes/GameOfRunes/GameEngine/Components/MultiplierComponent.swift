@@ -13,18 +13,18 @@ class MultiplierComponent: GKComponent, Component {
     var type: ComponentType {
         .multiplierComponent
     }
-    private var metaData: GameMetaData
+    private weak var gameEngine: GameEngine?
     var multiplier: Double {
         get {
-            metaData.multiplier
+            gameEngine?.metadata.multiplier ?? 1
         }
         set {
-            metaData.multiplier = max(1, newValue)
+            gameEngine?.metadata.multiplier = max(1, newValue)
         }
     }
     
-    init(metaData: GameMetaData) {
-        self.metaData = metaData
+    init(gameEngine: GameEngine) {
+        self.gameEngine = gameEngine
         super.init()
     }
     
