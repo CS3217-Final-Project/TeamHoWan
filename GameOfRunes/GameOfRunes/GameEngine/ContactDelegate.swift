@@ -35,7 +35,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
-    func enemyNodeContactWithOther(enemyNode: CollisionNode, other: CollisionNode) {
+    private func enemyNodeContactWithOther(enemyNode: CollisionNode, other: CollisionNode) {
         guard let enemyEntity = enemyNode.component?.entity as? Entity else {
             return
         }
@@ -50,7 +50,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
-    func activatePowerUp(on enemy: Entity, powerUpType: PowerUpType) {
+    private func activatePowerUp(on enemy: Entity, powerUpType: PowerUpType) {
         switch powerUpType {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)
