@@ -16,7 +16,7 @@ class TimerEntity: Entity {
     init(gameEngine: GameEngine, timerNode: SKLabelNode, initialTimerValue: TimeInterval) {
         super.init()
         
-        let labelComponent = LabelComponent(labelNode: timerNode)
+        let labelComponent = LabelComponent(node: timerNode)
         let timerComponent = TimerComponent(initialTimerValue: initialTimerValue, isCountDown: false)
         addComponent(timerComponent)
         addComponent(labelComponent)

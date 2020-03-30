@@ -14,6 +14,8 @@ enum ComponentType {
     case gestureComponent
     case healthComponent
     case manaComponent
+    case scoreComponent
+    case multiplierComponent
     case playerComponent
     case timerComponent
     case enemyTypeComponent

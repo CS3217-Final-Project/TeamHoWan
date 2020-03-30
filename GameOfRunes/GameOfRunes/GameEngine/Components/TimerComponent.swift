@@ -10,6 +10,7 @@ import GameplayKit
 
 class TimerComponent: GKComponent, Component {
     var time: TimeInterval
+    let initialTimerValue: TimeInterval
     var isCountDown: Bool
     var type: ComponentType {
         .timerComponent
@@ -17,6 +18,7 @@ class TimerComponent: GKComponent, Component {
     
     init(initialTimerValue: TimeInterval, isCountDown: Bool = true) {
         self.time = initialTimerValue
+        self.initialTimerValue = initialTimerValue
         self.isCountDown = isCountDown
         super.init()
     }

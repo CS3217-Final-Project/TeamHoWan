@@ -27,6 +27,14 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
         let animationNode = getAnimationNode(at: position, with: size)
         let animationSpriteComponent = SpriteComponent(node: animationNode)
         animationSpriteComponent.layerType = .powerUpAnimationLayer
+        
+        animationNode.component = animationSpriteComponent
+        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
+        animationNode.physicsBody?.affectedByGravity = false
+        animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
+        animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+        animationNode.physicsBody?.collisionBitMask = 0
+
         addComponent(animationSpriteComponent)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
