@@ -25,9 +25,4 @@ class PlayerEntity: Entity {
         addComponent(manaComponent)
         addComponent(playerComponent)
     }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

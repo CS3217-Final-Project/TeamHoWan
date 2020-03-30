@@ -21,9 +21,4 @@ class TimerEntity: Entity {
         addComponent(timerComponent)
         addComponent(labelComponent)
     }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

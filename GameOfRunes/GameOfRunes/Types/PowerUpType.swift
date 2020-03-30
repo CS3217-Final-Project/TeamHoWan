@@ -56,4 +56,15 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.DarkVortexPowerUp.powerUpDuration
         }
     }
+    
+    func createPowerUpEntity(at position: CGPoint, with size: CGSize) -> Entity {
+        switch self {
+        case .hellfire:
+            return HellfirePowerUpEntity(at: position, with: size)
+        case .icePrison:
+            return IcePrisonPowerUpEntity(at: position, with: size)
+        case .darkVortex:
+            return DarkVortexPowerUpEntity(at: position, with: size)
+        }
+    }
 }

@@ -63,11 +63,16 @@ class BaseUnitTest: XCTestCase {
         bossEnemyEntity = EnemyEntity(enemyType: .evilKnight, gameEngine: gameEngine)
         gestureEntity = MockGestureEntity(gesture: .lightning, parent: bossEnemyEntity)
             .withEnabledSuperclassSpy()
-        playerEntity = MockPlayerEntity(gameEngine: gameEngine, healthNode: healthBarNode, manaNode: manaBarNode, scoreNode: scoreNode)
+        playerEntity = MockPlayerEntity(
+            gameEngine: gameEngine,
+            healthNode: healthBarNode,
+            manaNode: manaBarNode,
+            scoreNode: scoreNode
+        )
             .withEnabledSuperclassSpy()
-        endPointEntity = MockEndPointEntity(gameEngine: gameEngine, node: SKSpriteNode())
+        endPointEntity = MockEndPointEntity(node: SKSpriteNode())
             .withEnabledSuperclassSpy()
-        darkVortexPowerUpEntity = DarkVortexPowerUpEntity(gameEngine: gameEngine, at: CGPoint(), with: CGSize())
+        darkVortexPowerUpEntity = DarkVortexPowerUpEntity(at: CGPoint(), with: CGSize())
         droppedManaEntity = MockDroppedManaEntity(position: CGPoint(), manaPoints: 10, gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
         

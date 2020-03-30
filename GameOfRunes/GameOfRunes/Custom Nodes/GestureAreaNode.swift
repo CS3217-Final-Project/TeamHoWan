@@ -68,10 +68,7 @@ class GestureAreaNode: SKSpriteNode {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
-        guard let touch = touches else {
-            return
-        }
-        touchesEnded(touch, with: event)
+        touchesEnded(touches, with: event)
     }
     
     fileprivate func redrawActiveSlice() {

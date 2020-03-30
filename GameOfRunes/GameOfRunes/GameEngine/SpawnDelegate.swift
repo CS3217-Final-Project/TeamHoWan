@@ -76,8 +76,7 @@ class SpawnDelegate {
         let xPosition = (sceneSize.width - 2 * edgeOffset) * xPositionRatio + edgeOffset
         let yPosition = sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
 
-        spriteComponent.node.position = CGPoint(x: xPosition,
-                                                y: yPosition)
+        spriteComponent.node.position = CGPoint(x: xPosition, y: yPosition)
 
         // Update GameMetaData
         gameMetaData.numEnemiesOnField += 1

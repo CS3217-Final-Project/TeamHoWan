@@ -42,11 +42,6 @@ class DroppedManaEntity: Entity {
         addComponent(spriteComponent)
         addComponent(ManaComponent(manaPoints: manaPoints))
     }
-
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // TODO: Refactor once meta-data is completed
     private func getManaType(manaPoints: Int) -> ManaType {

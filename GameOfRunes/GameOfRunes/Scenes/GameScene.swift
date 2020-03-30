@@ -170,25 +170,44 @@ class GameScene: SKScene {
         guard GameConfig.GamePlayScene.numEndPoints > 0 else {
             fatalError("There must be more than 1 lane")
         }
+        
+        // set up visual end point line
+        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+        
+        // re-position and resize
+        let newEndPointWidth = size.width
+        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+        endPointNode.position = playerAreaNode.position
+            + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
+        
+        // relative to the player area layer
+        endPointNode.zPosition = -1
+        
+        let endPointEntity = EndPointEntity(node: endPointNode)
 
+        gameEngine.add(endPointEntity)
+
+        // set up the attractive force of end point
+        
         for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
+            // finds xPosition of attraction node
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
             let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
             let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
             let xPosition = (.init(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+            
+            let attractionNode = SKSpriteNode(color: .clear, size: .zero)
+            attractionNode.position = .init(x: xPosition, y: endPointNode.position.y)
 
-            // re-position and resize
-            let newEndPointWidth = size.width
-            let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-            let yPosition = playerAreaNode.position.y + (playerAreaNode.size.height + newEndPointHeight) / 2
-            endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
-            endPointNode.position = .init(x: xPosition, y: yPosition)
-            endPointNode.zPosition = -1
-
-            let endPointEntity = EndPointEntity(gameEngine: gameEngine, node: endPointNode)
-            gameEngine.add(endPointEntity)
+            let attractionEntity = AttractionEntity(
+                node: attractionNode,
+                layerType: .playerAreaLayer,
+                team: .player
+            )
+            
+            gameEngine.add(attractionEntity)
         }
     }
     
@@ -196,8 +215,12 @@ class GameScene: SKScene {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
         let scoreNode = playerAreaNode.scoreNode
-        let playerEntity = PlayerEntity(gameEngine: gameEngine,
-                                        healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
+        let playerEntity = PlayerEntity(
+            gameEngine: gameEngine,
+            healthNode: healthNode,
+            manaNode: manaNode,
+            scoreNode: scoreNode
+        )
         gameEngine.add(playerEntity)
     }
     
@@ -307,26 +330,28 @@ extension GameScene {
 extension GameScene: SelectedPowerUpResponder {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // TODO: Hacky fix for crash issue when tapping on game area when selectedPowerUp is .hellfire or .icePrison
-        // Issue something to do with .physicsBody of the HellFireEntity or IcePrisonEntity
         guard let touch = touches.first, selectedPowerUp == .darkVortex else {
             return
         }
-
-        _ = didActivatePowerUp(at: touch.location(in: self))
+        
+        // reasonable arbitrary value for darkVortex radius
+        let radius = size.width / 3
+        _ = didActivatePowerUp(at: touch.location(in: self), with: .init(width: radius, height: radius))
     }
     
-    func didActivatePowerUp(at location: CGPoint, size: CGFloat? = nil) -> Bool {
+    func didActivatePowerUp(at location: CGPoint, with size: CGSize) -> Bool {
         guard selectedPowerUp != nil else {
             return false
         }
         
+        /*
+         // To set max/min size
         var newSize: CGFloat?
         if let size = size {
             newSize = min(self.size.width / 6, max(self.size.width / 12, size))
         }
-        
-        if gameEngine.didActivatePowerUp(at: location, size: newSize) {
+        */
+        if gameEngine.didActivatePowerUp(at: location, with: size) {
             return true
         } else {
             showInsufficientMana(at: location)

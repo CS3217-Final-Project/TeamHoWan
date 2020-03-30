@@ -41,7 +41,7 @@ public class GestureRecognizer {
         if let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints),
             gameScene.didActivatePowerUp(
                 at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
-                size: circle.radius
+                with: .init(width: circle.radius * 2, height: circle.radius * 2)
             ) {
             // power-up activated
             return

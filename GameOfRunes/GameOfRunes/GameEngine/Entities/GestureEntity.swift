@@ -25,9 +25,4 @@ class GestureEntity: Entity {
         addComponent(gestureComponent)
         addComponent(parentEntityComponent)
     }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
