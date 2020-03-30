@@ -19,12 +19,13 @@ class GameMetaData {
     }
 
     var playerHealth: Int
-    var playerMana: Int
-    var score: Int
+    var playerMana: Int = 0
+    var score: Int = 0
     var selectedPowerUp: PowerUpType?
+    var multiplier: Double = 1.0
     var levelWaves: EnemySpawnUnit
     var levelSpawnInterval: TimeInterval
-    var numEnemiesOnField: Int
+    var numEnemiesOnField: Int = 0
 
     init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
          powerUps: [PowerUpType], levelNumber: Int) {
@@ -33,9 +34,6 @@ class GameMetaData {
         self.manaPerManaUnit = manaPerManaUnit
         availablePowerUps = powerUps
         playerHealth = maxPlayerHealth
-        playerMana = 0
-        score = 0
-        numEnemiesOnField = 0
 
         do {
             (levelWaves, levelSpawnInterval) = try LevelCreator.getLevelDataAndSpawnInterval(levelNumber: levelNumber)

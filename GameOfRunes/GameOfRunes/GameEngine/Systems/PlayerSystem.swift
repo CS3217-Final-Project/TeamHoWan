@@ -26,16 +26,19 @@ class PlayerSystem: GKComponentSystem<PlayerComponent>, System {
         guard let playerEntity = component.entity,
             let gameEngine = gameEngine,
             let playerHealth = playerEntity.component(ofType: HealthComponent.self),
-            let playerMana = playerEntity.component(ofType: ManaComponent.self) else {
+            let playerMana = playerEntity.component(ofType: ManaComponent.self),
+            let playerScore = playerEntity.component(ofType: ScoreComponent.self) else {
                 return
         }
 
         gameEngine.metadata.playerHealth = min(playerHealth.healthPoints, gameEngine.metadata.maxPlayerHealth)
         gameEngine.metadata.playerMana = min(playerMana.manaPoints, gameEngine.metadata.maxPlayerMana)
+        gameEngine.metadata.score = playerScore.scorePoints
         playerHealth.healthPoints = gameEngine.metadata.playerHealth
         playerMana.manaPoints = gameEngine.metadata.playerMana
         component.healthNode?.livesLeft = playerHealth.healthPoints
         component.manaNode?.currentManaPoints = playerMana.manaPoints
+        component.scoreNode?.setLabel(label: "\(playerScore.scorePoints)")
     }
     
     func removeComponent(_ component: Component) {

@@ -14,11 +14,13 @@ class PlayerComponent: GKComponent, Component {
     }
     weak var healthNode: HealthBarNode?
     weak var manaNode: ManaBarNode?
+    weak var scoreNode: ScoreNode?
     
-    init(healthNode: HealthBarNode, manaNode: ManaBarNode) {
+    init(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode) {
         super.init()
         self.healthNode = healthNode
         self.manaNode = manaNode
+        self.scoreNode = scoreNode
     }
     
     @available(*, unavailable)

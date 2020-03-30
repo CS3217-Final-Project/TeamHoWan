@@ -23,8 +23,14 @@ class SystemDelegate {
     var spriteSystem: SpriteSystem? {
         systems[.spriteComponent] as? SpriteSystem
     }
+    var scoreSystem: ScoreSystem? {
+        systems[.scoreComponent] as? ScoreSystem
+    }
     var labelSystem: LabelSystem? {
         systems[.labelComponent] as? LabelSystem
+    }
+    var timerSystem: TimerSystem? {
+        systems[.timerComponent] as? TimerSystem
     }
 
     init(gameEngine: GameEngine) {
@@ -36,6 +42,7 @@ class SystemDelegate {
         systems[.labelComponent] = LabelSystem(gameEngine: gameEngine)
         systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
+        systems[.scoreComponent] = ScoreSystem()
     }
     
     func update(with deltatime: TimeInterval) {
@@ -84,11 +91,38 @@ class SystemDelegate {
         spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
     }
     
+    func addScore(by points: Int, multiplier: Double, for entity: Entity) {
+        scoreSystem?.addScore(by: points, multiplier: multiplier, for: entity)
+    }
+    
+    func addMultiKillScore(count: Int, for entity: Entity) {
+        var score = 0
+        if count >= 5 {
+            score = GameConfig.Score.pentaKillScore
+        } else if count >= 3 {
+            score = GameConfig.Score.tripleKillScore
+        }
+        addScore(by: score, multiplier: 1, for: entity)
+    }
+    
     func runFadingAnimation(_ entity: Entity) {
         spriteSystem?.runFadingAnimation(entity)
     }
     
     func setLabel(_ entity: Entity, label: String) {
         labelSystem?.setLabel(entity: entity, label: label)
+    }
+    
+    func decreaseLabelOpacity(_ entity: Entity) {
+        labelSystem?.decreaseLabelOpacity(entity)
+    }
+    
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        labelSystem?.incrementLabelIntegerValue(entity)
+        timerSystem?.resetTimer(entity)
+    }
+    
+    func incrementMultiplier(_ entity: Entity) {
+        scoreSystem?.incrementMultiplier(for: entity)
     }
 }

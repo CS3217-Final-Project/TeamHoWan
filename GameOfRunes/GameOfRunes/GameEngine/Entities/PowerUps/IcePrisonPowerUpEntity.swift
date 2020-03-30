@@ -25,10 +25,23 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
         self.gameEngine = gameEngine
         
         let animationNode = getCastingAnimationNode(at: position, with: size)
+<<<<<<< HEAD
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
+=======
+        let animationSpriteComponent = SpriteComponent(node: animationNode)
+        animationSpriteComponent.layerType = .powerUpAnimationLayer
+        animationNode.component = animationSpriteComponent
+       
+        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
+        animationNode.physicsBody?.affectedByGravity = false
+        animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
+        animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+        animationNode.physicsBody?.collisionBitMask = 0
+        
+>>>>>>> 2a1f7ce768ddaffdbd09b7b83f8eeaab239d7490
         addComponent(animationSpriteComponent)
         
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
         addComponent(timerComponent)
     }
     

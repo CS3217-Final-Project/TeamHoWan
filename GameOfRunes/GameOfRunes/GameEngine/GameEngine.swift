@@ -12,15 +12,20 @@ import GameplayKit
 class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
+    var contactDelegate: ContactDelegate!
     private var spawnDelegate: SpawnDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
+    
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
-
+    var comboEntity: ComboEntity? {
+        entities[.comboEntity]?.first as? ComboEntity
+    }
+    
     // TODO: pass in avatar, and use it to determine powerups.
     init(gameScene: GameScene, levelNumber: Int) {
         self.gameScene = gameScene
@@ -33,6 +38,7 @@ class GameEngine {
         removeDelegate = RemoveDelegate(gameEngine: self)
         spawnDelegate = SpawnDelegate(gameEngine: self,
                                       gameMetaData: metadata)
+        contactDelegate = ContactDelegate(gameEngine: self)
 
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
@@ -66,7 +72,7 @@ class GameEngine {
         toRemoveEntities.forEach { entity in
             systemDelegate.removeComponents(foundIn: entity)
         }
-
+        
         toRemoveEntities = []
         
         // Player Loses the Game
@@ -118,16 +124,31 @@ class GameEngine {
         _ = minusHealthPoints(for: playerEntity)
     }
     
+    func addScore(by points: Int) {
+        guard let playerEntity = playerEntity else {
+            return
+        }
+        
+        systemDelegate.addScore(by: points, multiplier: metadata.multiplier, for: playerEntity)
+    }
+    
     func gestureActivated(gesture: CustomGesture) {
+        var count = 0
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
                     continue
             }
-            
             removeDelegate.removeGesture(for: entity)
+            count += 1
+            
         }
+        guard let playerEntity = playerEntity else {
+            fatalError("Player entity is nil.")
+        }
+        
+        systemDelegate.addMultiKillScore(count: count, for: playerEntity)
     }
     
     func minusHealthPoints(for entity: GKEntity) -> Int? {
@@ -168,12 +189,51 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
     
+    func stopMovement(for enemyEntity: Entity, duration: TimeInterval) {
+        systemDelegate.stopMovement(
+            for: enemyEntity,
+            duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+        )
+    }
+    
     func runFadingAnimation(_ entity: Entity) {
         systemDelegate.runFadingAnimation(entity)
     }
     
     func setLabel(_ entity: Entity, label: String) {
         systemDelegate.setLabel(entity, label: label)
+    }
+    
+    func decreaseLabelOpacity(_ entity: Entity) {
+        systemDelegate.decreaseLabelOpacity(entity)
+    }
+    
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        systemDelegate.incrementLabelIntegerValue(entity)
+    }
+    
+    func incrementCombo() {
+        if comboEntity == nil {
+            add(ComboEntity(gameEngine: self))
+        }
+        guard let comboEntity = comboEntity else {
+            fatalError("ComboEntity does not exist even though it was just added.")
+        }
+        incrementLabelIntegerValue(comboEntity)
+    }
+    
+    func incrementMultiplier() {
+        guard let comboEntity = comboEntity else {
+            return
+        }
+        systemDelegate.incrementMultiplier(comboEntity)
+    }
+    
+    func endCombo() {
+        guard let comboEntity = comboEntity else {
+            return
+        }
+        remove(comboEntity)
     }
 }
 
@@ -203,49 +263,24 @@ extension GameEngine {
                 at: position,
                 with: .init(width: radius, height: radius)
             )
-            add(powerUpEntity)
         case .hellfire:
             powerUpEntity = HellfirePowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
-            add(powerUpEntity)
         case .icePrison:
             powerUpEntity = IcePrisonPowerUpEntity(
                 gameEngine: self,
                 at: position,
                 with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
             )
-            add(powerUpEntity)
-            activateIcePrison(powerUpEntity)
         }
-        
+        add(powerUpEntity)
         decreasePlayerMana(by: manaPointsRequired)
         
         // did activate
         return true
-    }
-    
-    private func activateIcePrison(_ entity: Entity) {
-        guard let icePrisonPowerUpEntity = entity as? IcePrisonPowerUpEntity,
-            let powerUpNode = icePrisonPowerUpEntity.component(ofType: SpriteComponent.self)?.node else {
-                return
-        }
-        
-        for enemyEntity in entities(for: .enemy) {
-            guard enemyEntity.component(ofType: SpriteComponent.self)?.node
-                    .calculateAccumulatedFrame()
-                    .intersects(powerUpNode.calculateAccumulatedFrame()) ?? false,
-                let enemyEntity = enemyEntity as? EnemyEntity else {
-                    continue
-            }
-            
-            systemDelegate.stopMovement(
-                for: enemyEntity,
-                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
-            )
-        }
     }
 }
 
@@ -259,7 +294,7 @@ extension GameEngine: DroppedManaResponder {
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
         guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
             let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
-            return
+                return
         }
         
         increasePlayerMana(by: manaPoints)
