@@ -243,7 +243,7 @@ extension GameEngine {
         // must only be called when a power up is selected
         guard let gameScene = gameScene,
             let selectedPowerUp = gameScene.selectedPowerUp else {
-                return
+                return false
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
