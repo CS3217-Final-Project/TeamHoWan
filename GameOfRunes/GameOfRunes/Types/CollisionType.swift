@@ -9,7 +9,8 @@
 import Foundation
 
 enum CollisionType: UInt32 {
-    case enemy = 0b000001
-    case endpoint = 0b000010
-    case powerUp = 0b000100
+    case none = 0b000001
+    case enemy = 0b000010
+    case endpoint = 0b000100
+    case powerUp = 0b001000
 }

@@ -100,7 +100,10 @@ class RemoveDelegate {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-        spriteComponent.node.removeFromParent()
+
+        // Changing the category bit mask is necessary because SpriteComponent and CollisionNode do not get
+        // deinit immediately, leading to >1 contacts detected.
+        spriteComponent.node.physicsBody?.categoryBitMask = CollisionType.none.rawValue
         let animationTextures = fullAnimation
             ? TextureContainer.fullEnemyRemovalTextures
             : TextureContainer.halfEnemyRemovalTextures

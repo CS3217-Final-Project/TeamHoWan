@@ -24,7 +24,7 @@ class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
         guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
             return
         }
-        print(points, multiplier)
+    
         scoreComponent.scorePoints = max(scoreComponent.scorePoints + Int(Double(points) * multiplier),
                                          scoreComponent.scorePoints)
     }
