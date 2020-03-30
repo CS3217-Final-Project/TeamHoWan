@@ -249,12 +249,12 @@ extension GameEngine {
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
         gameScene.deselectPowerUp()
-        
+        /*
         guard metadata.playerMana >= manaPointsRequired else {
             // did not activate
             return false
         }
-        
+        */
         let powerUpEntity = selectedPowerUp.createPowerUpEntity(at: position, with: size)
         add(powerUpEntity)
         decreasePlayerMana(by: manaPointsRequired)

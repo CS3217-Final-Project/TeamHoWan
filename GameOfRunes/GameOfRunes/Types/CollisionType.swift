@@ -18,7 +18,7 @@ enum CollisionType: UInt32 {
         print(size)
         switch self {
         case .enemy:
-            node.physicsBody = .init(rectangleOf: size)
+            node.physicsBody = .init(circleOfRadius: size.height / 2)
             node.physicsBody?.affectedByGravity = false
             node.physicsBody?.categoryBitMask = rawValue
             node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue

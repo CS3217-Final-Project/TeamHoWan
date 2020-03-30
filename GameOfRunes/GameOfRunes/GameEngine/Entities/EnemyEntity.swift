@@ -23,7 +23,7 @@ class EnemyEntity: Entity {
         enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
         CollisionType.enemy.setPhysicsBody(
             for: enemyNode,
-            with: enemyNode.size.applying(.init(scaleX: 0.8, y: 0.8))
+            with: enemyNode.size
         )
 
         enemyNode.run(
