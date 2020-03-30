@@ -32,17 +32,21 @@ class SystemDelegate {
     var timerSystem: TimerSystem? {
         systems[.timerComponent] as? TimerSystem
     }
+    var powerUpSystem: PowerUpSystem? {
+        systems[.powerUpComponent] as? PowerUpSystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         systems[.healthComponent] = HealthSystem()
+        systems[.scoreComponent] = ScoreSystem()
         systems[.manaComponent] = ManaSystem(gameEngine: gameEngine)
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.labelComponent] = LabelSystem(gameEngine: gameEngine)
         systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
-        systems[.scoreComponent] = ScoreSystem()
+        systems[.powerUpComponent] = PowerUpSystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
@@ -122,5 +126,9 @@ class SystemDelegate {
     
     func incrementMultiplier(_ entity: Entity) {
         scoreSystem?.incrementMultiplier(for: entity)
+    }
+    
+    func activatePowerUp(at position: CGPoint, size: CGFloat) {
+        powerUpSystem.activatePowerUp(at: position, size: size)
     }
 }

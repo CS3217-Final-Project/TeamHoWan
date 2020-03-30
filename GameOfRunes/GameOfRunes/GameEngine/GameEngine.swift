@@ -254,10 +254,8 @@ class GameEngine {
             return false
         }
         
-        let powerUpEntity = selectedPowerUp.instantiate(gameEngine: self, at: position, size: size)
-        add(powerUpEntity)
+        systemDelegate.activatePowerUp(at: position, size: size)
         decreasePlayerMana(by: manaPointsRequired)
-        
         return true
     }
 }

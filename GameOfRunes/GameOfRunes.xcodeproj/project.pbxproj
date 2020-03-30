@@ -138,6 +138,8 @@
 		C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */; };
 		C6AC476B2430BF670078D5F1 /* EnemyEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC476A2430BF670078D5F1 /* EnemyEntityTest.swift */; };
 		C6AC47732431FC4C0078D5F1 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47722431FC4C0078D5F1 /* GeneratedMocks.swift */; };
+		C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4774243256550078D5F1 /* PowerUpSystem.swift */; };
+		C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4776243256690078D5F1 /* PowerUpComponent.swift */; };
 		C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67A2419101B0076F02B /* GestureEntity.swift */; };
 		C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */; };
 		C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF680241923410076F02B /* RemoveDelegate.swift */; };
@@ -302,6 +304,8 @@
 		C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC476A2430BF670078D5F1 /* EnemyEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntityTest.swift; sourceTree = "<group>"; };
 		C6AC47722431FC4C0078D5F1 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		C6AC4774243256550078D5F1 /* PowerUpSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSystem.swift; sourceTree = "<group>"; };
+		C6AC4776243256690078D5F1 /* PowerUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		C6AFF67A2419101B0076F02B /* GestureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntity.swift; sourceTree = "<group>"; };
 		C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDelegate.swift; sourceTree = "<group>"; };
 		C6AFF680241923410076F02B /* RemoveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveDelegate.swift; sourceTree = "<group>"; };
@@ -589,6 +593,7 @@
 				C60EAF63242E26A00037BEAC /* PlayerComponent.swift */,
 				C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */,
 				566121DC24168ADC00475CE1 /* GestureComponent.swift */,
+				C6AC4776243256690078D5F1 /* PowerUpComponent.swift */,
 				C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */,
 				4ACC8BD92415322400F235AE /* HealthComponent.swift */,
 				19D664CA24207ECE00351C92 /* Component.swift */,
@@ -776,6 +781,7 @@
 				56EDD278242E58BA0044B445 /* TimerSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
 				C6AFF684241A61650076F02B /* HealthSystem.swift */,
+				C6AC4774243256550078D5F1 /* PowerUpSystem.swift */,
 				C6AFF686241A66360076F02B /* System.swift */,
 				C6AFF688241A67430076F02B /* ManaSystem.swift */,
 				C60EAF65242E2A350037BEAC /* PlayerSystem.swift */,
@@ -996,6 +1002,7 @@
 			files = (
 				561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */,
 				56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */,
+				C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */,
 				4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */,
 				8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */,
 				4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */,
@@ -1069,6 +1076,7 @@
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */,
+				C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
