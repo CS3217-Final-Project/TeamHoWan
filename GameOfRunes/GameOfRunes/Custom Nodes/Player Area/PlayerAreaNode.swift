@@ -35,6 +35,7 @@ class PlayerAreaNode: SKSpriteNode {
         }
     }
     var summonNode: SummonNode
+    var scoreNode: ScoreNode
     
     override var size: CGSize {
         // Swift's implementation: didSet can be called if new value is set INSIDE init
@@ -55,7 +56,10 @@ class PlayerAreaNode: SKSpriteNode {
         manaBarNode = .init()
         powerUpContainerNode = .init()
         summonNode = .init()
-        
+        scoreNode = .init()
+        scoreNode.position = CGPoint(x: size.width / 3, y: -size.height / 5.5)
+        scoreNode.zPosition = 100
+
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
         self.position = position
@@ -63,6 +67,7 @@ class PlayerAreaNode: SKSpriteNode {
         addChild(manaBarNode)
         addChild(powerUpContainerNode)
         addChild(summonNode)
+        addChild(scoreNode)
     }
     
     @available(*, unavailable)

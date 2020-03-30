@@ -9,22 +9,31 @@
 import GameplayKit
 
 class LabelComponent: GKComponent, Component {
-    private let labelNode: SKLabelNode
+    let node: SKLabelNode
     var label: String {
         get {
-            labelNode.text ?? ""
+            node.text ?? ""
         }
         set {
-            labelNode.text = newValue
+            node.text = newValue
         }
     }
     
     var type: ComponentType {
         .labelComponent
     }
+    let layerType: SpriteLayerType = .highestPriorityLayer
     
-    init(labelNode: SKLabelNode) {
-        self.labelNode = labelNode
+    func decreaseOpacity() {
+        node.alpha -= 1 / 120
+    }
+    
+    func resetOpacity() {
+        node.alpha = 1
+    }
+    
+    init(node: SKLabelNode) {
+        self.node = node
         super.init()
     }
     

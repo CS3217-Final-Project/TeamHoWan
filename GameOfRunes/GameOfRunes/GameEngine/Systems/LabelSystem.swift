@@ -16,11 +16,46 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         super.init(componentClass: LabelComponent.self)
     }
     
+    override func addComponent(foundIn entity: GKEntity) {
+        super.addComponent(foundIn: entity)
+        
+        guard let labelComponent = entity.component(ofType: LabelComponent.self) else {
+            return
+        }
+        
+        gameEngine?.gameScene?.addNodeToLayer(layer: labelComponent.layerType, node: labelComponent.node)
+    }
+    
     func setLabel(entity: Entity, label: String) {
         guard let labelComponent = entity.component(ofType: LabelComponent.self) else {
             return
         }
         labelComponent.label = label
+    }
+
+    func decreaseLabelOpacity(_ entity: Entity) {
+        guard let labelComponent = entity.component(ofType: LabelComponent.self) else {
+            return
+        }
+        labelComponent.decreaseOpacity()
+    }
+    
+    func incrementLabelIntegerValue(_ entity: Entity) {
+        guard let labelComponent = entity.component(ofType: LabelComponent.self),
+            let oldValue = Int(labelComponent.label) else {
+            return
+        }
+        let newValue = oldValue + 1
+        labelComponent.resetOpacity()
+        labelComponent.label = "\(newValue)"
+        if entity is ComboEntity, newValue.isMultiple(of: 10) {
+            gameEngine?.incrementMultiplier()
+        }
+    }
+    
+    override func removeComponent(foundIn entity: GKEntity) {
+        super.removeComponent(foundIn: entity)
+        entity.component(ofType: LabelComponent.self)?.node.removeFromParent()
     }
     
     func removeComponent(_ component: Component) {

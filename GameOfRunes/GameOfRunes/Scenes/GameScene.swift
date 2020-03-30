@@ -49,7 +49,8 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
-        
+        self.physicsWorld.contactDelegate = gameEngine.contactDelegate
+
         // UI
         buildLayers()
         setUpBackground()
@@ -176,7 +177,7 @@ class GameScene: SKScene {
             let xPositionRatio = Double(xPositionNumerator) / Double(xPositionDenominator)
             let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
             let xPosition = (Double(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+            let endPointNode = CollisionNode(imageNamed: "finish-line")
 
             // re-position and resize
             let newEndPointWidth = size.width
@@ -196,7 +197,9 @@ class GameScene: SKScene {
     private func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
-        let playerEntity = PlayerEntity(gameEngine: gameEngine, healthNode: healthNode, manaNode: manaNode)
+        let scoreNode = playerAreaNode.scoreNode
+        let playerEntity = PlayerEntity(gameEngine: gameEngine,
+                                        healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
         gameEngine.add(playerEntity)
     }
     
@@ -223,9 +226,8 @@ class GameScene: SKScene {
         timerNode.zPosition = 75
         timerNode.horizontalAlignmentMode = .center
         timerNode.verticalAlignmentMode = .center
-        timerNode.text = "\(initialTimerValue)"
+        timerNode.text = "\(Int(initialTimerValue))"
         
-        playerAreaLayer.addChild(timerNode)
         gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
     }
     
@@ -309,10 +311,12 @@ extension GameScene {
 extension GameScene: SelectedPowerUpResponder {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        // TODO: Hacky fix for crash issue when tapping on game area when selectedPowerUp is .hellfire or .icePrison
+        // Issue something to do with .physicsBody of the HellFireEntity or IcePrisonEntity
+        guard let touch = touches.first, selectedPowerUp == .darkVortex else {
             return
         }
-        
+
         _ = didActivatePowerUp(at: touch.location(in: self))
     }
     
@@ -321,7 +325,12 @@ extension GameScene: SelectedPowerUpResponder {
             return false
         }
         
-        if gameEngine.didActivatePowerUp(at: location, size: size) {
+        var newSize: CGFloat?
+        if let size = size {
+            newSize = min(self.size.width / 6, max(self.size.width / 12, size))
+        }
+        
+        if gameEngine.didActivatePowerUp(at: location, size: newSize) {
             return true
         } else {
             showInsufficientMana(at: location)

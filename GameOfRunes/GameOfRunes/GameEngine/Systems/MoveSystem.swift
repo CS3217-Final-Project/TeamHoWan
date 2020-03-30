@@ -22,9 +22,6 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
             // Call to component.update to trigger observer events.
             component.update(deltaTime: seconds)
         }
-        
-        checkFireVortexCollision()
-        checkEnemyEndPointCollision()
     }
     
     // Note: end-point entity also has a move component.
@@ -57,27 +54,6 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         return closestMoveComponent
     }
     
-    private func checkEnemyEndPointCollision() {
-        guard let endpointComponent = gameEngine?.entities(for: .endPointEntity).first,
-            let endpointNode = endpointComponent.component(ofType: SpriteComponent.self)?.node else {
-                return
-        }
-        
-        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
-            guard enemyEntity.component(ofType: MoveComponent.self) != nil else {
-                continue
-            }
-            
-            if enemyEntity
-                .component(ofType: SpriteComponent.self)?
-                .node
-                .calculateAccumulatedFrame()
-                .intersects(endpointNode.calculateAccumulatedFrame()) ?? false {
-                gameEngine?.enemyReachedLine(enemyEntity)
-            }
-        }
-    }
-    
     func removeComponent(_ component: Component) {
         guard let component = component as? MoveComponent else {
             return
@@ -89,26 +65,6 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 
 /** Extension for Power Up implementations */
 extension MoveSystem {
-    private func checkFireVortexCollision() {
-        guard let hellFireNodeFrames = gameEngine?.entities(for: .hellFirePowerUpEntity)
-            .compactMap({ $0.component(ofType: SpriteComponent.self)?.node.calculateAccumulatedFrame() }),
-            !hellFireNodeFrames.isEmpty else {
-                return
-        }
-        
-        for enemyEntity in gameEngine?.entities(for: .enemy) ?? [] {
-            guard enemyEntity.component(ofType: MoveComponent.self) != nil,
-                let enemyEntityNodeFrame = enemyEntity.component(ofType: SpriteComponent.self)?.node
-                    .calculateAccumulatedFrame(),
-                hellFireNodeFrames.contains(where: { $0.intersects(enemyEntityNodeFrame) }),
-                let enemyEntity = enemyEntity as? EnemyEntity else {
-                    continue
-            }
-            
-            gameEngine?.enemyForceRemoved(enemyEntity)
-        }
-    }
-    
     func stopMovementForDuration(for entity: Entity, duration: TimeInterval) {
         guard let entityMoveComponent = entity.component(ofType: MoveComponent.self) else {
             return

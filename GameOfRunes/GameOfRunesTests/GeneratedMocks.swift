@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  MoveComponent.swift
@@ -1419,7 +1419,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  SpriteComponent.swift
@@ -1646,7 +1646,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  TeamComponent.swift
@@ -1755,13 +1755,13 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  TimerComponent.swift
 //  GameOfRunes
 //
-//  Created by Dong SiJi on 16/3/20.
+//  Created by Andy on 27/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
@@ -1771,9 +1771,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerComponent: LabelComponent, Cuckoo.ClassMock {
+ class MockTimerComponent: TimerComponent, Cuckoo.ClassMock {
     
-     typealias MocksType = LabelComponent
+     typealias MocksType = TimerComponent
     
      typealias Stubbing = __StubbingProxy_TimerComponent
      typealias Verification = __VerificationProxy_TimerComponent
@@ -1781,12 +1781,64 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: LabelComponent?
+    private var __defaultImplStub: TimerComponent?
 
-     func enableDefaultImplementation(_ stub: LabelComponent) {
+     func enableDefaultImplementation(_ stub: TimerComponent) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
+    
+
+    
+    
+    
+     override var time: TimeInterval {
+        get {
+            return cuckoo_manager.getter("time",
+                superclassCall:
+                    
+                    super.time
+                    ,
+                defaultCall: __defaultImplStub!.time)
+        }
+        
+        set {
+            cuckoo_manager.setter("time",
+                value: newValue,
+                superclassCall:
+                    
+                    super.time = newValue
+                    ,
+                defaultCall: __defaultImplStub!.time = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var isCountDown: Bool {
+        get {
+            return cuckoo_manager.getter("isCountDown",
+                superclassCall:
+                    
+                    super.isCountDown
+                    ,
+                defaultCall: __defaultImplStub!.isCountDown)
+        }
+        
+        set {
+            cuckoo_manager.setter("isCountDown",
+                value: newValue,
+                superclassCall:
+                    
+                    super.isCountDown = newValue
+                    ,
+                defaultCall: __defaultImplStub!.isCountDown = newValue)
+        }
+        
+    }
+    
+    
     
      override var type: ComponentType {
         get {
@@ -1803,6 +1855,8 @@ import GameplayKit
 
     
 
+    
+
 	 struct __StubbingProxy_TimerComponent: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	
@@ -1811,13 +1865,13 @@ import GameplayKit
 	    }
 	    
 	    
-	    var lastUpdatedTime: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, TimeInterval> {
-	        return .init(manager: cuckoo_manager, name: "lastUpdatedTime")
+	    var time: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "time")
 	    }
 	    
 	    
-	    var currentTime: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, Int> {
-	        return .init(manager: cuckoo_manager, name: "currentTime")
+	    var isCountDown: Cuckoo.ClassToBeStubbedProperty<MockTimerComponent, Bool> {
+	        return .init(manager: cuckoo_manager, name: "isCountDown")
 	    }
 	    
 	    
@@ -1841,13 +1895,13 @@ import GameplayKit
 	
 	    
 	    
-	    var lastUpdatedTime: Cuckoo.VerifyProperty<TimeInterval> {
-	        return .init(manager: cuckoo_manager, name: "lastUpdatedTime", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var time: Cuckoo.VerifyProperty<TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "time", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
-	    var currentTime: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "currentTime", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var isCountDown: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "isCountDown", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
@@ -1860,17 +1914,44 @@ import GameplayKit
 	}
 }
 
- class TimerComponentStub: LabelComponent {
+ class TimerComponentStub: TimerComponent {
+    
+    
+     override var time: TimeInterval {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (TimeInterval).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var isCountDown: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
      override var type: ComponentType {
         get {
             return DefaultValueRegistry.defaultValue(for: (ComponentType).self)
         }
         
     }
+    
+
+    
+
+    
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1979,7 +2060,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  EndPointEntity.swift
@@ -2088,7 +2169,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  EnemyEntity.swift
@@ -2289,7 +2370,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GestureEntity.swift
@@ -2441,7 +2522,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  PlayerEntity.swift
@@ -2549,7 +2630,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2584,6 +2665,30 @@ import SpriteKit
     }
     
 
+    
+    
+    
+     override var fading: Bool {
+        get {
+            return cuckoo_manager.getter("fading",
+                superclassCall:
+                    
+                    super.fading
+                    ,
+                defaultCall: __defaultImplStub!.fading)
+        }
+        
+        set {
+            cuckoo_manager.setter("fading",
+                value: newValue,
+                superclassCall:
+                    
+                    super.fading = newValue
+                    ,
+                defaultCall: __defaultImplStub!.fading = newValue)
+        }
+        
+    }
     
     
     
@@ -2626,6 +2731,11 @@ import SpriteKit
 	    }
 	    
 	    
+	    var fading: Cuckoo.ClassToBeStubbedProperty<MockDarkVortexPowerUpEntity, Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading")
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockDarkVortexPowerUpEntity, PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType")
 	    }
@@ -2651,6 +2761,11 @@ import SpriteKit
 	
 	    
 	    
+	    var fading: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
@@ -2666,6 +2781,16 @@ import SpriteKit
 }
 
  class DarkVortexPowerUpEntityStub: DarkVortexPowerUpEntity {
+    
+    
+     override var fading: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
     
     
      override var powerUpType: PowerUpType {
@@ -2690,7 +2815,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  HellfireEntity.swift
@@ -2725,6 +2850,30 @@ import SpriteKit
     }
     
 
+    
+    
+    
+     override var fading: Bool {
+        get {
+            return cuckoo_manager.getter("fading",
+                superclassCall:
+                    
+                    super.fading
+                    ,
+                defaultCall: __defaultImplStub!.fading)
+        }
+        
+        set {
+            cuckoo_manager.setter("fading",
+                value: newValue,
+                superclassCall:
+                    
+                    super.fading = newValue
+                    ,
+                defaultCall: __defaultImplStub!.fading = newValue)
+        }
+        
+    }
     
     
     
@@ -2767,6 +2916,11 @@ import SpriteKit
 	    }
 	    
 	    
+	    var fading: Cuckoo.ClassToBeStubbedProperty<MockHellfirePowerUpEntity, Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading")
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockHellfirePowerUpEntity, PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType")
 	    }
@@ -2792,6 +2946,11 @@ import SpriteKit
 	
 	    
 	    
+	    var fading: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
@@ -2807,6 +2966,16 @@ import SpriteKit
 }
 
  class HellfirePowerUpEntityStub: HellfirePowerUpEntity {
+    
+    
+     override var fading: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
     
     
      override var powerUpType: PowerUpType {
@@ -2831,7 +3000,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2866,6 +3035,30 @@ import SpriteKit
     }
     
 
+    
+    
+    
+     override var fading: Bool {
+        get {
+            return cuckoo_manager.getter("fading",
+                superclassCall:
+                    
+                    super.fading
+                    ,
+                defaultCall: __defaultImplStub!.fading)
+        }
+        
+        set {
+            cuckoo_manager.setter("fading",
+                value: newValue,
+                superclassCall:
+                    
+                    super.fading = newValue
+                    ,
+                defaultCall: __defaultImplStub!.fading = newValue)
+        }
+        
+    }
     
     
     
@@ -2908,6 +3101,11 @@ import SpriteKit
 	    }
 	    
 	    
+	    var fading: Cuckoo.ClassToBeStubbedProperty<MockIcePrisonPowerUpEntity, Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading")
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockIcePrisonPowerUpEntity, PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType")
 	    }
@@ -2933,6 +3131,11 @@ import SpriteKit
 	
 	    
 	    
+	    var fading: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "fading", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var powerUpType: Cuckoo.VerifyReadOnlyProperty<PowerUpType> {
 	        return .init(manager: cuckoo_manager, name: "powerUpType", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
@@ -2948,6 +3151,16 @@ import SpriteKit
 }
 
  class IcePrisonPowerUpEntityStub: IcePrisonPowerUpEntity {
+    
+    
+     override var fading: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
     
     
      override var powerUpType: PowerUpType {
@@ -2972,7 +3185,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  TimerEntity.swift
@@ -3080,7 +3293,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameEngine.swift
@@ -3115,6 +3328,30 @@ import SpriteKit
     }
     
 
+    
+    
+    
+     override var contactDelegate: ContactDelegate! {
+        get {
+            return cuckoo_manager.getter("contactDelegate",
+                superclassCall:
+                    
+                    super.contactDelegate
+                    ,
+                defaultCall: __defaultImplStub!.contactDelegate)
+        }
+        
+        set {
+            cuckoo_manager.setter("contactDelegate",
+                value: newValue,
+                superclassCall:
+                    
+                    super.contactDelegate = newValue
+                    ,
+                defaultCall: __defaultImplStub!.contactDelegate = newValue)
+        }
+        
+    }
     
     
     
@@ -3164,6 +3401,20 @@ import SpriteKit
                     super.playerEntity
                     ,
                 defaultCall: __defaultImplStub!.playerEntity)
+        }
+        
+    }
+    
+    
+    
+     override var comboEntity: ComboEntity? {
+        get {
+            return cuckoo_manager.getter("comboEntity",
+                superclassCall:
+                    
+                    super.comboEntity
+                    ,
+                defaultCall: __defaultImplStub!.comboEntity)
         }
         
     }
@@ -3309,6 +3560,21 @@ import SpriteKit
     
     
     
+     override func addScore(by points: Int)  {
+        
+    return cuckoo_manager.call("addScore(by: Int)",
+            parameters: (points),
+            escapingParameters: (points),
+            superclassCall:
+                
+                super.addScore(by: points)
+                ,
+            defaultCall: __defaultImplStub!.addScore(by: points))
+        
+    }
+    
+    
+    
      override func gestureActivated(gesture: CustomGesture)  {
         
     return cuckoo_manager.call("gestureActivated(gesture: CustomGesture)",
@@ -3427,12 +3693,137 @@ import SpriteKit
         
     }
     
+    
+    
+     override func stopMovement(for enemyEntity: Entity, duration: TimeInterval)  {
+        
+    return cuckoo_manager.call("stopMovement(for: Entity, duration: TimeInterval)",
+            parameters: (enemyEntity, duration),
+            escapingParameters: (enemyEntity, duration),
+            superclassCall:
+                
+                super.stopMovement(for: enemyEntity, duration: duration)
+                ,
+            defaultCall: __defaultImplStub!.stopMovement(for: enemyEntity, duration: duration))
+        
+    }
+    
+    
+    
+     override func runFadingAnimation(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("runFadingAnimation(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.runFadingAnimation(entity)
+                ,
+            defaultCall: __defaultImplStub!.runFadingAnimation(entity))
+        
+    }
+    
+    
+    
+     override func setLabel(_ entity: Entity, label: String)  {
+        
+    return cuckoo_manager.call("setLabel(_: Entity, label: String)",
+            parameters: (entity, label),
+            escapingParameters: (entity, label),
+            superclassCall:
+                
+                super.setLabel(entity, label: label)
+                ,
+            defaultCall: __defaultImplStub!.setLabel(entity, label: label))
+        
+    }
+    
+    
+    
+     override func decreaseLabelOpacity(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("decreaseLabelOpacity(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.decreaseLabelOpacity(entity)
+                ,
+            defaultCall: __defaultImplStub!.decreaseLabelOpacity(entity))
+        
+    }
+    
+    
+    
+     override func incrementLabelIntegerValue(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("incrementLabelIntegerValue(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.incrementLabelIntegerValue(entity)
+                ,
+            defaultCall: __defaultImplStub!.incrementLabelIntegerValue(entity))
+        
+    }
+    
+    
+    
+     override func incrementCombo()  {
+        
+    return cuckoo_manager.call("incrementCombo()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.incrementCombo()
+                ,
+            defaultCall: __defaultImplStub!.incrementCombo())
+        
+    }
+    
+    
+    
+     override func incrementMultiplier()  {
+        
+    return cuckoo_manager.call("incrementMultiplier()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.incrementMultiplier()
+                ,
+            defaultCall: __defaultImplStub!.incrementMultiplier())
+        
+    }
+    
+    
+    
+     override func endCombo()  {
+        
+    return cuckoo_manager.call("endCombo()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.endCombo()
+                ,
+            defaultCall: __defaultImplStub!.endCombo())
+        
+    }
+    
 
 	 struct __StubbingProxy_GameEngine: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	
 	     init(manager: Cuckoo.MockManager) {
 	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var contactDelegate: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameEngine, ContactDelegate> {
+	        return .init(manager: cuckoo_manager, name: "contactDelegate")
 	    }
 	    
 	    
@@ -3448,6 +3839,11 @@ import SpriteKit
 	    
 	    var playerEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, PlayerEntity?> {
 	        return .init(manager: cuckoo_manager, name: "playerEntity")
+	    }
+	    
+	    
+	    var comboEntity: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, ComboEntity?> {
+	        return .init(manager: cuckoo_manager, name: "comboEntity")
 	    }
 	    
 	    
@@ -3496,6 +3892,11 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "decreasePlayerHealth()", parameterMatchers: matchers))
 	    }
 	    
+	    func addScore<M1: Cuckoo.Matchable>(by points: M1) -> Cuckoo.ClassStubNoReturnFunction<(Int)> where M1.MatchedType == Int {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int)>] = [wrap(matchable: points) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "addScore(by: Int)", parameterMatchers: matchers))
+	    }
+	    
 	    func gestureActivated<M1: Cuckoo.Matchable>(gesture: M1) -> Cuckoo.ClassStubNoReturnFunction<(CustomGesture)> where M1.MatchedType == CustomGesture {
 	        let matchers: [Cuckoo.ParameterMatcher<(CustomGesture)>] = [wrap(matchable: gesture) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "gestureActivated(gesture: CustomGesture)", parameterMatchers: matchers))
@@ -3536,6 +3937,46 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "decreasePlayerMana(by: Int)", parameterMatchers: matchers))
 	    }
 	    
+	    func stopMovement<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(for enemyEntity: M1, duration: M2) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval)>] = [wrap(matchable: enemyEntity) { $0.0 }, wrap(matchable: duration) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "stopMovement(for: Entity, duration: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "runFadingAnimation(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func setLabel<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, label: M2) -> Cuckoo.ClassStubNoReturnFunction<(Entity, String)> where M1.MatchedType == Entity, M2.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: label) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "setLabel(_: Entity, label: String)", parameterMatchers: matchers))
+	    }
+	    
+	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "decreaseLabelOpacity(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "incrementLabelIntegerValue(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementCombo() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "incrementCombo()", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementMultiplier() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "incrementMultiplier()", parameterMatchers: matchers))
+	    }
+	    
+	    func endCombo() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "endCombo()", parameterMatchers: matchers))
+	    }
+	    
 	}
 
 	 struct __VerificationProxy_GameEngine: Cuckoo.VerificationProxy {
@@ -3551,6 +3992,11 @@ import SpriteKit
 	
 	    
 	    
+	    var contactDelegate: Cuckoo.VerifyOptionalProperty<ContactDelegate> {
+	        return .init(manager: cuckoo_manager, name: "contactDelegate", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var metadata: Cuckoo.VerifyReadOnlyProperty<GameMetaData> {
 	        return .init(manager: cuckoo_manager, name: "metadata", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
@@ -3563,6 +4009,11 @@ import SpriteKit
 	    
 	    var playerEntity: Cuckoo.VerifyReadOnlyProperty<PlayerEntity?> {
 	        return .init(manager: cuckoo_manager, name: "playerEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var comboEntity: Cuckoo.VerifyReadOnlyProperty<ComboEntity?> {
+	        return .init(manager: cuckoo_manager, name: "comboEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -3622,6 +4073,12 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
+	    func addScore<M1: Cuckoo.Matchable>(by points: M1) -> Cuckoo.__DoNotUse<(Int), Void> where M1.MatchedType == Int {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int)>] = [wrap(matchable: points) { $0 }]
+	        return cuckoo_manager.verify("addScore(by: Int)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func gestureActivated<M1: Cuckoo.Matchable>(gesture: M1) -> Cuckoo.__DoNotUse<(CustomGesture), Void> where M1.MatchedType == CustomGesture {
 	        let matchers: [Cuckoo.ParameterMatcher<(CustomGesture)>] = [wrap(matchable: gesture) { $0 }]
 	        return cuckoo_manager.verify("gestureActivated(gesture: CustomGesture)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -3669,10 +4126,68 @@ import SpriteKit
 	        return cuckoo_manager.verify("decreasePlayerMana(by: Int)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
+	    @discardableResult
+	    func stopMovement<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(for enemyEntity: M1, duration: M2) -> Cuckoo.__DoNotUse<(Entity, TimeInterval), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval)>] = [wrap(matchable: enemyEntity) { $0.0 }, wrap(matchable: duration) { $0.1 }]
+	        return cuckoo_manager.verify("stopMovement(for: Entity, duration: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("runFadingAnimation(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func setLabel<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, label: M2) -> Cuckoo.__DoNotUse<(Entity, String), Void> where M1.MatchedType == Entity, M2.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: label) { $0.1 }]
+	        return cuckoo_manager.verify("setLabel(_: Entity, label: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("decreaseLabelOpacity(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("incrementLabelIntegerValue(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementCombo() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("incrementCombo()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementMultiplier() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("incrementMultiplier()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func endCombo() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("endCombo()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
 	}
 }
 
  class GameEngineStub: GameEngine {
+    
+    
+     override var contactDelegate: ContactDelegate! {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ContactDelegate?).self)
+        }
+        
+        set { }
+        
+    }
     
     
      override var metadata: GameMetaData {
@@ -3696,6 +4211,14 @@ import SpriteKit
      override var playerEntity: PlayerEntity? {
         get {
             return DefaultValueRegistry.defaultValue(for: (PlayerEntity?).self)
+        }
+        
+    }
+    
+    
+     override var comboEntity: ComboEntity? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ComboEntity?).self)
         }
         
     }
@@ -3740,6 +4263,10 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addScore(by points: Int)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func gestureActivated(gesture: CustomGesture)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -3772,10 +4299,42 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func stopMovement(for enemyEntity: Entity, duration: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func runFadingAnimation(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func setLabel(_ entity: Entity, label: String)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func decreaseLabelOpacity(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementLabelIntegerValue(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementCombo()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementMultiplier()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func endCombo()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  RemoveDelegate.swift
@@ -3831,16 +4390,16 @@ import GameplayKit
     
     
     
-     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)  {
+     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)  {
         
-    return cuckoo_manager.call("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)",
-            parameters: (entity, shouldDecreasePlayerHealth),
-            escapingParameters: (entity, shouldDecreasePlayerHealth),
+    return cuckoo_manager.call("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)",
+            parameters: (entity, shouldDecreasePlayerHealth, shouldIncreaseScore),
+            escapingParameters: (entity, shouldDecreasePlayerHealth, shouldIncreaseScore),
             superclassCall:
                 
-                super.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth)
+                super.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth, shouldIncreaseScore: shouldIncreaseScore)
                 ,
-            defaultCall: __defaultImplStub!.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth))
+            defaultCall: __defaultImplStub!.removeEnemy(entity, shouldDecreasePlayerHealth: shouldDecreasePlayerHealth, shouldIncreaseScore: shouldIncreaseScore))
         
     }
     
@@ -3873,9 +4432,9 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeGesture(for: GKEntity)", parameterMatchers: matchers))
 	    }
 	    
-	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2) -> Cuckoo.ClassStubNoReturnFunction<(EnemyEntity, Bool)> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool {
-	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)", parameterMatchers: matchers))
+	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2, shouldIncreaseScore: M3) -> Cuckoo.ClassStubNoReturnFunction<(EnemyEntity, Bool, Bool)> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool, M3.MatchedType == Bool {
+	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }, wrap(matchable: shouldIncreaseScore) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockRemoveDelegate.self, method: "removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeDroppedMana<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(DroppedManaEntity)> where M1.MatchedType == DroppedManaEntity {
@@ -3906,9 +4465,9 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2) -> Cuckoo.__DoNotUse<(EnemyEntity, Bool), Void> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool {
-	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }]
-	        return cuckoo_manager.verify("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func removeEnemy<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(_ entity: M1, shouldDecreasePlayerHealth: M2, shouldIncreaseScore: M3) -> Cuckoo.__DoNotUse<(EnemyEntity, Bool, Bool), Void> where M1.MatchedType == EnemyEntity, M2.MatchedType == Bool, M3.MatchedType == Bool {
+	        let matchers: [Cuckoo.ParameterMatcher<(EnemyEntity, Bool, Bool)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: shouldDecreasePlayerHealth) { $0.1 }, wrap(matchable: shouldIncreaseScore) { $0.2 }]
+	        return cuckoo_manager.verify("removeEnemy(_: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3930,7 +4489,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool)   {
+     override func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool, shouldIncreaseScore: Bool)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -3941,7 +4500,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  SystemDelegate.swift
@@ -4028,6 +4587,48 @@ import GameplayKit
                     super.spriteSystem
                     ,
                 defaultCall: __defaultImplStub!.spriteSystem)
+        }
+        
+    }
+    
+    
+    
+     override var scoreSystem: ScoreSystem? {
+        get {
+            return cuckoo_manager.getter("scoreSystem",
+                superclassCall:
+                    
+                    super.scoreSystem
+                    ,
+                defaultCall: __defaultImplStub!.scoreSystem)
+        }
+        
+    }
+    
+    
+    
+     override var labelSystem: LabelSystem? {
+        get {
+            return cuckoo_manager.getter("labelSystem",
+                superclassCall:
+                    
+                    super.labelSystem
+                    ,
+                defaultCall: __defaultImplStub!.labelSystem)
+        }
+        
+    }
+    
+    
+    
+     override var timerSystem: TimerSystem? {
+        get {
+            return cuckoo_manager.getter("timerSystem",
+                superclassCall:
+                    
+                    super.timerSystem
+                    ,
+                defaultCall: __defaultImplStub!.timerSystem)
         }
         
     }
@@ -4186,6 +4787,111 @@ import GameplayKit
         
     }
     
+    
+    
+     override func addScore(by points: Int, multiplier: Double, for entity: Entity)  {
+        
+    return cuckoo_manager.call("addScore(by: Int, multiplier: Double, for: Entity)",
+            parameters: (points, multiplier, entity),
+            escapingParameters: (points, multiplier, entity),
+            superclassCall:
+                
+                super.addScore(by: points, multiplier: multiplier, for: entity)
+                ,
+            defaultCall: __defaultImplStub!.addScore(by: points, multiplier: multiplier, for: entity))
+        
+    }
+    
+    
+    
+     override func addMultiKillScore(count: Int, for entity: Entity)  {
+        
+    return cuckoo_manager.call("addMultiKillScore(count: Int, for: Entity)",
+            parameters: (count, entity),
+            escapingParameters: (count, entity),
+            superclassCall:
+                
+                super.addMultiKillScore(count: count, for: entity)
+                ,
+            defaultCall: __defaultImplStub!.addMultiKillScore(count: count, for: entity))
+        
+    }
+    
+    
+    
+     override func runFadingAnimation(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("runFadingAnimation(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.runFadingAnimation(entity)
+                ,
+            defaultCall: __defaultImplStub!.runFadingAnimation(entity))
+        
+    }
+    
+    
+    
+     override func setLabel(_ entity: Entity, label: String)  {
+        
+    return cuckoo_manager.call("setLabel(_: Entity, label: String)",
+            parameters: (entity, label),
+            escapingParameters: (entity, label),
+            superclassCall:
+                
+                super.setLabel(entity, label: label)
+                ,
+            defaultCall: __defaultImplStub!.setLabel(entity, label: label))
+        
+    }
+    
+    
+    
+     override func decreaseLabelOpacity(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("decreaseLabelOpacity(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.decreaseLabelOpacity(entity)
+                ,
+            defaultCall: __defaultImplStub!.decreaseLabelOpacity(entity))
+        
+    }
+    
+    
+    
+     override func incrementLabelIntegerValue(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("incrementLabelIntegerValue(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.incrementLabelIntegerValue(entity)
+                ,
+            defaultCall: __defaultImplStub!.incrementLabelIntegerValue(entity))
+        
+    }
+    
+    
+    
+     override func incrementMultiplier(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("incrementMultiplier(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.incrementMultiplier(entity)
+                ,
+            defaultCall: __defaultImplStub!.incrementMultiplier(entity))
+        
+    }
+    
 
 	 struct __StubbingProxy_SystemDelegate: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
@@ -4212,6 +4918,21 @@ import GameplayKit
 	    
 	    var spriteSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, SpriteSystem?> {
 	        return .init(manager: cuckoo_manager, name: "spriteSystem")
+	    }
+	    
+	    
+	    var scoreSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, ScoreSystem?> {
+	        return .init(manager: cuckoo_manager, name: "scoreSystem")
+	    }
+	    
+	    
+	    var labelSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, LabelSystem?> {
+	        return .init(manager: cuckoo_manager, name: "labelSystem")
+	    }
+	    
+	    
+	    var timerSystem: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockSystemDelegate, TimerSystem?> {
+	        return .init(manager: cuckoo_manager, name: "timerSystem")
 	    }
 	    
 	    
@@ -4265,6 +4986,41 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
 	    }
 	    
+	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(by points: M1, multiplier: M2, for entity: M3) -> Cuckoo.ClassStubNoReturnFunction<(Int, Double, Entity)> where M1.MatchedType == Int, M2.MatchedType == Double, M3.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Double, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: multiplier) { $0.1 }, wrap(matchable: entity) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "addScore(by: Int, multiplier: Double, for: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func addMultiKillScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(count: M1, for entity: M2) -> Cuckoo.ClassStubNoReturnFunction<(Int, Entity)> where M1.MatchedType == Int, M2.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Entity)>] = [wrap(matchable: count) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "addMultiKillScore(count: Int, for: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "runFadingAnimation(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func setLabel<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, label: M2) -> Cuckoo.ClassStubNoReturnFunction<(Entity, String)> where M1.MatchedType == Entity, M2.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: label) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "setLabel(_: Entity, label: String)", parameterMatchers: matchers))
+	    }
+	    
+	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "decreaseLabelOpacity(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "incrementLabelIntegerValue(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func incrementMultiplier<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "incrementMultiplier(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
 	}
 
 	 struct __VerificationProxy_SystemDelegate: Cuckoo.VerificationProxy {
@@ -4297,6 +5053,21 @@ import GameplayKit
 	    
 	    var spriteSystem: Cuckoo.VerifyReadOnlyProperty<SpriteSystem?> {
 	        return .init(manager: cuckoo_manager, name: "spriteSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var scoreSystem: Cuckoo.VerifyReadOnlyProperty<ScoreSystem?> {
+	        return .init(manager: cuckoo_manager, name: "scoreSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var labelSystem: Cuckoo.VerifyReadOnlyProperty<LabelSystem?> {
+	        return .init(manager: cuckoo_manager, name: "labelSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var timerSystem: Cuckoo.VerifyReadOnlyProperty<TimerSystem?> {
+	        return .init(manager: cuckoo_manager, name: "timerSystem", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -4361,6 +5132,48 @@ import GameplayKit
 	        return cuckoo_manager.verify("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
+	    @discardableResult
+	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(by points: M1, multiplier: M2, for entity: M3) -> Cuckoo.__DoNotUse<(Int, Double, Entity), Void> where M1.MatchedType == Int, M2.MatchedType == Double, M3.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Double, Entity)>] = [wrap(matchable: points) { $0.0 }, wrap(matchable: multiplier) { $0.1 }, wrap(matchable: entity) { $0.2 }]
+	        return cuckoo_manager.verify("addScore(by: Int, multiplier: Double, for: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func addMultiKillScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(count: M1, for entity: M2) -> Cuckoo.__DoNotUse<(Int, Entity), Void> where M1.MatchedType == Int, M2.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Int, Entity)>] = [wrap(matchable: count) { $0.0 }, wrap(matchable: entity) { $0.1 }]
+	        return cuckoo_manager.verify("addMultiKillScore(count: Int, for: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("runFadingAnimation(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func setLabel<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ entity: M1, label: M2) -> Cuckoo.__DoNotUse<(Entity, String), Void> where M1.MatchedType == Entity, M2.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: label) { $0.1 }]
+	        return cuckoo_manager.verify("setLabel(_: Entity, label: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func decreaseLabelOpacity<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("decreaseLabelOpacity(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementLabelIntegerValue<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("incrementLabelIntegerValue(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func incrementMultiplier<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("incrementMultiplier(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
 	}
 }
 
@@ -4394,6 +5207,30 @@ import GameplayKit
      override var spriteSystem: SpriteSystem? {
         get {
             return DefaultValueRegistry.defaultValue(for: (SpriteSystem?).self)
+        }
+        
+    }
+    
+    
+     override var scoreSystem: ScoreSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ScoreSystem?).self)
+        }
+        
+    }
+    
+    
+     override var labelSystem: LabelSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (LabelSystem?).self)
+        }
+        
+    }
+    
+    
+     override var timerSystem: TimerSystem? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (TimerSystem?).self)
         }
         
     }
@@ -4442,10 +5279,38 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addScore(by points: Int, multiplier: Double, for entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func addMultiKillScore(count: Int, for entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func runFadingAnimation(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func setLabel(_ entity: Entity, label: String)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func decreaseLabelOpacity(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementLabelIntegerValue(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func incrementMultiplier(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  HealthSystem.swift
@@ -4581,7 +5446,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  ManaSystem.swift
@@ -4747,7 +5612,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  MoveSystem.swift
@@ -4883,7 +5748,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  SpriteSystem.swift
@@ -4969,6 +5834,21 @@ import GameplayKit
     
     
     
+     override func runFadingAnimation(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("runFadingAnimation(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.runFadingAnimation(entity)
+                ,
+            defaultCall: __defaultImplStub!.runFadingAnimation(entity))
+        
+    }
+    
+    
+    
      override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
         
     return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
@@ -5004,6 +5884,11 @@ import GameplayKit
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "runFadingAnimation(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
 	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
@@ -5046,6 +5931,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func runFadingAnimation<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("runFadingAnimation(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
 	        return cuckoo_manager.verify("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -5072,6 +5963,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func runFadingAnimation(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -5079,13 +5974,13 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  TimerSystem.swift
 //  GameOfRunes
 //
-//  Created by Dong SiJi on 16/3/20.
+//  Created by Andy on 27/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
@@ -5095,9 +5990,9 @@ import Cuckoo
 import GameplayKit
 
 
- class MockTimerSystem: LabelSystem, Cuckoo.ClassMock {
+ class MockTimerSystem: TimerSystem, Cuckoo.ClassMock {
     
-     typealias MocksType = LabelSystem
+     typealias MocksType = TimerSystem
     
      typealias Stubbing = __StubbingProxy_TimerSystem
      typealias Verification = __VerificationProxy_TimerSystem
@@ -5105,9 +6000,9 @@ import GameplayKit
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: LabelSystem?
+    private var __defaultImplStub: TimerSystem?
 
-     func enableDefaultImplementation(_ stub: LabelSystem) {
+     func enableDefaultImplementation(_ stub: TimerSystem) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -5130,6 +6025,36 @@ import GameplayKit
                 super.update(deltaTime: seconds)
                 ,
             defaultCall: __defaultImplStub!.update(deltaTime: seconds))
+        
+    }
+    
+    
+    
+     override func updateComponent(_ component: TimerComponent, _ seconds: TimeInterval)  {
+        
+    return cuckoo_manager.call("updateComponent(_: TimerComponent, _: TimeInterval)",
+            parameters: (component, seconds),
+            escapingParameters: (component, seconds),
+            superclassCall:
+                
+                super.updateComponent(component, seconds)
+                ,
+            defaultCall: __defaultImplStub!.updateComponent(component, seconds))
+        
+    }
+    
+    
+    
+     override func resetTimer(_ entity: Entity)  {
+        
+    return cuckoo_manager.call("resetTimer(_: Entity)",
+            parameters: (entity),
+            escapingParameters: (entity),
+            superclassCall:
+                
+                super.resetTimer(entity)
+                ,
+            defaultCall: __defaultImplStub!.resetTimer(entity))
         
     }
     
@@ -5162,6 +6087,16 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "update(deltaTime: TimeInterval)", parameterMatchers: matchers))
 	    }
 	    
+	    func updateComponent<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ component: M1, _ seconds: M2) -> Cuckoo.ClassStubNoReturnFunction<(TimerComponent, TimeInterval)> where M1.MatchedType == TimerComponent, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimerComponent, TimeInterval)>] = [wrap(matchable: component) { $0.0 }, wrap(matchable: seconds) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "updateComponent(_: TimerComponent, _: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "resetTimer(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
@@ -5190,6 +6125,18 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func updateComponent<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ component: M1, _ seconds: M2) -> Cuckoo.__DoNotUse<(TimerComponent, TimeInterval), Void> where M1.MatchedType == TimerComponent, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(TimerComponent, TimeInterval)>] = [wrap(matchable: component) { $0.0 }, wrap(matchable: seconds) { $0.1 }]
+	        return cuckoo_manager.verify("updateComponent(_: TimerComponent, _: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
+	        return cuckoo_manager.verify("resetTimer(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -5198,13 +6145,21 @@ import GameplayKit
 	}
 }
 
- class TimerSystemStub: LabelSystem {
+ class TimerSystemStub: TimerSystem {
     
 
     
 
     
      override func update(deltaTime seconds: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func updateComponent(_ component: TimerComponent, _ seconds: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func resetTimer(_ entity: Entity)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -5215,7 +6170,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameEndState.swift
@@ -5395,7 +6350,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameInPlayState.swift
@@ -5531,7 +6486,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GamePauseState.swift
@@ -5667,7 +6622,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameSelectionState.swift
@@ -5803,7 +6758,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameStartState.swift
@@ -5939,7 +6894,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameStateMachine.swift
@@ -6059,7 +7014,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  GameScene.swift
@@ -6680,7 +7635,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-27 17:02:51 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-03-30 09:18:25 +0000
 
 //
 //  SceneManager.swift

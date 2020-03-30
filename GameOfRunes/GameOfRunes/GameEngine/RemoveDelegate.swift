@@ -29,7 +29,7 @@ class RemoveDelegate {
         
         if enemyHealth <= 0 {
             _ = enemyEntity.removeGesture()
-            removeEnemyFromGame(enemyEntity, fullAnimation: false)
+            removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
@@ -41,17 +41,27 @@ class RemoveDelegate {
         }
     }
 
-    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false) {
+    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false,
+                     shouldIncreaseScore: Bool = false) {
         removeEnemyFromGame(entity)
         
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
+        } else {
+            gameEngine?.incrementCombo()
+        }
+        
+        if shouldIncreaseScore {
+            guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
+                fatalError("EnemyEntity does not have a score component.")
+            }
+            gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
         guard let gestureEntity = entity.gestureEntity else {
             return
         }
-
+        _ = entity.removeGesture()
         gameEngine?.remove(gestureEntity)
     }
     
@@ -90,7 +100,10 @@ class RemoveDelegate {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-        
+
+        // Changing the category bit mask is necessary because SpriteComponent and CollisionNode do not get
+        // deinit immediately, leading to >1 contacts detected.
+        spriteComponent.node.physicsBody?.categoryBitMask = CollisionType.none.rawValue
         let animationTextures = fullAnimation
             ? TextureContainer.fullEnemyRemovalTextures
             : TextureContainer.halfEnemyRemovalTextures

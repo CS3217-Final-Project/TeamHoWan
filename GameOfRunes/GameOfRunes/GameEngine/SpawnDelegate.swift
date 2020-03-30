@@ -56,12 +56,14 @@ class SpawnDelegate {
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?) {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
         guard let enemyType = enemyType,
-            let gameEngine = gameEngine else {
+            let gameEngine = gameEngine,
+            let gameScene = gameEngine.gameScene else {
             return
         }
 
         let gameMetaData = gameEngine.metadata
-        let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
+        // TODO: Refactor the scaling of enemy entity. Calculation of scale should not be here.
+        let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine, scale: gameScene.size.width / 6)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
             let sceneSize = gameEngine.gameScene?.size,
             let gestureEntity = enemyEntity.gestureEntity else {

@@ -15,6 +15,12 @@ import UIKit
 enum GameConfig {
     static let fontName = "DragonFire"
     
+    enum Score {
+        static let comboTimer: TimeInterval = 2.0
+        static let tripleKillScore: Int = 30
+        static let pentaKillScore: Int = 50
+    }
+    
     enum AnimationNodeKey {
         static let enemy_walking = "enemy-walking-animation"
     }
@@ -22,6 +28,7 @@ enum GameConfig {
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
+        static let normalScore = 10
 
         // Note: monster difficulties must be unique
         static let nilDifficulty: Int = 0
