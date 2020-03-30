@@ -8,14 +8,8 @@
 
 import SpriteKit
 
-/** Protocol common to all Power-Ups. */
-protocol PowerUpEntity {
-    var fading: Bool { get set }
-    var powerUpType: PowerUpType { get }
-}
-
-extension PowerUpEntity {
-    func getCastingAnimationNode(at position: CGPoint, with size: CGSize) -> CollisionNode {
+class PowerUpEntity: Entity {
+    func getCastingAnimationNode(for powerUpType: PowerUpType, at position: CGPoint, with size: CGSize) -> CollisionNode {
         let animationNode = CollisionNode(texture: nil, color: .black, size: size)
         animationNode.position = position
 
@@ -39,7 +33,7 @@ extension PowerUpEntity {
      Returns the Animation Node with animation
      for "casting" phase and "in-effect" phase.
      */
-    func getAnimationNode(at position: CGPoint, with size: CGSize) -> CollisionNode {
+    func getAnimationNode(for powerUpType: PowerUpType, at position: CGPoint, with size: CGSize) -> CollisionNode {
         let animationNode = CollisionNode(texture: nil, color: .clear, size: size)
         animationNode.position = position
 

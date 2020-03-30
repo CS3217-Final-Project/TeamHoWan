@@ -129,6 +129,6 @@ class SystemDelegate {
     }
     
     func activatePowerUp(at position: CGPoint, size: CGFloat) {
-        powerUpSystem.activatePowerUp(at: position, size: size)
+        powerUpSystem?.activatePowerUp(at: position, size: size)
     }
 }

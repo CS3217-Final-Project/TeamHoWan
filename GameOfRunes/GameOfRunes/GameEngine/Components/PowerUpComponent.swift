@@ -13,6 +13,7 @@ class PowerUpComponent: GKComponent, Component {
         .powerUpComponent
     }
     let powerUpType: PowerUpType
+    var fading = false
     
     init(_ powerUpType: PowerUpType) {
         self.powerUpType = powerUpType

@@ -40,12 +40,12 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     }
     
     func runFadingAnimation(_ entity: Entity) {
-        guard let powerUpEntity = entity as? PowerUpEntity,
+        guard let powerUpComponent = entity.component(ofType: PowerUpComponent.self),
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
         }
         spriteComponent.node.run(
-            .fadeOut(withDuration: powerUpEntity.powerUpType.getFadeOutDuration)
+            .fadeOut(withDuration: powerUpComponent.powerUpType.getFadeOutDuration)
         )
     }
     

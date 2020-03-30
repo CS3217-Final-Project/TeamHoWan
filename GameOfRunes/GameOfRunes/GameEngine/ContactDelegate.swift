@@ -41,10 +41,11 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
         
         if other.component?.entity is PowerUpEntity {
-            guard let powerUpEntity = other.component?.entity as? PowerUpEntity else {
-                return
+            guard let powerUpEntity = other.component?.entity as? PowerUpEntity,
+                let powerUpComponent = powerUpEntity.component(ofType: PowerUpComponent.self) else {
+                    return
             }
-            activatePowerUp(on: enemyEntity, powerUpType: powerUpEntity.powerUpType)
+            activatePowerUp(on: enemyEntity, powerUpType: powerUpComponent.powerUpType)
         } else if other.component?.entity is EndPointEntity {
             gameEngine?.enemyReachedLine(enemyEntity)
         }

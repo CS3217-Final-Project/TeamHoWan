@@ -10,23 +10,17 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
-    var fading = false
-    var powerUpType: PowerUpType {
-        .darkVortex
-    }
-    private weak var gameEngine: GameEngine?
+class DarkVortexPowerUpEntity: PowerUpEntity {
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
     
     init(gameEngine: GameEngine, at position: CGPoint) {
-        self.gameEngine = gameEngine
         super.init()
         
         let radius = (gameEngine.gameScene?.size.width ?? 0) / 3
         let size = CGSize(width: radius, height: radius)
-        let animationNode = getAnimationNode(at: position, with: size)
+        let animationNode = getAnimationNode(for: .darkVortex, at: position, with: size)
         let spriteComponent = SpriteComponent(node: animationNode)
         spriteComponent.layerType = .powerUpAnimationLayer
         
@@ -38,11 +32,13 @@ class DarkVortexPowerUpEntity: Entity, PowerUpEntity {
             radius: .init(spriteComponent.node.size.width)
         )
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        let powerUpComponent = PowerUpComponent(.darkVortex)
         
         addComponent(timerComponent)
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)
+        addComponent(powerUpComponent)
     }
     
     @available(*, unavailable)

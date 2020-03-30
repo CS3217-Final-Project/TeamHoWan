@@ -236,7 +236,9 @@ class GameEngine {
         guard let comboEntity = comboEntity else {
             return
         }
+
         remove(comboEntity)
+        metadata.multiplier = 1.0
     }
     
     func changeSelectedPowerUp(to powerUp: PowerUpType?) {
