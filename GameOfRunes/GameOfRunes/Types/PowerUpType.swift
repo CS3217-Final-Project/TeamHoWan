@@ -9,18 +9,29 @@
 import SpriteKit
 
 enum PowerUpType: String, CaseIterable {
+    case darkVortex
     case hellfire
     case icePrison
-    case darkVortex
+    
+    var description: String {
+        switch self {
+        case .darkVortex:
+            return GameConfig.DarkVortexPowerUp.description
+        case .hellfire:
+            return GameConfig.HellFirePowerUp.description
+        case .icePrison:
+            return GameConfig.IcePrisonPowerUp.description
+        }
+    }
     
     var manaUnitCost: Int {
         switch self {
+        case .darkVortex:
+            return GameConfig.DarkVortexPowerUp.manaUnitCost
         case .hellfire:
             return GameConfig.HellFirePowerUp.manaUnitCost
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.manaUnitCost
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.manaUnitCost
         }
     }
     

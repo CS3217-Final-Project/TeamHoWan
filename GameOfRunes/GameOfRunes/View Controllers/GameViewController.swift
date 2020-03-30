@@ -20,12 +20,13 @@
                 states: [GameInPlayState(),
                          GameStartState(),
                          GamePauseState(),
-                         GameEndState()]
+                         GameEndState(),
+                         GameSelectionState()]
             )
             
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
-            gameStateMachine.enter(GameInPlayState.self)
+            gameStateMachine.enter(GameSelectionState.self)
         }
     }
     

@@ -52,18 +52,33 @@ enum GameConfig {
         static let powerUpDuration: TimeInterval = 8.0
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
+        static let description = """
+            Dark Vortex
+            Tap on the arena to summon a dark vortex
+            that pulls nearby enemies towards it
+            """
     }
 
     enum HellFirePowerUp {
         static let powerUpDuration: TimeInterval = 8.0
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
+        static let description = """
+            Hellfire
+            Draw a circle to invoke a ring of fire
+            that destroys all enemies that touches it
+            """
     }
 
     enum IcePrisonPowerUp {
         static let powerUpDuration: TimeInterval = 5.0
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
+        static let description = """
+            Ice Prison
+            Draw a circle to call upon an ancient spell
+            that freezes all enemies in the region
+            """
     }
 
     enum SceneManager {
@@ -108,5 +123,14 @@ enum GameConfig {
         static let horizontalOffSet: Double = 100.0
         static let verticalOffSet: Double = 100.0
         static let numEndPoints: Int = 3
+    }
+    
+    enum GameMapScene {
+        static let cameraScale: CGFloat = 0.75
+        
+        // zPositions
+        static let backgroundLayerZPosition: CGFloat = -100
+        static let stageNodeLayerZPosition: CGFloat = 0
+        static let cameraLayerZPosition: CGFloat = 100
     }
 }

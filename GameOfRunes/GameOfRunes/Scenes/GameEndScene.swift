@@ -16,25 +16,24 @@ class GameEndScene: SKScene, TapResponder {
     // initialise with placeholder value
     var didWin = true
     private weak var gameStateMachine: GameStateMachine?
-    private let statusLabel = SKLabelNode()
+    private let statusLabel = SKLabelNode(fontNamed: GameConfig.fontName)
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         
-        backgroundColor = .black
-        
         let center = CGPoint(x: frame.midX, y: frame.midY)
+        
         let restartButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
-            position: center,
             texture: .init(imageNamed: ButtonType.restartButton.rawValue),
-            name: ButtonType.restartButton.rawValue
+            buttonType: .restartButton,
+            position: center
         )
+        
         addChild(restartButton)
         
-        statusLabel.fontName = GameConfig.fontName
         statusLabel.fontSize = size.width * GameConfig.GameEndScene.fontSizeRatio
         statusLabel.fontColor = .white
         statusLabel.position = center + .init(dx: 0.0, dy: restartButton.size.height / 1.5)
@@ -54,8 +53,8 @@ class GameEndScene: SKScene, TapResponder {
         statusLabel.text = didWin ? "You Won!" : "You Lost :("
     }
 
-    func onTapped(tappedNode: SKSpriteNode) {
-        if tappedNode.name == ButtonType.restartButton.rawValue {
+    func onTapped(tappedNode: ButtonNode) {
+        if tappedNode.buttonType == .restartButton {
             gameStateMachine?.enter(GameStartState.self)
         }
     }

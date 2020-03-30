@@ -10,8 +10,15 @@ import SpriteKit
 
 class PowerUpContainerNode: SKSpriteNode {
     private static let spacingBetweenPowerUpNodes: CGFloat = 20.0
+    weak var selectedPowerUpResponder: SelectedPowerUpResponder?
     var powerUpTypes: [PowerUpType] {
-        powerUpNodes.map { $0.powerUpType }
+        didSet {
+            guard oldValue != powerUpTypes else {
+                return
+            }
+            buildPowerUpNodes()
+            selectedPowerUp = nil
+        }
     }
     private var powerUpNodes = [PowerUpNode]()
     override var size: CGSize {
@@ -27,22 +34,26 @@ class PowerUpContainerNode: SKSpriteNode {
             guard oldValue != selectedPowerUp else {
                 return
             }
-
-            // Deactivate and activate gesture detection when tap-activated power ups are selected 
-            if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-                    gameScene?.deactivateGestureDetection()
-            } else if oldValue == .darkVortex {
-                    gameScene?.activateGestureDetection()
-            }
+            selectedPowerUpResponder?.selectedPowerUpDidChanged(oldValue: oldValue, newSelectedPowerUp: selectedPowerUp)
             powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
         }
     }
     
-    weak var gameScene: GameScene?
-    
-    init(powerUpTypes: [PowerUpType]) {
+    init() {
+        powerUpTypes = []
         super.init(texture: nil, color: .clear, size: .zero)
         
+        buildPowerUpNodes()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func buildPowerUpNodes() {
+        powerUpNodes.forEach { $0.removeFromParent() }
+        powerUpNodes = []
         powerUpTypes.forEach {
             let powerUpNode = PowerUpNode(powerUpType: $0)
             powerUpNode.zPosition = 2
@@ -50,15 +61,6 @@ class PowerUpContainerNode: SKSpriteNode {
             addChild(powerUpNode)
         }
         layoutPowerUpNodes()
-    }
-    
-    convenience init(powerUpTypes: PowerUpType...) {
-        self.init(powerUpTypes: powerUpTypes)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     private func layoutPowerUpNodes() {

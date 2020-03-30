@@ -33,6 +33,7 @@ class GameScene: SKScene {
         self.gameStateMachine = gameStateMachine
         self.levelNumber = levelNumber
         super.init(size: size)
+        
         registerForPauseNotifications()
     }
     
@@ -47,20 +48,6 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        // TO NOTE: Unnecessary loading of texture, had to do this to pass tests
-        let dispatchGroup = DispatchGroup()
-        // marks the start of possible async block
-        dispatchGroup.enter()
-        
-        // must use other thread queues (not .main) to avoid deadlocks
-        DispatchQueue.global(qos: .default).async {
-            // set up animation textures
-            TextureContainer.loadTextures()
-            // indicates that the execution is done
-            dispatchGroup.leave()
-        }
-        
-        // continue setting up other stuff in .main thread
         gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
         
         // UI
@@ -77,9 +64,6 @@ class GameScene: SKScene {
         
         // set up bgm
         bgmNode = .init(fileNamed: "Lion King Eldigan")
-        
-        // ensures textures have been loaded
-        dispatchGroup.wait()
     }
     
     override func didMove(to view: SKView) {
@@ -132,6 +116,7 @@ class GameScene: SKScene {
             color: .clear,
             size: size
         )
+        backgroundNode.aspectFillToSize(fillSize: size)
         backgroundNode.position = .init(x: frame.midX, y: frame.midY)
         backgroundLayer.addChild(backgroundNode)
     }
@@ -143,7 +128,9 @@ class GameScene: SKScene {
             size: .init(width: playerAreaWidth, height: playerAreaHeight),
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
-        playerAreaNode.powerUpContainerNode.gameScene = self
+        
+        playerAreaNode.powerUpContainerNode.powerUpTypes = Avatar.elementalWizard.powerUps
+        playerAreaNode.powerUpContainerNode.selectedPowerUpResponder = self
         playerAreaLayer.addChild(playerAreaNode)
     }
     
@@ -166,11 +153,11 @@ class GameScene: SKScene {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
+            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
+            buttonType: .pauseButton,
             position: .init(x: frame.maxX, y: frame.maxY)
                 + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
-                + .init(dx: -buttonMargin, dy: -buttonMargin),
-            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
-            name: ButtonType.pauseButton.rawValue
+                + .init(dx: -buttonMargin, dy: -buttonMargin)
         )
         // relative to the layer
         pauseButton.zPosition = 1
@@ -283,11 +270,11 @@ class GameScene: SKScene {
  Extension to deal with button-related logic (when buttons are tapped)
  */
 extension GameScene: TapResponder {
-    func onTapped(tappedNode: SKSpriteNode) {
-        switch tappedNode.name {
-        case ButtonType.pauseButton.rawValue:
+    func onTapped(tappedNode: ButtonNode) {
+        switch tappedNode.buttonType {
+        case .pauseButton:
             gameStateMachine?.enter(GamePauseState.self)
-        case ButtonType.summonButton.rawValue:
+        case .summonButton:
             gameEngine.startNextSpawnWave()
         default:
             print("Unknown node tapped")
@@ -319,7 +306,7 @@ extension GameScene {
 /**
  Extension to deal with power-up related logic
  */
-extension GameScene {
+extension GameScene: SelectedPowerUpResponder {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
@@ -348,6 +335,15 @@ extension GameScene {
     
     var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
+    }
+    
+    func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
+        // Deactivate and activate gesture detection when tap-activated power ups are selected
+        if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
+                deactivateGestureDetection()
+        } else if oldValue == .darkVortex {
+                activateGestureDetection()
+        }
     }
     
     func deactivateGestureDetection() {
