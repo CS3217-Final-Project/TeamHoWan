@@ -17,8 +17,8 @@ class HomeViewController: UIViewController {
         view.frame.size.height
     }
     private let startButton = UIButton()
-    // TODO: Perhaps make it static?
-    private let storage: Storage = RealmStorage()
+    // TODO: Perhaps shift it to some other static class? Or no need make static?
+    static let storage: Storage = RealmStorage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,58 @@ class HomeViewController: UIViewController {
             TextureContainer.loadTextures()
             print("Done loading textures")
         }
+        
+        let stage1 = Stage(
+            name: "The Beginning",
+            chapter: "Peasant Land 1",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.6, y: -0.55),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7,
+            enemyWaves: [[]],
+            achievement: .A
+        )
+        
+        let stage2 = Stage(
+            name: "Warrior Arena",
+            chapter: "Peasant Land 2",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.17, y: -0.43),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7,
+            enemyWaves: [[]],
+            achievement: .C
+        )
+        
+        let stage3 = Stage(
+            name: "Cathedral Mayhem",
+            chapter: "Peasant Land 3",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.66, y: -0.28),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7,
+            enemyWaves: [[]],
+            achievement: .empty
+        )
+        
+        let stage4 = Stage(
+            name: "The Crossing",
+            chapter: "Peasant Land 4",
+            category: .boss,
+            relativePositionRatioInMap: (x: 0.25, y: -0.22),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: 7,
+            enemyWaves: [[]],
+            achievement: .S
+        )
+        
+        let stages = [stage1, stage2, stage3, stage4]
+        
+        Self.storage.save(stages: stages)
     }
     
     private func setUpHomeBackground() {
