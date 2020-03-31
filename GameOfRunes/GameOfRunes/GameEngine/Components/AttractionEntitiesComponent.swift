@@ -14,9 +14,8 @@ class AttractionEntitiesComponent: GKComponent, Component {
         .attractionEntitiesComponent
     }
     
-    init(_ entities: AttractionEntity...) {
-        attractionEntities = entities
-        super.init()
+    convenience init(_ entities: AttractionEntity...) {
+        self.init(entities)
     }
     
     init(_ entities: [AttractionEntity]) {
