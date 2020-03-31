@@ -42,8 +42,8 @@ class StageRealmModel: Object {
         (x: .init(xRatio), y: .init(yRatio))
     }
     
-    var enemyWaves: [[EnemyType?]] {
-        _enemyWaves.map { enemyWaveRealmModel in enemyWaveRealmModel.enemyWave }
+    var enemyWaves: EnemySpawnUnit {
+        .init(_enemyWaves.map { enemyWaveRealmModel in enemyWaveRealmModel.enemyWave })
     }
     
     init(stage: Stage) {
@@ -58,7 +58,7 @@ class StageRealmModel: Object {
         numWaves = stage.numWaves
         achievement = stage.achievement
         highScore = stage.highScore
-        stage.enemyWaves.forEach { enemyWave in _enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }
+        stage.enemyWaves.unit.forEach { enemyWave in _enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }
     }
     
     required init() {

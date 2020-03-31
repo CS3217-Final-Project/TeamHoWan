@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: [[]],
+            enemyWaves: .init(),
             achievement: .A
         )
         
@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: [[]],
+            enemyWaves: .init(),
             achievement: .C
         )
         
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: [[]],
+            enemyWaves: .init(),
             achievement: .empty
         )
         
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: [[]],
+            enemyWaves: .init(),
             achievement: .S
         )
         
