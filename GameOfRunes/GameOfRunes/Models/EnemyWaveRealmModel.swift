@@ -22,4 +22,8 @@ class EnemyWaveRealmModel: Object {
     required init() {
         super.init()
     }
+    
+    func cascadeDelete(realm: Realm) {
+        realm.delete(_enemyWave)
+    }
 }

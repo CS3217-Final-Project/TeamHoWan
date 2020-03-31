@@ -57,9 +57,12 @@ class RealmStorage: Storage {
     
     // optimised for saving multiple stages
     func save(stages: [Stage]) {
+        delete(stageNames: stages.map { stage in stage.name })
         do {
             try realm.write {
-                stages.forEach { stage in realm.add(StageRealmModel(stage: stage), update: .modified) }
+                stages.forEach { stage in
+                    realm.add(StageRealmModel(stage: stage))
+                }
             }
         } catch {
             print("Save stages error:", error.localizedDescription)
@@ -70,14 +73,46 @@ class RealmStorage: Storage {
         realm.objects(StageRealmModel.self).map { stageRealmModel in stageRealmModel.stage }
     }
     
-    func loadStages(names: String...) -> [Stage] {
-        let nameSet = Set(names)
+    func load(stageNames: String...) -> [Stage] {
+        load(stageNames: stageNames)
+    }
+    
+    func load(stageNames: [String]) -> [Stage] {
+        let nameSet = Set(stageNames)
         return realm.objects(StageRealmModel.self).compactMap { stageRealmModel in
             nameSet.contains(stageRealmModel.name) ? stageRealmModel.stage : nil
         }
     }
     
-    func loadStage(name: String) -> Stage? {
-        realm.object(ofType: StageRealmModel.self, forPrimaryKey: name)?.stage
+    private func loadRealmStage(stageName: String) -> StageRealmModel? {
+        realm.object(ofType: StageRealmModel.self, forPrimaryKey: stageName)
+    }
+    
+    func load(stageName: String) -> Stage? {
+        loadRealmStage(stageName: stageName)?.stage
+    }
+    
+    func exists(stageName: String) -> Bool {
+        load(stageName: stageName) != nil
+    }
+    
+    func delete(stageNames: String...) {
+        delete(stageNames: stageNames)
+    }
+    
+    func delete(stageNames: [String]) {
+        do {
+            try realm.write {
+                stageNames.forEach { stageName in
+                    guard let stage = loadRealmStage(stageName: stageName) else {
+                        return
+                    }
+                    stage.cascadeDelete(realm: realm)
+                    realm.delete(stage)
+                }
+            }
+        } catch {
+            print("Delete stages error:", error.localizedDescription)
+        }
     }
 }

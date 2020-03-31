@@ -18,7 +18,15 @@ protocol Storage {
     
     func loadAllStages() -> [Stage]
     
-    func loadStages(names: String...) -> [Stage]
+    func load(stageNames: String...) -> [Stage]
     
-    func loadStage(name: String) -> Stage?
+    func load(stageNames: [String]) -> [Stage]
+    
+    func load(stageName: String) -> Stage?
+    
+    func exists(stageName: String) -> Bool
+    
+    func delete(stageNames: String...)
+    
+    func delete(stageNames: [String])
 }

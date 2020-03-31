@@ -64,4 +64,9 @@ class StageRealmModel: Object {
     required init() {
         super.init()
     }
+    
+    func cascadeDelete(realm: Realm) {
+        _enemyWaves.forEach { enemyWaveRealmModel in enemyWaveRealmModel.cascadeDelete(realm: realm) }
+        realm.delete(_enemyWaves)
+    }
 }
