@@ -22,4 +22,5 @@ enum ComponentType {
     case parentEntityComponent
     case gestureEntityComponent
     case powerUpComponent
+    case attractionEntitiesComponent
 }

@@ -185,31 +185,15 @@ class GameScene: SKScene {
         endPointNode.zPosition = -1
         
         let endPointEntity = EndPointEntity(node: endPointNode)
+        
+        guard let attractionEntities =
+            endPointEntity.component(ofType: AttractionEntitiesComponent.self)?.attractionEntities,
+            !attractionEntities.isEmpty else {
+                fatalError("Error spawning endpoints, 0 endpoints spawned.")
+        }
 
         gameEngine.add(endPointEntity)
-
-        // set up the attractive force of end point
-        
-        for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
-            // finds xPosition of attraction node
-            let xPositionNumerator = 2 * laneIndex + 1
-            let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
-            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-            let xPosition = (.init(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            
-            let attractionNode = SKSpriteNode(color: .clear, size: .zero)
-            attractionNode.position = .init(x: xPosition, y: endPointNode.position.y)
-
-            let attractionEntity = AttractionEntity(
-                node: attractionNode,
-                layerType: .playerAreaLayer,
-                team: .player,
-                parent: endPointEntity
-            )
-            
-            gameEngine.add(attractionEntity)
-        }
+        attractionEntities.forEach { gameEngine.add($0) }
     }
     
     private func setUpPlayer() {
