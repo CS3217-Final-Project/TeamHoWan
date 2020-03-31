@@ -97,12 +97,15 @@ class GameEngine {
     func entities(for team: Team) -> [Entity] {
         switch team {
         case .enemy:
-            return Array(entities[.enemyEntity] ?? Set())
-        case .player:
-            let res = entities(for: .endPointEntity)
-                .union(entities(for: .darkVortexPowerUpEntity))
-                .union(entities(for: .attractionEntity))
+            let res = entities(for: .enemyEntity)
+                .union(entities(for: .attractionEntity).filter({
+                    $0.component(ofType: TeamComponent.self)?.team == .enemy
+                }))
             return Array(res)
+        case .player:
+            return Array(entities(for: .attractionEntity).filter({
+                $0.component(ofType: TeamComponent.self)?.team == .player
+            }))
         }
     }
     

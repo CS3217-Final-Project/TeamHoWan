@@ -204,7 +204,8 @@ class GameScene: SKScene {
             let attractionEntity = AttractionEntity(
                 node: attractionNode,
                 layerType: .playerAreaLayer,
-                team: .player
+                team: .player,
+                parent: endPointEntity
             )
             
             gameEngine.add(attractionEntity)
