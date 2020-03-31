@@ -14,21 +14,19 @@ class EnemyEntity: Entity {
         .enemyEntity
     }
 
-    init(enemyType: EnemyType, gameEngine: GameEngine, scale: CGFloat) {
+    init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
+        
+        let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
+        
+        let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
+        enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
+        CollisionType.enemy.setPhysicsBody(
+            for: enemyNode,
+            with: enemyNode.size
+        )
 
-        let node = CollisionNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        let spriteComponent = SpriteComponent(node: node)
-        
-        node.component = spriteComponent
-        node.size = node.size.scaleTo(width: scale)
-        node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
-        node.physicsBody?.affectedByGravity = false
-        node.physicsBody?.categoryBitMask = CollisionType.enemy.rawValue
-        node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
-        node.physicsBody?.collisionBitMask = 0
-        
-        node.run(
+        enemyNode.run(
             .repeatForever(
                 .animate(
                     with: TextureContainer.getEnemyAnimationTextures(enemyType),
@@ -39,14 +37,12 @@ class EnemyEntity: Entity {
             ),
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
-        
-        spriteComponent.layerType = .enemyLayer
-
+ 
+        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
         let moveComponent = MoveComponent(
-            gameEngine: gameEngine,
             maxSpeed: enemyType.speed,
             maxAcceleration: 5.0,
-            radius: .init(component(ofType: SpriteComponent.self)?.node.size.width ?? 0) * 0.01
+            radius: .init(enemyNode.size.height / 2)
         )
         let teamComponent = TeamComponent(team: .enemy)
         let healthComponent = HealthComponent(healthPoints: enemyType.health)
@@ -60,11 +56,6 @@ class EnemyEntity: Entity {
         addComponent(moveComponent)
         addComponent(enemyTypeComponent)
         _ = setNextGesture()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     func setNextGesture() -> GestureEntity? {

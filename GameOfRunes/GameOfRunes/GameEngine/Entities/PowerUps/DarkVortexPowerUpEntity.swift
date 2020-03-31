@@ -15,34 +15,17 @@ class DarkVortexPowerUpEntity: PowerUpEntity {
         .darkVortexPowerUpEntity
     }
     
-    init(gameEngine: GameEngine, at position: CGPoint) {
+    init(at position: CGPoint, with size: CGSize) {
+        let animationNode = Self.getAnimationNode(for: .darkVortex, at: position, with: size)
         super.init()
         
-        let radius = (gameEngine.gameScene?.size.width ?? 0) / 3
-        let size = CGSize(width: radius, height: radius)
-        let animationNode = getAnimationNode(for: .darkVortex, at: position, with: size)
-        let spriteComponent = SpriteComponent(node: animationNode)
-        spriteComponent.layerType = .powerUpAnimationLayer
+        // TODO: Add an attraction entity.
+        // super.init(node: animationNode, layerType: .powerUpAnimationLayer, team: .player)
         
-        let teamComponent = TeamComponent(team: .player)
-        let moveComponent = MoveComponent(
-            gameEngine: gameEngine,
-            maxSpeed: 0.0,
-            maxAcceleration: 0.0,
-            radius: .init(spriteComponent.node.size.width)
-        )
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
         let powerUpComponent = PowerUpComponent(.darkVortex)
         
         addComponent(timerComponent)
-        addComponent(spriteComponent)
-        addComponent(teamComponent)
-        addComponent(moveComponent)
         addComponent(powerUpComponent)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

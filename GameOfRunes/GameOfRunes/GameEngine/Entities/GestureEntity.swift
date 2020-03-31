@@ -16,17 +16,13 @@ class GestureEntity: Entity {
     init(gesture: CustomGesture, parent: Entity) {
         super.init()
         
-        let spriteComponent = SpriteComponent(gesture: gesture)
+        let node = GestureNode(gesture: gesture)
+        let spriteComponent = SpriteComponent(node: node, layerType: .enemyLayer)
         let gestureComponent = GestureComponent(gesture: gesture)
         let parentEntityComponent = ParentEntityComponent(parent)
 
         addComponent(spriteComponent)
         addComponent(gestureComponent)
         addComponent(parentEntityComponent)
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SKSpriteNode+addGlow.swift
+//  SKSpriteNode+helpers.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 10/3/20.

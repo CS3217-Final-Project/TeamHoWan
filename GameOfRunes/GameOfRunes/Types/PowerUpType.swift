@@ -57,25 +57,14 @@ enum PowerUpType: String, CaseIterable {
         }
     }
     
-    func instantiate(gameEngine: GameEngine, at position: CGPoint, size: CGFloat) -> Entity {
+    func createEntity(at position: CGPoint, with size: CGSize) -> Entity {
         switch self {
-        case .darkVortex:
-            return DarkVortexPowerUpEntity(
-                gameEngine: gameEngine,
-                at: position
-            )
         case .hellfire:
-            return HellfirePowerUpEntity(
-                gameEngine: gameEngine,
-                at: position,
-                with: .init(width: size * 2, height: size * 2)
-            )
+            return HellfirePowerUpEntity(at: position, with: size)
         case .icePrison:
-            return IcePrisonPowerUpEntity(
-                gameEngine: gameEngine,
-                at: position,
-                with: .init(width: size * 2, height: size * 2)
-            )
+            return IcePrisonPowerUpEntity(at: position, with: size)
+        case .darkVortex:
+            return DarkVortexPowerUpEntity(at: position, with: size)
         }
     }
 }

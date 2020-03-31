@@ -101,6 +101,7 @@ class GameEngine {
         case .player:
             let res = entities(for: .endPointEntity)
                 .union(entities(for: .darkVortexPowerUpEntity))
+                .union(entities(for: .attractionEntity))
             return Array(res)
         }
     }
@@ -245,9 +246,9 @@ class GameEngine {
         metadata.selectedPowerUp = powerUp
     }
     
-    func didActivatePowerUp(at position: CGPoint, size: CGFloat) -> Bool {
+    func didActivatePowerUp(at position: CGPoint, with size: CGSize) -> Bool {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            return false
+            fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
@@ -256,7 +257,7 @@ class GameEngine {
             return false
         }
         
-        systemDelegate.activatePowerUp(at: position, size: size)
+        systemDelegate.activatePowerUp(at: position, with: size)
         decreasePlayerMana(by: manaPointsRequired)
         return true
     }

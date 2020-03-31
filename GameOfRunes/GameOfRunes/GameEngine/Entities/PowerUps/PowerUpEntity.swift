@@ -8,9 +8,15 @@
 
 import SpriteKit
 
+
 class PowerUpEntity: Entity {
-    func getCastingAnimationNode(for powerUpType: PowerUpType, at position: CGPoint, with size: CGSize) -> CollisionNode {
-        let animationNode = CollisionNode(texture: nil, color: .black, size: size)
+    static func getCastingAnimationNode(
+        for powerUpType: PowerUpType,
+        at position: CGPoint,
+        with size: CGSize
+    ) -> SKSpriteNode {
+                                                                            // scale up the animation
+        let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
         animationNode.position = position
 
         // Create Animations (Casting of Power-Up)
@@ -33,8 +39,13 @@ class PowerUpEntity: Entity {
      Returns the Animation Node with animation
      for "casting" phase and "in-effect" phase.
      */
-    func getAnimationNode(for powerUpType: PowerUpType, at position: CGPoint, with size: CGSize) -> CollisionNode {
-        let animationNode = CollisionNode(texture: nil, color: .clear, size: size)
+    static func getAnimationNode(
+        for powerUpType: PowerUpType,
+        at position: CGPoint,
+        with size: CGSize
+    ) -> SKSpriteNode {
+                                                                            // scale up the animation
+        let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
         animationNode.position = position
 
         // Create Animations (Casting of Power-Up)

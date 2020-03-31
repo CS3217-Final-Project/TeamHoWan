@@ -16,13 +16,13 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
         super.init(componentClass: PowerUpComponent.self)
     }
 
-    func activatePowerUp(at position: CGPoint, size: CGFloat) {
+    func activatePowerUp(at position: CGPoint, with size: CGSize) {
         guard let gameEngine = gameEngine,
             let powerUpType = gameEngine.metadata.selectedPowerUp else {
                 return
         }
         
-        let entity = powerUpType.instantiate(gameEngine: gameEngine, at: position, size: size)
+        let entity = powerUpType.createEntity(at: position, with: size)
         gameEngine.add(entity)
     }
 

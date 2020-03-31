@@ -62,6 +62,7 @@ class PlayerAreaNode: SKSpriteNode {
 
         super.init(texture: .init(imageNamed: "player-area"), color: .clear, size: size)
         
+        isUserInteractionEnabled = true
         self.position = position
         addChild(healthBarNode)
         addChild(manaBarNode)

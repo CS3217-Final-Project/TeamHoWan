@@ -128,7 +128,7 @@ class SystemDelegate {
         scoreSystem?.incrementMultiplier(for: entity)
     }
     
-    func activatePowerUp(at position: CGPoint, size: CGFloat) {
-        powerUpSystem?.activatePowerUp(at: position, size: size)
+    func activatePowerUp(at position: CGPoint, with size: CGSize) {
+        powerUpSystem?.activatePowerUp(at: position, with: size)
     }
 }
