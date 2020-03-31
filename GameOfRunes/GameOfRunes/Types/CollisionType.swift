@@ -16,7 +16,8 @@ enum CollisionType: UInt32 {
     func setPhysicsBody(for node: SKSpriteNode, with size: CGSize) {
         switch self {
         case .enemy:
-            node.physicsBody = .init(circleOfRadius: size.height / 2)
+            // Hacky way to fix testing when size is 0, need better way.
+            node.physicsBody = .init(circleOfRadius: max(1, size.height) / 2)
             node.physicsBody?.affectedByGravity = false
             node.physicsBody?.categoryBitMask = rawValue
             node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
