@@ -15,34 +15,20 @@ class HellfirePowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
         .hellfire
     }
-    private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .hellFirePowerUpEntity
     }
     
-    init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
-        self.gameEngine = gameEngine
+    init(at position: CGPoint, with size: CGSize) {
         super.init()
 
-        let animationNode = getAnimationNode(at: position, with: size)
-        let animationSpriteComponent = SpriteComponent(node: animationNode)
-        animationSpriteComponent.layerType = .powerUpAnimationLayer
-        
-        animationNode.component = animationSpriteComponent
-        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
-        animationNode.physicsBody?.affectedByGravity = false
-        animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
-        animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
-        animationNode.physicsBody?.collisionBitMask = 0
-
-        addComponent(animationSpriteComponent)
+        let animationNode = Self.getAnimationNode(at: position, with: size, for: powerUpType)
+        CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
+        
+        addComponent(animationSpriteComponent)
         addComponent(timerComponent)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

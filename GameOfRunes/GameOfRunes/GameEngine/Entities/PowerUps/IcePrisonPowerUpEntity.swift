@@ -15,34 +15,20 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     var powerUpType: PowerUpType {
         .icePrison
     }
-    private weak var gameEngine: GameEngine?
     override var type: EntityType {
         .icePrisonPowerUpEntity
     }
     
-    init(gameEngine: GameEngine, at position: CGPoint, with size: CGSize) {
+    init(at position: CGPoint, with size: CGSize) {
         super.init()
-        self.gameEngine = gameEngine
         
-        let animationNode = getCastingAnimationNode(at: position, with: size)
-        let animationSpriteComponent = SpriteComponent(node: animationNode)
-        animationSpriteComponent.layerType = .powerUpAnimationLayer
-        animationNode.component = animationSpriteComponent
-       
-        animationNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4)
-        animationNode.physicsBody?.affectedByGravity = false
-        animationNode.physicsBody?.categoryBitMask = CollisionType.powerUp.rawValue
-        animationNode.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
-        animationNode.physicsBody?.collisionBitMask = 0
+        let animationNode = Self.getCastingAnimationNode(at: position, with: size, for: powerUpType)
+        CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
+        
+        let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
         
         addComponent(animationSpriteComponent)
-        
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
         addComponent(timerComponent)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

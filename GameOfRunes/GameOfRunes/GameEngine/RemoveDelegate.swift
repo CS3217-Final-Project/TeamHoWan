@@ -96,9 +96,6 @@ class RemoveDelegate {
             return
         }
 
-        // Changing the category bit mask is necessary because SpriteComponent and CollisionNode do not get
-        // deinit immediately, leading to >1 contacts detected.
-        spriteComponent.node.physicsBody?.categoryBitMask = CollisionType.none.rawValue
         let animationTextures = fullAnimation
             ? TextureContainer.fullEnemyRemovalTextures
             : TextureContainer.halfEnemyRemovalTextures
@@ -116,10 +113,15 @@ class RemoveDelegate {
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
-        animationNode.run(removalAnimation)
+                                            // gives some delay till the game terminates
+        animationNode.run(removalAnimation, completion: { [weak self] in
+            self?.gameEngine?.metadata.numEnemiesOnField -= 1
+        })
         gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-
-        gameEngine?.metadata.numEnemiesOnField -= 1
+        
+        // Changing physicsBody to nil is necessary because SpriteComponent and PhysicsBody do not get
+        // deinit immediately, leading to >1 contacts detected.
+        spriteComponent.node.physicsBody = nil
         gameEngine?.remove(entity)
     }
 }

@@ -94,10 +94,10 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.moveComponents(for: .player).isEmpty)
         gameEngine.add(endPointEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-        XCTAssertTrue(gameEngine.moveComponents(for: .player).count == 1)
+        XCTAssertTrue(gameEngine.moveComponents(for: .player).isEmpty)
         gameEngine.add(darkVortexPowerUpEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-        XCTAssertTrue(gameEngine.moveComponents(for: .player).count == 2)
+        XCTAssertTrue(gameEngine.moveComponents(for: .player).count == 1)
     }
     
     func testDecreasePlayerHealth() {

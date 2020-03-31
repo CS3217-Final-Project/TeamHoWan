@@ -64,7 +64,7 @@ extension ManaSystem {
      by the value `GameplayConfiguration.Mana.manaDropProbaility`
      */
     private func shouldDropMana() -> Bool {
-        let randNum = Double.random(in: 0.0...1.0)
+        let randNum = CGFloat.random(in: 0.0...1.0)
         return randNum <= GameConfig.Mana.manaDropProbability
     }
 
@@ -78,15 +78,4 @@ extension ManaSystem {
         let upperBound = GameConfig.Mana.manaMaxValue
         return Int.random(in: lowerBound...upperBound)
     }
-/*
-    /** Increases the Player's Mana points. */
-    func increasePlayerManaPoints(manaPoints: Int) {
-        gameEngine?.increasePlayerMana(by: manaPoints)
-    }
-
-    /** Decreaes the Player's Mana points. */
-    func decreasePlayerManaPoints(manaPoints: Int) {
-        increasePlayerManaPoints(manaPoints: -manaPoints)
-    }
- */
 }

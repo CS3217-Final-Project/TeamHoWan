@@ -101,6 +101,7 @@ class GameEngine {
         case .player:
             let res = entities(for: .endPointEntity)
                 .union(entities(for: .darkVortexPowerUpEntity))
+                .union(entities(for: .attractionEntity))
             return Array(res)
         }
     }
@@ -239,43 +240,22 @@ class GameEngine {
 
 /** Extension to the GameEngine for PowerUps */
 extension GameEngine {
-    func didActivatePowerUp(at position: CGPoint, size: CGFloat? = nil) -> Bool {
+    func didActivatePowerUp(at position: CGPoint, with size: CGSize) -> Bool {
         // must only be called when a power up is selected
         guard let gameScene = gameScene,
             let selectedPowerUp = gameScene.selectedPowerUp else {
-                return false
+                fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
         gameScene.deselectPowerUp()
+        
         guard metadata.playerMana >= manaPointsRequired else {
             // did not activate
             return false
         }
         
-        var powerUpEntity: Entity
-        
-        switch selectedPowerUp {
-        case .darkVortex:
-            let radius = gameScene.size.width / 3
-            powerUpEntity = DarkVortexPowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: radius, height: radius)
-            )
-        case .hellfire:
-            powerUpEntity = HellfirePowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
-            )
-        case .icePrison:
-            powerUpEntity = IcePrisonPowerUpEntity(
-                gameEngine: self,
-                at: position,
-                with: .init(width: (size ?? 0) * 2, height: (size ?? 0) * 2)
-            )
-        }
+        let powerUpEntity = selectedPowerUp.createPowerUpEntity(at: position, with: size)
         add(powerUpEntity)
         decreasePlayerMana(by: manaPointsRequired)
         

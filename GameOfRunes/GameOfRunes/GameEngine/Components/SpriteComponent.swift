@@ -9,38 +9,23 @@
 import SpriteKit
 import GameplayKit
 
-class SpriteComponent: GKComponent, Component {
-    let node: SKSpriteNode
+class SpriteComponent: GKSKNodeComponent, Component {
     var type: ComponentType {
         .spriteComponent
     }
     var activePauses = 0
     
     // Specifies which `GameScene` layer node to add `node` to
-    var layerType: SpriteLayerType = .defaultLayer
+    let layerType: SpriteLayerType
 
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, layerType: SpriteLayerType) {
+        self.layerType = layerType
+        super.init()
+        
         self.node = node
-        super.init()
     }
     
-    init(texture: SKTexture?) {
-        node = SKSpriteNode(texture: texture, size: texture?.size() ?? .zero)
-        super.init()
-    }
-    
-    init(gesture: CustomGesture) {
-        node = GestureNode(gesture: gesture)
-        super.init()
-        layerType = .enemyLayer
-    }
-
-    init(droppedManaNode: DroppedManaNode) {
-        node = droppedManaNode
-        super.init()
-    }
-    
-    func setGestureConstraint(referenceNode: SKSpriteNode) {
+    func setGestureConstraint(referenceNode: SKNode) {
         let xRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.x)
         let yRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.y)
 

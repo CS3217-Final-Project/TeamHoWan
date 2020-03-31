@@ -6,11 +6,37 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 enum CollisionType: UInt32 {
-    case none = 0b000001
-    case enemy = 0b000010
-    case endpoint = 0b000100
-    case powerUp = 0b001000
+    case enemy = 0b000001
+    case endpoint = 0b000010
+    case powerUp = 0b000100
+    
+    func setPhysicsBody(for node: SKSpriteNode, with size: CGSize) {
+        guard size.width != 0 && size.height != 0 else {
+            return
+        }
+        
+        switch self {
+        case .enemy:
+            node.physicsBody = .init(circleOfRadius: size.height / 2)
+            node.physicsBody?.affectedByGravity = false
+            node.physicsBody?.categoryBitMask = rawValue
+            node.physicsBody?.contactTestBitMask = CollisionType.endpoint.rawValue | CollisionType.powerUp.rawValue
+            node.physicsBody?.collisionBitMask = 0
+        case .endpoint:
+            node.physicsBody = .init(rectangleOf: size)
+            node.physicsBody?.affectedByGravity = false
+            node.physicsBody?.categoryBitMask = rawValue
+            node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+            node.physicsBody?.collisionBitMask = 0
+        case .powerUp:
+            node.physicsBody = .init(circleOfRadius: size.width / 2)
+            node.physicsBody?.affectedByGravity = false
+            node.physicsBody?.categoryBitMask = rawValue
+            node.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue
+            node.physicsBody?.collisionBitMask = 0
+        }
+    }
 }

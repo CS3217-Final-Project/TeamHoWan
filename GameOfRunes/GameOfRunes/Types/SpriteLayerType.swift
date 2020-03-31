@@ -19,5 +19,4 @@ enum SpriteLayerType {
     case playerAreaLayer
     case highestPriorityLayer
     case manaDropLayer
-    case defaultLayer //Specifies addition to `GameScene`'s `SKScene` node directly
 }
