@@ -44,7 +44,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         switch otherEntity.type {
         case .endPointEntity:
             gameEngine?.enemyReachedLine(enemyEntity)
-        case .hellFirePowerUpEntity, .icePrisonPowerUpEntity, .darkVortexPowerUpEntity:
+        case .hellFirePowerUpEntity, .icePrisonPowerUpEntity:
             guard let powerUpComponent = otherEntity.component(ofType: PowerUpComponent.self) else {
                     return
             }
