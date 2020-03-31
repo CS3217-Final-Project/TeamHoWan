@@ -48,6 +48,7 @@ class SystemDelegate {
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
         systems[.powerUpComponent] = PowerUpSystem(gameEngine: gameEngine)
         systems[.attractionEntitiesComponent] = AttractionEntitiesSystem(gameEngine: gameEngine)
+        systems[.gestureEntityComponent] = GestureEntitySystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
