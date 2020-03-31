@@ -178,6 +178,7 @@ extension GameMapScene {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
+            enemyWaves: [[]],
             achievement: .A
         )
         
@@ -189,6 +190,7 @@ extension GameMapScene {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
+            enemyWaves: [[]],
             achievement: .C
         )
         
@@ -200,6 +202,7 @@ extension GameMapScene {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
+            enemyWaves: [[]],
             achievement: .empty
         )
         
@@ -211,6 +214,7 @@ extension GameMapScene {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
+            enemyWaves: [[]],
             achievement: .S
         )
         

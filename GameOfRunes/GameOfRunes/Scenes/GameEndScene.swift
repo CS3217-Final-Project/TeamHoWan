@@ -27,7 +27,7 @@ class GameEndScene: SKScene, TapResponder {
         let restartButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
-            texture: .init(imageNamed: ButtonType.restartButton.rawValue),
+            texture: .init(imageNamed: "\(ButtonType.restartButton)"),
             buttonType: .restartButton,
             position: center
         )
