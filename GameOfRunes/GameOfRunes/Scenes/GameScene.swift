@@ -320,15 +320,16 @@ extension GameScene: SelectedPowerUpResponder {
         guard selectedPowerUp != nil else {
             return false
         }
+
+        let didActivate = gameEngine.didActivatePowerUp(at: location, with: size)
         
         deselectPowerUp()
-
-        if gameEngine.didActivatePowerUp(at: location, with: size) {
-            return true
-        } else {
+        
+        if !didActivate {
             showInsufficientMana(at: location)
-            return false
         }
+        
+        return didActivate
     }
     
     func deselectPowerUp() {

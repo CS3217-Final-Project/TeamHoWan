@@ -246,7 +246,9 @@ class GameEngine {
     }
     
     func changeSelectedPowerUp(to powerUp: PowerUpType?) {
+        print("changing metadata selected powerup")
         metadata.selectedPowerUp = powerUp
+        print(metadata.selectedPowerUp)
     }
     
     func didActivatePowerUp(at position: CGPoint, with size: CGSize) -> Bool {
