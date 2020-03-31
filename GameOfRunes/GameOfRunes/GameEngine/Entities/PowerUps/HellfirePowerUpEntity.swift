@@ -18,7 +18,7 @@ class HellfirePowerUpEntity: PowerUpEntity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
 
-        let animationNode = Self.getAnimationNode(for: .hellfire, at: position, with: size)
+        let animationNode = PowerUpType.hellfire.getAnimationNode(at: position, with: size)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)

@@ -18,7 +18,7 @@ class IcePrisonPowerUpEntity: PowerUpEntity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = Self.getCastingAnimationNode(for: .icePrison, at: position, with: size)
+        let animationNode = PowerUpType.icePrison.getCastingAnimationNode(at: position, with: size)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)

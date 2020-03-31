@@ -16,7 +16,7 @@ class DarkVortexPowerUpEntity: PowerUpEntity {
     }
     
     init(at position: CGPoint, with size: CGSize) {
-        let animationNode = Self.getAnimationNode(for: .darkVortex, at: position, with: size)
+        let animationNode = PowerUpType.darkVortex.getAnimationNode(at: position, with: size)
         super.init()
         
         // TODO: Add an attraction entity.
