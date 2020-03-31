@@ -53,10 +53,9 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
                 gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
             }
         case .comboEntity:
-            if component.time <= 0,
-                let multiplierComponent = entity.component(ofType: MultiplierComponent.self) {
-                    // If timer runs out, end combo and reset multiplier
-                    gameEngine?.endCombo()
+            if component.time <= 0 {
+                // If timer runs out, end combo and reset multiplier
+                gameEngine?.endCombo()
             } else {
                 // Decrease opacity of label
                 gameEngine?.decreaseLabelOpacity(entity)

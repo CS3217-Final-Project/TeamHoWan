@@ -185,15 +185,7 @@ class GameScene: SKScene {
         endPointNode.zPosition = -1
         
         let endPointEntity = EndPointEntity(node: endPointNode)
-        
-        guard let attractionEntities =
-            endPointEntity.component(ofType: AttractionEntitiesComponent.self)?.attractionEntities,
-            !attractionEntities.isEmpty else {
-                fatalError("Error spawning endpoints, 0 endpoints spawned.")
-        }
-
         gameEngine.add(endPointEntity)
-        attractionEntities.forEach { gameEngine.add($0) }
     }
     
     private func setUpPlayer() {

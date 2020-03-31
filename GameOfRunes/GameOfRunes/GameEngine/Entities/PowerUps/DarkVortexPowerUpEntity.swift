@@ -19,13 +19,17 @@ class DarkVortexPowerUpEntity: PowerUpEntity {
         let animationNode = PowerUpType.darkVortex.getAnimationNode(at: position, with: size)
         super.init()
         
-        // TODO: Add an attraction entity.
-        // super.init(node: animationNode, layerType: .powerUpAnimationLayer, team: .player)
+        let attractionEntity = AttractionEntity(node: animationNode,
+                                                layerType: .powerUpAnimationLayer,
+                                                team: .player,
+                                                parent: self)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
         let powerUpComponent = PowerUpComponent(.darkVortex)
+        let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         
         addComponent(timerComponent)
         addComponent(powerUpComponent)
+        addComponent(attractionEntitiesComponent)
     }
 }

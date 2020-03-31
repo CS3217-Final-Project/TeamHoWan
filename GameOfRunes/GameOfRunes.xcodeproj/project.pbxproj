@@ -135,6 +135,7 @@
 		C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */; };
 		C6A99CF2241FCC2D003AE88A /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */; };
 		C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */; };
+		C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */; };
 		C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */; };
 		C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */; };
 		C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */; };
@@ -302,6 +303,7 @@
 		C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		C6A99CF3241FCD15003AE88A /* LabelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSystem.swift; sourceTree = "<group>"; };
 		C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesComponent.swift; sourceTree = "<group>"; };
+		C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesSystem.swift; sourceTree = "<group>"; };
 		C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeComponent.swift; sourceTree = "<group>"; };
 		C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntityComponent.swift; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				560DED99242B902400A6D9A6 /* ScoreSystem.swift */,
 				C6A99CF3241FCD15003AE88A /* LabelSystem.swift */,
+				C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */,
 				56EDD278242E58BA0044B445 /* TimerSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
 				C6AFF684241A61650076F02B /* HealthSystem.swift */,
@@ -1025,6 +1028,7 @@
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
+				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
