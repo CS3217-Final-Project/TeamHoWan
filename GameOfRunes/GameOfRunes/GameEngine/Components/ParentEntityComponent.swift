@@ -9,7 +9,7 @@
 import GameplayKit
 
 class ParentEntityComponent: GKComponent, Component {
-    private (set) weak var parent: Entity?
+    private(set) weak var parent: Entity?
     var type: ComponentType {
         .parentEntityComponent
     }

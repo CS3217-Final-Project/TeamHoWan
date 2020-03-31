@@ -15,7 +15,7 @@ class ScoreComponent: GKComponent, Component {
     }
     var scorePoints: Int
     
-    init(scorePoints: Int, scoreNode: SKNode? = nil) {
+    init(scorePoints: Int) {
         self.scorePoints = max(0, scorePoints)
         super.init()
     }
