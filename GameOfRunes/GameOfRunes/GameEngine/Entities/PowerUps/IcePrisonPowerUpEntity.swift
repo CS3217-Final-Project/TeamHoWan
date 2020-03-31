@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
-class IcePrisonPowerUpEntity: PowerUpEntity {
+class IcePrisonPowerUpEntity: Entity {
     override var type: EntityType {
         .icePrisonPowerUpEntity
     }

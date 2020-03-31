@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: PowerUpEntity {
+class DarkVortexPowerUpEntity: Entity {
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
