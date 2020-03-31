@@ -9,11 +9,14 @@
 import RealmSwift
 
 class EnemyWaveRealmModel: Object {
-    var enemies: List<EnemyTypeRealmModel> = .init()
+    private let _enemyWave: List<EnemyTypeRealmModel> = .init()
+    var enemyWave: [EnemyType?] {
+        _enemyWave.map { enemyTypeRealmModel in enemyTypeRealmModel.enemyType }
+    }
     
     init(enemyWave: [EnemyType?]) {
         super.init()
-        enemyWave.forEach { enemy in enemies.append(EnemyTypeRealmModel(enemyType: enemy)) }
+        enemyWave.forEach { enemyType in _enemyWave.append(EnemyTypeRealmModel(enemyType: enemyType)) }
     }
     
     required init() {

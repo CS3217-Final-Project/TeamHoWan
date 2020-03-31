@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
         view.frame.size.height
     }
     private let startButton = UIButton()
+    // TODO: Perhaps make it static?
+    private let storage: Storage = RealmStorage()
 
     override func viewDidLoad() {
         super.viewDidLoad()

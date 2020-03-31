@@ -10,10 +10,20 @@ import RealmSwift
 
 class EnemyTypeRealmModel: Object {
     // needs this wrapper as there is no such thing as optional element in Realm List
-    let enemyType: RealmOptional<EnemyType> = .init()
+    private let _enemyType: RealmOptional<EnemyType> = .init()
+    var enemyType: EnemyType? {
+        get {
+            _enemyType.value
+        }
+        // If the instance is already inserted into the db, updating must be done within a `write` block
+        // see https://realm.io/docs/swift/latest/#updating-objects
+        set {
+            _enemyType.value = newValue
+        }
+    }
     
     init(enemyType: EnemyType?) {
-        self.enemyType.value = enemyType
+        _enemyType.value = enemyType
     }
     
     required init() {

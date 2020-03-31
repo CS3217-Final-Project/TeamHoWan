@@ -9,20 +9,41 @@
 import RealmSwift
 
 class StageRealmModel: Object {
-    @objc dynamic var name: String = ""
-    @objc dynamic var chapter: String = ""
-    @objc dynamic var category: Stage.Category = .normal
-    @objc dynamic var xRatio: Double = .zero
-    @objc dynamic var yRatio: Double = .zero
-    @objc dynamic var arena: ArenaType = .arena1
-    @objc dynamic var difficulty: Int = .zero
-    @objc dynamic var numWaves: Int = .zero
-    @objc dynamic var achievement: Stage.AchievementLevel = .empty
-    @objc dynamic var highScore: Int = .zero
-    var enemyWaves: List<EnemyWaveRealmModel> = .init()
+    @objc private(set) dynamic var name: String = ""
+    @objc private(set) dynamic var chapter: String = ""
+    @objc private(set) dynamic var category: Stage.Category = .normal
+    @objc private dynamic var xRatio: Double = .zero
+    @objc private dynamic var yRatio: Double = .zero
+    @objc private(set) dynamic var arena: ArenaType = .arena1
+    @objc private(set) dynamic var difficulty: Int = .zero
+    @objc private(set) dynamic var numWaves: Int = .zero
+    @objc private(set) dynamic var achievement: Stage.AchievementLevel = .empty
+    @objc private(set) dynamic var highScore: Int = .zero
+    private let _enemyWaves: List<EnemyWaveRealmModel> = .init()
     
     override static func primaryKey() -> String? {
         "name"
+    }
+    
+    var stage: Stage {
+        .init(
+            name: name,
+            chapter: chapter,
+            category: category,
+            relativePositionRatioInMap: relativePositionRatioInMap,
+            arena: arena,
+            difficulty: difficulty,
+            numWaves: numWaves,
+            enemyWaves: enemyWaves
+        )
+    }
+    
+    var relativePositionRatioInMap: (x: CGFloat, y: CGFloat) {
+        (x: .init(xRatio), y: .init(yRatio))
+    }
+    
+    var enemyWaves: [[EnemyType?]] {
+        _enemyWaves.map { enemyWaveRealmModel in enemyWaveRealmModel.enemyWave }
     }
     
     init(stage: Stage) {
@@ -37,7 +58,7 @@ class StageRealmModel: Object {
         numWaves = stage.numWaves
         achievement = stage.achievement
         highScore = stage.highScore
-        stage.enemyWaves.forEach { enemyWave in enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }
+        stage.enemyWaves.forEach { enemyWave in _enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }
     }
     
     required init() {
