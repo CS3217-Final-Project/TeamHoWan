@@ -51,14 +51,8 @@ class RealmStorage: Storage {
         realmURLs.forEach { URL in try? FileManager.default.removeItem(at: URL) }
     }
     
-    func save(stage: Stage) {
-        do {
-            try realm.write {
-                realm.add(StageRealmModel(stage: stage), update: .modified)
-            }
-        } catch {
-            print("Save stages error:", error.localizedDescription)
-        }
+    func save(stages: Stage...) {
+        save(stages: stages)
     }
     
     // optimised for saving multiple stages
@@ -84,6 +78,6 @@ class RealmStorage: Storage {
     }
     
     func loadStage(name: String) -> Stage? {
-        return realm.object(ofType: StageRealmModel.self, forPrimaryKey: name)?.stage
+        realm.object(ofType: StageRealmModel.self, forPrimaryKey: name)?.stage
     }
 }

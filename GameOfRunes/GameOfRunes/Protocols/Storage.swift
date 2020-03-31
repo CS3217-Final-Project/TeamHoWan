@@ -11,12 +11,10 @@ import Foundation
 protocol Storage {
     /* add the API methods here */
     
-    // automatically overrides existing stage if primary key exists
-    func save(stage: Stage)
-    
-    // optimised for saving multiple stages
     // automatically overrides existing stages if primary key exists
-    func save(stages: [Stage]) 
+    func save(stages: [Stage])
+    // automatically overrides existing stages if primary key exists
+    func save(stages: Stage...) 
     
     func loadAllStages() -> [Stage]
     
