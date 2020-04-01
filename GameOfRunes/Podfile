@@ -4,6 +4,7 @@ use_modular_headers!
 target "GameOfRunes" do
   pod "SwiftLint"
   pod "SnapKit"
+  pod "Firebase/Database"
   
   target "GameOfRunesTests" do
     inherit! :search_paths
