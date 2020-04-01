@@ -111,9 +111,9 @@
 		8A2C033D242EF0B000A8EC96 /* EnemySpawnUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */; };
 		8A2C0340242EF10000A8EC96 /* LevelWaveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C033F242EF10000A8EC96 /* LevelWaveError.swift */; };
 		8A2C0342242EF19000A8EC96 /* EnemySpawnUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */; };
-		8A3C4DE2242F15DE0022FD59 /* LevelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */; };
+		8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */; };
 		8A3C4DE4242F398A0022FD59 /* SpawnDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */; };
-		8A59820124345DD6002E2644 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 8A59820024345DD6002E2644 /* default.realm */; };
+		8A59820A24347D2B002E2644 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 8A59820924347D2A002E2644 /* default.realm */; };
 		8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */; };
 		8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */; };
 		8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */; };
@@ -126,7 +126,7 @@
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
 		8A712E8024235EB000B3824E /* PowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7F24235EB000B3824E /* PowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
-		8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */; };
+		8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */; };
 		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
 		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
@@ -276,9 +276,9 @@
 		8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawnUnit.swift; sourceTree = "<group>"; };
 		8A2C033F242EF10000A8EC96 /* LevelWaveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelWaveError.swift; sourceTree = "<group>"; };
 		8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawnUnitTest.swift; sourceTree = "<group>"; };
-		8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCreator.swift; sourceTree = "<group>"; };
+		8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreator.swift; sourceTree = "<group>"; };
 		8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnDelegate.swift; sourceTree = "<group>"; };
-		8A59820024345DD6002E2644 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		8A59820924347D2A002E2644 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInPlayState.swift; sourceTree = "<group>"; };
 		8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartState.swift; sourceTree = "<group>"; };
 		8A5CE9B924187ED300BEC4B9 /* GamePauseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
 		8A712E7F24235EB000B3824E /* PowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PowerUpEntity.swift; path = GameOfRunes/Protocols/PowerUpEntity.swift; sourceTree = SOURCE_ROOT; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
-		8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCreatorTest.swift; sourceTree = "<group>"; };
+		8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreatorTest.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
 		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
@@ -542,6 +542,7 @@
 		4ACC8B9C2414C69800F235AE = {
 			isa = PBXGroup;
 			children = (
+				8A59820924347D2A002E2644 /* default.realm */,
 				8A5981FF24345D89002E2644 /* Resources */,
 				C6B322DB241B9701001072AE /* .swiftlint.yml */,
 				4ACC8BA72414C69800F235AE /* GameOfRunes */,
@@ -689,7 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */,
-				8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */,
+				8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */,
 			);
 			path = "Levels and Waves";
 			sourceTree = "<group>";
@@ -705,7 +706,6 @@
 		8A5981FF24345D89002E2644 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8A59820024345DD6002E2644 /* default.realm */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -788,7 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */,
-				8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */,
+				8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */,
 			);
 			path = LevelAndWaveTests;
 			sourceTree = "<group>";
@@ -918,7 +918,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A59820124345DD6002E2644 /* default.realm in Resources */,
+				8A59820A24347D2B002E2644 /* default.realm in Resources */,
 				4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */,
 				C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */,
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
@@ -1078,7 +1078,7 @@
 				56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
 				560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */,
-				8A3C4DE2242F15DE0022FD59 /* LevelCreator.swift in Sources */,
+				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
@@ -1165,7 +1165,7 @@
 				4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */,
 				8A2C0342242EF19000A8EC96 /* EnemySpawnUnitTest.swift in Sources */,
 				8A1EB6C62427900000CA6AC8 /* GameStateTest.swift in Sources */,
-				8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */,
+				8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */,
 				8A1EB6C4242782F700CA6AC8 /* GameStateMachineTest.swift in Sources */,
 				C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */,
 				C6AC476B2430BF670078D5F1 /* EnemyEntityTest.swift in Sources */,

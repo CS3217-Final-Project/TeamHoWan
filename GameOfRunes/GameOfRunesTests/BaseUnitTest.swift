@@ -58,8 +58,7 @@ class BaseUnitTest: XCTestCase {
 
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
-                              gameStateMachine: gameStateMachine,
-                              levelNumber: LevelCreator.getRandomLevelNumber())
+                              gameStateMachine: gameStateMachine)
         gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)

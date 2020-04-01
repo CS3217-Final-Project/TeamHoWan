@@ -11,18 +11,32 @@ import RealmSwift
 class RealmStorage: Storage {
     private var realm: Realm!
     
-    init() {
-        setUpDb()
+    init(useAppBundle: Bool = true) {
+        setUpDb(useAppBundle: useAppBundle)
     }
-    
-    private func setUpDb() {
+
+    /**
+     The database is now configured to use the `default.realm` file included
+     in the App Bundle. This allows state to be persisted across launches of the
+     application as state changes are saved to the same realm file everytime.
+     - Parameters:
+        - useAppBundle: Boolean indicating whether Realm should use the `default.realm`
+     file provided in the App Bundle. If `false`, Realm will use the default file URL, which is randomly
+     created everytime the application is built.
+     */
+    private func setUpDb(useAppBundle: Bool) {
         // Use Realm File in App Bundle
         guard let bundleRealmPath = Bundle.main.path(forResource: "default", ofType: "realm") else {
             return
         }
 
-        let bundleRealmURL = URL(string: bundleRealmPath)
-        let config = Realm.Configuration(fileURL: bundleRealmURL)
+        var config: Realm.Configuration
+        if useAppBundle {
+            let bundleRealmURL = URL(string: bundleRealmPath)
+            config = Realm.Configuration(fileURL: bundleRealmURL)
+        } else {
+            config = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL)
+        }
 
         do {
             try realm = Realm(configuration: config)

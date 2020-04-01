@@ -27,8 +27,7 @@ class SceneManager {
     // TODO: Remove level Number from initialiser
     private lazy var gamePlayScene: GameScene = .init(
         size: self.presentingView.bounds.size,
-        gameStateMachine: gameStateMachine,
-        levelNumber: LevelCreator.getRandomLevelNumber()
+        gameStateMachine: gameStateMachine
     )
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
@@ -81,8 +80,7 @@ class SceneManager {
     func beginNewStage() {
         gamePlayScene = .init(
             size: presentingView.bounds.size,
-            gameStateMachine: gameStateMachine,
-            levelNumber: LevelCreator.getRandomLevelNumber()
+            gameStateMachine: gameStateMachine
         )
     }
 

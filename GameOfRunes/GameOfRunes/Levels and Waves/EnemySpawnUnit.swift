@@ -9,7 +9,7 @@
 /**
  This struct is used as the basic unit for creating a level. Different instances
  of it can be concatenated together to create different types of levels. See
- `LevelCreator` for more examples on how `EnemySpawnUnit` can
+ `EnemyWaveCreator` for more examples on how `EnemySpawnUnit` can
   be used to create interesting levels.
 
  - Note: The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]

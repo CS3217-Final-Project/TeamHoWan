@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
     private var viewPortWidth: CGFloat {
@@ -34,84 +35,8 @@ class HomeViewController: UIViewController {
             print("Done loading textures")
         }
 
-
-//        //TODO: Consider whether this is necessary
-//        guard let stage1EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
-//            let stage2EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
-//            let stage3EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
-//            let stage4EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
-//            print("Unable to load Enemies from LevelCreator")
-//            return
-//        }
-//
-//        //TODO: Update number of stages etc.
-//        let stage1 = Stage(
-//            name: "The Beginning",
-//            chapter: "Peasant Land 1",
-//            category: .normal,
-//            relativePositionRatioInMap: (x: 0.6, y: -0.55),
-//            arena: .arena1,
-//            difficulty: 100,
-//            numWaves: 7,
-//            enemyWaves: stage1EnemyWaveData.0,
-//            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
-//            achievementBMinScore: 10,
-//            achievementAMinScore: 40,
-//            achievementSMinScore: 50,
-//            achievement: .empty
-//        )
-//        
-//        let stage2 = Stage(
-//            name: "Warrior Arena",
-//            chapter: "Peasant Land 2",
-//            category: .normal,
-//            relativePositionRatioInMap: (x: 0.17, y: -0.43),
-//            arena: .arena1,
-//            difficulty: 100,
-//            numWaves: 7,
-//            enemyWaves: stage2EnemyWaveData.0,
-//            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
-//            achievementBMinScore: 10,
-//            achievementAMinScore: 40,
-//            achievementSMinScore: 50,
-//            achievement: .empty
-//        )
-//        
-//        let stage3 = Stage(
-//            name: "Cathedral Mayhem",
-//            chapter: "Peasant Land 3",
-//            category: .normal,
-//            relativePositionRatioInMap: (x: 0.66, y: -0.28),
-//            arena: .arena1,
-//            difficulty: 100,
-//            numWaves: 7,
-//            enemyWaves: stage3EnemyWaveData.0,
-//            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
-//            achievementBMinScore: 10,
-//            achievementAMinScore: 40,
-//            achievementSMinScore: 50,
-//            achievement: .empty
-//        )
-//        
-//        let stage4 = Stage(
-//            name: "The Crossing",
-//            chapter: "Peasant Land 4",
-//            category: .boss,
-//            relativePositionRatioInMap: (x: 0.25, y: -0.22),
-//            arena: .arena1,
-//            difficulty: 100,
-//            numWaves: 7,
-//            enemyWaves: stage4EnemyWaveData.0,
-//            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
-//            achievementBMinScore: 10,
-//            achievementAMinScore: 40,
-//            achievementSMinScore: 50,
-//            achievement: .empty
-//        )
-//        
-//        let stages = [stage1, stage2, stage3, stage4]
-//        
-//        Self.storage.save(stages: stages)
+        // Uncomment this when a new Realm File must be created in App Bundle
+        //recreateStagesDatabase()
     }
     
     private func setUpHomeBackground() {
@@ -195,4 +120,96 @@ extension HomeViewController {
     }
 }
 
+extension HomeViewController {
+    /**
+     Use this function when you need to recreate the `default.realm` file included in the App Bundle.
+     This should only be done when you wish to make changes to the default levels included in the Game.
+     Follow these steps:
+     1. Uncomment `recreateStagesDatabase()` in `viewDidLoad()`
+     2. Navigate to the location printed in the console for the `default.realm` file
+     3. Copy the file to a convenient location in your local computer.
+     4. Delete the old `default.realm` file from the App Bundle
+     5. Add this updated `default.realm` file from the App Bundle. Move it into the `Resources` folder.
+     6. Comment out `recreateStagesDatabase()` in `viewDidLoad()`.
+     7. Rebuild the application and play the game to check that changes have been updated.
+     */
+    func recreateStagesDatabase() {
+        guard let stage1EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
+            let stage2EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
+            let stage3EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
+            let stage4EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
+            print("Unable to load Enemies from EnemyWaveCreator")
+            return
+        }
 
+        let stage1 = Stage(
+            name: "The Beginning",
+            chapter: "Peasant Land 1",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.6, y: -0.55),
+            arena: .arena1,
+            difficulty: 100,
+            numWaves: stage1EnemyWaveData.0.count,
+            enemyWaves: stage1EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
+            achievementBMinScore: 10,
+            achievementAMinScore: 40,
+            achievementSMinScore: 50,
+            achievement: .empty
+        )
+
+        let stage2 = Stage(
+            name: "Warrior Arena",
+            chapter: "Peasant Land 2",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.17, y: -0.43),
+            arena: .arena1,
+            difficulty: 200,
+            numWaves: stage2EnemyWaveData.0.count,
+            enemyWaves: stage2EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
+            achievementBMinScore: 20,
+            achievementAMinScore: 50,
+            achievementSMinScore: 70,
+            achievement: .empty
+        )
+
+        let stage3 = Stage(
+            name: "Cathedral Mayhem",
+            chapter: "Peasant Land 3",
+            category: .normal,
+            relativePositionRatioInMap: (x: 0.66, y: -0.28),
+            arena: .arena1,
+            difficulty: 300,
+            numWaves: stage3EnemyWaveData.0.count,
+            enemyWaves: stage3EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
+            achievementBMinScore: 30,
+            achievementAMinScore: 70,
+            achievementSMinScore: 90,
+            achievement: .empty
+        )
+
+        let stage4 = Stage(
+            name: "The Crossing",
+            chapter: "Peasant Land 4",
+            category: .boss,
+            relativePositionRatioInMap: (x: 0.25, y: -0.22),
+            arena: .arena1,
+            difficulty: 500,
+            numWaves: stage4EnemyWaveData.0.count,
+            enemyWaves: stage4EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
+            achievementBMinScore: 50,
+            achievementAMinScore: 80,
+            achievementSMinScore: 100,
+            achievement: .empty
+        )
+
+        // Saves to the random folder that iOS provides in each application
+        let nonAppBundleStorage = RealmStorage(useAppBundle: false)
+        print("Path for new `default.realm` file: ", Realm.Configuration.defaultConfiguration.fileURL ?? "Not found")
+        let stages = [stage1, stage2, stage3, stage4]
+        nonAppBundleStorage.save(stages: stages)
+    }
+}

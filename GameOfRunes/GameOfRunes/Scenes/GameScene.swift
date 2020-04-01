@@ -14,7 +14,6 @@ class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
-    private let levelNumber: Int
 
     // layers
     private var backgroundLayer: SKNode!
@@ -29,9 +28,8 @@ class GameScene: SKScene {
     private(set) var gestureAreaNode: GestureAreaNode!
     var bgmNode: SKAudioNode!
 
-    init(size: CGSize, gameStateMachine: GameStateMachine, levelNumber: Int) {
+    init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
-        self.levelNumber = levelNumber
         super.init(size: size)
         
         registerForPauseNotifications()

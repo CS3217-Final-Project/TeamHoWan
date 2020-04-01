@@ -1,5 +1,5 @@
 //
-//  LevelCreator.swift
+//  EnemyWaveCreator.swift
 //  GameOfRunes
 //
 //  Created by Brian Yen on 28/3/20.
@@ -9,18 +9,11 @@
 import Foundation
 
 /**
- Creates and stored Level-related data.
+ Creates and stores Enemy Wave-related data.
  */
-struct LevelCreator {
-    // TODO: Get rid of this once Level Selector is up
-    static func getRandomLevelNumber() -> Int {
-        Int.random(in: 1...3)
-    }
-
+struct EnemyWaveCreator {
     static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
         switch levelNumber {
-        case -1:
-            return testLevel
         case 1:
             return level1
         case 2:
@@ -84,22 +77,12 @@ struct LevelCreator {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
-
-    static var testLevel: (EnemySpawnUnit, TimeInterval) {
-        do {
-            let fullLevel = try EnemySpawnUnit(.orc3)
-            let levelSpawnInterval = 1.0
-            return (fullLevel, levelSpawnInterval)
-        } catch {
-            fatalError("Unexpected error encountered: \(error)")
-        }
-    }
 }
 
-/** Extension for automatically creating levels based on desired difficulty */
-extension LevelCreator {
+/** Extension for automatically creating enemy waves based on desired difficulty */
+extension EnemyWaveCreator {
     /**
-     Creates a Level whose total difficulty approaches `targetDifficulty` using the
+     Creates an Enemy Wave (Level) whose total difficulty approaches `targetDifficulty` using the
      monsters found in `availableMonsters`.
      */
     static func createLevel(targetDifficulty: Int, availableMonsters: [EnemyType]) -> EnemySpawnUnit {
@@ -111,7 +94,7 @@ extension LevelCreator {
 
         var level = EnemySpawnUnit()
         for spawnWaveDifficulty in chunkedDifficulties {
-            let spawnWaveMonsters = LevelCreator.convertDifficultiesToMonsters(difficulties: spawnWaveDifficulty)
+            let spawnWaveMonsters = EnemyWaveCreator.convertDifficultiesToMonsters(difficulties: spawnWaveDifficulty)
             do {
                 let enemyUnit = try EnemySpawnUnit(spawnWaveMonsters)
                 level += enemyUnit
