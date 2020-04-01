@@ -52,7 +52,7 @@ class GameEndState: GKState {
         updateAchievementLevel(stage: &stage)
 
         HomeViewController.storage.save(stages: stage)
-        print(HomeViewController.storage.loadAllStages())
+        //print(HomeViewController.storage.loadAllStages())
     }
 
     /** Will update player high score if current score is better than previous high score. */
