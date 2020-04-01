@@ -27,13 +27,13 @@ class GameEngine {
     }
     
     // TODO: pass in avatar, and use it to determine powerups.
-    init(gameScene: GameScene, levelNumber: Int) {
+    init(gameScene: GameScene, stage: Stage) {
         self.gameScene = gameScene
         metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
                                 numManaUnits: GameConfig.Mana.numManaUnits,
                                 manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
                                 powerUps: [.darkVortex, .hellfire, .icePrison],
-                                levelNumber: levelNumber)
+                                stage: stage)
         systemDelegate = SystemDelegate(gameEngine: self)
         removeDelegate = RemoveDelegate(gameEngine: self)
         spawnDelegate = SpawnDelegate(gameEngine: self,
@@ -77,14 +77,14 @@ class GameEngine {
         
         // Player Loses the Game
         if metadata.playerHealth <= 0 {
-            gameScene?.gameDidEnd(didWin: false)
+            gameScene?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
 
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
-            metadata.levelWaves.isEmpty {
-            gameScene?.gameDidEnd(didWin: true)
+            metadata.stageWaves.isEmpty {
+            gameScene?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
 

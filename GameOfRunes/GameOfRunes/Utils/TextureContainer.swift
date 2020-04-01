@@ -32,7 +32,7 @@ enum TextureContainer {
         var enemiesTextures = [EnemyType: [SKTexture]]()
         
         EnemyType.allCases.forEach { enemyType in
-            let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
+            let enemyAtlas = SKTextureAtlas(named: "\(enemyType)")
             let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
             enemiesTextures[enemyType] = enemyTextures
         }
@@ -74,9 +74,9 @@ enum TextureContainer {
     private static func loadPowerUpTextures() -> [PowerUpType: [SKTexture]] {
         var powerUpTextures = [PowerUpType: [SKTexture]]()
         
-        let hellfireAtlas = SKTextureAtlas(named: PowerUpType.hellfire.rawValue)
+        let hellfireAtlas = SKTextureAtlas(named: "\(PowerUpType.hellfire)")
         powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
-        let darkVortexAtlas = SKTextureAtlas(named: PowerUpType.darkVortex.rawValue)
+        let darkVortexAtlas = SKTextureAtlas(named: "\(PowerUpType.darkVortex)")
         powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)") }
         
         return powerUpTextures

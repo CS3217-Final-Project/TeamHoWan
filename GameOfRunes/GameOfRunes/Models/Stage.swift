@@ -7,18 +7,48 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct Stage {
-    enum Category: String {
+    @objc enum Category: Int, CustomStringConvertible, RealmEnum {
         case normal
         case boss
+        
+        var description: String {
+            switch self {
+            case .normal:
+                return "normal"
+            case .boss:
+                return "boss"
+            }
+        }
     }
-    enum AchievementLevel: String {
+    @objc enum AchievementLevel: Int, CustomStringConvertible, RealmEnum {
         case S
         case A
         case B
         case C
         case empty
+        
+        var description: String {
+            switch self {
+            case .S:
+                return "S"
+            case .A:
+                return "A"
+            case .B:
+                return "B"
+            case .C:
+                return "C"
+            case .empty:
+                return "empty"
+            }
+        }
+
+        /** Make Achievement Level Comparable */
+        static func < (lhs: AchievementLevel, rhs: AchievementLevel) -> Bool {
+            lhs.rawValue > rhs.rawValue
+        }
     }
     
     let name: String
@@ -29,7 +59,14 @@ struct Stage {
     let difficulty: Int
     let numWaves: Int
     // might want to add the array of enemies here? But how do we determine the numWaves?
-    
+    let enemyWaves: EnemySpawnUnit
+    let enemyWaveSpawnInterval: TimeInterval
+
+    // Note: there is not min score for C because player will obtain it as long as he/she wins the game
+    let achievementBMinScore: Int
+    let achievementAMinScore: Int
+    let achievementSMinScore: Int
+
     var achievement: AchievementLevel = .empty
     var highScore: Int = 0
 }

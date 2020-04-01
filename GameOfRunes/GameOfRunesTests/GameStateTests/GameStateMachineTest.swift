@@ -38,12 +38,13 @@ class GameStateMachineTest: BaseUnitTest {
         sceneManager = MockSceneManager(presentingView: SKView(),
                                         gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
+        gameStateMachine.stage = testStage
     }
 
     func testStartState() {
         gameStateMachine.enter(MockGameStartState.self)
         verify(gameStartState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).restartGame()
+        verify(sceneManager, times(1)).beginNewStage()
     }
 
     func testInPlayState() {

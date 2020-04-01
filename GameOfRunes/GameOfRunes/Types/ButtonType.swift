@@ -10,7 +10,7 @@ enum ButtonType: String {
     case summonButton
     case pauseButton
     case continueButton
-    case restartButton
+    case endGameButton
     case playButton
     case cancelButton
     case stageNode

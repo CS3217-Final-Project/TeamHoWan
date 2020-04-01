@@ -22,23 +22,20 @@ class GameMetaData {
     var playerMana: Int = 0
     var score: Int = 0
     var multiplier: Double = 1.0
-    var levelWaves: EnemySpawnUnit
+    var stageWaves: EnemySpawnUnit
     var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int = 0
     var selectedPowerUp: PowerUpType?
 
     init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
-         powerUps: [PowerUpType], levelNumber: Int) {
+         powerUps: [PowerUpType], stage: Stage) {
         self.maxPlayerHealth = maxPlayerHealth
         self.numManaUnits = numManaUnits
         self.manaPerManaUnit = manaPerManaUnit
         availablePowerUps = powerUps
         playerHealth = maxPlayerHealth
 
-        do {
-            (levelWaves, levelSpawnInterval) = try LevelCreator.getLevelDataAndSpawnInterval(levelNumber: levelNumber)
-        } catch {
-            fatalError("An Unexpected Error Occured: \(error)")
-        }
+        levelSpawnInterval = stage.enemyWaveSpawnInterval
+        stageWaves = stage.enemyWaves
     }
 }

@@ -14,7 +14,6 @@ class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
-    private let levelNumber: Int
 
     // layers
     private var backgroundLayer: SKNode!
@@ -29,9 +28,8 @@ class GameScene: SKScene {
     private(set) var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
-    init(size: CGSize, gameStateMachine: GameStateMachine, levelNumber: Int) {
+    init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
-        self.levelNumber = levelNumber
         super.init(size: size)
         
         registerForPauseNotifications()
@@ -48,7 +46,11 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
+        guard let stage = self.gameStateMachine?.stage else {
+            fatalError("Unable to load stage from GameStateMachine")
+        }
+
+        gameEngine = GameEngine(gameScene: self, stage: stage)
         self.physicsWorld.contactDelegate = gameEngine.contactDelegate
 
         // UI
@@ -145,7 +147,7 @@ class GameScene: SKScene {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
-            texture: .init(imageNamed: ButtonType.pauseButton.rawValue),
+            texture: .init(imageNamed: "\(ButtonType.pauseButton)"),
             buttonType: .pauseButton,
             position: .init(x: frame.maxX, y: frame.maxY)
                 + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
@@ -249,8 +251,9 @@ class GameScene: SKScene {
         }
     }
     
-    func gameDidEnd(didWin: Bool) {
+    func gameDidEnd(didWin: Bool, finalScore: Int) {
         gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
+        gameStateMachine?.state(forClass: GameEndState.self)?.finalScore = finalScore
         gameStateMachine?.enter(GameEndState.self)
     }
 }
