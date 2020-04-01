@@ -30,6 +30,7 @@ class BaseUnitTest: XCTestCase {
     var gestureEntity: MockGestureEntity!
     var playerEntity: PlayerEntity!
     var endPointEntity: MockEndPointEntity!
+    var endPointAttractionEntities: [AttractionEntity]!
     var darkVortexPowerUpEntity: DarkVortexPowerUpEntity!
     var droppedManaEntity: MockDroppedManaEntity!
     
@@ -86,6 +87,10 @@ class BaseUnitTest: XCTestCase {
             .withEnabledSuperclassSpy()
         endPointEntity = MockEndPointEntity(node: SKSpriteNode())
             .withEnabledSuperclassSpy()
+        endPointAttractionEntities = endPointEntity
+            .component(ofType: AttractionEntitiesComponent.self)?
+            .attractionEntities
+
         darkVortexPowerUpEntity = DarkVortexPowerUpEntity(at: CGPoint(), with: CGSize())
         droppedManaEntity = MockDroppedManaEntity(position: CGPoint(), manaPoints: 10, gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
@@ -112,6 +117,7 @@ class BaseUnitTest: XCTestCase {
         gestureEntity = nil
         playerEntity = nil
         endPointEntity = nil
+        endPointAttractionEntities = nil
         darkVortexPowerUpEntity = nil
         droppedManaEntity = nil
         

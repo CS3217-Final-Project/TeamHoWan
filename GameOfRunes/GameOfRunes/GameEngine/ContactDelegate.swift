@@ -35,18 +35,31 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     }
     
     private func enemyNodeContactWithOther(enemyNode: SKNode, other: SKNode) {
-        guard let enemyEntity = enemyNode.entity as? EnemyEntity else {
-            return
+        guard let enemyEntity = enemyNode.entity as? Entity,
+            enemyEntity.type == .enemyEntity,
+            let otherEntity = other.entity as? Entity else {
+                return
         }
-       
-        if let powerUpEntity = other.entity as? PowerUpEntity {
-            didActivate(powerUp: powerUpEntity.powerUpType, on: enemyEntity)
-        } else if other.entity is EndPointEntity {
+        
+        switch otherEntity.type {
+        case .endPointEntity:
             gameEngine?.enemyReachedLine(enemyEntity)
+        case _ where otherEntity.type.isPowerUp:
+            guard let powerUpComponent = otherEntity.component(ofType: PowerUpComponent.self) else {
+                    return
+            }
+            
+            didActivate(powerUp: powerUpComponent.powerUpType, on: enemyEntity)
+        default:
+            return
         }
     }
     
-    private func didActivate(powerUp: PowerUpType, on enemy: EnemyEntity) {
+    private func didActivate(powerUp: PowerUpType, on enemy: Entity) {
+        guard enemy.type == .enemyEntity else {
+            return
+        }
+        
         switch powerUp {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)

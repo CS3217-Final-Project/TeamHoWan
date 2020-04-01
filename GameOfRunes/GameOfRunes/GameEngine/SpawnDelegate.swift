@@ -57,14 +57,12 @@ class SpawnDelegate {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
         guard let enemyType = enemyType,
             let gameEngine = gameEngine else {
-            return
+                return
         }
 
-        let gameMetaData = gameEngine.metadata
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameEngine.gameScene?.size,
-            let gestureEntity = enemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
+            let sceneSize = gameEngine.gameScene?.size else {
                 return
         }
 
@@ -78,10 +76,7 @@ class SpawnDelegate {
 
         spriteComponent.node.position = CGPoint(x: xPosition, y: yPosition)
 
-        // Update GameMetaData
-        gameMetaData.numEnemiesOnField += 1
-
         gameEngine.add(enemyEntity)
-        gameEngine.add(gestureEntity)
+        gameEngine.metadata.numEnemiesOnField += 1
     }
 }

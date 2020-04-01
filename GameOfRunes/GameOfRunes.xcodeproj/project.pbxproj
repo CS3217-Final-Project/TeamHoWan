@@ -70,11 +70,14 @@
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
-		4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */; };
 		4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4B241A3EB100D79639 /* PowerUpType.swift */; };
 		4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */; };
 		4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A4F241BF31C00D79639 /* cast power up.mp3 */; };
 		4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */; };
+		4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */; };
+		4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */; };
+		4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */; };
+		4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */; };
 		4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACAF52A242A727F0062DDBA /* HomeViewController.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -123,7 +126,6 @@
 		8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */; };
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
-		8A712E8024235EB000B3824E /* PowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7F24235EB000B3824E /* PowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
 		8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */; };
 		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
@@ -140,10 +142,15 @@
 		C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D652426855400D8D0D3 /* GameEngineTest.swift */; };
 		C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */; };
 		C6A99CF2241FCC2D003AE88A /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */; };
+		C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */; };
+		C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */; };
+		C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */; };
 		C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */; };
 		C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */; };
 		C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */; };
 		C6AC476B2430BF670078D5F1 /* EnemyEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC476A2430BF670078D5F1 /* EnemyEntityTest.swift */; };
+		C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4774243256550078D5F1 /* PowerUpSystem.swift */; };
+		C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4776243256690078D5F1 /* PowerUpComponent.swift */; };
 		C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67A2419101B0076F02B /* GestureEntity.swift */; };
 		C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */; };
 		C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF680241923410076F02B /* RemoveDelegate.swift */; };
@@ -231,11 +238,14 @@
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
-		4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4AC87A4B241A3EB100D79639 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpIconNode.swift; sourceTree = "<group>"; };
 		4AC87A4F241BF31C00D79639 /* cast power up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cast power up.mp3"; sourceTree = "<group>"; };
 		4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpContainerNode.swift; sourceTree = "<group>"; };
+		4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "His Father's Son.mp3"; sourceTree = "<group>"; };
+		4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Destiny-Ablaze.mp3"; sourceTree = "<group>"; };
+		4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Disturbance in Agustria.mp3"; sourceTree = "<group>"; };
+		4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4ACAF52A242A727F0062DDBA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -310,10 +320,15 @@
 		C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEntity.swift; sourceTree = "<group>"; };
 		C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		C6A99CF3241FCD15003AE88A /* LabelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSystem.swift; sourceTree = "<group>"; };
+		C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesComponent.swift; sourceTree = "<group>"; };
+		C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesSystem.swift; sourceTree = "<group>"; };
+		C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntitySystem.swift; sourceTree = "<group>"; };
 		C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeComponent.swift; sourceTree = "<group>"; };
 		C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC476A2430BF670078D5F1 /* EnemyEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntityTest.swift; sourceTree = "<group>"; };
+		C6AC4774243256550078D5F1 /* PowerUpSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSystem.swift; sourceTree = "<group>"; };
+		C6AC4776243256690078D5F1 /* PowerUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		C6AFF67A2419101B0076F02B /* GestureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntity.swift; sourceTree = "<group>"; };
 		C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDelegate.swift; sourceTree = "<group>"; };
 		C6AFF680241923410076F02B /* RemoveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveDelegate.swift; sourceTree = "<group>"; };
@@ -524,9 +539,12 @@
 			isa = PBXGroup;
 			children = (
 				4AC87A4F241BF31C00D79639 /* cast power up.mp3 */,
+				4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */,
 				4AC87A452419ED4100D79639 /* click1.mp3 */,
+				4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */,
+				4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */,
 				4AC87A462419ED4200D79639 /* click3.mp3 */,
-				4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */,
+				4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -615,8 +633,10 @@
 				C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */,
 				56EDD276242E507D0044B445 /* TimerComponent.swift */,
 				C60EAF63242E26A00037BEAC /* PlayerComponent.swift */,
+				C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */,
 				C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */,
 				566121DC24168ADC00475CE1 /* GestureComponent.swift */,
+				C6AC4776243256690078D5F1 /* PowerUpComponent.swift */,
 				C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */,
 				4ACC8BD92415322400F235AE /* HealthComponent.swift */,
 				19D664CA24207ECE00351C92 /* Component.swift */,
@@ -799,9 +819,12 @@
 				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				560DED99242B902400A6D9A6 /* ScoreSystem.swift */,
 				C6A99CF3241FCD15003AE88A /* LabelSystem.swift */,
+				C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */,
+				C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */,
 				56EDD278242E58BA0044B445 /* TimerSystem.swift */,
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
 				C6AFF684241A61650076F02B /* HealthSystem.swift */,
+				C6AC4774243256550078D5F1 /* PowerUpSystem.swift */,
 				C6AFF686241A66360076F02B /* System.swift */,
 				C6AFF688241A67430076F02B /* ManaSystem.swift */,
 				C60EAF65242E2A350037BEAC /* PlayerSystem.swift */,
@@ -912,12 +935,15 @@
 			files = (
 				4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */,
 				C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */,
+				4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */,
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
+				4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
-				4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */,
+				4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
 				4AC87A482419ED4200D79639 /* click1.mp3 in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
 			);
@@ -1022,6 +1048,7 @@
 			files = (
 				561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */,
 				56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */,
+				C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */,
 				4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */,
 				8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */,
 				4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */,
@@ -1042,6 +1069,7 @@
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
+				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
@@ -1087,7 +1115,6 @@
 				4A09C50324300D8700CA7625 /* AchievementBadgeNode.swift in Sources */,
 				4AA508CB2416170600D9ADE4 /* ArenaType.swift in Sources */,
 				56EDD275242DC1EE0044B445 /* ScoreNode.swift in Sources */,
-				8A712E8024235EB000B3824E /* PowerUpEntity.swift in Sources */,
 				4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */,
 				C6AFF687241A66360076F02B /* System.swift in Sources */,
 				C6A99CF2241FCC2D003AE88A /* LabelComponent.swift in Sources */,
@@ -1098,9 +1125,12 @@
 				C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */,
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
+				C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */,
 				565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */,
 				4A1B333E243280E600B67B91 /* StageRealmModel.swift in Sources */,
+				C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
+				C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
 				C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */,

@@ -18,4 +18,12 @@ enum EntityType: CaseIterable {
     case darkVortexPowerUpEntity
     case comboEntity
     case attractionEntity
+    
+    static var powerUps: [EntityType] {
+        [.icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity]
+    }
+    
+    var isPowerUp: Bool {
+        Self.powerUps.contains(self)
+    }
 }

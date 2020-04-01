@@ -9,7 +9,7 @@
 import GameplayKit
 
 class GestureEntityComponent: GKComponent, Component {
-    let gestureEntity: GestureEntity?
+    let gestureEntity: GestureEntity
     var type: ComponentType {
         .gestureEntityComponent
     }

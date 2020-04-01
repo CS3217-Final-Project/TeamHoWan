@@ -10,11 +10,7 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
-class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
-    var fading = false
-    var powerUpType: PowerUpType {
-        .icePrison
-    }
+class IcePrisonPowerUpEntity: Entity {
     override var type: EntityType {
         .icePrisonPowerUpEntity
     }
@@ -22,13 +18,15 @@ class IcePrisonPowerUpEntity: Entity, PowerUpEntity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = Self.getCastingAnimationNode(at: position, with: size, for: powerUpType)
+        let animationNode = PowerUpType.icePrison.getCastingAnimationNode(at: position, with: size)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
+        let powerUpComponent = PowerUpComponent(.icePrison)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)
+        addComponent(powerUpComponent)
     }
 }

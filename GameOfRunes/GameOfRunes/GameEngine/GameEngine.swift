@@ -97,12 +97,15 @@ class GameEngine {
     func entities(for team: Team) -> [Entity] {
         switch team {
         case .enemy:
-            return Array(entities[.enemyEntity] ?? Set())
-        case .player:
-            let res = entities(for: .endPointEntity)
-                .union(entities(for: .darkVortexPowerUpEntity))
-                .union(entities(for: .attractionEntity))
+            let res = entities(for: .enemyEntity)
+                .union(entities(for: .attractionEntity).filter({
+                    $0.component(ofType: TeamComponent.self)?.team == .enemy
+                }))
             return Array(res)
+        case .player:
+            return Array(entities(for: .attractionEntity).filter({
+                $0.component(ofType: TeamComponent.self)?.team == .player
+            }))
         }
     }
     
@@ -135,6 +138,7 @@ class GameEngine {
     
     func gestureActivated(gesture: CustomGesture) {
         var count = 0
+
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent =
                 entity.component(ofType: GestureComponent.self),
@@ -160,6 +164,7 @@ class GameEngine {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
+
         removeDelegate.removeEnemy(enemyEntity)
     }
     
@@ -167,6 +172,7 @@ class GameEngine {
         guard let enemyEntity = entity as? EnemyEntity else {
             return
         }
+
         removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
     }
     
@@ -193,7 +199,7 @@ class GameEngine {
     func stopMovement(for enemyEntity: Entity, duration: TimeInterval) {
         systemDelegate.stopMovement(
             for: enemyEntity,
-            duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+            duration: duration
         )
     }
     
@@ -234,32 +240,28 @@ class GameEngine {
         guard let comboEntity = comboEntity else {
             return
         }
-        remove(comboEntity)
-    }
-}
 
-/** Extension to the GameEngine for PowerUps */
-extension GameEngine {
+        remove(comboEntity)
+        metadata.multiplier = 1.0
+    }
+    
+    func changeSelectedPowerUp(to powerUp: PowerUpType?) {
+        metadata.selectedPowerUp = powerUp
+    }
+    
     func didActivatePowerUp(at position: CGPoint, with size: CGSize) -> Bool {
-        // must only be called when a power up is selected
-        guard let gameScene = gameScene,
-            let selectedPowerUp = gameScene.selectedPowerUp else {
-                fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
+        guard let selectedPowerUp = metadata.selectedPowerUp else {
+            fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
-        gameScene.deselectPowerUp()
         
         guard metadata.playerMana >= manaPointsRequired else {
-            // did not activate
             return false
         }
         
-        let powerUpEntity = selectedPowerUp.createPowerUpEntity(at: position, with: size)
-        add(powerUpEntity)
+        systemDelegate.activatePowerUp(at: position, with: size)
         decreasePlayerMana(by: manaPointsRequired)
-        
-        // did activate
         return true
     }
 }

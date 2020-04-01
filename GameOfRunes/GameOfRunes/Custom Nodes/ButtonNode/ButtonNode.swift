@@ -14,7 +14,7 @@ import SpriteKit
  */
 class ButtonNode: SKSpriteNode {
     private static let onTappedScaleFactor: CGFloat = 0.9
-    private var responder: TapResponder {
+    var responder: TapResponder {
         guard let responder = scene as? TapResponder else {
             fatalError("This node can only be used within a `TapResponder` scene.")
         }
@@ -30,15 +30,6 @@ class ButtonNode: SKSpriteNode {
         }
     }
     let buttonType: ButtonType
-    lazy var onTouchEnded = { (touches: Set<UITouch>) in
-        guard let touch = touches.first,
-            let parent = self.parent,
-            parent.atPoint(touch.location(in: parent)) === self else {
-                return
-        }
-        
-        self.responder.onTapped(tappedNode: self)
-    }
 
     init(size: CGSize, texture: SKTexture?, buttonType: ButtonType, position: CGPoint = .zero) {
         self.buttonType = buttonType
@@ -58,7 +49,10 @@ class ButtonNode: SKSpriteNode {
     /** UIResponder touch handling. */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        run(.scale(to: Self.onTappedScaleFactor, duration: 0.05))
+        run(.group([
+            .scale(to: Self.onTappedScaleFactor, duration: 0.05),
+            .playSoundFileNamed("click3", waitForCompletion: false)
+        ]))
     }
 
     /** UIResponder touch handling. */
@@ -72,5 +66,15 @@ class ButtonNode: SKSpriteNode {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         run(.scale(to: identitySize, duration: 0.1))
+    }
+    
+    func onTouchEnded(_ touches: Set<UITouch>) {
+        guard let touch = touches.first,
+            let parent = self.parent,
+            parent.atPoint(touch.location(in: parent)) === self else {
+                return
+        }
+        
+        responder.onTapped(tappedNode: self)
     }
 }

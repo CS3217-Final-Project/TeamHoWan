@@ -17,4 +17,5 @@ enum ButtonType: String {
     case battleButton
     case leftButton
     case rightButton
+    case powerUpIconButton
 }
