@@ -128,13 +128,8 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.run(.fadeOut(withDuration: 0.25))
         case .playButton:
             // Here is the place to load the selected stage and selected avatar
-            stageSelectionNode.run(
-                .fadeOut(withDuration: 0.25),
-                completion: { [weak self] in
-                    self?.gameStateMachine?.stage = self?.selectedStageNode?.stage
-                    self?.gameStateMachine?.enter(GameStartState.self)
-                }
-            )
+            gameStateMachine?.stage = selectedStageNode?.stage
+            gameStateMachine?.enter(GameStartState.self)
         case .leftButton:
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.prevAvatar
         case .rightButton:
@@ -243,19 +238,15 @@ extension GameMapScene {
      when the back-end changes (e.g. stage's highscore/achievement level are update)
      */
     func refreshGameMap() {
-        // Remove and Reset Stage Preview
-        stagePreviewNode.removeFromParent()
-        setUpStagePreview()
-
-        // Remove Current Stage Nodes
-        stageNodeLayer.removeFromParent()
-
-        // Make New Stage Node Layer
-        stageNodeLayer = .init()
-        stageNodeLayer.zPosition = GameConfig.GameMapScene.stageNodeLayerZPosition
-        addChild(stageNodeLayer)
-
-        // Make New Stage Nodes
-        setUpStageNodes()
+        // load only the updated stage
+        guard let selectedStageNode = selectedStageNode,
+            let updatedStage = HomeViewController.storage.load(stageName: selectedStageNode.stage.name) else {
+                return
+        }
+        
+        // update the struct throughout
+        selectedStageNode.stage = updatedStage
+        stagePreviewNode.selectedStage = selectedStageNode.stage
+        stageSelectionNode.selectedStage = selectedStageNode.stage
     }
 }
