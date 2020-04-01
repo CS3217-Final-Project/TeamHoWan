@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import SnapKit
 
 class HomeViewController: UIViewController {
@@ -17,6 +18,8 @@ class HomeViewController: UIViewController {
         view.frame.size.height
     }
     private let startButton = UIButton()
+    private var bgmPlayer = AVAudioPlayer()
+    private var clickSoundPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +27,28 @@ class HomeViewController: UIViewController {
         setUpHomeBackground()
         setUpGameIcon()
         setUpStartButton()
+        setUpAudioPlayer(audioPlayer: &bgmPlayer, filename: "Destiny-Ablaze", type: "mp3", loopCount: -1)
+        setUpAudioPlayer(audioPlayer: &clickSoundPlayer, filename: "click3", type: "mp3")
         
         // temporary load here to reduce delay in starting game
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global(qos: .utility).async {
             // set up animation textures in background
             TextureContainer.loadTextures()
             print("Done loading textures")
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        bgmPlayer.volume = 1.0
+        bgmPlayer.play()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        bgmPlayer.setVolume(0.0, fadeDuration: 1.0)
     }
     
     private func setUpHomeBackground() {
@@ -62,6 +80,24 @@ class HomeViewController: UIViewController {
         addImageConstraints()
         addActions()
     }
+    
+    private func setUpAudioPlayer(
+        audioPlayer: inout AVAudioPlayer,
+        filename: String,
+        type: String,
+        loopCount: Int = 0
+    ) {
+        guard let filePath = Bundle.main.path(forResource: filename, ofType: type) else {
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath))
+            audioPlayer.numberOfLoops = loopCount
+        } catch {
+            print("\(filename).\(type) not available :(")
+        }
+    }
 }
 
 // MARK: - button setup
@@ -91,6 +127,7 @@ extension HomeViewController {
         UIView.animate(withDuration: 0.05) {
             sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
         }
+        clickSoundPlayer.play()
     }
     
     @objc private func onTouchedUpOutside(_ sender: UIButton) {

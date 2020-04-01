@@ -27,7 +27,7 @@ class GameScene: SKScene {
     private var highestPriorityLayer: SKNode!
     private(set) var playerAreaNode: PlayerAreaNode!
     private(set) var gestureAreaNode: GestureAreaNode!
-    var bgmNode: SKAudioNode!
+    private var bgmNode: SKAudioNode!
 
     init(size: CGSize, gameStateMachine: GameStateMachine, levelNumber: Int) {
         self.gameStateMachine = gameStateMachine
@@ -64,17 +64,8 @@ class GameScene: SKScene {
         setUpTimer(isCountdown: false)
         
         // set up bgm
-        bgmNode = .init(fileNamed: "Lion King Eldigan")
-    }
-    
-    override func didMove(to view: SKView) {
+        bgmNode = .init(fileNamed: "Disturbance in Agustria")
         addChild(bgmNode)
-    }
-    
-    override func willMove(from view: SKView) {
-        super.willMove(from: view)
-        
-        bgmNode.removeFromParent()
     }
     
     private func buildLayers() {

@@ -38,6 +38,8 @@ class GameMapScene: SKScene {
     private var stageNodeLayer: SKNode!
     private var cameraLayer: SKNode!
     
+    private let bgmNode: SKAudioNode = .init(fileNamed: "His Father's Son")
+    
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
@@ -52,6 +54,8 @@ class GameMapScene: SKScene {
         setUpCamera()
         setUpStagePreview()
         setUpStageSelection()
+        
+        addChild(bgmNode)
     }
     
     override func didMove(to view: SKView) {

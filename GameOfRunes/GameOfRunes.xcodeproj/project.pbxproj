@@ -65,11 +65,14 @@
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
-		4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */; };
 		4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4B241A3EB100D79639 /* PowerUpType.swift */; };
 		4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */; };
 		4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A4F241BF31C00D79639 /* cast power up.mp3 */; };
 		4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */; };
+		4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */; };
+		4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */; };
+		4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */; };
+		4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */; };
 		4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACAF52A242A727F0062DDBA /* HomeViewController.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -224,11 +227,14 @@
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
-		4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4AC87A4B241A3EB100D79639 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpIconNode.swift; sourceTree = "<group>"; };
 		4AC87A4F241BF31C00D79639 /* cast power up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cast power up.mp3"; sourceTree = "<group>"; };
 		4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpContainerNode.swift; sourceTree = "<group>"; };
+		4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "His Father's Son.mp3"; sourceTree = "<group>"; };
+		4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Destiny-Ablaze.mp3"; sourceTree = "<group>"; };
+		4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Disturbance in Agustria.mp3"; sourceTree = "<group>"; };
+		4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4ACAF52A242A727F0062DDBA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -504,9 +510,12 @@
 			isa = PBXGroup;
 			children = (
 				4AC87A4F241BF31C00D79639 /* cast power up.mp3 */,
+				4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */,
 				4AC87A452419ED4100D79639 /* click1.mp3 */,
+				4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */,
+				4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */,
 				4AC87A462419ED4200D79639 /* click3.mp3 */,
-				4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */,
+				4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -898,12 +907,15 @@
 			files = (
 				4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */,
 				C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */,
+				4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */,
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
+				4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
-				4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */,
+				4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
 				4AC87A482419ED4200D79639 /* click1.mp3 in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
 			);
@@ -1305,13 +1317,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1324,13 +1336,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1345,7 +1357,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1369,7 +1381,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
