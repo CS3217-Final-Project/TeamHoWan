@@ -38,6 +38,7 @@ class GameStateMachineTest: BaseUnitTest {
         sceneManager = MockSceneManager(presentingView: SKView(),
                                         gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
+        gameStateMachine.stage = testStage
     }
 
     func testStartState() {

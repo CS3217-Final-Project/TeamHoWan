@@ -13,6 +13,7 @@ import GameplayKit
 
 class BaseUnitTest: XCTestCase {
     var gameStateMachine: MockGameStateMachine!
+    var testStage: Stage!
     var gameScene: GameScene!
     var gameEngine: MockGameEngine!
     var systemDelegate: MockSystemDelegate!
@@ -41,23 +42,24 @@ class BaseUnitTest: XCTestCase {
 
         gameStateMachine = MockGameStateMachine(states: [])
             .withEnabledSuperclassSpy()
+        testStage = Stage(name: "Test Stage",
+                          chapter: "Test",
+                          category: .normal,
+                          relativePositionRatioInMap: (x: 0.17, y: -0.43),
+                          arena: .arena1,
+                          difficulty: 100,
+                          numWaves: 1,
+                          enemyWaves: EnemySpawnUnit([[.orc3, nil, nil]]),
+                          enemyWaveSpawnInterval: 1.0,
+                          achievementBMinScore: 10,
+                          achievementAMinScore: 40,
+                          achievementSMinScore: 50)
+        gameStateMachine.stage = testStage
+
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine,
                               levelNumber: LevelCreator.getRandomLevelNumber())
-        let testStage = Stage(name: "Test Stage",
-                              chapter: "Test",
-                              category: .normal,
-                              relativePositionRatioInMap: (x: 0.17, y: -0.43),
-                              arena: .arena1,
-                              difficulty: 100,
-                              numWaves: 1,
-                              enemyWaves: EnemySpawnUnit([[.orc1, nil, nil]]),
-                              enemyWaveSpawnInterval: 1.0,
-                              achievementBMinScore: 10,
-                              achievementAMinScore: 40,
-                              achievementSMinScore: 50)
-
         gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)

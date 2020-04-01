@@ -54,7 +54,7 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameEndState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gameEndState.isValidNextState(MockGameEndState.self))
         XCTAssertTrue(gameEndState.isValidNextState(MockGameStartState.self))
-        XCTAssertFalse(gameEndState.isValidNextState(MockGameSelectionState.self))
+        XCTAssertTrue(gameEndState.isValidNextState(MockGameSelectionState.self))
     }
     
     func testSelectionStateNextValidState() {
