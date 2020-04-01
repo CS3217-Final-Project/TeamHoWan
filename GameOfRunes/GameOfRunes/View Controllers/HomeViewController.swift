@@ -20,7 +20,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let uid = "2345"
+        let name = "Andy2"
         setUpHomeBackground()
         setUpGameIcon()
         setUpStartButton()

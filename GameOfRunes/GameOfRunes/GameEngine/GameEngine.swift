@@ -18,7 +18,7 @@ class GameEngine {
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
     weak var gameScene: GameScene?
-    
+
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }

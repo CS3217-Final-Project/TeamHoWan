@@ -92,10 +92,10 @@ class FirebaseNetwork: NetworkInterface {
                    forRoomId roomId: String,
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId,
-                                                     FirebaseKeys.rooms_players, uid,
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
+        let hostRef = ref.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms_players, uid,
                                                      FirebaseKeys.rooms_players_isHost]))
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+        hostRef.observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else {
                 // User is not host, unable to close room
                 return
@@ -118,8 +118,7 @@ class FirebaseNetwork: NetworkInterface {
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void) {
         
-        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players]))
-        let uidRef = ref.child(uid)
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid]))
         let isHostRef = ref.child(FirebaseKeys.rooms_players_isHost)
         
         isHostRef.observeSingleEvent(of: .value, with: { snapshot in
@@ -130,7 +129,7 @@ class FirebaseNetwork: NetworkInterface {
             if isHost {
                 self.closeRoom(uid: uid, forRoomId: roomId, {}, onError)
             } else {
-                uidRef.setValue(nil, withCompletionBlock: { err, _ in
+                ref.setValue(nil, withCompletionBlock: { err, _ in
                     if let error = err {
                         onError(error)
                         return
