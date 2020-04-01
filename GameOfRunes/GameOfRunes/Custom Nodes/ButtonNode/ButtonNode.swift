@@ -58,7 +58,10 @@ class ButtonNode: SKSpriteNode {
     /** UIResponder touch handling. */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        run(.scale(to: Self.onTappedScaleFactor, duration: 0.05))
+        run(.group([
+            .scale(to: Self.onTappedScaleFactor, duration: 0.05),
+            .playSoundFileNamed("click3", waitForCompletion: false)
+        ]))
     }
 
     /** UIResponder touch handling. */
