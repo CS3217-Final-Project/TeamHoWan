@@ -1,5 +1,5 @@
 //
-//  UserModel.swift
+//  PlayerModel.swift
 //  GameOfRunes
 //
 //  Created by Andy on 1/4/20.
@@ -9,7 +9,7 @@
 /**
 Model representing a Player on the network.
  */
-class UserModel {
+class PlayerModel {
     var uid: String = ""
     var name: String = "Anonymous"
     var isHost: Bool
@@ -20,27 +20,34 @@ class UserModel {
         self.isHost = isHost
     }
     
-    init(uid: String, name: String, isHost: Bool) {
+    init(uid: String, name: String, isHost: Bool, isReady: Bool) {
         self.uid = uid
         self.name = name
         self.isHost = isHost
+        self.isReady = isReady
     }
 }
 
 /**
- Model representing a Room on the network. Contains a list of `UserModel`, together with other properties.
+ Model representing a Room on the network. Contains a list of `PlayerModel`, together with other properties.
  */
 class RoomModel {
     var roomId: String = ""
-    var players: [UserModel] = []
     var isOpen: Bool = false
+    var players: [PlayerModel] = []
 
     init(roomId: String, isOpen: Bool) {
         self.roomId = roomId
         self.isOpen = isOpen
     }
     
-    func addPlayer(_ player: UserModel) {
+    init(roomId: String, isOpen: Bool, players: [PlayerModel]) {
+        self.roomId = roomId
+        self.isOpen = isOpen
+        self.players = players
+    }
+
+    func addPlayer(_ player: PlayerModel) {
         players.append(player)
     }
     

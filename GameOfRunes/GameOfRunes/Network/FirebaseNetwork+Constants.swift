@@ -7,6 +7,9 @@
 //
 
 struct FirebaseValues {
+    static let defaultFalse = false
+    static let defaultName = "Anonymous"
+    static let defaultEmptyString = ""
     // Room keys
     static let rooms = "rooms"
     static let rooms_roomId = "roomId"
