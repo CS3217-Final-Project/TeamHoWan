@@ -15,6 +15,7 @@ import GameplayKit
  */
 class GameStateMachine: GKStateMachine {
     weak var sceneManager: SceneManager?
+    var stage: Stage?
     
     override init(states: [GKState]) {
         super.init(states: states)

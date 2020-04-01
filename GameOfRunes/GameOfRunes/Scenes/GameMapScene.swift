@@ -38,6 +38,8 @@ class GameMapScene: SKScene {
     private var stageNodeLayer: SKNode!
     private var cameraLayer: SKNode!
     
+    private let bgmNode: SKAudioNode = .init(fileNamed: "His Father's Son")
+    
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
@@ -52,6 +54,8 @@ class GameMapScene: SKScene {
         setUpCamera()
         setUpStagePreview()
         setUpStageSelection()
+        
+        addChild(bgmNode)
     }
     
     override func didMove(to view: SKView) {
@@ -127,6 +131,7 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.run(
                 .fadeOut(withDuration: 0.25),
                 completion: { [weak self] in
+                    self?.gameStateMachine?.stage = self?.selectedStageNode?.stage
                     self?.gameStateMachine?.enter(GameStartState.self)
                 }
             )
@@ -170,51 +175,8 @@ extension GameMapScene {
     
     private func setUpStageNodes() {
         // TODO: change to access from storage when persistence is implemented
-        let stage1 = Stage(
-            name: "The Beginning",
-            chapter: "Peasant Land 1",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.6, y: -0.55),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            achievement: .A
-        )
         
-        let stage2 = Stage(
-            name: "Warrior Arena",
-            chapter: "Peasant Land 2",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.17, y: -0.43),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            achievement: .C
-        )
-        
-        let stage3 = Stage(
-            name: "Cathedral Mayhem",
-            chapter: "Peasant Land 3",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.66, y: -0.28),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            achievement: .empty
-        )
-        
-        let stage4 = Stage(
-            name: "The Crossing",
-            chapter: "Peasant Land 4",
-            category: .boss,
-            relativePositionRatioInMap: (x: 0.25, y: -0.22),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            achievement: .S
-        )
-        
-        let stages = [stage1, stage2, stage3, stage4]
+        let stages = HomeViewController.storage.loadAllStages()
         let stageNodes = stages.map { StageNode(stage: $0, mapSize: mapSize) }
         stageNodes.forEach { stageNodeLayer.addChild($0) }
         
@@ -271,5 +233,29 @@ extension GameMapScene {
             x: previousCameraPosition.x + translation.x * -1,
             y: previousCameraPosition.y + translation.y
         )
+    }
+}
+
+// MARK: - Updating of Stage Data
+extension GameMapScene {
+    /**
+     This function is called by GameEndState in order to update the front-end
+     when the back-end changes (e.g. stage's highscore/achievement level are update)
+     */
+    func refreshGameMap() {
+        // Remove and Reset Stage Preview
+        stagePreviewNode.removeFromParent()
+        setUpStagePreview()
+
+        // Remove Current Stage Nodes
+        stageNodeLayer.removeFromParent()
+
+        // Make New Stage Node Layer
+        stageNodeLayer = .init()
+        stageNodeLayer.zPosition = GameConfig.GameMapScene.stageNodeLayerZPosition
+        addChild(stageNodeLayer)
+
+        // Make New Stage Nodes
+        setUpStageNodes()
     }
 }

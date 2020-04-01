@@ -22,7 +22,7 @@ class StageOverviewNode: SKSpriteNode {
             stageLabelNode.stageChapter = stage.chapter
             
             arenaViewNode.texture = .init(imageNamed: "\(stage.arena)")
-            
+
             stageDescriptionNode.difficulty = stage.difficulty
             stageDescriptionNode.numWaves = stage.numWaves
             stageDescriptionNode.highScore = stage.highScore

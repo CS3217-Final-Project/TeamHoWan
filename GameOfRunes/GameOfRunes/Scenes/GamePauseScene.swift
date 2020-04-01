@@ -19,7 +19,7 @@ class GamePauseScene: SKScene, TapResponder {
         let continueButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GamePauseScene.buttonWidthRatio,
                         height: size.width * GameConfig.GamePauseScene.buttonHeightRatio),
-            texture: .init(imageNamed: ButtonType.continueButton.rawValue),
+            texture: .init(imageNamed: "\(ButtonType.continueButton)"),
             buttonType: .continueButton,
             position: .init(x: frame.midX, y: frame.midY)
         )

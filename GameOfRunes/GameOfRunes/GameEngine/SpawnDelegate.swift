@@ -34,11 +34,11 @@ class SpawnDelegate {
     func startNextSpawnWave() {
         // Check that there are still waves left
         guard let gameMetaData = gameEngine?.metadata,
-            !gameMetaData.levelWaves.isEmpty else {
+            !gameMetaData.stageWaves.isEmpty else {
             return
         }
 
-        let enemySpawnWave = gameMetaData.levelWaves.removeFirstSpawnWave()
+        let enemySpawnWave = gameMetaData.stageWaves.removeFirstSpawnWave()
         spawnEnemyWave(enemySpawnWave)
         self.timeTillNextSpawn = gameMetaData.levelSpawnInterval
     }

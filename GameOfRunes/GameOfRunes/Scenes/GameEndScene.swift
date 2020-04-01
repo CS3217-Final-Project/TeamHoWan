@@ -23,20 +23,20 @@ class GameEndScene: SKScene, TapResponder {
         super.init(size: size)
         
         let center = CGPoint(x: frame.midX, y: frame.midY)
-        
-        let restartButton = ButtonNode(
+
+        let endGameButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
-            texture: .init(imageNamed: ButtonType.restartButton.rawValue),
-            buttonType: .restartButton,
+            texture: .init(imageNamed: "\(ButtonType.endGameButton)"),
+            buttonType: .endGameButton,
             position: center
         )
         
-        addChild(restartButton)
+        addChild(endGameButton)
         
         statusLabel.fontSize = size.width * GameConfig.GameEndScene.fontSizeRatio
         statusLabel.fontColor = .white
-        statusLabel.position = center + .init(dx: 0.0, dy: restartButton.size.height / 1.5)
+        statusLabel.position = center + .init(dx: 0.0, dy: endGameButton.size.height / 1.5)
         addChild(statusLabel)
     }
     
@@ -54,8 +54,8 @@ class GameEndScene: SKScene, TapResponder {
     }
 
     func onTapped(tappedNode: ButtonNode) {
-        if tappedNode.buttonType == .restartButton {
-            gameStateMachine?.enter(GameStartState.self)
+        if tappedNode.buttonType == .endGameButton {
+            gameStateMachine?.enter(GameSelectionState.self)
         }
     }
 }

@@ -7,8 +7,9 @@
 //
 
 import SpriteKit
+import RealmSwift
 
-enum EnemyType: String, CaseIterable {
+@objc enum EnemyType: Int, CaseIterable, CustomStringConvertible, RealmEnum {
     case evilKnight
     case orc1
     case orc2
@@ -16,6 +17,25 @@ enum EnemyType: String, CaseIterable {
     case troll1
     case troll2
     case troll3
+    
+    var description: String {
+        switch self {
+        case .evilKnight:
+            return "evilKnight"
+        case .orc1:
+            return "orc1"
+        case .orc2:
+            return "orc2"
+        case .orc3:
+            return "orc3"
+        case .troll1:
+            return "troll1"
+        case .troll2:
+            return "troll2"
+        case .troll3:
+            return "troll3"
+        }
+    }
 
     var health: Int {
         switch self {

@@ -20,6 +20,11 @@
 		4A09C50324300D8700CA7625 /* AchievementBadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */; };
 		4A1B33372432397600B67B91 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B33362432397600B67B91 /* GeneratedMocks.swift */; };
 		4A1B33392432615C00B67B91 /* AttractionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B33382432615C00B67B91 /* AttractionEntity.swift */; };
+		4A1B333C24327FFE00B67B91 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333B24327FFE00B67B91 /* RealmStorage.swift */; };
+		4A1B333E243280E600B67B91 /* StageRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333D243280E600B67B91 /* StageRealmModel.swift */; };
+		4A1B33402432845D00B67B91 /* EnemyWaveRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */; };
+		4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */; };
+		4A1B334624330CAB00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334524330CAB00B67B91 /* Storage.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
 		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
@@ -65,11 +70,14 @@
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
-		4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */; };
 		4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4B241A3EB100D79639 /* PowerUpType.swift */; };
 		4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */; };
 		4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A4F241BF31C00D79639 /* cast power up.mp3 */; };
 		4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */; };
+		4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */; };
+		4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */; };
+		4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */; };
+		4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */; };
 		4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACAF52A242A727F0062DDBA /* HomeViewController.swift */; };
 		4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BA82414C69800F235AE /* AppDelegate.swift */; };
 		4ACC8BB12414C69800F235AE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC8BB02414C69800F235AE /* GameViewController.swift */; };
@@ -106,7 +114,7 @@
 		8A2C033D242EF0B000A8EC96 /* EnemySpawnUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */; };
 		8A2C0340242EF10000A8EC96 /* LevelWaveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C033F242EF10000A8EC96 /* LevelWaveError.swift */; };
 		8A2C0342242EF19000A8EC96 /* EnemySpawnUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */; };
-		8A3C4DE2242F15DE0022FD59 /* LevelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */; };
+		8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */; };
 		8A3C4DE4242F398A0022FD59 /* SpawnDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */; };
 		8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */; };
 		8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */; };
@@ -119,12 +127,13 @@
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
-		8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */; };
+		8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */; };
 		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
 		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
 		8AAE9C05241E42D700D29593 /* DroppedManaResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */; };
 		8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C06241E450300D29593 /* TextureContainer.swift */; };
+		8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */; };
 		C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */; };
 		C60EAF64242E26A00037BEAC /* PlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF63242E26A00037BEAC /* PlayerComponent.swift */; };
 		C60EAF66242E2A350037BEAC /* PlayerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF65242E2A350037BEAC /* PlayerSystem.swift */; };
@@ -179,6 +188,11 @@
 		4A09C50224300D8700CA7625 /* AchievementBadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeNode.swift; sourceTree = "<group>"; };
 		4A1B33362432397600B67B91 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		4A1B33382432615C00B67B91 /* AttractionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntity.swift; sourceTree = "<group>"; };
+		4A1B333B24327FFE00B67B91 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		4A1B333D243280E600B67B91 /* StageRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageRealmModel.swift; sourceTree = "<group>"; };
+		4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveRealmModel.swift; sourceTree = "<group>"; };
+		4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeRealmModel.swift; sourceTree = "<group>"; };
+		4A1B334524330CAB00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
 		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -224,11 +238,14 @@
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
-		4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4AC87A4B241A3EB100D79639 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpIconNode.swift; sourceTree = "<group>"; };
 		4AC87A4F241BF31C00D79639 /* cast power up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cast power up.mp3"; sourceTree = "<group>"; };
 		4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpContainerNode.swift; sourceTree = "<group>"; };
+		4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "His Father's Son.mp3"; sourceTree = "<group>"; };
+		4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Destiny-Ablaze.mp3"; sourceTree = "<group>"; };
+		4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Disturbance in Agustria.mp3"; sourceTree = "<group>"; };
+		4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lion King Eldigan.mp3"; sourceTree = "<group>"; };
 		4ACAF52A242A727F0062DDBA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4ACC8BA52414C69800F235AE /* GameOfRunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfRunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC8BA82414C69800F235AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -269,7 +286,7 @@
 		8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawnUnit.swift; sourceTree = "<group>"; };
 		8A2C033F242EF10000A8EC96 /* LevelWaveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelWaveError.swift; sourceTree = "<group>"; };
 		8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawnUnitTest.swift; sourceTree = "<group>"; };
-		8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCreator.swift; sourceTree = "<group>"; };
+		8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreator.swift; sourceTree = "<group>"; };
 		8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnDelegate.swift; sourceTree = "<group>"; };
 		8A5CE9B524187C1A00BEC4B9 /* GameInPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInPlayState.swift; sourceTree = "<group>"; };
 		8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartState.swift; sourceTree = "<group>"; };
@@ -281,13 +298,15 @@
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
+		8A712E7F24235EB000B3824E /* PowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PowerUpEntity.swift; path = GameOfRunes/Protocols/PowerUpEntity.swift; sourceTree = SOURCE_ROOT; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
-		8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCreatorTest.swift; sourceTree = "<group>"; };
+		8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreatorTest.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
 		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
 		8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaResponder.swift; sourceTree = "<group>"; };
 		8AAE9C06241E450300D29593 /* TextureContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureContainer.swift; sourceTree = "<group>"; };
+		8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInitModel.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +368,10 @@
 			isa = PBXGroup;
 			children = (
 				4A09C4F2242FC36200CA7625 /* Stage.swift */,
+				4A1B333D243280E600B67B91 /* StageRealmModel.swift */,
+				8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */,
+				4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */,
+				4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,6 +386,18 @@
 				4A768F2224308D23000F3F05 /* Stage Selection */,
 			);
 			path = "Game Map";
+			sourceTree = "<group>";
+		};
+		4A1B333A24327D5300B67B91 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4A1B334524330CAB00B67B91 /* Storage.swift */,
+				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
+				4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */,
+				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
+				8A712E7F24235EB000B3824E /* PowerUpEntity.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4A6213DA243093D400FABB48 /* Avatar Overview */ = {
@@ -383,6 +418,7 @@
 			children = (
 				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
+				4A1B333B24327FFE00B67B91 /* RealmStorage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -429,7 +465,6 @@
 				4AA5B37B241769C4008D4953 /* ProgressBarNode.swift */,
 				4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */,
 				4AC87A53241E146800D79639 /* PowerUpContainerNode.swift */,
-				4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */,
 				4A72EB4724211F57005FA909 /* PowerUpNode.swift */,
 				4AC87A4D241AC12700D79639 /* PowerUpIconNode.swift */,
 				4A72EB432420061A005FA909 /* SummonNode.swift */,
@@ -504,9 +539,12 @@
 			isa = PBXGroup;
 			children = (
 				4AC87A4F241BF31C00D79639 /* cast power up.mp3 */,
+				4ACAD1F62434C20700DEE03D /* Disturbance in Agustria.mp3 */,
 				4AC87A452419ED4100D79639 /* click1.mp3 */,
+				4ACAD1F82434D21000DEE03D /* Lion King Eldigan.mp3 */,
+				4ACAD1F4243464D000DEE03D /* Destiny-Ablaze.mp3 */,
 				4AC87A462419ED4200D79639 /* click3.mp3 */,
-				4AC87A472419ED4200D79639 /* Lion King Eldigan.mp3 */,
+				4ACAD1F1243463E900DEE03D /* His Father's Son.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -547,6 +585,7 @@
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
 				4A72EB42241FE18B005FA909 /* Utils */,
+				4A1B333A24327D5300B67B91 /* Protocols */,
 				8A2C033E242EF0D400A8EC96 /* Errors */,
 				8A2C033B242EF08E00A8EC96 /* Levels and Waves */,
 				8A5CE9B424187BFD00BEC4B9 /* GameState */,
@@ -670,7 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */,
-				8A3C4DE1242F15DE0022FD59 /* LevelCreator.swift */,
+				8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */,
 			);
 			path = "Levels and Waves";
 			sourceTree = "<group>";
@@ -710,7 +749,6 @@
 			isa = PBXGroup;
 			children = (
 				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
-				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
 			);
 			path = ButtonNode;
 			sourceTree = "<group>";
@@ -719,7 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */,
-				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
 			);
 			path = DroppedManaNode;
 			sourceTree = "<group>";
@@ -763,7 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2C0341242EF19000A8EC96 /* EnemySpawnUnitTest.swift */,
-				8A76F9C3242FA9E100917D3F /* LevelCreatorTest.swift */,
+				8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */,
 			);
 			path = LevelAndWaveTests;
 			sourceTree = "<group>";
@@ -898,12 +935,15 @@
 			files = (
 				4AC87A50241BF31C00D79639 /* cast power up.mp3 in Resources */,
 				C6B322DC241B9701001072AE /* .swiftlint.yml in Resources */,
+				4ACAD1F3243463EA00DEE03D /* His Father's Son.mp3 in Resources */,
 				4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */,
+				4ACAD1F72434C20700DEE03D /* Disturbance in Agustria.mp3 in Resources */,
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
-				4AC87A4A2419ED4200D79639 /* Lion King Eldigan.mp3 in Resources */,
+				4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
 				4AC87A482419ED4200D79639 /* click1.mp3 in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
 			);
@@ -1020,6 +1060,7 @@
 				C632912E2424ED4F005C11D1 /* CircleResult.swift in Sources */,
 				8A3C4DE4242F398A0022FD59 /* SpawnDelegate.swift in Sources */,
 				C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */,
+				4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */,
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
@@ -1045,6 +1086,7 @@
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
+				8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
 				4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */,
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,
@@ -1056,13 +1098,14 @@
 				56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
 				560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */,
-				8A3C4DE2242F15DE0022FD59 /* LevelCreator.swift in Sources */,
+				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
 				8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */,
+				4A1B33402432845D00B67B91 /* EnemyWaveRealmModel.swift in Sources */,
 				C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */,
 				4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+helpers.swift in Sources */,
@@ -1084,6 +1127,7 @@
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */,
 				565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */,
+				4A1B333E243280E600B67B91 /* StageRealmModel.swift in Sources */,
 				C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */,
@@ -1115,10 +1159,12 @@
 				4AA5B37A2417625D008D4953 /* ManaBarNode.swift in Sources */,
 				4A768F1924302079000F3F05 /* StageOverviewNode.swift in Sources */,
 				4AA5B360241646DF008D4953 /* EndPointEntity.swift in Sources */,
+				4A1B333C24327FFE00B67B91 /* RealmStorage.swift in Sources */,
 				4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */,
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
+				4A1B334624330CAB00B67B91 /* Storage.swift in Sources */,
 				4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */,
 				56EDD279242E58BA0044B445 /* TimerSystem.swift in Sources */,
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
@@ -1141,7 +1187,7 @@
 				4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */,
 				8A2C0342242EF19000A8EC96 /* EnemySpawnUnitTest.swift in Sources */,
 				8A1EB6C62427900000CA6AC8 /* GameStateTest.swift in Sources */,
-				8A76F9C4242FA9E100917D3F /* LevelCreatorTest.swift in Sources */,
+				8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */,
 				8A1EB6C4242782F700CA6AC8 /* GameStateMachineTest.swift in Sources */,
 				C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */,
 				C6AC476B2430BF670078D5F1 /* EnemyEntityTest.swift in Sources */,
@@ -1305,13 +1351,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1324,13 +1370,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1345,7 +1391,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1369,7 +1415,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
