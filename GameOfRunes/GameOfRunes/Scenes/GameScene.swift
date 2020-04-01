@@ -48,7 +48,11 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        gameEngine = GameEngine(gameScene: self, levelNumber: self.levelNumber)
+        guard let stage = self.gameStateMachine?.stage else {
+            fatalError("Unable to load stage from GameStateMachine")
+        }
+
+        gameEngine = GameEngine(gameScene: self, stage: stage)
         self.physicsWorld.contactDelegate = gameEngine.contactDelegate
 
         // UI

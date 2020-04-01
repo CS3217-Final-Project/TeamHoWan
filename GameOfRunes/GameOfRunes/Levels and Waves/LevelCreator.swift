@@ -27,6 +27,8 @@ struct LevelCreator {
             return level2
         case 3:
             return level3
+        case 4:
+            return level4
         default:
             throw LevelWaveError.invalidLevelNumber
         }
@@ -35,10 +37,8 @@ struct LevelCreator {
     static var level1: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicOrcUnit = try EnemySpawnUnit(nil, .orc1, nil)
-            let basicTrollUnit = try EnemySpawnUnit(.troll1)
-            let basicKnightUnit = try EnemySpawnUnit(nil, nil, .evilKnight)
-            let alternatingUnit = basicOrcUnit + basicTrollUnit + basicKnightUnit
-            let fullLevel = alternatingUnit + basicOrcUnit
+            let advancedOrcUnit = try EnemySpawnUnit(.orc2, nil, .orc2)
+            let fullLevel = basicOrcUnit + basicOrcUnit + advancedOrcUnit
             let levelSpawnInterval = 3.0
             return (fullLevel, levelSpawnInterval)
         } catch {
@@ -48,10 +48,9 @@ struct LevelCreator {
 
     static var level2: (EnemySpawnUnit, TimeInterval) {
         do {
-            let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2)
-            let basicKnightUnit = try EnemySpawnUnit(.evilKnight, nil, .evilKnight)
-            let alternatingUnit = basicOrcUnit + basicKnightUnit
-            let fullLevel = alternatingUnit + alternatingUnit
+            let basicTrollUnit = try EnemySpawnUnit(.troll1, nil, .troll1)
+            let advancedTrollUnit = try EnemySpawnUnit(.troll2)
+            let fullLevel = basicTrollUnit + basicTrollUnit + advancedTrollUnit
             let levelSpawnInterval = 2.0
             return (fullLevel, levelSpawnInterval)
         } catch {
@@ -62,9 +61,23 @@ struct LevelCreator {
     static var level3: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .evilKnight, .evilKnight)
-            let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2, .orc1)
-            let alternatingUnit = basicKnightUnit + basicOrcUnit
+            let alternateBasicKnightUnit = try EnemySpawnUnit(nil, .evilKnight, nil)
+            let alternatingUnit = basicKnightUnit + alternateBasicKnightUnit
             let fullLevel = alternatingUnit + alternatingUnit + alternatingUnit
+            let levelSpawnInterval = 1.0
+            return (fullLevel, levelSpawnInterval)
+        } catch {
+            fatalError("Unexpected error encountered: \(error)")
+        }
+    }
+
+    static var level4: (EnemySpawnUnit, TimeInterval) {
+        do {
+            let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .evilKnight, .evilKnight)
+            let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2, .orc1)
+            let basicTrollUnit = try EnemySpawnUnit(.troll1, .troll2, .troll3)
+            let alternatingUnit = basicKnightUnit + basicOrcUnit + basicTrollUnit
+            let fullLevel = alternatingUnit + alternatingUnit
             let levelSpawnInterval = 1.0
             return (fullLevel, levelSpawnInterval)
         } catch {

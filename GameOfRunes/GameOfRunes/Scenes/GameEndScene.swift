@@ -23,7 +23,8 @@ class GameEndScene: SKScene, TapResponder {
         super.init(size: size)
         
         let center = CGPoint(x: frame.midX, y: frame.midY)
-        
+
+        //TODO: Change name of restartButton
         let restartButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
@@ -55,7 +56,7 @@ class GameEndScene: SKScene, TapResponder {
 
     func onTapped(tappedNode: ButtonNode) {
         if tappedNode.buttonType == .restartButton {
-            gameStateMachine?.enter(GameStartState.self)
+            gameStateMachine?.enter(GameSelectionState.self)
         }
     }
 }

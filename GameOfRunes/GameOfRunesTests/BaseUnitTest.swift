@@ -45,7 +45,16 @@ class BaseUnitTest: XCTestCase {
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine,
                               levelNumber: LevelCreator.getRandomLevelNumber())
-        gameEngine = MockGameEngine(gameScene: gameScene, levelNumber: -1)
+        let testStage = Stage(name: "Test Stage",
+                              chapter: "Test",
+                              category: .normal,
+                              relativePositionRatioInMap: (x: 0.17, y: -0.43),
+                              arena: .arena1,
+                              difficulty: 100,
+                              numWaves: 1,
+                              enemyWaves: EnemySpawnUnit([[.orc1, nil, nil]]))
+
+        gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()

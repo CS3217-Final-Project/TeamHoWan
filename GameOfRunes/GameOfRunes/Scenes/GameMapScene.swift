@@ -127,6 +127,7 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.run(
                 .fadeOut(withDuration: 0.25),
                 completion: { [weak self] in
+                    self?.gameStateMachine?.stage = self?.selectedStageNode?.stage
                     self?.gameStateMachine?.enter(GameStartState.self)
                 }
             )

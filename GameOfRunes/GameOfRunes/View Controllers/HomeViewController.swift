@@ -33,7 +33,14 @@ class HomeViewController: UIViewController {
             TextureContainer.loadTextures()
             print("Done loading textures")
         }
-        
+
+        guard let stage1Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1).0,
+            let stage2Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2).0,
+            let stage3Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3).0,
+            let stage4Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4).0 else {
+            print("Unable to load Enemies from LevelCreator")
+            return
+        }
         let stage1 = Stage(
             name: "The Beginning",
             chapter: "Peasant Land 1",
@@ -42,7 +49,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: .init(),
+            enemyWaves: stage1Enemies,
             achievement: .A
         )
         
@@ -54,7 +61,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: .init(),
+            enemyWaves: stage2Enemies,
             achievement: .C
         )
         
@@ -66,7 +73,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: .init(),
+            enemyWaves: stage3Enemies,
             achievement: .empty
         )
         
@@ -78,7 +85,7 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: .init(),
+            enemyWaves: stage4Enemies,
             achievement: .S
         )
         

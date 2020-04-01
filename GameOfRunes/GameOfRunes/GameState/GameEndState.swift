@@ -16,7 +16,12 @@ class GameEndState: GKState {
     
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        stateClass is GameStartState.Type
+        switch stateClass {
+        case is GameStartState.Type, is GameSelectionState.Type:
+            return true
+        default:
+            return false
+        }
     }
     
     override func didEnter(from previousState: GKState?) {

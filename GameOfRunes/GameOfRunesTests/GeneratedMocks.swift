@@ -7255,16 +7255,16 @@ import SpriteKit
     
     
     
-     override func restartGame()  {
+     override func beginNewStage()  {
         
-    return cuckoo_manager.call("restartGame()",
+    return cuckoo_manager.call("beginNewStage()",
             parameters: (),
             escapingParameters: (),
             superclassCall:
                 
-                super.restartGame()
+                super.beginNewStage()
                 ,
-            defaultCall: __defaultImplStub!.restartGame())
+            defaultCall: __defaultImplStub!.beginNewStage())
         
     }
     
@@ -7282,9 +7282,9 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "transitionToScene(sceneIdentifier: SceneIdentifier)", parameterMatchers: matchers))
 	    }
 	    
-	    func restartGame() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	    func beginNewStage() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "restartGame()", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "beginNewStage()", parameterMatchers: matchers))
 	    }
 	    
 	}
@@ -7310,9 +7310,9 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func restartGame() -> Cuckoo.__DoNotUse<(), Void> {
+	    func beginNewStage() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
-	        return cuckoo_manager.verify("restartGame()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("beginNewStage()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	}
@@ -7328,7 +7328,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func restartGame()   {
+     override func beginNewStage()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
