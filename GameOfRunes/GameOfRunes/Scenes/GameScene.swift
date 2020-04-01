@@ -285,8 +285,9 @@ class GameScene: SKScene {
         }
     }
     
-    func gameDidEnd(didWin: Bool) {
+    func gameDidEnd(didWin: Bool, finalScore: Int) {
         gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
+        gameStateMachine?.state(forClass: GameEndState.self)?.finalScore = finalScore
         gameStateMachine?.enter(GameEndState.self)
     }
 }

@@ -34,7 +34,6 @@ class GameMetaData {
         availablePowerUps = powerUps
         playerHealth = maxPlayerHealth
 
-        // TODO: Add levelspawninterval into realm stage
         levelSpawnInterval = stage.enemyWaveSpawnInterval
         levelWaves = stage.enemyWaves
     }

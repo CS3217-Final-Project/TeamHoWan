@@ -231,3 +231,19 @@ extension GameMapScene {
         )
     }
 }
+
+// MARK: - Updating of Stage Data
+extension GameMapScene {
+    func updateGameMap() {
+        // Remove Current Stage Nodes
+        stageNodeLayer.removeFromParent()
+
+        // Make New Stage Node Layer
+        stageNodeLayer = .init()
+        stageNodeLayer.zPosition = GameConfig.GameMapScene.stageNodeLayerZPosition
+        addChild(stageNodeLayer)
+
+        // Make New Stage Nodes
+        setUpStageNodes()
+    }
+}

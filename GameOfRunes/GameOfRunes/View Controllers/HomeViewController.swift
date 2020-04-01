@@ -34,6 +34,8 @@ class HomeViewController: UIViewController {
             print("Done loading textures")
         }
 
+
+        //TODO: Consider whether this is necessary
         guard let stage1EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
             let stage2EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
             let stage3EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
@@ -42,6 +44,7 @@ class HomeViewController: UIViewController {
             return
         }
 
+        //TODO: Update number of stages etc.
         let stage1 = Stage(
             name: "The Beginning",
             chapter: "Peasant Land 1",

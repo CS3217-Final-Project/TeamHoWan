@@ -36,7 +36,8 @@ class StageRealmModel: Object {
             difficulty: difficulty,
             numWaves: numWaves,
             enemyWaves: enemyWaves,
-            enemyWaveSpawnInterval: enemyWaveSpawnInterval
+            enemyWaveSpawnInterval: enemyWaveSpawnInterval,
+            highScore: highScore
         )
     }
     
