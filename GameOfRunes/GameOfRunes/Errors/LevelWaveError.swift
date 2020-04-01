@@ -1,13 +1,13 @@
 //
-//  LevelWaveError.swift
+//  EnemyWaveError.swift
 //  GameOfRunes
 //
 //  Created by Brian Yen on 28/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-// Errors associated with Level and Wave-related logic.
-enum LevelWaveError: Error {
+// Errors associated with Wave-related logic.
+enum EnemyWaveError: Error {
     case tooManyEnemyUnits
-    case invalidLevelNumber
+    case invalidStageNumber
 }

@@ -10,10 +10,10 @@ import XCTest
 @testable import GameOfRunes
 
 class EnemyWaveCreatorTest: XCTestCase {
-    func testCreateLevel_testClosenessToTargetDifficulty() {
+    func testCreateStageEnemyWave_testClosenessToTargetDifficulty() {
         let targetDifficulty = 80
         let threshold = 10
-        let level = EnemyWaveCreator.createLevel(targetDifficulty: targetDifficulty,
+        let level = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: targetDifficulty,
                                                  availableMonsters: [.orc1, .orc2])
         let allMonsters = level.unit.flatMap({ $0 })
         let allMonsterDifficulties = EnemyWaveCreator.convertMonstersToDifficulties(monsters: allMonsters)
@@ -24,9 +24,9 @@ class EnemyWaveCreatorTest: XCTestCase {
     }
 
     // Difficulty (ignoring empty lanes) should be non-decreasing
-    func testCreateLevel_testMonoticity() {
+    func testCreateStageEnemyWave_testMonoticity() {
         let targetDifficulty = 80
-        let level = EnemyWaveCreator.createLevel(targetDifficulty: targetDifficulty,
+        let level = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: targetDifficulty,
                                                  availableMonsters: [.orc1, .orc2])
         let allMonsters = level.unit.flatMap({ $0 })
         let allMonsterDifficulties = EnemyWaveCreator.convertMonstersToDifficulties(monsters: allMonsters)

@@ -132,6 +132,7 @@
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
 		8AAE9C05241E42D700D29593 /* DroppedManaResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */; };
 		8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C06241E450300D29593 /* TextureContainer.swift */; };
+		8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */; };
 		C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */; };
 		C60EAF64242E26A00037BEAC /* PlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF63242E26A00037BEAC /* PlayerComponent.swift */; };
 		C60EAF66242E2A350037BEAC /* PlayerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF65242E2A350037BEAC /* PlayerSystem.swift */; };
@@ -297,6 +298,7 @@
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
 		8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaResponder.swift; sourceTree = "<group>"; };
 		8AAE9C06241E450300D29593 /* TextureContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureContainer.swift; sourceTree = "<group>"; };
+		8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInitModel.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
 		A285CDA71199A45E87E61E24 /* Pods-GameOfRunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.release.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.release.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			children = (
 				4A09C4F2242FC36200CA7625 /* Stage.swift */,
 				4A1B333D243280E600B67B91 /* StageRealmModel.swift */,
+				8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */,
 				4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */,
 				4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */,
 			);
@@ -1067,6 +1070,7 @@
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
+				8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
 				4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */,
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,

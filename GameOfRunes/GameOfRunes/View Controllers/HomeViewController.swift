@@ -35,8 +35,11 @@ class HomeViewController: UIViewController {
             print("Done loading textures")
         }
 
-        // Uncomment this when a new Realm File must be created in App Bundle
-        //recreateStagesDatabase()
+        if Self.storage.isFirstInit {
+            //TODO: DEBUG
+            print("this is the first init")
+            initStagesInDatabase()
+        }
     }
     
     private func setUpHomeBackground() {
@@ -120,24 +123,18 @@ extension HomeViewController {
     }
 }
 
+// Mark: - Initialise Data in Realm Database
 extension HomeViewController {
     /**
-     Use this function when you need to recreate the `default.realm` file included in the App Bundle.
-     This should only be done when you wish to make changes to the default levels included in the Game.
-     Follow these steps:
-     1. Uncomment `recreateStagesDatabase()` in `viewDidLoad()`
-     2. Navigate to the location printed in the console for the `default.realm` file
-     3. Copy the file to a convenient location in your local computer.
-     4. Delete the old `default.realm` file from the App Bundle
-     5. Add this updated `default.realm` file from the App Bundle. Move it into the `Resources` folder.
-     6. Comment out `recreateStagesDatabase()` in `viewDidLoad()`.
-     7. Rebuild the application and play the game to check that changes have been updated.
+     This function is called whenever the Realm database is empty (as determined
+     by the `isFirstInit` property). This function will populate the Realm database
+     with some default levels.
      */
-    func recreateStagesDatabase() {
-        guard let stage1EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
-            let stage2EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
-            let stage3EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
-            let stage4EnemyWaveData = try? EnemyWaveCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
+    func initStagesInDatabase() {
+        guard let stage1EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 1),
+            let stage2EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 2),
+            let stage3EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 3),
+            let stage4EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 4) else {
             print("Unable to load Enemies from EnemyWaveCreator")
             return
         }
@@ -206,10 +203,8 @@ extension HomeViewController {
             achievement: .empty
         )
 
-        // Saves to the random folder that iOS provides in each application
-        let nonAppBundleStorage = RealmStorage(useAppBundle: false)
-        print("Path for new `default.realm` file: ", Realm.Configuration.defaultConfiguration.fileURL ?? "Not found")
         let stages = [stage1, stage2, stage3, stage4]
-        nonAppBundleStorage.save(stages: stages)
+        Self.storage.save(stages: stages)
+        Self.storage.didInitialise()
     }
 }

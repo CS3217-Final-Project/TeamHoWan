@@ -22,7 +22,7 @@ class GameMetaData {
     var playerMana: Int = 0
     var score: Int = 0
     var multiplier: Double = 1.0
-    var levelWaves: EnemySpawnUnit
+    var stageWaves: EnemySpawnUnit
     var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int = 0
 
@@ -35,6 +35,6 @@ class GameMetaData {
         playerHealth = maxPlayerHealth
 
         levelSpawnInterval = stage.enemyWaveSpawnInterval
-        levelWaves = stage.enemyWaves
+        stageWaves = stage.enemyWaves
     }
 }

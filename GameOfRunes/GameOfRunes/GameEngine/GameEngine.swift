@@ -83,7 +83,7 @@ class GameEngine {
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
-            metadata.levelWaves.isEmpty {
+            metadata.stageWaves.isEmpty {
             gameScene?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }

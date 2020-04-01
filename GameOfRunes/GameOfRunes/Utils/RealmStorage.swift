@@ -10,37 +10,39 @@ import RealmSwift
 
 class RealmStorage: Storage {
     private var realm: Realm!
-    
-    init(useAppBundle: Bool = true) {
-        setUpDb(useAppBundle: useAppBundle)
+    var isFirstInit: Bool {
+        realm.objects(FirstInitModel.self).isEmpty
+    }
+
+    init() {
+        setUpDb()
     }
 
     /**
-     The database is now configured to use the `default.realm` file included
-     in the App Bundle. This allows state to be persisted across launches of the
-     application as state changes are saved to the same realm file everytime.
-     - Parameters:
-        - useAppBundle: Boolean indicating whether Realm should use the `default.realm`
-     file provided in the App Bundle. If `false`, Realm will use the default file URL, which is randomly
-     created everytime the application is built.
+     Marks the Realm database as initialised. This is to prevent
+     future launches of the application from re-initialising the database
+     and thereby wiping out previously saved data. 
      */
-    private func setUpDb(useAppBundle: Bool) {
-        // Use Realm File in App Bundle
-        guard let bundleRealmPath = Bundle.main.path(forResource: "default", ofType: "realm") else {
-            return
-        }
-
-        var config: Realm.Configuration
-        if useAppBundle {
-            let bundleRealmURL = URL(string: bundleRealmPath)
-            config = Realm.Configuration(fileURL: bundleRealmURL)
-        } else {
-            config = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL)
-        }
-
+    func didInitialise() {
         do {
-            try realm = Realm(configuration: config)
+            try realm.write {
+                realm.add(FirstInitModel())
+            }
         } catch {
+            print("Unable to save init marker: ", error.localizedDescription)
+        }
+    }
+
+    /**
+     Set up database to use the default path determined by Realm.
+     */
+    private func setUpDb() {
+        do {
+            realm = try Realm()
+            print("Successfully load Realm database")
+            return
+        } catch {
+            // Cleaning of Realm Database
             print(error.localizedDescription)
             print("Proceed to reset to clean slate")
             resetRealm()
@@ -48,8 +50,8 @@ class RealmStorage: Storage {
 
         // Try Again
         do {
-            try realm = Realm(configuration: config)
-            print("Successfully load Realm database on retry")
+            realm = try Realm()
+            print("Successfully load Realm database")
         } catch {
             print(error.localizedDescription)
         }
@@ -67,7 +69,7 @@ class RealmStorage: Storage {
         ]
         realmURLs.forEach { URL in try? FileManager.default.removeItem(at: URL) }
     }
-    
+
     func save(stages: Stage...) {
         save(stages: stages)
     }

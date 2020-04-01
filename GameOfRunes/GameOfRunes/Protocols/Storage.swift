@@ -10,7 +10,8 @@ import Foundation
 
 protocol Storage {
     /* add the API methods here */
-    
+    var isFirstInit: Bool { get }
+
     // automatically overrides existing stages if primary key exists
     func save(stages: [Stage])
     // automatically overrides existing stages if primary key exists
@@ -29,4 +30,6 @@ protocol Storage {
     func delete(stageNames: String...)
     
     func delete(stageNames: [String])
+
+    func didInitialise() 
 }

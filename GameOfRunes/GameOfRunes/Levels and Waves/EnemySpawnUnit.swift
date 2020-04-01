@@ -7,10 +7,10 @@
 //
 
 /**
- This struct is used as the basic unit for creating a level. Different instances
- of it can be concatenated together to create different types of levels. See
+ This struct is used as the basic unit for creating an enemy wave in a stage. Different instances
+ of it can be concatenated together to create different types of stages. See
  `EnemyWaveCreator` for more examples on how `EnemySpawnUnit` can
-  be used to create interesting levels.
+  be used to create interesting stages.
 
  - Note: The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]
  in `unit` will determine the spawn position of the enemy (which lane the
@@ -60,7 +60,7 @@ struct EnemySpawnUnit {
     */
     init(_ monsters: [EnemyType?]) throws {
         guard monsters.count <= GameConfig.GamePlayScene.numLanes else {
-            throw LevelWaveError.tooManyEnemyUnits
+            throw EnemyWaveError.tooManyEnemyUnits
         }
 
         // Fill Up with nil placeholders

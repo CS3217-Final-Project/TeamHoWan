@@ -12,67 +12,68 @@ import Foundation
  Creates and stores Enemy Wave-related data.
  */
 struct EnemyWaveCreator {
-    static func getLevelDataAndSpawnInterval(levelNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
-        switch levelNumber {
+    /** Obtain the enemy wave data and spawn interval associated with a particular stage. */
+    static func getStageEnemyWaveDataAndSpawnInterval(stageNumber: Int) throws -> (EnemySpawnUnit, TimeInterval) {
+        switch stageNumber {
         case 1:
-            return level1
+            return stage1
         case 2:
-            return level2
+            return stage2
         case 3:
-            return level3
+            return stage3
         case 4:
-            return level4
+            return stage4
         default:
-            throw LevelWaveError.invalidLevelNumber
+            throw EnemyWaveError.invalidStageNumber
         }
     }
 
-    static var level1: (EnemySpawnUnit, TimeInterval) {
+    static var stage1: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicOrcUnit = try EnemySpawnUnit(nil, .orc1, nil)
             let advancedOrcUnit = try EnemySpawnUnit(.orc2, nil, .orc2)
-            let fullLevel = basicOrcUnit + basicOrcUnit + advancedOrcUnit
-            let levelSpawnInterval = 3.0
-            return (fullLevel, levelSpawnInterval)
+            let fullStage = basicOrcUnit + basicOrcUnit + advancedOrcUnit
+            let stageSpawnInterval = 3.0
+            return (fullStage, stageSpawnInterval)
         } catch {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
 
-    static var level2: (EnemySpawnUnit, TimeInterval) {
+    static var stage2: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicTrollUnit = try EnemySpawnUnit(.troll1, nil, .troll1)
             let advancedTrollUnit = try EnemySpawnUnit(.troll2)
-            let fullLevel = basicTrollUnit + basicTrollUnit + advancedTrollUnit
-            let levelSpawnInterval = 2.0
-            return (fullLevel, levelSpawnInterval)
+            let fullStage = basicTrollUnit + basicTrollUnit + advancedTrollUnit
+            let stageSpawnInterval = 2.0
+            return (fullStage, stageSpawnInterval)
         } catch {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
 
-    static var level3: (EnemySpawnUnit, TimeInterval) {
+    static var stage3: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .evilKnight, .evilKnight)
             let alternateBasicKnightUnit = try EnemySpawnUnit(nil, .evilKnight, nil)
             let alternatingUnit = basicKnightUnit + alternateBasicKnightUnit
-            let fullLevel = alternatingUnit + alternatingUnit + alternatingUnit
-            let levelSpawnInterval = 1.5
-            return (fullLevel, levelSpawnInterval)
+            let fullStage = alternatingUnit + alternatingUnit + alternatingUnit
+            let stageSpawnInterval = 1.5
+            return (fullStage, stageSpawnInterval)
         } catch {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
 
-    static var level4: (EnemySpawnUnit, TimeInterval) {
+    static var stage4: (EnemySpawnUnit, TimeInterval) {
         do {
             let basicKnightUnit = try EnemySpawnUnit(.evilKnight, .evilKnight, .evilKnight)
             let basicOrcUnit = try EnemySpawnUnit(.orc1, .orc2, .orc1)
             let basicTrollUnit = try EnemySpawnUnit(.troll1, .troll2, .troll3)
             let alternatingUnit = basicKnightUnit + basicOrcUnit + basicTrollUnit
-            let fullLevel = alternatingUnit + alternatingUnit
-            let levelSpawnInterval = 1.0
-            return (fullLevel, levelSpawnInterval)
+            let fullStage = alternatingUnit + alternatingUnit
+            let stageSpawnInterval = 1.0
+            return (fullStage, stageSpawnInterval)
         } catch {
             fatalError("Unexpected error encountered: \(error)")
         }
@@ -82,10 +83,10 @@ struct EnemyWaveCreator {
 /** Extension for automatically creating enemy waves based on desired difficulty */
 extension EnemyWaveCreator {
     /**
-     Creates an Enemy Wave (Level) whose total difficulty approaches `targetDifficulty` using the
+     Creates an Enemy Wave (Stage) whose total difficulty approaches `targetDifficulty` using the
      monsters found in `availableMonsters`.
      */
-    static func createLevel(targetDifficulty: Int, availableMonsters: [EnemyType]) -> EnemySpawnUnit {
+    static func createStageEnemyWave(targetDifficulty: Int, availableMonsters: [EnemyType]) -> EnemySpawnUnit {
         let availableMonsterDifficulties = convertMonstersToDifficulties(monsters: availableMonsters)
         let bucket = createProbabilityBuckets(availableMonsterDifficulties: availableMonsterDifficulties)
         let chunkedDifficulties = allocateMonsterDifficulties(targetDifficulty: targetDifficulty,
