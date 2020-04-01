@@ -35,83 +35,83 @@ class HomeViewController: UIViewController {
         }
 
 
-        //TODO: Consider whether this is necessary
-        guard let stage1EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
-            let stage2EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
-            let stage3EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
-            let stage4EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
-            print("Unable to load Enemies from LevelCreator")
-            return
-        }
-
-        //TODO: Update number of stages etc.
-        let stage1 = Stage(
-            name: "The Beginning",
-            chapter: "Peasant Land 1",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.6, y: -0.55),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            enemyWaves: stage1EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
-            achievementBMinScore: 10,
-            achievementAMinScore: 40,
-            achievementSMinScore: 50,
-            achievement: .empty
-        )
-        
-        let stage2 = Stage(
-            name: "Warrior Arena",
-            chapter: "Peasant Land 2",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.17, y: -0.43),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            enemyWaves: stage2EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
-            achievementBMinScore: 10,
-            achievementAMinScore: 40,
-            achievementSMinScore: 50,
-            achievement: .empty
-        )
-        
-        let stage3 = Stage(
-            name: "Cathedral Mayhem",
-            chapter: "Peasant Land 3",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.66, y: -0.28),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            enemyWaves: stage3EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
-            achievementBMinScore: 10,
-            achievementAMinScore: 40,
-            achievementSMinScore: 50,
-            achievement: .empty
-        )
-        
-        let stage4 = Stage(
-            name: "The Crossing",
-            chapter: "Peasant Land 4",
-            category: .boss,
-            relativePositionRatioInMap: (x: 0.25, y: -0.22),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: 7,
-            enemyWaves: stage4EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
-            achievementBMinScore: 10,
-            achievementAMinScore: 40,
-            achievementSMinScore: 50,
-            achievement: .empty
-        )
-        
-        let stages = [stage1, stage2, stage3, stage4]
-        
-        Self.storage.save(stages: stages)
+//        //TODO: Consider whether this is necessary
+//        guard let stage1EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
+//            let stage2EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
+//            let stage3EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
+//            let stage4EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
+//            print("Unable to load Enemies from LevelCreator")
+//            return
+//        }
+//
+//        //TODO: Update number of stages etc.
+//        let stage1 = Stage(
+//            name: "The Beginning",
+//            chapter: "Peasant Land 1",
+//            category: .normal,
+//            relativePositionRatioInMap: (x: 0.6, y: -0.55),
+//            arena: .arena1,
+//            difficulty: 100,
+//            numWaves: 7,
+//            enemyWaves: stage1EnemyWaveData.0,
+//            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
+//            achievementBMinScore: 10,
+//            achievementAMinScore: 40,
+//            achievementSMinScore: 50,
+//            achievement: .empty
+//        )
+//        
+//        let stage2 = Stage(
+//            name: "Warrior Arena",
+//            chapter: "Peasant Land 2",
+//            category: .normal,
+//            relativePositionRatioInMap: (x: 0.17, y: -0.43),
+//            arena: .arena1,
+//            difficulty: 100,
+//            numWaves: 7,
+//            enemyWaves: stage2EnemyWaveData.0,
+//            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
+//            achievementBMinScore: 10,
+//            achievementAMinScore: 40,
+//            achievementSMinScore: 50,
+//            achievement: .empty
+//        )
+//        
+//        let stage3 = Stage(
+//            name: "Cathedral Mayhem",
+//            chapter: "Peasant Land 3",
+//            category: .normal,
+//            relativePositionRatioInMap: (x: 0.66, y: -0.28),
+//            arena: .arena1,
+//            difficulty: 100,
+//            numWaves: 7,
+//            enemyWaves: stage3EnemyWaveData.0,
+//            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
+//            achievementBMinScore: 10,
+//            achievementAMinScore: 40,
+//            achievementSMinScore: 50,
+//            achievement: .empty
+//        )
+//        
+//        let stage4 = Stage(
+//            name: "The Crossing",
+//            chapter: "Peasant Land 4",
+//            category: .boss,
+//            relativePositionRatioInMap: (x: 0.25, y: -0.22),
+//            arena: .arena1,
+//            difficulty: 100,
+//            numWaves: 7,
+//            enemyWaves: stage4EnemyWaveData.0,
+//            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
+//            achievementBMinScore: 10,
+//            achievementAMinScore: 40,
+//            achievementSMinScore: 50,
+//            achievement: .empty
+//        )
+//        
+//        let stages = [stage1, stage2, stage3, stage4]
+//        
+//        Self.storage.save(stages: stages)
     }
     
     private func setUpHomeBackground() {
@@ -194,3 +194,5 @@ extension HomeViewController {
         present(gameVC, animated: true)
     }
 }
+
+

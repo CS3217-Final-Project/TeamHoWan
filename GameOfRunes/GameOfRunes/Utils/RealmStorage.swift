@@ -16,23 +16,26 @@ class RealmStorage: Storage {
     }
     
     private func setUpDb() {
-        print("Filepath:", Realm.Configuration.defaultConfiguration.fileURL ?? "Cannot be found")
-        
-        do {
-            realm = try Realm()
-            print("Successfully load Realm database")
+        // Use Realm File in App Bundle
+        guard let bundleRealmPath = Bundle.main.path(forResource: "default", ofType: "realm") else {
             return
+        }
+
+        let bundleRealmURL = URL(string: bundleRealmPath)
+        let config = Realm.Configuration(fileURL: bundleRealmURL)
+
+        do {
+            try realm = Realm(configuration: config)
         } catch {
-            // cleaning
             print(error.localizedDescription)
             print("Proceed to reset to clean slate")
             resetRealm()
         }
-        
-        // try again
+
+        // Try Again
         do {
-            realm = try Realm()
-            print("Successfully load Realm database")
+            try realm = Realm(configuration: config)
+            print("Successfully load Realm database on retry")
         } catch {
             print(error.localizedDescription)
         }
