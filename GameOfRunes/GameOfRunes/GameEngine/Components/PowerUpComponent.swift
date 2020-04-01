@@ -1,21 +1,22 @@
 //
-//  ParentEntityComponent.swift
+//  PowerUpComponent.swift
 //  GameOfRunes
 //
-//  Created by Dong SiJi on 29/3/20.
+//  Created by Dong SiJi on 31/3/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import GameplayKit
 
-class ParentEntityComponent: GKComponent, Component {
-    private(set) weak var parent: Entity?
+class PowerUpComponent: GKComponent, Component {
     var type: ComponentType {
-        .parentEntityComponent
+        .powerUpComponent
     }
+    let powerUpType: PowerUpType
+    var fading = false
     
-    init(_ parent: Entity) {
-        self.parent = parent
+    init(_ powerUpType: PowerUpType) {
+        self.powerUpType = powerUpType
         super.init()
     }
     

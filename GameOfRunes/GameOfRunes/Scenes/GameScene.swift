@@ -185,30 +185,7 @@ class GameScene: SKScene {
         endPointNode.zPosition = -1
         
         let endPointEntity = EndPointEntity(node: endPointNode)
-
         gameEngine.add(endPointEntity)
-
-        // set up the attractive force of end point
-        
-        for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
-            // finds xPosition of attraction node
-            let xPositionNumerator = 2 * laneIndex + 1
-            let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
-            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-            let xPosition = (.init(size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            
-            let attractionNode = SKSpriteNode(color: .clear, size: .zero)
-            attractionNode.position = .init(x: xPosition, y: endPointNode.position.y)
-
-            let attractionEntity = AttractionEntity(
-                node: attractionNode,
-                layerType: .playerAreaLayer,
-                team: .player
-            )
-            
-            gameEngine.add(attractionEntity)
-        }
     }
     
     private func setUpPlayer() {
@@ -343,20 +320,16 @@ extension GameScene: SelectedPowerUpResponder {
         guard selectedPowerUp != nil else {
             return false
         }
+
+        let didActivate = gameEngine.didActivatePowerUp(at: location, with: size)
         
-        /*
-         // To set max/min size
-        var newSize: CGFloat?
-        if let size = size {
-            newSize = min(self.size.width / 6, max(self.size.width / 12, size))
-        }
-        */
-        if gameEngine.didActivatePowerUp(at: location, with: size) {
-            return true
-        } else {
+        deselectPowerUp()
+        
+        if !didActivate {
             showInsufficientMana(at: location)
-            return false
         }
+        
+        return didActivate
     }
     
     func deselectPowerUp() {
@@ -369,10 +342,12 @@ extension GameScene: SelectedPowerUpResponder {
     
     func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
         // Deactivate and activate gesture detection when tap-activated power ups are selected
+        gameEngine.changeSelectedPowerUp(to: newSelectedPowerUp)
+        
         if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-                deactivateGestureDetection()
+            deactivateGestureDetection()
         } else if oldValue == .darkVortex {
-                activateGestureDetection()
+            activateGestureDetection()
         }
     }
     

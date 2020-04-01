@@ -25,6 +25,7 @@ class GameMetaData {
     var levelWaves: EnemySpawnUnit
     var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int = 0
+    var selectedPowerUp: PowerUpType?
 
     init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
          powerUps: [PowerUpType], levelNumber: Int) {

@@ -10,21 +10,26 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: AttractionEntity, PowerUpEntity {
-    var fading = false
-    var powerUpType: PowerUpType {
-        .darkVortex
-    }
+class DarkVortexPowerUpEntity: Entity {
     override var type: EntityType {
         .darkVortexPowerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
-        let animationNode = Self.getAnimationNode(at: position, with: size, for: .darkVortex)
-        super.init(node: animationNode, layerType: .powerUpAnimationLayer, team: .player)
+        let animationNode = PowerUpType.darkVortex.getAnimationNode(at: position, with: size)
+        super.init()
+        
+        let attractionEntity = AttractionEntity(node: animationNode,
+                                                layerType: .powerUpAnimationLayer,
+                                                team: .player,
+                                                parent: self)
         
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        let powerUpComponent = PowerUpComponent(.darkVortex)
+        let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         
         addComponent(timerComponent)
+        addComponent(powerUpComponent)
+        addComponent(attractionEntitiesComponent)
     }
 }

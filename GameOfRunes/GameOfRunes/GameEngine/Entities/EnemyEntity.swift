@@ -67,9 +67,7 @@ class EnemyEntity: Entity {
         var availableGestures = enemyType.gesturesAvailable
         
         if let currentGesture = component(ofType: GestureEntityComponent.self)?
-            .gestureEntity?
-            .component(ofType: GestureComponent.self)?
-            .gesture {
+            .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
                 availableGestures.removeAll { $0 == currentGesture }
         }
         

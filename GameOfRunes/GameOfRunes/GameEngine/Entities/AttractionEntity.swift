@@ -13,7 +13,7 @@ class AttractionEntity: Entity {
         .attractionEntity
     }
     
-    init(node: SKSpriteNode, layerType: SpriteLayerType, team: Team) {
+    init(node: SKSpriteNode, layerType: SpriteLayerType, team: Team, parent: Entity? = nil) {
         super.init()
         let spriteComponent = SpriteComponent(node: node, layerType: layerType)
         let teamComponent = TeamComponent(team: team)
@@ -26,5 +26,12 @@ class AttractionEntity: Entity {
         addComponent(spriteComponent)
         addComponent(teamComponent)
         addComponent(moveComponent)
+        
+        guard let parent = parent else {
+            return
+        }
+        
+        let parentEntityComponent = ParentEntityComponent(parent)
+        addComponent(parentEntityComponent)
     }
 }
