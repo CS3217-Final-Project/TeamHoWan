@@ -96,8 +96,8 @@ enum EnemyType: String, CaseIterable {
 
     var disablePowerUps: [PowerUpType] {
         switch self {
-        case .evilKnight:
-            return PowerUpType.allCases
+//        case .evilKnight:
+//            return PowerUpType.allCases
         default:
             return []
         }
@@ -105,8 +105,8 @@ enum EnemyType: String, CaseIterable {
     
     var isPowerUpImmune: Bool {
         switch self {
-        case .evilKnight:
-            return true
+//        case .evilKnight:
+//            return true
         default:
             return false
         }
