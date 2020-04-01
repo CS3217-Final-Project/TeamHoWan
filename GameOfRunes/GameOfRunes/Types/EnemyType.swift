@@ -101,7 +101,7 @@ enum EnemyType: String, CaseIterable {
         }
     }
     
-    var powerUpImmunity: Bool {
+    var isPowerUpImmune: Bool {
         switch self {
         case .evilKnight:
             return true

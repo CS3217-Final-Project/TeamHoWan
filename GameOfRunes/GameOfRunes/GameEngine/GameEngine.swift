@@ -196,9 +196,10 @@ class GameEngine {
         increasePlayerMana(by: -manaPoints)
     }
     
-    func stopMovement(for enemyEntity: Entity, duration: TimeInterval) {
-        systemDelegate.stopMovement(
+    func changeMovementSpeed(for enemyEntity: Entity, to speed: Float, duration: TimeInterval) {
+        systemDelegate.changeMovementSpeed(
             for: enemyEntity,
+            to: speed,
             duration: duration
         )
     }

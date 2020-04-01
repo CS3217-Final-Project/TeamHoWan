@@ -89,8 +89,8 @@ class SystemDelegate {
         manaSystem?.getMana(for: entity)
     }
     
-    func stopMovement(for entity: Entity, duration: TimeInterval) {
-        moveSystem?.stopMovementForDuration(for: entity, duration: duration)
+    func changeMovementSpeed(for entity: Entity, to speed: Float, duration: TimeInterval) {
+        moveSystem?.changeMovementSpeed(for: entity, to: speed, duration: duration)
     }
     
     func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {

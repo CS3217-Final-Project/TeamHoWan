@@ -65,7 +65,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 
 /** Extension for Power Up implementations */
 extension MoveSystem {
-    func stopMovementForDuration(for entity: Entity, duration: TimeInterval) {
+    func changeMovementSpeed(for entity: Entity, to speed: Float, duration: TimeInterval) {
         guard let entityMoveComponent = entity.component(ofType: MoveComponent.self),
             let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType else {
             return
@@ -73,7 +73,7 @@ extension MoveSystem {
 
         // Hack
         entityMoveComponent.activePauses += 1
-        entityMoveComponent.maxSpeed = 0
+        entityMoveComponent.maxSpeed = speed
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entityMoveComponent.activePauses -= 1
             if entityMoveComponent.activePauses == 0 {
