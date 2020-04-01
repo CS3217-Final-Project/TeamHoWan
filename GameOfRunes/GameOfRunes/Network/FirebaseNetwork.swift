@@ -14,7 +14,7 @@ class FirebaseNetwork: NetworkInterface {
     
     func createRoom(uid: String,
                     name: String,
-                    _ onSuccess: @escaping (String) -> Void,
+                    _ onComplete: @escaping (String) -> Void,
                     _ onError: @escaping (Error) -> Void) {
         let roomId = generateRandomId()
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
@@ -22,7 +22,7 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.value as? [String: AnyObject] != nil {
                 // The room already exists, try generating another id.
-                self.createRoom(uid: uid, name: name, onSuccess, onError)
+                self.createRoom(uid: uid, name: name, onComplete, onError)
                 return
             }
             
@@ -38,7 +38,7 @@ class FirebaseNetwork: NetworkInterface {
                 }
                 
                 ref.onDisconnectRemoveValue()
-                onSuccess(roomId)
+                onComplete(roomId)
             })
         }) { err in
             onError(err)

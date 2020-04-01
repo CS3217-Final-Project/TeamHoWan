@@ -92,7 +92,7 @@
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGesture.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
-		56C85F832434B0B300B1ADA9 /* FirebaseNetwork+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C85F822434B0B300B1ADA9 /* FirebaseNetwork+Constants.swift */; };
+		56C85F832434B0B300B1ADA9 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C85F822434B0B300B1ADA9 /* FirebaseKeys.swift */; };
 		56D2A647242BBAAE00BDD5DC /* CollisionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A646242BBAAE00BDD5DC /* CollisionType.swift */; };
 		56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */; };
 		56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D664C824207DDD00351C92 /* ComponentType.swift */; };
@@ -257,7 +257,7 @@
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGesture.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
-		56C85F822434B0B300B1ADA9 /* FirebaseNetwork+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseNetwork+Constants.swift"; sourceTree = "<group>"; };
+		56C85F822434B0B300B1ADA9 /* FirebaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
 		56D2A646242BBAAE00BDD5DC /* CollisionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionType.swift; sourceTree = "<group>"; };
 		56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDelegate.swift; sourceTree = "<group>"; };
 		56E82D6D2417E7B7009172C6 /* GestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureNode.swift; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 				56FC8CF3243426A800B6DBC9 /* NetworkModel.swift */,
 				56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */,
 				56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */,
-				56C85F822434B0B300B1ADA9 /* FirebaseNetwork+Constants.swift */,
+				56C85F822434B0B300B1ADA9 /* FirebaseKeys.swift */,
 				56FC8CF92434393D00B6DBC9 /* FirebaseNetwork+Util.swift */,
 			);
 			path = Network;
@@ -1060,7 +1060,7 @@
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */,
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
-				56C85F832434B0B300B1ADA9 /* FirebaseNetwork+Constants.swift in Sources */,
+				56C85F832434B0B300B1ADA9 /* FirebaseKeys.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
