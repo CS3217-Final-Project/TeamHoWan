@@ -9,8 +9,9 @@
 import Firebase
 
 class FirebaseNetwork: NetworkInterface {
-    func createRoom(withLevelNumber levelNum: Int,
-                    _ onSuccess: @escaping (String) -> Void,
+    var observers: [Observer] = []
+    
+    func createRoom(_ onSuccess: @escaping (String) -> Void,
                     _ onError: @escaping (Error) -> Void) {
     }
     
@@ -35,8 +36,30 @@ class FirebaseNetwork: NetworkInterface {
                           _ onComplete: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
     }
+    
+    func changeRoomOpenState(forRoomId id: String,
+                             _ onComplete: @escaping () -> Void,
+                             _ onError: @escaping (Error) -> Void) {
+    }
+        
+    func observeRoomState(forRoomId id: String,
+                          _ onDataChange: @escaping (RoomModel) -> Void,
+                          _ onRoomClose: @escaping () -> Void,
+                          _ onError: @escaping (Error) -> Void) {
+    
+    }
+        
+    func removeObservers() {
+        
+    }
 }
 
-extension FirebaseNetwork {
+struct Observer {
+    var handle: DatabaseHandle
+    var reference: DatabaseReference
     
+    init(withHandle handle: DatabaseHandle, withRef reference: DatabaseReference) {
+        self.handle = handle
+        self.reference = reference
+    }
 }

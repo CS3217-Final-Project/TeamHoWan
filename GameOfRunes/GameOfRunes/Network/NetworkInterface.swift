@@ -12,8 +12,10 @@ import Foundation
  Interface for the network. Contains methods to obtain/receive information from the game network.
  */
 protocol NetworkInterface {
-    func createRoom(withLevelNumber levelNum: Int,
-                    _ onSuccess: @escaping (String) -> Void,
+    
+    // ================================== Room functions =========================================
+    
+    func createRoom(_ onSuccess: @escaping (String) -> Void,
                     _ onError: @escaping (Error) -> Void)
     
     func joinRoom(forRoomId roomId: String,
@@ -30,7 +32,14 @@ protocol NetworkInterface {
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void)
     
-    func changeReadyState(forRoomId roomId: String,
+    func changeReadyState(forRoomId id: String,
                           _ onComplete: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
+    
+    func observeRoomState(forRoomId id: String,
+                          _ onDataChange: @escaping (RoomModel) -> Void,
+                          _ onRoomClose: @escaping () -> Void,
+                          _ onError: @escaping (Error) -> Void)
+    
+    func removeObservers()
 }

@@ -34,23 +34,21 @@ class RoomModel {
     var roomId: String = ""
     var players: [UserModel] = []
     var isOpen: Bool = false
-    let levelNumber: Int
-    
-    init(roomId: String, isOpen: Bool, levelNumber: Int) {
+
+    init(roomId: String, isOpen: Bool) {
         self.roomId = roomId
         self.isOpen = isOpen
-        self.levelNumber = levelNumber
     }
     
     func addPlayer(_ player: UserModel) {
         players.append(player)
     }
     
-    func closeRoom() {
-        isOpen = false
+    func toggleRoomOpen() {
+        isOpen.toggle()
     }
     
     func toString() -> String {
-        return "roomId: \(self.roomId)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)\nlevelNumber: \(self.levelNumber)"
+        return "roomId: \(self.roomId)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)"
     }
 }
