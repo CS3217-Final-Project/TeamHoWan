@@ -52,7 +52,8 @@ class BaseUnitTest: XCTestCase {
                               arena: .arena1,
                               difficulty: 100,
                               numWaves: 1,
-                              enemyWaves: EnemySpawnUnit([[.orc1, nil, nil]]))
+                              enemyWaves: EnemySpawnUnit([[.orc1, nil, nil]]),
+                              enemyWaveSpawnInterval: 1.0)
 
         gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage)
             .withEnabledSuperclassSpy()

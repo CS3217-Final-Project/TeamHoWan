@@ -64,7 +64,7 @@ struct LevelCreator {
             let alternateBasicKnightUnit = try EnemySpawnUnit(nil, .evilKnight, nil)
             let alternatingUnit = basicKnightUnit + alternateBasicKnightUnit
             let fullLevel = alternatingUnit + alternatingUnit + alternatingUnit
-            let levelSpawnInterval = 1.0
+            let levelSpawnInterval = 1.5
             return (fullLevel, levelSpawnInterval)
         } catch {
             fatalError("Unexpected error encountered: \(error)")

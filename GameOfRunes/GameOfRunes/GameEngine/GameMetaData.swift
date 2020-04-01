@@ -35,7 +35,7 @@ class GameMetaData {
         playerHealth = maxPlayerHealth
 
         // TODO: Add levelspawninterval into realm stage
-        levelSpawnInterval = 1.5
+        levelSpawnInterval = stage.enemyWaveSpawnInterval
         levelWaves = stage.enemyWaves
     }
 }

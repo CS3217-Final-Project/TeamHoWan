@@ -34,13 +34,14 @@ class HomeViewController: UIViewController {
             print("Done loading textures")
         }
 
-        guard let stage1Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1).0,
-            let stage2Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2).0,
-            let stage3Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3).0,
-            let stage4Enemies = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4).0 else {
+        guard let stage1EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 1),
+            let stage2EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 2),
+            let stage3EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 3),
+            let stage4EnemyWaveData = try? LevelCreator.getLevelDataAndSpawnInterval(levelNumber: 4) else {
             print("Unable to load Enemies from LevelCreator")
             return
         }
+
         let stage1 = Stage(
             name: "The Beginning",
             chapter: "Peasant Land 1",
@@ -49,7 +50,8 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: stage1Enemies,
+            enemyWaves: stage1EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
             achievement: .A
         )
         
@@ -61,7 +63,8 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: stage2Enemies,
+            enemyWaves: stage2EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
             achievement: .C
         )
         
@@ -73,7 +76,8 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: stage3Enemies,
+            enemyWaves: stage3EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
             achievement: .empty
         )
         
@@ -85,7 +89,8 @@ class HomeViewController: UIViewController {
             arena: .arena1,
             difficulty: 100,
             numWaves: 7,
-            enemyWaves: stage4Enemies,
+            enemyWaves: stage4EnemyWaveData.0,
+            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
             achievement: .S
         )
         

@@ -19,6 +19,7 @@ class StageRealmModel: Object {
     @objc private(set) dynamic var numWaves: Int = .zero
     @objc private(set) dynamic var achievement: Stage.AchievementLevel = .empty
     @objc private(set) dynamic var highScore: Int = .zero
+    @objc private(set) dynamic var enemyWaveSpawnInterval: TimeInterval = 1.0
     private let _enemyWaves: List<EnemyWaveRealmModel> = .init()
     
     override static func primaryKey() -> String? {
@@ -34,7 +35,8 @@ class StageRealmModel: Object {
             arena: arena,
             difficulty: difficulty,
             numWaves: numWaves,
-            enemyWaves: enemyWaves
+            enemyWaves: enemyWaves,
+            enemyWaveSpawnInterval: enemyWaveSpawnInterval
         )
     }
     
@@ -58,6 +60,7 @@ class StageRealmModel: Object {
         numWaves = stage.numWaves
         achievement = stage.achievement
         highScore = stage.highScore
+        enemyWaveSpawnInterval = stage.enemyWaveSpawnInterval
         stage.enemyWaves.unit.forEach { enemyWave in _enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }
     }
     

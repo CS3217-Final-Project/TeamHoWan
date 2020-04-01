@@ -55,6 +55,7 @@ struct Stage {
     let numWaves: Int
     // might want to add the array of enemies here? But how do we determine the numWaves?
     let enemyWaves: EnemySpawnUnit
+    let enemyWaveSpawnInterval: TimeInterval
     
     var achievement: AchievementLevel = .empty
     var highScore: Int = 0
