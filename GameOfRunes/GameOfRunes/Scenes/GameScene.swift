@@ -64,7 +64,7 @@ class GameScene: SKScene {
         setUpTimer(isCountdown: false)
         
         // set up bgm
-        bgmNode = .init(fileNamed: "Lion King Eldigan")
+        bgmNode = .init(fileNamed: "Disturbance in Agustria")
         addChild(bgmNode)
     }
     
