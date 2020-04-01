@@ -24,7 +24,7 @@ struct EnemyWaveCreator {
         case 4:
             return stage4
         default:
-            throw EnemyWaveError.invalidStageNumber
+            throw LevelWaveError.invalidStageNumber
         }
     }
 

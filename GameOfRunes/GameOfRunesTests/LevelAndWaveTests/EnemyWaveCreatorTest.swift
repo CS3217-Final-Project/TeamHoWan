@@ -13,8 +13,10 @@ class EnemyWaveCreatorTest: XCTestCase {
     func testCreateStageEnemyWave_testClosenessToTargetDifficulty() {
         let targetDifficulty = 80
         let threshold = 10
-        let level = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: targetDifficulty,
-                                                 availableMonsters: [.orc1, .orc2])
+        let level = EnemyWaveCreator.createStageEnemyWave(
+            targetDifficulty: targetDifficulty,
+            availableMonsters: [.orc1, .orc2]
+        )
         let allMonsters = level.unit.flatMap({ $0 })
         let allMonsterDifficulties = EnemyWaveCreator.convertMonstersToDifficulties(monsters: allMonsters)
         let totalDifficulty = allMonsterDifficulties.reduce(0, +)
@@ -26,8 +28,10 @@ class EnemyWaveCreatorTest: XCTestCase {
     // Difficulty (ignoring empty lanes) should be non-decreasing
     func testCreateStageEnemyWave_testMonoticity() {
         let targetDifficulty = 80
-        let level = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: targetDifficulty,
-                                                 availableMonsters: [.orc1, .orc2])
+        let level = EnemyWaveCreator.createStageEnemyWave(
+            targetDifficulty: targetDifficulty,
+            availableMonsters: [.orc1, .orc2]
+        )
         let allMonsters = level.unit.flatMap({ $0 })
         let allMonsterDifficulties = EnemyWaveCreator.convertMonstersToDifficulties(monsters: allMonsters)
         for (index, difficulty) in allMonsterDifficulties.enumerated() where (index != 0 && difficulty != 0) {

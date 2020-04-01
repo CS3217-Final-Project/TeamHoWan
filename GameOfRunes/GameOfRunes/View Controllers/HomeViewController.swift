@@ -123,7 +123,7 @@ extension HomeViewController {
     }
 }
 
-// Mark: - Initialise Data in Realm Database
+// MARK: - Initialise Data in Realm Database
 extension HomeViewController {
     /**
      This function is called whenever the Realm database is empty (as determined

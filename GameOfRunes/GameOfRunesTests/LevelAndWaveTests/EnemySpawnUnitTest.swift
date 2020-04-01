@@ -32,7 +32,7 @@ class EnemySpawnUnitTest: XCTestCase {
         let errorMessage = "EnemySpawnUnit cannot have more than GameConfig.GamePlayScene.numLane monsters"
         XCTAssertThrowsError(try EnemySpawnUnit(.orc1, .orc2, .orc3, .orc1, .orc2),
                              errorMessage) { error in
-                                XCTAssertEqual(error as? EnemyWaveError, EnemyWaveError.tooManyEnemyUnits)
+                                XCTAssertEqual(error as? LevelWaveError, LevelWaveError.tooManyEnemyUnits)
         }
     }
 

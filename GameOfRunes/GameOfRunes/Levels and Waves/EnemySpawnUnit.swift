@@ -60,7 +60,7 @@ struct EnemySpawnUnit {
     */
     init(_ monsters: [EnemyType?]) throws {
         guard monsters.count <= GameConfig.GamePlayScene.numLanes else {
-            throw EnemyWaveError.tooManyEnemyUnits
+            throw LevelWaveError.tooManyEnemyUnits
         }
 
         // Fill Up with nil placeholders
