@@ -180,8 +180,9 @@ class GameEngine {
         systemDelegate.dropMana(at: entity)
     }
     
-    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
-        systemDelegate.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
+        systemDelegate.changeAnimationSpeed(for: entity, duration: duration, to: speed,
+                                            animationNodeKey: animationNodeKey)
     }
     
     func increasePlayerMana(by manaPoints: Int) {

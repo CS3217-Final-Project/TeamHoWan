@@ -92,7 +92,7 @@ extension MoveSystem {
             }
         })
         
-        gameEngine?.stopAnimationForDuration(for: entity, duration: duration,
-                                             animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
+        gameEngine?.changeAnimationSpeed(for: entity, duration: duration, to: speed / enemyType.speed,
+                                         animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
     }
 }

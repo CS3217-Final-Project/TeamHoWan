@@ -58,7 +58,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     private func didActivate(powerUp: PowerUpType, on enemy: Entity) {
         guard enemy.type == .enemyEntity,
             let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
-            enemyType.isPowerUpImmune else {
+            !enemyType.isPowerUpImmune else {
                 return
         }
         

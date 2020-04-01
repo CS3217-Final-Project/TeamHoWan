@@ -195,13 +195,15 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).isEmpty)
     }
     
-    func testStopAnimationForDuration() {
-        gameEngine.stopAnimationForDuration(for: bossEnemyEntity,
-                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration,
-                                            animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
-        verify(gameEngine, times(1)).stopAnimationForDuration(for: any(Entity.self),
-                                                              duration: any(TimeInterval.self),
-                                                              animationNodeKey: anyString())
+    func testChangeAnimation() {
+        gameEngine.changeAnimationSpeed(for: bossEnemyEntity,
+                                        duration: GameConfig.IcePrisonPowerUp.powerUpDuration,
+                                        to: 0,
+                                        animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
+        verify(gameEngine, times(1)).changeAnimationSpeed(for: any(Entity.self),
+                                                          duration: any(TimeInterval.self),
+                                                          to: any(Float.self),
+                                                          animationNodeKey: anyString())
         XCTAssertTrue(bossEnemyEntity.component(ofType: SpriteComponent.self)?
             .node.action(forKey: GameConfig.AnimationNodeKey.enemy_walking)?.speed == 0)
     }

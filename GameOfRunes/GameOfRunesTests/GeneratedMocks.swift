@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1389,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  SpriteComponent.swift
@@ -1572,7 +1572,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1681,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1877,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +1986,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2095,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  EnemyEntity.swift
@@ -2234,7 +2234,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GestureEntity.swift
@@ -2342,7 +2342,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  PlayerEntity.swift
@@ -2450,7 +2450,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2559,7 +2559,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  HellfireEntity.swift
@@ -2668,7 +2668,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2777,7 +2777,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  TimerEntity.swift
@@ -2885,7 +2885,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameEngine.swift
@@ -3242,16 +3242,16 @@ import SpriteKit
     
     
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)  {
         
-    return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
-            parameters: (entity, duration, animationNodeKey),
-            escapingParameters: (entity, duration, animationNodeKey),
+    return cuckoo_manager.call("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)",
+            parameters: (entity, duration, speed, animationNodeKey),
+            escapingParameters: (entity, duration, speed, animationNodeKey),
             superclassCall:
                 
-                super.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+                super.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey)
                 ,
-            defaultCall: __defaultImplStub!.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey))
+            defaultCall: __defaultImplStub!.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey))
         
     }
     
@@ -3544,9 +3544,9 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "dropMana(at: GKEntity)", parameterMatchers: matchers))
 	    }
 	    
-	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, Float, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", parameterMatchers: matchers))
 	    }
 	    
 	    func increasePlayerMana<M1: Cuckoo.Matchable>(by manaPoints: M1) -> Cuckoo.ClassStubNoReturnFunction<(Int)> where M1.MatchedType == Int {
@@ -3741,9 +3741,9 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return cuckoo_manager.verify("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, Float, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return cuckoo_manager.verify("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3931,7 +3931,7 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -3986,7 +3986,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4152,7 +4152,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/SystemDelegate.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  SystemDelegate.swift
@@ -4440,16 +4440,16 @@ import GameplayKit
     
     
     
-     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)  {
         
-    return cuckoo_manager.call("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)",
-            parameters: (entity, duration, animationNodeKey),
-            escapingParameters: (entity, duration, animationNodeKey),
+    return cuckoo_manager.call("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)",
+            parameters: (entity, duration, speed, animationNodeKey),
+            escapingParameters: (entity, duration, speed, animationNodeKey),
             superclassCall:
                 
-                super.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+                super.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey)
                 ,
-            defaultCall: __defaultImplStub!.stopAnimation(for: entity, duration: duration, animationNodeKey: animationNodeKey))
+            defaultCall: __defaultImplStub!.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey))
         
     }
     
@@ -4667,9 +4667,9 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "changeMovementSpeed(for: Entity, to: Float, duration: TimeInterval)", parameterMatchers: matchers))
 	    }
 	    
-	    func stopAnimation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, Float, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSystemDelegate.self, method: "changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", parameterMatchers: matchers))
 	    }
 	    
 	    func addScore<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(by points: M1, multiplier: M2, for entity: M3) -> Cuckoo.ClassStubNoReturnFunction<(Int, Double, Entity)> where M1.MatchedType == Int, M2.MatchedType == Double, M3.MatchedType == Entity {
@@ -4823,9 +4823,9 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func stopAnimation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return cuckoo_manager.verify("stopAnimation(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, Float, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return cuckoo_manager.verify("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -4985,7 +4985,7 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -5024,7 +5024,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  HealthSystem.swift
@@ -5160,7 +5160,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  ManaSystem.swift
@@ -5326,7 +5326,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  MoveSystem.swift
@@ -5462,7 +5462,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  SpriteSystem.swift
@@ -5563,16 +5563,16 @@ import GameplayKit
     
     
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)  {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)  {
         
-    return cuckoo_manager.call("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)",
-            parameters: (entity, duration, animationNodeKey),
-            escapingParameters: (entity, duration, animationNodeKey),
+    return cuckoo_manager.call("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)",
+            parameters: (entity, duration, speed, animationNodeKey),
+            escapingParameters: (entity, duration, speed, animationNodeKey),
             superclassCall:
                 
-                super.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+                super.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey)
                 ,
-            defaultCall: __defaultImplStub!.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey))
+            defaultCall: __defaultImplStub!.changeAnimationSpeed(for: entity, duration: duration, to: speed, animationNodeKey: animationNodeKey))
         
     }
     
@@ -5605,9 +5605,9 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "runFadingAnimation(_: Entity)", parameterMatchers: matchers))
 	    }
 	    
-	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", parameterMatchers: matchers))
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.ClassStubNoReturnFunction<(Entity, TimeInterval, Float, String)> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", parameterMatchers: matchers))
 	    }
 	    
 	}
@@ -5651,9 +5651,9 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
-	    func stopAnimationForDuration<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(for entity: M1, duration: M2, animationNodeKey: M3) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == String {
-	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: animationNodeKey) { $0.2 }]
-	        return cuckoo_manager.verify("stopAnimationForDuration(for: Entity, duration: TimeInterval, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func changeAnimationSpeed<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable, M4: Cuckoo.Matchable>(for entity: M1, duration: M2, to speed: M3, animationNodeKey: M4) -> Cuckoo.__DoNotUse<(Entity, TimeInterval, Float, String), Void> where M1.MatchedType == Entity, M2.MatchedType == TimeInterval, M3.MatchedType == Float, M4.MatchedType == String {
+	        let matchers: [Cuckoo.ParameterMatcher<(Entity, TimeInterval, Float, String)>] = [wrap(matchable: entity) { $0.0 }, wrap(matchable: duration) { $0.1 }, wrap(matchable: speed) { $0.2 }, wrap(matchable: animationNodeKey) { $0.3 }]
+	        return cuckoo_manager.verify("changeAnimationSpeed(for: Entity, duration: TimeInterval, to: Float, animationNodeKey: String)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	}
@@ -5681,14 +5681,14 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String)   {
+     override func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  TimerSystem.swift
@@ -5884,7 +5884,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameEndState.swift
@@ -6064,7 +6064,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameInPlayState.swift
@@ -6200,7 +6200,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GamePauseState.swift
@@ -6336,7 +6336,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameSelectionState.swift
@@ -6472,7 +6472,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameStartState.swift
@@ -6608,7 +6608,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameStateMachine.swift
@@ -6728,7 +6728,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  GameScene.swift
@@ -7093,7 +7093,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-01 13:13:11 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-01 13:43:56 +0000
 
 //
 //  SceneManager.swift

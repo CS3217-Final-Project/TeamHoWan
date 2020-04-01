@@ -44,12 +44,13 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
         }
+
         spriteComponent.node.run(
             .fadeOut(withDuration: powerUpComponent.powerUpType.getFadeOutDuration)
         )
     }
     
-    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
         guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
             let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
                 return
@@ -57,7 +58,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         
         // Hack
         entitySpriteComponent.activePauses += 1
-        animation.speed = 0
+        animation.speed = CGFloat(speed)
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entitySpriteComponent.activePauses -= 1
             if entitySpriteComponent.activePauses == 0 {

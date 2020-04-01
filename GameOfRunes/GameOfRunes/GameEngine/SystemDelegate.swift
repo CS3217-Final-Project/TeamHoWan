@@ -93,8 +93,9 @@ class SystemDelegate {
         moveSystem?.changeMovementSpeed(for: entity, to: speed, duration: duration)
     }
     
-    func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
-        spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
+        spriteSystem?.changeAnimationSpeed(for: entity, duration: duration, to: speed,
+                                           animationNodeKey: animationNodeKey)
     }
     
     func addScore(by points: Int, multiplier: Double, for entity: Entity) {
