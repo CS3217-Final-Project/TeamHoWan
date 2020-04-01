@@ -31,13 +31,15 @@ class UserModel {
  Model representing a Room on the network. Contains a list of `UserModel`, together with other properties.
  */
 class RoomModel {
-    var id: String = ""
+    var roomId: String = ""
     var players: [UserModel] = []
     var isOpen: Bool = false
+    let levelNumber: Int
     
-    init(id: String, isOpen: Bool) {
-        self.id = id
+    init(roomId: String, isOpen: Bool, levelNumber: Int) {
+        self.roomId = roomId
         self.isOpen = isOpen
+        self.levelNumber = levelNumber
     }
     
     func addPlayer(_ player: UserModel) {
@@ -49,6 +51,6 @@ class RoomModel {
     }
     
     func toString() -> String {
-        return "id: \(self.id)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)"
+        return "roomId: \(self.roomId)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)\nlevelNumber: \(self.levelNumber)"
     }
 }

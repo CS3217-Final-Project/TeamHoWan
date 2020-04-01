@@ -103,6 +103,8 @@
 		56FC8CF02434202100B6DBC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FC8CEF2434200E00B6DBC9 /* GoogleService-Info.plist */; };
 		56FC8CF12434202200B6DBC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FC8CEF2434200E00B6DBC9 /* GoogleService-Info.plist */; };
 		56FC8CF4243426A800B6DBC9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF3243426A800B6DBC9 /* Model.swift */; };
+		56FC8CF624342CF300B6DBC9 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */; };
+		56FC8CF82434320B00B6DBC9 /* FirebaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */; };
 		56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */; };
 		8A1EB6C4242782F700CA6AC8 /* GameStateMachineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1EB6C3242782F700CA6AC8 /* GameStateMachineTest.swift */; };
 		8A1EB6C62427900000CA6AC8 /* GameStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1EB6C52427900000CA6AC8 /* GameStateTest.swift */; };
@@ -263,6 +265,8 @@
 		56F305012431EFFD0025EA9A /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		56FC8CEF2434200E00B6DBC9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/andyylam/Desktop/TeamHoWan/GameOfRunes/GameOfRunes/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		56FC8CF3243426A800B6DBC9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetwork.swift; sourceTree = "<group>"; };
 		56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureAreaNode.swift; sourceTree = "<group>"; };
 		6C5C802F7ABE04422FCADC58 /* Pods-GameOfRunesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunesTests.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunesTests/Pods-GameOfRunesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1EB6C3242782F700CA6AC8 /* GameStateMachineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachineTest.swift; sourceTree = "<group>"; };
@@ -647,6 +651,8 @@
 			isa = PBXGroup;
 			children = (
 				56FC8CF3243426A800B6DBC9 /* Model.swift */,
+				56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */,
+				56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1014,6 +1020,7 @@
 				561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */,
 				56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */,
 				4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */,
+				56FC8CF82434320B00B6DBC9 /* FirebaseNetwork.swift in Sources */,
 				8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */,
 				4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */,
 				C6AFF685241A61650076F02B /* HealthSystem.swift in Sources */,
@@ -1024,6 +1031,7 @@
 				C632912E2424ED4F005C11D1 /* CircleResult.swift in Sources */,
 				8A3C4DE4242F398A0022FD59 /* SpawnDelegate.swift in Sources */,
 				C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */,
+				56FC8CF624342CF300B6DBC9 /* NetworkInterface.swift in Sources */,
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
