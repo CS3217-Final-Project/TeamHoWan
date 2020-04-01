@@ -6,10 +6,11 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-struct FirebaseValues {
+struct FirebaseKeys {
     static let defaultFalse = false
     static let defaultName = "Anonymous"
     static let defaultEmptyString = ""
+    
     // Room keys
     static let rooms = "rooms"
     static let rooms_roomId = "roomId"

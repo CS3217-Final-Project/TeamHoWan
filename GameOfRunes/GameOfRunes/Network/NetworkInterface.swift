@@ -15,24 +15,31 @@ protocol NetworkInterface {
     
     // ================================== Room functions =========================================
     
-    func createRoom(_ onSuccess: @escaping (String) -> Void,
-                    _ onError: @escaping (Error) -> Void)
+    func createRoom(uid: String,
+                    name: String,
+                    _ onSuccess: @escaping (String) -> Void,
+                    _ onError: @escaping (Error) -> Void) 
     
-    func joinRoom(forRoomId roomId: String,
+    func joinRoom(uid: String,
+                  name: String,
+                  forRoomId roomId: String,
                   _ onSuccess: @escaping () -> Void,
                   _ onRoomNotOpen: @escaping () -> Void,
                   _ onRoomNotExist: @escaping () -> Void,
                   _ onError: @escaping (Error) -> Void)
     
-    func closeRoom(forRoomId roomId: String,
+    func closeRoom(uid: String,
+                   forRoomId roomId: String,
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void)
     
-    func leaveRoom(fromRoomId id: String,
+    func leaveRoom(uid: String,
+                   fromRoomId id: String,
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void)
     
-    func changeReadyState(forRoomId id: String,
+    func changeReadyState(uid: String,
+                          forRoomId id: String,
                           _ onComplete: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
     

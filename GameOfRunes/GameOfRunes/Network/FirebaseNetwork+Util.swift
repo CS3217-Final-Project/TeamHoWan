@@ -34,10 +34,10 @@ extension FirebaseNetwork {
         guard let description = playerDescription as? [String: AnyObject] else {
             return PlayerModel(uid: uid, isHost: false)
         }
-        let isHost = description[FirebaseValues.rooms_players_isHost] as? Bool ?? FirebaseValues.defaultFalse
-        let uid = description[FirebaseValues.rooms_players_uid] as? String ?? FirebaseValues.defaultEmptyString
-        let name = description[FirebaseValues.rooms_players_name] as? String ?? FirebaseValues.defaultName
-        let isReady = description[FirebaseValues.rooms_players_isReady] as? Bool ?? FirebaseValues.defaultFalse
+        let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultFalse
+        let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
+        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultName
+        let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
         return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady)
     }
     
@@ -49,9 +49,9 @@ extension FirebaseNetwork {
          - a RoomModel object
     */
     func firebaseRoomModelFactory(forDict dict: [String: AnyObject]) -> RoomModel {
-        let roomId = dict[FirebaseValues.rooms_roomId] as? String ?? FirebaseValues.defaultEmptyString
-        let isOpen = dict[FirebaseValues.rooms_isOpen] as? Bool ?? FirebaseValues.defaultFalse
-        let players = dict[FirebaseValues.rooms_players_name] as? [String: AnyObject] ?? [:]
+        let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultEmptyString
+        let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultFalse
+        let players = dict[FirebaseKeys.rooms_players_name] as? [String: AnyObject] ?? [:]
         
         let room = RoomModel(roomId: roomId, isOpen: isOpen)
         for (playerUid, playerDescription) in players {
@@ -71,10 +71,10 @@ extension FirebaseNetwork {
      */
     func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool) -> [String: AnyObject] {
         let playerDict: [String: AnyObject] = [
-            FirebaseValues.rooms_players_isHost: isHost as AnyObject,
-            FirebaseValues.rooms_players_uid: uid as AnyObject,
-            FirebaseValues.rooms_players_name: name as AnyObject,
-            FirebaseValues.rooms_players_isReady: isReady as AnyObject
+            FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
+            FirebaseKeys.rooms_players_uid: uid as AnyObject,
+            FirebaseKeys.rooms_players_name: name as AnyObject,
+            FirebaseKeys.rooms_players_isReady: isReady as AnyObject
         ]
         return playerDict
     }
