@@ -24,7 +24,6 @@ class SceneManager {
     
     private let presentingView: SKView
     private let gameStateMachine: GameStateMachine
-    // TODO: Remove level Number from initialiser
     private lazy var gamePlayScene: GameScene = .init(
         size: self.presentingView.bounds.size,
         gameStateMachine: gameStateMachine
