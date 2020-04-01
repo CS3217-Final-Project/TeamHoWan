@@ -42,8 +42,19 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     private func closestMoveComponent(from component: MoveComponent, for team: Team) -> GKAgent2D? {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
+        var avoidPowerUps = false
+        
+        if let enemyType = component.entity?.component(ofType: EnemyTypeComponent.self)?.enemyType {
+            avoidPowerUps = enemyType.isPowerUpImmune
+        }
         
         gameEngine?.moveComponents(for: team).forEach {
+            if avoidPowerUps,
+                let parent = $0.entity?.component(ofType: ParentEntityComponent.self)?.parent,
+                parent.type.isPowerUp {
+                    return
+            }
+            
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
                 closestMoveComponent = $0

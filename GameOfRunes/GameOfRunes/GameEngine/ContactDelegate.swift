@@ -66,13 +66,8 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)
         case .icePrison:
-            if enemyType.isFastMonster {
-                gameEngine?.changeMovementSpeed(for: enemy, to: 0,
-                                                duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
-            } else {
-                gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.speed / 2,
-                                                duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
-            }
+            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
+                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
         default:
             return
         }

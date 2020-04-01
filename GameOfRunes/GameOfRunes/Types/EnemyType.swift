@@ -109,6 +109,14 @@ enum EnemyType: String, CaseIterable {
             return false
         }
     }
+    
+    var icePrisonSpeed: Float {
+        if isFastMonster {
+            return speed / 4
+        } else {
+            return 0
+        }
+    }
 
     /** Provides Difficulty to Monster Mapping */
     static func getMonsterTypeFromDifficulty(difficulty: Int) -> EnemyType? {
