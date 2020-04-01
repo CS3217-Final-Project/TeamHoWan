@@ -55,7 +55,10 @@ class HomeViewController: UIViewController {
             numWaves: 7,
             enemyWaves: stage1EnemyWaveData.0,
             enemyWaveSpawnInterval: stage1EnemyWaveData.1,
-            achievement: .A
+            achievementBMinScore: 10,
+            achievementAMinScore: 40,
+            achievementSMinScore: 50,
+            achievement: .empty
         )
         
         let stage2 = Stage(
@@ -68,7 +71,10 @@ class HomeViewController: UIViewController {
             numWaves: 7,
             enemyWaves: stage2EnemyWaveData.0,
             enemyWaveSpawnInterval: stage2EnemyWaveData.1,
-            achievement: .C
+            achievementBMinScore: 10,
+            achievementAMinScore: 40,
+            achievementSMinScore: 50,
+            achievement: .empty
         )
         
         let stage3 = Stage(
@@ -81,6 +87,9 @@ class HomeViewController: UIViewController {
             numWaves: 7,
             enemyWaves: stage3EnemyWaveData.0,
             enemyWaveSpawnInterval: stage3EnemyWaveData.1,
+            achievementBMinScore: 10,
+            achievementAMinScore: 40,
+            achievementSMinScore: 50,
             achievement: .empty
         )
         
@@ -94,7 +103,10 @@ class HomeViewController: UIViewController {
             numWaves: 7,
             enemyWaves: stage4EnemyWaveData.0,
             enemyWaveSpawnInterval: stage4EnemyWaveData.1,
-            achievement: .S
+            achievementBMinScore: 10,
+            achievementAMinScore: 40,
+            achievementSMinScore: 50,
+            achievement: .empty
         )
         
         let stages = [stage1, stage2, stage3, stage4]

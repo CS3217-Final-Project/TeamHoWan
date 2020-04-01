@@ -17,6 +17,9 @@ class StageRealmModel: Object {
     @objc private(set) dynamic var arena: ArenaType = .arena1
     @objc private(set) dynamic var difficulty: Int = .zero
     @objc private(set) dynamic var numWaves: Int = .zero
+    @objc private(set) dynamic var achievementBMinScore: Int = .zero
+    @objc private(set) dynamic var achievementAMinScore: Int = .zero
+    @objc private(set) dynamic var achievementSMinScore: Int = .zero
     @objc private(set) dynamic var achievement: Stage.AchievementLevel = .empty
     @objc private(set) dynamic var highScore: Int = .zero
     @objc private(set) dynamic var enemyWaveSpawnInterval: TimeInterval = 1.0
@@ -37,6 +40,10 @@ class StageRealmModel: Object {
             numWaves: numWaves,
             enemyWaves: enemyWaves,
             enemyWaveSpawnInterval: enemyWaveSpawnInterval,
+            achievementBMinScore: achievementBMinScore,
+            achievementAMinScore: achievementAMinScore,
+            achievementSMinScore: achievementSMinScore,
+            achievement: achievement,
             highScore: highScore
         )
     }
@@ -60,6 +67,9 @@ class StageRealmModel: Object {
         difficulty = stage.difficulty
         numWaves = stage.numWaves
         achievement = stage.achievement
+        achievementBMinScore = stage.achievementBMinScore
+        achievementAMinScore = stage.achievementAMinScore
+        achievementSMinScore = stage.achievementSMinScore
         highScore = stage.highScore
         enemyWaveSpawnInterval = stage.enemyWaveSpawnInterval
         stage.enemyWaves.unit.forEach { enemyWave in _enemyWaves.append(EnemyWaveRealmModel(enemyWave: enemyWave)) }

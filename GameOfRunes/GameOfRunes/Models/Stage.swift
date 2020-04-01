@@ -44,6 +44,10 @@ struct Stage {
                 return "empty"
             }
         }
+
+        static func < (lhs: AchievementLevel, rhs: AchievementLevel) -> Bool {
+            lhs.rawValue > rhs.rawValue
+        }
     }
     
     let name: String
@@ -57,6 +61,10 @@ struct Stage {
     let enemyWaves: EnemySpawnUnit
     let enemyWaveSpawnInterval: TimeInterval
     
+    let achievementBMinScore: Int
+    let achievementAMinScore: Int
+    let achievementSMinScore: Int
+
     var achievement: AchievementLevel = .empty
     var highScore: Int = 0
 }

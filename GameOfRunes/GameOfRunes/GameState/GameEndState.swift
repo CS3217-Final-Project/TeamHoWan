@@ -40,13 +40,41 @@ class GameEndState: GKState {
     func updateStageData() {
         guard let gameStateMachine = stateMachine as? GameStateMachine,
             var stage = gameStateMachine.stage else {
-                return
+            return
         }
 
+        updateHighScore(stage: &stage)
+        updateAchievementLevel(stage: &stage)
+
+        HomeViewController.storage.save(stages: stage)
+    }
+
+    private func updateHighScore(stage: inout Stage) {
         if finalScore > stage.highScore {
             stage.highScore = finalScore
         }
+    }
 
-        HomeViewController.storage.save(stages: stage)
+    private func updateAchievementLevel(stage: inout Stage) {
+        // Achievement Level will only be updated if player wins stage
+        guard didWin else {
+            return
+        }
+
+        var finalAchievementLevel: Stage.AchievementLevel
+        if finalScore >= stage.achievementSMinScore {
+            finalAchievementLevel = .S
+        } else if finalScore >= stage.achievementAMinScore {
+            finalAchievementLevel = .A
+        } else if finalScore >= stage.achievementBMinScore {
+            finalAchievementLevel = .B
+        } else {
+            finalAchievementLevel = .C
+        }
+
+        // Achievement Level will only be updated if player gets a better Achievement Level
+        if stage.achievement < finalAchievementLevel {
+            stage.achievement = finalAchievementLevel
+        }
     }
 }
