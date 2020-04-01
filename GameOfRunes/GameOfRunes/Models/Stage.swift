@@ -45,6 +45,7 @@ struct Stage {
             }
         }
 
+        /** Make Achievement Level Comparable */
         static func < (lhs: AchievementLevel, rhs: AchievementLevel) -> Bool {
             lhs.rawValue > rhs.rawValue
         }
@@ -60,7 +61,8 @@ struct Stage {
     // might want to add the array of enemies here? But how do we determine the numWaves?
     let enemyWaves: EnemySpawnUnit
     let enemyWaveSpawnInterval: TimeInterval
-    
+
+    // Note: there is not min score for C because player will obtain it as long as he/she wins the game
     let achievementBMinScore: Int
     let achievementAMinScore: Int
     let achievementSMinScore: Int

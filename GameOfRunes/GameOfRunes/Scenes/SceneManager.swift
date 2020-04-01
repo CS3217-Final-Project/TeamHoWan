@@ -67,7 +67,7 @@ class SceneManager {
             scene = gameEndScene
             transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .map:
-            updateGameMap()
+            refreshGameMap()
             scene = gameMapScene
             transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
@@ -79,7 +79,6 @@ class SceneManager {
      Resets the `GameScene` by creating a new `GameScene` object,
      */
     func beginNewStage() {
-        // TODO: Might be able to refactor this (similar to `updateGameMap`)
         gamePlayScene = .init(
             size: presentingView.bounds.size,
             gameStateMachine: gameStateMachine,
@@ -87,12 +86,10 @@ class SceneManager {
         )
     }
 
-    private func updateGameMap() {
-        gameMapScene.updateGameMap()
+    /**
+     Refreshes the Game Map (so that back-end updates can be reflected)
+     */
+    private func refreshGameMap() {
+        gameMapScene.refreshGameMap()
     }
-
-    //TODO: Consider removing
-//    func updateMapScene() {
-//        gameMapScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
-//    }
 }

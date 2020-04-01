@@ -234,7 +234,15 @@ extension GameMapScene {
 
 // MARK: - Updating of Stage Data
 extension GameMapScene {
-    func updateGameMap() {
+    /**
+     This function is called by GameEndState in order to update the front-end
+     when the back-end changes (e.g. stage's highscore/achievement level are update)
+     */
+    func refreshGameMap() {
+        // Remove and Reset Stage Preview
+        stagePreviewNode.removeFromParent()
+        setUpStagePreview()
+
         // Remove Current Stage Nodes
         stageNodeLayer.removeFromParent()
 

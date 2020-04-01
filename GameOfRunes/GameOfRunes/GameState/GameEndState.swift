@@ -33,11 +33,16 @@ class GameEndState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
 
-        updateStageData()
+        updateAndSaveStageData()
         sceneManager.transitionToScene(sceneIdentifier: .end(win: didWin))
     }
 
-    func updateStageData() {
+    /**
+     Updates the data within the `Stage` struct for persisting.
+     This is so that information can be persisted across games (e.g. a player's high score
+     and best achievement level is remembered in the application)
+     */
+    func updateAndSaveStageData() {
         guard let gameStateMachine = stateMachine as? GameStateMachine,
             var stage = gameStateMachine.stage else {
             return
@@ -47,14 +52,17 @@ class GameEndState: GKState {
         updateAchievementLevel(stage: &stage)
 
         HomeViewController.storage.save(stages: stage)
+        print(HomeViewController.storage.loadAllStages())
     }
 
+    /** Will update player high score if current score is better than previous high score. */
     private func updateHighScore(stage: inout Stage) {
         if finalScore > stage.highScore {
             stage.highScore = finalScore
         }
     }
 
+    /** Will update the player achievement level if current achievement level is better than previous one. */
     private func updateAchievementLevel(stage: inout Stage) {
         // Achievement Level will only be updated if player wins stage
         guard didWin else {
