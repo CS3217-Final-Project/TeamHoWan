@@ -24,7 +24,7 @@ class DarkVortexPowerUpEntity: Entity {
                                                 team: .player,
                                                 parent: self)
         
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.HellFirePowerUp.powerUpDuration)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DarkVortexPowerUp.powerUpDuration)
         let powerUpComponent = PowerUpComponent(.darkVortex)
         let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         

@@ -140,6 +140,14 @@ class GameEngineTest: BaseUnitTest {
         verify(gameEngine, times(1)).enemyForceRemoved(any(GKEntity.self))
         verify(gameEngine, times(0)).decreasePlayerHealth()
         verify(gameEngine, times(0)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).remove(any(Entity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
+        XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
+        gameEngine.update(with: 1 / 60)
+        verify(gameEngine, times(1)).enemyForceRemoved(any(GKEntity.self))
+        verify(gameEngine, times(0)).decreasePlayerHealth()
+        verify(gameEngine, times(0)).minusHealthPoints(for: any(GKEntity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
         verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
@@ -162,6 +170,14 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
         gameEngine.enemyReachedLine(enemyEntity)
+        verify(gameEngine, times(1)).enemyReachedLine(any(GKEntity.self))
+        verify(gameEngine, times(1)).decreasePlayerHealth()
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).remove(any(Entity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
+        XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
+        gameEngine.update(with: 1 / 60)
         verify(gameEngine, times(1)).enemyReachedLine(any(GKEntity.self))
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
@@ -189,19 +205,28 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.gestureActivated(gesture: gesture)
         verify(gameEngine, times(1)).gestureActivated(gesture: any(CustomGesture.self))
         verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).remove(any(Entity.self))
+        verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
+        XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
+        XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
+        gameEngine.update(with: 1 / 60)
+        verify(gameEngine, times(1)).gestureActivated(gesture: any(CustomGesture.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
         verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).isEmpty)
     }
     
-    func testStopAnimationForDuration() {
-        gameEngine.stopAnimationForDuration(for: bossEnemyEntity,
-                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration,
-                                            animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
-        verify(gameEngine, times(1)).stopAnimationForDuration(for: any(Entity.self),
-                                                              duration: any(TimeInterval.self),
-                                                              animationNodeKey: anyString())
+    func testChangeAnimation() {
+        gameEngine.changeAnimationSpeed(for: bossEnemyEntity,
+                                        duration: GameConfig.IcePrisonPowerUp.powerUpDuration,
+                                        to: 0,
+                                        animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
+        verify(gameEngine, times(1)).changeAnimationSpeed(for: any(Entity.self),
+                                                          duration: any(TimeInterval.self),
+                                                          to: any(Float.self),
+                                                          animationNodeKey: anyString())
         XCTAssertTrue(bossEnemyEntity.component(ofType: SpriteComponent.self)?
             .node.action(forKey: GameConfig.AnimationNodeKey.enemy_walking)?.speed == 0)
     }

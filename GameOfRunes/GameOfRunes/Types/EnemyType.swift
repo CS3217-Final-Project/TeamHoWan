@@ -113,20 +113,30 @@ import RealmSwift
             return false
         }
     }
-    
+
     var disablePowerUps: [PowerUpType] {
         switch self {
+//        case .evilKnight:
+//            return PowerUpType.allCases
         default:
             return []
         }
     }
     
-    var powerUpImmunity: Bool {
+    var isPowerUpImmune: Bool {
         switch self {
-        case .evilKnight:
-            return true
+//        case .evilKnight:
+//            return true
         default:
             return false
+        }
+    }
+    
+    var icePrisonSpeed: Float {
+        if isFastMonster {
+            return speed / 4
+        } else {
+            return 0
         }
     }
 

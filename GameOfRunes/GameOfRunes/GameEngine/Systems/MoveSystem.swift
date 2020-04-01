@@ -42,8 +42,19 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
     private func closestMoveComponent(from component: MoveComponent, for team: Team) -> GKAgent2D? {
         var closestMoveComponent: MoveComponent?
         var closestDistance: CGFloat = 0.0
+        var avoidPowerUps = false
+        
+        if let enemyType = component.entity?.component(ofType: EnemyTypeComponent.self)?.enemyType {
+            avoidPowerUps = enemyType.isPowerUpImmune
+        }
         
         gameEngine?.moveComponents(for: team).forEach {
+            if avoidPowerUps,
+                let parent = $0.entity?.component(ofType: ParentEntityComponent.self)?.parent,
+                parent.type.isPowerUp {
+                    return
+            }
+            
             let distance = component.cgPosition.distance(to: $0.cgPosition)
             if closestMoveComponent == nil || distance < closestDistance {
                 closestMoveComponent = $0
@@ -65,7 +76,7 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
 
 /** Extension for Power Up implementations */
 extension MoveSystem {
-    func stopMovementForDuration(for entity: Entity, duration: TimeInterval) {
+    func changeMovementSpeed(for entity: Entity, to speed: Float, duration: TimeInterval) {
         guard let entityMoveComponent = entity.component(ofType: MoveComponent.self),
             let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType else {
             return
@@ -73,7 +84,7 @@ extension MoveSystem {
 
         // Hack
         entityMoveComponent.activePauses += 1
-        entityMoveComponent.maxSpeed = 0
+        entityMoveComponent.maxSpeed = speed
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entityMoveComponent.activePauses -= 1
             if entityMoveComponent.activePauses == 0 {
@@ -81,7 +92,7 @@ extension MoveSystem {
             }
         })
         
-        gameEngine?.stopAnimationForDuration(for: entity, duration: duration,
-                                             animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
+        gameEngine?.changeAnimationSpeed(for: entity, duration: duration, to: speed / enemyType.speed,
+                                         animationNodeKey: GameConfig.AnimationNodeKey.enemy_walking)
     }
 }

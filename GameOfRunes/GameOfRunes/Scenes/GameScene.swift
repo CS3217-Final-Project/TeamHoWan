@@ -307,23 +307,16 @@ extension GameScene: SelectedPowerUpResponder {
         
         // reasonable arbitrary value for darkVortex radius
         let radius = size.width / 3
-        _ = didActivatePowerUp(at: touch.location(in: self), with: .init(width: radius, height: radius))
+        activatePowerUp(at: touch.location(in: self), with: .init(width: radius, height: radius))
     }
     
-    func didActivatePowerUp(at location: CGPoint, with size: CGSize) -> Bool {
+    func activatePowerUp(at location: CGPoint, with size: CGSize) {
         guard selectedPowerUp != nil else {
-            return false
+            return
         }
 
-        let didActivate = gameEngine.didActivatePowerUp(at: location, with: size)
-        
+        gameEngine.activatePowerUp(at: location, with: size)
         deselectPowerUp()
-        
-        if !didActivate {
-            showInsufficientMana(at: location)
-        }
-        
-        return didActivate
     }
     
     func deselectPowerUp() {
@@ -367,5 +360,21 @@ extension GameScene: SelectedPowerUpResponder {
         
         insufficientManaLabel.run(animationAction)
         highestPriorityLayer.addChild(insufficientManaLabel)
+    }
+    
+    func showPowerUpDisabled(at location: CGPoint) {
+        let powerUpDisabledLabel = SKLabelNode(fontNamed: GameConfig.fontName)
+        powerUpDisabledLabel.position = location
+        powerUpDisabledLabel.text = "PowerUp Disabled"
+        powerUpDisabledLabel.fontSize = size.width / 25
+        powerUpDisabledLabel.fontColor = .red
+        let animationAction = SKAction.sequence([
+            .move(by: .init(dx: 0.0, dy: size.width / 100), duration: 1.5),
+            .fadeOut(withDuration: 0.25),
+            .removeFromParent()
+        ])
+        
+        powerUpDisabledLabel.run(animationAction)
+        highestPriorityLayer.addChild(powerUpDisabledLabel)
     }
 }

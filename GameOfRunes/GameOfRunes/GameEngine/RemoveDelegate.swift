@@ -52,12 +52,7 @@ class RemoveDelegate {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
-        guard let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity else {
-            return
-        }
-
-        gameEngine?.remove(gestureEntity)
-        removeEnemyFromGame(entity)
+        removeEnemyFromGameWithAnimation(entity)
     }
     
     func removeDroppedMana(_ entity: DroppedManaEntity) {
@@ -91,7 +86,7 @@ class RemoveDelegate {
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeEnemyFromGame(_ entity: EnemyEntity, fullAnimation: Bool = true) {
+    private func removeEnemyFromGameWithAnimation(_ entity: EnemyEntity, fullAnimation: Bool = true) {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }

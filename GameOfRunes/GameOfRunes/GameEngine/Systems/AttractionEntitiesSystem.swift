@@ -26,6 +26,16 @@ class AttractionEntitiesSystem: GKComponentSystem<AttractionEntitiesComponent>, 
         }
     }
     
+    override func removeComponent(foundIn entity: GKEntity) {
+        guard let attractionEntitiesComponent = entity.component(ofType: AttractionEntitiesComponent.self) else {
+            return
+        }
+        
+        for entity in attractionEntitiesComponent.attractionEntities {
+            gameEngine?.remove(entity)
+        }
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? AttractionEntitiesComponent else {
             return

@@ -24,6 +24,14 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
         gameEngine?.add(gestureEntityComponent.gestureEntity)
     }
     
+    override func removeComponent(foundIn entity: GKEntity) {
+        guard let gestureEntityComponent = entity.component(ofType: GestureEntityComponent.self) else {
+            return
+        }
+        
+        gameEngine?.remove(gestureEntityComponent.gestureEntity)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? GestureEntityComponent else {
             return

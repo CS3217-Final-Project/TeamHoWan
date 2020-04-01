@@ -56,15 +56,18 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     }
     
     private func didActivate(powerUp: PowerUpType, on enemy: Entity) {
-        guard enemy.type == .enemyEntity else {
-            return
+        guard enemy.type == .enemyEntity,
+            let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
+            !enemyType.isPowerUpImmune else {
+                return
         }
         
         switch powerUp {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)
         case .icePrison:
-            gameEngine?.stopMovement(for: enemy, duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
+            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
+                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
         default:
             return
         }
