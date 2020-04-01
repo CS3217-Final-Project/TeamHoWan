@@ -249,22 +249,43 @@ class GameEngine {
     
     func changeSelectedPowerUp(to powerUp: PowerUpType?) {
         metadata.selectedPowerUp = powerUp
+        
+        guard let powerUp = powerUp,
+            checkIfPowerUpIsDisabled(powerUp) else {
+                return
+        }
+
+        // TODO: Add some feedback here for disabled powerup.
+        gameScene?.deselectPowerUp()
+    }
+
+    private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
+        let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
+            result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
+        })
+        
+        return disabledPowerUps.contains(powerUp)
     }
     
-    func didActivatePowerUp(at position: CGPoint, with size: CGSize) -> Bool {
+    func activatePowerUp(at position: CGPoint, with size: CGSize) {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
             fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
         }
         
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
+        if checkIfPowerUpIsDisabled(selectedPowerUp) {
+            gameScene?.showPowerUpDisabled(at: position)
+            return
+        }
         
-        guard metadata.playerMana >= manaPointsRequired else {
-            return false
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
+
+        if metadata.playerMana <= manaPointsRequired {
+            gameScene?.showInsufficientMana(at: position)
+            return
         }
         
         systemDelegate.activatePowerUp(at: position, with: size)
         decreasePlayerMana(by: manaPointsRequired)
-        return true
     }
 }
 

@@ -93,9 +93,11 @@ enum EnemyType: String, CaseIterable {
             return false
         }
     }
-    
+
     var disablePowerUps: [PowerUpType] {
         switch self {
+        case .evilKnight:
+            return PowerUpType.allCases
         default:
             return []
         }
