@@ -105,9 +105,9 @@ class GameScene: SKScene {
         addChild(highestPriorityLayer)
     }
     
-    private func setUpBackground(arenaType: ArenaType? = nil) {
+    private func setUpBackground() {
         let backgroundNode = SKSpriteNode(
-            texture: arenaType?.texture ?? ArenaType.allCases.randomElement()?.texture ?? .init(),
+            texture: gameEngine.metadata.stage.arena.texture,
             color: .clear,
             size: size
         )
@@ -171,15 +171,27 @@ class GameScene: SKScene {
         // re-position and resize
         let newEndPointWidth = size.width
         let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+        let newEndPointSize = CGSize(width: newEndPointWidth, height: newEndPointHeight)
+        endPointNode.size = newEndPointSize
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
         
         // relative to the player area layer
         endPointNode.zPosition = -1
+        endPointNode.addGlow()
         
-        let endPointEntity = EndPointEntity(node: endPointNode)
+        let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
         gameEngine.add(endPointEntity)
+        
+        // check if need to add end point for elite knight
+        guard gameEngine.metadata.avatar == .holyKnight else {
+            return
+        }
+        
+        let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
+        enemyEndPointNode.position = .init(x: frame.midX, y: frame.maxY - GameConfig.GamePlayScene.verticalOffSet)
+        let enemyEndPointEntity = EndPointEntity(node: enemyEndPointNode, team: .enemy)
+        gameEngine.add(enemyEndPointEntity)
     }
     
     private func setUpPlayer() {

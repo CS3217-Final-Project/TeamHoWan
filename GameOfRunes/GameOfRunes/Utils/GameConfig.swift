@@ -40,10 +40,10 @@ enum GameConfig {
         static let troll3Difficulty: Int = 6
         static let evilKnightDifficulty: Int = 7
         
-        static let slowMovementSpeed: Float = 125.0
-        static let normalMovementSpeed: Float = 150.0
-        static let fastMovementSpeed: Float = 200.0
-        static let bossMovementSpeed: Float = 75.0
+        static let slowMovementSpeed: Float = 50.0
+        static let normalMovementSpeed: Float = 100.0
+        static let fastMovementSpeed: Float = 150.0
+        static let bossMovementSpeed: Float = 25.0
     }
     
     enum Mana {

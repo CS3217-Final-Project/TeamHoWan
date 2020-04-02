@@ -23,8 +23,8 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
             return
         }
         
-        let isBodyAEnemy = contact.bodyA.categoryBitMask == CollisionType.enemy.rawValue
-        let isBodyBEnemy = contact.bodyB.categoryBitMask == CollisionType.enemy.rawValue
+        let isBodyAEnemy = contact.bodyA.categoryBitMask == CollisionType.enemyUnit.rawValue
+        let isBodyBEnemy = contact.bodyB.categoryBitMask == CollisionType.enemyUnit.rawValue
         
         // Only concerned if one of the nodes are enemy nodes (XOR), BUT NOT BOTH (shouldn't occur)
         if isBodyAEnemy, !isBodyBEnemy {
@@ -46,7 +46,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
             gameEngine?.enemyReachedLine(enemyEntity)
         case _ where otherEntity.type.isPowerUp:
             guard let powerUpComponent = otherEntity.component(ofType: PowerUpComponent.self) else {
-                    return
+                return
             }
             
             didActivate(powerUp: powerUpComponent.powerUpType, on: enemyEntity)
@@ -66,8 +66,10 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         case .hellfire:
             gameEngine?.enemyForceRemoved(enemy)
         case .icePrison:
-            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
-                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
+            gameEngine?.changeMovementSpeed(
+                for: enemy, to: enemyType.icePrisonSpeed,
+                duration: GameConfig.IcePrisonPowerUp.powerUpDuration
+            )
         default:
             return
         }

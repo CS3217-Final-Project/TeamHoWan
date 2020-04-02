@@ -88,7 +88,7 @@ class BaseUnitTest: XCTestCase {
             scoreNode: scoreNode
         )
             .withEnabledSuperclassSpy()
-        endPointEntity = MockEndPointEntity(node: SKSpriteNode())
+        endPointEntity = MockEndPointEntity(node: SKSpriteNode(), team: .player)
             .withEnabledSuperclassSpy()
         endPointAttractionEntities = endPointEntity
             .component(ofType: AttractionEntitiesComponent.self)?

@@ -14,11 +14,11 @@ class EndPointEntity: Entity {
         .endPointEntity
     }
     
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, team: Team) {
         super.init()
         
-        CollisionType.endpoint.setPhysicsBody(for: node, with: node.size)
-        node.addGlow()
+        let collisionType: CollisionType = team == .player ? .playerEndPoint : .enemyEndPoint
+        collisionType.setPhysicsBody(for: node, with: node.size)
         
         let spriteComponent = SpriteComponent(node: node, layerType: .playerAreaLayer)
         
@@ -40,7 +40,7 @@ class EndPointEntity: Entity {
             let attractionEntity = AttractionEntity(
                 node: attractionNode,
                 layerType: .playerAreaLayer,
-                team: .player,
+                team: team,
                 parent: self
             )
             
