@@ -168,7 +168,7 @@ class GameEngine {
     }
     
     func enemyForceRemoved(_ entity: Entity) {
-        removeDelegate.removeEnemy(entity)
+        removeDelegate.removeEnemy(entity, shouldIncreaseScore: true)
     }
     
     func enemyReachedLine(_ entity: Entity) {
