@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit // TODO: Remove this if not necessary
 
 class GameScene: SKScene {
     private var gameEngine: GameEngine!
@@ -228,6 +229,33 @@ class GameScene: SKScene {
         lastUpdateTime = currentTime
         
         gameEngine.update(with: deltaTime)
+
+        //TODO: Get rid of this (blocking)
+        let timer = CodeTimer()
+
+        // Taking JPEG Data
+        let image = self.screenShot()
+        print("Time taken for screenshot: \(timer.stop())")
+
+        timer.reset()
+        let resizedImage = image?.resize()
+        print("Time taken for resizing: \(timer.stop())")
+
+        timer.reset()
+        resizedImage?.saveImage(fileName: "resized-\(currentTime).jpg")
+        print("Time taken to save: \(timer.stop())")
+
+        // Taking HEIC Data
+//        let image = self.screenShot()
+//        print("Time taken for screenshot: \(timer.stop())")
+//
+//        timer.reset()
+//        let resizedImage = try? image?.resizeHEIC()
+//        print("Time taken for resizing: \(timer.stop())")
+//
+//        timer.reset()
+//        resizedImage?.saveImage(fileName: "resized-\(currentTime).heic")
+//        print("Time taken to save: \(timer.stop())")
     }
     
     func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {
@@ -385,13 +413,13 @@ extension GameScene: SelectedPowerUpResponder {
  // TODO: Consider removing this in the future
  */
 extension GameScene {
-    func screenShot() -> UIImage {
+    func screenShot() -> UIImage? {
         // TODO: Consider removing player area from screenshot
         // Begin Image Context
-        UIGraphicsBeginImageContextWithOptions(UIScreen.mainScreen().bounds.size, false, 0)
+        UIGraphicsBeginImageContextWithOptions(self.view!.bounds.size, false, 0)
 
-        self.view!.drawViewHierarchyInRect(self.view!.bounds, afterScreenUpdates: true)
-        var image:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        self.view!.drawHierarchy(in: self.view!.bounds, afterScreenUpdates: true)
+        let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
 
         // End Image Context
         UIGraphicsEndImageContext()
