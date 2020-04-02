@@ -140,15 +140,14 @@ class GameEngine {
         var count = 0
 
         for entity in entities(for: .gestureEntity) {
-            guard let gestureComponent =
-                entity.component(ofType: GestureComponent.self),
+            guard let gestureComponent = entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
                     continue
             }
             removeDelegate.removeGesture(for: entity)
             count += 1
-            
         }
+
         guard let playerEntity = playerEntity else {
             return
         }
@@ -164,27 +163,19 @@ class GameEngine {
         systemDelegate.setGesture(for: entity, using: gesture)
     }
     
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
-    func enemyForceRemoved(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
-            return
-        }
-
-        removeDelegate.removeEnemy(enemyEntity)
+    func enemyForceRemoved(_ entity: Entity) {
+        removeDelegate.removeEnemy(entity)
     }
     
-    func enemyReachedLine(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
-            return
-        }
-
-        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
+    func enemyReachedLine(_ entity: Entity) {
+        removeDelegate.removeEnemy(entity, shouldDecreasePlayerHealth: true)
     }
     
-    func dropMana(at entity: GKEntity) {
+    func dropMana(at entity: Entity) {
         systemDelegate.dropMana(at: entity)
     }
     
@@ -302,7 +293,7 @@ extension GameEngine: DroppedManaResponder {
      */
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
         guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
-            let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
+            let manaPoints = droppedManaEntity.component(ofType: ManaComponent.self)?.manaPoints else {
                 return
         }
         

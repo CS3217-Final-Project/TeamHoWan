@@ -107,18 +107,18 @@ class GameEngineTest: BaseUnitTest {
     func testDecreasePlayerHealth() {
         gameEngine.decreasePlayerHealth()
         verify(gameEngine, times(1)).decreasePlayerHealth()
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 4)
     }
     
     func testMinusHealthPoints() {
         XCTAssertTrue(gameEngine.minusHealthPoints(for: bossEnemyEntity) == 4)
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
     }
     
     func testDropMana() {
         gameEngine.dropMana(at: bossEnemyEntity)
-        verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(1)).dropMana(at: any(Entity.self))
     }
 
     func testEnemyForceRemoved() {

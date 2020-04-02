@@ -15,20 +15,17 @@ class RemoveDelegate {
         self.gameEngine = gameEngine
     }
     
-    func removeGesture(for entity: GKEntity) {
-        guard let gestureEntity = entity as? GestureEntity,
-            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent else {
+    func removeGesture(for entity: Entity) {
+        guard entity.type == .gestureEntity,
+            let enemyEntity = entity.component(ofType: ParentEntityComponent.self)?.parent,
+            enemyEntity.type == .enemyEntity,
+            let enemyHealth = gameEngine?.minusHealthPoints(for: enemyEntity) else {
                 return
         }
         
-        guard let enemyHealth = gameEngine?.minusHealthPoints(for: enemyEntity) else {
-            return
-        }
-        
         if enemyHealth <= 0 {
-            removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
+            removeEnemy(enemyEntity, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
-            return
         } else {
             gameEngine?.setNextGesture(for: enemyEntity)
         }
@@ -36,6 +33,10 @@ class RemoveDelegate {
 
     func removeEnemy(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
                      shouldIncreaseScore: Bool = false) {
+        guard entity.type == .enemyEntity else {
+            return
+        }
+        
         if shouldDecreasePlayerHealth, gameEngine?.entities(for: .invincibilityPowerUpEntity).isEmpty ?? true {
             gameEngine?.decreasePlayerHealth()
         } else {
@@ -52,7 +53,7 @@ class RemoveDelegate {
         removeEnemyFromGameWithAnimation(entity)
     }
     
-    func removeDroppedMana(_ entity: DroppedManaEntity) {
+    func removeDroppedMana(_ entity: Entity) {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
@@ -84,8 +85,9 @@ class RemoveDelegate {
      the `EnemyEntity`.
      */
     private func removeEnemyFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
-        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
-            return
+        guard entity.type == .enemyEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+                return
         }
 
         let animationTextures = fullAnimation
