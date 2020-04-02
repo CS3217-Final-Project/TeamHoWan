@@ -61,7 +61,7 @@ enum GameConfig {
     }
 
     enum DarkVortexPowerUp {
-        static let powerUpDuration: TimeInterval = 8.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
@@ -72,7 +72,7 @@ enum GameConfig {
     }
 
     enum HellFirePowerUp {
-        static let powerUpDuration: TimeInterval = 8.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
@@ -83,13 +83,42 @@ enum GameConfig {
     }
 
     enum IcePrisonPowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
             Ice Prison
             Draw a circle to call upon an ancient spell
             that freezes all enemies in the region
+            """
+    }
+    
+    enum DivineBlessingPowerUp {
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Divine Blessing
+            Draw a circle to invoke a divine blessing that
+            simplifies all enemy gestures in the region
+            """
+    }
+    
+    enum DivineShieldPowerUp {
+        static let powerUpDuration: TimeInterval = 5
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Divine Shield
+            Tap to use the divine shield bestowed by King
+            Arthur himself which gives invulnerability
+            """
+    }
+    
+    enum HeroicCallPowerUp {
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Heroic Call
+            Tap to to call upon a wave of elite knights
+            to fight against incoming enemies
             """
     }
 

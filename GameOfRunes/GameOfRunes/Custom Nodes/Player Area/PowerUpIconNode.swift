@@ -33,7 +33,7 @@ class PowerUpIconNode: ButtonNode {
             guard oldValue != size else {
                 return
             }
-            iconNode.size = size
+            iconNode.size = size.applying(.init(scaleX: 0.9, y: 0.9))
         }
     }
     
