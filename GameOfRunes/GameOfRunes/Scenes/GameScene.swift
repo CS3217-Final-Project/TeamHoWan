@@ -378,3 +378,24 @@ extension GameScene: SelectedPowerUpResponder {
         highestPriorityLayer.addChild(powerUpDisabledLabel)
     }
 }
+
+/**
+ This is experimental code to take a screenshot and to test image compression
+ for streaming.
+ // TODO: Consider removing this in the future
+ */
+extension GameScene {
+    func screenShot() -> UIImage {
+        // TODO: Consider removing player area from screenshot
+        // Begin Image Context
+        UIGraphicsBeginImageContextWithOptions(UIScreen.mainScreen().bounds.size, false, 0)
+
+        self.view!.drawViewHierarchyInRect(self.view!.bounds, afterScreenUpdates: true)
+        var image:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        // End Image Context
+        UIGraphicsEndImageContext()
+
+        return image
+    }
+}
