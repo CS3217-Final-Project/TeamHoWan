@@ -14,6 +14,7 @@ import GameplayKit
 class BaseUnitTest: XCTestCase {
     var gameStateMachine: MockGameStateMachine!
     var testStage: Stage!
+    var testAvatar: Avatar!
     var gameScene: GameScene!
     var gameEngine: MockGameEngine!
     var systemDelegate: MockSystemDelegate!
@@ -55,12 +56,14 @@ class BaseUnitTest: XCTestCase {
                           achievementBMinScore: 10,
                           achievementAMinScore: 40,
                           achievementSMinScore: 50)
+        testAvatar = .elementalWizard
         gameStateMachine.stage = testStage
+        gameStateMachine.avatar = testAvatar
 
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage)
+        gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage, avatar: testAvatar)
             .withEnabledSuperclassSpy()
         systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()

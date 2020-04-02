@@ -26,14 +26,13 @@ class GameEngine {
         entities[.comboEntity]?.first as? ComboEntity
     }
     
-    // TODO: pass in avatar, and use it to determine powerups.
-    init(gameScene: GameScene, stage: Stage) {
+    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
-        metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
-                                numManaUnits: GameConfig.Mana.numManaUnits,
-                                manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-                                powerUps: [.darkVortex, .hellfire, .icePrison],
-                                stage: stage)
+        metadata = GameMetaData(
+            stage: stage,
+            avatar: avatar,
+            manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
+        )
         systemDelegate = SystemDelegate(gameEngine: self)
         removeDelegate = RemoveDelegate(gameEngine: self)
         spawnDelegate = SpawnDelegate(gameEngine: self,
@@ -277,7 +276,7 @@ class GameEngine {
             return
         }
         
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
         if metadata.playerMana <= manaPointsRequired {
             gameScene?.showInsufficientMana(at: position)

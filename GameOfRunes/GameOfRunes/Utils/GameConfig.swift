@@ -45,10 +45,6 @@ enum GameConfig {
         static let fastMovementSpeed: Float = 200.0
         static let bossMovementSpeed: Float = 75.0
     }
-
-    enum Health {
-        static let maxPlayerHealth: Int = 5
-    }
     
     enum Mana {
         static let manaWidth: CGFloat = 75
@@ -56,7 +52,6 @@ enum GameConfig {
         static let manaDropProbability: CGFloat = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
-        static let numManaUnits: Int = 8
         static let manaPerManaUnit: Int = 10
     }
 

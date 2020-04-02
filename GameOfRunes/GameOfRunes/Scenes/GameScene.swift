@@ -46,12 +46,13 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        guard let stage = self.gameStateMachine?.stage else {
-            fatalError("Unable to load stage from GameStateMachine")
+        guard let stage = gameStateMachine?.stage,
+            let avatar = gameStateMachine?.avatar else {
+            fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
-        gameEngine = GameEngine(gameScene: self, stage: stage)
-        self.physicsWorld.contactDelegate = gameEngine.contactDelegate
+        gameEngine = GameEngine(gameScene: self, stage: stage, avatar: avatar)
+        physicsWorld.contactDelegate = gameEngine.contactDelegate
 
         // UI
         buildLayers()
@@ -123,7 +124,7 @@ class GameScene: SKScene {
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
         
-        playerAreaNode.powerUpContainerNode.powerUpTypes = Avatar.elementalWizard.powerUps
+        playerAreaNode.powerUpContainerNode.powerUpTypes = gameEngine.metadata.availablePowerUps
         playerAreaNode.powerUpContainerNode.selectedPowerUpResponder = self
         playerAreaLayer.addChild(playerAreaNode)
     }
@@ -196,15 +197,14 @@ class GameScene: SKScene {
     
     private func setUpPlayerHealth() -> HealthBarNode {
         let healthBarNode = playerAreaNode.healthBarNode
-        // arbitrary num, can be replaced with meta-data
-        healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
+        healthBarNode.totalLives = gameEngine.metadata.maxPlayerHealth
         return healthBarNode
     }
     
     private func setUpPlayerMana() -> ManaBarNode {
         let manaBarNode = playerAreaNode.manaBarNode
-        manaBarNode.numManaUnits = GameConfig.Mana.numManaUnits
-        manaBarNode.manaPointsPerUnit = GameConfig.Mana.manaPerManaUnit
+        manaBarNode.numManaUnits = gameEngine.metadata.numManaUnits
+        manaBarNode.manaPointsPerUnit = gameEngine.metadata.manaPointsPerManaUnit
         return manaBarNode
     }
     

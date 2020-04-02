@@ -108,7 +108,7 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.decreasePlayerHealth()
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
-        XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 4)
+        XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 2)
     }
     
     func testMinusHealthPoints() {
