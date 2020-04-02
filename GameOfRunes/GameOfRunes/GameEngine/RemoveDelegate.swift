@@ -17,7 +17,7 @@ class RemoveDelegate {
     
     func removeGesture(for entity: GKEntity) {
         guard let gestureEntity = entity as? GestureEntity,
-            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent as? EnemyEntity else {
+            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent else {
                 return
         }
         
@@ -29,17 +29,14 @@ class RemoveDelegate {
             removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
             return
-        }
-        
-        gameEngine?.remove(gestureEntity)
-        if let nextGesture = enemyEntity.setNextGesture() {
-            gameEngine?.add(nextGesture)
+        } else {
+            gameEngine?.setNextGesture(for: enemyEntity)
         }
     }
 
-    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false,
+    func removeEnemy(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
                      shouldIncreaseScore: Bool = false) {
-        if shouldDecreasePlayerHealth {
+        if shouldDecreasePlayerHealth, gameEngine?.entities(for: .invincibilityPowerUpEntity).isEmpty ?? true {
             gameEngine?.decreasePlayerHealth()
         } else {
             gameEngine?.incrementCombo()
@@ -86,7 +83,7 @@ class RemoveDelegate {
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeEnemyFromGameWithAnimation(_ entity: EnemyEntity, fullAnimation: Bool = true) {
+    private func removeEnemyFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }

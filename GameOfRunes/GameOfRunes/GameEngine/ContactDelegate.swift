@@ -68,6 +68,8 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         case .icePrison:
             gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
                                             duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
+        case .substitution:
+            gameEngine?.setNextGesture(for: enemy, using: .lightning)
         default:
             return
         }

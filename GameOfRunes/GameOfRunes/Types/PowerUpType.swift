@@ -12,6 +12,8 @@ enum PowerUpType: String, CaseIterable {
     case darkVortex
     case hellfire
     case icePrison
+    case invincibility
+    case substitution
     
     var description: String {
         switch self {
@@ -21,6 +23,10 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.description
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.description
+        case .invincibility:
+            return GameConfig.InvincibilityPowerUp.description
+        case .substitution:
+            return GameConfig.SubstituionPowerUp.description
         }
     }
     
@@ -32,6 +38,10 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.manaUnitCost
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.manaUnitCost
+        case .invincibility:
+            return GameConfig.InvincibilityPowerUp.manaUnitCost
+        case .substitution:
+            return GameConfig.SubstituionPowerUp.manaUnitCost
         }
     }
     
@@ -43,6 +53,10 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.fadeOutDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.fadeOutDuration
+        case .invincibility:
+            return GameConfig.InvincibilityPowerUp.fadeOutDuration
+        case .substitution:
+            return GameConfig.SubstituionPowerUp.fadeOutDuration
         }
     }
     
@@ -54,6 +68,10 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.powerUpDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.powerUpDuration
+        case .invincibility:
+            return GameConfig.InvincibilityPowerUp.powerUpDuration
+        case .substitution:
+            return GameConfig.SubstituionPowerUp.powerUpDuration
         }
     }
     
@@ -64,6 +82,10 @@ enum PowerUpType: String, CaseIterable {
         case .icePrison:
             return IcePrisonPowerUpEntity(at: position, with: size)
         case .darkVortex:
+            return DarkVortexPowerUpEntity(at: position, with: size)
+        case .invincibility:
+            return DarkVortexPowerUpEntity(at: position, with: size)
+        case .substitution:
             return DarkVortexPowerUpEntity(at: position, with: size)
         }
     }

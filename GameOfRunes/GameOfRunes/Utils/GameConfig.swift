@@ -92,6 +92,28 @@ enum GameConfig {
             that freezes all enemies in the region
             """
     }
+    
+    enum InvincibilityPowerUp {
+        static let powerUpDuration: TimeInterval = 5.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Invincibility
+            Tap to activate, makes you invincible against
+            enemies for a period of time
+            """
+    }
+    
+    enum SubstituionPowerUp {
+        static let powerUpDuration: TimeInterval = 5.0
+        static let fadeOutDuration: TimeInterval = 0.5
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Substituion Jutsu
+            Draw a circle to call ninjas to ambush enemies
+            within
+            """
+    }
 
     enum SceneManager {
         static let sceneTransitionDuration: TimeInterval = 0.5

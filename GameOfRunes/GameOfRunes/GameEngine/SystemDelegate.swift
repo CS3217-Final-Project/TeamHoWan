@@ -35,6 +35,9 @@ class SystemDelegate {
     var powerUpSystem: PowerUpSystem? {
         systems[.powerUpComponent] as? PowerUpSystem
     }
+    var gestureEntitySystem: GestureEntitySystem? {
+        systems[.gestureEntityComponent] as? GestureEntitySystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
@@ -124,7 +127,15 @@ class SystemDelegate {
     
     func incrementLabelIntegerValue(_ entity: Entity) {
         labelSystem?.incrementLabelIntegerValue(entity)
+    }
+    
+    func resetTimer(_ entity: Entity) {
         timerSystem?.resetTimer(entity)
+    }
+    
+    func incrementCombo(_ entity: Entity) {
+        incrementLabelIntegerValue(entity)
+        resetTimer(entity)
     }
     
     func incrementMultiplier(_ entity: Entity) {
@@ -133,5 +144,13 @@ class SystemDelegate {
     
     func activatePowerUp(at position: CGPoint, with size: CGSize) {
         powerUpSystem?.activatePowerUp(at: position, with: size)
+    }
+    
+    func setInitialGesture(for entity: Entity) {
+        gestureEntitySystem?.setInitialGesture(for: entity)
+    }
+    
+    func setGesture(for entity: Entity, using gesture: CustomGesture?) {
+        gestureEntitySystem?.setGesture(for: entity, using: gesture)
     }
 }

@@ -156,6 +156,14 @@ class GameEngine {
         systemDelegate.addMultiKillScore(count: count, for: playerEntity)
     }
     
+    func setInitialGesture(for entity: Entity) {
+        systemDelegate.setInitialGesture(for: entity) 
+    }
+        
+    func setNextGesture(for entity: Entity, using gesture: CustomGesture? = nil) {
+        systemDelegate.setGesture(for: entity, using: gesture)
+    }
+    
     func minusHealthPoints(for entity: GKEntity) -> Int? {
         systemDelegate.minusHealthPoints(for: entity)
     }
@@ -217,10 +225,6 @@ class GameEngine {
         systemDelegate.decreaseLabelOpacity(entity)
     }
     
-    func incrementLabelIntegerValue(_ entity: Entity) {
-        systemDelegate.incrementLabelIntegerValue(entity)
-    }
-    
     func incrementCombo() {
         if comboEntity == nil {
             add(ComboEntity(gameEngine: self))
@@ -228,7 +232,7 @@ class GameEngine {
         guard let comboEntity = comboEntity else {
             return
         }
-        incrementLabelIntegerValue(comboEntity)
+        systemDelegate.incrementCombo(comboEntity)
     }
     
     func incrementMultiplier() {

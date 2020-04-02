@@ -55,34 +55,6 @@ class EnemyEntity: Entity {
         addComponent(healthComponent)
         addComponent(moveComponent)
         addComponent(enemyTypeComponent)
-        _ = setNextGesture()
-    }
-
-    func setNextGesture() -> GestureEntity? {
-        guard let enemyNode = component(ofType: SpriteComponent.self)?.node,
-            let enemyType = component(ofType: EnemyTypeComponent.self)?.enemyType else {
-            return nil
-        }
-        
-        var availableGestures = enemyType.gesturesAvailable
-        
-        if let currentGesture = component(ofType: GestureEntityComponent.self)?
-            .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
-                availableGestures.removeAll { $0 == currentGesture }
-        }
-        
-        guard let gesture = availableGestures.randomElement() else {
-            return nil
-        }
-
-        let gestureEntity = GestureEntity(gesture: gesture, parent: self)
-        gestureEntity.component(ofType: SpriteComponent.self)?
-            .setGestureConstraint(referenceNode: enemyNode)
-        let gestureEntityComponent = GestureEntityComponent(gestureEntity)
-
-        removeComponent(ofType: GestureEntityComponent.self)
-        addComponent(gestureEntityComponent)
-        
-        return gestureEntity
+        gameEngine.setInitialGesture(for: self)
     }
 }
