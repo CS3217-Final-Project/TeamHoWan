@@ -34,6 +34,8 @@ class PlayerModel {
 class RoomModel {
     var roomId: String = ""
     var isOpen: Bool = false
+    var hasStarted: Bool = false
+    var gameCreated: Bool = false
     var players: [PlayerModel] = []
 
     init(roomId: String, isOpen: Bool) {
@@ -41,10 +43,11 @@ class RoomModel {
         self.isOpen = isOpen
     }
     
-    init(roomId: String, isOpen: Bool, players: [PlayerModel]) {
+    init(roomId: String, isOpen: Bool, hasStarted: Bool, gameCreated: Bool) {
         self.roomId = roomId
         self.isOpen = isOpen
-        self.players = players
+        self.hasStarted = hasStarted
+        self.gameCreated = gameCreated
     }
 
     func addPlayer(_ player: PlayerModel) {

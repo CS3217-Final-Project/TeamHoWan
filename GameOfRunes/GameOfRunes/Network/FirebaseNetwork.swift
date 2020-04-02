@@ -213,6 +213,35 @@ class FirebaseNetwork: NetworkInterface {
         }
         observers = []
     }
+    
+    // TODO: implementation after figuring out how to structure game object in firebase
+    func joinGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func observeGameState(roomId: String, _ onMonsterReceived: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func updateGameHasEnded(gameId: String, to: Bool, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func updateGameHasStarted(gameId: String, to: Bool, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func closeGame(gameId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func startGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func createGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
 }
 
 struct Observer {

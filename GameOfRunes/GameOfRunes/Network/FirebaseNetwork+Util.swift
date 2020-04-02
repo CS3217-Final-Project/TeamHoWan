@@ -23,11 +23,11 @@ extension FirebaseNetwork {
     
     /**
      Conversion from firebase dictionary to a PlayerModel
-    - Parameters:
-        - forUid: the uid of the player
-        - forDescription: the player's details
+     - Parameters:
+     - forUid: the uid of the player
+     - forDescription: the player's details
      - Returns:
-        - PlayerModel object
+     - PlayerModel object
      */
     func firebasePlayerModelFactory(forUid uid: String,
                                     forDescription playerDescription: AnyObject) -> PlayerModel {
@@ -44,16 +44,18 @@ extension FirebaseNetwork {
     /**
      Conversion to RoomModel object from a firebase dictionary
      - Parameters:
-         - forDict: the dictionary fetched from Firebase
+     - forDict: the dictionary fetched from Firebase
      - Returns:
-         - a RoomModel object
-    */
+     - a RoomModel object
+     */
     func firebaseRoomModelFactory(forDict dict: [String: AnyObject]) -> RoomModel {
         let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultEmptyString
         let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultFalse
+        let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultFalse
+        let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultFalse
         let players = dict[FirebaseKeys.rooms_players_name] as? [String: AnyObject] ?? [:]
         
-        let room = RoomModel(roomId: roomId, isOpen: isOpen)
+        let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
         for (playerUid, playerDescription) in players {
             room.addPlayer(firebasePlayerModelFactory(forUid: playerUid, forDescription: playerDescription))
         }
@@ -63,10 +65,10 @@ extension FirebaseNetwork {
     /**
      Creates a dictionary which translates to the firebase database reference for a player description inside a room
      - Parameters:
-        - uid: uid of the player
-        - name: name of the player
-        - isHost: whether user is host
-        - isReady: whether the player is ready
+     - uid: uid of the player
+     - name: name of the player
+     - isHost: whether user is host
+     - isReady: whether the player is ready
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
     func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool) -> [String: AnyObject] {

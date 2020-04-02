@@ -15,6 +15,8 @@ struct FirebaseKeys {
     static let rooms = "rooms"
     static let rooms_roomId = "roomId"
     static let rooms_isOpen = "is_open"
+    static let rooms_hasStarted = "has_started"
+    static let rooms_gameCreated = "game_created"
     static let rooms_players = "players"
     static let rooms_players_isReady = "is_ready"
     static let rooms_players_isHost = "is_host"

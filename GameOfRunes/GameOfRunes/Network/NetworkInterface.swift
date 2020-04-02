@@ -47,7 +47,7 @@ protocol NetworkInterface {
                   _ onError: @escaping (Error) -> Void)
     
     /**
-    Close the room if the player is the host.
+     Close the room if the player is the host.
      - Parameters:
      - uid: uid of the Player
      - forRoomId: room id of the room that the player is in
@@ -60,7 +60,7 @@ protocol NetworkInterface {
                    _ onError: @escaping (Error) -> Void)
     
     /**
-    Leave the room that the player is in
+     Leave the room that the player is in
      - Parameters:
      - uid: uid of the Player
      - forRoomId: room id of the room that the player is in
@@ -87,6 +87,8 @@ protocol NetworkInterface {
     
     /**
      Creates a listener for a room instance. This listener is fired every time any child is changed in the Room object in the database.
+     This method should be used by the client to know when the game starts, and also be used by the front end to reflect room changes.
+     Creates an observer.
      - Parameters:
      - forRoomId: the room id this listener is listening to
      - onDataChange: callback that is fired every time change is detected
@@ -99,7 +101,93 @@ protocol NetworkInterface {
                           _ onError: @escaping (Error) -> Void)
     
     /**
-    Removes all observers inside the game database.
+     Removes all observers.
      */
     func removeObservers()
+    
+    /**
+     Starts a game instance for a particular room. This method changes the state of the room and
+     creates the game by calling`createGame`.
+     - Parameters:
+     - roomId: the room id
+     - onComplete: completion handler
+     - onError: callback that is fired if there is an error
+     */
+    func startGame(roomId: String,
+                   _ onComplete: @escaping () -> Void,
+                   _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Creates a game database reference to the specified room.
+     - Parameters:
+     - roomId: the room id
+     - onComplete: completion handler
+     - onError: callback that is fired if there is an error
+     */
+    func createGame(roomId: String,
+                    _ onComplete: @escaping () -> Void,
+                    _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Join a game that has been created on the network database
+     - Parameters:
+     - roomId: the room id
+     - onComplete: completion handler
+     - onError: callback that is fired if there is an error
+     */
+    func joinGame(roomId: String,
+                  _ onComplete: @escaping () -> Void,
+                  _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Listen to changes to the game reference.
+     - Parameters:
+     - gameId: the game id to be observed
+     - onMonsterReceived: a callback that is fired every time monsters have been received (sent by the other player)
+     - onGameStateChange: callback that is fired every time the game state of the other player changes
+     - onError: error handler
+     */
+    func observeGameState(roomId: String,
+                          _ onMonsterReceived: @escaping () -> Void,
+                          _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Updates game boolean flag "has_ended" to the specified boolean value
+     - Parameters:
+     - gameId: the game id concerned
+     - to: the boolean value for "has ended" flag
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func updateGameHasEnded(gameId: String,
+                            to: Bool,
+                            _ onComplete: @escaping () -> Void,
+                            _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Updates game boolean flag "has_started" to the specified boolean value
+     - Parameters:
+     - gameId: the game id concerned
+     - to: the boolean value for "has ended" flag
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func updateGameHasStarted(gameId: String,
+                              to: Bool,
+                              _ onComplete: @escaping () -> Void,
+                              _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Closes the game with specified gameId
+     - Parameters:
+     - gameId: the game id concerned
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func closeGame(gameId: String,
+                   _ onComplete: @escaping () -> Void,
+                   _ onError: @escaping (Error) -> Void)
+
+    // TODO: sendMonsters - need to determine way to represent monsters and convert to dictionary first
+    // TODO: updateGameState - need to determine way of representing game state (actual rendering/image)
 }
