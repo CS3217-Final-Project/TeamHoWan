@@ -15,8 +15,9 @@ class RemoveDelegate {
         self.gameEngine = gameEngine
     }
     
-    func removeGesture(for entity: Entity) {
-        guard let enemyEntity = entity.component(ofType: ParentEntityComponent.self)?.parent as? EnemyEntity else {
+    func removeGesture(for gestureEntity: GestureEntity) {
+        guard let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?
+            .parent as? EnemyEntity else {
                 return
         }
         
@@ -30,7 +31,7 @@ class RemoveDelegate {
             return
         }
         
-        gameEngine?.remove(entity)
+        gameEngine?.remove(gestureEntity)
         if let nextGesture = enemyEntity.setNextGesture() {
             gameEngine?.add(nextGesture)
         }
@@ -107,9 +108,11 @@ class RemoveDelegate {
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
+        // have to save the value instead of a strong reference to the entity
+        let entityType = entity.type
                                             // gives some delay till the game terminates
         animationNode.run(removalAnimation, completion: { [weak self] in
-            guard entity.type == .enemyEntity else {
+            guard entityType == .enemyEntity else {
                 return
             }
             self?.gameEngine?.metadata.numEnemiesOnField -= 1

@@ -141,12 +141,11 @@ class GameEngine {
         var count = 0
 
         for entity in entities(for: .gestureEntity) {
-            guard let gestureComponent =
-                entity.component(ofType: GestureComponent.self),
-                gestureComponent.gesture == gesture else {
+            guard let gestureEntity = entity as? GestureEntity,
+                gestureEntity.component(ofType: GestureComponent.self)?.gesture == gesture else {
                     continue
             }
-            removeDelegate.removeGesture(for: entity)
+            removeDelegate.removeGesture(for: gestureEntity)
             count += 1
             
         }
