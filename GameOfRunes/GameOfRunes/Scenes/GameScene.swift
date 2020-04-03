@@ -14,6 +14,9 @@ class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
+    var center: CGPoint {
+        .init(x: frame.midX, y: frame.midY)
+    }
 
     // layers
     private var backgroundLayer: SKNode!
@@ -25,6 +28,7 @@ class GameScene: SKScene {
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
     private(set) var playerAreaNode: PlayerAreaNode!
+    private(set) var playerEndPoint: SKSpriteNode!
     private(set) var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
@@ -112,7 +116,7 @@ class GameScene: SKScene {
             size: size
         )
         backgroundNode.aspectFillToSize(fillSize: size)
-        backgroundNode.position = .init(x: frame.midX, y: frame.midY)
+        backgroundNode.position = center
         backgroundLayer.addChild(backgroundNode)
     }
     
@@ -125,7 +129,6 @@ class GameScene: SKScene {
         )
         
         playerAreaNode.powerUpContainerNode.powerUpTypes = gameEngine.metadata.availablePowerUps
-        playerAreaNode.powerUpContainerNode.selectedPowerUpResponder = self
         playerAreaLayer.addChild(playerAreaNode)
     }
     
@@ -134,7 +137,7 @@ class GameScene: SKScene {
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
             gameEngine: gameEngine
         )
-        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) +
+        gestureAreaNode.position = center +
             .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
         gestureLayer.addChild(gestureAreaNode)
     }
@@ -180,10 +183,11 @@ class GameScene: SKScene {
         endPointNode.zPosition = -1
         endPointNode.addGlow()
         
+        playerEndPoint = endPointNode
         let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
         gameEngine.add(endPointEntity)
         
-        // check if need to add end point for elite knight
+        // check if need to add enemy end point for elite knight
         guard gameEngine.metadata.avatar == .holyKnight else {
             return
         }
@@ -280,6 +284,8 @@ extension GameScene: TapResponder {
             gameStateMachine?.enter(GamePauseState.self)
         case .summonButton:
             gameEngine.startNextSpawnWave()
+        case .powerUpIconButton:
+            gameEngine.updateSelectedPowerUp()
         default:
             print("Unknown node tapped")
         }
@@ -310,44 +316,23 @@ extension GameScene {
 /**
  Extension to deal with power-up related logic
  */
-extension GameScene: SelectedPowerUpResponder {
+extension GameScene {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first, selectedPowerUp == .darkVortex else {
+        guard let touch = touches.first else {
             return
         }
         
-        // reasonable arbitrary value for darkVortex radius
-        let radius = size.width / 3
-        activatePowerUp(at: touch.location(in: self), with: .init(width: radius, height: radius))
-    }
-    
-    func activatePowerUp(at location: CGPoint, with size: CGSize) {
-        guard selectedPowerUp != nil else {
-            return
-        }
-
-        gameEngine.activatePowerUp(at: location, with: size)
-        deselectPowerUp()
+        gameEngine.activatePowerUp(at: touch.location(in: self))
     }
     
     func deselectPowerUp() {
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        gameEngine.updateSelectedPowerUp()
     }
     
     var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
-    }
-    
-    func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
-        // Deactivate and activate gesture detection when tap-activated power ups are selected
-        gameEngine.changeSelectedPowerUp(to: newSelectedPowerUp)
-        
-        if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-            deactivateGestureDetection()
-        } else if oldValue == .darkVortex {
-            activateGestureDetection()
-        }
     }
     
     func deactivateGestureDetection() {

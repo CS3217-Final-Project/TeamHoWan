@@ -161,6 +161,21 @@ enum GameConfig {
         static let horizontalOffSet: CGFloat = 100.0
         static let verticalOffSet: CGFloat = 100.0
         static let numEndPoints: Int = 3
+        
+        static func calculateHorizontallyDistributedPoints(
+            width: CGFloat,
+            laneIndex: Int,
+            totalPoints: Int,
+            yPosition: CGFloat) -> CGPoint {
+            
+            let xPositionNumerator = 2 * laneIndex + 1
+            let xPositionDenominator = 2 * totalPoints
+            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let xPosition = (width - 2 * edgeOffset) * xPositionRatio + edgeOffset
+            
+            return .init(x: xPosition, y: yPosition)
+        }
     }
     
     enum GameMapScene {

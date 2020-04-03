@@ -67,6 +67,10 @@ class AvatarOverviewNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func updatePowerUpDescription() {
+        powerUpDescriptionNode.updatePowerUpDescription()
+    }
+    
     private func layoutAvatarLabelNode() {
         avatarLabelNode.size = avatarLabelNode.size.scaleTo(width: size.width)
         avatarLabelNode.position = .init(x: 0.0, y: (size.height - avatarLabelNode.size.height) / 2)

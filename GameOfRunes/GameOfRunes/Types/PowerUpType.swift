@@ -59,6 +59,7 @@ enum PowerUpType: String, CaseIterable {
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.fadeOutDuration
         default:
+            // TODO: add for other power ups
             return 0
         }
     }
@@ -72,11 +73,12 @@ enum PowerUpType: String, CaseIterable {
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.powerUpDuration
         default:
+            // TODO: add for other power ups
             return 0
         }
     }
     
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity {
+    func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         switch self {
         case .hellfire:
             return HellfirePowerUpEntity(at: position, with: size)
@@ -85,7 +87,7 @@ enum PowerUpType: String, CaseIterable {
         case .darkVortex:
             return DarkVortexPowerUpEntity(at: position, with: size)
         default:
-            return .init()
+            return nil
         }
     }
     

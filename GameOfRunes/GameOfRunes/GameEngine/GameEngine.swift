@@ -44,8 +44,8 @@ class GameEngine {
         }
     }
     
-    func add(_ entity: Entity) {
-        guard entities[entity.type]?.insert(entity).inserted == true else {
+    func add(_ entity: Entity?) {
+        guard let entity = entity, entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -247,6 +247,25 @@ class GameEngine {
         metadata.multiplier = 1.0
     }
     
+    func updateSelectedPowerUp() {
+        metadata.selectedPowerUp = gameScene?.selectedPowerUp
+        
+        switch metadata.selectedPowerUp {
+        case .heroicCall, .divineShield:
+            // although these power ups do not need position, position is set to center of screen
+            // so that that messages will appear at the center if any
+            activatePowerUp(at: gameScene?.center
+                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+            return
+        case .darkVortex:
+            gameScene?.deactivateGestureDetection()
+        default:
+            // do nth for other power ups or nil
+            // ensure gesture detection is activated
+            gameScene?.activateGestureDetection()
+        }
+    }
+    /*
     func changeSelectedPowerUp(to powerUp: PowerUpType?) {
         metadata.selectedPowerUp = powerUp
         
@@ -258,6 +277,7 @@ class GameEngine {
         // TODO: Add some feedback here for disabled powerup.
         gameScene?.deselectPowerUp()
     }
+ */
 
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
         let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
@@ -267,13 +287,15 @@ class GameEngine {
         return disabledPowerUps.contains(powerUp)
     }
     
-    func activatePowerUp(at position: CGPoint, with size: CGSize) {
+    func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
+            gameScene?.deselectPowerUp()
+            return
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
             gameScene?.showPowerUpDisabled(at: position)
+            gameScene?.deselectPowerUp()
             return
         }
         
@@ -281,11 +303,17 @@ class GameEngine {
 
         if metadata.playerMana <= manaPointsRequired {
             gameScene?.showInsufficientMana(at: position)
+            gameScene?.deselectPowerUp()
             return
         }
         
         systemDelegate.activatePowerUp(at: position, with: size)
         decreasePlayerMana(by: manaPointsRequired)
+        gameScene?.deselectPowerUp()
+    }
+    
+    func spawnPlayerUnitWave() {
+        spawnDelegate.spawnPlayerUnitWave()
     }
 }
 

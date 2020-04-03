@@ -16,14 +16,30 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
         super.init(componentClass: PowerUpComponent.self)
     }
 
-    func activatePowerUp(at position: CGPoint, with size: CGSize) {
-        guard let gameEngine = gameEngine,
-            let powerUpType = gameEngine.metadata.selectedPowerUp else {
+    func activatePowerUp(at position: CGPoint, with size: CGSize?) {
+        guard let powerUpType = gameEngine?.metadata.selectedPowerUp else {
                 return
         }
         
-        let entity = powerUpType.createEntity(at: position, with: size)
-        gameEngine.add(entity)
+        var powerUpSize = size
+        
+        switch powerUpType {
+        case .darkVortex:
+            // abitrary width for dark vortex
+            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
+            powerUpSize = .init(width: radius, height: radius)
+            fallthrough
+        case .hellfire, .icePrison:
+            guard let size = powerUpSize else {
+                return
+            }
+            let entity = powerUpType.createEntity(at: position, with: size)
+            gameEngine?.add(entity)
+        case .heroicCall:
+            gameEngine?.spawnPlayerUnitWave()
+        default:
+            return
+        }
     }
 
     func removeComponent(_ component: Component) {

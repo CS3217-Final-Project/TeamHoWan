@@ -27,15 +27,14 @@ class EndPointEntity: Entity {
         // set up the attractive force of end point
         
         for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
-            // finds xPosition of attraction node
-            let xPositionNumerator = 2 * laneIndex + 1
-            let xPositionDenominator = 2 * GameConfig.GamePlayScene.numEndPoints
-            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-            let xPosition = (.init(node.size.width) - 2 * edgeOffset) * xPositionRatio + edgeOffset
-            
             let attractionNode = SKSpriteNode(color: .clear, size: .zero)
-            attractionNode.position = .init(x: xPosition, y: node.position.y)
+            
+            attractionNode.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
+                width: node.size.width,
+                laneIndex: laneIndex,
+                totalPoints: GameConfig.GamePlayScene.numEndPoints,
+                yPosition: node.position.y
+            )
 
             let attractionEntity = AttractionEntity(
                 node: attractionNode,

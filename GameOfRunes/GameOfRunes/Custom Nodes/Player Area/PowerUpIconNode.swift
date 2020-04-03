@@ -58,5 +58,6 @@ class PowerUpIconNode: ButtonNode {
         }
         
         container.selectedPowerUp = selected ? nil : powerUpType
+        responder.onTapped(tappedNode: self)
     }
 }

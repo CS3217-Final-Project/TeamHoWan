@@ -32,7 +32,6 @@
 		4A6213E22430A9BB00FABB48 /* PowerUpDescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E12430A9BB00FABB48 /* PowerUpDescriptionNode.swift */; };
 		4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E32430B61700FABB48 /* AvatarLabelNode.swift */; };
 		4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213E92430BDD600FABB48 /* ArrowNode.swift */; };
-		4A6213EC2430D19500FABB48 /* SelectedPowerUpResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */; };
 		4A6213EE2430DA8E00FABB48 /* DescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213ED2430DA8E00FABB48 /* DescriptionNode.swift */; };
 		4A72EB442420061A005FA909 /* SummonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB432420061A005FA909 /* SummonNode.swift */; };
 		4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72EB4524200BE6005FA909 /* ButtonType.swift */; };
@@ -201,7 +200,6 @@
 		4A6213E12430A9BB00FABB48 /* PowerUpDescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpDescriptionNode.swift; sourceTree = "<group>"; };
 		4A6213E32430B61700FABB48 /* AvatarLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarLabelNode.swift; sourceTree = "<group>"; };
 		4A6213E92430BDD600FABB48 /* ArrowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
-		4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPowerUpResponder.swift; sourceTree = "<group>"; };
 		4A6213ED2430DA8E00FABB48 /* DescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionNode.swift; sourceTree = "<group>"; };
 		4A72EB432420061A005FA909 /* SummonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonNode.swift; sourceTree = "<group>"; };
 		4A72EB4524200BE6005FA909 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
@@ -395,7 +393,6 @@
 			children = (
 				4A1B334524330CAB00B67B91 /* Storage.swift */,
 				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
-				4A6213EB2430D19500FABB48 /* SelectedPowerUpResponder.swift */,
 				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
 				8A712E7F24235EB000B3824E /* PowerUpEntity.swift */,
 			);
@@ -1143,7 +1140,6 @@
 				8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */,
 				4A768F152430157F000F3F05 /* CancelNode.swift in Sources */,
 				4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */,
-				4A6213EC2430D19500FABB48 /* SelectedPowerUpResponder.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,

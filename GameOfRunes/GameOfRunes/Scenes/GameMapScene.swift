@@ -135,6 +135,8 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.prevAvatar
         case .rightButton:
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
+        case .powerUpIconButton:
+            stageSelectionNode.updatePowerUpDescription()
         default:
             print("do nth")
         }
