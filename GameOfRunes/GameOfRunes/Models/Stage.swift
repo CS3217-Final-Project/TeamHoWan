@@ -23,7 +23,7 @@ struct Stage {
             }
         }
     }
-    @objc enum AchievementLevel: Int, CustomStringConvertible, RealmEnum {
+    @objc enum AchievementLevel: Int, CustomStringConvertible, Comparable, RealmEnum {
         case S
         case A
         case B
@@ -44,7 +44,7 @@ struct Stage {
                 return "empty"
             }
         }
-
+        
         /** Make Achievement Level Comparable */
         static func < (lhs: AchievementLevel, rhs: AchievementLevel) -> Bool {
             lhs.rawValue > rhs.rawValue

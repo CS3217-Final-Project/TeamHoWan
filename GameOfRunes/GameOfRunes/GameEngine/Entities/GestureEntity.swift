@@ -19,7 +19,7 @@ class GestureEntity: Entity {
         let node = GestureNode(gesture: gesture)
         // make it float above the enemy
         node.zPosition = 1
-        let spriteComponent = SpriteComponent(node: node, layerType: .enemyLayer)
+        let spriteComponent = SpriteComponent(node: node, layerType: .unitLayer)
         let gestureComponent = GestureComponent(gesture: gesture)
         let parentEntityComponent = ParentEntityComponent(parent)
 

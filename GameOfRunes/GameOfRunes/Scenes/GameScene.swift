@@ -18,7 +18,7 @@ class GameScene: SKScene {
     // layers
     private var backgroundLayer: SKNode!
     private var powerUpAnimationLayer: SKNode!
-    private var enemyLayer: SKNode!
+    private var unitLayer: SKNode!
     private var removalAnimationLayer: SKNode!
     private var gestureLayer: SKNode!
     private var playerAreaLayer: SKNode!
@@ -80,9 +80,9 @@ class GameScene: SKScene {
         powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.powerUpAnimationLayerZPosition
         addChild(powerUpAnimationLayer)
         
-        enemyLayer = .init()
-        enemyLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
-        addChild(enemyLayer)
+        unitLayer = .init()
+        unitLayer.zPosition = GameConfig.GamePlayScene.unitLayerZPosition
+        addChild(unitLayer)
         
         removalAnimationLayer = .init()
         removalAnimationLayer.zPosition = GameConfig.GamePlayScene.removalAnimationLayerZPosition
@@ -248,8 +248,8 @@ class GameScene: SKScene {
             backgroundLayer.addChild(node)
         case .powerUpAnimationLayer:
             powerUpAnimationLayer.addChild(node)
-        case .enemyLayer:
-            enemyLayer.addChild(node)
+        case .unitLayer:
+            unitLayer.addChild(node)
         case .removalAnimationLayer:
             removalAnimationLayer.addChild(node)
         case .gestureLayer:

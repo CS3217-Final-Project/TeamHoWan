@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import GameplayKit
 
 class EnemyEntity: Entity {
     override var type: EntityType {
@@ -38,7 +37,7 @@ class EnemyEntity: Entity {
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
  
-        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
+        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .unitLayer)
         let moveComponent = MoveComponent(
             maxSpeed: enemyType.speed,
             maxAcceleration: 5.0,

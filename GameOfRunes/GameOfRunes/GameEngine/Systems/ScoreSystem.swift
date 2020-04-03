@@ -9,6 +9,7 @@
 import GameplayKit
 
 class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
+    
     override init() {
         super.init(componentClass: ScoreComponent.self)
     }
@@ -20,7 +21,7 @@ class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
         multiplierComponent.multiplier = max(1, multiplierComponent.multiplier + 0.1)
     }
     
-    func addScore(by points: Int, multiplier: Double, for entity: GKEntity) {
+    func addScore(by points: Int, multiplier: Double, for entity: Entity) {
         guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
             return
         }

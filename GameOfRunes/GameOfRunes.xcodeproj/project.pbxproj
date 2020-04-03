@@ -25,6 +25,7 @@
 		4A1B33402432845D00B67B91 /* EnemyWaveRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */; };
 		4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */; };
 		4A1B334624330CAB00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334524330CAB00B67B91 /* Storage.swift */; };
+		4A3BD08B2436ACFE0004360A /* PlayerUnitEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
 		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
@@ -193,6 +194,7 @@
 		4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveRealmModel.swift; sourceTree = "<group>"; };
 		4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeRealmModel.swift; sourceTree = "<group>"; };
 		4A1B334524330CAB00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitEntity.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
 		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 			children = (
 				8A712E8324236B3800B3824E /* PowerUps */,
 				4ACC8BD32414D71100F235AE /* EnemyEntity.swift */,
+				4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */,
 				56445ECD242EFCE600D5DCBE /* ComboEntity.swift */,
 				C6AFF67A2419101B0076F02B /* GestureEntity.swift */,
 				C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */,
@@ -1097,6 +1100,7 @@
 				8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */,
 				56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
+				4A3BD08B2436ACFE0004360A /* PlayerUnitEntity.swift in Sources */,
 				560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */,
 				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,

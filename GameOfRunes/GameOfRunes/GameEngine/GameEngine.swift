@@ -102,9 +102,11 @@ class GameEngine {
                 }))
             return Array(res)
         case .player:
-            return Array(entities(for: .attractionEntity).filter({
-                $0.component(ofType: TeamComponent.self)?.team == .player
-            }))
+            let res = entities(for: .playerUnitEntity)
+                .union(entities(for: .attractionEntity).filter({
+                    $0.component(ofType: TeamComponent.self)?.team == .player
+                }))
+            return Array(res)
         }
     }
     
@@ -155,27 +157,27 @@ class GameEngine {
         systemDelegate.addMultiKillScore(count: count, for: playerEntity)
     }
     
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
-    func enemyForceRemoved(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
+    func unitForceRemoved(_ entity: Entity) {
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
 
-        removeDelegate.removeEnemy(enemyEntity)
+        removeDelegate.removeUnit(entity)
     }
     
-    func enemyReachedLine(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
+    func unitReachedLine(_ entity: Entity) {
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
 
-        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
+        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: true)
     }
     
-    func dropMana(at entity: GKEntity) {
+    func dropMana(at entity: Entity) {
         systemDelegate.dropMana(at: entity)
     }
     

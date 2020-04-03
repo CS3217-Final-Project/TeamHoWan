@@ -8,12 +8,16 @@
 
 import SpriteKit
 
-enum CollisionType: UInt32 {
+enum CollisionType: UInt32, Comparable {
     case enemyUnit = 0b000001
     case playerUnit = 0b000010
     case playerEndPoint = 0b000100
     case enemyEndPoint = 0b001000
     case powerUp = 0b010000
+    
+    static func < (lhs: CollisionType, rhs: CollisionType) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
     
     func setPhysicsBody(for node: SKSpriteNode, with size: CGSize) {
         guard size.width > 0, size.height > 0 else {

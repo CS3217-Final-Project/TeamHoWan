@@ -26,7 +26,7 @@ class BaseUnitTest: XCTestCase {
     var droppedManaNode: MockDroppedManaNode!
     
     var timerEntity: MockTimerEntity!
-    var bossEnemyEntity: EnemyEntity!
+    var bossEnemyEntity: Entity!
     // Note: This is not the gesture entity from enemyEntity.
     var gestureEntity: MockGestureEntity!
     var playerEntity: PlayerEntity!

@@ -25,9 +25,16 @@ enum GameConfig {
         static let enemy_walking = "enemy-walking-animation"
     }
     
+    enum Unit {
+        static let removalAnimationTimePerFrame: TimeInterval = 0.075
+        static let slowMovementSpeed: Float = 75.0
+        static let normalMovementSpeed: Float = 100.0
+        static let fastMovementSpeed: Float = 150.0
+        static let bossMovementSpeed: Float = 25.0
+    }
+    
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
-        static let removalAnimationTimePerFrame: TimeInterval = 0.075
         static let normalScore = 10
 
         // Note: monster difficulties must be unique
@@ -39,11 +46,6 @@ enum GameConfig {
         static let troll2Difficulty: Int = 5
         static let troll3Difficulty: Int = 6
         static let evilKnightDifficulty: Int = 7
-        
-        static let slowMovementSpeed: Float = 50.0
-        static let normalMovementSpeed: Float = 100.0
-        static let fastMovementSpeed: Float = 150.0
-        static let bossMovementSpeed: Float = 25.0
     }
     
     enum Mana {
@@ -140,7 +142,7 @@ enum GameConfig {
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
         static let powerUpAnimationLayerZPosition: CGFloat = 0
-        static let enemyLayerZPosition: CGFloat = 100
+        static let unitLayerZPosition: CGFloat = 100
         static let removalAnimationLayerZPosition: CGFloat = 200
         static let gestureLayerZPosition: CGFloat = 300
         static let playerAreaLayerZPosition: CGFloat = 400

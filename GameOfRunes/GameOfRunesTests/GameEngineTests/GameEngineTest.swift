@@ -107,18 +107,18 @@ class GameEngineTest: BaseUnitTest {
     func testDecreasePlayerHealth() {
         gameEngine.decreasePlayerHealth()
         verify(gameEngine, times(1)).decreasePlayerHealth()
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 2)
     }
     
     func testMinusHealthPoints() {
         XCTAssertTrue(gameEngine.minusHealthPoints(for: bossEnemyEntity) == 4)
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
     }
     
     func testDropMana() {
         gameEngine.dropMana(at: bossEnemyEntity)
-        verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(1)).dropMana(at: any(Entity.self))
     }
 
     func testEnemyForceRemoved() {
@@ -136,20 +136,20 @@ class GameEngineTest: BaseUnitTest {
         
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
-        gameEngine.enemyForceRemoved(enemyEntity)
-        verify(gameEngine, times(1)).enemyForceRemoved(any(GKEntity.self))
+        gameEngine.unitForceRemoved(enemyEntity)
+        verify(gameEngine, times(1)).unitForceRemoved(any(Entity.self))
         verify(gameEngine, times(0)).decreasePlayerHealth()
-        verify(gameEngine, times(0)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(0)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(1)).remove(any(Entity.self))
-        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         gameEngine.update(with: 1 / 60)
-        verify(gameEngine, times(1)).enemyForceRemoved(any(GKEntity.self))
+        verify(gameEngine, times(1)).unitForceRemoved(any(Entity.self))
         verify(gameEngine, times(0)).decreasePlayerHealth()
-        verify(gameEngine, times(0)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(0)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
-        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).isEmpty)
     }
@@ -169,20 +169,20 @@ class GameEngineTest: BaseUnitTest {
         
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
-        gameEngine.enemyReachedLine(enemyEntity)
-        verify(gameEngine, times(1)).enemyReachedLine(any(GKEntity.self))
+        gameEngine.unitReachedLine(enemyEntity)
+        verify(gameEngine, times(1)).unitReachedLine(any(Entity.self))
         verify(gameEngine, times(1)).decreasePlayerHealth()
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(1)).remove(any(Entity.self))
-        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         gameEngine.update(with: 1 / 60)
-        verify(gameEngine, times(1)).enemyReachedLine(any(GKEntity.self))
+        verify(gameEngine, times(1)).unitReachedLine(any(Entity.self))
         verify(gameEngine, times(1)).decreasePlayerHealth()
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
-        verify(gameEngine, times(0)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(0)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).isEmpty)
     }
@@ -204,16 +204,16 @@ class GameEngineTest: BaseUnitTest {
 
         gameEngine.gestureActivated(gesture: gesture)
         verify(gameEngine, times(1)).gestureActivated(gesture: any(CustomGesture.self))
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(1)).remove(any(Entity.self))
-        verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(1)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         gameEngine.update(with: 1 / 60)
         verify(gameEngine, times(1)).gestureActivated(gesture: any(CustomGesture.self))
-        verify(gameEngine, times(1)).minusHealthPoints(for: any(GKEntity.self))
+        verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
-        verify(gameEngine, times(1)).dropMana(at: any(GKEntity.self))
+        verify(gameEngine, times(1)).dropMana(at: any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).isEmpty)
     }
