@@ -25,9 +25,16 @@ enum GameConfig {
         static let enemy_walking = "enemy-walking-animation"
     }
     
+    enum Unit {
+        static let removalAnimationTimePerFrame: TimeInterval = 0.075
+        static let slowMovementSpeed: Float = 75.0
+        static let normalMovementSpeed: Float = 100.0
+        static let fastMovementSpeed: Float = 150.0
+        static let bossMovementSpeed: Float = 25.0
+    }
+    
     enum Enemy {
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
-        static let removalAnimationTimePerFrame: TimeInterval = 0.075
         static let normalScore = 10
 
         // Note: monster difficulties must be unique
@@ -39,15 +46,6 @@ enum GameConfig {
         static let troll2Difficulty: Int = 5
         static let troll3Difficulty: Int = 6
         static let evilKnightDifficulty: Int = 7
-        
-        static let slowMovementSpeed: Float = 125.0
-        static let normalMovementSpeed: Float = 150.0
-        static let fastMovementSpeed: Float = 200.0
-        static let bossMovementSpeed: Float = 75.0
-    }
-
-    enum Health {
-        static let maxPlayerHealth: Int = 5
     }
     
     enum Mana {
@@ -56,12 +54,11 @@ enum GameConfig {
         static let manaDropProbability: CGFloat = 1.0
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
-        static let numManaUnits: Int = 8
         static let manaPerManaUnit: Int = 10
     }
 
     enum DarkVortexPowerUp {
-        static let powerUpDuration: TimeInterval = 8.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
@@ -72,7 +69,7 @@ enum GameConfig {
     }
 
     enum HellFirePowerUp {
-        static let powerUpDuration: TimeInterval = 8.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
@@ -83,7 +80,7 @@ enum GameConfig {
     }
 
     enum IcePrisonPowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
@@ -92,26 +89,34 @@ enum GameConfig {
             that freezes all enemies in the region
             """
     }
-    
-    enum InvincibilityPowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+
+    enum DivineBlessingPowerUp {
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
-            Invincibility
-            Tap to activate, makes you invincible against
-            enemies for a period of time
+            Divine Blessing
+            Draw a circle to invoke a divine blessing that
+            simplifies all enemy gestures in the region
             """
     }
     
-    enum SubstituionPowerUp {
-        static let powerUpDuration: TimeInterval = 5.0
+    enum DivineShieldPowerUp {
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
-            Substituion Jutsu
-            Draw a circle to call ninjas to ambush enemies
-            within
+            Divine Shield
+            Tap to use the divine shield bestowed by King
+            Arthur himself which gives invulnerability
+            """
+    }
+
+    enum HeroicCallPowerUp {
+        static let manaUnitCost: Int = 1
+        static let description = """
+            Heroic Call
+            Tap to to call upon a wave of elite knights
+            to fight against incoming enemies
             """
     }
 
@@ -138,7 +143,7 @@ enum GameConfig {
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
         static let powerUpAnimationLayerZPosition: CGFloat = 0
-        static let enemyLayerZPosition: CGFloat = 100
+        static let unitLayerZPosition: CGFloat = 100
         static let removalAnimationLayerZPosition: CGFloat = 200
         static let gestureLayerZPosition: CGFloat = 300
         static let playerAreaLayerZPosition: CGFloat = 400
@@ -157,6 +162,21 @@ enum GameConfig {
         static let horizontalOffSet: CGFloat = 100.0
         static let verticalOffSet: CGFloat = 100.0
         static let numEndPoints: Int = 3
+        
+        static func calculateHorizontallyDistributedPoints(
+            width: CGFloat,
+            laneIndex: Int,
+            totalPoints: Int,
+            yPosition: CGFloat) -> CGPoint {
+            
+            let xPositionNumerator = 2 * laneIndex + 1
+            let xPositionDenominator = 2 * totalPoints
+            let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let xPosition = (width - 2 * edgeOffset) * xPositionRatio + edgeOffset
+            
+            return .init(x: xPosition, y: yPosition)
+        }
     }
     
     enum GameMapScene {

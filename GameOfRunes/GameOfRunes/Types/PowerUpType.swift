@@ -12,8 +12,9 @@ enum PowerUpType: String, CaseIterable {
     case darkVortex
     case hellfire
     case icePrison
-    case invincibility
-    case substitution
+    case divineBlessing
+    case divineShield
+    case heroicCall
     
     var description: String {
         switch self {
@@ -23,10 +24,12 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.description
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.description
-        case .invincibility:
-            return GameConfig.InvincibilityPowerUp.description
-        case .substitution:
-            return GameConfig.SubstituionPowerUp.description
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.description
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.description
+        case .heroicCall:
+            return GameConfig.HeroicCallPowerUp.description
         }
     }
     
@@ -38,10 +41,12 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.manaUnitCost
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.manaUnitCost
-        case .invincibility:
-            return GameConfig.InvincibilityPowerUp.manaUnitCost
-        case .substitution:
-            return GameConfig.SubstituionPowerUp.manaUnitCost
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.manaUnitCost
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.manaUnitCost
+        case .heroicCall:
+            return GameConfig.HeroicCallPowerUp.manaUnitCost
         }
     }
     
@@ -53,10 +58,12 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.fadeOutDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.fadeOutDuration
-        case .invincibility:
-            return GameConfig.InvincibilityPowerUp.fadeOutDuration
-        case .substitution:
-            return GameConfig.SubstituionPowerUp.fadeOutDuration
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.fadeOutDuration
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.fadeOutDuration
+        default:
+            return 0
         }
     }
     
@@ -68,14 +75,14 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.powerUpDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.powerUpDuration
-        case .invincibility:
-            return GameConfig.InvincibilityPowerUp.powerUpDuration
-        case .substitution:
-            return GameConfig.SubstituionPowerUp.powerUpDuration
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.powerUpDuration
+        default:
+            return 0
         }
     }
     
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity {
+    func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         switch self {
         case .hellfire:
             return HellfirePowerUpEntity(at: position, with: size)
@@ -83,10 +90,12 @@ enum PowerUpType: String, CaseIterable {
             return IcePrisonPowerUpEntity(at: position, with: size)
         case .darkVortex:
             return DarkVortexPowerUpEntity(at: position, with: size)
-        case .invincibility:
+        case .divineShield:
             return DarkVortexPowerUpEntity(at: position, with: size)
-        case .substitution:
+        case .divineBlessing:
             return DarkVortexPowerUpEntity(at: position, with: size)
+        default:
+            return nil
         }
     }
     

@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class PowerUpDescriptionNode: SKSpriteNode, SelectedPowerUpResponder {
+class PowerUpDescriptionNode: SKSpriteNode {
     let powerUpContainerNode = PowerUpContainerNode()
     let descriptionNode = DescriptionNode()
     override var size: CGSize {
@@ -24,8 +24,6 @@ class PowerUpDescriptionNode: SKSpriteNode, SelectedPowerUpResponder {
     init() {
         super.init(texture: nil, color: .clear, size: .zero)
         
-        powerUpContainerNode.selectedPowerUpResponder = self
-        
         addChild(powerUpContainerNode)
         addChild(descriptionNode)
     }
@@ -35,8 +33,11 @@ class PowerUpDescriptionNode: SKSpriteNode, SelectedPowerUpResponder {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
-        var description = newSelectedPowerUp?.description.components(separatedBy: "\n") ?? ["", "", ""]
+    func updatePowerUpDescription() {
+        var description = powerUpContainerNode
+            .selectedPowerUp?
+            .description
+            .components(separatedBy: "\n") ?? ["", "", ""]
         while description.count < 3 {
             description.append("")
         }

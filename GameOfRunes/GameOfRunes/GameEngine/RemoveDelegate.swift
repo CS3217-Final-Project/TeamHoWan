@@ -24,33 +24,30 @@ class RemoveDelegate {
         }
         
         if enemyHealth <= 0 {
-            removeEnemy(enemyEntity, shouldIncreaseScore: true)
+            removeUnit(enemyEntity, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
         } else {
             gameEngine?.setNextGesture(for: enemyEntity)
         }
     }
 
-    func removeEnemy(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
-                     shouldIncreaseScore: Bool = false) {
+    func removeUnit(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
+                    shouldIncreaseScore: Bool = false) {
         guard entity.type == .enemyEntity else {
             return
         }
         
         if shouldDecreasePlayerHealth, gameEngine?.entities(for: .invincibilityPowerUpEntity).isEmpty ?? true {
             gameEngine?.decreasePlayerHealth()
-        } else {
+        } else if entity.type == .enemyEntity {
             gameEngine?.incrementCombo()
         }
-
-        if shouldIncreaseScore {
-            guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
-                return
-            }
+        
+        if shouldIncreaseScore, let scoreComponent = entity.component(ofType: ScoreComponent.self) {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
-        removeEnemyFromGameWithAnimation(entity)
+        removeUnitFromGameWithAnimation(entity)
     }
     
     func removeDroppedMana(_ entity: Entity) {
@@ -61,7 +58,7 @@ class RemoveDelegate {
         let removalAnimation = SKAction.sequence([
             .animate(
                 with: TextureContainer.manaRemovalTextures,
-                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
                 resize: true,
                 restore: false
             ),
@@ -78,13 +75,13 @@ class RemoveDelegate {
     }
     
     /**
-     Removes the `EnemyEntity` from the game.
+     Removes the `Unit` from the game.
      - Note: This method will first remove the `MoveComponent` to prevent
      the enemy from continuing to move. Then it will run the removal animation.
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeEnemyFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
+    private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
         guard entity.type == .enemyEntity,
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
@@ -97,7 +94,7 @@ class RemoveDelegate {
         let removalAnimation = SKAction.sequence([
             .animate(
                 with: animationTextures,
-                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
                 resize: true,
                 restore: false
             ),
@@ -107,8 +104,13 @@ class RemoveDelegate {
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
+        // have to save the value instead of a strong reference to the entity
+        let entityType = entity.type
                                             // gives some delay till the game terminates
         animationNode.run(removalAnimation, completion: { [weak self] in
+            guard entityType == .enemyEntity else {
+                return
+            }
             self?.gameEngine?.metadata.numEnemiesOnField -= 1
         })
         gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)

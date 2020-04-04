@@ -34,12 +34,8 @@ public class GestureRecognizer {
         var path = Path()
         path.addPointFromRaw(rawPoints)
         
-        guard let gameEngine = gameEngine, let gameScene = gameEngine.gameScene else {
-            return
-        }
-        
         if let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints) {
-            gameScene.activatePowerUp(
+            gameEngine?.activatePowerUp(
                 at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
                 with: .init(width: circle.radius * 2, height: circle.radius * 2)
             )
@@ -48,7 +44,7 @@ public class GestureRecognizer {
         
         if let gesture = self.recognizer.recognizePath(path),
             let customGesture: CustomGesture = gesture.datas as? CustomGesture {
-            gameEngine.gestureActivated(gesture: customGesture)
+            gameEngine?.gestureActivated(gesture: customGesture)
         }
     }
 }

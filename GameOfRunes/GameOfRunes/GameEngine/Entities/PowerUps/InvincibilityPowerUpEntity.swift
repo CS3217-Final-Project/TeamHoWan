@@ -17,11 +17,11 @@ class InvincibilityPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = PowerUpType.invincibility.getAnimationNode(at: position, with: size)
+        let animationNode = PowerUpType.divineShield.getAnimationNode(at: position, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.InvincibilityPowerUp.powerUpDuration)
-        let powerUpComponent = PowerUpComponent(.invincibility)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineShieldPowerUp.powerUpDuration)
+        let powerUpComponent = PowerUpComponent(.divineShield)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)

@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import GameplayKit
 
 class EnemyEntity: Entity {
     override var type: EntityType {
@@ -21,7 +20,7 @@ class EnemyEntity: Entity {
         
         let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
         enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
-        CollisionType.enemy.setPhysicsBody(
+        CollisionType.enemyUnit.setPhysicsBody(
             for: enemyNode,
             with: enemyNode.size
         )
@@ -38,7 +37,7 @@ class EnemyEntity: Entity {
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
  
-        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .enemyLayer)
+        let spriteComponent = SpriteComponent(node: enemyNode, layerType: .unitLayer)
         let moveComponent = MoveComponent(
             maxSpeed: enemyType.speed,
             maxAcceleration: 5.0,

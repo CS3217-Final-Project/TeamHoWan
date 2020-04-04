@@ -60,13 +60,13 @@ class SystemDelegate {
         systems[.timerComponent]?.update(deltaTime: deltatime)
     }
     
-    func addComponents(foundIn entity: GKEntity) {
+    func addComponents(foundIn entity: Entity) {
         systems.values.forEach { system in
             system.addComponent(foundIn: entity)
         }
     }
     
-    func removeComponents(foundIn entity: GKEntity) {
+    func removeComponents(foundIn entity: Entity) {
         systems.values.forEach { system in
             system.removeComponent(foundIn: entity)
         }
@@ -76,19 +76,19 @@ class SystemDelegate {
         systems[component.type]?.removeComponent(component)
     }
 
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         healthSystem?.minusHealthPoints(for: entity)
     }
 
-    func increaseMana(by manaPoint: Int, for entity: GKEntity) {
+    func increaseMana(by manaPoint: Int, for entity: Entity) {
         manaSystem?.increaseMana(by: manaPoint, for: entity)
     }
     
-    func dropMana(at entity: GKEntity) {
+    func dropMana(at entity: Entity) {
         manaSystem?.dropMana(at: entity)
     }
     
-    func getMana(for entity: GKEntity) -> Int? {
+    func getMana(for entity: Entity) -> Int? {
         manaSystem?.getMana(for: entity)
     }
     
@@ -142,7 +142,7 @@ class SystemDelegate {
         scoreSystem?.incrementMultiplier(for: entity)
     }
     
-    func activatePowerUp(at position: CGPoint, with size: CGSize) {
+    func activatePowerUp(at position: CGPoint, with size: CGSize?) {
         powerUpSystem?.activatePowerUp(at: position, with: size)
     }
     

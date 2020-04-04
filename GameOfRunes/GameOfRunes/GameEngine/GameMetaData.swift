@@ -10,12 +10,20 @@ import Foundation
 
 class GameMetaData {
     // TODO: maybe change this to current avatar.
-    private (set) var availablePowerUps: [PowerUpType]
-    private (set) var maxPlayerHealth: Int
-    private (set) var numManaUnits: Int
-    private (set) var manaPerManaUnit: Int
+    let avatar: Avatar
+    let stage: Stage
+    var availablePowerUps: [PowerUpType] {
+        avatar.powerUps
+    }
+    var maxPlayerHealth: Int {
+        avatar.health
+    }
+    var numManaUnits: Int {
+        avatar.manaUnits
+    }
+    private (set) var manaPointsPerManaUnit: Int
     var maxPlayerMana: Int {
-        numManaUnits * manaPerManaUnit
+        numManaUnits * manaPointsPerManaUnit
     }
 
     var playerHealth: Int
@@ -27,13 +35,11 @@ class GameMetaData {
     var numEnemiesOnField: Int = 0
     var selectedPowerUp: PowerUpType?
 
-    init(maxPlayerHealth: Int, numManaUnits: Int, manaPerManaUnit: Int,
-         powerUps: [PowerUpType], stage: Stage) {
-        self.maxPlayerHealth = maxPlayerHealth
-        self.numManaUnits = numManaUnits
-        self.manaPerManaUnit = manaPerManaUnit
-        availablePowerUps = powerUps
-        playerHealth = maxPlayerHealth
+    init(stage: Stage, avatar: Avatar, manaPointsPerManaUnit: Int) {
+        self.manaPointsPerManaUnit = manaPointsPerManaUnit
+        self.avatar = avatar
+        self.stage = stage
+        playerHealth = avatar.health
 
         levelSpawnInterval = stage.enemyWaveSpawnInterval
         stageWaves = stage.enemyWaves

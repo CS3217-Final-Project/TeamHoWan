@@ -19,37 +19,55 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     
     // Contact detected by SpriteKit's physics system
     func didBegin(_ contact: SKPhysicsContact) {
-        guard let nodeA = contact.bodyA.node, let nodeB = contact.bodyB.node else {
+        guard let entityA = contact.bodyA.node?.entity as? Entity,
+            let entityB = contact.bodyB.node?.entity as? Entity,
+            let entityACollisionType = CollisionType(rawValue: contact.bodyA.categoryBitMask),
+            let entityBCollisionType = CollisionType(rawValue: contact.bodyB.categoryBitMask) else {
             return
         }
         
-        let isBodyAEnemy = contact.bodyA.categoryBitMask == CollisionType.enemy.rawValue
-        let isBodyBEnemy = contact.bodyB.categoryBitMask == CollisionType.enemy.rawValue
+        let sortedOrder = [(entity: entityA, collisionType: entityACollisionType),
+                           (entity: entityB, collisionType: entityBCollisionType)]
+            .sorted(by: { $0.collisionType < $1.collisionType })
         
-        // Only concerned if one of the nodes are enemy nodes (XOR), BUT NOT BOTH (shouldn't occur)
-        if isBodyAEnemy, !isBodyBEnemy {
-            enemyNodeContactWithOther(enemyNode: nodeA, other: nodeB)
-        } else if !isBodyAEnemy, isBodyBEnemy {
-            enemyNodeContactWithOther(enemyNode: nodeB, other: nodeA)
-        }
-    }
-    
-    private func enemyNodeContactWithOther(enemyNode: SKNode, other: SKNode) {
-        guard let enemyEntity = enemyNode.entity as? Entity,
-            enemyEntity.type == .enemyEntity,
-            let otherEntity = other.entity as? Entity else {
+        let firstPair = sortedOrder[0]
+        let secondPair = sortedOrder[1]
+        
+        switch firstPair.collisionType {
+        case .enemyUnit:
+            guard firstPair.entity.type == .enemyEntity else {
                 return
-        }
-        
-        switch otherEntity.type {
-        case .endPointEntity:
-            gameEngine?.enemyReachedLine(enemyEntity)
-        case _ where otherEntity.type.isPowerUp:
-            guard let powerUpComponent = otherEntity.component(ofType: PowerUpComponent.self) else {
-                    return
             }
             
-            didActivate(powerUp: powerUpComponent.powerUpType, on: enemyEntity)
+            switch secondPair.collisionType {
+            case .playerUnit:
+                guard secondPair.entity.type == .playerUnitEntity else {
+                    return
+                }
+                gameEngine?.unitForceRemoved(firstPair.entity)
+                gameEngine?.unitForceRemoved(secondPair.entity)
+            case .playerEndPoint:
+                guard secondPair.entity.type == .endPointEntity else {
+                    return
+                }
+                gameEngine?.unitReachedLine(firstPair.entity)
+            case .powerUp:
+                guard let powerUpType = secondPair.entity
+                    .component(ofType: PowerUpComponent.self)?
+                    .powerUpType else {
+                    return
+                }
+                didActivate(powerUp: powerUpType, on: firstPair.entity)
+            default:
+                return
+            }
+        case .playerUnit:
+            guard firstPair.entity.type == .playerUnitEntity,
+                secondPair.entity.type == .endPointEntity,
+                secondPair.collisionType == .enemyEndPoint else {
+                return
+            }
+            gameEngine?.unitReachedLine(firstPair.entity)
         default:
             return
         }
@@ -64,11 +82,11 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         
         switch powerUp {
         case .hellfire:
-            gameEngine?.enemyForceRemoved(enemy)
+            gameEngine?.unitForceRemoved(enemy)
         case .icePrison:
             gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
                                             duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
-        case .substitution:
+        case .divineBlessing:
             gameEngine?.setNextGesture(for: enemy, using: .lightning)
         default:
             return

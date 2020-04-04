@@ -108,7 +108,7 @@ class GameEngineTest: BaseUnitTest {
         gameEngine.decreasePlayerHealth()
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
-        XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 4)
+        XCTAssertTrue(playerEntity.component(ofType: HealthComponent.self)?.healthPoints == 2)
     }
     
     func testMinusHealthPoints() {
@@ -136,8 +136,8 @@ class GameEngineTest: BaseUnitTest {
         
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
-        gameEngine.enemyForceRemoved(enemyEntity)
-        verify(gameEngine, times(1)).enemyForceRemoved(any(Entity.self))
+        gameEngine.unitForceRemoved(enemyEntity)
+        verify(gameEngine, times(1)).unitForceRemoved(any(Entity.self))
         verify(gameEngine, times(0)).decreasePlayerHealth()
         verify(gameEngine, times(0)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(1)).remove(any(Entity.self))
@@ -145,7 +145,7 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         gameEngine.update(with: 1 / 60)
-        verify(gameEngine, times(1)).enemyForceRemoved(any(Entity.self))
+        verify(gameEngine, times(1)).unitForceRemoved(any(Entity.self))
         verify(gameEngine, times(0)).decreasePlayerHealth()
         verify(gameEngine, times(0)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))
@@ -169,8 +169,8 @@ class GameEngineTest: BaseUnitTest {
         
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
         
-        gameEngine.enemyReachedLine(enemyEntity)
-        verify(gameEngine, times(1)).enemyReachedLine(any(Entity.self))
+        gameEngine.unitReachedLine(enemyEntity)
+        verify(gameEngine, times(1)).unitReachedLine(any(Entity.self))
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(1)).remove(any(Entity.self))
@@ -178,7 +178,7 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
         gameEngine.update(with: 1 / 60)
-        verify(gameEngine, times(1)).enemyReachedLine(any(Entity.self))
+        verify(gameEngine, times(1)).unitReachedLine(any(Entity.self))
         verify(gameEngine, times(1)).decreasePlayerHealth()
         verify(gameEngine, times(1)).minusHealthPoints(for: any(Entity.self))
         verify(gameEngine, times(2)).remove(any(Entity.self))

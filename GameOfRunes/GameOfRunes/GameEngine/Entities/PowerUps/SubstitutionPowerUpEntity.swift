@@ -17,12 +17,12 @@ class SubstitutionPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = PowerUpType.substitution.getCastingAnimationNode(at: position, with: size)
+        let animationNode = PowerUpType.divineBlessing.getCastingAnimationNode(at: position, with: size)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.SubstituionPowerUp.fadeOutDuration)
-        let powerUpComponent = PowerUpComponent(.substitution)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineBlessingPowerUp.fadeOutDuration)
+        let powerUpComponent = PowerUpComponent(.divineBlessing)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)

@@ -12,7 +12,7 @@
  */
 enum SpriteLayerType {
     case backgroundLayer
-    case enemyLayer
+    case unitLayer
     case powerUpAnimationLayer
     case removalAnimationLayer
     case gestureLayer
