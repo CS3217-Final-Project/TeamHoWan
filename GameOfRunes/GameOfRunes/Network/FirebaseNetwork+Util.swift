@@ -13,7 +13,7 @@ extension FirebaseNetwork {
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */
     func generateRandomId() -> String {
-        var random: String = String(Int.random(in: 0 ..< 1000000))
+        var random = String(Int.random(in: 0 ..< 1_000_000))
         while random.count < 6 {
             random = "0\(random)"
         }

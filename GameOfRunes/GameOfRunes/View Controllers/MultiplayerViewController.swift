@@ -17,6 +17,7 @@ class MultiplayerScreenViewController: UIViewController {
     }
     private let hostRoomButton = UIButton()
     private let joinRoomButton = UIButton()
+    private let dbRef: NetworkInterface = FirebaseNetwork()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +49,16 @@ class MultiplayerScreenViewController: UIViewController {
         addJoinRoomImageConstraints()
         addJoinRoomActions()
     }
-}
     
-extension MultiplayerScreenViewController {
     private func addHostRoomImageConstraints() {
-        guard let buttonImage = UIImage(named: "start-button-glow") else {
+        guard let buttonImage = UIImage(named: "hostgame") else {
             return
         }
         
         hostRoomButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("hostRoomButtonCenterX")
             make.centerY.equalToSuperview().multipliedBy(0.75).labeled("hostRoomButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("hostRoomButtonSize")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("hostRoomButtonSize")
         }
         
         hostRoomButton.adjustsImageWhenHighlighted = false
@@ -73,14 +72,14 @@ extension MultiplayerScreenViewController {
     }
     
     private func addJoinRoomImageConstraints() {
-        guard let buttonImage = UIImage(named: "start-button-glow") else {
+        guard let buttonImage = UIImage(named: "joingame") else {
             return
         }
         
         joinRoomButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("joinRoomButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.6).labeled("joinRoomButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("joinRoomButtonSize")
+            make.centerY.equalToSuperview().multipliedBy(1.45).labeled("joinRoomButtonCenterY")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("joinRoomButtonSize")
         }
         
         joinRoomButton.adjustsImageWhenHighlighted = false
@@ -109,19 +108,17 @@ extension MultiplayerScreenViewController {
         UIView.animate(withDuration: 0.1) {
             sender.transform = CGAffineTransform.identity
         }
+        // TODO: How to get UID and name?
+        // TODO: Error handler
+        dbRef.createRoom(uid: "123456", name: FirebaseKeys.defaultName, { roomId in
+            self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
+        }, { _ in })
     }
     
     @objc private func joinRoomStart(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1) {
             sender.transform = CGAffineTransform.identity
         }
-        
-        guard let joinRoomVC = storyboard?.instantiateViewController(identifier: "joinVC") else {
-            return
-        }
-        
-        joinRoomVC.modalPresentationStyle = .fullScreen
-        joinRoomVC.modalTransitionStyle = .crossDissolve
-        present(joinRoomVC, animated: true)
+        openJoinGameView(db: self.dbRef)
     }
 }

@@ -59,6 +59,6 @@ class RoomModel {
     }
     
     func toString() -> String {
-        return "roomId: \(self.roomId)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)"
+        "roomId: \(self.roomId)\nplayers: \(self.players)\nroomIsOpen: \(self.isOpen)"
     }
 }
