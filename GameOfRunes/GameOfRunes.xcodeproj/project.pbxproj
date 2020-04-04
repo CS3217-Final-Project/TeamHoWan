@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,16 @@
 		4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */; };
 		4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */; };
 		4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */; };
+		4A87DF552437F9A200A31AAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */; };
+		4A87DF602437FB4400A31AAF /* IceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */; };
+		4A87DF612437FB4400A31AAF /* RTCStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5C2437FB4300A31AAF /* RTCStates.swift */; };
+		4A87DF622437FB4400A31AAF /* SdpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5D2437FB4400A31AAF /* SdpType.swift */; };
+		4A87DF632437FB4400A31AAF /* SessionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */; };
+		4A87DF642437FB4400A31AAF /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */; };
+		4A87DF692437FB6900A31AAF /* WebRTCClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF672437FB6800A31AAF /* WebRTCClientDelegate.swift */; };
+		4A87DF6A2437FB6900A31AAF /* SignalingClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF682437FB6900A31AAF /* SignalingClientDelegate.swift */; };
+		4A87DF6D2437FB7500A31AAF /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF6B2437FB7400A31AAF /* WebRTCClient.swift */; };
+		4A87DF6E2437FB7500A31AAF /* SignalingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF6C2437FB7500A31AAF /* SignalingClient.swift */; };
 		4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */; };
 		4AA508C22415766A00D9ADE4 /* HVD_Comic_Serif_Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */; };
 		4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AA508C72415E0FF00D9ADE4 /* Dragon Fire.ttf */; };
@@ -211,6 +221,16 @@
 		4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewLabelNode.swift; sourceTree = "<group>"; };
 		4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewDescriptionNode.swift; sourceTree = "<group>"; };
 		4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedLabelsNode.swift; sourceTree = "<group>"; };
+		4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidate.swift; sourceTree = "<group>"; };
+		4A87DF5C2437FB4300A31AAF /* RTCStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCStates.swift; sourceTree = "<group>"; };
+		4A87DF5D2437FB4400A31AAF /* SdpType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdpType.swift; sourceTree = "<group>"; };
+		4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDescription.swift; sourceTree = "<group>"; };
+		4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		4A87DF672437FB6800A31AAF /* WebRTCClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClientDelegate.swift; sourceTree = "<group>"; };
+		4A87DF682437FB6900A31AAF /* SignalingClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingClientDelegate.swift; sourceTree = "<group>"; };
+		4A87DF6B2437FB7400A31AAF /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
+		4A87DF6C2437FB7500A31AAF /* SignalingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingClient.swift; sourceTree = "<group>"; };
 		4A8F0AA724191BBF00CD730B /* PlayerAreaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaNode.swift; sourceTree = "<group>"; };
 		4AA508C12415762800D9ADE4 /* HVD_Comic_Serif_Pro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HVD_Comic_Serif_Pro.otf; sourceTree = "<group>"; };
 		4AA508C72415E0FF00D9ADE4 /* Dragon Fire.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dragon Fire.ttf"; sourceTree = "<group>"; };
@@ -455,6 +475,38 @@
 			path = "Stage Selection";
 			sourceTree = "<group>";
 		};
+		4A87DF5A2437FB2A00A31AAF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4A87DF662437FB5D00A31AAF /* Services */,
+				4A87DF652437FB5300A31AAF /* Delegates */,
+				4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */,
+				4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */,
+				4A87DF5C2437FB4300A31AAF /* RTCStates.swift */,
+				4A87DF5D2437FB4400A31AAF /* SdpType.swift */,
+				4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4A87DF652437FB5300A31AAF /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				4A87DF682437FB6900A31AAF /* SignalingClientDelegate.swift */,
+				4A87DF672437FB6800A31AAF /* WebRTCClientDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		4A87DF662437FB5D00A31AAF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4A87DF6C2437FB7500A31AAF /* SignalingClient.swift */,
+				4A87DF6B2437FB7400A31AAF /* WebRTCClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4A8F0AA624191B6D00CD730B /* Player Area */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
+				4A87DF5A2437FB2A00A31AAF /* Network */,
 				4A72EB42241FE18B005FA909 /* Utils */,
 				4A1B333A24327D5300B67B91 /* Protocols */,
 				8A2C033E242EF0D400A8EC96 /* Errors */,
@@ -603,6 +656,7 @@
 				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
+				4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */,
 			);
 			path = GameOfRunes;
 			sourceTree = "<group>";
@@ -948,6 +1002,7 @@
 				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
+				4A87DF552437F9A200A31AAF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1159,7 @@
 				4AA508CF24161EFA00D9ADE4 /* MoveComponent.swift in Sources */,
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
+				4A87DF642437FB4400A31AAF /* NetworkConfig.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
 				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
@@ -1116,6 +1172,7 @@
 				4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */,
 				C60EAF66242E2A350037BEAC /* PlayerSystem.swift in Sources */,
 				4A72EB4824211F57005FA909 /* PowerUpNode.swift in Sources */,
+				4A87DF6E2437FB7500A31AAF /* SignalingClient.swift in Sources */,
 				4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */,
 				4ACC8BDA2415322400F235AE /* HealthComponent.swift in Sources */,
 				C6AFF68B241A674A0076F02B /* MoveSystem.swift in Sources */,
@@ -1137,6 +1194,7 @@
 				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
+				4A87DF6D2437FB7500A31AAF /* WebRTCClient.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
 				8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
@@ -1167,6 +1225,8 @@
 				C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */,
+				4A87DF6A2437FB6900A31AAF /* SignalingClientDelegate.swift in Sources */,
+				4A87DF632437FB4400A31AAF /* SessionDescription.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
 				C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */,
@@ -1179,6 +1239,7 @@
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,
+				4A87DF622437FB4400A31AAF /* SdpType.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 				4A72EB442420061A005FA909 /* SummonNode.swift in Sources */,
 				4A09C4F3242FC36300CA7625 /* Stage.swift in Sources */,
@@ -1201,10 +1262,13 @@
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
 				4A1B334624330CAB00B67B91 /* Storage.swift in Sources */,
+				4A87DF602437FB4400A31AAF /* IceCandidate.swift in Sources */,
 				4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */,
 				56EDD279242E58BA0044B445 /* TimerSystem.swift in Sources */,
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
+				4A87DF692437FB6900A31AAF /* WebRTCClientDelegate.swift in Sources */,
+				4A87DF612437FB4400A31AAF /* RTCStates.swift in Sources */,
 				560DED9C242B902D00A6D9A6 /* ScoreComponent.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
