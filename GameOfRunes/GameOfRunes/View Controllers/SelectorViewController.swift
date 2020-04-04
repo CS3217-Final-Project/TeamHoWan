@@ -52,14 +52,14 @@ class SelectorViewController: UIViewController {
 
 extension SelectorViewController {
     private func addSpImageConstraints() {
-        guard let buttonImage = UIImage(named: "start-button-glow") else {
+        guard let buttonImage = UIImage(named: "singleplayer") else {
             return
         }
         
         singlePlayerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("spButtonCenterX")
             make.centerY.equalToSuperview().multipliedBy(0.75).labeled("spButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("spButtonSize")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("spButtonSize")
         }
         
         singlePlayerButton.adjustsImageWhenHighlighted = false
@@ -67,14 +67,14 @@ extension SelectorViewController {
     }
     
     private func addMpImageConstraints() {
-        guard let buttonImage = UIImage(named: "start-button-glow") else {
+        guard let buttonImage = UIImage(named: "multiplayer") else {
             return
         }
         
         multiplayerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("spButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.6).labeled("spButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("spButtonSize")
+            make.centerY.equalToSuperview().multipliedBy(1.45).labeled("spButtonCenterY")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("spButtonSize")
         }
         
         multiplayerButton.adjustsImageWhenHighlighted = false
