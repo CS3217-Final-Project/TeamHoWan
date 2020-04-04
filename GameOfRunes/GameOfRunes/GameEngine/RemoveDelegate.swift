@@ -82,7 +82,7 @@ class RemoveDelegate {
      the `EnemyEntity`.
      */
     private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
-        guard entity.type == .enemyEntity,
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity,
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
         }
