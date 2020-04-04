@@ -112,7 +112,7 @@ class MultiplayerScreenViewController: UIViewController {
         // TODO: Error handler
         dbRef.createRoom(uid: "123456", name: FirebaseKeys.defaultName, { roomId in
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
-        }, { _ in })
+        }, { err in })
     }
     
     @objc private func joinRoomStart(_ sender: UIButton) {
