@@ -19,17 +19,19 @@ class HomeViewController: UIViewController {
         view.frame.size.height
     }
     private let startButton = UIButton()
+    private let multiplayerButton = UIButton()
     // TODO: Perhaps shift it to some other static class? Or no need make static?
     static let storage: Storage = RealmStorage()
     private var bgmPlayer = AVAudioPlayer()
     private var clickSoundPlayer = AVAudioPlayer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpHomeBackground()
         setUpGameIcon()
         setUpStartButton()
+        setUpMultiplayerButton()
         setUpAudioPlayer(audioPlayer: &bgmPlayer, filename: "Destiny-Ablaze", type: "mp3", loopCount: -1)
         setUpAudioPlayer(audioPlayer: &clickSoundPlayer, filename: "click3", type: "mp3")
         
@@ -39,7 +41,7 @@ class HomeViewController: UIViewController {
             TextureContainer.loadTextures()
             print("Done loading textures")
         }
-
+        
         if Self.storage.isFirstInit {
             //TODO: DEBUG
             print("this is the first init")
@@ -78,7 +80,7 @@ class HomeViewController: UIViewController {
         view.bringSubviewToFront(gameIcon)
         gameIcon.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("gameIconCenterX")
-            make.centerY.equalToSuperview().multipliedBy(0.75).labeled("gameIconCenterY")
+            make.centerY.equalToSuperview().multipliedBy(0.7).labeled("gameIconCenterY")
             make.size.equalTo(gameIcon.frame.size.scaleTo(width: viewPortWidth * 0.8)).labeled("gameIconSize")
         }
     }
@@ -86,8 +88,15 @@ class HomeViewController: UIViewController {
     private func setUpStartButton() {
         view.addSubview(startButton)
         view.bringSubviewToFront(startButton)
-        addImageConstraints()
-        addActions()
+        addStartButtonImageConstraints()
+        addStartButtonActions()
+    }
+    
+    private func setUpMultiplayerButton() {
+        view.addSubview(multiplayerButton)
+        view.bringSubviewToFront(multiplayerButton)
+        addMultiplayerButtonImageConstraints()
+        addMultiplayerButtonActions()
     }
     
     private func setUpAudioPlayer(
@@ -111,22 +120,43 @@ class HomeViewController: UIViewController {
 
 // MARK: - button setup
 extension HomeViewController {
-    private func addImageConstraints() {
+    private func addStartButtonImageConstraints() {
         guard let buttonImage = UIImage(named: "start-button-glow") else {
             return
         }
         
         startButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("startButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.6).labeled("startButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.8)).labeled("startButtonSize")
+            make.centerY.equalToSuperview().multipliedBy(1.45).labeled("startButtonCenterY")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("startButtonSize")
         }
         
         startButton.adjustsImageWhenHighlighted = false
         startButton.setBackgroundImage(buttonImage, for: .normal)
     }
     
-    private func addActions() {
+    private func addMultiplayerButtonImageConstraints() {
+        guard let buttonImage = UIImage(named: "multiplayer-button-glow") else {
+            return
+        }
+        
+        multiplayerButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().labeled("multiplayerButtonCenterX")
+            make.centerY.equalToSuperview().multipliedBy(1.8).labeled("multiplayerButtonCenterY")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("multiplayerButtonSize")
+        }
+        
+        multiplayerButton.adjustsImageWhenHighlighted = false
+        multiplayerButton.setBackgroundImage(buttonImage, for: .normal)
+    }
+    
+    private func addMultiplayerButtonActions() {
+        multiplayerButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
+        multiplayerButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
+        multiplayerButton.addTarget(self, action: #selector(onSelectedMultiplayer), for: .touchUpInside)
+    }
+    
+    private func addStartButtonActions() {
         startButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
         startButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
         startButton.addTarget(self, action: #selector(onSelectedStart), for: .touchUpInside)
@@ -158,6 +188,28 @@ extension HomeViewController {
         gameVC.modalTransitionStyle = .crossDissolve
         present(gameVC, animated: true)
     }
+    
+    @objc private func onSelectedMultiplayer(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
+        
+        func buildMainViewController() -> UIViewController {
+            let signalClient = SignalingClient()
+            let webRTCClient = WebRTCClient(iceServers: NetworkConfig.default.webRTCIceServers)
+            let mainViewController = MainViewController(
+                signalClient: signalClient,
+                webRTCClient: webRTCClient)
+            let navViewController = UINavigationController(rootViewController: mainViewController)
+            return navViewController
+        }
+        
+        let gameVC = buildMainViewController()
+        
+        gameVC.modalPresentationStyle = .fullScreen
+        gameVC.modalTransitionStyle = .crossDissolve
+        present(gameVC, animated: true)
+    }
 }
 
 // MARK: - Initialise Data in Realm Database
@@ -172,10 +224,10 @@ extension HomeViewController {
             let stage2EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 2),
             let stage3EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 3),
             let stage4EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 4) else {
-            print("Unable to load Enemies from EnemyWaveCreator")
-            return
+                print("Unable to load Enemies from EnemyWaveCreator")
+                return
         }
-
+        
         let stage1 = Stage(
             name: "The Beginning",
             chapter: "Peasant Land 1",
@@ -191,7 +243,7 @@ extension HomeViewController {
             achievementSMinScore: 50,
             achievement: .empty
         )
-
+        
         let stage2 = Stage(
             name: "Warrior Arena",
             chapter: "Peasant Land 2",
@@ -207,7 +259,7 @@ extension HomeViewController {
             achievementSMinScore: 70,
             achievement: .empty
         )
-
+        
         let stage3 = Stage(
             name: "Cathedral Mayhem",
             chapter: "Peasant Land 3",
@@ -223,7 +275,7 @@ extension HomeViewController {
             achievementSMinScore: 90,
             achievement: .empty
         )
-
+        
         let stage4 = Stage(
             name: "The Crossing",
             chapter: "Peasant Land 4",
@@ -239,7 +291,7 @@ extension HomeViewController {
             achievementSMinScore: 100,
             achievement: .empty
         )
-
+        
         let stages = [stage1, stage2, stage3, stage4]
         Self.storage.save(stages: stages)
         Self.storage.didInitialise()

@@ -25,6 +25,11 @@
 		4A1B33402432845D00B67B91 /* EnemyWaveRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */; };
 		4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */; };
 		4A1B334624330CAB00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334524330CAB00B67B91 /* Storage.swift */; };
+		4A38C5952438A51800FC02A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38C5912438A51200FC02A9 /* MainViewController.swift */; };
+		4A38C5962438A51800FC02A9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A38C5922438A51400FC02A9 /* VideoViewController.swift */; };
+		4A38C5972438A51800FC02A9 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A38C5932438A51600FC02A9 /* VideoViewController.xib */; };
+		4A38C5982438A51800FC02A9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A38C5942438A51800FC02A9 /* MainViewController.xib */; };
+		4A38C59C2438A86500FC02A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A38C59B2438A86500FC02A9 /* GoogleService-Info.plist */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
 		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
@@ -43,7 +48,6 @@
 		4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */; };
 		4A768F1D24307DC9000F3F05 /* StageOverviewDescriptionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */; };
 		4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */; };
-		4A87DF552437F9A200A31AAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */; };
 		4A87DF602437FB4400A31AAF /* IceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */; };
 		4A87DF612437FB4400A31AAF /* RTCStates+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5C2437FB4300A31AAF /* RTCStates+description.swift */; };
 		4A87DF622437FB4400A31AAF /* SdpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5D2437FB4400A31AAF /* SdpType.swift */; };
@@ -203,6 +207,11 @@
 		4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveRealmModel.swift; sourceTree = "<group>"; };
 		4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeRealmModel.swift; sourceTree = "<group>"; };
 		4A1B334524330CAB00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		4A38C5912438A51200FC02A9 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4A38C5922438A51400FC02A9 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		4A38C5932438A51600FC02A9 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		4A38C5942438A51800FC02A9 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		4A38C59B2438A86500FC02A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
 		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -221,7 +230,6 @@
 		4A768F1A243022DA000F3F05 /* StageOverviewLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewLabelNode.swift; sourceTree = "<group>"; };
 		4A768F1C24307DC9000F3F05 /* StageOverviewDescriptionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageOverviewDescriptionNode.swift; sourceTree = "<group>"; };
 		4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedLabelsNode.swift; sourceTree = "<group>"; };
-		4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidate.swift; sourceTree = "<group>"; };
 		4A87DF5C2437FB4300A31AAF /* RTCStates+description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTCStates+description.swift"; sourceTree = "<group>"; };
 		4A87DF5D2437FB4400A31AAF /* SdpType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdpType.swift; sourceTree = "<group>"; };
@@ -420,6 +428,17 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4A38C5902438A4FB00FC02A9 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4A38C5912438A51200FC02A9 /* MainViewController.swift */,
+				4A38C5942438A51800FC02A9 /* MainViewController.xib */,
+				4A38C5922438A51400FC02A9 /* VideoViewController.swift */,
+				4A38C5932438A51600FC02A9 /* VideoViewController.xib */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		4A6213DA243093D400FABB48 /* Avatar Overview */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +497,7 @@
 		4A87DF5A2437FB2A00A31AAF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4A38C5902438A4FB00FC02A9 /* Screens */,
 				4A87DF662437FB5D00A31AAF /* Services */,
 				4A87DF652437FB5300A31AAF /* Delegates */,
 				4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */,
@@ -656,7 +676,7 @@
 				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
-				4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */,
+				4A38C59B2438A86500FC02A9 /* GoogleService-Info.plist */,
 			);
 			path = GameOfRunes;
 			sourceTree = "<group>";
@@ -914,8 +934,8 @@
 				4ACC8BA22414C69800F235AE /* Frameworks */,
 				4ACC8BA32414C69800F235AE /* Resources */,
 				4ACC8BCE2414C95100F235AE /* Run Script */,
-				A8956D6899BA6D13D8238588 /* [CP] Embed Pods Frameworks */,
 				74650D34590A2F9276048AF5 /* [CP] Copy Pods Resources */,
+				98CD040E71A70DA73CBEBE39 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -997,12 +1017,14 @@
 				4ACC8BB42414C69800F235AE /* Main.storyboard in Resources */,
 				4ACAD1F5243464D000DEE03D /* Destiny-Ablaze.mp3 in Resources */,
 				4ACC8BB92414C69B00F235AE /* LaunchScreen.storyboard in Resources */,
+				4A38C5972438A51800FC02A9 /* VideoViewController.xib in Resources */,
+				4A38C59C2438A86500FC02A9 /* GoogleService-Info.plist in Resources */,
 				4AC87A482419ED4200D79639 /* click1.mp3 in Resources */,
 				4AA508C82415E0FF00D9ADE4 /* Dragon Fire.ttf in Resources */,
+				4A38C5982438A51800FC02A9 /* MainViewController.xib in Resources */,
 				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
-				4A87DF552437F9A200A31AAF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1073,7 +1095,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A8956D6899BA6D13D8238588 /* [CP] Embed Pods Frameworks */ = {
+		98CD040E71A70DA73CBEBE39 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1194,6 +1216,7 @@
 				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
+				4A38C5952438A51800FC02A9 /* MainViewController.swift in Sources */,
 				4A87DF6D2437FB7500A31AAF /* WebRTCClient.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
 				8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */,
@@ -1266,6 +1289,7 @@
 				4A6213E42430B61700FABB48 /* AvatarLabelNode.swift in Sources */,
 				56EDD279242E58BA0044B445 /* TimerSystem.swift in Sources */,
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
+				4A38C5962438A51800FC02A9 /* VideoViewController.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				4A87DF692437FB6900A31AAF /* WebRTCClientDelegate.swift in Sources */,
 				4A87DF612437FB4400A31AAF /* RTCStates+description.swift in Sources */,
