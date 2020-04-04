@@ -176,13 +176,12 @@ class GameEngine {
         removeDelegate.removeUnit(entity)
     }
     
-    // TODO: naming
     func unitReachedLine(_ entity: Entity) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-
-        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: true)
+                                          // only remove player health if it is enemyEntity
+        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: entity.type == .enemyEntity)
     }
     
     func dropMana(at entity: Entity) {
