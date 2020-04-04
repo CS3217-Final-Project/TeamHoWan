@@ -93,6 +93,7 @@
 		566121DB2416838000475CE1 /* CustomGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGesture.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
 		56A37558243824DD0088F655 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A37557243824DD0088F655 /* SelectorViewController.swift */; };
+		56A3755A24382E450088F655 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A3755924382E450088F655 /* MultiplayerViewController.swift */; };
 		56C85F832434B0B300B1ADA9 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C85F822434B0B300B1ADA9 /* FirebaseKeys.swift */; };
 		56D2A647242BBAAE00BDD5DC /* CollisionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A646242BBAAE00BDD5DC /* CollisionType.swift */; };
 		56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */; };
@@ -259,6 +260,7 @@
 		566121DA2416838000475CE1 /* CustomGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGesture.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
 		56A37557243824DD0088F655 /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
+		56A3755924382E450088F655 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		56C85F822434B0B300B1ADA9 /* FirebaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
 		56D2A646242BBAAE00BDD5DC /* CollisionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionType.swift; sourceTree = "<group>"; };
 		56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDelegate.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 			children = (
 				4ACAF52A242A727F0062DDBA /* HomeViewController.swift */,
 				56A37557243824DD0088F655 /* SelectorViewController.swift */,
+				56A3755924382E450088F655 /* MultiplayerViewController.swift */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 			);
 			path = "View Controllers";
@@ -1107,6 +1110,7 @@
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */,
+				56A3755A24382E450088F655 /* MultiplayerViewController.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,

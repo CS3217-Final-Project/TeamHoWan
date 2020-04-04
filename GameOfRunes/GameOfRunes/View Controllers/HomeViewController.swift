@@ -103,12 +103,12 @@ extension HomeViewController {
             sender.transform = CGAffineTransform.identity
         }
         
-        guard let gameVC = storyboard?.instantiateViewController(identifier: "GameVC") else {
+        guard let selectorVC = storyboard?.instantiateViewController(identifier: "SelectorVC") else {
             return
         }
         
-        gameVC.modalPresentationStyle = .fullScreen
-        gameVC.modalTransitionStyle = .crossDissolve
-        present(gameVC, animated: true)
+        selectorVC.modalPresentationStyle = .fullScreen
+        selectorVC.modalTransitionStyle = .crossDissolve
+        present(selectorVC, animated: true)
     }
 }

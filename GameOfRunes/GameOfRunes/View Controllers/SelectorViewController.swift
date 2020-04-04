@@ -18,7 +18,6 @@ class SelectorViewController: UIViewController {
     private let singlePlayerButton = UIButton()
     private let multiplayerButton = UIButton()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHomeBackground()
@@ -59,8 +58,8 @@ extension SelectorViewController {
         
         singlePlayerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("spButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.6).labeled("spButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.3)).labeled("spButtonSize")
+            make.centerY.equalToSuperview().multipliedBy(0.75).labeled("spButtonCenterY")
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("spButtonSize")
         }
         
         singlePlayerButton.adjustsImageWhenHighlighted = false
@@ -72,14 +71,14 @@ extension SelectorViewController {
             return
         }
         
-        singlePlayerButton.snp.makeConstraints { make in
+        multiplayerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview().labeled("spButtonCenterX")
             make.centerY.equalToSuperview().multipliedBy(1.6).labeled("spButtonCenterY")
             make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.6)).labeled("spButtonSize")
         }
         
-        singlePlayerButton.adjustsImageWhenHighlighted = false
-        singlePlayerButton.setBackgroundImage(buttonImage, for: .normal)
+        multiplayerButton.adjustsImageWhenHighlighted = false
+        multiplayerButton.setBackgroundImage(buttonImage, for: .normal)
     }
     
     private func addMpActions() {
@@ -111,6 +110,13 @@ extension SelectorViewController {
             sender.transform = CGAffineTransform.identity
         }
         
+        guard let multiplayerVC = storyboard?.instantiateViewController(identifier: "MultiplayerVC") else {
+            return
+        }
+        
+        multiplayerVC.modalPresentationStyle = .fullScreen
+        multiplayerVC.modalTransitionStyle = .crossDissolve
+        present(multiplayerVC, animated: true)
     }
     
     @objc private func onSpStart(_ sender: UIButton) {
