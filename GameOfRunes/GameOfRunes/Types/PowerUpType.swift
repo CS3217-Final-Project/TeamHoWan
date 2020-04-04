@@ -91,9 +91,9 @@ enum PowerUpType: String, CaseIterable {
         case .darkVortex:
             return DarkVortexPowerUpEntity(at: position, with: size)
         case .divineShield:
-            return DarkVortexPowerUpEntity(at: position, with: size)
+            return DivineShieldPowerUpEntity(at: position, with: size)
         case .divineBlessing:
-            return DarkVortexPowerUpEntity(at: position, with: size)
+            return DivineBlessingPowerUpEntity(at: position, with: size)
         default:
             return nil
         }

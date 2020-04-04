@@ -28,17 +28,44 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
             // abitrary width for dark vortex
             let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
             powerUpSize = .init(width: radius, height: radius)
-            fallthrough
-        case .hellfire, .icePrison:
-            guard let size = powerUpSize else {
-                return
-            }
-            let entity = powerUpType.createEntity(at: position, with: size)
-            gameEngine?.add(entity)
+        case .divineShield:
+            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
+            powerUpSize = .init(width: radius, height: radius)
         case .heroicCall:
             gameEngine?.spawnPlayerUnitWave()
         default:
+            break
+        }
+        
+        guard let size = powerUpSize,
+            let entity = powerUpType.createEntity(at: position, with: size) else {
+                return
+        }
+        
+        gameEngine?.add(entity)
+    }
+    
+    override func addComponent(foundIn entity: GKEntity) {
+        super.addComponent(foundIn: entity)
+        
+        guard let powerUpType = entity.component(ofType: PowerUpComponent.self)?.powerUpType else {
             return
+        }
+        
+        if powerUpType == .divineShield {
+            gameEngine?.activateInvincibleEndPoint()
+        }
+    }
+    
+    override func removeComponent(foundIn entity: GKEntity) {
+        super.addComponent(foundIn: entity)
+        
+        guard let powerUpType = entity.component(ofType: PowerUpComponent.self)?.powerUpType else {
+            return
+        }
+        
+        if powerUpType == .divineShield {
+            gameEngine?.deactivateInvincibleEndPoint()
         }
     }
 

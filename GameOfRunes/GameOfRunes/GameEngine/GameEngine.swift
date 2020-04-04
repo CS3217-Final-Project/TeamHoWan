@@ -44,8 +44,8 @@ class GameEngine {
         }
     }
     
-    func add(_ entity: Entity?) {
-        guard let entity = entity, entities[entity.type]?.insert(entity).inserted == true else {
+    func add(_ entity: Entity) {
+        guard entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -256,12 +256,14 @@ class GameEngine {
         metadata.selectedPowerUp = gameScene?.selectedPowerUp
         
         switch metadata.selectedPowerUp {
-        case .heroicCall, .divineShield:
+        case .heroicCall:
             // although these power ups do not need position, position is set to center of screen
             // so that that messages will appear at the center if any
             activatePowerUp(at: gameScene?.center
                 ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
-            return
+        case .divineShield:
+            activatePowerUp(at: gameScene?.playerEndPoint.position
+                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .darkVortex:
             gameScene?.deactivateGestureDetection()
         default:
@@ -306,6 +308,26 @@ class GameEngine {
     
     func spawnPlayerUnitWave() {
         spawnDelegate.spawnPlayerUnitWave()
+    }
+    
+    func activateInvincibleEndPoint() {
+        guard let entity = entities(for: .endPointEntity).first(where: {
+            $0.component(ofType: TeamComponent.self)?.team == .player
+        }) else {
+            return
+        }
+
+        systemDelegate.activateInvincibleEndPoint(for: entity)
+    }
+    
+    func deactivateInvincibleEndPoint() {
+        guard let entity = entities(for: .endPointEntity).first(where: {
+            $0.component(ofType: TeamComponent.self)?.team == .player
+        }) else {
+            return
+        }
+        
+        systemDelegate.deactivateInvincibleEndPoint(for: entity)
     }
 }
 

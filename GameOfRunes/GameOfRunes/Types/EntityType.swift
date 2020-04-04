@@ -16,15 +16,15 @@ enum EntityType: CaseIterable {
     case icePrisonPowerUpEntity
     case hellFirePowerUpEntity
     case darkVortexPowerUpEntity
-    case invincibilityPowerUpEntity
-    case substitutionPowerUpEntity
+    case divineShieldPowerUpEntity
+    case divineBlessingPowerUpEntity
     case comboEntity
     case attractionEntity
     case playerUnitEntity
     
     static var powerUps: [EntityType] {
         [.icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity,
-         .invincibilityPowerUpEntity, .substitutionPowerUpEntity]
+         .divineShieldPowerUpEntity, .divineBlessingPowerUpEntity]
     }
     
     var isPowerUp: Bool {

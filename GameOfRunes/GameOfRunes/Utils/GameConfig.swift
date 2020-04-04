@@ -91,6 +91,7 @@ enum GameConfig {
     }
 
     enum DivineBlessingPowerUp {
+        static let powerUpDuration: TimeInterval = 5
         static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """

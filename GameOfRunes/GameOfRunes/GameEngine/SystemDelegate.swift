@@ -153,4 +153,12 @@ class SystemDelegate {
     func setGesture(for entity: Entity, using gesture: CustomGesture?) {
         gestureEntitySystem?.setGesture(for: entity, using: gesture)
     }
+    
+    func activateInvincibleEndPoint(for entity: Entity) {
+        spriteSystem?.activateInvincibleEndPoint(for: entity)
+    }
+    
+    func deactivateInvincibleEndPoint(for entity: Entity) {
+        spriteSystem?.deactivateInvincibleEndPoint(for: entity)
+    }
 }

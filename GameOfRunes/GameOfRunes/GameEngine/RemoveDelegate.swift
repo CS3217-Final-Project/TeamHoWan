@@ -37,7 +37,7 @@ class RemoveDelegate {
             return
         }
         
-        if shouldDecreasePlayerHealth, gameEngine?.entities(for: .invincibilityPowerUpEntity).isEmpty ?? true {
+        if shouldDecreasePlayerHealth, gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty ?? true {
             gameEngine?.decreasePlayerHealth()
         } else if entity.type == .enemyEntity {
             gameEngine?.incrementCombo()

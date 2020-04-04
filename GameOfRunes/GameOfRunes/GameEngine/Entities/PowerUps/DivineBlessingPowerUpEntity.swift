@@ -1,17 +1,17 @@
 //
-//  SubstitutionPowerUpEntity.swift
+//  DivineBlessingPowerUpEntity.swift
 //  GameOfRunes
 //
 //  Created by Dong SiJi on 2/4/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import GameplayKit
 import SpriteKit
+import GameplayKit
 
-class SubstitutionPowerUpEntity: Entity {
+class DivineBlessingPowerUpEntity: Entity {
     override var type: EntityType {
-        .substitutionPowerUpEntity
+        .divineBlessingPowerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
@@ -21,7 +21,7 @@ class SubstitutionPowerUpEntity: Entity {
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineBlessingPowerUp.fadeOutDuration)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineBlessingPowerUp.powerUpDuration)
         let powerUpComponent = PowerUpComponent(.divineBlessing)
         powerUpComponent.fading = true
         
