@@ -33,7 +33,7 @@ class RemoveDelegate {
 
     func removeUnit(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
                     shouldIncreaseScore: Bool = false) {
-        guard entity.type == .enemyEntity else {
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
         
