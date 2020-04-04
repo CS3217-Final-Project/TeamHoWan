@@ -12,6 +12,9 @@ enum PowerUpType: String, CaseIterable {
     case darkVortex
     case hellfire
     case icePrison
+    case divineBlessing
+    case divineShield
+    case heroicCall
     
     var description: String {
         switch self {
@@ -21,6 +24,12 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.description
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.description
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.description
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.description
+        case .heroicCall:
+            return GameConfig.HeroicCallPowerUp.description
         }
     }
     
@@ -32,6 +41,12 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.HellFirePowerUp.manaUnitCost
         case .icePrison:
             return GameConfig.IcePrisonPowerUp.manaUnitCost
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.manaUnitCost
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.manaUnitCost
+        case .heroicCall:
+            return GameConfig.HeroicCallPowerUp.manaUnitCost
         }
     }
     
@@ -43,6 +58,9 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.fadeOutDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.fadeOutDuration
+        default:
+            // TODO: add for other power ups
+            return 0
         }
     }
     
@@ -54,10 +72,13 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.powerUpDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.powerUpDuration
+        default:
+            // TODO: add for other power ups
+            return 0
         }
     }
     
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity {
+    func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         switch self {
         case .hellfire:
             return HellfirePowerUpEntity(at: position, with: size)
@@ -65,6 +86,8 @@ enum PowerUpType: String, CaseIterable {
             return IcePrisonPowerUpEntity(at: position, with: size)
         case .darkVortex:
             return DarkVortexPowerUpEntity(at: position, with: size)
+        default:
+            return nil
         }
     }
     

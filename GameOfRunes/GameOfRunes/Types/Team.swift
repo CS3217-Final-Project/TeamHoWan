@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum Team: String {
+enum Team {
     case player
     case enemy
     

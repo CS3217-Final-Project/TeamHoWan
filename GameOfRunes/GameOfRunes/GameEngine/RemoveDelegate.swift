@@ -15,9 +15,9 @@ class RemoveDelegate {
         self.gameEngine = gameEngine
     }
     
-    func removeGesture(for entity: GKEntity) {
-        guard let gestureEntity = entity as? GestureEntity,
-            let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?.parent as? EnemyEntity else {
+    func removeGesture(for gestureEntity: GestureEntity) {
+        guard let enemyEntity = gestureEntity.component(ofType: ParentEntityComponent.self)?
+            .parent as? EnemyEntity else {
                 return
         }
         
@@ -26,7 +26,7 @@ class RemoveDelegate {
         }
         
         if enemyHealth <= 0 {
-            removeEnemy(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
+            removeUnit(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true)
             gameEngine?.dropMana(at: enemyEntity)
             return
         }
@@ -37,22 +37,22 @@ class RemoveDelegate {
         }
     }
 
-    func removeEnemy(_ entity: EnemyEntity, shouldDecreasePlayerHealth: Bool = false,
-                     shouldIncreaseScore: Bool = false) {
+    func removeUnit(
+        _ entity: Entity,
+        shouldDecreasePlayerHealth: Bool = false,
+        shouldIncreaseScore: Bool = false
+    ) {
         if shouldDecreasePlayerHealth {
             gameEngine?.decreasePlayerHealth()
-        } else {
+        } else if entity.type == .enemyEntity {
             gameEngine?.incrementCombo()
         }
-
-        if shouldIncreaseScore {
-            guard let scoreComponent = entity.component(ofType: ScoreComponent.self) else {
-                return
-            }
+        
+        if shouldIncreaseScore, let scoreComponent = entity.component(ofType: ScoreComponent.self) {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
-        removeEnemyFromGameWithAnimation(entity)
+        removeUnitFromGameWithAnimation(entity)
     }
     
     func removeDroppedMana(_ entity: DroppedManaEntity) {
@@ -63,7 +63,7 @@ class RemoveDelegate {
         let removalAnimation = SKAction.sequence([
             .animate(
                 with: TextureContainer.manaRemovalTextures,
-                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
                 resize: true,
                 restore: false
             ),
@@ -86,7 +86,7 @@ class RemoveDelegate {
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeEnemyFromGameWithAnimation(_ entity: EnemyEntity, fullAnimation: Bool = true) {
+    private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
@@ -98,7 +98,7 @@ class RemoveDelegate {
         let removalAnimation = SKAction.sequence([
             .animate(
                 with: animationTextures,
-                timePerFrame: GameConfig.Enemy.removalAnimationTimePerFrame,
+                timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
                 resize: true,
                 restore: false
             ),
@@ -108,8 +108,13 @@ class RemoveDelegate {
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
+        // have to save the value instead of a strong reference to the entity
+        let entityType = entity.type
                                             // gives some delay till the game terminates
         animationNode.run(removalAnimation, completion: { [weak self] in
+            guard entityType == .enemyEntity else {
+                return
+            }
             self?.gameEngine?.metadata.numEnemiesOnField -= 1
         })
         gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)

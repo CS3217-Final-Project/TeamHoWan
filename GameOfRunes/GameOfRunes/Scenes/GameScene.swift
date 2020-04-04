@@ -14,17 +14,21 @@ class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
+    var center: CGPoint {
+        .init(x: frame.midX, y: frame.midY)
+    }
 
     // layers
     private var backgroundLayer: SKNode!
     private var powerUpAnimationLayer: SKNode!
-    private var enemyLayer: SKNode!
+    private var unitLayer: SKNode!
     private var removalAnimationLayer: SKNode!
     private var gestureLayer: SKNode!
     private var playerAreaLayer: SKNode!
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
     private(set) var playerAreaNode: PlayerAreaNode!
+    private(set) var playerEndPoint: SKSpriteNode!
     private(set) var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
@@ -46,12 +50,13 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
-        guard let stage = self.gameStateMachine?.stage else {
-            fatalError("Unable to load stage from GameStateMachine")
+        guard let stage = gameStateMachine?.stage,
+            let avatar = gameStateMachine?.avatar else {
+            fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
-        gameEngine = GameEngine(gameScene: self, stage: stage)
-        self.physicsWorld.contactDelegate = gameEngine.contactDelegate
+        gameEngine = GameEngine(gameScene: self, stage: stage, avatar: avatar)
+        physicsWorld.contactDelegate = gameEngine.contactDelegate
 
         // UI
         buildLayers()
@@ -79,9 +84,9 @@ class GameScene: SKScene {
         powerUpAnimationLayer.zPosition = GameConfig.GamePlayScene.powerUpAnimationLayerZPosition
         addChild(powerUpAnimationLayer)
         
-        enemyLayer = .init()
-        enemyLayer.zPosition = GameConfig.GamePlayScene.enemyLayerZPosition
-        addChild(enemyLayer)
+        unitLayer = .init()
+        unitLayer.zPosition = GameConfig.GamePlayScene.unitLayerZPosition
+        addChild(unitLayer)
         
         removalAnimationLayer = .init()
         removalAnimationLayer.zPosition = GameConfig.GamePlayScene.removalAnimationLayerZPosition
@@ -104,14 +109,14 @@ class GameScene: SKScene {
         addChild(highestPriorityLayer)
     }
     
-    private func setUpBackground(arenaType: ArenaType? = nil) {
+    private func setUpBackground() {
         let backgroundNode = SKSpriteNode(
-            texture: arenaType?.texture ?? ArenaType.allCases.randomElement()?.texture ?? .init(),
+            texture: gameEngine.metadata.stage.arena.texture,
             color: .clear,
             size: size
         )
         backgroundNode.aspectFillToSize(fillSize: size)
-        backgroundNode.position = .init(x: frame.midX, y: frame.midY)
+        backgroundNode.position = center
         backgroundLayer.addChild(backgroundNode)
     }
     
@@ -123,8 +128,7 @@ class GameScene: SKScene {
             position: .init(x: playerAreaWidth / 2, y: playerAreaHeight / 2)
         )
         
-        playerAreaNode.powerUpContainerNode.powerUpTypes = Avatar.elementalWizard.powerUps
-        playerAreaNode.powerUpContainerNode.selectedPowerUpResponder = self
+        playerAreaNode.powerUpContainerNode.powerUpTypes = gameEngine.metadata.availablePowerUps
         playerAreaLayer.addChild(playerAreaNode)
     }
     
@@ -133,7 +137,7 @@ class GameScene: SKScene {
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
             gameEngine: gameEngine
         )
-        gestureAreaNode.position = .init(x: frame.midX, y: frame.midY) +
+        gestureAreaNode.position = center +
             .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
         gestureLayer.addChild(gestureAreaNode)
     }
@@ -170,15 +174,28 @@ class GameScene: SKScene {
         // re-position and resize
         let newEndPointWidth = size.width
         let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
-        endPointNode.size = .init(width: newEndPointWidth, height: newEndPointHeight)
+        let newEndPointSize = CGSize(width: newEndPointWidth, height: newEndPointHeight)
+        endPointNode.size = newEndPointSize
         endPointNode.position = playerAreaNode.position
             + .init(dx: 0.0, dy: (playerAreaNode.size.height + newEndPointHeight) / 2)
         
         // relative to the player area layer
         endPointNode.zPosition = -1
+        endPointNode.addGlow()
         
-        let endPointEntity = EndPointEntity(node: endPointNode)
+        playerEndPoint = endPointNode
+        let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
         gameEngine.add(endPointEntity)
+        
+        // check if need to add enemy end point for elite knight
+        guard gameEngine.metadata.avatar == .holyKnight else {
+            return
+        }
+        
+        let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
+        enemyEndPointNode.position = .init(x: frame.midX, y: frame.maxY - GameConfig.GamePlayScene.verticalOffSet)
+        let enemyEndPointEntity = EndPointEntity(node: enemyEndPointNode, team: .enemy)
+        gameEngine.add(enemyEndPointEntity)
     }
     
     private func setUpPlayer() {
@@ -196,15 +213,14 @@ class GameScene: SKScene {
     
     private func setUpPlayerHealth() -> HealthBarNode {
         let healthBarNode = playerAreaNode.healthBarNode
-        // arbitrary num, can be replaced with meta-data
-        healthBarNode.totalLives = GameConfig.Health.maxPlayerHealth
+        healthBarNode.totalLives = gameEngine.metadata.maxPlayerHealth
         return healthBarNode
     }
     
     private func setUpPlayerMana() -> ManaBarNode {
         let manaBarNode = playerAreaNode.manaBarNode
-        manaBarNode.numManaUnits = GameConfig.Mana.numManaUnits
-        manaBarNode.manaPointsPerUnit = GameConfig.Mana.manaPerManaUnit
+        manaBarNode.numManaUnits = gameEngine.metadata.numManaUnits
+        manaBarNode.manaPointsPerUnit = gameEngine.metadata.manaPointsPerManaUnit
         return manaBarNode
     }
     
@@ -236,8 +252,8 @@ class GameScene: SKScene {
             backgroundLayer.addChild(node)
         case .powerUpAnimationLayer:
             powerUpAnimationLayer.addChild(node)
-        case .enemyLayer:
-            enemyLayer.addChild(node)
+        case .unitLayer:
+            unitLayer.addChild(node)
         case .removalAnimationLayer:
             removalAnimationLayer.addChild(node)
         case .gestureLayer:
@@ -268,6 +284,8 @@ extension GameScene: TapResponder {
             gameStateMachine?.enter(GamePauseState.self)
         case .summonButton:
             gameEngine.startNextSpawnWave()
+        case .powerUpIconButton:
+            gameEngine.updateSelectedPowerUp()
         default:
             print("Unknown node tapped")
         }
@@ -298,44 +316,23 @@ extension GameScene {
 /**
  Extension to deal with power-up related logic
  */
-extension GameScene: SelectedPowerUpResponder {
+extension GameScene {
     /** Detects the activation of Power Ups */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first, selectedPowerUp == .darkVortex else {
+        guard let touch = touches.first else {
             return
         }
         
-        // reasonable arbitrary value for darkVortex radius
-        let radius = size.width / 3
-        activatePowerUp(at: touch.location(in: self), with: .init(width: radius, height: radius))
-    }
-    
-    func activatePowerUp(at location: CGPoint, with size: CGSize) {
-        guard selectedPowerUp != nil else {
-            return
-        }
-
-        gameEngine.activatePowerUp(at: location, with: size)
-        deselectPowerUp()
+        gameEngine.activatePowerUp(at: touch.location(in: self))
     }
     
     func deselectPowerUp() {
         playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        gameEngine.updateSelectedPowerUp()
     }
     
     var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
-    }
-    
-    func selectedPowerUpDidChanged(oldValue: PowerUpType?, newSelectedPowerUp: PowerUpType?) {
-        // Deactivate and activate gesture detection when tap-activated power ups are selected
-        gameEngine.changeSelectedPowerUp(to: newSelectedPowerUp)
-        
-        if let selectedPowerUp = selectedPowerUp, selectedPowerUp == .darkVortex {
-            deactivateGestureDetection()
-        } else if oldValue == .darkVortex {
-            activateGestureDetection()
-        }
     }
     
     func deactivateGestureDetection() {

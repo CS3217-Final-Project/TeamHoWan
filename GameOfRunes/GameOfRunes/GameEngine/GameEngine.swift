@@ -26,14 +26,13 @@ class GameEngine {
         entities[.comboEntity]?.first as? ComboEntity
     }
     
-    // TODO: pass in avatar, and use it to determine powerups.
-    init(gameScene: GameScene, stage: Stage) {
+    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
-        metadata = GameMetaData(maxPlayerHealth: GameConfig.Health.maxPlayerHealth,
-                                numManaUnits: GameConfig.Mana.numManaUnits,
-                                manaPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-                                powerUps: [.darkVortex, .hellfire, .icePrison],
-                                stage: stage)
+        metadata = GameMetaData(
+            stage: stage,
+            avatar: avatar,
+            manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
+        )
         systemDelegate = SystemDelegate(gameEngine: self)
         removeDelegate = RemoveDelegate(gameEngine: self)
         spawnDelegate = SpawnDelegate(gameEngine: self,
@@ -45,8 +44,8 @@ class GameEngine {
         }
     }
     
-    func add(_ entity: Entity) {
-        guard entities[entity.type]?.insert(entity).inserted == true else {
+    func add(_ entity: Entity?) {
+        guard let entity = entity, entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -103,9 +102,11 @@ class GameEngine {
                 }))
             return Array(res)
         case .player:
-            return Array(entities(for: .attractionEntity).filter({
-                $0.component(ofType: TeamComponent.self)?.team == .player
-            }))
+            let res = entities(for: .playerUnitEntity)
+                .union(entities(for: .attractionEntity).filter({
+                    $0.component(ofType: TeamComponent.self)?.team == .player
+                }))
+            return Array(res)
         }
     }
     
@@ -140,12 +141,11 @@ class GameEngine {
         var count = 0
 
         for entity in entities(for: .gestureEntity) {
-            guard let gestureComponent =
-                entity.component(ofType: GestureComponent.self),
-                gestureComponent.gesture == gesture else {
+            guard let gestureEntity = entity as? GestureEntity,
+                gestureEntity.component(ofType: GestureComponent.self)?.gesture == gesture else {
                     continue
             }
-            removeDelegate.removeGesture(for: entity)
+            removeDelegate.removeGesture(for: gestureEntity)
             count += 1
             
         }
@@ -156,27 +156,27 @@ class GameEngine {
         systemDelegate.addMultiKillScore(count: count, for: playerEntity)
     }
     
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         systemDelegate.minusHealthPoints(for: entity)
     }
     
-    func enemyForceRemoved(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
+    func unitForceRemoved(_ entity: Entity) {
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
 
-        removeDelegate.removeEnemy(enemyEntity)
+        removeDelegate.removeUnit(entity)
     }
     
-    func enemyReachedLine(_ entity: GKEntity) {
-        guard let enemyEntity = entity as? EnemyEntity else {
+    func unitReachedLine(_ entity: Entity) {
+        guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-
-        removeDelegate.removeEnemy(enemyEntity, shouldDecreasePlayerHealth: true)
+                                          // only remove player health if it is enemyEntity
+        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: entity.type == .enemyEntity)
     }
     
-    func dropMana(at entity: GKEntity) {
+    func dropMana(at entity: Entity) {
         systemDelegate.dropMana(at: entity)
     }
     
@@ -247,18 +247,25 @@ class GameEngine {
         metadata.multiplier = 1.0
     }
     
-    func changeSelectedPowerUp(to powerUp: PowerUpType?) {
-        metadata.selectedPowerUp = powerUp
+    func updateSelectedPowerUp() {
+        metadata.selectedPowerUp = gameScene?.selectedPowerUp
         
-        guard let powerUp = powerUp,
-            checkIfPowerUpIsDisabled(powerUp) else {
-                return
+        switch metadata.selectedPowerUp {
+        case .heroicCall, .divineShield:
+            // although these power ups do not need position, position is set to center of screen
+            // so that that messages will appear at the center if any
+            activatePowerUp(at: gameScene?.center
+                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+            return
+        case .darkVortex:
+            gameScene?.deactivateGestureDetection()
+        default:
+            // do nth for other power ups or nil
+            // ensure gesture detection is activated
+            gameScene?.activateGestureDetection()
         }
-
-        // TODO: Add some feedback here for disabled powerup.
-        gameScene?.deselectPowerUp()
     }
-
+    
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
         let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
             result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
@@ -267,25 +274,33 @@ class GameEngine {
         return disabledPowerUps.contains(powerUp)
     }
     
-    func activatePowerUp(at position: CGPoint, with size: CGSize) {
+    func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            fatalError("Game Engine didActivatePowerUp must only be called when a power up is selected")
+            gameScene?.deselectPowerUp()
+            return
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
             gameScene?.showPowerUpDisabled(at: position)
+            gameScene?.deselectPowerUp()
             return
         }
         
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPerManaUnit
+        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
         if metadata.playerMana <= manaPointsRequired {
             gameScene?.showInsufficientMana(at: position)
+            gameScene?.deselectPowerUp()
             return
         }
         
         systemDelegate.activatePowerUp(at: position, with: size)
         decreasePlayerMana(by: manaPointsRequired)
+        gameScene?.deselectPowerUp()
+    }
+    
+    func spawnPlayerUnitWave() {
+        spawnDelegate.spawnPlayerUnitWave()
     }
 }
 

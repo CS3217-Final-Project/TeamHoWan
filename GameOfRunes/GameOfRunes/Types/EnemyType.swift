@@ -62,13 +62,13 @@ import RealmSwift
     var speed: Float {
         switch self {
         case .orc1, .troll1:
-            return GameConfig.Enemy.slowMovementSpeed
+            return GameConfig.Unit.slowMovementSpeed
         case .orc2, .troll2:
-            return GameConfig.Enemy.normalMovementSpeed
+            return GameConfig.Unit.normalMovementSpeed
         case .orc3, .troll3:
-            return GameConfig.Enemy.fastMovementSpeed
+            return GameConfig.Unit.fastMovementSpeed
         case .evilKnight:
-            return GameConfig.Enemy.bossMovementSpeed
+            return GameConfig.Unit.bossMovementSpeed
         }
     }
     

@@ -9,7 +9,7 @@
 import GameplayKit
 
 /**
- This class deals with the spawning of enemies. Level data is accessed via
+ This class deals with the spawning of units. Level data is accessed via
  `GameMetaData` and is updated at periodic time intervals.
  */
 class SpawnDelegate {
@@ -42,9 +42,33 @@ class SpawnDelegate {
         spawnEnemyWave(enemySpawnWave)
         self.timeTillNextSpawn = gameMetaData.levelSpawnInterval
     }
+    
+    func spawnPlayerUnitWave() {
+        (0..<GameConfig.GamePlayScene.numLanes).forEach { laneIndex in
+            spawnPlayerUnit(at: laneIndex)
+        }
+    }
+    
+    private func spawnPlayerUnit(at laneIndex: Int) {
+        let playerUnitEntity = PlayerUnitEntity(gameEngine: gameEngine)
+        
+        guard let spriteComponent = playerUnitEntity.component(ofType: SpriteComponent.self),
+            let playerEndPoint = gameEngine?.gameScene?.playerEndPoint else {
+                return
+        }
+        
+        spriteComponent.node.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
+            width: playerEndPoint.size.width,
+            laneIndex: laneIndex,
+            totalPoints: GameConfig.GamePlayScene.numLanes,
+            yPosition: playerEndPoint.position.y
+        )
+
+        gameEngine?.add(playerUnitEntity)
+    }
 
     private func spawnEnemyWave(_ enemyWave: [EnemyType?]) {
-        for (laneIndex, enemyType) in enemyWave.enumerated() {
+        enemyWave.enumerated().forEach { laneIndex, enemyType in
             spawnEnemy(at: laneIndex, enemyType: enemyType)
         }
     }
@@ -55,28 +79,24 @@ class SpawnDelegate {
      */
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?) {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
-        guard let enemyType = enemyType,
-            let gameEngine = gameEngine else {
+        guard let enemyType = enemyType else {
                 return
         }
 
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameEngine.gameScene?.size else {
+            let sceneSize = gameEngine?.gameScene?.size else {
                 return
         }
 
-        // Determine spawn location
-        let xPositionNumerator = 2 * laneIndex + 1
-        let xPositionDenominator = 2 * GameConfig.GamePlayScene.numLanes
-        let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-        let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
-        let xPosition = (sceneSize.width - 2 * edgeOffset) * xPositionRatio + edgeOffset
-        let yPosition = sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
+        spriteComponent.node.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
+            width: sceneSize.width,
+            laneIndex: laneIndex,
+            totalPoints: GameConfig.GamePlayScene.numLanes,
+            yPosition: sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
+        )
 
-        spriteComponent.node.position = CGPoint(x: xPosition, y: yPosition)
-
-        gameEngine.add(enemyEntity)
-        gameEngine.metadata.numEnemiesOnField += 1
+        gameEngine?.add(enemyEntity)
+        gameEngine?.metadata.numEnemiesOnField += 1
     }
 }

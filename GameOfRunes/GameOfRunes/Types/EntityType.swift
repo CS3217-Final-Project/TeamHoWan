@@ -18,6 +18,7 @@ enum EntityType: CaseIterable {
     case darkVortexPowerUpEntity
     case comboEntity
     case attractionEntity
+    case playerUnitEntity
     
     static var powerUps: [EntityType] {
         [.icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity]

@@ -39,6 +39,7 @@ class GameStateMachineTest: BaseUnitTest {
                                         gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
         gameStateMachine.stage = testStage
+        gameStateMachine.avatar = testAvatar
     }
 
     func testStartState() {

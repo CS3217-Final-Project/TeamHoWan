@@ -13,7 +13,7 @@ class HealthSystem: GKComponentSystem<HealthComponent>, System {
         super.init(componentClass: HealthComponent.self)
     }
     
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         guard let entityHealthComponent = entity.component(ofType: HealthComponent.self) else {
             return nil
         }

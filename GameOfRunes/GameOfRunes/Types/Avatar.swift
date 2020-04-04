@@ -43,7 +43,7 @@ enum Avatar: Int, CaseIterable {
             return [.darkVortex, .hellfire, .icePrison]
         case .holyKnight:
             // will change when we implement new power ups
-            return [.darkVortex, .hellfire, .icePrison]
+            return [.divineBlessing, .divineShield, .heroicCall]
         }
     }
     
