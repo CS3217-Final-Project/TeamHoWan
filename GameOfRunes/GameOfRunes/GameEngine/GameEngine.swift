@@ -172,8 +172,8 @@ class GameEngine {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-
-        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: true)
+                                          // only remove player health if it is enemyEntity
+        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: entity.type == .enemyEntity)
     }
     
     func dropMana(at entity: Entity) {
@@ -265,20 +265,7 @@ class GameEngine {
             gameScene?.activateGestureDetection()
         }
     }
-    /*
-    func changeSelectedPowerUp(to powerUp: PowerUpType?) {
-        metadata.selectedPowerUp = powerUp
-        
-        guard let powerUp = powerUp,
-            checkIfPowerUpIsDisabled(powerUp) else {
-                return
-        }
-
-        // TODO: Add some feedback here for disabled powerup.
-        gameScene?.deselectPowerUp()
-    }
- */
-
+    
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
         let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
             result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
