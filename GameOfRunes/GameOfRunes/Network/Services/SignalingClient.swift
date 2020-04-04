@@ -12,7 +12,7 @@ import Firebase
 class SignalingClient {
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
-    weak var delegate: SignalClientDelegate?
+    weak var delegate: SignalingClientDelegate?
     
     func deleteSdpAndCandidate(for person: String) {
         Firestore.firestore().collection(person).document("sdp").delete { err in
@@ -34,7 +34,7 @@ class SignalingClient {
     
     func send(sdp rtcSdp: RTCSessionDescription, to person: String) {
         do {
-            let dataMessage = try self.encoder.encode(SessionDescription(from: rtcSdp))
+            let dataMessage = try encoder.encode(SessionDescription(from: rtcSdp))
             let dict = try JSONSerialization.jsonObject(with: dataMessage, options: .allowFragments)
                 as? [String: Any] ?? [:]
             Firestore.firestore().collection(person).document("sdp").setData(dict) { err in
@@ -51,7 +51,7 @@ class SignalingClient {
     
     func send(candidate rtcIceCandidate: RTCIceCandidate, to person: String) {
         do {
-            let dataMessage = try self.encoder.encode(IceCandidate(from: rtcIceCandidate))
+            let dataMessage = try encoder.encode(IceCandidate(from: rtcIceCandidate))
             let dict = try JSONSerialization.jsonObject(with: dataMessage, options: .allowFragments)
                 as? [String: Any] ?? [:]
             Firestore.firestore()

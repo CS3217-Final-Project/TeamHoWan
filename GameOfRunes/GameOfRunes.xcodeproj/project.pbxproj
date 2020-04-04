@@ -45,7 +45,7 @@
 		4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */; };
 		4A87DF552437F9A200A31AAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */; };
 		4A87DF602437FB4400A31AAF /* IceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */; };
-		4A87DF612437FB4400A31AAF /* RTCStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5C2437FB4300A31AAF /* RTCStates.swift */; };
+		4A87DF612437FB4400A31AAF /* RTCStates+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5C2437FB4300A31AAF /* RTCStates+description.swift */; };
 		4A87DF622437FB4400A31AAF /* SdpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5D2437FB4400A31AAF /* SdpType.swift */; };
 		4A87DF632437FB4400A31AAF /* SessionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */; };
 		4A87DF642437FB4400A31AAF /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */; };
@@ -223,7 +223,7 @@
 		4A768F1E24307EE7000F3F05 /* StackedLabelsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedLabelsNode.swift; sourceTree = "<group>"; };
 		4A87DF542437F9A200A31AAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidate.swift; sourceTree = "<group>"; };
-		4A87DF5C2437FB4300A31AAF /* RTCStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCStates.swift; sourceTree = "<group>"; };
+		4A87DF5C2437FB4300A31AAF /* RTCStates+description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RTCStates+description.swift"; sourceTree = "<group>"; };
 		4A87DF5D2437FB4400A31AAF /* SdpType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdpType.swift; sourceTree = "<group>"; };
 		4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDescription.swift; sourceTree = "<group>"; };
 		4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 				4A87DF652437FB5300A31AAF /* Delegates */,
 				4A87DF5B2437FB4300A31AAF /* IceCandidate.swift */,
 				4A87DF5F2437FB4400A31AAF /* NetworkConfig.swift */,
-				4A87DF5C2437FB4300A31AAF /* RTCStates.swift */,
+				4A87DF5C2437FB4300A31AAF /* RTCStates+description.swift */,
 				4A87DF5D2437FB4400A31AAF /* SdpType.swift */,
 				4A87DF5E2437FB4400A31AAF /* SessionDescription.swift */,
 			);
@@ -1268,7 +1268,7 @@
 				565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */,
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				4A87DF692437FB6900A31AAF /* WebRTCClientDelegate.swift in Sources */,
-				4A87DF612437FB4400A31AAF /* RTCStates.swift in Sources */,
+				4A87DF612437FB4400A31AAF /* RTCStates+description.swift in Sources */,
 				560DED9C242B902D00A6D9A6 /* ScoreComponent.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
