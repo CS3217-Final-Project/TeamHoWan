@@ -17,6 +17,8 @@ class MultiplayerScreenViewController: UIViewController {
     }
     private let hostRoomButton = UIButton()
     private let joinRoomButton = UIButton()
+    
+    // Does this need to be a singleton? Having too many references to the database?
     private let dbRef: NetworkInterface = FirebaseNetwork()
     
     override func viewDidLoad() {
@@ -112,7 +114,9 @@ class MultiplayerScreenViewController: UIViewController {
         // TODO: Error handler
         dbRef.createRoom(uid: "123456", name: FirebaseKeys.defaultName, { roomId in
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
-        }, { err in })
+        }, { err in
+            
+        })
     }
     
     @objc private func joinRoomStart(_ sender: UIButton) {

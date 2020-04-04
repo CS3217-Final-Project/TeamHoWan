@@ -30,6 +30,9 @@ class FirebaseNetwork: NetworkInterface {
             var roomDict: [String: AnyObject] = [:]
             roomDict.updateValue(roomId as AnyObject, forKey: FirebaseKeys.rooms_roomId)
             roomDict.updateValue([uid: playerDict] as AnyObject, forKey: FirebaseKeys.rooms_players)
+            roomDict.updateValue(true as AnyObject, forKey: FirebaseKeys.rooms_isOpen)
+            roomDict.updateValue(false as AnyObject, forKey: FirebaseKeys.rooms_hasStarted)
+            roomDict.updateValue(false as AnyObject, forKey: FirebaseKeys.rooms_gameCreated)
             
             ref.setValue(roomDict, withCompletionBlock: { err, ref in
                 if let error = err {
