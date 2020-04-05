@@ -294,7 +294,7 @@ class GameEngine {
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
-        if metadata.playerMana <= manaPointsRequired {
+        guard metadata.playerMana >= manaPointsRequired else {
             gameScene?.showInsufficientMana(at: position)
             gameScene?.deselectPowerUp()
             return
