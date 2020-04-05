@@ -58,8 +58,11 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.fadeOutDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.fadeOutDuration
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.fadeOutDuration
+        case .divineBlessing:
+            return GameConfig.DivineBlessingPowerUp.fadeOutDuration
         default:
-            // TODO: add for other power ups
             return 0
         }
     }
@@ -72,8 +75,9 @@ enum PowerUpType: String, CaseIterable {
             return GameConfig.IcePrisonPowerUp.powerUpDuration
         case .darkVortex:
             return GameConfig.DarkVortexPowerUp.powerUpDuration
+        case .divineShield:
+            return GameConfig.DivineShieldPowerUp.powerUpDuration
         default:
-            // TODO: add for other power ups
             return 0
         }
     }
@@ -86,6 +90,10 @@ enum PowerUpType: String, CaseIterable {
             return IcePrisonPowerUpEntity(at: position, with: size)
         case .darkVortex:
             return DarkVortexPowerUpEntity(at: position, with: size)
+        case .divineShield:
+            return DivineShieldPowerUpEntity(at: position, with: size)
+        case .divineBlessing:
+            return DivineBlessingPowerUpEntity(at: position, with: size)
         default:
             return nil
         }

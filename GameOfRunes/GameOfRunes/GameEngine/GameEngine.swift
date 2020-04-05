@@ -44,8 +44,8 @@ class GameEngine {
         }
     }
     
-    func add(_ entity: Entity?) {
-        guard let entity = entity, entities[entity.type]?.insert(entity).inserted == true else {
+    func add(_ entity: Entity) {
+        guard entities[entity.type]?.insert(entity).inserted == true else {
             return
         }
         
@@ -141,19 +141,27 @@ class GameEngine {
         var count = 0
 
         for entity in entities(for: .gestureEntity) {
-            guard let gestureEntity = entity as? GestureEntity,
-                gestureEntity.component(ofType: GestureComponent.self)?.gesture == gesture else {
+            guard let gestureComponent = entity.component(ofType: GestureComponent.self),
+                gestureComponent.gesture == gesture else {
                     continue
             }
-            removeDelegate.removeGesture(for: gestureEntity)
+            removeDelegate.removeGesture(for: entity)
             count += 1
-            
         }
+
         guard let playerEntity = playerEntity else {
             return
         }
         
         systemDelegate.addMultiKillScore(count: count, for: playerEntity)
+    }
+    
+    func setInitialGesture(for entity: Entity) {
+        systemDelegate.setInitialGesture(for: entity) 
+    }
+        
+    func setNextGesture(for entity: Entity, using gesture: CustomGesture? = nil) {
+        systemDelegate.setGesture(for: entity, using: gesture)
     }
     
     func minusHealthPoints(for entity: Entity) -> Int? {
@@ -217,10 +225,6 @@ class GameEngine {
         systemDelegate.decreaseLabelOpacity(entity)
     }
     
-    func incrementLabelIntegerValue(_ entity: Entity) {
-        systemDelegate.incrementLabelIntegerValue(entity)
-    }
-    
     func incrementCombo() {
         if comboEntity == nil {
             add(ComboEntity(gameEngine: self))
@@ -228,7 +232,7 @@ class GameEngine {
         guard let comboEntity = comboEntity else {
             return
         }
-        incrementLabelIntegerValue(comboEntity)
+        systemDelegate.incrementCombo(comboEntity)
     }
     
     func incrementMultiplier() {
@@ -251,12 +255,14 @@ class GameEngine {
         metadata.selectedPowerUp = gameScene?.selectedPowerUp
         
         switch metadata.selectedPowerUp {
-        case .heroicCall, .divineShield:
+        case .heroicCall:
             // although these power ups do not need position, position is set to center of screen
             // so that that messages will appear at the center if any
             activatePowerUp(at: gameScene?.center
                 ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
-            return
+        case .divineShield:
+            activatePowerUp(at: gameScene?.playerEndPoint.position
+                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .darkVortex:
             gameScene?.deactivateGestureDetection()
         default:
@@ -265,7 +271,7 @@ class GameEngine {
             gameScene?.activateGestureDetection()
         }
     }
-    
+
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
         let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
             result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
@@ -302,6 +308,26 @@ class GameEngine {
     func spawnPlayerUnitWave() {
         spawnDelegate.spawnPlayerUnitWave()
     }
+    
+    func activateInvincibleEndPoint() {
+        guard let entity = entities(for: .endPointEntity).first(where: {
+            $0.component(ofType: TeamComponent.self)?.team == .player
+        }) else {
+            return
+        }
+
+        systemDelegate.activateInvincibleEndPoint(for: entity)
+    }
+    
+    func deactivateInvincibleEndPoint() {
+        guard let entity = entities(for: .endPointEntity).first(where: {
+            $0.component(ofType: TeamComponent.self)?.team == .player
+        }) else {
+            return
+        }
+        
+        systemDelegate.deactivateInvincibleEndPoint(for: entity)
+    }
 }
 
 extension GameEngine: DroppedManaResponder {
@@ -313,7 +339,7 @@ extension GameEngine: DroppedManaResponder {
      */
     func droppedManaTapped(droppedManaNode: DroppedManaNode) {
         guard let droppedManaEntity = droppedManaNode.droppedManaEntity,
-            let manaPoints = systemDelegate.getMana(for: droppedManaEntity) else {
+            let manaPoints = droppedManaEntity.component(ofType: ManaComponent.self)?.manaPoints else {
                 return
         }
         

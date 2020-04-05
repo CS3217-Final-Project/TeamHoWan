@@ -66,4 +66,32 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
             }
         })
     }
+    
+    func activateInvincibleEndPoint(for entity: Entity) {
+        guard entity.type == .endPointEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let node = spriteComponent.node as? SKSpriteNode,
+            let shouldNotActivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
+            !shouldNotActivate else {
+                return
+        }
+        
+        node.removeGlow()
+        node.texture = SKTexture(imageNamed: "finish-line-invulnerability")
+        node.addGlow()
+    }
+    
+    func deactivateInvincibleEndPoint(for entity: Entity) {
+        guard entity.type == .endPointEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let node = spriteComponent.node as? SKSpriteNode,
+            let shouldDeactivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
+            shouldDeactivate else {
+                return
+        }
+        
+        node.removeGlow()
+        node.texture = SKTexture(imageNamed: "finish-line")
+        node.addGlow()
+    }
 }

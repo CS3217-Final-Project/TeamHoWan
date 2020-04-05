@@ -13,12 +13,12 @@ class EnemyEntity: Entity {
         .enemyEntity
     }
 
-    init(enemyType: EnemyType, gameEngine: GameEngine?) {
+    init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
         
         let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
         
-        let sceneSize = gameEngine?.gameScene?.size ?? UIScreen.main.bounds.size
+        let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
         enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
         CollisionType.enemyUnit.setPhysicsBody(
             for: enemyNode,
@@ -54,34 +54,6 @@ class EnemyEntity: Entity {
         addComponent(healthComponent)
         addComponent(moveComponent)
         addComponent(enemyTypeComponent)
-        _ = setNextGesture()
-    }
-
-    func setNextGesture() -> GestureEntity? {
-        guard let enemyNode = component(ofType: SpriteComponent.self)?.node,
-            let enemyType = component(ofType: EnemyTypeComponent.self)?.enemyType else {
-            return nil
-        }
-        
-        var availableGestures = enemyType.gesturesAvailable
-        
-        if let currentGesture = component(ofType: GestureEntityComponent.self)?
-            .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
-                availableGestures.removeAll { $0 == currentGesture }
-        }
-        
-        guard let gesture = availableGestures.randomElement() else {
-            return nil
-        }
-
-        let gestureEntity = GestureEntity(gesture: gesture, parent: self)
-        gestureEntity.component(ofType: SpriteComponent.self)?
-            .setGestureConstraint(referenceNode: enemyNode)
-        let gestureEntityComponent = GestureEntityComponent(gestureEntity)
-
-        removeComponent(ofType: GestureEntityComponent.self)
-        addComponent(gestureEntityComponent)
-        
-        return gestureEntity
+        gameEngine.setInitialGesture(for: self)
     }
 }

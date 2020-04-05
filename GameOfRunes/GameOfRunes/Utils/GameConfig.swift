@@ -89,8 +89,10 @@ enum GameConfig {
             that freezes all enemies in the region
             """
     }
-    
+
     enum DivineBlessingPowerUp {
+        static let powerUpDuration: TimeInterval = 5
+        static let fadeOutDuration: TimeInterval = 0.5
         static let manaUnitCost: Int = 1
         static let description = """
             Divine Blessing
@@ -109,7 +111,7 @@ enum GameConfig {
             Arthur himself which gives invulnerability
             """
     }
-    
+
     enum HeroicCallPowerUp {
         static let manaUnitCost: Int = 1
         static let description = """

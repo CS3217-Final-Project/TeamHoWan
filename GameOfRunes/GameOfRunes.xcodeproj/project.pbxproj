@@ -145,6 +145,8 @@
 		C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */; };
 		C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */; };
 		C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */; };
+		C6AACD42243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD41243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift */; };
+		C6AACD44243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD43243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift */; };
 		C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */; };
 		C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */; };
 		C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */; };
@@ -323,6 +325,8 @@
 		C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesComponent.swift; sourceTree = "<group>"; };
 		C6AACD3B243342A20012C7D9 /* AttractionEntitiesSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionEntitiesSystem.swift; sourceTree = "<group>"; };
 		C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntitySystem.swift; sourceTree = "<group>"; };
+		C6AACD41243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineShieldPowerUpEntity.swift; sourceTree = "<group>"; };
+		C6AACD43243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineBlessingPowerUpEntity.swift; sourceTree = "<group>"; };
 		C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeComponent.swift; sourceTree = "<group>"; };
 		C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntityComponent.swift; sourceTree = "<group>"; };
@@ -740,6 +744,8 @@
 			children = (
 				8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */,
 				565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */,
+				C6AACD41243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift */,
+				C6AACD43243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift */,
 				565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */,
 			);
 			path = PowerUps;
@@ -1131,6 +1137,7 @@
 				4A1B333E243280E600B67B91 /* StageRealmModel.swift in Sources */,
 				C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */,
 				C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */,
+				C6AACD44243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift in Sources */,
 				C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */,
 				4A72EB4624200BE6005FA909 /* ButtonType.swift in Sources */,
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
@@ -1172,6 +1179,7 @@
 				560DED9C242B902D00A6D9A6 /* ScoreComponent.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
+				C6AACD42243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift in Sources */,
 				4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
 				8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */,
@@ -1351,13 +1359,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = FRBAA824T9;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1370,13 +1378,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = FRBAA824T9;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1391,7 +1399,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = FRBAA824T9;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1415,7 +1423,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U2CA3BX8T8;
+				DEVELOPMENT_TEAM = FRBAA824T9;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -47,8 +47,10 @@ class EndPointEntity: Entity {
         }
         
         let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntities)
+        let teamComponent = TeamComponent(team: team)
         
         addComponent(spriteComponent)
         addComponent(attractionEntitiesComponent)
+        addComponent(teamComponent)
     }
 }

@@ -1,29 +1,28 @@
 //
-//  IcePrisonPowerUpEntity.swift
+//  DivineBlessingPowerUpEntity.swift
 //  GameOfRunes
 //
-//  Created by Andy on 19/3/20.
+//  Created by Dong SiJi on 2/4/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-/** Entity to represent the Ice Prison Power Up */
-class IcePrisonPowerUpEntity: Entity {
+class DivineBlessingPowerUpEntity: Entity {
     override var type: EntityType {
-        .icePrisonPowerUpEntity
+        .divineBlessingPowerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = PowerUpType.icePrison.getCastingAnimationNode(at: position, with: size)
+        let animationNode = PowerUpType.divineBlessing.getCastingAnimationNode(at: position, with: size)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.IcePrisonPowerUp.fadeOutDuration)
-        let powerUpComponent = PowerUpComponent(.icePrison)
+        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineBlessingPowerUp.powerUpDuration)
+        let powerUpComponent = PowerUpComponent(.divineBlessing)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)

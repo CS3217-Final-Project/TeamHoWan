@@ -79,13 +79,13 @@ class SpawnDelegate {
      */
     private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?) {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
-        guard let enemyType = enemyType else {
-                return
+        guard let enemyType = enemyType, let gameEngine = gameEngine else {
+            return
         }
 
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameEngine?.gameScene?.size else {
+            let sceneSize = gameEngine.gameScene?.size else {
                 return
         }
 
@@ -96,7 +96,7 @@ class SpawnDelegate {
             yPosition: sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
         )
 
-        gameEngine?.add(enemyEntity)
-        gameEngine?.metadata.numEnemiesOnField += 1
+        gameEngine.add(enemyEntity)
+        gameEngine.metadata.numEnemiesOnField += 1
     }
 }
