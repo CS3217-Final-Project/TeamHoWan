@@ -27,9 +27,11 @@ protocol Storage {
     
     func exists(stageName: String) -> Bool
     
+    func reset()
+    
     func delete(stageNames: String...)
     
     func delete(stageNames: [String])
 
-    func didInitialise() 
+    func didInitialise()
 }

@@ -115,6 +115,16 @@ class RealmStorage: Storage {
         load(stageName: stageName) != nil
     }
     
+    func reset() {
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            print("Reset error:", error.localizedDescription)
+        }
+    }
+    
     func delete(stageNames: String...) {
         delete(stageNames: stageNames)
     }

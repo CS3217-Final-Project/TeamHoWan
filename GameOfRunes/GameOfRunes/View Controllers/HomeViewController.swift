@@ -39,7 +39,10 @@ class HomeViewController: UIViewController {
             TextureContainer.loadTextures()
             print("Done loading textures")
         }
-
+        
+        // uncomment to reset install all the stages
+        // Self.storage.reset()
+        
         if Self.storage.isFirstInit {
             //TODO: DEBUG
             print("this is the first init")
