@@ -55,8 +55,8 @@ class SystemDelegate {
     }
     
     func update(with deltatime: TimeInterval) {
-        systems[.moveComponent]?.update(deltaTime: deltatime)
         systems[.playerComponent]?.update(deltaTime: deltatime)
+        systems[.moveComponent]?.update(deltaTime: deltatime)
         systems[.timerComponent]?.update(deltaTime: deltatime)
     }
     
