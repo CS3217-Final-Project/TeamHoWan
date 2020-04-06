@@ -10,4 +10,7 @@ target "GameOfRunes" do
     inherit! :search_paths
     pod "Cuckoo"
   end
+  
+  pod "SnapKit"
+  pod "RealmSwift"
 end

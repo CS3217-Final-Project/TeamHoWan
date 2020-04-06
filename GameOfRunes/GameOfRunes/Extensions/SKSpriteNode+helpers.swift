@@ -11,10 +11,19 @@ import SpriteKit
 extension SKSpriteNode {
     func addGlow(radius: Float = 30) {
         let effectNode = SKEffectNode()
+        effectNode.name = "glow"
         effectNode.shouldRasterize = true
         addChild(effectNode)
         effectNode.addChild(SKSpriteNode(texture: texture))
         effectNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": radius])
+    }
+    
+    func removeGlow() {
+        guard let effectNode = childNode(withName: "glow") else {
+            return
+        }
+        
+        effectNode.removeFromParent()
     }
     
     func aspectFillToSize(fillSize: CGSize) {

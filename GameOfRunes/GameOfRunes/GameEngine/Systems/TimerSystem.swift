@@ -34,15 +34,18 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         }
         // TODO: Refactor fading into a future PowerUpComponent as entities should not have variables
         switch entity.type {
-        case .icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity:
-            if var powerUpEntity = entity as? PowerUpEntity, component.time <= 0 {
-                if !powerUpEntity.fading {
-                    component.time = powerUpEntity.powerUpType.getFadeOutDuration
-                    powerUpEntity.fading = true
-                    gameEngine?.runFadingAnimation(entity)
-                } else {
-                    gameEngine?.remove(entity)
-                }
+        case _ where entity.type.isPowerUp:
+            guard component.time <= 0,
+                let powerUpComponent = entity.component(ofType: PowerUpComponent.self) else {
+                    return
+            }
+            
+            if !powerUpComponent.fading {
+                component.time = powerUpComponent.powerUpType.getFadeOutDuration
+                powerUpComponent.fading = true
+                gameEngine?.runFadingAnimation(entity)
+            } else {
+                gameEngine?.remove(entity)
             }
         case .timerEntity:
             let currentTime = component.time
@@ -50,16 +53,12 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
                 gameEngine?.setLabel(entity, label: "\(Int(currentTime))")
             }
         case .comboEntity:
-            if let comboEntity = entity as? ComboEntity {
-                if component.time <= 0,
-                    let multiplierComponent = comboEntity.component(ofType: MultiplierComponent.self) {
-                    // If timer runs out, end combo and reset multiplier
-                    gameEngine?.endCombo()
-                    multiplierComponent.multiplier = 1.0
-                } else {
-                    // Decrease opacity of label
-                    gameEngine?.decreaseLabelOpacity(entity)
-                }
+            if component.time <= 0 {
+                // If timer runs out, end combo and reset multiplier
+                gameEngine?.endCombo()
+            } else {
+                // Decrease opacity of label
+                gameEngine?.decreaseLabelOpacity(entity)
             }
         default:
             return
@@ -70,6 +69,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         guard let timerComponent = entity.component(ofType: TimerComponent.self) else {
             return
         }
+
         timerComponent.time = timerComponent.initialTimerValue
     }
     

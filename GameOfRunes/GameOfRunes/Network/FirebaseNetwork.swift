@@ -64,7 +64,7 @@ class FirebaseNetwork: NetworkInterface {
             }
             guard let isOpen = roomDict[FirebaseKeys.rooms_isOpen] as? Bool,
                 let players = roomDict[FirebaseKeys.rooms_players] as? [String: AnyObject] else {
-                return
+                    return
             }
             
             if !isOpen {
@@ -97,7 +97,7 @@ class FirebaseNetwork: NetworkInterface {
                    _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
         let hostRef = ref.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms_players, uid,
-                                                     FirebaseKeys.rooms_players_isHost]))
+                                                       FirebaseKeys.rooms_players_isHost]))
         hostRef.observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else {
                 // User is not host, unable to close room

@@ -14,14 +14,43 @@ class EndPointEntity: Entity {
         .endPointEntity
     }
     
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, team: Team) {
         super.init()
         
-        CollisionType.endpoint.setPhysicsBody(for: node, with: node.size)
-        node.addGlow()
+        let collisionType: CollisionType = team == .player ? .playerEndPoint : .enemyEndPoint
+        collisionType.setPhysicsBody(for: node, with: node.size)
         
         let spriteComponent = SpriteComponent(node: node, layerType: .playerAreaLayer)
         
+        var attractionEntities = [AttractionEntity]()
+        
+        // set up the attractive force of end point
+        
+        for laneIndex in 0..<GameConfig.GamePlayScene.numEndPoints {
+            let attractionNode = SKSpriteNode(color: .clear, size: .zero)
+            
+            attractionNode.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
+                width: node.size.width,
+                laneIndex: laneIndex,
+                totalPoints: GameConfig.GamePlayScene.numEndPoints,
+                yPosition: node.position.y
+            )
+
+            let attractionEntity = AttractionEntity(
+                node: attractionNode,
+                layerType: .playerAreaLayer,
+                team: team,
+                parent: self
+            )
+            
+            attractionEntities.append(attractionEntity)
+        }
+        
+        let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntities)
+        let teamComponent = TeamComponent(team: team)
+        
         addComponent(spriteComponent)
+        addComponent(attractionEntitiesComponent)
+        addComponent(teamComponent)
     }
 }

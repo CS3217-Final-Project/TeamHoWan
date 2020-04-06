@@ -37,12 +37,18 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - Realm (4.4.0):
+    - Realm/Headers (= 4.4.0)
+  - Realm/Headers (4.4.0)
+  - RealmSwift (4.4.0):
+    - Realm (= 4.4.0)
   - SnapKit (5.0.1)
-  - SwiftLint (0.39.1)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Cuckoo
   - Firebase/Database
+  - RealmSwift
   - SnapKit
   - SwiftLint
 
@@ -60,6 +66,8 @@ SPEC REPOS:
     - GoogleUtilities
     - leveldb-library
     - nanopb
+    - Realm
+    - RealmSwift
     - SnapKit
     - SwiftLint
 
@@ -76,9 +84,11 @@ SPEC CHECKSUMS:
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
+  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: c12f33c6b087359bbe37fe7d3526666b1ed8c00b
+PODFILE CHECKSUM: f5ff83dd4919a7d3d984e2981d6236712013b8b7
 
 COCOAPODS: 1.9.0

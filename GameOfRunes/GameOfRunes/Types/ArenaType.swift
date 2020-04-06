@@ -7,9 +7,14 @@
 //
 
 import SpriteKit
+import RealmSwift
 
-enum ArenaType: String, CaseIterable {
-    case arena1
+@objc enum ArenaType: Int, CaseIterable, CustomStringConvertible, RealmEnum {
+    var description: String {
+        "arena\(rawValue)"
+    }
+    
+    case arena1 = 1
     case arena2
     case arena3
     case arena4
@@ -18,9 +23,9 @@ enum ArenaType: String, CaseIterable {
     case arena7
     case arena8
     case arena9
-    case finalArena
+    case arena10
     
     var texture: SKTexture {
-        .init(imageNamed: self.rawValue)
+        .init(imageNamed: "\(self)")
     }
 }

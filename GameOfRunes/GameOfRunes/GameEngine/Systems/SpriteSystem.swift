@@ -40,16 +40,17 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     }
     
     func runFadingAnimation(_ entity: Entity) {
-        guard let powerUpEntity = entity as? PowerUpEntity,
+        guard let powerUpComponent = entity.component(ofType: PowerUpComponent.self),
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
         }
+
         spriteComponent.node.run(
-            .fadeOut(withDuration: powerUpEntity.powerUpType.getFadeOutDuration)
+            .fadeOut(withDuration: powerUpComponent.powerUpType.getFadeOutDuration)
         )
     }
     
-    func stopAnimationForDuration(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
+    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
         guard let entitySpriteComponent = entity.component(ofType: SpriteComponent.self),
             let animation = entitySpriteComponent.node.action(forKey: animationNodeKey) else {
                 return
@@ -57,12 +58,40 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         
         // Hack
         entitySpriteComponent.activePauses += 1
-        animation.speed = 0
+        animation.speed = CGFloat(speed)
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entitySpriteComponent.activePauses -= 1
             if entitySpriteComponent.activePauses == 0 {
                 animation.speed = 1
             }
         })
+    }
+    
+    func activateInvincibleEndPoint(for entity: Entity) {
+        guard entity.type == .endPointEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let node = spriteComponent.node as? SKSpriteNode,
+            let shouldNotActivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
+            !shouldNotActivate else {
+                return
+        }
+        
+        node.removeGlow()
+        node.texture = SKTexture(imageNamed: "finish-line-invulnerability")
+        node.addGlow()
+    }
+    
+    func deactivateInvincibleEndPoint(for entity: Entity) {
+        guard entity.type == .endPointEntity,
+            let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let node = spriteComponent.node as? SKSpriteNode,
+            let shouldDeactivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
+            shouldDeactivate else {
+                return
+        }
+        
+        node.removeGlow()
+        node.texture = SKTexture(imageNamed: "finish-line")
+        node.addGlow()
     }
 }

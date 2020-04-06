@@ -32,17 +32,26 @@ class SystemDelegate {
     var timerSystem: TimerSystem? {
         systems[.timerComponent] as? TimerSystem
     }
+    var powerUpSystem: PowerUpSystem? {
+        systems[.powerUpComponent] as? PowerUpSystem
+    }
+    var gestureEntitySystem: GestureEntitySystem? {
+        systems[.gestureEntityComponent] as? GestureEntitySystem
+    }
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         systems[.healthComponent] = HealthSystem()
+        systems[.scoreComponent] = ScoreSystem()
         systems[.manaComponent] = ManaSystem(gameEngine: gameEngine)
         systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
         systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
         systems[.labelComponent] = LabelSystem(gameEngine: gameEngine)
         systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
         systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
-        systems[.scoreComponent] = ScoreSystem()
+        systems[.powerUpComponent] = PowerUpSystem(gameEngine: gameEngine)
+        systems[.attractionEntitiesComponent] = AttractionEntitiesSystem(gameEngine: gameEngine)
+        systems[.gestureEntityComponent] = GestureEntitySystem(gameEngine: gameEngine)
     }
     
     func update(with deltatime: TimeInterval) {
@@ -51,13 +60,13 @@ class SystemDelegate {
         systems[.timerComponent]?.update(deltaTime: deltatime)
     }
     
-    func addComponents(foundIn entity: GKEntity) {
+    func addComponents(foundIn entity: Entity) {
         systems.values.forEach { system in
             system.addComponent(foundIn: entity)
         }
     }
     
-    func removeComponents(foundIn entity: GKEntity) {
+    func removeComponents(foundIn entity: Entity) {
         systems.values.forEach { system in
             system.removeComponent(foundIn: entity)
         }
@@ -67,28 +76,29 @@ class SystemDelegate {
         systems[component.type]?.removeComponent(component)
     }
 
-    func minusHealthPoints(for entity: GKEntity) -> Int? {
+    func minusHealthPoints(for entity: Entity) -> Int? {
         healthSystem?.minusHealthPoints(for: entity)
     }
 
-    func increaseMana(by manaPoint: Int, for entity: GKEntity) {
+    func increaseMana(by manaPoint: Int, for entity: Entity) {
         manaSystem?.increaseMana(by: manaPoint, for: entity)
     }
     
-    func dropMana(at entity: GKEntity) {
+    func dropMana(at entity: Entity) {
         manaSystem?.dropMana(at: entity)
     }
     
-    func getMana(for entity: GKEntity) -> Int? {
+    func getMana(for entity: Entity) -> Int? {
         manaSystem?.getMana(for: entity)
     }
     
-    func stopMovement(for entity: Entity, duration: TimeInterval) {
-        moveSystem?.stopMovementForDuration(for: entity, duration: duration)
+    func changeMovementSpeed(for entity: Entity, to speed: Float, duration: TimeInterval) {
+        moveSystem?.changeMovementSpeed(for: entity, to: speed, duration: duration)
     }
     
-    func stopAnimation(for entity: Entity, duration: TimeInterval, animationNodeKey: String) {
-        spriteSystem?.stopAnimationForDuration(for: entity, duration: duration, animationNodeKey: animationNodeKey)
+    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
+        spriteSystem?.changeAnimationSpeed(for: entity, duration: duration, to: speed,
+                                           animationNodeKey: animationNodeKey)
     }
     
     func addScore(by points: Int, multiplier: Double, for entity: Entity) {
@@ -96,13 +106,11 @@ class SystemDelegate {
     }
     
     func addMultiKillScore(count: Int, for entity: Entity) {
-        var score = 0
         if count >= 5 {
-            score = GameConfig.Score.pentaKillScore
+            addScore(by: GameConfig.Score.pentaKillScore, multiplier: 1, for: entity)
         } else if count >= 3 {
-            score = GameConfig.Score.tripleKillScore
+            addScore(by: GameConfig.Score.tripleKillScore, multiplier: 1, for: entity)
         }
-        addScore(by: score, multiplier: 1, for: entity)
     }
     
     func runFadingAnimation(_ entity: Entity) {
@@ -119,10 +127,38 @@ class SystemDelegate {
     
     func incrementLabelIntegerValue(_ entity: Entity) {
         labelSystem?.incrementLabelIntegerValue(entity)
+    }
+    
+    func resetTimer(_ entity: Entity) {
         timerSystem?.resetTimer(entity)
+    }
+    
+    func incrementCombo(_ entity: Entity) {
+        incrementLabelIntegerValue(entity)
+        resetTimer(entity)
     }
     
     func incrementMultiplier(_ entity: Entity) {
         scoreSystem?.incrementMultiplier(for: entity)
+    }
+    
+    func activatePowerUp(at position: CGPoint, with size: CGSize?) {
+        powerUpSystem?.activatePowerUp(at: position, with: size)
+    }
+    
+    func setInitialGesture(for entity: Entity) {
+        gestureEntitySystem?.setInitialGesture(for: entity)
+    }
+    
+    func setGesture(for entity: Entity, using gesture: CustomGesture?) {
+        gestureEntitySystem?.setGesture(for: entity, using: gesture)
+    }
+    
+    func activateInvincibleEndPoint(for entity: Entity) {
+        spriteSystem?.activateInvincibleEndPoint(for: entity)
+    }
+    
+    func deactivateInvincibleEndPoint(for entity: Entity) {
+        spriteSystem?.deactivateInvincibleEndPoint(for: entity)
     }
 }

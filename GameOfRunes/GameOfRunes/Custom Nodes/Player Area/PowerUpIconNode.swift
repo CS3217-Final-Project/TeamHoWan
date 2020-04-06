@@ -8,18 +8,16 @@
 
 import SpriteKit
 
-class PowerUpIconNode: SKSpriteNode {
+class PowerUpIconNode: ButtonNode {
     private static let normalFrame = SKTexture(imageNamed: "power-up-frame")
     private static let selectedFrame = SKTexture(imageNamed: "power-up-frame-selected")
-    private static let onTappedScaleFactor: CGFloat = 0.9
-    private let powerUpIconNode = SKSpriteNode()
-    private var identitySize: CGSize
+    private let iconNode = SKSpriteNode()
     var powerUpType: PowerUpType {
         didSet {
             guard oldValue != powerUpType else {
                 return
             }
-            updatePowerUpIcon()
+            updateIcon()
         }
     }
     var selected = false {
@@ -35,55 +33,31 @@ class PowerUpIconNode: SKSpriteNode {
             guard oldValue != size else {
                 return
             }
-            powerUpIconNode.size = size
-            identitySize = size
+            iconNode.size = size.applying(.init(scaleX: 0.9, y: 0.9))
         }
     }
     
     init(powerUpType: PowerUpType) {
         self.powerUpType = powerUpType
-        let size = Self.normalFrame.size()
-        identitySize = size
-        super.init(texture: Self.normalFrame, color: .clear, size: size)
+        super.init(size: Self.normalFrame.size(), texture: Self.normalFrame, buttonType: .powerUpIconButton)
         
-        isUserInteractionEnabled = true
-        powerUpIconNode.zPosition = -1
-        updatePowerUpIcon()
-        addChild(powerUpIconNode)
+        iconNode.zPosition = -1
+        updateIcon()
+        addChild(iconNode)
     }
     
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func updateIcon() {
+        iconNode.texture = .init(imageNamed: "\(powerUpType)-icon")
     }
     
-    private func updatePowerUpIcon() {
-        powerUpIconNode.texture = .init(imageNamed: "\(powerUpType)-icon")
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        run(.scale(to: Self.onTappedScaleFactor, duration: 0.05))
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        run(.scale(to: identitySize, duration: 0.1))
-        
+    override func onTouchEnded(_ touches: Set<UITouch>) {
         guard let touch = touches.first,
             let container = parent?.parent as? PowerUpContainerNode,
-            atPoint(touch.location(in: self)) === powerUpIconNode else {
+            atPoint(touch.location(in: self)) === iconNode else {
                 return
         }
         
         container.selectedPowerUp = selected ? nil : powerUpType
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        
-        run(.scale(to: identitySize, duration: 0.1))
+        responder.onTapped(tappedNode: self)
     }
 }

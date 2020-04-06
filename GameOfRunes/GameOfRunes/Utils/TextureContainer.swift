@@ -16,23 +16,24 @@ import SpriteKit
  optimisations).
  */
 enum TextureContainer {
-    private static var enemiesTextures = loadEnemiesTextures()
-    private(set) static var fullEnemyRemovalTextures = loadFullEnemyRemovalTextures()
-    private(set) static var halfEnemyRemovalTextures = { Array(Self.fullEnemyRemovalTextures[0...7]) }()
-    private static var manaTextures = loadManaTextures()
+    private static var enemiesTextures: [EnemyType: [SKTexture]] = loadEnemiesTextures()
+    private(set) static var fullEnemyRemovalTextures: [SKTexture] = loadFullEnemyRemovalTextures()
+    private(set) static var halfEnemyRemovalTextures: [SKTexture]  = { Array(Self.fullEnemyRemovalTextures[0...7]) }()
+    private static var manaTextures: [ManaType: [SKTexture]] = loadManaTextures()
     private(set) static var manaRemovalTextures: [SKTexture] = {
         let numTextures = Self.fullEnemyRemovalTextures.count
         return Array(Self.fullEnemyRemovalTextures[7..<numTextures])
     }()
-    private static var powerUpCastTextures = loadPowerUpCastTextures()
-    private static var powerUpTextures = loadPowerUpTextures()
-    private static var avatarsTextures = loadAvatarsTextures()
+    private static var powerUpCastTextures: [PowerUpType: [SKTexture]] = loadPowerUpCastTextures()
+    private static var powerUpTextures: [PowerUpType: [SKTexture]] = loadPowerUpTextures()
+    private static var avatarsTextures: [Avatar: [SKTexture]] = loadAvatarsTextures()
+    private(set) static var eliteKnightTextures: [SKTexture] = loadEliteKnightTextures()
     
     private static func loadEnemiesTextures() -> [EnemyType: [SKTexture]] {
         var enemiesTextures = [EnemyType: [SKTexture]]()
         
         EnemyType.allCases.forEach { enemyType in
-            let enemyAtlas = SKTextureAtlas(named: enemyType.rawValue)
+            let enemyAtlas = SKTextureAtlas(named: "\(enemyType)")
             let enemyTextures = (0...6).map { enemyAtlas.textureNamed("WALK_00\($0)") }
             enemiesTextures[enemyType] = enemyTextures
         }
@@ -64,7 +65,8 @@ enum TextureContainer {
         
         PowerUpType.allCases.forEach { powerUpType in
             let powerUpCastAtlas = SKTextureAtlas(named: "\(powerUpType)Cast")
-            let castTextures = (0...19).map { powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0)) }
+            let numTextures = powerUpCastAtlas.textureNames.count
+            let castTextures = (0..<numTextures).map { powerUpCastAtlas.textureNamed(.init(format: "tile%03d", $0)) }
             powerUpCastTextures[powerUpType] = castTextures
         }
         
@@ -74,9 +76,9 @@ enum TextureContainer {
     private static func loadPowerUpTextures() -> [PowerUpType: [SKTexture]] {
         var powerUpTextures = [PowerUpType: [SKTexture]]()
         
-        let hellfireAtlas = SKTextureAtlas(named: PowerUpType.hellfire.rawValue)
+        let hellfireAtlas = SKTextureAtlas(named: "\(PowerUpType.hellfire)")
         powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
-        let darkVortexAtlas = SKTextureAtlas(named: PowerUpType.darkVortex.rawValue)
+        let darkVortexAtlas = SKTextureAtlas(named: "\(PowerUpType.darkVortex)")
         powerUpTextures[PowerUpType.darkVortex] = (670_000...670_019).map { darkVortexAtlas.textureNamed("\($0)") }
         
         return powerUpTextures
@@ -92,6 +94,12 @@ enum TextureContainer {
         }
         
         return avatarsTextures
+    }
+    
+    private static func loadEliteKnightTextures() -> [SKTexture] {
+        let eliteKnightAtlas = SKTextureAtlas(named: "eliteKnight")
+        let eliteKnightTextures = (0...6).map { eliteKnightAtlas.textureNamed("WALK_00\($0)") }
+        return eliteKnightTextures
     }
 
     static func loadTextures() {
@@ -118,6 +126,9 @@ enum TextureContainer {
         
         // force load `avatarsTextures`
         _ = avatarsTextures
+        
+        // force load `eliteKnightTextures`
+        _ = eliteKnightTextures
     }
 
     /** Get the Animation Textures for the `enemyType` */

@@ -6,8 +6,8 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-// Errors associated with Level and Wave-related logic.
+// Errors associated with Wave-related logic.
 enum LevelWaveError: Error {
     case tooManyEnemyUnits
-    case invalidLevelNumber
+    case invalidStageNumber
 }

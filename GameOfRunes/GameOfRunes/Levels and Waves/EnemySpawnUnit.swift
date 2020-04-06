@@ -7,10 +7,10 @@
 //
 
 /**
- This struct is used as the basic unit for creating a level. Different instances
- of it can be concatenated together to create different types of levels. See
- `LevelCreator` for more examples on how `EnemySpawnUnit` can
-  be used to create interesting levels.
+ This struct is used as the basic unit for creating an enemy wave in a stage. Different instances
+ of it can be concatenated together to create different types of stages. See
+ `EnemyWaveCreator` for more examples on how `EnemySpawnUnit` can
+  be used to create interesting stages.
 
  - Note: The position of the `EnemyType` within the spawn wave (i.e. the [EnemyType]
  in `unit` will determine the spawn position of the enemy (which lane the
@@ -28,6 +28,14 @@ struct EnemySpawnUnit {
     // Checks if the number of individual spawn waves is zero
     var isEmpty: Bool {
         unit.isEmpty
+    }
+    
+    /** Initialiser to create multiple spawn wave.*/
+    init(_ monsters: [[EnemyType?]]) {
+        // TODO: Might want to check and remove invalid waves?? Or fill up with placeholder values?
+        // Alternatively, we can assume that the data given is valid
+        unit = monsters
+        assert(checkRepresentation())
     }
 
     /** Initialiser to create an empty `EnemySpawnUnit` */
