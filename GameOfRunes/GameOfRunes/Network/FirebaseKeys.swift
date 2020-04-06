@@ -22,6 +22,8 @@ struct FirebaseKeys {
     static let rooms_players_isHost = "is_host"
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
+    static let rooms_offer = "offer"
+    static let rooms_answer = "asnwer"
     
     /// Joins keys with the required (firebase) separator
     /// - Parameters:

@@ -217,6 +217,18 @@ class FirebaseNetwork: NetworkInterface {
         observers = []
     }
     
+    func sendOffer(roomId: String, sdp offer: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func sendAnswer(roomId: String, answer: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+    
+    func listenToAnswer(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+        
+    }
+
     // TODO: implementation after figuring out how to structure game object in firebase
     func joinGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
         
