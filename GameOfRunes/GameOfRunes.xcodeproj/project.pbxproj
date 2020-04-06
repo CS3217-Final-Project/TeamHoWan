@@ -580,11 +580,11 @@
 			children = (
 				4ACAF52A242A727F0062DDBA /* HomeViewController.swift */,
 				56A37557243824DD0088F655 /* SelectorViewController.swift */,
-				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 				56A3755924382E450088F655 /* MultiplayerViewController.swift */,
 				56A3755B243872B00088F655 /* JoinGameViewController.swift */,
 				56A3755D243877950088F655 /* MultiplayerLobbyViewController.swift */,
 				56A3755F2438823D0088F655 /* CodeInputViewController.swift */,
+				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1200,7 +1200,6 @@
 				4A768F152430157F000F3F05 /* CancelNode.swift in Sources */,
 				4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */,
 				56A375602438823D0088F655 /* CodeInputViewController.swift in Sources */,
-				4A6213EC2430D19500FABB48 /* SelectedPowerUpResponder.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
 				4AA508CD24161A1900D9ADE4 /* EnemyType.swift in Sources */,
 				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,

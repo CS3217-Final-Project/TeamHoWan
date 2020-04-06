@@ -21,9 +21,10 @@ class HomeViewController: UIViewController {
     private let startButton = UIButton()
     // TODO: Perhaps shift it to some other static class? Or no need make static?
     static let storage: Storage = RealmStorage()
+    // TODO: Need to make soundPlayer accessible by more view controllers
     private var bgmPlayer = AVAudioPlayer()
     private var clickSoundPlayer = AVAudioPlayer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHomeBackground()
@@ -88,7 +89,8 @@ class HomeViewController: UIViewController {
     private func setUpStartButton() {
         view.addSubview(startButton)
         view.bringSubviewToFront(startButton)
-        addImageConstraints()
+        UIViewController.setUpButton(view: view, button: startButton, buttonImageName: "start-button-glow",
+                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.6, sizeScale: 0.8)
         addActions()
     }
     
@@ -134,19 +136,6 @@ extension HomeViewController {
         startButton.addTarget(self, action: #selector(onSelectedStart), for: .touchUpInside)
     }
     
-    @objc private func onTapped(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.05) {
-            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
-        }
-        clickSoundPlayer.play()
-    }
-    
-    @objc private func onTouchedUpOutside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1) {
-            sender.transform = CGAffineTransform.identity
-        }
-    }
-    
     @objc private func onSelectedStart(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1) {
             sender.transform = CGAffineTransform.identity
@@ -159,6 +148,19 @@ extension HomeViewController {
         selectorVC.modalPresentationStyle = .fullScreen
         selectorVC.modalTransitionStyle = .crossDissolve
         present(selectorVC, animated: true)
+    }
+
+    @objc private func onTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.05) {
+            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
+        }
+        clickSoundPlayer.play()
+    }
+    
+    @objc private func onTouchedUpOutside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
     }
 }
 
@@ -174,10 +176,10 @@ extension HomeViewController {
             let stage2EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 2),
             let stage3EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 3),
             let stage4EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 4) else {
-            print("Unable to load Enemies from EnemyWaveCreator")
-            return
+                print("Unable to load Enemies from EnemyWaveCreator")
+                return
         }
-
+        
         let stage1 = Stage(
             name: "The Beginning",
             chapter: "Peasant Land 1",
@@ -193,7 +195,7 @@ extension HomeViewController {
             achievementSMinScore: 50,
             achievement: .empty
         )
-
+        
         let stage2 = Stage(
             name: "Warrior Arena",
             chapter: "Peasant Land 2",
@@ -209,7 +211,7 @@ extension HomeViewController {
             achievementSMinScore: 70,
             achievement: .empty
         )
-
+        
         let stage3 = Stage(
             name: "Cathedral Mayhem",
             chapter: "Peasant Land 3",
@@ -225,7 +227,7 @@ extension HomeViewController {
             achievementSMinScore: 90,
             achievement: .empty
         )
-
+        
         let stage4 = Stage(
             name: "The Crossing",
             chapter: "Peasant Land 4",
@@ -241,9 +243,36 @@ extension HomeViewController {
             achievementSMinScore: 100,
             achievement: .empty
         )
-
+        
         let stages = [stage1, stage2, stage3, stage4]
         Self.storage.save(stages: stages)
         Self.storage.didInitialise()
     }
+}
+
+extension UIViewController {
+    static func setUpButton(view: UIView,
+                            button: UIButton,
+                            buttonImageName: String,
+                            viewPortWidth: CGFloat,
+                            xMultiplier: Double,
+                            yMultiplier: Double,
+                            sizeScale: Double) {
+        guard let buttonImage = UIImage(named: buttonImageName) else {
+            return
+        }
+        
+        view.addSubview(button)
+        view.bringSubviewToFront(button)
+        
+        button.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().multipliedBy(xMultiplier)
+            make.centerY.equalToSuperview().multipliedBy(yMultiplier)
+            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * CGFloat(sizeScale)))
+        }
+        
+        button.adjustsImageWhenHighlighted = false
+        button.setBackgroundImage(buttonImage, for: .normal)
+    }
+    
 }

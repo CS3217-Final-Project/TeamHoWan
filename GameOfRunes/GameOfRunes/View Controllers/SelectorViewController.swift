@@ -38,49 +38,21 @@ class SelectorViewController: UIViewController {
     private func setUpSinglePlayerButton() {
         view.addSubview(singlePlayerButton)
         view.bringSubviewToFront(singlePlayerButton)
-        addSpImageConstraints()
+        UIViewController.setUpButton(view: view, button: singlePlayerButton, buttonImageName: "singleplayer",
+                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 0.75, sizeScale: 0.7)
         addSpActions()
     }
     
     private func setUpMultiplayerButton() {
         view.addSubview(multiplayerButton)
         view.bringSubviewToFront(multiplayerButton)
-        addMpImageConstraints()
+        UIViewController.setUpButton(view: view, button: multiplayerButton, buttonImageName: "multiplayer",
+                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
         addMpActions()
     }
 }
 
 extension SelectorViewController {
-    private func addSpImageConstraints() {
-        guard let buttonImage = UIImage(named: "singleplayer") else {
-            return
-        }
-        
-        singlePlayerButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().labeled("spButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(0.75).labeled("spButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("spButtonSize")
-        }
-        
-        singlePlayerButton.adjustsImageWhenHighlighted = false
-        singlePlayerButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
-    private func addMpImageConstraints() {
-        guard let buttonImage = UIImage(named: "multiplayer") else {
-            return
-        }
-        
-        multiplayerButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().labeled("spButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.45).labeled("spButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("spButtonSize")
-        }
-        
-        multiplayerButton.adjustsImageWhenHighlighted = false
-        multiplayerButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
     private func addMpActions() {
         multiplayerButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
         multiplayerButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)

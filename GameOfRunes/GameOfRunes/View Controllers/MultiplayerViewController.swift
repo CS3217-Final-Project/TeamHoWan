@@ -41,54 +41,18 @@ class MultiplayerScreenViewController: UIViewController {
     private func setUpHostRoomButton() {
         view.addSubview(hostRoomButton)
         view.bringSubviewToFront(hostRoomButton)
-        addHostRoomImageConstraints()
-        addHostRoomActions()
-    }
-    
-    private func setUpJoinRoomButton() {
-        view.addSubview(joinRoomButton)
-        view.bringSubviewToFront(joinRoomButton)
-        addJoinRoomImageConstraints()
-        addJoinRoomActions()
-    }
-    
-    private func addHostRoomImageConstraints() {
-        guard let buttonImage = UIImage(named: "hostgame") else {
-            return
-        }
-        
-        hostRoomButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().labeled("hostRoomButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(0.75).labeled("hostRoomButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("hostRoomButtonSize")
-        }
-        
-        hostRoomButton.adjustsImageWhenHighlighted = false
-        hostRoomButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
-    private func addHostRoomActions() {
+        UIViewController.setUpButton(view: view, button: hostRoomButton, buttonImageName: "hostgame",
+                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 0.75, sizeScale: 0.7)
         hostRoomButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
         hostRoomButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
         hostRoomButton.addTarget(self, action: #selector(hostRoomStart), for: .touchUpInside)
     }
     
-    private func addJoinRoomImageConstraints() {
-        guard let buttonImage = UIImage(named: "joingame") else {
-            return
-        }
-        
-        joinRoomButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().labeled("joinRoomButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.45).labeled("joinRoomButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: viewPortWidth * 0.7)).labeled("joinRoomButtonSize")
-        }
-        
-        joinRoomButton.adjustsImageWhenHighlighted = false
-        joinRoomButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
-    private func addJoinRoomActions() {
+    private func setUpJoinRoomButton() {
+        view.addSubview(joinRoomButton)
+        view.bringSubviewToFront(joinRoomButton)
+        UIViewController.setUpButton(view: view, button: joinRoomButton, buttonImageName: "joingame",
+                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
         joinRoomButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
         joinRoomButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
         joinRoomButton.addTarget(self, action: #selector(joinRoomStart), for: .touchUpInside)
@@ -114,7 +78,7 @@ class MultiplayerScreenViewController: UIViewController {
         // TODO: Error handler
         dbRef.createRoom(uid: "123456", name: FirebaseKeys.defaultName, { roomId in
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
-        }, { err in
+        }, { _ in
             
         })
     }

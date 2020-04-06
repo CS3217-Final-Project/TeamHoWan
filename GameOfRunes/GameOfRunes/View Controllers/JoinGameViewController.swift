@@ -28,8 +28,12 @@ class JoinGameViewController: UIViewController {
     private func setUpJoinButton() {
         view.addSubview(joinButton)
         view.bringSubviewToFront(joinButton)
-        addImageConstraints()
-        addJoinButtonActions()
+        UIViewController.setUpButton(view: view, button: joinButton, buttonImageName: "join-button",
+                                     viewPortWidth: view.frame.size.width, xMultiplier: 1,
+                                     yMultiplier: 1.4, sizeScale: 0.7)
+        joinButton.addTarget(self, action: #selector(onJoin), for: .touchUpInside)
+        joinButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
+        joinButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
     }
     
     private func setUpHomeBackground() {
@@ -40,27 +44,6 @@ class JoinGameViewController: UIViewController {
         background.snp.makeConstraints { make in
             make.edges.equalToSuperview().labeled("backgroundEdges")
         }
-    }
-    
-    private func addImageConstraints() {
-        guard let buttonImage = UIImage(named: "join-button") else {
-            return
-        }
-        
-        joinButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().labeled("joinButtonCenterX")
-            make.centerY.equalToSuperview().multipliedBy(1.4).labeled("joinButtonCenterY")
-            make.size.equalTo(buttonImage.size.scaleTo(width: view.frame.size.width * 0.7)).labeled("joinButtonSize")
-        }
-        
-        joinButton.adjustsImageWhenHighlighted = false
-        joinButton.setBackgroundImage(buttonImage, for: .normal)
-    }
-    
-    private func addJoinButtonActions() {
-        joinButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
-        joinButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
-        joinButton.addTarget(self, action: #selector(onJoin), for: .touchUpInside)
     }
     
     @objc private func onTapped(_ sender: UIButton) {
@@ -83,7 +66,7 @@ class JoinGameViewController: UIViewController {
         self.dbRef.joinGame(roomId: roomId, {
             // TODO: Error handler
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
-        }, { err in
+        }, { _ in
             
         })
     }
