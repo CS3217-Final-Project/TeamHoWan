@@ -86,8 +86,10 @@ protocol NetworkInterface {
                           _ onError: @escaping (Error) -> Void)
     
     /**
-     Creates a listener for a room instance. This listener is fired every time any child is changed in the Room object in the database.
-     This method should be used by the client to know when the game starts, and also be used by the front end to reflect room changes.
+     Creates a listener for a room instance.
+     This listener is fired every time any child is changed in the Room object in the database.
+     This method should be used by the client to know when the game starts,
+     and also be used by the front end to reflect room changes.
      Creates an observer.
      - Parameters:
      - forRoomId: the room id this listener is listening to
@@ -106,8 +108,8 @@ protocol NetworkInterface {
     func removeObservers()
     
     /**
-     Starts a game instance for a particular room. This method changes the state of the room and
-     creates the game by calling`createGame`.
+     Starts a game instance for a particular room. This method creates the game by calling`createGame`
+     and changes the `hasStarted` flag of the room.
      - Parameters:
      - roomId: the room id
      - onComplete: completion handler
@@ -128,17 +130,7 @@ protocol NetworkInterface {
                     _ onComplete: @escaping () -> Void,
                     _ onError: @escaping (Error) -> Void)
     
-    /**
-     Join a game that has been created on the network database
-     - Parameters:
-     - roomId: the room id
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
-     */
-    func joinGame(roomId: String,
-                  _ onComplete: @escaping () -> Void,
-                  _ onError: @escaping (Error) -> Void)
-    
+
     // ================================== Game functions =========================================
     
     /**
@@ -150,21 +142,10 @@ protocol NetworkInterface {
      - onError: error handler
      */
     func observeGameState(roomId: String,
+                          _ onEvent: @escaping (PowerUpModel) -> Void,
+                          _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
                           _ onMonsterReceived: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
-    
-    /**
-     Updates game boolean flag "has_ended" to the specified boolean value
-     - Parameters:
-     - gameId: the game id concerned
-     - to: the boolean value for "has ended" flag
-     - onComplete: a closure run when this process completes
-     - onError: a closure run when an error occurs
-     */
-    func updateGameHasEnded(gameId: String,
-                            to: Bool,
-                            _ onComplete: @escaping () -> Void,
-                            _ onError: @escaping (Error) -> Void)
     
     /**
      Updates game boolean flag "has_started" to the specified boolean value
@@ -178,17 +159,6 @@ protocol NetworkInterface {
                               to: Bool,
                               _ onComplete: @escaping () -> Void,
                               _ onError: @escaping (Error) -> Void)
-    
-    /**
-     Closes the game with specified gameId
-     - Parameters:
-     - gameId: the game id concerned
-     - onComplete: a closure run when this process completes
-     - onError: a closure run when an error occurs
-     */
-    func closeGame(gameId: String,
-                   _ onComplete: @escaping () -> Void,
-                   _ onError: @escaping (Error) -> Void)
     
     // TODO: sendMonsters - need to determine way to represent monsters and convert to dictionary first
     // TODO: updateGameState - need to determine way of representing game state (actual rendering/image)

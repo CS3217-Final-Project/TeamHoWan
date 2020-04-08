@@ -8,6 +8,9 @@
 
 import Foundation
 
+let encoder = JSONEncoder()
+let decoder = JSONDecoder()
+
 extension FirebaseNetwork {
     /**
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
@@ -54,6 +57,7 @@ extension FirebaseNetwork {
         let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultFalse
         let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultFalse
         let players = dict[FirebaseKeys.rooms_players_name] as? [String: AnyObject] ?? [:]
+        let monsters = dict[FirebaseKeys.rooms_players_monsters] as
         
         let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
         for (playerUid, playerDescription) in players {
@@ -71,13 +75,23 @@ extension FirebaseNetwork {
      - isReady: whether the player is ready
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
-    func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool) -> [String: AnyObject] {
-        let playerDict: [String: AnyObject] = [
-            FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
-            FirebaseKeys.rooms_players_uid: uid as AnyObject,
-            FirebaseKeys.rooms_players_name: name as AnyObject,
-            FirebaseKeys.rooms_players_isReady: isReady as AnyObject
-        ]
-        return playerDict
+    func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
+                          powerUp: PowerUpModel, monsters: [MonsterModel]) -> [String: AnyObject] {
+        
+        do {
+            let encodedPowerUp = try encoder.encode(powerUp)
+            let encodedMonsters = try encoder.encode(monsters)
+            let playerDict: [String: AnyObject] = [
+                FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
+                FirebaseKeys.rooms_players_uid: uid as AnyObject,
+                FirebaseKeys.rooms_players_name: name as AnyObject,
+                FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
+                FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
+                FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
+            ]
+            return playerDict
+        } catch {
+            // TODO: Error handler
+        }
     }
 }

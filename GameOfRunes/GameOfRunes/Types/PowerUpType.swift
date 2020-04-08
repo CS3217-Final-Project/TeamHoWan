@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-enum PowerUpType: String, CaseIterable {
+enum PowerUpType: String, CaseIterable, Codable {
     case darkVortex
     case hellfire
     case icePrison

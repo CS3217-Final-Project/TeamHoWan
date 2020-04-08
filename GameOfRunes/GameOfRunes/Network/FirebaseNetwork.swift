@@ -216,35 +216,51 @@ class FirebaseNetwork: NetworkInterface {
         }
         observers = []
     }
+    
+    func updateGameHasStarted(gameId: String,
+                              to: Bool,
+                              _ onComplete: @escaping () -> Void,
+                              _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms,
+                                                     gameId, FirebaseKeys.rooms_hasStarted]))
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard (snapshot.value as? Bool) != nil else {
+                // Room does not exist
+                return
+            }
+            ref.setValue(to, withCompletionBlock: { err, _ in
+                if let error = err {
+                    onError(error)
+                    return
+                }
+                onComplete()
+            })
+        }) { err in
+            onError(err)
+        }
+    }
 
-    // TODO: implementation after figuring out how to structure game object in firebase
-    func joinGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+    func startGame(roomId: String,
+                   _ onComplete: @escaping () -> Void,
+                   _ onError: @escaping (Error) -> Void) {
         
     }
     
-    func observeGameState(roomId: String, _ onMonsterReceived: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+    func createGame(roomId: String,
+                    _ onComplete: @escaping () -> Void,
+                    _ onError: @escaping (Error) -> Void) {
         
     }
     
-    func updateGameHasEnded(gameId: String, to: Bool, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
+    func observeGameState(roomId: String,
+                          _ onEvent: @escaping (PowerUpModel) -> Void,
+                          _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
+                          _ onMonsterReceived: @escaping () -> Void,
+                          _ onError: @escaping (Error) -> Void) {
         
     }
     
-    func updateGameHasStarted(gameId: String, to: Bool, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
-        
-    }
-    
-    func closeGame(gameId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
-        
-    }
-    
-    func startGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
-        
-    }
-    
-    func createGame(roomId: String, _ onComplete: @escaping () -> Void, _ onError: @escaping (Error) -> Void) {
-        
-    }
 }
 
 struct Observer {

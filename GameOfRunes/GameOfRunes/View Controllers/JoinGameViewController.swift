@@ -63,12 +63,7 @@ class JoinGameViewController: UIViewController {
             sender.transform = CGAffineTransform.identity
         }
         let roomId = codeInputVC.codeInput.text ?? ""
-        self.dbRef.joinGame(roomId: roomId, {
-            // TODO: Error handler
-            self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
-        }, { _ in
-            
-        })
+        // dbRef.joinRoom
     }
     
     @available(*, unavailable)

@@ -17,14 +17,15 @@ struct FirebaseKeys {
     static let rooms_isOpen = "is_open"
     static let rooms_hasStarted = "has_started"
     static let rooms_gameCreated = "game_created"
+    
     static let rooms_players = "players"
     static let rooms_players_isReady = "is_ready"
     static let rooms_players_isHost = "is_host"
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
-    static let rooms_offer = "offer"
-    static let rooms_answer = "asnwer"
-    
+    static let rooms_players_powerUp = "powerUp"
+    static let rooms_players_monsters = "monsters"
+
     /// Joins keys with the required (firebase) separator
     /// - Parameters:
     ///     - forKeys: an array of keys
