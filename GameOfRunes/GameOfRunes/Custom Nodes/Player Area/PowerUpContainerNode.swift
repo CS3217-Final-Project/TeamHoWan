@@ -34,6 +34,9 @@ class PowerUpContainerNode: SKSpriteNode {
                 return
             }
             powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
+            if let gameScene = parent?.parent as? GameScene {
+                gameScene.updateGameEngineSelectedPowerUp()
+            }
         }
     }
     

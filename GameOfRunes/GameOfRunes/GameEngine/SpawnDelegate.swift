@@ -50,21 +50,23 @@ class SpawnDelegate {
     }
     
     private func spawnPlayerUnit(at laneIndex: Int) {
-        let playerUnitEntity = PlayerUnitEntity(gameEngine: gameEngine)
+        guard let gameEngine = gameEngine else {
+            return
+        }
+        let playerUnitEntity = PlayerUnitEntity(sceneWidth: gameEngine.sceneWidth)
         
-        guard let spriteComponent = playerUnitEntity.component(ofType: SpriteComponent.self),
-            let playerEndPoint = gameEngine?.gameScene?.playerEndPoint else {
-                return
+        guard let spriteComponent = playerUnitEntity.component(ofType: SpriteComponent.self) else {
+            return
         }
         
         spriteComponent.node.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
-            width: playerEndPoint.size.width,
+            width: gameEngine.sceneWidth,
             laneIndex: laneIndex,
             totalPoints: GameConfig.GamePlayScene.numLanes,
-            yPosition: playerEndPoint.position.y
+            yPosition: gameEngine.gameScene?.endpointPosition.y ?? CGFloat.zero
         )
 
-        gameEngine?.add(playerUnitEntity)
+        gameEngine.add(playerUnitEntity)
     }
 
     private func spawnEnemyWave(_ enemyWave: [EnemyType?]) {
@@ -84,16 +86,15 @@ class SpawnDelegate {
         }
 
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
-        guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameEngine.gameScene?.size else {
+        guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self) else {
                 return
         }
 
         spriteComponent.node.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
-            width: sceneSize.width,
+            width: gameEngine.sceneWidth,
             laneIndex: laneIndex,
             totalPoints: GameConfig.GamePlayScene.numLanes,
-            yPosition: sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
+            yPosition: gameEngine.sceneHeight - GameConfig.GamePlayScene.verticalOffSet
         )
 
         gameEngine.add(enemyEntity)

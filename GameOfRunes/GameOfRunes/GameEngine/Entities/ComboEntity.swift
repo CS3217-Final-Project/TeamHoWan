@@ -17,18 +17,13 @@ class ComboEntity: Entity {
     init(gameEngine: GameEngine) {
         super.init()
         
-        guard let gameScene = gameEngine.gameScene else {
-            return
-        }
-        
-        // FRONTEND TAG 
         let labelNode = SKLabelNode(fontNamed: "DragonFire")
         let labelComponent = LabelComponent(node: labelNode)
         let timerComponent = TimerComponent(initialTimerValue: GameConfig.Score.comboTimer)
         let multiplierComponent = MultiplierComponent(gameEngine: gameEngine)
 
         labelNode.text = "0"
-        labelNode.position = .init(x: 5 * gameScene.size.width / 6, y: gameScene.size.height / 2)
+        labelNode.position = .init(x: 5 * gameEngine.sceneWidth / 6, y: gameEngine.sceneHeight / 2)
         labelNode.fontSize = 75
         labelNode.fontColor = SKColor.red
         labelNode.horizontalAlignmentMode = .center

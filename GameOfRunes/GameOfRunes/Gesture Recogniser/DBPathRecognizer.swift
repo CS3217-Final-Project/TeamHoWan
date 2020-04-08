@@ -13,13 +13,13 @@ import UIKit
 public class GestureRecognizer {
     private var rawPoints: [CGPoint] = []
     private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)
-    private weak var gameEngine: GameEngine?
+    private var gameScene: GameScene
     
-    init(gameEngine: GameEngine) {
+    init(gameScene: GameScene) {
         for pathModel in CustomGesture.getAllGesturePathModels() {
             recognizer.addModel(pathModel)
         }
-        self.gameEngine = gameEngine
+        self.gameScene = gameScene
     }
     
     func touchesBegan(_ location: CGPoint) {
@@ -34,8 +34,12 @@ public class GestureRecognizer {
         var path = Path()
         path.addPointFromRaw(rawPoints)
         
+        guard let gameEngine = gameScene.gameEngine else {
+            return
+        }
+        
         if let circle = CircleGestureRecognizer.isCircle(touchedPoints: rawPoints) {
-            gameEngine?.activatePowerUp(
+            gameEngine.activatePowerUp(
                 at: CGPoint(x: circle.center.x, y: offset - circle.center.y),
                 with: .init(width: circle.radius * 2, height: circle.radius * 2)
             )
@@ -44,7 +48,7 @@ public class GestureRecognizer {
         
         if let gesture = self.recognizer.recognizePath(path),
             let customGesture: CustomGesture = gesture.datas as? CustomGesture {
-            gameEngine?.gestureActivated(gesture: customGesture)
+            gameEngine.gestureActivated(gesture: customGesture)
         }
     }
 }

@@ -57,7 +57,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
                     .powerUpType else {
                     return
                 }
-                didActivate(powerUp: powerUpType, on: firstPair.entity)
+                powerUpdidActivate(powerUp: powerUpType, on: firstPair.entity)
             default:
                 return
             }
@@ -73,7 +73,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
-    private func didActivate(powerUp: PowerUpType, on enemy: Entity) {
+    private func powerUpdidActivate(powerUp: PowerUpType, on enemy: Entity) {
         guard enemy.type == .enemyEntity,
             let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
             !enemyType.isPowerUpImmune else {

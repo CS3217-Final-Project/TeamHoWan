@@ -12,12 +12,20 @@ import GameplayKit
 class GameEngine {
     private var systemDelegate: SystemDelegate!
     private var removeDelegate: RemoveDelegate!
-    var contactDelegate: ContactDelegate!
+    private (set) var contactDelegate: ContactDelegate!
     private var spawnDelegate: SpawnDelegate!
     private var entities = [EntityType: Set<Entity>]()
     private var toRemoveEntities = Set<Entity>()
     private (set) var metadata: GameMetaData
-    weak var gameScene: GameScene?
+    
+    private (set) weak var gameScene: GameScene?
+    
+    var sceneWidth: CGFloat {
+        gameScene?.size.width ?? CGFloat.zero
+    }
+    var sceneHeight: CGFloat {
+        gameScene?.size.height ?? CGFloat.zero
+    }
     
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -251,8 +259,8 @@ class GameEngine {
         metadata.multiplier = 1.0
     }
     
-    func updateSelectedPowerUp() {
-        metadata.selectedPowerUp = gameScene?.selectedPowerUp
+    func updateSelectedPowerUp(powerUp: PowerUpType?) {
+        metadata.selectedPowerUp = powerUp
         
         switch metadata.selectedPowerUp {
         case .heroicCall:
@@ -261,7 +269,7 @@ class GameEngine {
             activatePowerUp(at: gameScene?.center
                 ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .divineShield:
-            activatePowerUp(at: gameScene?.playerEndPoint.position
+            activatePowerUp(at: gameScene?.endpointPosition
                 ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .darkVortex:
             gameScene?.deactivateGestureDetection()

@@ -10,14 +10,17 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    private var gameEngine: GameEngine!
+    private (set) var gameEngine: GameEngine!
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
     var center: CGPoint {
         .init(x: frame.midX, y: frame.midY)
     }
-
+    var endpointPosition: CGPoint {
+        playerEndPoint.position
+    }
+    
     // layers
     private var backgroundLayer: SKNode!
     private var powerUpAnimationLayer: SKNode!
@@ -27,9 +30,9 @@ class GameScene: SKScene {
     private var playerAreaLayer: SKNode!
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
-    private(set) var playerAreaNode: PlayerAreaNode!
-    private(set) var playerEndPoint: SKSpriteNode!
-    private(set) var gestureAreaNode: GestureAreaNode!
+    private var playerAreaNode: PlayerAreaNode!
+    private var playerEndPoint: SKSpriteNode!
+    private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
@@ -135,7 +138,7 @@ class GameScene: SKScene {
     private func setUpGestureArea() {
         gestureAreaNode = .init(
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
-            gameEngine: gameEngine
+            gameScene: self
         )
         gestureAreaNode.position = center +
             .init(dx: 0.0, dy: playerAreaNode.size.height / 2)
@@ -285,7 +288,7 @@ extension GameScene: TapResponder {
         case .summonButton:
             gameEngine.startNextSpawnWave()
         case .powerUpIconButton:
-            gameEngine.updateSelectedPowerUp()
+            gameEngine.updateSelectedPowerUp(powerUp: selectedPowerUp)
         default:
             print("Unknown node tapped")
         }
@@ -326,15 +329,19 @@ extension GameScene {
         gameEngine.activatePowerUp(at: touch.location(in: self))
     }
     
-    func deselectPowerUp() {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        gameEngine.updateSelectedPowerUp()
-    }
-    
     var selectedPowerUp: PowerUpType? {
         playerAreaNode.powerUpContainerNode.selectedPowerUp
     }
+
+    func updateGameEngineSelectedPowerUp() {
+        gameEngine.updateSelectedPowerUp(powerUp: selectedPowerUp)
+    }
     
+    func deselectPowerUp() {
+        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
+        updateGameEngineSelectedPowerUp()
+    }
+
     func deactivateGestureDetection() {
         gestureAreaNode.isUserInteractionEnabled = false
     }

@@ -26,10 +26,10 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
         switch powerUpType {
         case .darkVortex:
             // abitrary width for dark vortex
-            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
+            let radius = (gameEngine?.sceneWidth ?? UIScreen.main.bounds.width) / 3
             powerUpSize = .init(width: radius, height: radius)
         case .divineShield:
-            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
+            let radius = (gameEngine?.sceneHeight ?? UIScreen.main.bounds.width) / 2
             powerUpSize = .init(width: radius, height: radius)
         case .heroicCall:
             gameEngine?.spawnPlayerUnitWave()
