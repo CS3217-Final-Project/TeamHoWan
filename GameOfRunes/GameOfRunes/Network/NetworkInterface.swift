@@ -106,43 +106,6 @@ protocol NetworkInterface {
     func removeObservers()
     
     /**
-     Sends an SDP offer to the room to initiate the WebRTC connection.
-     - Parameters:
-     - roomId: the room id
-     - sdp: String representing the sdp offer
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
-     */
-    func sendOffer(roomId: String,
-                   sdp offer: String,
-                   _ onComplete: @escaping () -> Void,
-                   _ onError: @escaping (Error) -> Void)
-    
-    /**
-     Sends an answer to the room to complete the WebRTC connection.
-     - Parameters:
-     - roomId: the room id
-     - answer : String representing the rtc answer
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
-     */
-    func sendAnswer(roomId: String,
-                    answer: String,
-                    _ onComplete: @escaping () -> Void,
-                    _ onError: @escaping (Error) -> Void)
-    
-    /**
-     Listens to answer in the room to complete the WebRTC connection.
-     - Parameters:
-     - roomId: the room id
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
-     */
-    func listenToAnswer(roomId: String,
-                        _ onComplete: @escaping () -> Void,
-                        _ onError: @escaping (Error) -> Void)
-    
-    /**
      Starts a game instance for a particular room. This method changes the state of the room and
      creates the game by calling`createGame`.
      - Parameters:
