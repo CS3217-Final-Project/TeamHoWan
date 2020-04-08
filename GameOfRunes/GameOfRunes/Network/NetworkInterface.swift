@@ -16,7 +16,8 @@ protocol NetworkInterface {
     // ================================== Room functions =========================================
     
     /**
-     Create a room instance in the database. This method generates a short 5-digit unique room ID and calls the completion handle.
+     Create a room instance in the database. This method generates a short 5-digit unique room ID
+     and calls the completion handle.
      - Parameters:
      - uid: uid of the Player
      - name: name of the Player
@@ -120,23 +121,9 @@ protocol NetworkInterface {
                    _ onError: @escaping (Error) -> Void)
     
     /**
-     Creates a game database reference to the specified room.
-     - Parameters:
-     - roomId: the room id
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
-     */
-    func createGame(roomId: String,
-                    _ onComplete: @escaping () -> Void,
-                    _ onError: @escaping (Error) -> Void)
-    
-
-    // ================================== Game functions =========================================
-    
-    /**
      Listen to changes to the game reference.
      - Parameters:
-     - gameId: the game id to be observed
+     - roomId: the game id to be observed
      - onMonsterReceived: a callback that is fired every time monsters have been received (sent by the other player)
      - onGameStateChange: callback that is fired every time the game state of the other player changes
      - onError: error handler
@@ -150,16 +137,43 @@ protocol NetworkInterface {
     /**
      Updates game boolean flag "has_started" to the specified boolean value
      - Parameters:
-     - gameId: the game id concerned
+     - roomId: the game id concerned
      - to: the boolean value for "has ended" flag
      - onComplete: a closure run when this process completes
      - onError: a closure run when an error occurs
      */
-    func updateGameHasStarted(gameId: String,
+    func updateGameHasStarted(roomId: String,
                               to: Bool,
                               _ onComplete: @escaping () -> Void,
                               _ onError: @escaping (Error) -> Void)
     
-    // TODO: sendMonsters - need to determine way to represent monsters and convert to dictionary first
-    // TODO: updateGameState - need to determine way of representing game state (actual rendering/image)
+    /**
+     Update own monsters on the network.
+     - Parameters:
+     - roomId: the game id concerned
+     - uid: UID of the player
+     - monsters: the monsters to be sent
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func updateMonsters(roomId: String,
+                        uid: String,
+                        monsters: [MonsterModel],
+                        _ onComplete: @escaping () -> Void,
+                        _ onError: @escaping (Error) -> Void)
+    
+    /**
+     Update with a powerUp activation event.
+     - Parameters:
+     - roomId: the game id concerned
+     - uid: UID of the player
+     - powerUp: the powerUp concerned
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func updatePowerUp(roomId: String,
+                       uid: String,
+                       powerUp: PowerUpModel,
+                       _ onComplete: @escaping () -> Void,
+                       _ onError: @escaping (Error) -> Void)
 }

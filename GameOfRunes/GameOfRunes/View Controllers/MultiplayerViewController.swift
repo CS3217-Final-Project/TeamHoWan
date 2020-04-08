@@ -76,7 +76,7 @@ class MultiplayerScreenViewController: UIViewController {
         }
         // TODO: How to get UID and name?
         // TODO: Error handler
-        dbRef.createRoom(uid: "123456", name: FirebaseKeys.defaultName, { roomId in
+        dbRef.createRoom(uid: "123455", name: FirebaseKeys.defaultName, { roomId in
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
         }, { _ in
             

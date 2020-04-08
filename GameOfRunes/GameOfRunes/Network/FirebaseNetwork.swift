@@ -9,6 +9,7 @@
 import Firebase
 
 class FirebaseNetwork: NetworkInterface {
+
     let dbRef: DatabaseReference = Database.database().reference()
     var observers: [Observer] = []
     
@@ -194,7 +195,6 @@ class FirebaseNetwork: NetworkInterface {
                           _ onDataChange: @escaping (RoomModel) -> Void,
                           _ onRoomClose: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
-        
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, id]))
         let handle = ref.observe(.value, with: { snapshot in
             guard let roomDict = snapshot.value as? [String: AnyObject] else {
@@ -217,12 +217,12 @@ class FirebaseNetwork: NetworkInterface {
         observers = []
     }
     
-    func updateGameHasStarted(gameId: String,
+    func updateGameHasStarted(roomId: String,
                               to: Bool,
                               _ onComplete: @escaping () -> Void,
                               _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms,
-                                                     gameId, FirebaseKeys.rooms_hasStarted]))
+                                                     roomId, FirebaseKeys.rooms_hasStarted]))
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
             guard (snapshot.value as? Bool) != nil else {
@@ -247,18 +247,48 @@ class FirebaseNetwork: NetworkInterface {
         
     }
     
-    func createGame(roomId: String,
-                    _ onComplete: @escaping () -> Void,
-                    _ onError: @escaping (Error) -> Void) {
-        
-    }
-    
     func observeGameState(roomId: String,
                           _ onEvent: @escaping (PowerUpModel) -> Void,
                           _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
                           _ onMonsterReceived: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
         
+    }
+    
+    func updateMonsters(roomId: String,
+                        uid: String,
+                        monsters: [MonsterModel],
+                        _ onComplete: @escaping () -> Void,
+                        _ onError: @escaping (Error) -> Void) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_monsters]))
+        let encodedMonsters = encodeMonsters(monsters: monsters)
+        ref.setValue(encodedMonsters, withCompletionBlock: { err, ref in
+            if let error = err {
+                onError(error)
+                return
+            }
+            onComplete()
+        })
+    }
+    
+    func updatePowerUp(roomId: String,
+                       uid: String,
+                       powerUp: PowerUpModel,
+                       _ onComplete: @escaping () -> Void,
+                       _ onError: @escaping (Error) -> Void) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_powerUp]))
+        let encodedPowerUp = encodePowerUp(powerUp: powerUp)
+        ref.setValue(encodedPowerUp, withCompletionBlock: { err, ref in
+            if let error = err {
+                onError(error)
+                return
+            }
+            onComplete()
+        })
     }
     
 }

@@ -43,21 +43,8 @@ extension FirebaseNetwork {
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
         
-        var decodedMonsters: [MonsterModel]?
-        var decodedPowerUp: PowerUpModel?
-        
-        do {
-            if let monsters = monsters {
-                let jsonData = try JSONSerialization.data(withJSONObject: monsters, options: [])
-                decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
-            }
-            if let powerUp = powerUp {
-                let jsonData = try JSONSerialization.data(withJSONObject: powerUp, options: [])
-                decodedPowerUp = try decoder.decode(PowerUpModel.self, from: jsonData)
-            }
-        } catch {
-            // TODO: Error handling
-        }
+        let decodedMonsters: [MonsterModel]? = decodeMonsters(data: monsters)
+        let decodedPowerUp: PowerUpModel? = decodePowerUp(data: powerUp)
         return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
                            powerUp: decodedPowerUp, monsters: decodedMonsters)
     }
@@ -94,26 +81,59 @@ extension FirebaseNetwork {
      */
     func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
                           powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
-        var playerDict: [String: AnyObject] = [:]
+        let encodedPowerUp = encodePowerUp(powerUp: powerUp)
+        let encodedMonsters = encodeMonsters(monsters: monsters)
+        return [
+            FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
+            FirebaseKeys.rooms_players_uid: uid as AnyObject,
+            FirebaseKeys.rooms_players_name: name as AnyObject,
+            FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
+            FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
+            FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
+        ]
+    }
+    
+    func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {
+        var encodedPowerUp: [String: Any] = [:]
         do {
             let powerUpData = try encoder.encode(powerUp)
-            let encodedPowerUp = try JSONSerialization.jsonObject(with: powerUpData, options: .allowFragments)
+            encodedPowerUp = try JSONSerialization.jsonObject(with: powerUpData, options: .allowFragments)
                 as? [String: Any] ?? [:]
+        } catch { }
+        return encodedPowerUp
+    }
+    
+    func encodeMonsters(monsters: [MonsterModel]?) -> [String: Any] {
+        var encodedMonsters: [String: Any] = [:]
+        do {
             let monsterData = try encoder.encode(monsters)
-            let encodedMonsters = try JSONSerialization.jsonObject(with: monsterData, options: .allowFragments)
+            encodedMonsters = try JSONSerialization.jsonObject(with: monsterData, options: .allowFragments)
                 as? [String: Any] ?? [:]
-                
-            playerDict = [
-                FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
-                FirebaseKeys.rooms_players_uid: uid as AnyObject,
-                FirebaseKeys.rooms_players_name: name as AnyObject,
-                FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
-                FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
-                FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
-            ]
-        } catch {
-            // TODO: Error handler
+        } catch { }
+        return encodedMonsters
+    }
+    
+    func decodePowerUp(data: AnyObject?) -> PowerUpModel? {
+        guard let data = data else {
+            return nil
         }
-        return playerDict
+        var decodedPowerUp: PowerUpModel?
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            decodedPowerUp = try decoder.decode(PowerUpModel.self, from: jsonData)
+        } catch { }
+        return decodedPowerUp
+    }
+    
+    func decodeMonsters(data: AnyObject?) -> [MonsterModel]? {
+        guard let data = data else {
+            return nil
+        }
+        var decodedMonsters: [MonsterModel]?
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
+        } catch { }
+        return decodedMonsters
     }
 }
