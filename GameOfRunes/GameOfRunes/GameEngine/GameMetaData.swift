@@ -9,7 +9,6 @@
 import Foundation
 
 class GameMetaData {
-    // TODO: maybe change this to current avatar.
     let avatar: Avatar
     let stage: Stage
     var availablePowerUps: [PowerUpType] {

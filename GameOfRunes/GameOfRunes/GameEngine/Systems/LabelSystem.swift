@@ -48,8 +48,8 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         let newValue = oldValue + 1
         labelComponent.resetOpacity()
         labelComponent.label = "\(newValue)"
-        if entity is ComboEntity, newValue.isMultiple(of: 10) {
-            gameEngine?.incrementMultiplier()
+        if entity.type == .comboEntity, newValue.isMultiple(of: 10) {
+            gameEngine?.incrementMultiplier(entity)
         }
     }
     

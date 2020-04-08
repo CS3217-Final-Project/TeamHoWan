@@ -17,8 +17,8 @@ class BaseUnitTest: XCTestCase {
     var testAvatar: Avatar!
     var gameScene: GameScene!
     var gameEngine: MockGameEngine!
-    var systemDelegate: MockSystemDelegate!
-    var removeDelegate: MockRemoveDelegate!
+    var systemDelegate: SystemDelegate!
+    var removeDelegate: RemoveDelegate!
     
     var scoreNode: ScoreNode!
     var healthBarNode: HealthBarNode!
@@ -65,10 +65,8 @@ class BaseUnitTest: XCTestCase {
                               gameStateMachine: gameStateMachine)
         gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage, avatar: testAvatar)
             .withEnabledSuperclassSpy()
-        systemDelegate = MockSystemDelegate(gameEngine: gameEngine)
-            .withEnabledSuperclassSpy()
-        removeDelegate = MockRemoveDelegate(gameEngine: gameEngine)
-            .withEnabledSuperclassSpy()
+        systemDelegate = gameEngine
+        removeDelegate = gameEngine
         
         healthBarNode = HealthBarNode()
         manaBarNode = ManaBarNode()
