@@ -13,14 +13,13 @@ let decoder = JSONDecoder()
 
 extension FirebaseNetwork {
     /**
-     Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
+     Generates a random 6 digit number for roomId. This can generate duplicates and collisions can occur.
      */
     func generateRandomId() -> String {
         var random = String(Int.random(in: 0 ..< 1_000_000))
         while random.count < 6 {
             random = "0\(random)"
         }
-        
         return random
     }
     
@@ -41,7 +40,26 @@ extension FirebaseNetwork {
         let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
         let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultName
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
-        return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady)
+        let monsters = description[FirebaseKeys.rooms_players_monsters]
+        let powerUp = description[FirebaseKeys.rooms_players_powerUp]
+        
+        var decodedMonsters: [MonsterModel]?
+        var decodedPowerUp: PowerUpModel?
+        
+        do {
+            if let monsters = monsters {
+                let jsonData = try JSONSerialization.data(withJSONObject: monsters, options: [])
+                decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
+            }
+            if let powerUp = powerUp {
+                let jsonData = try JSONSerialization.data(withJSONObject: powerUp, options: [])
+                decodedPowerUp = try decoder.decode(PowerUpModel.self, from: jsonData)
+            }
+        } catch {
+            // TODO: Error handling
+        }
+        return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
+                           powerUp: decodedPowerUp, monsters: decodedMonsters)
     }
     
     /**
@@ -57,8 +75,7 @@ extension FirebaseNetwork {
         let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultFalse
         let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultFalse
         let players = dict[FirebaseKeys.rooms_players_name] as? [String: AnyObject] ?? [:]
-        let monsters = dict[FirebaseKeys.rooms_players_monsters] as
-        
+
         let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
         for (playerUid, playerDescription) in players {
             room.addPlayer(firebasePlayerModelFactory(forUid: playerUid, forDescription: playerDescription))
@@ -76,12 +93,17 @@ extension FirebaseNetwork {
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
     func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
-                          powerUp: PowerUpModel, monsters: [MonsterModel]) -> [String: AnyObject] {
-        
+                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
+        var playerDict: [String: AnyObject] = [:]
         do {
-            let encodedPowerUp = try encoder.encode(powerUp)
-            let encodedMonsters = try encoder.encode(monsters)
-            let playerDict: [String: AnyObject] = [
+            let powerUpData = try encoder.encode(powerUp)
+            let encodedPowerUp = try JSONSerialization.jsonObject(with: powerUpData, options: .allowFragments)
+                as? [String: Any] ?? [:]
+            let monsterData = try encoder.encode(monsters)
+            let encodedMonsters = try JSONSerialization.jsonObject(with: monsterData, options: .allowFragments)
+                as? [String: Any] ?? [:]
+                
+            playerDict = [
                 FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
                 FirebaseKeys.rooms_players_uid: uid as AnyObject,
                 FirebaseKeys.rooms_players_name: name as AnyObject,
@@ -89,9 +111,9 @@ extension FirebaseNetwork {
                 FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
                 FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
             ]
-            return playerDict
         } catch {
             // TODO: Error handler
         }
+        return playerDict
     }
 }
