@@ -8,9 +8,8 @@
 
 import GameplayKit
 
-class SystemDelegate {
-    private weak var gameEngine: GameEngine?
-    private var systems = [ComponentType: System]()
+/** Handles all system related logic */
+extension GameEngine {
     var healthSystem: HealthSystem? {
         systems[.healthComponent] as? HealthSystem
     }
@@ -38,26 +37,14 @@ class SystemDelegate {
     var gestureEntitySystem: GestureEntitySystem? {
         systems[.gestureEntityComponent] as? GestureEntitySystem
     }
-
-    init(gameEngine: GameEngine) {
-        self.gameEngine = gameEngine
-        systems[.healthComponent] = HealthSystem()
-        systems[.scoreComponent] = ScoreSystem()
-        systems[.manaComponent] = ManaSystem(gameEngine: gameEngine)
-        systems[.moveComponent] = MoveSystem(gameEngine: gameEngine)
-        systems[.spriteComponent] = SpriteSystem(gameEngine: gameEngine)
-        systems[.labelComponent] = LabelSystem(gameEngine: gameEngine)
-        systems[.playerComponent] = PlayerSystem(gameEngine: gameEngine)
-        systems[.timerComponent] = TimerSystem(gameEngine: gameEngine)
-        systems[.powerUpComponent] = PowerUpSystem(gameEngine: gameEngine)
-        systems[.attractionEntitiesComponent] = AttractionEntitiesSystem(gameEngine: gameEngine)
-        systems[.gestureEntityComponent] = GestureEntitySystem(gameEngine: gameEngine)
+    var playerSystem: PlayerSystem? {
+        systems[.playerComponent] as? PlayerSystem
     }
     
-    func update(with deltatime: TimeInterval) {
-        systems[.moveComponent]?.update(deltaTime: deltatime)
-        systems[.playerComponent]?.update(deltaTime: deltatime)
-        systems[.timerComponent]?.update(deltaTime: deltatime)
+    func updateSystems(with deltatime: TimeInterval) {
+        moveSystem?.update(deltaTime: deltatime)
+        playerSystem?.update(deltaTime: deltatime)
+        timerSystem?.update(deltaTime: deltatime)
     }
     
     func addComponents(foundIn entity: Entity) {
@@ -70,10 +57,6 @@ class SystemDelegate {
         systems.values.forEach { system in
             system.removeComponent(foundIn: entity)
         }
-    }
-    
-    func removeComponent(_ component: Component) {
-        systems[component.type]?.removeComponent(component)
     }
 
     func minusHealthPoints(for entity: Entity) -> Int? {
@@ -140,10 +123,6 @@ class SystemDelegate {
     
     func incrementMultiplier(_ entity: Entity) {
         scoreSystem?.incrementMultiplier(for: entity)
-    }
-    
-    func activatePowerUp(at position: CGPoint, with size: CGSize?) {
-        powerUpSystem?.activatePowerUp(at: position, with: size)
     }
     
     func setInitialGesture(for entity: Entity) {

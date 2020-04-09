@@ -285,7 +285,7 @@ extension GameScene: TapResponder {
         case .summonButton:
             gameEngine.startNextSpawnWave()
         case .powerUpIconButton:
-            gameEngine.updateSelectedPowerUp()
+            gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
         default:
             print("Unknown node tapped")
         }
@@ -327,12 +327,17 @@ extension GameScene {
     }
     
     func deselectPowerUp() {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        gameEngine.updateSelectedPowerUp()
+        selectedPowerUp = nil
+        gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
     }
     
     var selectedPowerUp: PowerUpType? {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp
+        get {
+            playerAreaNode.powerUpContainerNode.selectedPowerUp
+        }
+        set {
+            playerAreaNode.powerUpContainerNode.selectedPowerUp = newValue
+        }
     }
     
     func deactivateGestureDetection() {

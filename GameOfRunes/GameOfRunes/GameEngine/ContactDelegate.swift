@@ -84,10 +84,9 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         case .hellfire:
             gameEngine?.unitForceRemoved(enemy)
         case .icePrison:
-            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed,
-                                            duration: GameConfig.IcePrisonPowerUp.powerUpDuration)
+            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed, duration: powerUp.duration)
         case .divineBlessing:
-            gameEngine?.setNextGesture(for: enemy, using: .lightning)
+            gameEngine?.setGesture(for: enemy, using: .lightning)
         default:
             return
         }

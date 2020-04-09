@@ -17,13 +17,12 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        for component in components {
+        components.forEach { component in
             if component.isCountDown {
                 component.time -= seconds
             } else {
                 component.time += seconds
             }
-            
             updateComponent(component, seconds)
         }
     }
@@ -34,14 +33,14 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         }
         // TODO: Refactor fading into a future PowerUpComponent as entities should not have variables
         switch entity.type {
-        case _ where entity.type.isPowerUp:
+        case _ where entity.type == .powerUpEntity:
             guard component.time <= 0,
                 let powerUpComponent = entity.component(ofType: PowerUpComponent.self) else {
                     return
             }
             
             if !powerUpComponent.fading {
-                component.time = powerUpComponent.powerUpType.getFadeOutDuration
+                component.time = 0.5
                 powerUpComponent.fading = true
                 gameEngine?.runFadingAnimation(entity)
             } else {

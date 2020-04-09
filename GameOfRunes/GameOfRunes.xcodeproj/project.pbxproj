@@ -26,6 +26,7 @@
 		4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */; };
 		4A1B334624330CAB00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334524330CAB00B67B91 /* Storage.swift */; };
 		4A3BD08B2436ACFE0004360A /* PlayerUnitEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */; };
+		4A5B423E243F27A800DF4D32 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B423D243F27A800DF4D32 /* PowerUp.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
 		4A6213E024309CDE00FABB48 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DF24309CDE00FABB48 /* Avatar.swift */; };
@@ -154,7 +155,7 @@
 		C6AC4775243256550078D5F1 /* PowerUpSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4774243256550078D5F1 /* PowerUpSystem.swift */; };
 		C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC4776243256690078D5F1 /* PowerUpComponent.swift */; };
 		C6AFF67B2419101B0076F02B /* GestureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67A2419101B0076F02B /* GestureEntity.swift */; };
-		C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */; };
+		C6AFF67E24191A2A0076F02B /* GameEngine+SystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */; };
 		C6AFF681241923410076F02B /* RemoveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF680241923410076F02B /* RemoveDelegate.swift */; };
 		C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF682241A5FC40076F02B /* GameMetaData.swift */; };
 		C6AFF685241A61650076F02B /* HealthSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AFF684241A61650076F02B /* HealthSystem.swift */; };
@@ -196,6 +197,7 @@
 		4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeRealmModel.swift; sourceTree = "<group>"; };
 		4A1B334524330CAB00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitEntity.swift; sourceTree = "<group>"; };
+		4A5B423D243F27A800DF4D32 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
 		4A6213DF24309CDE00FABB48 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -300,7 +302,6 @@
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
-		8A712E7F24235EB000B3824E /* PowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PowerUpEntity.swift; path = GameOfRunes/Protocols/PowerUpEntity.swift; sourceTree = SOURCE_ROOT; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
 		8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreatorTest.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
@@ -334,7 +335,7 @@
 		C6AC4774243256550078D5F1 /* PowerUpSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSystem.swift; sourceTree = "<group>"; };
 		C6AC4776243256690078D5F1 /* PowerUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		C6AFF67A2419101B0076F02B /* GestureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntity.swift; sourceTree = "<group>"; };
-		C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDelegate.swift; sourceTree = "<group>"; };
+		C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameEngine+SystemDelegate.swift"; sourceTree = "<group>"; };
 		C6AFF680241923410076F02B /* RemoveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveDelegate.swift; sourceTree = "<group>"; };
 		C6AFF682241A5FC40076F02B /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		C6AFF684241A61650076F02B /* HealthSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSystem.swift; sourceTree = "<group>"; };
@@ -398,7 +399,7 @@
 				4A1B334524330CAB00B67B91 /* Storage.swift */,
 				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
 				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
-				8A712E7F24235EB000B3824E /* PowerUpEntity.swift */,
+				4A5B423D243F27A800DF4D32 /* PowerUp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -845,7 +846,7 @@
 				56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */,
 				C6AFF680241923410076F02B /* RemoveDelegate.swift */,
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
-				C6AFF67D24191A2A0076F02B /* SystemDelegate.swift */,
+				C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */,
 				8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */,
 				C6AFF67C241919A00076F02B /* Systems */,
 				4ACC8BCF2414D53800F235AE /* Components */,
@@ -1021,7 +1022,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# comment out to run the script\nexit\n# Type a script or drag a script file from your workspace to insert its path.\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/GameEngine/GameEngine.swift\" \\\n\"${INPUT_DIR}/GameEngine/SystemDelegate.swift\" \\\n\"${INPUT_DIR}/GameEngine/RemoveDelegate.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/SpriteSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/TimerSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/MoveSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/HealthSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/ManaSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/MoveComponent/MoveComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/MoveComponent/MoveBehavior.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/SpriteComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/TeamComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/TimerComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/GestureComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/HealthComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/ManaComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/EnemyEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/GestureEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/TimerEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PlayerEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/EndPointEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/DroppedManaEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/Player Area/HealthBarNode.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/Player Area/ManaBarNode.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/DroppedManaNode/DroppedManaNode.swift\" \\\n\"${INPUT_DIR}/Scenes/GameScene.swift\" \\\n\"${INPUT_DIR}/GameState/GameStateMachine.swift\" \\\n\"${INPUT_DIR}/GameState/GameInPlayState.swift\" \\\n\"${INPUT_DIR}/GameState/GameStartState.swift\" \\\n\"${INPUT_DIR}/GameState/GamePauseState.swift\" \\\n\"${INPUT_DIR}/GameState/GameEndState.swift\" \\\n\"${INPUT_DIR}/GameState/GameSelectionState.swift\" \\\n\"${INPUT_DIR}/Scenes/SceneManager.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+			shellScript = "# comment out to run the script\n#exit\n# Type a script or drag a script file from your workspace to insert its path.\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/GameEngine/GameEngine.swift\" \\\n\"${INPUT_DIR}/GameEngine/GameEngine+SystemDelegate.swift\" \\\n\"${INPUT_DIR}/GameEngine/RemoveDelegate.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/SpriteSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/TimerSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/MoveSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/HealthSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Systems/ManaSystem.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/MoveComponent/MoveComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/MoveComponent/MoveBehavior.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/SpriteComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/TeamComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/TimerComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/GestureComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/HealthComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Components/ManaComponent.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/EnemyEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/GestureEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/TimerEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PlayerEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/EndPointEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/DroppedManaEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift\" \\\n\"${INPUT_DIR}/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/Player Area/HealthBarNode.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/Player Area/ManaBarNode.swift\" \\\n\"${INPUT_DIR}/Custom Nodes/DroppedManaNode/DroppedManaNode.swift\" \\\n\"${INPUT_DIR}/Scenes/GameScene.swift\" \\\n\"${INPUT_DIR}/GameState/GameStateMachine.swift\" \\\n\"${INPUT_DIR}/GameState/GameInPlayState.swift\" \\\n\"${INPUT_DIR}/GameState/GameStartState.swift\" \\\n\"${INPUT_DIR}/GameState/GamePauseState.swift\" \\\n\"${INPUT_DIR}/GameState/GameEndState.swift\" \\\n\"${INPUT_DIR}/GameState/GameSelectionState.swift\" \\\n\"${INPUT_DIR}/Scenes/SceneManager.swift\" \n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
 		FA8F529B5241D8ECCE054955 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1129,7 +1130,7 @@
 				4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */,
 				8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */,
 				4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */,
-				C6AFF67E24191A2A0076F02B /* SystemDelegate.swift in Sources */,
+				C6AFF67E24191A2A0076F02B /* GameEngine+SystemDelegate.swift in Sources */,
 				C6B322EA241DFF4D001072AE /* Entity.swift in Sources */,
 				4ACC8BD22414D57900F235AE /* SpriteComponent.swift in Sources */,
 				C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */,
@@ -1178,6 +1179,7 @@
 				566121DB2416838000475CE1 /* CustomGesture.swift in Sources */,
 				560DED9C242B902D00A6D9A6 /* ScoreComponent.swift in Sources */,
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
+				4A5B423E243F27A800DF4D32 /* PowerUp.swift in Sources */,
 				4ACAF52B242A727F0062DDBA /* HomeViewController.swift in Sources */,
 				C6AACD42243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift in Sources */,
 				4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */,

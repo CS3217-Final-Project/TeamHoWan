@@ -10,9 +10,13 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
-class DarkVortexPowerUpEntity: Entity {
+class DarkVortexPowerUpEntity: Entity, PowerUp {
+    var powerUpType: PowerUpType {
+        .darkVortex
+    }
+    
     override var type: EntityType {
-        .darkVortexPowerUpEntity
+        .powerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
@@ -24,7 +28,7 @@ class DarkVortexPowerUpEntity: Entity {
                                                 team: .player,
                                                 parent: self)
         
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DarkVortexPowerUp.powerUpDuration)
+        let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
         let powerUpComponent = PowerUpComponent(.darkVortex)
         let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         

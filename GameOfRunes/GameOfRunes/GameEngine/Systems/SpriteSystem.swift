@@ -40,13 +40,12 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     }
     
     func runFadingAnimation(_ entity: Entity) {
-        guard let powerUpComponent = entity.component(ofType: PowerUpComponent.self),
-            let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return
         }
 
         spriteComponent.node.run(
-            .fadeOut(withDuration: powerUpComponent.powerUpType.getFadeOutDuration)
+            .fadeOut(withDuration: 0.5)
         )
     }
     
@@ -69,10 +68,8 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     
     func activateInvincibleEndPoint(for entity: Entity) {
         guard entity.type == .endPointEntity,
-            let spriteComponent = entity.component(ofType: SpriteComponent.self),
-            let node = spriteComponent.node as? SKSpriteNode,
-            let shouldNotActivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
-            !shouldNotActivate else {
+            let node = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
+            gameEngine?.isDivineShieldActivated == true else {
                 return
         }
         
@@ -83,10 +80,8 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     
     func deactivateInvincibleEndPoint(for entity: Entity) {
         guard entity.type == .endPointEntity,
-            let spriteComponent = entity.component(ofType: SpriteComponent.self),
-            let node = spriteComponent.node as? SKSpriteNode,
-            let shouldDeactivate = gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty,
-            shouldDeactivate else {
+            let node = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
+            gameEngine?.isDivineShieldActivated == false else {
                 return
         }
         

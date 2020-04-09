@@ -9,6 +9,12 @@
 import SpriteKit
 
 enum PowerUpType: String, CaseIterable {
+    enum ActivationType {
+        case immediate
+        case onGesture
+        case onTap
+    }
+    
     case darkVortex
     case hellfire
     case icePrison
@@ -17,68 +23,25 @@ enum PowerUpType: String, CaseIterable {
     case heroicCall
     
     var description: String {
-        switch self {
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.description
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.description
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.description
-        case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.description
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.description
-        case .heroicCall:
-            return GameConfig.HeroicCallPowerUp.description
-        }
+        GameConfig.PowerUp.descriptions[self] ?? ""
     }
     
     var manaUnitCost: Int {
-        switch self {
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.manaUnitCost
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.manaUnitCost
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.manaUnitCost
-        case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.manaUnitCost
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.manaUnitCost
-        case .heroicCall:
-            return GameConfig.HeroicCallPowerUp.manaUnitCost
-        }
+        GameConfig.PowerUp.manaUnitCosts[self] ?? 0
     }
     
-    var getFadeOutDuration: TimeInterval {
-        switch self {
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.fadeOutDuration
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.fadeOutDuration
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.fadeOutDuration
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.fadeOutDuration
-        case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.fadeOutDuration
-        default:
-            return 0
-        }
+    var duration: TimeInterval {
+        GameConfig.PowerUp.durations[self] ?? 0
     }
     
-    var getPowerUpDuration: TimeInterval {
+    var activationType: ActivationType {
         switch self {
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.powerUpDuration
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.powerUpDuration
+        case .divineShield, .heroicCall:
+            return .immediate
+        case .hellfire, .divineBlessing, .icePrison:
+            return .onGesture
         case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.powerUpDuration
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.powerUpDuration
-        default:
-            return 0
+            return .onTap
         }
     }
     
@@ -97,6 +60,31 @@ enum PowerUpType: String, CaseIterable {
         default:
             return nil
         }
+    }
+    
+    func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
+        var powerUpSize = size
+        
+        switch self {
+        case .darkVortex:
+            // abitrary width for dark vortex
+            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
+            powerUpSize = .init(width: radius, height: radius)
+        case .divineShield:
+            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
+            powerUpSize = .init(width: radius, height: radius)
+        case .heroicCall:
+            gameEngine.spawnPlayerUnitWave()
+        default:
+            break
+        }
+        
+        guard let size = powerUpSize,
+            let entity = createEntity(at: position, with: size) else {
+                return
+        }
+        
+        gameEngine.add(entity)
     }
     
     func getCastingAnimationNode(

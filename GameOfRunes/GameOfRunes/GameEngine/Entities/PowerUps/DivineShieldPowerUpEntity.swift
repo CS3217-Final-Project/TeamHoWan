@@ -9,9 +9,13 @@
 import SpriteKit
 import GameplayKit
 
-class DivineShieldPowerUpEntity: Entity {
+class DivineShieldPowerUpEntity: Entity, PowerUp {
+    var powerUpType: PowerUpType {
+        .divineShield
+    }
+    
     override var type: EntityType {
-        .divineShieldPowerUpEntity
+        .powerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
@@ -20,7 +24,7 @@ class DivineShieldPowerUpEntity: Entity {
         let animationNode = PowerUpType.divineShield.getCastingAnimationNode(at: position, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineShieldPowerUp.powerUpDuration)
+        let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
         let powerUpComponent = PowerUpComponent(.divineShield)
         
         addComponent(animationSpriteComponent)
