@@ -240,7 +240,11 @@ class GameEngine {
     func updateSelectedPowerUp(powerUpType: PowerUpType?) {
         metadata.selectedPowerUp = powerUpType
         
-        metadata.selectedPowerUp?.preparePowerUp(gameEngine: self)
+        guard let selectedPowerUp = metadata.selectedPowerUp else {
+            gameScene?.activateGestureDetection()
+            return
+        }
+        selectedPowerUp.preparePowerUp(gameEngine: self)
     }
 
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {

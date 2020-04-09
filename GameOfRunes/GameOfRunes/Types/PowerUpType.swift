@@ -67,11 +67,11 @@ enum PowerUpType: String, CaseIterable {
         case .immediate:
             // although these power ups do not need position, position is set to center of screen
             // so that that messages will appear at the center if any
-            gameEngine.activatePowerUp(at: gameEngine.gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+            gameEngine.activatePowerUp(at: gameEngine.gameScene?.center
+                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .onTap:
             gameEngine.gameScene?.deactivateGestureDetection()
         case .onGesture:
-            // do nth for other power ups or nil
             // ensure gesture detection is activated
             gameEngine.gameScene?.activateGestureDetection()
         }
