@@ -51,9 +51,7 @@ class PowerUpIconNode: ButtonNode {
     }
     
     override func onTouchEnded(_ touches: Set<UITouch>) {
-        guard let touch = touches.first,
-            let container = parent?.parent as? PowerUpContainerNode,
-            atPoint(touch.location(in: self)) === iconNode else {
+        guard let container = parent?.parent as? PowerUpContainerNode else {
                 return
         }
         
