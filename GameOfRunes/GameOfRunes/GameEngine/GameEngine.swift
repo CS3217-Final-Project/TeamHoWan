@@ -240,18 +240,7 @@ class GameEngine {
     func updateSelectedPowerUp(powerUpType: PowerUpType?) {
         metadata.selectedPowerUp = powerUpType
         
-        switch metadata.selectedPowerUp?.activationType {
-        case .immediate:
-            // although these power ups do not need position, position is set to center of screen
-            // so that that messages will appear at the center if any
-            activatePowerUp(at: gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
-        case .onTap:
-            gameScene?.deactivateGestureDetection()
-        default:
-            // do nth for other power ups or nil
-            // ensure gesture detection is activated
-            gameScene?.activateGestureDetection()
-        }
+        metadata.selectedPowerUp?.preparePowerUp(gameEngine: self)
     }
 
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {

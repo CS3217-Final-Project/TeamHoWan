@@ -54,10 +54,11 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
             case .powerUp:
                 guard let powerUpType = secondPair.entity
                     .component(ofType: PowerUpComponent.self)?
-                    .powerUpType else {
-                    return
+                    .powerUpType,
+                    let gameEngine = gameEngine else {
+                        return
                 }
-                didActivate(powerUp: powerUpType, on: firstPair.entity)
+                powerUpType.didActivate(on: firstPair.entity, gameEngine: gameEngine)
             default:
                 return
             }
@@ -68,25 +69,6 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
                 return
             }
             gameEngine?.unitReachedLine(firstPair.entity)
-        default:
-            return
-        }
-    }
-    
-    private func didActivate(powerUp: PowerUpType, on enemy: Entity) {
-        guard enemy.type == .enemyEntity,
-            let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
-            !enemyType.isPowerUpImmune else {
-                return
-        }
-        
-        switch powerUp {
-        case .hellfire:
-            gameEngine?.unitForceRemoved(enemy)
-        case .icePrison:
-            gameEngine?.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed, duration: powerUp.duration)
-        case .divineBlessing:
-            gameEngine?.setGesture(for: enemy, using: .lightning)
         default:
             return
         }

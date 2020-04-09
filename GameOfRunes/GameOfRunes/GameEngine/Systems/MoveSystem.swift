@@ -46,11 +46,11 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
             .entity?
             .component(ofType: EnemyTypeComponent.self)?
             .enemyType
-            .isPowerUpImmune
+            .isPowerUpImmune ?? false
         
         gameEngine?.moveComponents(for: team).forEach {
-            if isPowerUpImmune == true,
-                let parent = $0.entity?.component(ofType: ParentEntityComponent.self)?.parent ,
+            if isPowerUpImmune,
+                let parent = $0.entity?.component(ofType: ParentEntityComponent.self)?.parent,
                 parent.type == .powerUpEntity {
                     return
             }

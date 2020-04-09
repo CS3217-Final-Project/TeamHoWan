@@ -57,8 +57,23 @@ enum PowerUpType: String, CaseIterable {
             return DivineShieldPowerUpEntity(at: position, with: size)
         case .divineBlessing:
             return DivineBlessingPowerUpEntity(at: position, with: size)
-        default:
+        case .heroicCall:
             return nil
+        }
+    }
+    
+    func preparePowerUp(gameEngine: GameEngine) {
+        switch self.activationType {
+        case .immediate:
+            // although these power ups do not need position, position is set to center of screen
+            // so that that messages will appear at the center if any
+            gameEngine.activatePowerUp(at: gameEngine.gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+        case .onTap:
+            gameEngine.gameScene?.deactivateGestureDetection()
+        case .onGesture:
+            // do nth for other power ups or nil
+            // ensure gesture detection is activated
+            gameEngine.gameScene?.activateGestureDetection()
         }
     }
     
@@ -85,6 +100,25 @@ enum PowerUpType: String, CaseIterable {
         }
         
         gameEngine.add(entity)
+    }
+    
+    func didActivate(on enemy: Entity, gameEngine: GameEngine) {
+        guard enemy.type == .enemyEntity,
+            let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
+            !enemyType.isPowerUpImmune else {
+                return
+        }
+        
+        switch self {
+        case .hellfire:
+            gameEngine.unitForceRemoved(enemy)
+        case .icePrison:
+            gameEngine.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed, duration: duration)
+        case .divineBlessing:
+            gameEngine.setGesture(for: enemy, using: .lightning)
+        default:
+            return
+        }
     }
     
     func getCastingAnimationNode(
