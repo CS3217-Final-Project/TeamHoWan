@@ -30,6 +30,8 @@ enum PowerUpType: String, CaseIterable {
         GameConfig.PowerUp.manaUnitCosts[self] ?? 0
     }
     
+    // The duration in which the power up is in the arena / can affect enemies.
+    // This excludes the duration in which the effects of the power up will last. E.g. the duration of freeze
     var duration: TimeInterval {
         GameConfig.PowerUp.durations[self] ?? 0
     }
@@ -113,7 +115,8 @@ enum PowerUpType: String, CaseIterable {
         case .hellfire:
             gameEngine.unitForceRemoved(enemy)
         case .icePrison:
-            gameEngine.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed, duration: duration)
+                                                         // freeze duration
+            gameEngine.changeMovementSpeed(for: enemy, to: enemyType.icePrisonSpeed, duration: 5)
         case .divineBlessing:
             gameEngine.setGesture(for: enemy, using: .lightning)
         default:
