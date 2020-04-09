@@ -17,9 +17,11 @@ class MultiplayerScreenViewController: UIViewController {
     }
     private let hostRoomButton = UIButton()
     private let joinRoomButton = UIButton()
+    private let nameButton = UIButton()
     
-    // Does this need to be a singleton? Having too many references to the database?
+    // TODO: Does this need to be a singleton?
     private let dbRef: NetworkInterface = FirebaseNetwork()
+    private var playerData: PlayerData = PlayerData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,18 @@ class MultiplayerScreenViewController: UIViewController {
         joinRoomButton.addTarget(self, action: #selector(joinRoomStart), for: .touchUpInside)
     }
     
+    private func setUpNameButton() {
+        view.addSubview(nameButton)
+        view.bringSubviewToFront(nameButton)
+        
+        // TODO: Create name button asset and set up button. Decide on how to allow user to input name.
+        //        UIViewController.setUpButton(view: view, button: nameButton, buttonImageName: "",
+        //                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
+        nameButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
+        nameButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
+        nameButton.addTarget(self, action: #selector(joinRoomStart), for: .touchUpInside)
+    }
+    
     @objc private func onTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 0.05) {
             sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
@@ -74,9 +88,8 @@ class MultiplayerScreenViewController: UIViewController {
         UIView.animate(withDuration: 0.1) {
             sender.transform = CGAffineTransform.identity
         }
-        // TODO: How to get UID and name?
         // TODO: Error handler
-        dbRef.createRoom(uid: "123455", name: FirebaseKeys.defaultName, { roomId in
+        dbRef.createRoom(uid: playerData.uid, name: playerData.name, { roomId in
             self.openLobbyView(db: self.dbRef, roomId: roomId, isHost: true)
         }, { _ in
             

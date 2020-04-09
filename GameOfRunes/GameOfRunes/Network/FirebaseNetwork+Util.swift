@@ -8,23 +8,23 @@
 
 import Foundation
 
-let encoder = JSONEncoder()
-let decoder = JSONDecoder()
+fileprivate let encoder = JSONEncoder()
+fileprivate let decoder = JSONDecoder()
 
 extension FirebaseNetwork {
     /**
-     Generates a random 6 digit number for roomId. This can generate duplicates and collisions can occur.
+     Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */
     func generateRandomId() -> String {
-        var random = String(Int.random(in: 0 ..< 1_000_000))
-        while random.count < 6 {
+        var random = String(Int.random(in: 0 ..< 100000))
+        while random.count < 5 {
             random = "0\(random)"
         }
         return random
     }
     
     /**
-     Conversion from firebase dictionary to a PlayerModel
+     Adapter pattern: Conversion from firebase dictionary to a PlayerModel
      - Parameters:
      - forUid: the uid of the player
      - forDescription: the player's details
@@ -50,6 +50,7 @@ extension FirebaseNetwork {
     }
     
     /**
+     Adapter pattern:
      Conversion to RoomModel object from a firebase dictionary
      - Parameters:
      - forDict: the dictionary fetched from Firebase
@@ -71,6 +72,7 @@ extension FirebaseNetwork {
     }
     
     /**
+     Adapter pattern:
      Creates a dictionary which translates to the firebase database reference for a player description inside a room
      - Parameters:
      - uid: uid of the player
@@ -91,6 +93,15 @@ extension FirebaseNetwork {
             FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
             FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
         ]
+    }
+    
+    /**
+     Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
+     */
+    func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool,
+                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
+        return createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost,
+                                isReady: isReady, powerUp: powerUp, monsters: monsters)
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {
