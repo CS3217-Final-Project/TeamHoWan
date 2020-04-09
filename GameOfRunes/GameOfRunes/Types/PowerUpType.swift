@@ -104,7 +104,7 @@ enum PowerUpType: String, CaseIterable {
             restore: false
         )
 
-        let animationAction = SKAction.sequence([powerUpCastAnimation])
+        let animationAction = SKAction.sequence([powerUpCastAnimation, .fadeOut(withDuration: 0.25)])
         let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
         animationNode.run(SKAction.group([animationAction, soundAction]))
 

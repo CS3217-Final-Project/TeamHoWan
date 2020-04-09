@@ -25,7 +25,7 @@ class DivineShieldPowerUpEntity: Entity, PowerUp {
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
-        let powerUpComponent = PowerUpComponent(.divineShield)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)

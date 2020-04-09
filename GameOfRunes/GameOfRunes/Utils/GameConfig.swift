@@ -93,14 +93,14 @@ enum GameConfig {
         
         static let manaUnitCosts: [PowerUpType: Int] = {
             var manaUnitCosts = [PowerUpType: Int]()
-            
+            /*
             manaUnitCosts[.darkVortex] = 1
             manaUnitCosts[.hellfire] = 1
             manaUnitCosts[.icePrison] = 1
             manaUnitCosts[.divineBlessing] = 1
             manaUnitCosts[.divineShield] = 1
             manaUnitCosts[.heroicCall] = 1
-            
+            */
             return manaUnitCosts
         }()
         

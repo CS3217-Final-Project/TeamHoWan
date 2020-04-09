@@ -27,7 +27,7 @@ class IcePrisonPowerUpEntity: Entity, PowerUp {
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
-        let powerUpComponent = PowerUpComponent(.icePrison)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)

@@ -27,7 +27,7 @@ class HellfirePowerUpEntity: Entity, PowerUp {
         
         let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let powerUpComponent = PowerUpComponent(.hellfire)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)

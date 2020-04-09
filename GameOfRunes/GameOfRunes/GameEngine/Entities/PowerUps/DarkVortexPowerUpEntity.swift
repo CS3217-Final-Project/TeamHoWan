@@ -29,7 +29,7 @@ class DarkVortexPowerUpEntity: Entity, PowerUp {
                                                 parent: self)
         
         let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
-        let powerUpComponent = PowerUpComponent(.darkVortex)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         
         addComponent(timerComponent)

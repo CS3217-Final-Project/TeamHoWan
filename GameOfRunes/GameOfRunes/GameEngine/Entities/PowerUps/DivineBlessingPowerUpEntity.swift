@@ -26,7 +26,7 @@ class DivineBlessingPowerUpEntity: Entity, PowerUp {
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
-        let powerUpComponent = PowerUpComponent(.divineBlessing)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)
