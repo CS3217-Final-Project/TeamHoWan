@@ -44,9 +44,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
                 return
         }
 
-        spriteComponent.node.run(
-            .fadeOut(withDuration: 0.5)
-        )
+        spriteComponent.node.run(.fadeOut(withDuration: 0.25))
     }
     
     func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {

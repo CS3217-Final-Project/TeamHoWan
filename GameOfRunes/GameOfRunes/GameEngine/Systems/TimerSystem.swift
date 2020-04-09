@@ -40,7 +40,7 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
             }
             
             if !powerUpComponent.fading {
-                component.time = 0.5
+                component.time = 0.25
                 powerUpComponent.fading = true
                 gameEngine?.runFadingAnimation(entity)
             } else {

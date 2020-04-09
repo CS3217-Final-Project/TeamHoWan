@@ -111,6 +111,7 @@ enum GameConfig {
             durations[.hellfire] = 5
             durations[.icePrison] = 5
             durations[.divineShield] = 5
+            durations[.divineBlessing] = 1
             
             return durations
         }()
