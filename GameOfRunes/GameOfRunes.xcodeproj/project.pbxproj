@@ -148,6 +148,12 @@
 		C6AACD4024334BF20012C7D9 /* GestureEntitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */; };
 		C6AACD42243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD41243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift */; };
 		C6AACD44243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD43243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift */; };
+		C6AACD4724407C490012C7D9 /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4624407C490012C7D9 /* Collision.swift */; };
+		C6AACD4924407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4824407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift */; };
+		C6AACD4B24407E930012C7D9 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4A24407E930012C7D9 /* Pair.swift */; };
+		C6AACD4D2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4C2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift */; };
+		C6AACD4F244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4E244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift */; };
+		C6AACD51244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */; };
 		C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */; };
 		C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */; };
 		C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */; };
@@ -328,6 +334,12 @@
 		C6AACD3F24334BF20012C7D9 /* GestureEntitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntitySystem.swift; sourceTree = "<group>"; };
 		C6AACD41243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineShieldPowerUpEntity.swift; sourceTree = "<group>"; };
 		C6AACD43243608BE0012C7D9 /* DivineBlessingPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineBlessingPowerUpEntity.swift; sourceTree = "<group>"; };
+		C6AACD4624407C490012C7D9 /* Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collision.swift; sourceTree = "<group>"; };
+		C6AACD4824407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionEnemyUnitPlayerUnit.swift; sourceTree = "<group>"; };
+		C6AACD4A24407E930012C7D9 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
+		C6AACD4C2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionEnemyUnitPlayerEndPoint.swift; sourceTree = "<group>"; };
+		C6AACD4E244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionEnemyUnitPowerUp.swift; sourceTree = "<group>"; };
+		C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionPlayerUnitEnemyEndPoint.swift; sourceTree = "<group>"; };
 		C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeComponent.swift; sourceTree = "<group>"; };
 		C6AC47662430B0380078D5F1 /* ParentEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEntityComponent.swift; sourceTree = "<group>"; };
 		C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureEntityComponent.swift; sourceTree = "<group>"; };
@@ -422,6 +434,7 @@
 			children = (
 				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
+				C6AACD4A24407E930012C7D9 /* Pair.swift */,
 				4A1B333B24327FFE00B67B91 /* RealmStorage.swift */,
 			);
 			path = Utils;
@@ -768,6 +781,19 @@
 			path = DroppedManaNode;
 			sourceTree = "<group>";
 		};
+		C6AACD4524407C290012C7D9 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */,
+				C6AACD4624407C490012C7D9 /* Collision.swift */,
+				C6AACD4824407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift */,
+				C6AACD4E244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift */,
+				C6AACD4C2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift */,
+				C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
 		C6AC476C2430CCD40078D5F1 /* GameEngineTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,11 +869,11 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BD52414D79F00F235AE /* GameEngine.swift */,
-				56D2A648242C3BEB00BDD5DC /* ContactDelegate.swift */,
 				C6AFF680241923410076F02B /* RemoveDelegate.swift */,
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
 				C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */,
 				8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */,
+				C6AACD4524407C290012C7D9 /* Contact */,
 				C6AFF67C241919A00076F02B /* Systems */,
 				4ACC8BCF2414D53800F235AE /* Components */,
 				4ACC8BD02414D54800F235AE /* Entities */,
@@ -1077,6 +1103,7 @@
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
 				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
+				C6AACD4924407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
@@ -1101,6 +1128,7 @@
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
 				4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */,
 				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
+				C6AACD4F244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift in Sources */,
 				8A5CE9B624187C1A00BEC4B9 /* GameInPlayState.swift in Sources */,
 				56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
@@ -1153,6 +1181,7 @@
 				8A5CE9C52418874E00BEC4B9 /* GamePauseScene.swift in Sources */,
 				4ACC8BA92414C69800F235AE /* AppDelegate.swift in Sources */,
 				4A72EB442420061A005FA909 /* SummonNode.swift in Sources */,
+				C6AACD4724407C490012C7D9 /* Collision.swift in Sources */,
 				4A09C4F3242FC36300CA7625 /* Stage.swift in Sources */,
 				4A768F112430148E000F3F05 /* StageSelectionNode.swift in Sources */,
 				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
@@ -1160,7 +1189,10 @@
 				C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */,
 				8A2C033D242EF0B000A8EC96 /* EnemySpawnUnit.swift in Sources */,
 				4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */,
+				C6AACD4B24407E930012C7D9 /* Pair.swift in Sources */,
 				56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */,
+				C6AACD4D2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift in Sources */,
+				C6AACD51244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift in Sources */,
 				8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */,
 				8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */,
 				56D2A647242BBAAE00BDD5DC /* CollisionType.swift in Sources */,
