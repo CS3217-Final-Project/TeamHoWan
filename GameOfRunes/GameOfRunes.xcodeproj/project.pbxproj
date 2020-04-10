@@ -113,6 +113,11 @@
 		56FF3A1A24405AE900745A8D /* AnimationPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1924405AE900745A8D /* AnimationPowerUp.swift */; };
 		56FF3A2024405B9800745A8D /* HellfirePowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */; };
 		56FF3A2224405CE100745A8D /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A2124405CE100745A8D /* Collidable.swift */; };
+		56FF3A24244060AB00745A8D /* IcePrisonPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */; };
+		56FF3A262440615000745A8D /* DarkVortexPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A252440615000745A8D /* DarkVortexPowerUp.swift */; };
+		56FF3A282440623900745A8D /* DivineBlessingPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A272440623900745A8D /* DivineBlessingPowerUp.swift */; };
+		56FF3A2A244062B100745A8D /* DivineShieldPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A29244062B100745A8D /* DivineShieldPowerUp.swift */; };
+		56FF3A2C2440633400745A8D /* HeroicCallPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A2B2440633400745A8D /* HeroicCallPowerUp.swift */; };
 		56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */; };
 		8A1EB6C4242782F700CA6AC8 /* GameStateMachineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1EB6C3242782F700CA6AC8 /* GameStateMachineTest.swift */; };
 		8A1EB6C62427900000CA6AC8 /* GameStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1EB6C52427900000CA6AC8 /* GameStateTest.swift */; };
@@ -291,6 +296,11 @@
 		56FF3A1924405AE900745A8D /* AnimationPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPowerUp.swift; sourceTree = "<group>"; };
 		56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUp.swift; sourceTree = "<group>"; };
 		56FF3A2124405CE100745A8D /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
+		56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcePrisonPowerUp.swift; sourceTree = "<group>"; };
+		56FF3A252440615000745A8D /* DarkVortexPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUp.swift; sourceTree = "<group>"; };
+		56FF3A272440623900745A8D /* DivineBlessingPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineBlessingPowerUp.swift; sourceTree = "<group>"; };
+		56FF3A29244062B100745A8D /* DivineShieldPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivineShieldPowerUp.swift; sourceTree = "<group>"; };
+		56FF3A2B2440633400745A8D /* HeroicCallPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroicCallPowerUp.swift; sourceTree = "<group>"; };
 		56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureAreaNode.swift; sourceTree = "<group>"; };
 		6C5C802F7ABE04422FCADC58 /* Pods-GameOfRunesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunesTests.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunesTests/Pods-GameOfRunesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1EB6C3242782F700CA6AC8 /* GameStateMachineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachineTest.swift; sourceTree = "<group>"; };
@@ -722,6 +732,11 @@
 			isa = PBXGroup;
 			children = (
 				56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */,
+				56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */,
+				56FF3A272440623900745A8D /* DivineBlessingPowerUp.swift */,
+				56FF3A29244062B100745A8D /* DivineShieldPowerUp.swift */,
+				56FF3A252440615000745A8D /* DarkVortexPowerUp.swift */,
+				56FF3A2B2440633400745A8D /* HeroicCallPowerUp.swift */,
 			);
 			path = PowerUpClasses;
 			sourceTree = "<group>";
@@ -1105,6 +1120,7 @@
 				C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */,
 				4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */,
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
+				56FF3A24244060AB00745A8D /* IcePrisonPowerUp.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
 				56445ECE242EFCE600D5DCBE /* ComboEntity.swift in Sources */,
@@ -1118,6 +1134,7 @@
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
 				8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */,
 				C60EAF64242E26A00037BEAC /* PlayerComponent.swift in Sources */,
+				56FF3A262440615000745A8D /* DarkVortexPowerUp.swift in Sources */,
 				4A09C4FD242FE4DF00CA7625 /* StagePreviewLabelNode.swift in Sources */,
 				56E82D6E2417E7B7009172C6 /* GestureNode.swift in Sources */,
 				4A09C4EE242E5E0900CA7625 /* GameSelectionState.swift in Sources */,
@@ -1141,6 +1158,7 @@
 				56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */,
 				8A5CE9BA24187ED300BEC4B9 /* GamePauseState.swift in Sources */,
 				4A3BD08B2436ACFE0004360A /* PlayerUnitEntity.swift in Sources */,
+				56FF3A2C2440633400745A8D /* HeroicCallPowerUp.swift in Sources */,
 				560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */,
 				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
@@ -1185,6 +1203,7 @@
 				C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */,
 				56FF3A2224405CE100745A8D /* Collidable.swift in Sources */,
 				8A5CE9BC24187EE600BEC4B9 /* GameEndState.swift in Sources */,
+				56FF3A2A244062B100745A8D /* DivineShieldPowerUp.swift in Sources */,
 				4A768F152430157F000F3F05 /* CancelNode.swift in Sources */,
 				4A768F1B243022DA000F3F05 /* StageOverviewLabelNode.swift in Sources */,
 				4AA508D224161F3200D9ADE4 /* MoveBehavior.swift in Sources */,
@@ -1198,6 +1217,7 @@
 				561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */,
 				C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */,
 				8A2C033D242EF0B000A8EC96 /* EnemySpawnUnit.swift in Sources */,
+				56FF3A282440623900745A8D /* DivineBlessingPowerUp.swift in Sources */,
 				4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */,
 				56FFE166241B5BDC00ED4D74 /* GestureAreaNode.swift in Sources */,
 				8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */,

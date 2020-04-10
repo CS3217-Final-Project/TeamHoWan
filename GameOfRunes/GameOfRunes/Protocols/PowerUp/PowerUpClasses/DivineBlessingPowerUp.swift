@@ -1,5 +1,5 @@
 //
-//  HellfirePowerUp.swift
+//  DivineBlessingPowerUp.swift
 //  GameOfRunes
 //
 //  Created by Andy on 10/4/20.
@@ -8,17 +8,17 @@
 
 import SpriteKit
 
-class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
+class DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
     var manaUnitCost: Int = 1
-    var duration: TimeInterval = 5
+    var duration: TimeInterval = 1
     var description: String = """
-            Hellfire
-            Draw a circle to invoke a ring of fire
-            that destroys all enemies that touches it
+            Divine Blessing
+            Draw a circle to invoke a divine blessing that
+            simplifies all enemy gestures in the region
             """
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return HellfirePowerUpEntity(at: position, with: size)
+        return DivineBlessingPowerUpEntity(at: position, with: size)
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
@@ -35,6 +35,6 @@ class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
             !enemyType.isPowerUpImmune else {
                 return
         }
-        gameEngine.unitForceRemoved(enemy)
+        gameEngine.setGesture(for: enemy, using: .verticalLine)
     }
 }
