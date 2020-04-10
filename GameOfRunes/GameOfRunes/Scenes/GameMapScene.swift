@@ -138,7 +138,7 @@ extension GameMapScene: TapResponder {
         case .powerUpIconButton:
             stageSelectionNode.updatePowerUpDescription()
         default:
-            print("do nth")
+            return
         }
     }
 }
