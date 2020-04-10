@@ -65,30 +65,42 @@ enum PowerUpType: String, CaseIterable {
     }
     
     func preparePowerUp(gameEngine: GameEngine) {
+        guard let renderNode = gameEngine.rootRenderNode else {
+            return
+        }
+
         switch self.activationType {
         case .immediate:
             // although these power ups do not need position, position is set to center of screen
             // so that that messages will appear at the center if any
-            gameEngine.activatePowerUp(at: gameEngine.gameScene?.center
-                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+            gameEngine.activatePowerUp(at: renderNode.center)
+//            gameEngine.activatePowerUp(at: renderNode.center
+//                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         case .onTap:
-            gameEngine.gameScene?.deactivateGestureDetection()
+            renderNode.deactivateGestureDetection()
         case .onGesture:
             // ensure gesture detection is activated
-            gameEngine.gameScene?.activateGestureDetection()
+            renderNode.activateGestureDetection()
         }
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
+        guard let renderNode = gameEngine.rootRenderNode else {
+            return
+        }
+
         var powerUpSize = size
         
         switch self {
         case .darkVortex:
             // abitrary width for dark vortex
-            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
+            // TODO: Added by you
+            let radius = (renderNode.size.width) / 3
+//            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
             powerUpSize = .init(width: radius, height: radius)
         case .divineShield:
-            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
+            let radius = (renderNode.size.width) / 3
+//            let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
             powerUpSize = .init(width: radius, height: radius)
         case .heroicCall:
             gameEngine.spawnPlayerUnitWave()

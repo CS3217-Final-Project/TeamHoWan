@@ -18,12 +18,18 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
-        
+
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
             return
         }
-        
-        gameEngine?.gameScene?.addNodeToLayer(layer: spriteComponent.layerType, node: spriteComponent.node)
+
+        guard let renderNode = gameEngine?.rootRenderNode else {
+            print("GameEngine's rootRenderNode is nil")
+            return
+        }
+
+        renderNode.addNodeToLayer(layer: spriteComponent.layerType,
+                                  node: spriteComponent.node)
     }
     
     override func removeComponent(foundIn entity: GKEntity) {

@@ -17,7 +17,9 @@ class ComboEntity: Entity {
     init(gameEngine: GameEngine) {
         super.init()
         
-        guard let gameScene = gameEngine.gameScene else {
+        // TODO: Added by you
+        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
+            print("Unable to obtain rootRenderNode size")
             return
         }
         
@@ -28,7 +30,7 @@ class ComboEntity: Entity {
         let multiplierComponent = MultiplierComponent(gameEngine: gameEngine)
 
         labelNode.text = "0"
-        labelNode.position = .init(x: 5 * gameScene.size.width / 6, y: gameScene.size.height / 2)
+        labelNode.position = .init(x: 5 * renderNodeSize.width / 6, y: renderNodeSize.height / 2)
         labelNode.fontSize = 75
         labelNode.fontColor = SKColor.red
         labelNode.horizontalAlignmentMode = .center

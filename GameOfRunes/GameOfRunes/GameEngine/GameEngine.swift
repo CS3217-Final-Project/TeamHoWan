@@ -17,7 +17,12 @@ class GameEngine {
     private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
     let metadata: GameMetaData
-    private(set) weak var gameScene: GameScene?
+//    private(set) weak var gameScene: GameScene?
+
+
+    weak var rootRenderNode: RootRenderNode? // TODO: Added by you. Add guard statements if this is empty
+
+
     
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -30,8 +35,8 @@ class GameEngine {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
-        self.gameScene = gameScene
+    init(stage: Stage, avatar: Avatar) {
+//        self.gameScene = gameScene
         metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
@@ -89,14 +94,14 @@ class GameEngine {
         
         // Player Loses the Game
         if metadata.playerHealth <= 0 {
-            gameScene?.gameDidEnd(didWin: false, finalScore: metadata.score)
+            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
 
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
             metadata.stageWaves.isEmpty {
-            gameScene?.gameDidEnd(didWin: true, finalScore: metadata.score)
+            rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
 
@@ -241,7 +246,7 @@ class GameEngine {
         metadata.selectedPowerUp = powerUpType
         
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            gameScene?.activateGestureDetection()
+            rootRenderNode?.activateGestureDetection()
             return
         }
         selectedPowerUp.preparePowerUp(gameEngine: self)
@@ -257,27 +262,27 @@ class GameEngine {
     
     func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            gameScene?.deselectPowerUp()
+            rootRenderNode?.deselectPowerUp()
             return
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
-            gameScene?.showPowerUpDisabled(at: position)
-            gameScene?.deselectPowerUp()
+            rootRenderNode?.showPowerUpDisabled(at: position)
+            rootRenderNode?.deselectPowerUp()
             return
         }
         
         let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
         guard metadata.playerMana >= manaPointsRequired else {
-            gameScene?.showInsufficientMana(at: position)
-            gameScene?.deselectPowerUp()
+            rootRenderNode?.showInsufficientMana(at: position)
+            rootRenderNode?.deselectPowerUp()
             return
         }
         
         selectedPowerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
-        gameScene?.deselectPowerUp()
+        rootRenderNode?.deselectPowerUp()
     }
     
     func spawnPlayerUnitWave() {

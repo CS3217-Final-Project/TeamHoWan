@@ -62,7 +62,7 @@ class BaseUnitTest: XCTestCase {
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage, avatar: testAvatar)
+        gameEngine = MockGameEngine(stage: testStage, avatar: testAvatar)
             .withEnabledSuperclassSpy()
         removeDelegate = MockRemoveDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
