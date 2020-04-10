@@ -19,7 +19,7 @@ class PowerUpNode: SKSpriteNode {
             powerUpIconNode.selected = newValue
         }
     }
-    var powerUpType: PowerUpType {
+    var powerUpType: PowerUp {
         powerUpIconNode.powerUpType
     }
     override var size: CGSize {
@@ -32,7 +32,7 @@ class PowerUpNode: SKSpriteNode {
         }
     }
     
-    init(powerUpType: PowerUpType) {
+    init(powerUpType: PowerUp) {
         powerUpIconNode = .init(powerUpType: powerUpType)
         super.init(texture: nil, color: .clear, size: powerUpIconNode.size.applying(.init(scaleX: 0.75, y: 1.0)))
         

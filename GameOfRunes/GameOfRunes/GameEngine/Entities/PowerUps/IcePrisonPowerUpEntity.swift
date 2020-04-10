@@ -10,10 +10,8 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Ice Prison Power Up */
-class IcePrisonPowerUpEntity: Entity, PowerUp {
-    var powerUpType: PowerUpType {
-        .icePrison
-    }
+class IcePrisonPowerUpEntity: Entity {
+    var powerUpType: PowerUp = IcePrisonPowerUp.shared
     
     override var type: EntityType {
         .powerUpEntity
@@ -21,8 +19,11 @@ class IcePrisonPowerUpEntity: Entity, PowerUp {
     
     init(at position: CGPoint, with size: CGSize) {
         super.init()
+        guard let powerUpType = powerUpType as? IcePrisonPowerUp else {
+            return
+        }
         
-        let animationNode = PowerUpType.icePrison.getCastingAnimationNode(at: position, with: size)
+        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUpType: powerUpType)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)

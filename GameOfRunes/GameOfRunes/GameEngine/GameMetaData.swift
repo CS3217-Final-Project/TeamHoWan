@@ -12,7 +12,7 @@ class GameMetaData {
     // TODO: maybe change this to current avatar.
     let avatar: Avatar
     let stage: Stage
-    var availablePowerUps: [PowerUpType] {
+    var availablePowerUps: [PowerUp] {
         avatar.powerUps
     }
     var maxPlayerHealth: Int {
@@ -33,7 +33,7 @@ class GameMetaData {
     var stageWaves: EnemySpawnUnit
     var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int = 0
-    var selectedPowerUp: PowerUpType?
+    var selectedPowerUp: PowerUp?
 
     init(stage: Stage, avatar: Avatar, manaPointsPerManaUnit: Int) {
         self.manaPointsPerManaUnit = manaPointsPerManaUnit

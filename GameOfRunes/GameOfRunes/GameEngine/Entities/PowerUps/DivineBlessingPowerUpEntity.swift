@@ -9,10 +9,8 @@
 import SpriteKit
 import GameplayKit
 
-class DivineBlessingPowerUpEntity: Entity, PowerUp {
-    var powerUpType: PowerUpType {
-        .divineBlessing
-    }
+class DivineBlessingPowerUpEntity: Entity {
+    var powerUpType: PowerUp = DivineBlessingPowerUp.shared
     
     override var type: EntityType {
         .powerUpEntity
@@ -21,7 +19,11 @@ class DivineBlessingPowerUpEntity: Entity, PowerUp {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = PowerUpType.divineBlessing.getCastingAnimationNode(at: position, with: size)
+        guard let powerUpType = powerUpType as? DivineBlessingPowerUp else {
+            return
+        }
+        
+        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUpType: powerUpType)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)

@@ -9,6 +9,7 @@
 import SpriteKit
 
 class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, AllAnimationPowerUp {
+    static let shared = DivineShieldPowerUp()
     var manaUnitCost: Int = 5
     var duration: TimeInterval = 1
     var description: String = """
@@ -16,6 +17,8 @@ class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, AllAnimationPowerUp {
             Tap to use the divine shield bestowed by King
             Arthur himself which gives invulnerability
             """
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return DivineShieldPowerUpEntity(at: position, with: size)
@@ -29,5 +32,6 @@ class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, AllAnimationPowerUp {
             return
         }
         gameEngine.add(entity)
+        gameEngine.activateInvincibleEndPoint()
     }
 }

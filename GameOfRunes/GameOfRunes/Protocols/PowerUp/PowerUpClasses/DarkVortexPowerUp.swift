@@ -9,6 +9,7 @@
 import SpriteKit
 
 class DarkVortexPowerUp: TapActivatedPowerUp, CastingAnimationPowerUp {
+    static let shared = DarkVortexPowerUp()
     var manaUnitCost: Int = 5
     var duration: TimeInterval = 1
     var description: String = """
@@ -16,6 +17,8 @@ class DarkVortexPowerUp: TapActivatedPowerUp, CastingAnimationPowerUp {
             Tap on the arena to summon a dark vortex
             that pulls nearby enemies towards it
             """
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return DarkVortexPowerUpEntity(at: position, with: size)

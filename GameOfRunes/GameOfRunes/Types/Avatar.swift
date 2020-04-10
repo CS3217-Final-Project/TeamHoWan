@@ -37,12 +37,12 @@ enum Avatar: Int, CaseIterable {
         }
     }
     
-    var powerUps: [PowerUpType] {
+    var powerUps: [PowerUp] {
         switch self {
         case .elementalWizard:
-            return [.darkVortex, .hellfire, .icePrison]
+            return [DarkVortexPowerUp.shared, IcePrisonPowerUp.shared, HellfirePowerUp.shared]
         case .holyKnight:
-            return [.divineBlessing, .divineShield, .heroicCall]
+            return [DivineShieldPowerUp.shared, DivineBlessingPowerUp.shared, HeroicCallPowerUp.shared]
         }
     }
     

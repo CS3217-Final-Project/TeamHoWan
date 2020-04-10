@@ -9,6 +9,7 @@
 import SpriteKit
 
 class HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
+    static let shared = HeroicCallPowerUp()
     var description: String = """
             Heroic Call
             Tap to to call upon a wave of elite knights
@@ -16,6 +17,8 @@ class HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
             """
     var manaUnitCost: Int = 1
     var duration: TimeInterval = Double(Int.max)
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return nil

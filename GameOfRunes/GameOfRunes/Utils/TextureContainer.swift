@@ -24,8 +24,8 @@ enum TextureContainer {
         let numTextures = Self.fullEnemyRemovalTextures.count
         return Array(Self.fullEnemyRemovalTextures[7..<numTextures])
     }()
-    private static var powerUpCastTextures: [PowerUpType: [SKTexture]] = loadPowerUpCastTextures()
-    private static var powerUpTextures: [PowerUpType: [SKTexture]] = loadPowerUpTextures()
+    private static var powerUpCastTextures: [PowerUp: [SKTexture]] = loadPowerUpCastTextures()
+    private static var powerUpTextures: [PowerUp: [SKTexture]] = loadPowerUpTextures()
     private static var avatarsTextures: [Avatar: [SKTexture]] = loadAvatarsTextures()
     private(set) static var eliteKnightTextures: [SKTexture] = loadEliteKnightTextures()
     
@@ -60,8 +60,8 @@ enum TextureContainer {
         return fullEnemyRemovalTextures
     }
     
-    private static func loadPowerUpCastTextures() -> [PowerUpType: [SKTexture]] {
-        var powerUpCastTextures = [PowerUpType: [SKTexture]]()
+    private static func loadPowerUpCastTextures() -> [PowerUp: [SKTexture]] {
+        var powerUpCastTextures = [PowerUp: [SKTexture]]()
         
         PowerUpType.allCases.forEach { powerUpType in
             let powerUpCastAtlas = SKTextureAtlas(named: "\(powerUpType)Cast")
@@ -73,8 +73,8 @@ enum TextureContainer {
         return powerUpCastTextures
     }
     
-    private static func loadPowerUpTextures() -> [PowerUpType: [SKTexture]] {
-        var powerUpTextures = [PowerUpType: [SKTexture]]()
+    private static func loadPowerUpTextures() -> [PowerUp: [SKTexture]] {
+        var powerUpTextures = [PowerUp: [SKTexture]]()
         
         let hellfireAtlas = SKTextureAtlas(named: "\(PowerUpType.hellfire)")
         powerUpTextures[PowerUpType.hellfire] = (690_000...690_019).map { hellfireAtlas.textureNamed("\($0)") }
@@ -146,12 +146,12 @@ enum TextureContainer {
     }
 
     /** Get the Animation Textures for Power Up Casting */
-    static func getPowerUpCastTextures(powerUpType: PowerUpType) -> [SKTexture] {
+    static func getPowerUpCastTextures(powerUpType: PowerUp) -> [SKTexture] {
         powerUpCastTextures[powerUpType] ?? []
     }
 
     /** Get the Animation Textures for Power Up (when in effect) */
-    static func getPowerUpTextures(powerUpType: PowerUpType) -> [SKTexture] {
+    static func getPowerUpTextures(powerUpType: PowerUp) -> [SKTexture] {
         powerUpTextures[powerUpType] ?? []
     }
     

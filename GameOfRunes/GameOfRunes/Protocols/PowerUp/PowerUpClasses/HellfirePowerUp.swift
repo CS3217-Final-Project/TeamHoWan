@@ -9,6 +9,7 @@
 import SpriteKit
 
 class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
+    static let shared = HellfirePowerUp()
     var manaUnitCost: Int = 1
     var duration: TimeInterval = 5
     var description: String = """
@@ -16,6 +17,8 @@ class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
             Draw a circle to invoke a ring of fire
             that destroys all enemies that touches it
             """
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return HellfirePowerUpEntity(at: position, with: size)

@@ -53,7 +53,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
             case .powerUp:
                 guard let powerUpType = secondPair.entity
                     .component(ofType: PowerUpComponent.self)?
-                    .powerUpType,
+                    .powerUpType as? Collidable,
                     let gameEngine = gameEngine else {
                         return
                 }

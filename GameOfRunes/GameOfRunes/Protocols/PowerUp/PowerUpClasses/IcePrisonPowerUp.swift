@@ -9,6 +9,7 @@
 import SpriteKit
 
 class IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
+    static let shared = IcePrisonPowerUp()
     var manaUnitCost: Int = 1
     var duration: TimeInterval = 1
     var description: String = """
@@ -16,6 +17,8 @@ class IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowe
             Draw a circle to call upon an ancient spell
             that freezes all enemies in the region
             """
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return IcePrisonPowerUpEntity(at: position, with: size)

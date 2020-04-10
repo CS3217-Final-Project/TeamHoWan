@@ -12,7 +12,7 @@ protocol PowerUp {
     var description: String { get }
     var manaUnitCost: Int { get }
     var duration: TimeInterval { get }
-    
+
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity?
     func prepareForActivation(gameEngine: GameEngine)
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine)

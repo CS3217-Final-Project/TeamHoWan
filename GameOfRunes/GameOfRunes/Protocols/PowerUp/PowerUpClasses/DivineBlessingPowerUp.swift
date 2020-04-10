@@ -9,6 +9,7 @@
 import SpriteKit
 
 class DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
+    static let shared = DivineBlessingPowerUp()
     var manaUnitCost: Int = 1
     var duration: TimeInterval = 1
     var description: String = """
@@ -16,6 +17,8 @@ class DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimatio
             Draw a circle to invoke a divine blessing that
             simplifies all enemy gestures in the region
             """
+    
+    private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         return DivineBlessingPowerUpEntity(at: position, with: size)

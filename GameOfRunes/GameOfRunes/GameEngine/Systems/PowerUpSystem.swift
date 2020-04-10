@@ -18,14 +18,6 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
     
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
-        
-        guard let powerUpType = entity.component(ofType: PowerUpComponent.self)?.powerUpType else {
-            return
-        }
-        
-        if powerUpType == .divineShield {
-            gameEngine?.activateInvincibleEndPoint()
-        }
     }
     
     override func removeComponent(foundIn entity: GKEntity) {
@@ -35,8 +27,8 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
             return
         }
         
-        if powerUpType == .divineShield {
-            gameEngine?.deactivateInvincibleEndPoint()
+        if powerUpType is DivineShieldPowerUp {
+            self.gameEngine?.deactivateInvincibleEndPoint()
         }
     }
 
