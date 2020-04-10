@@ -21,7 +21,7 @@ class DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimatio
     private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return DivineBlessingPowerUpEntity(at: position, with: size)
+        DivineBlessingPowerUpEntity(at: position, with: size)
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {

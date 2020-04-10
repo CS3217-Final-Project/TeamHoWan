@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol Animatable {
-    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUpType: PowerUp) -> SKSpriteNode
+    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp) -> SKSpriteNode
 }
 
 protocol CastingAnimationPowerUp: Animatable { }
@@ -18,11 +18,14 @@ extension CastingAnimationPowerUp {
     /**
      Returns the Animation Node with animation for "casting" phase
      */
-    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUpType: PowerUp) -> SKSpriteNode {
+    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp) -> SKSpriteNode {
         let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
         animationNode.position = position
         
         // Create Animations (Casting of Power-Up)
+        guard let powerUpType = PowerUpType.getPowerUpType(powerUp: powerUp) else {
+            return SKSpriteNode()
+        }
         let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,
@@ -41,17 +44,19 @@ extension CastingAnimationPowerUp {
 
 protocol AllAnimationPowerUp: Animatable { }
 
-
 extension AllAnimationPowerUp {
     /**
      Returns the Animation Node with animation for "casting" phase and "in-effect" phase.
      */
-    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUpType: PowerUp) -> SKSpriteNode {
+    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp) -> SKSpriteNode {
         // scale up the animation
         let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
         animationNode.position = position
         
         // Create Animations (Casting of Power-Up)
+        guard let powerUpType = PowerUpType.getPowerUpType(powerUp: powerUp) else {
+            return SKSpriteNode()
+        }
         let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,

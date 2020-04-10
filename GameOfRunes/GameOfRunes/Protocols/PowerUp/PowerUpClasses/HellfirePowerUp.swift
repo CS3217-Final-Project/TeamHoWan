@@ -21,7 +21,7 @@ class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
     private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return HellfirePowerUpEntity(at: position, with: size)
+        HellfirePowerUpEntity(at: position, with: size)
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {

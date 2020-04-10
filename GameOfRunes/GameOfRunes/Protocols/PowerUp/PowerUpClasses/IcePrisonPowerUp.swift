@@ -21,7 +21,7 @@ class IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowe
     private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return IcePrisonPowerUpEntity(at: position, with: size)
+        IcePrisonPowerUpEntity(at: position, with: size)
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {

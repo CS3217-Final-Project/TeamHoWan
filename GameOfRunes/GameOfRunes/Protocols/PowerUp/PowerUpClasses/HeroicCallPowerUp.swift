@@ -21,7 +21,7 @@ class HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
     private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return nil
+        nil
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {

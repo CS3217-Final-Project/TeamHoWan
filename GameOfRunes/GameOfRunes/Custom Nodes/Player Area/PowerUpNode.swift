@@ -19,7 +19,7 @@ class PowerUpNode: SKSpriteNode {
             powerUpIconNode.selected = newValue
         }
     }
-    var powerUpType: PowerUp {
+    var powerUpType: PowerUpType {
         powerUpIconNode.powerUpType
     }
     override var size: CGSize {
@@ -32,11 +32,11 @@ class PowerUpNode: SKSpriteNode {
         }
     }
     
-    init(powerUpType: PowerUp) {
+    init(powerUpType: PowerUpType) {
         powerUpIconNode = .init(powerUpType: powerUpType)
         super.init(texture: nil, color: .clear, size: powerUpIconNode.size.applying(.init(scaleX: 0.75, y: 1.0)))
         
-        powerUpManaCostLabel.text = "\(powerUpType.manaUnitCost)"
+        powerUpManaCostLabel.text = "\(powerUpType.getPowerUp().manaUnitCost)"
         powerUpManaCostLabel.fontColor = .black
         
         addChild(powerUpIconNode)

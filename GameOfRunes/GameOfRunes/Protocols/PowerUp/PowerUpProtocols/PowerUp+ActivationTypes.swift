@@ -26,6 +26,6 @@ protocol ImmediatelyActivatedPowerUp: PowerUp { }
 
 extension ImmediatelyActivatedPowerUp {
     func prepareForActivation(gameEngine: GameEngine) {
-        return
+        
     }
 }

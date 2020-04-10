@@ -11,7 +11,7 @@ import GameplayKit
 
 /** Entity to represent the Dark Vortex Power Up */
 class DarkVortexPowerUpEntity: Entity {
-    var powerUpType: PowerUp = DarkVortexPowerUp.shared
+    var powerUp: PowerUp = DarkVortexPowerUp.shared
     
     override var type: EntityType {
         .powerUpEntity
@@ -20,11 +20,11 @@ class DarkVortexPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        guard let powerUpType = powerUpType as? DarkVortexPowerUp else {
+        guard let powerUpType = powerUp as? DarkVortexPowerUp else {
             return
         }
         
-        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUpType: powerUpType)
+        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUp: powerUp)
         let attractionEntity = AttractionEntity(node: animationNode,
                                                 layerType: .powerUpAnimationLayer,
                                                 team: .player,

@@ -17,5 +17,3 @@ protocol PowerUp {
     func prepareForActivation(gameEngine: GameEngine)
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine)
 }
-
-

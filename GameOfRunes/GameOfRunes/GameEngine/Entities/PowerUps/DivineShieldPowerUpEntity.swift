@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class DivineShieldPowerUpEntity: Entity {
-    var powerUpType: PowerUp = DivineShieldPowerUp.shared
+    var powerUp: PowerUp = DivineShieldPowerUp.shared
     
     override var type: EntityType {
         .powerUpEntity
@@ -19,14 +19,14 @@ class DivineShieldPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
 
-        guard let powerUpType = powerUpType as? DivineShieldPowerUp else {
+        guard let powerUpType = powerUp as? DivineShieldPowerUp else {
             return
         }
         
-        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUpType: powerUpType)
+        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUp: powerUp)
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
-        let powerUpComponent = PowerUpComponent(powerUpType)
+        let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
+        let powerUpComponent = PowerUpComponent(powerUp)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)

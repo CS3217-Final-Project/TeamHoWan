@@ -8,10 +8,10 @@
 
 import SpriteKit
 
-class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, AllAnimationPowerUp {
+class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
     static let shared = DivineShieldPowerUp()
-    var manaUnitCost: Int = 5
-    var duration: TimeInterval = 1
+    var manaUnitCost: Int = 1
+    var duration: TimeInterval = 5
     var description: String = """
             Divine Shield
             Tap to use the divine shield bestowed by King
@@ -21,7 +21,7 @@ class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, AllAnimationPowerUp {
     private init() { }
     
     func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        return DivineShieldPowerUpEntity(at: position, with: size)
+        DivineShieldPowerUpEntity(at: position, with: size)
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
