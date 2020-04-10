@@ -113,7 +113,9 @@ class RootRenderNode: SKNode {
             color: .clear,
             size: size
         )
-        backgroundNode.aspectFillToSize(fillSize: size)
+
+        // TODO: Check with Jeremy if this is okay to delete
+//        backgroundNode.aspectFillToSize(fillSize: size)
         backgroundNode.position = center
         backgroundLayer.addChild(backgroundNode)
     }
