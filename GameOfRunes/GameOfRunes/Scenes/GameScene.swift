@@ -12,27 +12,14 @@ import GameplayKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
-    private weak var gameStateMachine: GameStateMachine?
+    weak var gameStateMachine: GameStateMachine?
     var center: CGPoint {
         .init(x: frame.midX, y: frame.midY)
     }
 
-//    // layers
-//    private var backgroundLayer: SKNode!
-//    private var powerUpAnimationLayer: SKNode!
-//    private var unitLayer: SKNode!
-//    private var removalAnimationLayer: SKNode!
-//    private var gestureLayer: SKNode!
-//    private var playerAreaLayer: SKNode!
-//    private var manaDropLayer: SKNode!
-//    private var highestPriorityLayer: SKNode!
-//    private(set) var playerAreaNode: PlayerAreaNode!
-//    private(set) var playerEndPoint: SKSpriteNode!
-//    private(set) var gestureAreaNode: GestureAreaNode!
-//    private var bgmNode: SKAudioNode!
-
     // TODO: Added by you
-    private var rootRenderNode: RootRenderNode!
+    var rootRenderNode: RootRenderNode!
+    var deltaTime: TimeInterval = 0.0
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
@@ -64,8 +51,8 @@ class GameScene: SKScene {
         // TODO: Remove zPosition and place as magic number in GameConfig
         self.rootRenderNode = RootRenderNode(gameEngine: gameEngine,
                                              zPosition: 0,
-                                             size: size,
-                                             center: center)
+                                             position: self.position,
+                                             size: size)
         addChild(rootRenderNode)
 
 
@@ -251,7 +238,7 @@ class GameScene: SKScene {
 //    }
     
     override func update(_ currentTime: TimeInterval) {
-        var deltaTime = currentTime - lastUpdateTime
+        deltaTime = currentTime - lastUpdateTime
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         lastUpdateTime = currentTime
 

@@ -11,7 +11,10 @@ import SpriteKit
 class RootRenderNode: SKNode {
     private(set) var gameEngine: GameEngine
     private(set) var size: CGSize
-    private(set) var center: CGPoint
+//    private(set) var center: CGPoint
+    var center: CGPoint {
+        return .init(x: size.width/2, y: size.height/2)
+    }
 
     // layers
     private var backgroundLayer: SKNode!
@@ -28,11 +31,14 @@ class RootRenderNode: SKNode {
     private var bgmNode: SKAudioNode!
 
     // TODO: Remove center and put as computed property once done debugging
-    init(gameEngine: GameEngine, zPosition: CGFloat, size: CGSize, center: CGPoint) {
-        self.center = center
+    init(gameEngine: GameEngine,
+         zPosition: CGFloat,
+         position: CGPoint,
+         size: CGSize) {
         self.gameEngine = gameEngine
         self.size = size
         super.init()
+        self.position = position
 
         // Note: the following is necessary in order to allow RootRenderNode
         // to add Entities during set-up

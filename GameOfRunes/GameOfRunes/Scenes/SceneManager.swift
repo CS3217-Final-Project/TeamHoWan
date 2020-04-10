@@ -30,7 +30,7 @@ class SceneManager {
         gameStateMachine: gameStateMachine
     )
     // TODO: Added for multiplayer
-    private lazy var multiplayerGamePlayScene: GameScene = .init(
+    private lazy var multiplayerGamePlayScene: MultiplayerGameScene = .init(
         size: self.presentingView.bounds.size,
         gameStateMachine: gameStateMachine
     )
