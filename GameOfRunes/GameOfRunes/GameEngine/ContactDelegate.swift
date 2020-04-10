@@ -14,7 +14,6 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-        
     }
     
     // Contact detected by SpriteKit's physics system
