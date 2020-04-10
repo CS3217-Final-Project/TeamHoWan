@@ -1,16 +1,15 @@
 //
-//  GameViewController.swift
+//  MultiplayerGameViewController.swift
 //  GameOfRunes
 //
-//  Created by Jermy on 8/3/20.
+//  Created by Brian Yen on 10/4/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
-import GameplayKit
 
-class GameViewController: UIViewController {
+class MultiplayerGameViewController: UIViewController {
     private var sceneManager: SceneManager!
 
     override func viewDidLoad() {

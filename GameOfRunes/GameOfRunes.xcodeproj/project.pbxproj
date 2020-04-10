@@ -127,6 +127,7 @@
 		8A5CE9C924189AC800BEC4B9 /* GameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */; };
 		8A5CE9CB24189FF700BEC4B9 /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */; };
 		8A649E9124405130005A5371 /* RootRenderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A649E9024405130005A5371 /* RootRenderNode.swift */; };
+		8A649E9324409C52005A5371 /* MultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A649E9224409C52005A5371 /* MultiplayerGameViewController.swift */; };
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
 		8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */; };
@@ -303,6 +304,7 @@
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		8A649E9024405130005A5371 /* RootRenderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRenderNode.swift; sourceTree = "<group>"; };
+		8A649E9224409C52005A5371 /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
 		8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreatorTest.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 		4ACAF529242A71BB0062DDBA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A649E9224409C52005A5371 /* MultiplayerGameViewController.swift */,
 				4ACAF52A242A727F0062DDBA /* HomeViewController.swift */,
 				4ACC8BB02414C69800F235AE /* GameViewController.swift */,
 			);
@@ -1087,6 +1090,7 @@
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
+				8A649E9324409C52005A5371 /* MultiplayerGameViewController.swift in Sources */,
 				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,

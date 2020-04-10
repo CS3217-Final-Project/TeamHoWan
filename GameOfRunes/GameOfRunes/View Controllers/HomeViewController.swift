@@ -24,6 +24,9 @@ class HomeViewController: UIViewController {
     private var bgmPlayer = AVAudioPlayer()
     private var clickSoundPlayer = AVAudioPlayer()
 
+    // TODO: Get rid of this after code finalisation
+    private let multiplayerButton = UIButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +35,9 @@ class HomeViewController: UIViewController {
         setUpStartButton()
         setUpAudioPlayer(audioPlayer: &bgmPlayer, filename: "Destiny-Ablaze", type: "mp3", loopCount: -1)
         setUpAudioPlayer(audioPlayer: &clickSoundPlayer, filename: "click3", type: "mp3")
+
+        // TODO: Get rid of this during code finalisation
+        setUpMultiplayerButton()
         
         // temporary load here to reduce delay in starting game
         DispatchQueue.global(qos: .utility).async {
@@ -92,7 +98,7 @@ class HomeViewController: UIViewController {
         addImageConstraints()
         addActions()
     }
-    
+
     private func setUpAudioPlayer(
         audioPlayer: inout AVAudioPlayer,
         filename: String,
@@ -246,5 +252,51 @@ extension HomeViewController {
         let stages = [stage1, stage2, stage3, stage4]
         Self.storage.save(stages: stages)
         Self.storage.didInitialise()
+    }
+}
+
+// TODO: Get rid of this after code finalisation
+extension HomeViewController {
+    private func setUpMultiplayerButton() {
+        view.addSubview(multiplayerButton)
+        view.bringSubviewToFront(multiplayerButton)
+        multiplayerButton.setTitle("Multiplayer", for: .normal)
+
+        multiplayerButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().labeled("multiplayerButtonCenterX")
+            make.centerY.equalToSuperview().multipliedBy(1.8).labeled("multiplayerButtonCenterY")
+        }
+
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTapped), for: .touchDown)
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTouchUpOutside), for: .touchUpOutside)
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTouchUpInside), for: .touchUpInside)
+    }
+
+    @objc private func multiplayerButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.05) {
+            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
+        }
+        print("multiplayer button tapped")
+        clickSoundPlayer.play()
+    }
+
+    @objc private func multiplayerButtonTouchUpOutside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
+    }
+
+    @objc private func multiplayerButtonTouchUpInside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
+
+        guard let multiplayerGameViewController = storyboard?.instantiateViewController(identifier: "MultiplayerGameVC") else {
+            return
+        }
+        
+        multiplayerGameViewController.modalPresentationStyle = .fullScreen
+        multiplayerGameViewController.modalTransitionStyle = .crossDissolve
+        present(multiplayerGameViewController, animated: true)
     }
 }
