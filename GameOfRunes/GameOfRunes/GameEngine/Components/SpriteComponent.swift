@@ -25,9 +25,9 @@ class SpriteComponent: GKSKNodeComponent, Component {
         self.node = node
     }
     
-    func setGestureConstraint(referenceNode: SKNode) {
-        let xRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.x)
-        let yRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffset.y)
+    func setGestureConstraint(referenceNode: SKSpriteNode) {
+        let xRange = SKRange(constantValue: 0)
+        let yRange = SKRange(constantValue: GameConfig.Enemy.gestureBubbleOffsetPercentage * referenceNode.size.height)
 
         let constraint = SKConstraint.positionX(xRange, y: yRange)
         constraint.referenceNode = referenceNode
