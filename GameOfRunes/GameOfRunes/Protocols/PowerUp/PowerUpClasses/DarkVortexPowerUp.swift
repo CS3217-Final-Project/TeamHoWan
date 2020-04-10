@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-class DarkVortexPowerUp: TapActivatedPowerUp, CastingAnimationPowerUp {
+class DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
     static let shared = DarkVortexPowerUp()
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = 5
     var description: String = """
             Dark Vortex

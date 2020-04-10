@@ -10,7 +10,7 @@ import SpriteKit
 
 class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
     static let shared = HellfirePowerUp()
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = 5
     var description: String = """
             Hellfire

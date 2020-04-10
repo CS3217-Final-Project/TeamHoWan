@@ -10,7 +10,7 @@ import SpriteKit
 
 class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
     static let shared = DivineShieldPowerUp()
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = 5
     var description: String = """
             Divine Shield

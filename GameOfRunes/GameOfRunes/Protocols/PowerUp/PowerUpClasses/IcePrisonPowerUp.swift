@@ -10,7 +10,7 @@ import SpriteKit
 
 class IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
     static let shared = IcePrisonPowerUp()
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = 1
     var description: String = """
             Ice Prison

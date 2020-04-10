@@ -15,7 +15,7 @@ class HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
             Tap to to call upon a wave of elite knights
             to fight against incoming enemies
             """
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = Double(Int.max)
     
     private init() { }

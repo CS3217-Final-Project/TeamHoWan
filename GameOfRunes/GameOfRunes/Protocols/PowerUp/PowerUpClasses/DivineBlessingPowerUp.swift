@@ -10,7 +10,7 @@ import SpriteKit
 
 class DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
     static let shared = DivineBlessingPowerUp()
-    var manaUnitCost: Int = 1
+    var manaUnitCost: Int = 0
     var duration: TimeInterval = 1
     var description: String = """
             Divine Blessing
