@@ -41,6 +41,10 @@ class RootRenderNode: SKNode {
         // instead of accessing through gameEngine
         self.gameEngine.rootRenderNode = self
         self.zPosition = zPosition
+        // TODO: Note: This is necessary for DarkVortex to work (because after
+        // disabling user interaction for the gesture node, you need to let
+        // RootRenderNode detect the gestures instead (used to be GameScene)
+        self.isUserInteractionEnabled = true
 
         // UI
         buildLayers()
@@ -240,7 +244,6 @@ class RootRenderNode: SKNode {
         case .gestureLayer:
             gestureLayer.addChild(node)
         case .playerAreaLayer:
-            print("this was called")
             playerAreaLayer.addChild(node)
         case .manaDropLayer:
             manaDropLayer.addChild(node)
@@ -294,7 +297,6 @@ extension RootRenderNode {
             return
         }
 
-        print("calling activate powerup") // TODO: DEBUG
         gameEngine.activatePowerUp(at: touch.location(in: self))
     }
 
