@@ -17,19 +17,19 @@ class GameScene: SKScene {
         .init(x: frame.midX, y: frame.midY)
     }
 
-    // layers
-    private var backgroundLayer: SKNode!
-    private var powerUpAnimationLayer: SKNode!
-    private var unitLayer: SKNode!
-    private var removalAnimationLayer: SKNode!
-    private var gestureLayer: SKNode!
-    private var playerAreaLayer: SKNode!
-    private var manaDropLayer: SKNode!
-    private var highestPriorityLayer: SKNode!
-    private(set) var playerAreaNode: PlayerAreaNode!
-    private(set) var playerEndPoint: SKSpriteNode!
-    private(set) var gestureAreaNode: GestureAreaNode!
-    private var bgmNode: SKAudioNode!
+//    // layers
+//    private var backgroundLayer: SKNode!
+//    private var powerUpAnimationLayer: SKNode!
+//    private var unitLayer: SKNode!
+//    private var removalAnimationLayer: SKNode!
+//    private var gestureLayer: SKNode!
+//    private var playerAreaLayer: SKNode!
+//    private var manaDropLayer: SKNode!
+//    private var highestPriorityLayer: SKNode!
+//    private(set) var playerAreaNode: PlayerAreaNode!
+//    private(set) var playerEndPoint: SKSpriteNode!
+//    private(set) var gestureAreaNode: GestureAreaNode!
+//    private var bgmNode: SKAudioNode!
 
     // TODO: Added by you
     private var rootRenderNode: RootRenderNode!

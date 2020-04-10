@@ -15,18 +15,29 @@ class MultiplayerGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = view as? SKView {
+            // TODO: Deal with GameStateMachine for Multiplayer
             let gameStateMachine = GameStateMachine(
-                states: [GameInPlayState(),
-                         GameStartState(),
-                         GamePauseState(),
-                         GameEndState(),
-                         GameSelectionState()]
+                states: [GameInMultiplayerPlayState()]
             )
             view.isMultipleTouchEnabled = false
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
-            gameStateMachine.enter(GameSelectionState.self)
+            gameStateMachine.stage = getMultiplayerStage()
+            gameStateMachine.avatar = getMultiplayerAvatar()
+            gameStateMachine.enter(GameInMultiplayerPlayState.self)
         }
+    }
+
+    // TODO: In the future, there could be a UI where the host
+    // selects from a list of available stages
+    private func getMultiplayerStage() -> Stage {
+        let stages = HomeViewController.storage.loadAllStages()
+        return stages[3]
+    }
+
+    // TODO: Replace this in the future (similar to getMultiplayerStage)
+    private func getMultiplayerAvatar() -> Avatar {
+        return Avatar.elementalWizard
     }
 
     override var shouldAutorotate: Bool {
