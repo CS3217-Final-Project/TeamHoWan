@@ -45,6 +45,7 @@ class MultiplayerGameScene: GameScene {
                                                    position: remoteRootPosition,
                                                    size: CGSize(width: remoteRootWidth,
                                                                 height: remoteRootHeight))
+        self.remoteRootRenderNode.alpha = GameConfig.MultiplayerGameScene.miniMapAlpha
         addChild(remoteRootRenderNode)
     }
 
