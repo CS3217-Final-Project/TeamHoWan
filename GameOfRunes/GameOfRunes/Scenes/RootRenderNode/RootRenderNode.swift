@@ -294,6 +294,7 @@ extension RootRenderNode {
             return
         }
 
+        print("calling activate powerup") // TODO: DEBUG
         gameEngine.activatePowerUp(at: touch.location(in: self))
     }
 
