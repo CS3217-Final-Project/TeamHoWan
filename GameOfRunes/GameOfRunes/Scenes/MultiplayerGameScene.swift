@@ -20,7 +20,6 @@ class MultiplayerGameScene: GameScene {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
-        // TODO: Use MultiplayerGameEngineLocal later
         let localGameEngine = MultiplayerLocalGameEngine(stage: stage,
                                                          avatar: avatar)
         physicsWorld.contactDelegate = localGameEngine.contactDelegate
@@ -30,7 +29,6 @@ class MultiplayerGameScene: GameScene {
                                              size: size)
         addChild(rootRenderNode)
 
-        // TODO: Use MultiplayerGameEngineRemote later
         let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage,
                                                            avatar: avatar)
         let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
