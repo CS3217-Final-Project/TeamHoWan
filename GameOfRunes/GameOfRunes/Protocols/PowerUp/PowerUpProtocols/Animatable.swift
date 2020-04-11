@@ -1,5 +1,5 @@
 //
-//  AnimationPowerUp.swift
+//  Animatable.swift
 //  GameOfRunes
 //
 //  Created by Andy on 10/4/20.

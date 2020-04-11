@@ -116,7 +116,7 @@
 		56EDD277242E507D0044B445 /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EDD276242E507D0044B445 /* TimerComponent.swift */; };
 		56EDD279242E58BA0044B445 /* TimerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EDD278242E58BA0044B445 /* TimerSystem.swift */; };
 		56FF3A182440596F00745A8D /* CircleActivatedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */; };
-		56FF3A1A24405AE900745A8D /* AnimationPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1924405AE900745A8D /* AnimationPowerUp.swift */; };
+		56FF3A1A24405AE900745A8D /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1924405AE900745A8D /* Animatable.swift */; };
 		56FF3A2024405B9800745A8D /* HellfirePowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */; };
 		56FF3A2224405CE100745A8D /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A2124405CE100745A8D /* Collidable.swift */; };
 		56FF3A24244060AB00745A8D /* IcePrisonPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */; };
@@ -311,7 +311,7 @@
 		56EDD278242E58BA0044B445 /* TimerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSystem.swift; sourceTree = "<group>"; };
 		56F305012431EFFD0025EA9A /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleActivatedPowerUp.swift; sourceTree = "<group>"; };
-		56FF3A1924405AE900745A8D /* AnimationPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPowerUp.swift; sourceTree = "<group>"; };
+		56FF3A1924405AE900745A8D /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUp.swift; sourceTree = "<group>"; };
 		56FF3A2124405CE100745A8D /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
 		56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcePrisonPowerUp.swift; sourceTree = "<group>"; };
@@ -750,7 +750,7 @@
 				56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */,
 				56BEDFA1244161D9001737BC /* ImmediatelyActivatedPowerUp.swift */,
 				56BEDF9F244161C7001737BC /* TapActivatedPowerUp.swift */,
-				56FF3A1924405AE900745A8D /* AnimationPowerUp.swift */,
+				56FF3A1924405AE900745A8D /* Animatable.swift */,
 				56BEDFA52441620A001737BC /* AllAnimationPowerUp.swift */,
 				56BEDFA3244161F7001737BC /* CastingAnimationPowerUp.swift */,
 				56FF3A2124405CE100745A8D /* Collidable.swift */,
@@ -1248,7 +1248,7 @@
 				C6B322DE241BC7AB001072AE /* EntityType.swift in Sources */,
 				C6AFF683241A5FC40076F02B /* GameMetaData.swift in Sources */,
 				56BEDFA2244161D9001737BC /* ImmediatelyActivatedPowerUp.swift in Sources */,
-				56FF3A1A24405AE900745A8D /* AnimationPowerUp.swift in Sources */,
+				56FF3A1A24405AE900745A8D /* Animatable.swift in Sources */,
 				8AAE9C05241E42D700D29593 /* DroppedManaResponder.swift in Sources */,
 				C6AC47672430B0380078D5F1 /* ParentEntityComponent.swift in Sources */,
 				56BEDFA4244161F7001737BC /* CastingAnimationPowerUp.swift in Sources */,
@@ -1477,13 +1477,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1496,13 +1496,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dongsiji.GameOfRunes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1517,7 +1517,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1541,7 +1541,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FRBAA824T9;
+				DEVELOPMENT_TEAM = U2CA3BX8T8;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (

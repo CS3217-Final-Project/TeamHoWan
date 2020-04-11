@@ -8,7 +8,6 @@
 
 import SpriteKit
 
-
 /**
  Methods and properties exposed to the GameScene
  */

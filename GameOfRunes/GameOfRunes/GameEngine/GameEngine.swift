@@ -86,7 +86,6 @@ class GameEngine: GameEngineFacade {
         add(EndPointEntity(node: node, team: team))
     }
     
-    
     func remove(_ entity: Entity) {
         guard entities[entity.type]?.remove(entity) != nil else {
             return
