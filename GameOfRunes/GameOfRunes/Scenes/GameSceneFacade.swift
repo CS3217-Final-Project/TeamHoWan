@@ -12,19 +12,15 @@ import SpriteKit
  Methods and properties exposed to the GameEngine
  */
 protocol GameSceneFacade {
+    var center: CGPoint { get }
+    var size: CGSize { get }
+    var playerEndPoint: SKSpriteNode! { get }
+    
+    func addNodeToLayer(layer: SpriteLayerType, node: SKNode)
+    func gameDidEnd(didWin: Bool, finalScore: Int)
+    func deactivateGestureDetection()
+    func activateGestureDetection()
+    func deselectPowerUp()
+    func showInsufficientMana(at location: CGPoint)
+    func showPowerUpDisabled(at location: CGPoint)
 }
-
-//// TODO: Write documentation
-//protocol RootRenderNode {
-//    var center: CGPoint { get }
-//    var size: CGSize { get }
-//    var playerEndPoint: SKSpriteNode! { get }
-//
-//    func addNodeToLayer(layer: SpriteLayerType, node: SKNode)
-//    func gameDidEnd(didWin: Bool, finalScore: Int)
-//    func deactivateGestureDetection()
-//    func activateGestureDetection()
-//    func deselectPowerUp()
-//    func showInsufficientMana(at location: CGPoint)
-//    func showPowerUpDisabled(at location: CGPoint)
-//}

@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+/**
+ This class is the RootRenderNode for the Remote Game/MiniMap.
+ All UI for the MiniMap is established in this class. 
+ */
 class RemoteRootRenderNode: RootRenderNode {
     /**
      Note that unlike `LocalRootRenderNode`, `RemoteRootRenderNode` has:
