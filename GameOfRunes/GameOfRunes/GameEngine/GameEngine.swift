@@ -9,15 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameEngine {
+class GameEngine: GameEngineFacade {
     private lazy var removeDelegate: RemoveDelegate = .init(gameEngine: self)
     private(set) lazy var contactDelegate: ContactDelegate = .init(gameEngine: self)
     private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
-    let metadata: GameMetaData
-    private(set) weak var gameScene: GameScene?
+    private(set) var gameScene: GameSceneFacade?
+    var metadata: GameMetaData
     
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -30,14 +30,14 @@ class GameEngine {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
+    init(gameScene: GameSceneFacade, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
-        metadata = GameMetaData(
+        self.metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
             manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
         )
-
+        
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
         }
@@ -69,6 +69,24 @@ class GameEngine {
         addComponents(foundIn: entity)
     }
     
+    func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode) {
+        add(PlayerEntity(
+            gameEngine: self,
+            healthNode: healthNode,
+            manaNode: manaNode,
+            scoreNode: scoreNode
+        ))
+    }
+    
+    func addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval) {
+        add(TimerEntity(gameEngine: self, timerNode: timerNode, initialTimerValue: initialTimerValue))
+    }
+    
+    func addEndPointEntity(node: SKSpriteNode, team: Team) {
+        add(EndPointEntity(node: node, team: team))
+    }
+    
+    
     func remove(_ entity: Entity) {
         guard entities[entity.type]?.remove(entity) != nil else {
             return
@@ -91,7 +109,7 @@ class GameEngine {
         if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
-
+        
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
@@ -99,7 +117,7 @@ class GameEngine {
             gameScene?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
-
+    
     /** Will start the next Spawn Wave. Function called when Summon button is presesd. */
     func startNextSpawnWave() {
         spawnDelegate.startNextSpawnWave()
@@ -152,7 +170,7 @@ class GameEngine {
     
     func gestureActivated(gesture: CustomGesture) {
         var count = 0
-
+        
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent = entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
@@ -161,7 +179,7 @@ class GameEngine {
             removeDelegate.removeGesture(for: entity)
             count += 1
         }
-
+        
         guard let playerEntity = playerEntity else {
             return
         }
@@ -173,7 +191,7 @@ class GameEngine {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-
+        
         removeDelegate.removeUnit(
             entity,
             shouldDecreasePlayerHealth: false,
@@ -232,7 +250,7 @@ class GameEngine {
         guard let comboEntity = comboEntity else {
             return
         }
-
+        
         remove(comboEntity)
         metadata.multiplier = 1.0
     }
@@ -250,7 +268,7 @@ class GameEngine {
             selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
         }
     }
-
+    
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
         let disabledPowerUps = entities(for: .enemy).reduce(Set<PowerUpType>(), { result, entity in
             result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
@@ -272,7 +290,7 @@ class GameEngine {
         }
         
         let manaPointsRequired = selectedPowerUp.powerUp.manaUnitCost * metadata.manaPointsPerManaUnit
-
+        
         guard metadata.playerMana >= manaPointsRequired else {
             gameScene?.showInsufficientMana(at: position)
             gameScene?.deselectPowerUp()
@@ -294,7 +312,7 @@ class GameEngine {
         }) else {
             return
         }
-
+        
         activateInvincibleEndPoint(for: entity)
     }
     
