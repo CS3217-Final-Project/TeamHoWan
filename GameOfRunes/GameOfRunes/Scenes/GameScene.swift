@@ -184,8 +184,7 @@ class GameScene: SKScene {
         endPointNode.addGlow()
         
         playerEndPoint = endPointNode
-        let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
-        gameEngine.add(endPointEntity)
+        gameEngine.addEndPointEntity(node: endPointNode, team: .player)
         
         // check if need to add enemy end point for elite knight
         guard gameEngine.metadata.avatar == .holyKnight else {
@@ -194,21 +193,14 @@ class GameScene: SKScene {
         
         let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
         enemyEndPointNode.position = .init(x: frame.midX, y: frame.maxY - GameConfig.GamePlayScene.verticalOffSet)
-        let enemyEndPointEntity = EndPointEntity(node: enemyEndPointNode, team: .enemy)
-        gameEngine.add(enemyEndPointEntity)
+        gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
     
     private func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
         let scoreNode = playerAreaNode.scoreNode
-        let playerEntity = PlayerEntity(
-            gameEngine: gameEngine,
-            healthNode: healthNode,
-            manaNode: manaNode,
-            scoreNode: scoreNode
-        )
-        gameEngine.add(playerEntity)
+        gameEngine.addPlayerEntity(healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
     }
     
     private func setUpPlayerHealth() -> HealthBarNode {
@@ -235,7 +227,7 @@ class GameScene: SKScene {
         timerNode.verticalAlignmentMode = .center
         timerNode.text = "\(Int(initialTimerValue))"
         
-        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
+        gameEngine.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue)
     }
     
     override func update(_ currentTime: TimeInterval) {

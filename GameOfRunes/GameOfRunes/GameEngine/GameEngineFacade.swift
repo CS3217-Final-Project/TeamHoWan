@@ -13,12 +13,12 @@ protocol GameEngineFacade {
     var contactDelegate: ContactDelegate { get }
     var metadata: GameMetaData { get }
 
-    func add(_ entity: Entity)
     func update(with deltaTime: TimeInterval)
     func startNextSpawnWave()
     func updateSelectedPowerUp(powerUpType: PowerUpType?)
     func activatePowerUp(at position: CGPoint, with size: CGSize?)
     func gestureActivated(gesture: CustomGesture)
-    func addPlayerEntity(healthNode: HealthNode, manaNode: ManaBarNode, scoreNode: ScoreNode)
+    func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)
     func addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)
+    func addEndPointEntity(node: SKSpriteNode, team: Team)
 }
