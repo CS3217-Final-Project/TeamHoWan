@@ -27,37 +27,43 @@ class GameEngineTest: BaseUnitTest {
         XCTAssertTrue(gameEngine.entities(for: .enemy).isEmpty)
         XCTAssertTrue(gameEngine.entities(for: .player).isEmpty)
     }
-    
+
+    // Write test to show baseNumberOfAdditionsIsCorrect
+
     func testAdd() {
+        let baseNumberOfAdditions = 1 + 1 + 1 + GameConfig.GamePlayScene.numEndPoints
         gameEngine.add(timerEntity)
-        verify(gameEngine, times(1)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 1)).add(any(Entity.self))
+        XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         gameEngine.add(timerEntity)
-        verify(gameEngine, times(2)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 2)).add(any(Entity.self))
+        XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         gameEngine.add(bossEnemyEntity)
-        verify(gameEngine, times(4)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 4)).add(any(Entity.self))
+        XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity) == Set([bossEnemyEntity]))
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity) ==
             Set([bossEnemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity]))
         XCTAssertTrue(gameEngine.entities(for: .enemy) == [bossEnemyEntity])
         gameEngine.add(endPointEntity)
-        verify(gameEngine, times(5 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 5 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
+        XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity) == Set([bossEnemyEntity]))
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity) ==
             Set([bossEnemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity]))
         XCTAssertTrue(gameEngine.entities(for: .enemy) == [bossEnemyEntity])
-        XCTAssertTrue(Set(gameEngine.entities(for: .player)).symmetricDifference(endPointAttractionEntities).isEmpty)
         gameEngine.add(darkVortexPowerUpEntity)
-        verify(gameEngine, times(7 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 7 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
+        XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity) == Set([bossEnemyEntity]))
         XCTAssertTrue(gameEngine.entities(for: .gestureEntity) ==
             Set([bossEnemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity]))
         XCTAssertTrue(gameEngine.entities(for: .enemy) == [bossEnemyEntity])
-        XCTAssertTrue(gameEngine.entities(for: .player).count == GameConfig.GamePlayScene.numEndPoints + 1)
     }
     
     func testRemove() {
@@ -80,8 +86,8 @@ class GameEngineTest: BaseUnitTest {
     func testSpawnEnemy() {
         gameEngine.startNextSpawnWave()
         verify(gameEngine, times(1)).startNextSpawnWave()
-        XCTAssertTrue(gameEngine.entities(for: .enemyEntity).count == 1)
-        XCTAssertTrue(gameEngine.entities(for: .gestureEntity).count == 1)
+        XCTAssertEqual(gameEngine.entities(for: .enemyEntity).count, 1)
+        XCTAssertEqual(gameEngine.entities(for: .gestureEntity).count, 1)
         let gestureEntity = gameEngine.entities(for: .gestureEntity).first as? GestureEntity
         let enemyEntity = gameEngine.entities(for: .enemyEntity).first as? EnemyEntity
         XCTAssertTrue(gestureEntity?.component(ofType: ParentEntityComponent.self)?.parent == enemyEntity)
