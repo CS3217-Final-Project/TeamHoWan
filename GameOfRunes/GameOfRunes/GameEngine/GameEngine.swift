@@ -267,8 +267,14 @@ class GameEngine: GameEngineFacade {
             rootRenderNode?.activateGestureDetection()
             return
         }
+
+        guard let rootRenderNode = rootRenderNode else {
+            return
+        }
+
+        // TODO: This edit was introduced by you (also included in the guard clause)
         if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
-            activatePowerUp(at: gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+            activatePowerUp(at: rootRenderNode.center)
         } else {
             selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
         }

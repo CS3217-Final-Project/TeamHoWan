@@ -11,7 +11,6 @@ import SpriteKit
 class RootRenderNode: SKNode {
     private(set) var gameEngine: GameEngine
     private(set) var size: CGSize
-//    private(set) var center: CGPoint
     var center: CGPoint {
         return .init(x: size.width/2, y: size.height/2)
     }
@@ -25,9 +24,9 @@ class RootRenderNode: SKNode {
     private var playerAreaLayer: SKNode!
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
-    private(set) var playerAreaNode: PlayerAreaNode! //Must these be private(set)?
+    private var playerAreaNode: PlayerAreaNode! //Must these be private(set)?
     private(set) var playerEndPoint: SKSpriteNode!
-    private(set) var gestureAreaNode: GestureAreaNode!
+    private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
     // TODO: Remove center and put as computed property once done debugging

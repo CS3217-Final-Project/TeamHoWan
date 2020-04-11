@@ -12,14 +12,8 @@ import GameplayKit
 class GameInMultiplayerPlayState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        //TODO: Deal with this when Multiplayer Functionality is up
+        //TODO: Determine what are the next valid states when Multiplayer is up
         return false
-//        switch stateClass {
-//        case is GamePauseState.Type, is GameEndState.Type:
-//            return true
-//        default:
-//            return false
-//        }
     }
 
     override func didEnter(from previousState: GKState?) {
