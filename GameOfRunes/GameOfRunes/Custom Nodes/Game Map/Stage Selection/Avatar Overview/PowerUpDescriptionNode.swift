@@ -36,7 +36,7 @@ class PowerUpDescriptionNode: SKSpriteNode {
     func updatePowerUpDescription() {
         var description = powerUpContainerNode
             .selectedPowerUp?
-            .getPowerUp()
+            .powerUp
             .description
             .components(separatedBy: "\n") ?? ["", "", ""]
         while description.count < 3 {

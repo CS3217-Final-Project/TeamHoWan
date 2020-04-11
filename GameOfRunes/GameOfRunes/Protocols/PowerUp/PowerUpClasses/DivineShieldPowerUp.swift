@@ -10,9 +10,9 @@ import SpriteKit
 
 class DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
     static let shared = DivineShieldPowerUp()
-    var manaUnitCost: Int = 0
-    var duration: TimeInterval = 5
-    var description: String = """
+    let manaUnitCost: Int = 0
+    let duration: TimeInterval = 5
+    let description: String = """
             Divine Shield
             Tap to use the divine shield bestowed by King
             Arthur himself which gives invulnerability

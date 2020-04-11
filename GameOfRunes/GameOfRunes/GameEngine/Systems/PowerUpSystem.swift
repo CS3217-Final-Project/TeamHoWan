@@ -27,7 +27,7 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
             return
         }
         
-        if powerUpType is DivineShieldPowerUp {
+        if powerUpType == .divineShield {
             self.gameEngine?.deactivateInvincibleEndPoint()
         }
     }

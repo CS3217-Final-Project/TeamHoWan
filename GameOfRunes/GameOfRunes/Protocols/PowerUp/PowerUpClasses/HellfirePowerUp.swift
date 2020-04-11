@@ -10,9 +10,9 @@ import SpriteKit
 
 class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
     static let shared = HellfirePowerUp()
-    var manaUnitCost: Int = 0
-    var duration: TimeInterval = 5
-    var description: String = """
+    let manaUnitCost: Int = 0
+    let duration: TimeInterval = 5
+    let description: String = """
             Hellfire
             Draw a circle to invoke a ring of fire
             that destroys all enemies that touches it
@@ -32,7 +32,7 @@ class HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
         gameEngine.add(entity)
     }
     
-    func didActivate(on enemy: Entity, gameEngine: GameEngine) {
+    func effectUponCollision(on enemy: Entity, gameEngine: GameEngine) {
         guard enemy.type == .enemyEntity,
             let enemyType = enemy.component(ofType: EnemyTypeComponent.self)?.enemyType,
             !enemyType.isPowerUpImmune else {

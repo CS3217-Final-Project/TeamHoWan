@@ -10,9 +10,9 @@ import SpriteKit
 
 class DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
     static let shared = DarkVortexPowerUp()
-    var manaUnitCost: Int = 0
-    var duration: TimeInterval = 5
-    var description: String = """
+    let manaUnitCost: Int = 0
+    let duration: TimeInterval = 5
+    let description: String = """
             Dark Vortex
             Tap on the arena to summon a dark vortex
             that pulls nearby enemies towards it

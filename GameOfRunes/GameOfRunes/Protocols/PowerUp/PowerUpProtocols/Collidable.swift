@@ -7,5 +7,5 @@
 //
 
 protocol Collidable {
-    func didActivate(on enemy: Entity, gameEngine: GameEngine) 
+    func effectUponCollision(on enemy: Entity, gameEngine: GameEngine)
 }

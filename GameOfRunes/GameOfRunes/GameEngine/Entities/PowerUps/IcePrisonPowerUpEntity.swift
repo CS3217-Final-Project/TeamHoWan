@@ -11,23 +11,21 @@ import GameplayKit
 
 /** Entity to represent the Ice Prison Power Up */
 class IcePrisonPowerUpEntity: Entity {
-    var powerUp: PowerUp = IcePrisonPowerUp.shared
-    
     override var type: EntityType {
         .powerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
         super.init()
-        guard let powerUpType = powerUp as? IcePrisonPowerUp else {
-            return
-        }
         
-        let animationNode = powerUpType.getAnimationNode(at: position, with: size, powerUp: powerUp)
+        let powerUpType: PowerUpType = .icePrison
+        let powerUp = IcePrisonPowerUp.shared
+        
+        let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
+        let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
         let powerUpComponent = PowerUpComponent(powerUpType)
         powerUpComponent.fading = true
         

@@ -12,10 +12,10 @@ class PowerUpComponent: GKComponent, Component {
     var type: ComponentType {
         .powerUpComponent
     }
-    let powerUpType: PowerUp
+    let powerUpType: PowerUpType
     var fading = false
     
-    init(_ powerUpType: PowerUp) {
+    init(_ powerUpType: PowerUpType) {
         self.powerUpType = powerUpType
         super.init()
     }

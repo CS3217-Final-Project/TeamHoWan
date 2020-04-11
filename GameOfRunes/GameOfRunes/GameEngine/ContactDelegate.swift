@@ -57,7 +57,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
                     let gameEngine = gameEngine else {
                         return
                 }
-                powerUpType.didActivate(on: firstPair.entity, gameEngine: gameEngine)
+                powerUpType.effectUponCollision(on: firstPair.entity, gameEngine: gameEngine)
             default:
                 return
             }

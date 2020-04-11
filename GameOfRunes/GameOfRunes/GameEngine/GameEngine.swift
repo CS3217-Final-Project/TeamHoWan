@@ -244,10 +244,10 @@ class GameEngine {
             gameScene?.activateGestureDetection()
             return
         }
-        if selectedPowerUp.getPowerUp() is ImmediatelyActivatedPowerUp {
+        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
             activatePowerUp(at: gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
         } else {
-            selectedPowerUp.getPowerUp().prepareForActivation(gameEngine: self)
+            selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
         }
     }
 
@@ -271,7 +271,7 @@ class GameEngine {
             return
         }
         
-        let manaPointsRequired = selectedPowerUp.getPowerUp().manaUnitCost * metadata.manaPointsPerManaUnit
+        let manaPointsRequired = selectedPowerUp.powerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
         guard metadata.playerMana >= manaPointsRequired else {
             gameScene?.showInsufficientMana(at: position)
@@ -279,7 +279,7 @@ class GameEngine {
             return
         }
         
-        selectedPowerUp.getPowerUp().activate(at: position, with: size, gameEngine: self)
+        selectedPowerUp.powerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
         gameScene?.deselectPowerUp()
     }

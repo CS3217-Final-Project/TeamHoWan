@@ -16,7 +16,7 @@ enum PowerUpType: String, CaseIterable {
     case divineShield
     case heroicCall
     
-    func getPowerUp() -> PowerUp {
+    var powerUp: PowerUp {
         switch self {
         case .darkVortex:
             return DarkVortexPowerUp.shared
