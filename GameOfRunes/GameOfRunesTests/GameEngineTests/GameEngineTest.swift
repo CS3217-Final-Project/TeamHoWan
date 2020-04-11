@@ -12,26 +12,37 @@ import GameplayKit
 @testable import GameOfRunes
 
 class GameEngineTest: BaseUnitTest {
+    var baseNumberOfAdditions: Int!
+
     override func setUp() {
         super.setUp()
         stub(gameEngine) { stub in
             when(stub.playerEntity.get).thenReturn(playerEntity)
         }
+        baseNumberOfAdditions = 3 + GameConfig.GamePlayScene.numEndPoints
     }
     
-    func testEmptyEntities() {
-        for entityType in EntityType.allCases {
-            XCTAssertTrue(gameEngine.entities(for: entityType).isEmpty)
-        }
+//    func testEmptyEntities() {
+//        for entityType in EntityType.allCases {
+//            XCTAssertTrue(gameEngine.entities(for: entityType).isEmpty)
+//        }
+//
+//        XCTAssertTrue(gameEngine.entities(for: .enemy).isEmpty)
+//        XCTAssertTrue(gameEngine.entities(for: .player).isEmpty)
+//    }
 
-        XCTAssertTrue(gameEngine.entities(for: .enemy).isEmpty)
-        XCTAssertTrue(gameEngine.entities(for: .player).isEmpty)
+    /**
+     When `RootRenderNode` is first initialised, it already adds Entities to `GameEngine`.
+     */
+    func testInit() {
+        verify(gameEngine, times(baseNumberOfAdditions)).add(any(Entity.self))
+        XCTAssertEqual(gameEngine.entities(for: .timerEntity).count, 1)
+        XCTAssertEqual(gameEngine.entities(for: .playerEntity).count, 1)
+        XCTAssertEqual(gameEngine.entities(for: .endPointEntity).count, 1)
+        XCTAssertEqual(gameEngine.entities(for: .attractionEntity).count, GameConfig.GamePlayScene.numEndPoints)
     }
 
-    // Write test to show baseNumberOfAdditionsIsCorrect
-
     func testAdd() {
-        let baseNumberOfAdditions = 1 + 1 + 1 + GameConfig.GamePlayScene.numEndPoints
         gameEngine.add(timerEntity)
         verify(gameEngine, times(baseNumberOfAdditions + 1)).add(any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
@@ -69,13 +80,14 @@ class GameEngineTest: BaseUnitTest {
     func testRemove() {
         gameEngine.remove(timerEntity)
         verify(gameEngine, times(1)).remove(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity).isEmpty)
+        XCTAssertEqual(gameEngine.entities(for: .timerEntity).count, 1)
         gameEngine.add(timerEntity)
-        verify(gameEngine, times(1)).add(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity) == Set([timerEntity]))
+        verify(gameEngine, times(baseNumberOfAdditions + 1)).add(any(Entity.self))
+        XCTAssertEqual(gameEngine.entities(for: .timerEntity).count, 2)
+        XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         gameEngine.remove(timerEntity)
         verify(gameEngine, times(2)).remove(any(Entity.self))
-        XCTAssertTrue(gameEngine.entities(for: .timerEntity).isEmpty)
+        XCTAssertEqual(gameEngine.entities(for: .timerEntity).count, 1)
     }
     
     func testUpdate() {
@@ -96,13 +108,13 @@ class GameEngineTest: BaseUnitTest {
     func testMoveComponents() {
         gameEngine.add(bossEnemyEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-        XCTAssertTrue(gameEngine.moveComponents(for: .player).isEmpty)
+        XCTAssertEqual(gameEngine.moveComponents(for: .player).count, GameConfig.GamePlayScene.numEndPoints) //AttractionEntity
         gameEngine.add(endPointEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-        XCTAssertTrue(gameEngine.moveComponents(for: .player).count == GameConfig.GamePlayScene.numEndPoints)
+        XCTAssertTrue(gameEngine.moveComponents(for: .player).count == GameConfig.GamePlayScene.numEndPoints * 2)
         gameEngine.add(darkVortexPowerUpEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-         XCTAssertTrue(gameEngine.moveComponents(for: .player).count == GameConfig.GamePlayScene.numEndPoints + 1)
+         XCTAssertTrue(gameEngine.moveComponents(for: .player).count == GameConfig.GamePlayScene.numEndPoints * 2 + 1)
     }
     
     func testDecreasePlayerHealth() {
@@ -258,7 +270,7 @@ class GameEngineTest: BaseUnitTest {
     func testDroppedManaTapped() {
         gameEngine.add(droppedManaEntity)
         
-        verify(gameEngine, times(1)).add(any(Entity.self))
+        verify(gameEngine, times(baseNumberOfAdditions + 1)).add(any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .droppedManaEntity) == [droppedManaEntity])
 
         guard let droppedManaNode = droppedManaEntity
