@@ -14,7 +14,6 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
-        
     }
     
     // Contact detected by SpriteKit's physics system
@@ -54,11 +53,11 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
             case .powerUp:
                 guard let powerUpType = secondPair.entity
                     .component(ofType: PowerUpComponent.self)?
-                    .powerUpType,
+                    .powerUpType as? Collidable,
                     let gameEngine = gameEngine else {
                         return
                 }
-                powerUpType.didActivate(on: firstPair.entity, gameEngine: gameEngine)
+                powerUpType.effectUponCollision(on: firstPair.entity, gameEngine: gameEngine)
             default:
                 return
             }

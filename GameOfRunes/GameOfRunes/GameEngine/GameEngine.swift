@@ -244,7 +244,11 @@ class GameEngine {
             gameScene?.activateGestureDetection()
             return
         }
-        selectedPowerUp.preparePowerUp(gameEngine: self)
+        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
+            activatePowerUp(at: gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+        } else {
+            selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
+        }
     }
 
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
@@ -267,7 +271,7 @@ class GameEngine {
             return
         }
         
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
+        let manaPointsRequired = selectedPowerUp.powerUp.manaUnitCost * metadata.manaPointsPerManaUnit
 
         guard metadata.playerMana >= manaPointsRequired else {
             gameScene?.showInsufficientMana(at: position)
@@ -275,7 +279,7 @@ class GameEngine {
             return
         }
         
-        selectedPowerUp.activate(at: position, with: size, gameEngine: self)
+        selectedPowerUp.powerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
         gameScene?.deselectPowerUp()
     }
