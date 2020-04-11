@@ -9,10 +9,10 @@
 import SpriteKit
 
 class RootRenderNode: SKNode {
-    private(set) var gameEngine: GameEngine
+    private(set) var gameEngine: GameEngineFacade
     private(set) var size: CGSize
     var center: CGPoint {
-        return .init(x: size.width / 2, y: size.height / 2)
+        .init(x: size.width / 2, y: size.height / 2)
     }
 
     // layers
@@ -29,7 +29,7 @@ class RootRenderNode: SKNode {
     private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
-    init(gameEngine: GameEngine,
+    init(gameEngine: GameEngineFacade,
          zPosition: CGFloat,
          position: CGPoint,
          size: CGSize) {
@@ -182,7 +182,9 @@ class RootRenderNode: SKNode {
         }
 
         let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
-        enemyEndPointNode.position = .init(x: size.width, y: (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * size.height)
+        let yPosition = (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * size.height
+        enemyEndPointNode.position = .init(x: size.width,
+                                           y: yPosition)
         gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
 
@@ -279,7 +281,6 @@ extension RootRenderNode {
         gameScene.gameDidEnd(didWin: didWin, finalScore: finalScore)
     }
 }
-
 
 /**
  Extension to deal with power-up related logic

@@ -21,18 +21,18 @@ class MultiplayerGameScene: GameScene {
         }
 
         // TODO: Use MultiplayerGameEngineLocal later
-        let gameEngine = GameEngine(stage: stage,
-                                    avatar: avatar)
-        physicsWorld.contactDelegate = gameEngine.contactDelegate
-        self.rootRenderNode = RootRenderNode(gameEngine: gameEngine,
+        let localGameEngine = MultiplayerLocalGameEngine(stage: stage,
+                                                         avatar: avatar)
+        physicsWorld.contactDelegate = localGameEngine.contactDelegate
+        self.rootRenderNode = RootRenderNode(gameEngine: localGameEngine,
                                              zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
                                              position: self.position,
                                              size: size)
         addChild(rootRenderNode)
 
         // TODO: Use MultiplayerGameEngineRemote later
-        let remoteGameEngine = GameEngine(stage: stage,
-                                          avatar: avatar)
+        let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage,
+                                                           avatar: avatar)
         let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootHeight = size.height * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth,

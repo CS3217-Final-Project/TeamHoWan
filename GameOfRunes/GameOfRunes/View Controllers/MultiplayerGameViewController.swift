@@ -28,8 +28,9 @@ class MultiplayerGameViewController: UIViewController {
         }
     }
 
-    // TODO: In the future, there could be a UI where the host
-    // selects from a list of available stages
+    // TODO: This is just a temporary function to obtain a Stage object
+    // Remove this when there is an established method of determining
+    // what stage to use for the Multiplayer game
     private func getMultiplayerStage() -> Stage {
         let stages = HomeViewController.storage.loadAllStages()
         return stages[3]
@@ -37,7 +38,7 @@ class MultiplayerGameViewController: UIViewController {
 
     // TODO: Replace this in the future (similar to getMultiplayerStage)
     private func getMultiplayerAvatar() -> Avatar {
-        return Avatar.elementalWizard
+        Avatar.elementalWizard
     }
 
     override var shouldAutorotate: Bool {
