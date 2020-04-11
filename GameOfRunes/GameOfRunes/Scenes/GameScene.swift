@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    private var gameEngine: GameEngine!
+    private var gameEngine: GameEngineFacade!
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
@@ -323,7 +323,7 @@ extension GameScene {
             return
         }
         
-        gameEngine.activatePowerUp(at: touch.location(in: self))
+        gameEngine.activatePowerUp(at: touch.location(in: self), with: nil)
     }
     
     func deselectPowerUp() {

@@ -9,15 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameEngine {
+class GameEngine: GameEngineFacade {
     private lazy var removeDelegate: RemoveDelegate = .init(gameEngine: self)
     private(set) lazy var contactDelegate: ContactDelegate = .init(gameEngine: self)
     private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
-    let metadata: GameMetaData
     private(set) weak var gameScene: GameScene?
+    var metadata: GameMetaData
     
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -32,7 +32,7 @@ class GameEngine {
     
     init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
-        metadata = GameMetaData(
+        self.metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
             manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
