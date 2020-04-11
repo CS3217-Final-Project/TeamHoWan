@@ -18,7 +18,7 @@ class DivineBlessingPowerUpEntity: Entity {
         super.init()
         
         let powerUpType: PowerUpType = .divineBlessing
-        let powerUp = DivineShieldPowerUp.shared
+        let powerUp = DivineBlessingPowerUp.shared
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)

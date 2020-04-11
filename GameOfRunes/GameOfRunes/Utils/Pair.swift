@@ -15,8 +15,7 @@ struct Pair<T: Hashable>: Hashable {
         self.second = second
     }
     
-    static func == (lhs: Pair, rhs: Pair) -> Bool {
-        return (lhs.first == rhs.first && lhs.second == rhs.second) ||
-            (lhs.first == rhs.second && lhs.second == rhs.first)
+    func reverse() -> Pair {
+        Pair(second, first)
     }
 }

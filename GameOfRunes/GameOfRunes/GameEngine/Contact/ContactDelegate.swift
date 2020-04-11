@@ -13,10 +13,23 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     private var dispatcher = [Pair<CollisionType>: Collision]()
 
     init(gameEngine: GameEngine) {
-        dispatcher[Pair(.enemyUnit, .playerUnit)] = CollisionEnemyUnitPlayerUnit(gameEngine)
-        dispatcher[Pair(.enemyUnit, .powerUp)] = CollisionEnemyUnitPowerUp(gameEngine)
-        dispatcher[Pair(.enemyUnit, .playerEndPoint)] = CollisionEnemyUnitPlayerEndPoint(gameEngine)
-        dispatcher[Pair(.playerUnit, .enemyEndPoint)] = CollisionPlayerUnitEnemyEndPoint(gameEngine)
+        let enemyUnitPlayerUnitCollision = CollisionEnemyUnitPlayerUnit(gameEngine)
+        let enemyUnitPlayerUnitPair = Pair<CollisionType>(.enemyUnit, .playerUnit)
+        let enemyUnitPowerUpCollision = CollisionEnemyUnitPowerUp(gameEngine)
+        let enemyUnitPowerUpPair = Pair<CollisionType>(.enemyUnit, .powerUp)
+        let enemyUnitPlayerEndPointCollision = CollisionEnemyUnitPlayerEndPoint(gameEngine)
+        let enemyUnitPlayerEndPointPair = Pair<CollisionType>(.enemyUnit, .playerEndPoint)
+        let playerUnitEnemyEndPointCollision = CollisionPlayerUnitEnemyEndPoint(gameEngine)
+        let playerUnitEnemyEndPointPair = Pair<CollisionType>(.playerUnit, .enemyEndPoint)
+        
+        dispatcher[enemyUnitPlayerUnitPair] = enemyUnitPlayerUnitCollision
+        dispatcher[enemyUnitPlayerUnitPair.reverse()] = enemyUnitPlayerUnitCollision
+        dispatcher[enemyUnitPowerUpPair] = enemyUnitPowerUpCollision
+        dispatcher[enemyUnitPowerUpPair.reverse()] = enemyUnitPowerUpCollision
+        dispatcher[enemyUnitPlayerEndPointPair] = enemyUnitPlayerEndPointCollision
+        dispatcher[enemyUnitPlayerEndPointPair.reverse()] = enemyUnitPlayerEndPointCollision
+        dispatcher[playerUnitEnemyEndPointPair] = playerUnitEnemyEndPointCollision
+        dispatcher[playerUnitEnemyEndPointPair.reverse()] = playerUnitEnemyEndPointCollision
     }
     
     // Contact detected by SpriteKit's physics system
