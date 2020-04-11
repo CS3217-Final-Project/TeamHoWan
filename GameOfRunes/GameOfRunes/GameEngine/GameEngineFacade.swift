@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+
+/**
+ Methods and properties exposed to the GameScene
+ */
 protocol GameEngineFacade {
     // Specifically for SpriteKit's contact detection
     var contactDelegate: ContactDelegate { get }

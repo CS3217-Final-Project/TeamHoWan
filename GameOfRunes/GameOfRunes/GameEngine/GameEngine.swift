@@ -16,7 +16,7 @@ class GameEngine: GameEngineFacade {
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
-    private(set) weak var gameScene: GameScene?
+    private(set) var gameScene: GameSceneFacade?
     var metadata: GameMetaData
     
     var playerEntity: PlayerEntity? {
@@ -30,7 +30,7 @@ class GameEngine: GameEngineFacade {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
+    init(gameScene: GameSceneFacade, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
         self.metadata = GameMetaData(
             stage: stage,

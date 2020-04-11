@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1389,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  SpriteComponent.swift
@@ -1572,7 +1572,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1681,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1877,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +1986,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2095,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +2203,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GestureEntity.swift
@@ -2311,7 +2311,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +2419,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +2528,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +2637,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2746,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  TimerEntity.swift
@@ -2854,7 +2854,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  SystemDelegate.swift
@@ -2869,7 +2869,7 @@ import Cuckoo
 
 import GameplayKit
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameEngine.swift
@@ -2935,7 +2935,7 @@ import SpriteKit
     
     
     
-     override var gameScene: GameScene? {
+     override var gameScene: GameSceneFacade? {
         get {
             return cuckoo_manager.getter("gameScene",
                 superclassCall:
@@ -2943,6 +2943,30 @@ import SpriteKit
                     super.gameScene
                     ,
                 defaultCall: __defaultImplStub!.gameScene)
+        }
+        
+    }
+    
+    
+    
+     override var metadata: GameMetaData {
+        get {
+            return cuckoo_manager.getter("metadata",
+                superclassCall:
+                    
+                    super.metadata
+                    ,
+                defaultCall: __defaultImplStub!.metadata)
+        }
+        
+        set {
+            cuckoo_manager.setter("metadata",
+                value: newValue,
+                superclassCall:
+                    
+                    super.metadata = newValue
+                    ,
+                defaultCall: __defaultImplStub!.metadata = newValue)
         }
         
     }
@@ -3005,6 +3029,51 @@ import SpriteKit
                 super.add(entity)
                 ,
             defaultCall: __defaultImplStub!.add(entity))
+        
+    }
+    
+    
+    
+     override func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)  {
+        
+    return cuckoo_manager.call("addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)",
+            parameters: (healthNode, manaNode, scoreNode),
+            escapingParameters: (healthNode, manaNode, scoreNode),
+            superclassCall:
+                
+                super.addPlayerEntity(healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
+                ,
+            defaultCall: __defaultImplStub!.addPlayerEntity(healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode))
+        
+    }
+    
+    
+    
+     override func addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)  {
+        
+    return cuckoo_manager.call("addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)",
+            parameters: (timerNode, initialTimerValue),
+            escapingParameters: (timerNode, initialTimerValue),
+            superclassCall:
+                
+                super.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue)
+                ,
+            defaultCall: __defaultImplStub!.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue))
+        
+    }
+    
+    
+    
+     override func addEndPointEntity(node: SKSpriteNode, team: Team)  {
+        
+    return cuckoo_manager.call("addEndPointEntity(node: SKSpriteNode, team: Team)",
+            parameters: (node, team),
+            escapingParameters: (node, team),
+            superclassCall:
+                
+                super.addEndPointEntity(node: node, team: team)
+                ,
+            defaultCall: __defaultImplStub!.addEndPointEntity(node: node, team: team))
         
     }
     
@@ -3342,8 +3411,13 @@ import SpriteKit
 	    }
 	    
 	    
-	    var gameScene: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, GameScene?> {
+	    var gameScene: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, GameSceneFacade?> {
 	        return .init(manager: cuckoo_manager, name: "gameScene")
+	    }
+	    
+	    
+	    var metadata: Cuckoo.ClassToBeStubbedProperty<MockGameEngine, GameMetaData> {
+	        return .init(manager: cuckoo_manager, name: "metadata")
 	    }
 	    
 	    
@@ -3365,6 +3439,21 @@ import SpriteKit
 	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "add(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func addPlayerEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(healthNode: M1, manaNode: M2, scoreNode: M3) -> Cuckoo.ClassStubNoReturnFunction<(HealthBarNode, ManaBarNode, ScoreNode)> where M1.MatchedType == HealthBarNode, M2.MatchedType == ManaBarNode, M3.MatchedType == ScoreNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(HealthBarNode, ManaBarNode, ScoreNode)>] = [wrap(matchable: healthNode) { $0.0 }, wrap(matchable: manaNode) { $0.1 }, wrap(matchable: scoreNode) { $0.2 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)", parameterMatchers: matchers))
+	    }
+	    
+	    func addTimerEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(timerNode: M1, initialTimerValue: M2) -> Cuckoo.ClassStubNoReturnFunction<(SKLabelNode, TimeInterval)> where M1.MatchedType == SKLabelNode, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKLabelNode, TimeInterval)>] = [wrap(matchable: timerNode) { $0.0 }, wrap(matchable: initialTimerValue) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func addEndPointEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(node: M1, team: M2) -> Cuckoo.ClassStubNoReturnFunction<(SKSpriteNode, Team)> where M1.MatchedType == SKSpriteNode, M2.MatchedType == Team {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode, Team)>] = [wrap(matchable: node) { $0.0 }, wrap(matchable: team) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "addEndPointEntity(node: SKSpriteNode, team: Team)", parameterMatchers: matchers))
 	    }
 	    
 	    func remove<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
@@ -3497,8 +3586,13 @@ import SpriteKit
 	    }
 	    
 	    
-	    var gameScene: Cuckoo.VerifyReadOnlyProperty<GameScene?> {
+	    var gameScene: Cuckoo.VerifyReadOnlyProperty<GameSceneFacade?> {
 	        return .init(manager: cuckoo_manager, name: "gameScene", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var metadata: Cuckoo.VerifyProperty<GameMetaData> {
+	        return .init(manager: cuckoo_manager, name: "metadata", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
@@ -3522,6 +3616,24 @@ import SpriteKit
 	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return cuckoo_manager.verify("add(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func addPlayerEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(healthNode: M1, manaNode: M2, scoreNode: M3) -> Cuckoo.__DoNotUse<(HealthBarNode, ManaBarNode, ScoreNode), Void> where M1.MatchedType == HealthBarNode, M2.MatchedType == ManaBarNode, M3.MatchedType == ScoreNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(HealthBarNode, ManaBarNode, ScoreNode)>] = [wrap(matchable: healthNode) { $0.0 }, wrap(matchable: manaNode) { $0.1 }, wrap(matchable: scoreNode) { $0.2 }]
+	        return cuckoo_manager.verify("addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func addTimerEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(timerNode: M1, initialTimerValue: M2) -> Cuckoo.__DoNotUse<(SKLabelNode, TimeInterval), Void> where M1.MatchedType == SKLabelNode, M2.MatchedType == TimeInterval {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKLabelNode, TimeInterval)>] = [wrap(matchable: timerNode) { $0.0 }, wrap(matchable: initialTimerValue) { $0.1 }]
+	        return cuckoo_manager.verify("addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func addEndPointEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(node: M1, team: M2) -> Cuckoo.__DoNotUse<(SKSpriteNode, Team), Void> where M1.MatchedType == SKSpriteNode, M2.MatchedType == Team {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode, Team)>] = [wrap(matchable: node) { $0.0 }, wrap(matchable: team) { $0.1 }]
+	        return cuckoo_manager.verify("addEndPointEntity(node: SKSpriteNode, team: Team)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3672,10 +3784,20 @@ import SpriteKit
     }
     
     
-     override var gameScene: GameScene? {
+     override var gameScene: GameSceneFacade? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (GameScene?).self)
+            return DefaultValueRegistry.defaultValue(for: (GameSceneFacade?).self)
         }
+        
+    }
+    
+    
+     override var metadata: GameMetaData {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (GameMetaData).self)
+        }
+        
+        set { }
         
     }
     
@@ -3708,6 +3830,18 @@ import SpriteKit
 
     
      override func add(_ entity: Entity)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func addEndPointEntity(node: SKSpriteNode, team: Team)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -3798,7 +3932,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  RemoveDelegate.swift
@@ -3964,7 +4098,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  HealthSystem.swift
@@ -4100,7 +4234,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  ManaSystem.swift
@@ -4266,7 +4400,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  MoveSystem.swift
@@ -4402,7 +4536,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  SpriteSystem.swift
@@ -4688,7 +4822,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  TimerSystem.swift
@@ -4884,7 +5018,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameEndState.swift
@@ -5138,7 +5272,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameInPlayState.swift
@@ -5274,7 +5408,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GamePauseState.swift
@@ -5410,7 +5544,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameSelectionState.swift
@@ -5546,7 +5680,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameStartState.swift
@@ -5682,7 +5816,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameStateMachine.swift
@@ -5890,7 +6024,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  GameScene.swift
@@ -6215,7 +6349,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-11 02:43:19 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-11 04:15:16 +0000
 
 //
 //  SceneManager.swift
