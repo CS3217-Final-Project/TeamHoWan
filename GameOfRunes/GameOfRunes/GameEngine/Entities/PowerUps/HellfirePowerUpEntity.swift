@@ -10,22 +10,21 @@ import SpriteKit
 import GameplayKit
 
 /** Entity to represent the Hellfire Power Up */
-class HellfirePowerUpEntity: Entity, PowerUp {
-    var powerUpType: PowerUpType {
-        .hellfire
-    }
-    
+class HellfirePowerUpEntity: Entity {
     override var type: EntityType {
         .powerUpEntity
     }
 
     init(at position: CGPoint, with size: CGSize) {
         super.init()
-
-        let animationNode = PowerUpType.hellfire.getAnimationNode(at: position, with: size)
+        
+        let powerUpType: PowerUpType = .hellfire
+        let powerUp = HellfirePowerUp.shared
+        
+        let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
-        let timerComponent = TimerComponent(initialTimerValue: powerUpType.duration)
+        let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let powerUpComponent = PowerUpComponent(powerUpType)
         
