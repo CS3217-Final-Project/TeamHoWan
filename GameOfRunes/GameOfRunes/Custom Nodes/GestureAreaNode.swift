@@ -14,7 +14,7 @@ class GestureAreaNode: SKSpriteNode {
     private var activeSliceFG: SKShapeNode!
     private var recogniser: GestureRecognizer
     
-    init(size: CGSize, gameEngine: GameEngine) {
+    init(size: CGSize, gameEngine: GameEngineFacade) {
         recogniser = GestureRecognizer(gameEngine: gameEngine)
         super.init(texture: .none, color: .clear, size: size)
         

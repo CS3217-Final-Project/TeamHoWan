@@ -13,9 +13,9 @@ import UIKit
 public class GestureRecognizer {
     private var rawPoints: [CGPoint] = []
     private let recognizer = DBPathRecognizer(sliceCount: 8, deltaMove: 16.0, costMax: 10)
-    private weak var gameEngine: GameEngine?
+    private var gameEngine: GameEngineFacade?
     
-    init(gameEngine: GameEngine) {
+    init(gameEngine: GameEngineFacade) {
         for pathModel in CustomGesture.getAllGesturePathModels() {
             recognizer.addModel(pathModel)
         }
