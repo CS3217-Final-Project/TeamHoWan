@@ -31,6 +31,8 @@ enum GameConfig {
         static let normalMovementSpeed: Float = 100.0
         static let fastMovementSpeed: Float = 150.0
         static let bossMovementSpeed: Float = 25.0
+        static let standardUnitTraversalTime: Float = 7.5
+        static let accelerationScalingFactor: Float = 1.0
     }
     
     enum Enemy {
