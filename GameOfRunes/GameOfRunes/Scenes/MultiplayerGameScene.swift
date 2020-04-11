@@ -34,14 +34,12 @@ class MultiplayerGameScene: GameScene {
         // TODO: Use MultiplayerGameEngineRemote later
         let remoteGameEngine = GameEngine(stage: stage,
                                           avatar: avatar)
-        // TODO: Remove magic numbers later
-        let sizeFactor: CGFloat = 0.3
-        let remoteRootWidth = size.width * sizeFactor
-        let remoteRootHeight = size.height * sizeFactor
+        let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
+        let remoteRootHeight = size.height * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth,
                                          y: size.height - remoteRootHeight)
         self.remoteRootRenderNode = RootRenderNode(gameEngine: remoteGameEngine,
-                                                   zPosition: 10_000,
+                                                   zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
                                                    position: remoteRootPosition,
                                                    size: CGSize(width: remoteRootWidth,
                                                                 height: remoteRootHeight))

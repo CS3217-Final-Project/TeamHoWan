@@ -44,9 +44,15 @@ class EnemyEntity: Entity {
         )
  
         let spriteComponent = SpriteComponent(node: enemyNode, layerType: .unitLayer)
+
+        // Monster Speed and Acceleration are Proportionate to Screen Size
+        let timeTaken = enemyType.speed
+        let enemyMaxSpeed = 10.0 * (Float(renderNodeSize.height) / timeTaken)
+        let enemyMaxAcceleration = 5.0 * enemyMaxSpeed
+
         let moveComponent = MoveComponent(
-            maxSpeed: enemyType.speed,
-            maxAcceleration: 5.0,
+            maxSpeed: enemyMaxSpeed,
+            maxAcceleration: enemyMaxAcceleration,
             radius: .init(enemyNode.size.height / 2)
         )
         let teamComponent = TeamComponent(team: .enemy)

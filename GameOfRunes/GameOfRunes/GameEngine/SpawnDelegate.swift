@@ -93,7 +93,7 @@ class SpawnDelegate {
             width: renderNodeSize.width,
             laneIndex: laneIndex,
             totalPoints: GameConfig.GamePlayScene.numLanes,
-            yPosition: renderNodeSize.height - GameConfig.GamePlayScene.verticalOffSet
+            yPosition: (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * renderNodeSize.height
         )
 
         gameEngine.add(enemyEntity)

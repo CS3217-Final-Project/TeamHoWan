@@ -167,8 +167,8 @@ enum GameConfig {
 
         // Spawning of Enemies
         static let numLanes: Int = 3
-        static let horizontalOffSet: CGFloat = 100.0
-        static let verticalOffSet: CGFloat = 100.0
+        static let horizontalOffSetRatio: CGFloat = 0.1
+        static let verticalOffSetRatio: CGFloat = 0.03
         static let numEndPoints: Int = 3
         
         static func calculateHorizontallyDistributedPoints(
@@ -180,7 +180,7 @@ enum GameConfig {
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * totalPoints
             let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSetRatio * width
             let xPosition = (width - 2 * edgeOffset) * xPositionRatio + edgeOffset
             
             return .init(x: xPosition, y: yPosition)
@@ -198,5 +198,7 @@ enum GameConfig {
 
     enum MultiplayerGameScene {
         static let miniMapAlpha: CGFloat = 0.7
+        static let miniMapZPosition: CGFloat = 1_500
+        static let scalingFactor: CGFloat = 0.3 //Size of Minimap Relative to Screen Size
     }
 }
