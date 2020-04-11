@@ -20,7 +20,7 @@ class SceneManager {
         case pause
         case end(win: Bool)
         case map
-        case multiplayerPlay // TODO: See if this is ideal
+        case multiplayerPlay
     }
     
     private let presentingView: SKView
@@ -29,7 +29,6 @@ class SceneManager {
         size: self.presentingView.bounds.size,
         gameStateMachine: gameStateMachine
     )
-    // TODO: Added for multiplayer
     private lazy var multiplayerGamePlayScene: MultiplayerGameScene = .init(
         size: self.presentingView.bounds.size,
         gameStateMachine: gameStateMachine

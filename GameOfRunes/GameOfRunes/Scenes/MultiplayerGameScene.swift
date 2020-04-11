@@ -24,9 +24,8 @@ class MultiplayerGameScene: GameScene {
         let gameEngine = GameEngine(stage: stage,
                                     avatar: avatar)
         physicsWorld.contactDelegate = gameEngine.contactDelegate
-        // TODO: Remove zPosition and place as magic number in GameConfig
         self.rootRenderNode = RootRenderNode(gameEngine: gameEngine,
-                                             zPosition: 0,
+                                             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
                                              position: self.position,
                                              size: size)
         addChild(rootRenderNode)

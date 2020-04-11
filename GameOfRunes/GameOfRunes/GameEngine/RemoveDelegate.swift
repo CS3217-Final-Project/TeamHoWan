@@ -77,10 +77,8 @@ class RemoveDelegate {
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
-        // TODO: Added by you
         renderNode.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-//        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-        
+
         gameEngine?.remove(entity)
     }
     
@@ -124,11 +122,8 @@ class RemoveDelegate {
             }
             self?.gameEngine?.metadata.numEnemiesOnField -= 1
         })
-        // TODO: Added by you
         renderNode.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
 
-//        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-//
         // Changing physicsBody to nil is necessary because SpriteComponent and PhysicsBody do not get
         // deinit immediately, leading to >1 contacts detected.
         spriteComponent.node.physicsBody = nil

@@ -80,6 +80,7 @@ enum GameConfig {
         static let buttonMargin: CGFloat = 10
         
         // zPositions
+        static let rootRenderNodeZPosition: CGFloat = 0
         static let backgroundLayerZPosition: CGFloat = -100
         static let powerUpAnimationLayerZPosition: CGFloat = 0
         static let unitLayerZPosition: CGFloat = 100

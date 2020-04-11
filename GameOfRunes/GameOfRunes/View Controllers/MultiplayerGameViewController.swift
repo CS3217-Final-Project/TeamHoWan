@@ -15,7 +15,7 @@ class MultiplayerGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = view as? SKView {
-            // TODO: Deal with GameStateMachine for Multiplayer
+            // TODO: (Brian) Deal with GameStateMachine for Multiplayer
             let gameStateMachine = GameStateMachine(
                 states: [GameInMultiplayerPlayState()]
             )

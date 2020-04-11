@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     private var bgmPlayer = AVAudioPlayer()
     private var clickSoundPlayer = AVAudioPlayer()
 
-    // TODO: Get rid of this after code finalisation
+    // TODO: Get rid of this after Jeremy is done with FrontEnd for Multiplayer
     private let multiplayerButton = UIButton()
 
     override func viewDidLoad() {
@@ -291,12 +291,12 @@ extension HomeViewController {
             sender.transform = CGAffineTransform.identity
         }
 
-        guard let multiplayerGameViewController = storyboard?.instantiateViewController(identifier: "MultiplayerGameVC") else {
+        guard let multiplayerGameVC = storyboard?.instantiateViewController(identifier: "MultiplayerGameVC") else {
             return
         }
         
-        multiplayerGameViewController.modalPresentationStyle = .fullScreen
-        multiplayerGameViewController.modalTransitionStyle = .crossDissolve
-        present(multiplayerGameViewController, animated: true)
+        multiplayerGameVC.modalPresentationStyle = .fullScreen
+        multiplayerGameVC.modalTransitionStyle = .crossDissolve
+        present(multiplayerGameVC, animated: true)
     }
 }

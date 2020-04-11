@@ -17,13 +17,8 @@ class GameEngine: GameEngineFacade {
     private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
     let metadata: GameMetaData
-//    private(set) weak var gameScene: GameScene?
+    weak var rootRenderNode: RootRenderNode?
 
-
-    weak var rootRenderNode: RootRenderNode? // TODO: Added by you. Add guard statements if this is empty
-
-
-    
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
@@ -36,7 +31,6 @@ class GameEngine: GameEngineFacade {
     }
     
     init(stage: Stage, avatar: Avatar) {
-//        self.gameScene = gameScene
         metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
@@ -90,8 +84,7 @@ class GameEngine: GameEngineFacade {
     func addEndPointEntity(node: SKSpriteNode, team: Team) {
         add(EndPointEntity(node: node, team: team))
     }
-    
-    
+
     func remove(_ entity: Entity) {
         guard entities[entity.type]?.remove(entity) != nil else {
             return
@@ -272,7 +265,6 @@ class GameEngine: GameEngineFacade {
             return
         }
 
-        // TODO: This edit was introduced by you (also included in the guard clause)
         if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
             activatePowerUp(at: rootRenderNode.center)
         } else {

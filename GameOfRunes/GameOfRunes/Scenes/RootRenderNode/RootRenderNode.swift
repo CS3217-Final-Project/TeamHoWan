@@ -12,7 +12,7 @@ class RootRenderNode: SKNode {
     private(set) var gameEngine: GameEngine
     private(set) var size: CGSize
     var center: CGPoint {
-        return .init(x: size.width/2, y: size.height/2)
+        return .init(x: size.width / 2, y: size.height / 2)
     }
 
     // layers
@@ -24,12 +24,11 @@ class RootRenderNode: SKNode {
     private var playerAreaLayer: SKNode!
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
-    private var playerAreaNode: PlayerAreaNode! //Must these be private(set)?
+    private var playerAreaNode: PlayerAreaNode!
     private(set) var playerEndPoint: SKSpriteNode!
     private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
-    // TODO: Remove center and put as computed property once done debugging
     init(gameEngine: GameEngine,
          zPosition: CGFloat,
          position: CGPoint,
@@ -39,16 +38,9 @@ class RootRenderNode: SKNode {
         super.init()
         self.position = position
 
-        // Note: the following is necessary in order to allow RootRenderNode
-        // to add Entities during set-up
-        // TODO: can this be fixed? (This can be fixed by ensuring that all
-        // classes that require rootRenderNode are passed in rootRenderNode
-        // instead of accessing through gameEngine
+        // Allows RootRenderNode to add Entities during set-up
         self.gameEngine.rootRenderNode = self
         self.zPosition = zPosition
-        // TODO: Note: This is necessary for DarkVortex to work (because after
-        // disabling user interaction for the gesture node, you need to let
-        // RootRenderNode detect the gestures instead (used to be GameScene)
         self.isUserInteractionEnabled = true
 
         // UI
@@ -68,6 +60,7 @@ class RootRenderNode: SKNode {
         addChild(bgmNode)
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -112,9 +105,6 @@ class RootRenderNode: SKNode {
             color: .clear,
             size: size
         )
-
-        // TODO: Check with Jeremy if this is okay to delete
-//        backgroundNode.aspectFillToSize(fillSize: size)
         backgroundNode.position = center
         backgroundLayer.addChild(backgroundNode)
     }
@@ -184,8 +174,7 @@ class RootRenderNode: SKNode {
         endPointNode.addGlow()
 
         playerEndPoint = endPointNode
-        let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
-        gameEngine.add(endPointEntity)
+        gameEngine.addEndPointEntity(node: endPointNode, team: .player)
 
         // check if need to add enemy end point for elite knight
         guard gameEngine.metadata.avatar == .holyKnight else {
@@ -194,21 +183,16 @@ class RootRenderNode: SKNode {
 
         let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
         enemyEndPointNode.position = .init(x: size.width, y: (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * size.height)
-        let enemyEndPointEntity = EndPointEntity(node: enemyEndPointNode, team: .enemy)
-        gameEngine.add(enemyEndPointEntity)
+        gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
 
     private func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
         let scoreNode = playerAreaNode.scoreNode
-        let playerEntity = PlayerEntity(
-            gameEngine: gameEngine,
-            healthNode: healthNode,
-            manaNode: manaNode,
-            scoreNode: scoreNode
-        )
-        gameEngine.add(playerEntity)
+        gameEngine.addPlayerEntity(healthNode: healthNode,
+                                   manaNode: manaNode,
+                                   scoreNode: scoreNode)
     }
 
     private func setUpPlayerHealth() -> HealthBarNode {
@@ -235,7 +219,7 @@ class RootRenderNode: SKNode {
         timerNode.verticalAlignmentMode = .center
         timerNode.text = "\(Int(initialTimerValue))"
 
-        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
+        gameEngine.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue)
     }
 
     func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {
@@ -281,8 +265,11 @@ extension RootRenderNode {
  Extension to propagate Scene-related logic to GameScene
  */
 extension RootRenderNode {
-    // TODO: Should this be re-factored
-    /** Propagates the call upwards to GameScene */
+    /**
+     Propagates the call upwards to GameScene.
+     - Note: GameScene is responsible for State and Scene-related
+     transitions (it has a reference to `GameStateMachine` for this purpose.
+     */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
         guard let gameScene = scene as? GameScene else {
             print("Scene is not of type GameScene")
@@ -304,7 +291,7 @@ extension RootRenderNode {
             return
         }
 
-        gameEngine.activatePowerUp(at: touch.location(in: self))
+        gameEngine.activatePowerUp(at: touch.location(in: self), with: nil)
     }
 
     func deselectPowerUp() {
