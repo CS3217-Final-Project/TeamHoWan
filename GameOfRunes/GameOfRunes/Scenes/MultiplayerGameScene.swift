@@ -9,7 +9,7 @@
 import SpriteKit
 
 class MultiplayerGameScene: GameScene {
-    var remoteRootRenderNode: RootRenderNode!
+    var remoteRootRenderNode: RemoteRootRenderNode!
     override init(size: CGSize, gameStateMachine: GameStateMachine) {
         super.init(size: size, gameStateMachine: gameStateMachine)
     }
@@ -20,6 +20,7 @@ class MultiplayerGameScene: GameScene {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
+        // Local Game
         let localGameEngine = MultiplayerLocalGameEngine(stage: stage,
                                                          avatar: avatar)
         physicsWorld.contactDelegate = localGameEngine.contactDelegate
@@ -29,17 +30,18 @@ class MultiplayerGameScene: GameScene {
                                              size: size)
         addChild(rootRenderNode)
 
+        // Remote Game (MiniMap)
         let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage,
                                                            avatar: avatar)
         let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootHeight = size.height * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth,
                                          y: size.height - remoteRootHeight)
-        self.remoteRootRenderNode = RootRenderNode(gameEngine: remoteGameEngine,
-                                                   zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
-                                                   position: remoteRootPosition,
-                                                   size: CGSize(width: remoteRootWidth,
-                                                                height: remoteRootHeight))
+        self.remoteRootRenderNode = RemoteRootRenderNode(gameEngine: remoteGameEngine,
+                                                         zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
+                                                         position: remoteRootPosition,
+                                                         size: CGSize(width: remoteRootWidth,
+                                                                      height: remoteRootHeight))
         self.remoteRootRenderNode.alpha = GameConfig.MultiplayerGameScene.miniMapAlpha
         addChild(remoteRootRenderNode)
     }

@@ -9,7 +9,7 @@
 import SpriteKit
 
 class RootRenderNode: SKNode {
-    private(set) var gameEngine: GameEngineFacade
+    var gameEngine: GameEngineFacade
     private(set) var size: CGSize
     var center: CGPoint {
         .init(x: size.width / 2, y: size.height / 2)
@@ -25,7 +25,7 @@ class RootRenderNode: SKNode {
     private var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
     private var playerAreaNode: PlayerAreaNode!
-    private(set) var playerEndPoint: SKSpriteNode!
+    var playerEndPoint: SKSpriteNode!
     private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
@@ -60,12 +60,23 @@ class RootRenderNode: SKNode {
         addChild(bgmNode)
     }
 
+    /**
+     Minimal initialiser that only populates required instance parameters.
+     Called by Subclass `RemoteRootRenderNode`.
+     */
+    init(gameEngine: GameEngineFacade, size: CGSize) {
+        self.gameEngine = gameEngine
+        self.size = size
+        super.init()
+        self.gameEngine.rootRenderNode = self
+    }
+
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func buildLayers() {
+    func buildLayers() {
         backgroundLayer = .init()
         backgroundLayer.zPosition = GameConfig.GamePlayScene.backgroundLayerZPosition
         addChild(backgroundLayer)
@@ -99,7 +110,7 @@ class RootRenderNode: SKNode {
         addChild(highestPriorityLayer)
     }
 
-    private func setUpBackground() {
+    func setUpBackground() {
         let backgroundNode = SKSpriteNode(
             texture: gameEngine.metadata.stage.arena.texture,
             color: .clear,
@@ -142,9 +153,9 @@ class RootRenderNode: SKNode {
             size: buttonSize,
             texture: .init(imageNamed: "\(ButtonType.pauseButton)"),
             buttonType: .pauseButton,
-            position: .init(x: size.width, y: size.height)
-                + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
-                + .init(dx: -buttonMargin, dy: -buttonMargin)
+            position: .init(x: 0, y: size.height)
+                + .init(dx: buttonSize.width / 2, dy: -buttonSize.height / 2)
+                + .init(dx: buttonMargin, dy: -buttonMargin)
         )
 
         // relative to the layer

@@ -1,0 +1,73 @@
+//
+//  RemoteRootRenderNode.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 12/4/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import SpriteKit
+
+class RemoteRootRenderNode: RootRenderNode {
+    /**
+     Note that unlike `LocalRootRenderNode`, `RemoteRootRenderNode` has:
+     - No Background Music
+     - No Pause Button
+     - No Player Area
+     - No Gesture Area
+     */
+    override init(gameEngine: GameEngineFacade,
+                  zPosition: CGFloat,
+                  position: CGPoint,
+                  size: CGSize) {
+        super.init(gameEngine: gameEngine, size: size)
+        self.position = position
+        self.zPosition = zPosition
+
+        // UI
+        buildLayers()
+        setUpBackground()
+
+        // Entities
+        setUpEndPoint()
+    }
+
+    private func setUpEndPoint() {
+        guard GameConfig.GamePlayScene.numEndPoints > 0 else {
+            fatalError("There must be more than 1 lane")
+        }
+
+        // set up visual end point line
+        let endPointNode = SKSpriteNode(imageNamed: "finish-line")
+
+        // re-position and resize
+        let newEndPointWidth = size.width
+        let newEndPointHeight = size.height * GameConfig.GamePlayScene.endPointHeightRatio
+        let newEndPointSize = CGSize(width: newEndPointWidth, height: newEndPointHeight)
+        endPointNode.size = newEndPointSize
+        let originalPlayerAreaWidth = size.width
+        let originalPlayerAreaHeight = size.height * GameConfig.GamePlayScene.playerAreaHeightRatio
+        let originalPlayerAreaPosition: CGPoint = .init(x: originalPlayerAreaWidth / 2,
+                                                        y: originalPlayerAreaHeight / 2)
+        endPointNode.position = originalPlayerAreaPosition
+            + .init(dx: 0.0, dy: (originalPlayerAreaHeight + newEndPointHeight) / 2)
+
+        // relative to the player area layer
+        endPointNode.zPosition = -1
+        endPointNode.addGlow()
+
+        playerEndPoint = endPointNode
+        gameEngine.addEndPointEntity(node: endPointNode, team: .player)
+
+        // check if need to add enemy end point for elite knight
+        guard gameEngine.metadata.avatar == .holyKnight else {
+            return
+        }
+
+        let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
+        let yPosition = (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * size.height
+        enemyEndPointNode.position = .init(x: size.width,
+                                           y: yPosition)
+        gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
+    }
+}
