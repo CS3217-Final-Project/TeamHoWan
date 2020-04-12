@@ -16,15 +16,41 @@ class GamePauseScene: SKScene, TapResponder {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         
-        let continueButton = ButtonNode(
+        let center = CGPoint(x: frame.midX, y: frame.midY)
+        
+        let resumeButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GamePauseScene.buttonWidthRatio,
                         height: size.width * GameConfig.GamePauseScene.buttonHeightRatio),
-            texture: .init(imageNamed: "\(ButtonType.continueButton)"),
-            buttonType: .continueButton,
-            position: .init(x: frame.midX, y: frame.midY)
+            texture: .init(imageNamed: "resume-button"),
+            buttonType: .resumeButton,
+            position: center
         )
         
-        addChild(continueButton)
+        addChild(resumeButton)
+        
+        let homeButton = ButtonNode(
+            size: .init(width: size.width * GameConfig.GamePauseScene.buttonWidthRatio,
+                        height: size.width * GameConfig.GamePauseScene.buttonHeightRatio),
+            texture: .init(imageNamed: "home-button"),
+            buttonType: .homeButton
+        )
+        
+        homeButton.position = center
+            + .init(dx: -resumeButton.size.width / 2, dy: 0.0)
+            + .init(dx: -homeButton.size.width, dy: 0.0)
+        addChild(homeButton)
+        
+        let restartButton = ButtonNode(
+            size: .init(width: size.width * GameConfig.GamePauseScene.buttonWidthRatio,
+                        height: size.width * GameConfig.GamePauseScene.buttonHeightRatio),
+            texture: .init(imageNamed: "restart-button"),
+            buttonType: .restartButton
+        )
+        
+        restartButton.position = center
+            + .init(dx: resumeButton.size.width / 2, dy: 0.0)
+            + .init(dx: restartButton.size.width, dy: 0.0)
+        addChild(restartButton)
     }
     
     deinit {
@@ -37,8 +63,15 @@ class GamePauseScene: SKScene, TapResponder {
     }
 
     func onTapped(tappedNode: ButtonNode) {
-        if tappedNode.buttonType == .continueButton {
+        switch tappedNode.buttonType {
+        case .resumeButton:
             gameStateMachine?.enter(GameInPlayState.self)
+        case .homeButton:
+            gameStateMachine?.enter(GameSelectionState.self)
+        case .restartButton:
+            gameStateMachine?.enter(GameStartState.self)
+        default:
+            print("Unknown node tapped")
         }
     }
 }

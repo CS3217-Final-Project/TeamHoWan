@@ -84,7 +84,7 @@ class GameEngine: GameEngineFacade {
     func addEndPointEntity(node: SKSpriteNode, team: Team) {
         add(EndPointEntity(node: node, team: team))
     }
-
+    
     func remove(_ entity: Entity) {
         guard entities[entity.type]?.remove(entity) != nil else {
             return

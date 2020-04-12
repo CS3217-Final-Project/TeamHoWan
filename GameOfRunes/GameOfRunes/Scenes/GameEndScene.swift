@@ -24,19 +24,29 @@ class GameEndScene: SKScene, TapResponder {
         
         let center = CGPoint(x: frame.midX, y: frame.midY)
 
-        let endGameButton = ButtonNode(
+        let homeButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
-            texture: .init(imageNamed: "\(ButtonType.endGameButton)"),
-            buttonType: .endGameButton,
-            position: center
+            texture: .init(imageNamed: "home-button"),
+            buttonType: .homeButton
         )
         
-        addChild(endGameButton)
+        homeButton.position = center + .init(dx: -homeButton.size.width * 0.75, dy: 0.0)
+        addChild(homeButton)
+        
+        let restartButton = ButtonNode(
+            size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
+                        height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
+            texture: .init(imageNamed: "restart-button"),
+            buttonType: .restartButton
+        )
+        
+        restartButton.position = center + .init(dx: restartButton.size.width * 0.75, dy: 0.0)
+        addChild(restartButton)
         
         statusLabel.fontSize = size.width * GameConfig.GameEndScene.fontSizeRatio
         statusLabel.fontColor = .white
-        statusLabel.position = center + .init(dx: 0.0, dy: endGameButton.size.height / 1.5)
+        statusLabel.position = center + .init(dx: 0.0, dy: homeButton.size.height / 1.5)
         addChild(statusLabel)
     }
     
@@ -54,8 +64,13 @@ class GameEndScene: SKScene, TapResponder {
     }
 
     func onTapped(tappedNode: ButtonNode) {
-        if tappedNode.buttonType == .endGameButton {
+        switch tappedNode.buttonType {
+        case .homeButton:
             gameStateMachine?.enter(GameSelectionState.self)
+        case .restartButton:
+            gameStateMachine?.enter(GameStartState.self)
+        default:
+            print("Unknown node tapped")
         }
     }
 }
