@@ -157,7 +157,7 @@ class RootRenderNode: SKNode {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
-            texture: .init(imageNamed: "\(ButtonType.pauseButton)"),
+            texture: .init(imageNamed: "pause-button"),
             buttonType: .pauseButton,
             position: .init(x: 0, y: size.height)
                 + .init(dx: buttonSize.width / 2, dy: -buttonSize.height / 2)

@@ -58,7 +58,7 @@ class GameScene: SKScene {
             position: position,
             size: size
         )
-        
+
         addChild(rootRenderNode)
     }
 
