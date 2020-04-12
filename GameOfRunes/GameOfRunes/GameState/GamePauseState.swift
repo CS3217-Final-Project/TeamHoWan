@@ -25,6 +25,9 @@ class GamePauseState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
-        sceneManager.transitionToScene(sceneIdentifier: .pause)
+        sceneManager.transitionToScene(
+            sceneIdentifier: .pause,
+            transition: .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        )
     }
 }

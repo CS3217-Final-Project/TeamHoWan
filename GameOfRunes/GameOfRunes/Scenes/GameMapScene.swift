@@ -127,7 +127,7 @@ extension GameMapScene: TapResponder {
         case .powerUpIconButton:
             stageSelectionNode.updatePowerUpDescription()
         default:
-            return
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }
@@ -163,7 +163,7 @@ extension GameMapScene {
     private func setUpStageNodes() {
         // TODO: change to access from storage when persistence is implemented
         
-        let stages = HomeViewController.storage.loadAllStages()
+        let stages = GameViewController.storage.loadAllStages()
         let stageNodes = stages.map { StageNode(stage: $0, mapSize: mapSize) }
         stageNodes.forEach { stageNodeLayer.addChild($0) }
         
@@ -232,7 +232,7 @@ extension GameMapScene {
     func refreshGameMap() {
         // load only the updated stage
         guard let selectedStageNode = selectedStageNode,
-            let updatedStage = HomeViewController.storage.load(stageName: selectedStageNode.stage.name) else {
+            let updatedStage = GameViewController.storage.load(stageName: selectedStageNode.stage.name) else {
                 return
         }
         

@@ -23,6 +23,14 @@ class GameStageSelectionState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
+        if previousState is GameEndState || previousState is GamePauseState {
+            sceneManager.transitionToScene(
+                sceneIdentifier: .map,
+                transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+            )
+            return
+        }
+        
         sceneManager.transitionToScene(sceneIdentifier: .map)
     }
 }

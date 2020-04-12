@@ -52,28 +52,25 @@ class SceneManager {
         self.gameHomeScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
     }
     
-    func transitionToScene(sceneIdentifier: SceneIdentifier) {
+    func transitionToScene(
+        sceneIdentifier: SceneIdentifier,
+        transition: SKTransition = .crossFade(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+    ) {
         let scene: SKScene
-        let transition: SKTransition
         
         switch sceneIdentifier {
         case .play:
             scene = gamePlayScene
-            transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .pause:
             scene = gamePauseScene
-            transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .end(let didWin):
             self.gameEndScene.didWin = didWin
             scene = gameEndScene
-            transition = .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .map:
             refreshGameMap()
             scene = gameMapScene
-            transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         case .home:
             scene = gameHomeScene
-            transition = .crossFade(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
         
         presentingView.presentScene(scene, transition: transition)

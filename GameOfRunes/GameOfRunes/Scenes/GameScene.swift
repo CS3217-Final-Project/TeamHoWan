@@ -281,7 +281,7 @@ extension GameScene: TapResponder {
         case .powerUpIconButton:
             gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
         default:
-            print("Unknown node tapped")
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }

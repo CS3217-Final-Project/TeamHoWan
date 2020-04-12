@@ -10,10 +10,11 @@ import SpriteKit
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
+    private let startViewNode: SKNode = .init()
     
     // layers
-    private var backgroundLayer: SKNode!
-    private var uiLayer: SKNode!
+    private let backgroundLayer: SKNode = .init()
+    private let uiLayer: SKNode = .init()
     
     private let bgmNode: SKAudioNode = .init(fileNamed: "Destiny-Ablaze")
     
@@ -38,19 +39,30 @@ class GameHomeScene: SKScene {
         
         buildLayers()
         setUpBackground()
+        setUpStartView()
         
         addChild(bgmNode)
+    }
+}
+
+// MARK: - Tap Responder
+extension GameHomeScene: TapResponder {
+    func onTapped(tappedNode: ButtonNode) {
+        switch tappedNode.buttonType {
+        case .startButton:
+            gameStateMachine?.enter(GameStageSelectionState.self)
+        default:
+            print("Unknown node tapped:", tappedNode)
+        }
     }
 }
 
 // MARK: - Scene setup
 extension GameHomeScene {
     private func buildLayers() {
-        backgroundLayer = .init()
         backgroundLayer.zPosition = GameConfig.GameHomeScene.backgroundLayerZPosition
         addChild(backgroundLayer)
         
-        uiLayer = .init()
         uiLayer.zPosition = GameConfig.GameHomeScene.uiLayerZPosition
         addChild(uiLayer)
     }
@@ -64,5 +76,26 @@ extension GameHomeScene {
         
         backgroundNode.aspectFillToSize(fillSize: size)
         backgroundLayer.addChild(backgroundNode)
+    }
+    
+    private func setUpStartView() {
+        let gameIconTexture = SKTexture(imageNamed: "GameOfRunes-logo-transparent")
+        let gameIcon = SKSpriteNode(
+            texture: gameIconTexture,
+            size: gameIconTexture.size().scaleTo(width: size.width * 0.8)
+        )
+        gameIcon.position = .init(x: 0.0, y: size.height * 0.125)
+        
+        let buttonTexture = SKTexture(imageNamed: "start-button-glow")
+        let startButton = ButtonNode(
+            size: buttonTexture.size().scaleTo(width: size.width * 0.8),
+            texture: buttonTexture,
+            buttonType: .startButton,
+            position: .init(x: 0.0, y: -size.height * 0.3)
+        )
+        
+        startViewNode.addChild(gameIcon)
+        startViewNode.addChild(startButton)
+        uiLayer.addChild(startViewNode)
     }
 }

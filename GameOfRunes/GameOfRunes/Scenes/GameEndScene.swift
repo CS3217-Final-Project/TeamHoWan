@@ -72,7 +72,7 @@ class GameEndScene: SKScene, TapResponder {
         case .restartButton:
             gameStateMachine?.enter(GameStartState.self)
         default:
-            print("Unknown node tapped")
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }

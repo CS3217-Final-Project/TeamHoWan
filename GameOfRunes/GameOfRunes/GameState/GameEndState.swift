@@ -29,7 +29,10 @@ class GameEndState: GKState {
         }
 
         updateAndSaveStageData()
-        sceneManager.transitionToScene(sceneIdentifier: .end(win: didWin))
+        sceneManager.transitionToScene(
+            sceneIdentifier: .end(win: didWin),
+            transition: .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        )
     }
 
     /**
@@ -46,7 +49,7 @@ class GameEndState: GKState {
         updateHighScore(stage: &stage)
         updateAchievementLevel(stage: &stage)
 
-        HomeViewController.storage.save(stages: stage)
+        GameViewController.storage.save(stages: stage)
         //print(HomeViewController.storage.loadAllStages())
     }
 
