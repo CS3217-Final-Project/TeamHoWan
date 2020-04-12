@@ -28,6 +28,7 @@
 		4A45E8FF2443573200F9FA22 /* GameHomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E8FE2443573200F9FA22 /* GameHomeScene.swift */; };
 		4A45E90124435C5E00F9FA22 /* GameModeSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */; };
 		4A45E9032443730A00F9FA22 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9022443730A00F9FA22 /* HomeViewController.swift */; };
+		4A45E9052443868E00F9FA22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A45E9042443868E00F9FA22 /* GoogleService-Info.plist */; };
 		4A5B423E243F27A800DF4D32 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B423D243F27A800DF4D32 /* PowerUp.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
@@ -233,6 +234,7 @@
 		4A45E8FE2443573200F9FA22 /* GameHomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeScene.swift; sourceTree = "<group>"; };
 		4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionState.swift; sourceTree = "<group>"; };
 		4A45E9022443730A00F9FA22 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4A45E9042443868E00F9FA22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A5B423D243F27A800DF4D32 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
@@ -682,6 +684,7 @@
 				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
+				4A45E9042443868E00F9FA22 /* GoogleService-Info.plist */,
 			);
 			path = GameOfRunes;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
+				4A45E9052443868E00F9FA22 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
