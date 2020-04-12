@@ -24,20 +24,27 @@ class RemoveDelegate {
         }
         
         if enemyHealth <= 0 {
-            removeUnit(enemyEntity, shouldIncreaseScore: true)
+            removeUnit(enemyEntity, shouldDecreasePlayerHealth: false, shouldIncreaseScore: true, fullAnimation: false)
             gameEngine?.dropMana(at: enemyEntity)
         } else {
-            gameEngine?.setNextGesture(for: enemyEntity)
+            gameEngine?.setGesture(for: enemyEntity, using: nil)
         }
     }
 
-    func removeUnit(_ entity: Entity, shouldDecreasePlayerHealth: Bool = false,
-                    shouldIncreaseScore: Bool = false) {
+    func removeUnit(
+        _ entity: Entity,
+        shouldDecreasePlayerHealth: Bool,
+        shouldIncreaseScore: Bool,
+        fullAnimation: Bool
+    ) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
         
-        if shouldDecreasePlayerHealth, gameEngine?.entities(for: .divineShieldPowerUpEntity).isEmpty ?? true {
+        if shouldDecreasePlayerHealth, (
+            gameEngine?.isDivineShieldActivated == false
+            || entity.component(ofType: EnemyTypeComponent.self)?.enemyType.isPowerUpImmune ?? true
+            ) {
             gameEngine?.decreasePlayerHealth()
         } else if entity.type == .enemyEntity {
             gameEngine?.incrementCombo()
@@ -47,7 +54,7 @@ class RemoveDelegate {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
 
-        removeUnitFromGameWithAnimation(entity)
+        removeUnitFromGameWithAnimation(entity, fullAnimation: fullAnimation)
     }
     
     func removeDroppedMana(_ entity: Entity) {
@@ -81,7 +88,7 @@ class RemoveDelegate {
      Upon completion, the `GameEngine`'s `remove` method is called on
      the `EnemyEntity`.
      */
-    private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool = true) {
+    private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity,
             let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
                 return

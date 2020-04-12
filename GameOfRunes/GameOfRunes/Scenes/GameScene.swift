@@ -9,8 +9,8 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
-    private var gameEngine: GameEngine!
+class GameScene: SKScene, GameSceneFacade {
+    private var gameEngine: GameEngineFacade!
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     private weak var gameStateMachine: GameStateMachine?
@@ -151,7 +151,7 @@ class GameScene: SKScene {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
-            texture: .init(imageNamed: "\(ButtonType.pauseButton)"),
+            texture: .init(imageNamed: "pause-button"),
             buttonType: .pauseButton,
             position: .init(x: frame.maxX, y: frame.maxY)
                 + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
@@ -184,8 +184,7 @@ class GameScene: SKScene {
         endPointNode.addGlow()
         
         playerEndPoint = endPointNode
-        let endPointEntity = EndPointEntity(node: endPointNode, team: .player)
-        gameEngine.add(endPointEntity)
+        gameEngine.addEndPointEntity(node: endPointNode, team: .player)
         
         // check if need to add enemy end point for elite knight
         guard gameEngine.metadata.avatar == .holyKnight else {
@@ -194,21 +193,14 @@ class GameScene: SKScene {
         
         let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
         enemyEndPointNode.position = .init(x: frame.midX, y: frame.maxY - GameConfig.GamePlayScene.verticalOffSet)
-        let enemyEndPointEntity = EndPointEntity(node: enemyEndPointNode, team: .enemy)
-        gameEngine.add(enemyEndPointEntity)
+        gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
     
     private func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
         let scoreNode = playerAreaNode.scoreNode
-        let playerEntity = PlayerEntity(
-            gameEngine: gameEngine,
-            healthNode: healthNode,
-            manaNode: manaNode,
-            scoreNode: scoreNode
-        )
-        gameEngine.add(playerEntity)
+        gameEngine.addPlayerEntity(healthNode: healthNode, manaNode: manaNode, scoreNode: scoreNode)
     }
     
     private func setUpPlayerHealth() -> HealthBarNode {
@@ -235,7 +227,7 @@ class GameScene: SKScene {
         timerNode.verticalAlignmentMode = .center
         timerNode.text = "\(Int(initialTimerValue))"
         
-        gameEngine.add(TimerEntity(gameEngine: gameEngine, timerNode: timerNode, initialTimerValue: initialTimerValue))
+        gameEngine.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -285,7 +277,7 @@ extension GameScene: TapResponder {
         case .summonButton:
             gameEngine.startNextSpawnWave()
         case .powerUpIconButton:
-            gameEngine.updateSelectedPowerUp()
+            gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
         default:
             print("Unknown node tapped")
         }
@@ -323,16 +315,21 @@ extension GameScene {
             return
         }
         
-        gameEngine.activatePowerUp(at: touch.location(in: self))
+        gameEngine.activatePowerUp(at: touch.location(in: self), with: nil)
     }
     
     func deselectPowerUp() {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp = nil
-        gameEngine.updateSelectedPowerUp()
+        selectedPowerUp = nil
+        gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
     }
     
     var selectedPowerUp: PowerUpType? {
-        playerAreaNode.powerUpContainerNode.selectedPowerUp
+        get {
+            playerAreaNode.powerUpContainerNode.selectedPowerUp
+        }
+        set {
+            playerAreaNode.powerUpContainerNode.selectedPowerUp = newValue
+        }
     }
     
     func deactivateGestureDetection() {

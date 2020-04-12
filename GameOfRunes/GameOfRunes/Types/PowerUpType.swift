@@ -16,149 +16,39 @@ enum PowerUpType: String, CaseIterable {
     case divineShield
     case heroicCall
     
-    var description: String {
+    var powerUp: PowerUp {
         switch self {
         case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.description
+            return DarkVortexPowerUp.shared
         case .hellfire:
-            return GameConfig.HellFirePowerUp.description
+            return HellfirePowerUp.shared
         case .icePrison:
-            return GameConfig.IcePrisonPowerUp.description
+            return IcePrisonPowerUp.shared
         case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.description
+            return DivineBlessingPowerUp.shared
         case .divineShield:
-            return GameConfig.DivineShieldPowerUp.description
+            return DivineShieldPowerUp.shared
         case .heroicCall:
-            return GameConfig.HeroicCallPowerUp.description
+            return HeroicCallPowerUp.shared
         }
     }
     
-    var manaUnitCost: Int {
-        switch self {
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.manaUnitCost
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.manaUnitCost
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.manaUnitCost
-        case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.manaUnitCost
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.manaUnitCost
-        case .heroicCall:
-            return GameConfig.HeroicCallPowerUp.manaUnitCost
-        }
-    }
-    
-    var getFadeOutDuration: TimeInterval {
-        switch self {
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.fadeOutDuration
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.fadeOutDuration
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.fadeOutDuration
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.fadeOutDuration
-        case .divineBlessing:
-            return GameConfig.DivineBlessingPowerUp.fadeOutDuration
-        default:
-            return 0
-        }
-    }
-    
-    var getPowerUpDuration: TimeInterval {
-        switch self {
-        case .hellfire:
-            return GameConfig.HellFirePowerUp.powerUpDuration
-        case .icePrison:
-            return GameConfig.IcePrisonPowerUp.powerUpDuration
-        case .darkVortex:
-            return GameConfig.DarkVortexPowerUp.powerUpDuration
-        case .divineShield:
-            return GameConfig.DivineShieldPowerUp.powerUpDuration
-        default:
-            return 0
-        }
-    }
-    
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
-        switch self {
-        case .hellfire:
-            return HellfirePowerUpEntity(at: position, with: size)
-        case .icePrison:
-            return IcePrisonPowerUpEntity(at: position, with: size)
-        case .darkVortex:
-            return DarkVortexPowerUpEntity(at: position, with: size)
-        case .divineShield:
-            return DivineShieldPowerUpEntity(at: position, with: size)
-        case .divineBlessing:
-            return DivineBlessingPowerUpEntity(at: position, with: size)
+    static func getPowerUpType(powerUp: PowerUp) -> PowerUpType? {
+        switch powerUp {
+        case is DarkVortexPowerUp:
+            return .darkVortex
+        case is HellfirePowerUp:
+            return .hellfire
+        case is IcePrisonPowerUp:
+            return .icePrison
+        case is DivineBlessingPowerUp:
+            return .divineBlessing
+        case is DivineShieldPowerUp:
+            return .divineShield
+        case is HeroicCallPowerUp:
+            return .heroicCall
         default:
             return nil
         }
-    }
-    
-    func getCastingAnimationNode(
-        at position: CGPoint,
-        with size: CGSize
-    ) -> SKSpriteNode {
-                                                                            // scale up the animation
-        let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
-        animationNode.position = position
-
-        // Create Animations (Casting of Power-Up)
-        let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: self)
-        let powerUpCastAnimation: SKAction = .animate(
-            with: powerUpCastTextures,
-            timePerFrame: 0.05,
-            resize: false,
-            restore: false
-        )
-
-        let animationAction = SKAction.sequence([powerUpCastAnimation])
-        let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
-        animationNode.run(SKAction.group([animationAction, soundAction]))
-
-        return animationNode
-    }
-    
-    /**
-     Returns the Animation Node with animation
-     for "casting" phase and "in-effect" phase.
-     */
-    func getAnimationNode(
-        at position: CGPoint,
-        with size: CGSize
-    ) -> SKSpriteNode {
-                                                                            // scale up the animation
-        let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
-        animationNode.position = position
-
-        // Create Animations (Casting of Power-Up)
-        let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: self)
-        let powerUpCastAnimation: SKAction = .animate(
-            with: powerUpCastTextures,
-            timePerFrame: 0.05,
-            resize: false,
-            restore: false
-        )
-
-        // Create Animation (When Power-Up is In Effect)
-        let powerUpTextures = TextureContainer.getPowerUpTextures(powerUpType: self)
-        let powerUpAnimation = SKAction.repeatForever(
-            .animate(
-                with: powerUpTextures,
-                timePerFrame: 0.05,
-                resize: false,
-                restore: false
-            )
-        )
-        
-        let animationAction = SKAction.sequence([powerUpCastAnimation, powerUpAnimation])
-        let soundAction = SKAction.playSoundFileNamed("cast power up", waitForCompletion: false)
-        animationNode.run(SKAction.group([animationAction, soundAction]))
-
-        return animationNode
     }
 }

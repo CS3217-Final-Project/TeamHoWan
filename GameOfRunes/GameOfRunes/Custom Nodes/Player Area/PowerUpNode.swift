@@ -36,7 +36,7 @@ class PowerUpNode: SKSpriteNode {
         powerUpIconNode = .init(powerUpType: powerUpType)
         super.init(texture: nil, color: .clear, size: powerUpIconNode.size.applying(.init(scaleX: 0.75, y: 1.0)))
         
-        powerUpManaCostLabel.text = "\(powerUpType.manaUnitCost)"
+        powerUpManaCostLabel.text = "\(powerUpType.powerUp.manaUnitCost)"
         powerUpManaCostLabel.fontColor = .black
         
         addChild(powerUpIconNode)

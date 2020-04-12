@@ -15,46 +15,9 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
         self.gameEngine = gameEngine
         super.init(componentClass: PowerUpComponent.self)
     }
-
-    func activatePowerUp(at position: CGPoint, with size: CGSize?) {
-        guard let powerUpType = gameEngine?.metadata.selectedPowerUp else {
-            return
-        }
-        
-        var powerUpSize = size
-        
-        switch powerUpType {
-        case .darkVortex:
-            // abitrary width for dark vortex
-            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
-            powerUpSize = .init(width: radius, height: radius)
-        case .divineShield:
-            let radius = (gameEngine?.gameScene?.size.width ?? UIScreen.main.bounds.width) / 2
-            powerUpSize = .init(width: radius, height: radius)
-        case .heroicCall:
-            gameEngine?.spawnPlayerUnitWave()
-        default:
-            break
-        }
-        
-        guard let size = powerUpSize,
-            let entity = powerUpType.createEntity(at: position, with: size) else {
-                return
-        }
-        
-        gameEngine?.add(entity)
-    }
     
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
-        
-        guard let powerUpType = entity.component(ofType: PowerUpComponent.self)?.powerUpType else {
-            return
-        }
-        
-        if powerUpType == .divineShield {
-            gameEngine?.activateInvincibleEndPoint()
-        }
     }
     
     override func removeComponent(foundIn entity: GKEntity) {
@@ -65,7 +28,7 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
         }
         
         if powerUpType == .divineShield {
-            gameEngine?.deactivateInvincibleEndPoint()
+            self.gameEngine?.deactivateInvincibleEndPoint()
         }
     }
 

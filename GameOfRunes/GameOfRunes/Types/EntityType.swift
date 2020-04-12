@@ -13,21 +13,8 @@ enum EntityType: CaseIterable {
     case endPointEntity
     case droppedManaEntity
     case timerEntity
-    case icePrisonPowerUpEntity
-    case hellFirePowerUpEntity
-    case darkVortexPowerUpEntity
-    case divineShieldPowerUpEntity
-    case divineBlessingPowerUpEntity
+    case powerUpEntity
     case comboEntity
     case attractionEntity
     case playerUnitEntity
-    
-    static var powerUps: [EntityType] {
-        [.icePrisonPowerUpEntity, .hellFirePowerUpEntity, .darkVortexPowerUpEntity,
-         .divineShieldPowerUpEntity, .divineBlessingPowerUpEntity]
-    }
-    
-    var isPowerUp: Bool {
-        Self.powerUps.contains(self)
-    }
 }
