@@ -11,18 +11,21 @@ import GameplayKit
 
 class DivineBlessingPowerUpEntity: Entity {
     override var type: EntityType {
-        .divineBlessingPowerUpEntity
+        .powerUpEntity
     }
     
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let animationNode = PowerUpType.divineBlessing.getCastingAnimationNode(at: position, with: size)
+        let powerUpType: PowerUpType = .divineBlessing
+        let powerUp = DivineBlessingPowerUp.shared
+        
+        let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
-        let timerComponent = TimerComponent(initialTimerValue: GameConfig.DivineBlessingPowerUp.powerUpDuration)
-        let powerUpComponent = PowerUpComponent(.divineBlessing)
+        let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
+        let powerUpComponent = PowerUpComponent(powerUpType)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)

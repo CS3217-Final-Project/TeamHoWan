@@ -17,7 +17,7 @@ class SpawnDelegate {
     // TODO: When timer is up, should retrieve this information from GameMetaData
     private var timeTillNextSpawn: TimeInterval
 
-    init(gameEngine: GameEngine, gameMetaData: GameMetaData) {
+    init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         self.timeTillNextSpawn = 0
     }

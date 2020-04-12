@@ -1,16 +1,14 @@
 platform :ios, "13.2"
-use_modular_headers!
 
 target "GameOfRunes" do
   pod "SwiftLint"
   pod "SnapKit"
   pod "Firebase/Database"
+  pod "RealmSwift", :modular_headers => true
+  pod "Realm", :modular_headers => true
   
   target "GameOfRunesTests" do
     inherit! :search_paths
     pod "Cuckoo"
   end
-  
-  pod "SnapKit"
-  pod "RealmSwift"
 end

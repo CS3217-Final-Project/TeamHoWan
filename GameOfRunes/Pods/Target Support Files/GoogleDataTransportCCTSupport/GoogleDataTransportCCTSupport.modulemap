@@ -1,6 +1,0 @@
-module GoogleDataTransportCCTSupport {
-  umbrella header "GoogleDataTransportCCTSupport-umbrella.h"
-
-  export *
-  module * { export * }
-}

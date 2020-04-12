@@ -9,16 +9,16 @@
 import SpriteKit
 import GameplayKit
 
-class GameEngine {
-    private var systemDelegate: SystemDelegate!
-    private var removeDelegate: RemoveDelegate!
-    var contactDelegate: ContactDelegate!
-    private var spawnDelegate: SpawnDelegate!
+class GameEngine: GameEngineFacade {
+    private lazy var removeDelegate: RemoveDelegate = .init(gameEngine: self)
+    private(set) lazy var contactDelegate: ContactDelegate = .init(gameEngine: self)
+    private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
+    private(set) var systems = [ComponentType: System]()
     private var toRemoveEntities = Set<Entity>()
-    private (set) var metadata: GameMetaData
-    weak var gameScene: GameScene?
-
+    private(set) weak var gameScene: GameSceneFacade?
+    let metadata: GameMetaData
+    
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
     }
@@ -26,22 +26,39 @@ class GameEngine {
         entities[.comboEntity]?.first as? ComboEntity
     }
     
-    init(gameScene: GameScene, stage: Stage, avatar: Avatar) {
+    var isDivineShieldActivated: Bool {
+        entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
+    }
+    
+    init(gameScene: GameSceneFacade, stage: Stage, avatar: Avatar) {
         self.gameScene = gameScene
-        metadata = GameMetaData(
+        self.metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
             manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
         )
-        systemDelegate = SystemDelegate(gameEngine: self)
-        removeDelegate = RemoveDelegate(gameEngine: self)
-        spawnDelegate = SpawnDelegate(gameEngine: self,
-                                      gameMetaData: metadata)
-        contactDelegate = ContactDelegate(gameEngine: self)
-
+        
         EntityType.allCases.forEach { entityType in
             entities[entityType] = Set()
         }
+        
+        systems = {
+            var systems = [ComponentType: System]()
+            
+            systems[.healthComponent] = HealthSystem()
+            systems[.scoreComponent] = ScoreSystem()
+            systems[.manaComponent] = ManaSystem(gameEngine: self)
+            systems[.moveComponent] = MoveSystem(gameEngine: self)
+            systems[.spriteComponent] = SpriteSystem(gameEngine: self)
+            systems[.labelComponent] = LabelSystem(gameEngine: self)
+            systems[.playerComponent] = PlayerSystem(gameEngine: self)
+            systems[.timerComponent] = TimerSystem(gameEngine: self)
+            systems[.powerUpComponent] = PowerUpSystem(gameEngine: self)
+            systems[.attractionEntitiesComponent] = AttractionEntitiesSystem(gameEngine: self)
+            systems[.gestureEntityComponent] = GestureEntitySystem(gameEngine: self)
+            
+            return systems
+        }()
     }
     
     func add(_ entity: Entity) {
@@ -49,7 +66,24 @@ class GameEngine {
             return
         }
         
-        systemDelegate.addComponents(foundIn: entity)
+        addComponents(foundIn: entity)
+    }
+    
+    func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode) {
+        add(PlayerEntity(
+            gameEngine: self,
+            healthNode: healthNode,
+            manaNode: manaNode,
+            scoreNode: scoreNode
+        ))
+    }
+    
+    func addTimerEntity(timerNode: SKLabelNode, initialTimerValue: TimeInterval) {
+        add(TimerEntity(gameEngine: self, timerNode: timerNode, initialTimerValue: initialTimerValue))
+    }
+    
+    func addEndPointEntity(node: SKSpriteNode, team: Team) {
+        add(EndPointEntity(node: node, team: team))
     }
     
     func remove(_ entity: Entity) {
@@ -60,16 +94,12 @@ class GameEngine {
         toRemoveEntities.insert(entity)
     }
     
-    func removeComponent(_ component: Component) {
-        systemDelegate.removeComponent(component)
-    }
-    
     func update(with deltaTime: TimeInterval) {
         spawnDelegate.update(with: deltaTime)
-        systemDelegate.update(with: deltaTime)
+        updateSystems(with: deltaTime)
         
         toRemoveEntities.forEach { entity in
-            systemDelegate.removeComponents(foundIn: entity)
+            removeComponents(foundIn: entity)
         }
         
         toRemoveEntities = []
@@ -78,7 +108,7 @@ class GameEngine {
         if metadata.playerHealth <= 0 {
             gameScene?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
-
+        
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
@@ -86,7 +116,7 @@ class GameEngine {
             gameScene?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
-
+    
     /** Will start the next Spawn Wave. Function called when Summon button is presesd. */
     func startNextSpawnWave() {
         spawnDelegate.startNextSpawnWave()
@@ -134,12 +164,12 @@ class GameEngine {
             return
         }
         
-        systemDelegate.addScore(by: points, multiplier: metadata.multiplier, for: playerEntity)
+        addScore(by: points, multiplier: metadata.multiplier, for: playerEntity)
     }
     
     func gestureActivated(gesture: CustomGesture) {
         var count = 0
-
+        
         for entity in entities(for: .gestureEntity) {
             guard let gestureComponent = entity.component(ofType: GestureComponent.self),
                 gestureComponent.gesture == gesture else {
@@ -148,49 +178,39 @@ class GameEngine {
             removeDelegate.removeGesture(for: entity)
             count += 1
         }
-
+        
         guard let playerEntity = playerEntity else {
             return
         }
         
-        systemDelegate.addMultiKillScore(count: count, for: playerEntity)
-    }
-    
-    func setInitialGesture(for entity: Entity) {
-        systemDelegate.setInitialGesture(for: entity) 
-    }
-        
-    func setNextGesture(for entity: Entity, using gesture: CustomGesture? = nil) {
-        systemDelegate.setGesture(for: entity, using: gesture)
-    }
-    
-    func minusHealthPoints(for entity: Entity) -> Int? {
-        systemDelegate.minusHealthPoints(for: entity)
+        addMultiKillScore(count: count, for: playerEntity)
     }
     
     func unitForceRemoved(_ entity: Entity) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-
-        removeDelegate.removeUnit(entity)
+        
+        removeDelegate.removeUnit(
+            entity,
+            shouldDecreasePlayerHealth: false,
+            shouldIncreaseScore: true,
+            fullAnimation: true
+        )
     }
     
     func unitReachedLine(_ entity: Entity) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity else {
             return
         }
-                                          // only remove player health if it is enemyEntity
-        removeDelegate.removeUnit(entity, shouldDecreasePlayerHealth: entity.type == .enemyEntity)
-    }
-    
-    func dropMana(at entity: Entity) {
-        systemDelegate.dropMana(at: entity)
-    }
-    
-    func changeAnimationSpeed(for entity: Entity, duration: TimeInterval, to speed: Float, animationNodeKey: String) {
-        systemDelegate.changeAnimationSpeed(for: entity, duration: duration, to: speed,
-                                            animationNodeKey: animationNodeKey)
+        
+        removeDelegate.removeUnit(
+            entity,
+            // only remove player health if it is enemyEntity
+            shouldDecreasePlayerHealth: entity.type == .enemyEntity,
+            shouldIncreaseScore: false,
+            fullAnimation: true
+        )
     }
     
     func increasePlayerMana(by manaPoints: Int) {
@@ -198,82 +218,58 @@ class GameEngine {
             return
         }
         
-        systemDelegate.increaseMana(by: manaPoints, for: playerEntity)
+        increaseMana(by: manaPoints, for: playerEntity)
     }
     
     func decreasePlayerMana(by manaPoints: Int) {
         increasePlayerMana(by: -manaPoints)
     }
     
-    func changeMovementSpeed(for enemyEntity: Entity, to speed: Float, duration: TimeInterval) {
-        systemDelegate.changeMovementSpeed(
-            for: enemyEntity,
-            to: speed,
-            duration: duration
-        )
-    }
-    
-    func runFadingAnimation(_ entity: Entity) {
-        systemDelegate.runFadingAnimation(entity)
-    }
-    
-    func setLabel(_ entity: Entity, label: String) {
-        systemDelegate.setLabel(entity, label: label)
-    }
-    
-    func decreaseLabelOpacity(_ entity: Entity) {
-        systemDelegate.decreaseLabelOpacity(entity)
-    }
-    
     func incrementCombo() {
         if comboEntity == nil {
             add(ComboEntity(gameEngine: self))
         }
+        
         guard let comboEntity = comboEntity else {
             return
         }
-        systemDelegate.incrementCombo(comboEntity)
+        
+        incrementCombo(comboEntity)
     }
     
     func incrementMultiplier() {
         guard let comboEntity = comboEntity else {
             return
         }
-        systemDelegate.incrementMultiplier(comboEntity)
+        
+        incrementMultiplier(comboEntity)
     }
     
     func endCombo() {
         guard let comboEntity = comboEntity else {
             return
         }
-
+        
         remove(comboEntity)
         metadata.multiplier = 1.0
     }
     
-    func updateSelectedPowerUp() {
-        metadata.selectedPowerUp = gameScene?.selectedPowerUp
+    func updateSelectedPowerUp(powerUpType: PowerUpType?) {
+        metadata.selectedPowerUp = powerUpType
         
-        switch metadata.selectedPowerUp {
-        case .heroicCall:
-            // although these power ups do not need position, position is set to center of screen
-            // so that that messages will appear at the center if any
-            activatePowerUp(at: gameScene?.center
-                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
-        case .divineShield:
-            activatePowerUp(at: gameScene?.playerEndPoint.position
-                ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
-        case .darkVortex:
-            gameScene?.deactivateGestureDetection()
-        default:
-            // do nth for other power ups or nil
-            // ensure gesture detection is activated
+        guard let selectedPowerUp = metadata.selectedPowerUp else {
             gameScene?.activateGestureDetection()
+            return
+        }
+        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
+            activatePowerUp(at: gameScene?.center ?? .init(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY))
+        } else {
+            selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
         }
     }
-
+    
     private func checkIfPowerUpIsDisabled(_ powerUp: PowerUpType) -> Bool {
-        let disabledPowerUps = entities(for: .enemyEntity).reduce(Set<PowerUpType>(), { result, entity in
+        let disabledPowerUps = entities(for: .enemy).reduce(Set<PowerUpType>(), { result, entity in
             result.union(entity.component(ofType: EnemyTypeComponent.self)?.enemyType.disablePowerUps ?? [])
         })
         
@@ -292,15 +288,15 @@ class GameEngine {
             return
         }
         
-        let manaPointsRequired = selectedPowerUp.manaUnitCost * metadata.manaPointsPerManaUnit
-
+        let manaPointsRequired = selectedPowerUp.powerUp.manaUnitCost * metadata.manaPointsPerManaUnit
+        
         guard metadata.playerMana >= manaPointsRequired else {
             gameScene?.showInsufficientMana(at: position)
             gameScene?.deselectPowerUp()
             return
         }
         
-        systemDelegate.activatePowerUp(at: position, with: size)
+        selectedPowerUp.powerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
         gameScene?.deselectPowerUp()
     }
@@ -315,8 +311,8 @@ class GameEngine {
         }) else {
             return
         }
-
-        systemDelegate.activateInvincibleEndPoint(for: entity)
+        
+        activateInvincibleEndPoint(for: entity)
     }
     
     func deactivateInvincibleEndPoint() {
@@ -326,7 +322,7 @@ class GameEngine {
             return
         }
         
-        systemDelegate.deactivateInvincibleEndPoint(for: entity)
+        deactivateInvincibleEndPoint(for: entity)
     }
 }
 
@@ -344,6 +340,6 @@ extension GameEngine: DroppedManaResponder {
         }
         
         increasePlayerMana(by: manaPoints)
-        removeDelegate?.removeDroppedMana(droppedManaEntity)
+        removeDelegate.removeDroppedMana(droppedManaEntity)
     }
 }

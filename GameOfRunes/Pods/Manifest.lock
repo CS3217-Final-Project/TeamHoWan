@@ -48,6 +48,7 @@ PODS:
 DEPENDENCIES:
   - Cuckoo
   - Firebase/Database
+  - Realm
   - RealmSwift
   - SnapKit
   - SwiftLint
@@ -89,6 +90,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: f5ff83dd4919a7d3d984e2981d6236712013b8b7
+PODFILE CHECKSUM: 3c58c0ae50d4a6d21f5e3863b0fe8fb524edc59e
 
 COCOAPODS: 1.9.0

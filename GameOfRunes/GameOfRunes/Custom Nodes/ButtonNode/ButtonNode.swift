@@ -69,12 +69,6 @@ class ButtonNode: SKSpriteNode {
     }
     
     func onTouchEnded(_ touches: Set<UITouch>) {
-        guard let touch = touches.first,
-            let parent = self.parent,
-            parent.atPoint(touch.location(in: parent)) === self else {
-                return
-        }
-        
         responder.onTapped(tappedNode: self)
     }
 }

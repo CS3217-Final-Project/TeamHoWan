@@ -57,88 +57,24 @@ enum GameConfig {
         static let manaPerManaUnit: Int = 10
     }
 
-    enum DarkVortexPowerUp {
-        static let powerUpDuration: TimeInterval = 5
-        static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Dark Vortex
-            Tap on the arena to summon a dark vortex
-            that pulls nearby enemies towards it
-            """
-    }
-
-    enum HellFirePowerUp {
-        static let powerUpDuration: TimeInterval = 5
-        static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Hellfire
-            Draw a circle to invoke a ring of fire
-            that destroys all enemies that touches it
-            """
-    }
-
-    enum IcePrisonPowerUp {
-        static let powerUpDuration: TimeInterval = 5
-        static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Ice Prison
-            Draw a circle to call upon an ancient spell
-            that freezes all enemies in the region
-            """
-    }
-
-    enum DivineBlessingPowerUp {
-        static let powerUpDuration: TimeInterval = 5
-        static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Divine Blessing
-            Draw a circle to invoke a divine blessing that
-            simplifies all enemy gestures in the region
-            """
-    }
-    
-    enum DivineShieldPowerUp {
-        static let powerUpDuration: TimeInterval = 5
-        static let fadeOutDuration: TimeInterval = 0.5
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Divine Shield
-            Tap to use the divine shield bestowed by King
-            Arthur himself which gives invulnerability
-            """
-    }
-
-    enum HeroicCallPowerUp {
-        static let manaUnitCost: Int = 1
-        static let description = """
-            Heroic Call
-            Tap to to call upon a wave of elite knights
-            to fight against incoming enemies
-            """
-    }
-
     enum SceneManager {
         static let sceneTransitionDuration: TimeInterval = 0.5
     }
 
     enum GamePauseScene {
-        static let buttonWidthRatio: CGFloat = 1 / 8
-        static let buttonHeightRatio: CGFloat = 1 / 8
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum GameEndScene {
         static let fontSizeRatio: CGFloat = 1 / 12
-        static let buttonWidthRatio: CGFloat = 1 / 8
-        static let buttonHeightRatio: CGFloat = 1 / 8
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum GamePlayScene {
-        static let buttonWidthRatio: CGFloat = 1 / 10
-        static let buttonHeightRatio: CGFloat = 1 / 10
+        static let buttonWidthRatio: CGFloat = 1 / 8
+        static let buttonHeightRatio: CGFloat = 1 / 8
         static let buttonMargin: CGFloat = 10
         
         // zPositions
