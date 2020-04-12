@@ -1,5 +1,5 @@
 //
-//  GameSelectionState.swift
+//  GameStageSelectionState.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 28/3/20.
@@ -9,10 +9,10 @@
 import GameplayKit
 
 /** State for `GameStateMachine` when the player is selecting the Stage. */
-class GameSelectionState: GKState {
+class GameStageSelectionState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        stateClass is GameStartState.Type
+        stateClass is GameStartState.Type || stateClass is GameModeSelectionState.Type
     }
     
     override func didEnter(from previousState: GKState?) {

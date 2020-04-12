@@ -48,6 +48,8 @@ class GameMapScene: SKScene {
     }
     
     override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
         buildLayers()
         setUpMap()
         setUpStageNodes()
@@ -70,19 +72,6 @@ class GameMapScene: SKScene {
         super.willMove(from: view)
         
         view.gestureRecognizers?.forEach { view.removeGestureRecognizer($0) }
-    }
-    
-    private func setUpScene() {
-        
-        // add play button
-        let texture = SKTexture(imageNamed: "play-button")
-        let playButton = ButtonNode(
-            size: texture.size(),
-            texture: texture,
-            buttonType: .playButton
-        )
-        
-        addChild(playButton)
     }
     
     deinit {

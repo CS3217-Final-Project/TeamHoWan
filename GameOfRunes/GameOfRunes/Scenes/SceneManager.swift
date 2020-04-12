@@ -20,6 +20,7 @@ class SceneManager {
         case pause
         case end(win: Bool)
         case map
+        case home
     }
     
     private let presentingView: SKView
@@ -31,6 +32,7 @@ class SceneManager {
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
     private let gameMapScene: GameMapScene
+    private let gameHomeScene: GameHomeScene
     
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
         // TODO: The following can be removed once the code is in production
@@ -47,6 +49,7 @@ class SceneManager {
         self.gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameMapScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        self.gameHomeScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
     }
     
     func transitionToScene(sceneIdentifier: SceneIdentifier) {
@@ -68,6 +71,9 @@ class SceneManager {
             refreshGameMap()
             scene = gameMapScene
             transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        case .home:
+            scene = gameHomeScene
+            transition = .crossFade(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
         
         presentingView.presentScene(scene, transition: transition)

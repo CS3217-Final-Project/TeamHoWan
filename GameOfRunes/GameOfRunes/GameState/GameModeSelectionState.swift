@@ -1,20 +1,18 @@
 //
-//  GamePauseState.swift
+//  GameModeSelectionState.swift
 //  GameOfRunes
 //
-//  Created by Brian Yen on 11/3/20.
+//  Created by Jermy on 12/4/20.
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
 import GameplayKit
 
-/** State for `GameStateMachine` when the Game is paused. */
-class GamePauseState: GKState {
+/** State for `GameStateMachine` when the player is selecting the game mode (Single/Multiplayer). */
+class GameModeSelectionState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        stateClass is GameInPlayState.Type
-            || stateClass is GameStageSelectionState.Type
-            || stateClass is GameStartState.Type
+        stateClass is GameStageSelectionState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
@@ -25,6 +23,6 @@ class GamePauseState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
-        sceneManager.transitionToScene(sceneIdentifier: .pause)
+        sceneManager.transitionToScene(sceneIdentifier: .home)
     }
 }

@@ -21,12 +21,13 @@
                          GameStartState(),
                          GamePauseState(),
                          GameEndState(),
-                         GameSelectionState()]
+                         GameStageSelectionState(),
+                         GameModeSelectionState()]
             )
             view.isMultipleTouchEnabled = false
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
             gameStateMachine.sceneManager = sceneManager
-            gameStateMachine.enter(GameSelectionState.self)
+            gameStateMachine.enter(GameModeSelectionState.self)
         }
     }
     

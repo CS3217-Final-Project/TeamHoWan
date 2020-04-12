@@ -50,6 +50,8 @@ class GameScene: SKScene, GameSceneFacade {
     }
     
     override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
         guard let stage = gameStateMachine?.stage,
             let avatar = gameStateMachine?.avatar else {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")

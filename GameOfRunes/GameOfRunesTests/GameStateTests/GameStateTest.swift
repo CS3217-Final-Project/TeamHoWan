@@ -14,7 +14,8 @@ class GameStateTest: BaseUnitTest {
     var gameStartState: MockGameStartState!
     var gamePauseState: MockGamePauseState!
     var gameEndState: MockGameEndState!
-    var gameSelectionState: MockGameSelectionState!
+    var gameStageSelectionState: MockGameStageSelectionState!
+    var gameModeSelectionState: MockGameModeSelectionState!
 
     override func setUp() {
         super.setUp()
@@ -22,7 +23,8 @@ class GameStateTest: BaseUnitTest {
         gameStartState = MockGameStartState().withEnabledSuperclassSpy()
         gamePauseState = MockGamePauseState().withEnabledSuperclassSpy()
         gameEndState = MockGameEndState().withEnabledSuperclassSpy()
-        gameSelectionState = MockGameSelectionState().withEnabledSuperclassSpy()
+        gameStageSelectionState = MockGameStageSelectionState().withEnabledSuperclassSpy()
+        gameModeSelectionState = MockGameModeSelectionState().withEnabledSuperclassSpy()
     }
 
     func testStartStateNextValidState() {
@@ -30,7 +32,8 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameStartState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gameStartState.isValidNextState(MockGameEndState.self))
         XCTAssertFalse(gameStartState.isValidNextState(MockGameStartState.self))
-        XCTAssertFalse(gameStartState.isValidNextState(MockGameSelectionState.self))
+        XCTAssertFalse(gameStartState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertFalse(gameStartState.isValidNextState(MockGameModeSelectionState.self))
     }
 
     func testInPlayStateNextValidState() {
@@ -38,7 +41,8 @@ class GameStateTest: BaseUnitTest {
         XCTAssertTrue(gameInPlayState.isValidNextState(MockGamePauseState.self))
         XCTAssertTrue(gameInPlayState.isValidNextState(MockGameEndState.self))
         XCTAssertFalse(gameInPlayState.isValidNextState(MockGameStartState.self))
-        XCTAssertFalse(gameInPlayState.isValidNextState(MockGameSelectionState.self))
+        XCTAssertFalse(gameInPlayState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertFalse(gameInPlayState.isValidNextState(MockGameModeSelectionState.self))
     }
 
     func testPauseStateNextValidState() {
@@ -46,7 +50,8 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gamePauseState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gamePauseState.isValidNextState(MockGameEndState.self))
         XCTAssertTrue(gamePauseState.isValidNextState(MockGameStartState.self))
-        XCTAssertTrue(gamePauseState.isValidNextState(MockGameSelectionState.self))
+        XCTAssertTrue(gamePauseState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertFalse(gamePauseState.isValidNextState(MockGameModeSelectionState.self))
     }
 
     func testEndStateNextValidState() {
@@ -54,14 +59,25 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameEndState.isValidNextState(MockGamePauseState.self))
         XCTAssertFalse(gameEndState.isValidNextState(MockGameEndState.self))
         XCTAssertTrue(gameEndState.isValidNextState(MockGameStartState.self))
-        XCTAssertTrue(gameEndState.isValidNextState(MockGameSelectionState.self))
+        XCTAssertTrue(gameEndState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertFalse(gameEndState.isValidNextState(MockGameModeSelectionState.self))
     }
     
-    func testSelectionStateNextValidState() {
-        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameInPlayState.self))
-        XCTAssertFalse(gameSelectionState.isValidNextState(MockGamePauseState.self))
-        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameEndState.self))
-        XCTAssertTrue(gameSelectionState.isValidNextState(MockGameStartState.self))
-        XCTAssertFalse(gameSelectionState.isValidNextState(MockGameSelectionState.self))
+    func testStageSelectionStateNextValidState() {
+        XCTAssertFalse(gameStageSelectionState.isValidNextState(MockGameInPlayState.self))
+        XCTAssertFalse(gameStageSelectionState.isValidNextState(MockGamePauseState.self))
+        XCTAssertFalse(gameStageSelectionState.isValidNextState(MockGameEndState.self))
+        XCTAssertTrue(gameStageSelectionState.isValidNextState(MockGameStartState.self))
+        XCTAssertFalse(gameStageSelectionState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertTrue(gameStageSelectionState.isValidNextState(MockGameModeSelectionState.self))
+    }
+    
+    func testModeSelectionStateNextValidState() {
+        XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGameInPlayState.self))
+        XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGamePauseState.self))
+        XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGameEndState.self))
+        XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGameStartState.self))
+        XCTAssertTrue(gameModeSelectionState.isValidNextState(MockGameStageSelectionState.self))
+        XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGameModeSelectionState.self))
     }
 }

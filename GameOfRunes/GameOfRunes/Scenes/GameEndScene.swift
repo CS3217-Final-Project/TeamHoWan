@@ -60,13 +60,15 @@ class GameEndScene: SKScene, TapResponder {
     }
 
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
         statusLabel.text = didWin ? "You Won!" : "You Lost :("
     }
 
     func onTapped(tappedNode: ButtonNode) {
         switch tappedNode.buttonType {
         case .homeButton:
-            gameStateMachine?.enter(GameSelectionState.self)
+            gameStateMachine?.enter(GameStageSelectionState.self)
         case .restartButton:
             gameStateMachine?.enter(GameStartState.self)
         default:
