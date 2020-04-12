@@ -22,4 +22,9 @@ enum ButtonType {
     case startButton
     case multiplayerButton
     case singlePlayerButton
+    case backButton
+    case joinRoomButton
+    case hostRoomButton
+    case joinButton
+    case leaveButton
 }

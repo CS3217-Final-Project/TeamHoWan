@@ -12,6 +12,7 @@ class GameMapScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
     private var previousCameraPosition: CGPoint = .zero
     private var mapSize: CGSize!
+    private let backNode: BackNode = .init()
     private var stagePreviewNode: StagePreviewNode!
     private var stageSelectionNode: StageSelectionNode!
     private var selectedStageNode: StageNode? {
@@ -54,6 +55,7 @@ class GameMapScene: SKScene {
         setUpMap()
         setUpStageNodes()
         setUpCamera()
+        setUpBackButton()
         setUpStagePreview()
         setUpStageSelection()
         
@@ -126,6 +128,8 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
         case .powerUpIconButton:
             stageSelectionNode.updatePowerUpDescription()
+        case .backButton:
+            gameStateMachine?.enter(GameModeSelectionState.self)
         default:
             print("Unknown node tapped:", tappedNode)
         }
@@ -187,6 +191,16 @@ extension GameMapScene {
         camera.constraints = [.positionX(xRange, y: yRange)]
         
         cameraLayer.addChild(camera)
+    }
+    
+    private func setUpBackButton() {
+        backNode.size = backNode.size.scaleTo(width: size.width / 7)
+        backNode.position = .init(
+            x: -size.width / 2 + backNode.size.width / 1.5,
+            y: size.height / 2 - backNode.size.height / 1.5
+        )
+        backNode.zPosition = -50
+        camera?.addChild(backNode)
     }
     
     private func setUpStagePreview() {

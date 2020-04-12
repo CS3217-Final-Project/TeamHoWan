@@ -10,8 +10,19 @@ import SpriteKit
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
+    private let backNode: BackNode = .init()
     private let startViewNode: SKNode = .init()
     private let gameModeSelectionViewNode: SKNode = .init()
+    private let multiplayerActionViewNode: SKNode = .init()
+    private let joinRoomViewNode: SKNode = .init()
+    private let hostRoomViewNode: SKNode = .init()
+    private weak var currentViewNode: SKNode?
+    private var navigationStack: [SKNode] = [] {
+        didSet {
+            print(navigationStack)
+            backNode.isHidden = navigationStack.isEmpty
+        }
+    }
     
     // layers
     private let backgroundLayer: SKNode = .init()
@@ -40,8 +51,11 @@ class GameHomeScene: SKScene {
         
         buildLayers()
         setUpBackground()
+        setUpBackButton()
         setUpStartView()
         setUpGameModeSelectionView()
+        setUpMultiplayerActionView()
+        setUpJoinRoomView()
         
         addChild(bgmNode)
     }
@@ -59,10 +73,20 @@ extension GameHomeScene: TapResponder {
         switch tappedNode.buttonType {
         case .startButton:
             transit(from: startViewNode, to: gameModeSelectionViewNode)
+            navigationStack.append(startViewNode)
+            currentViewNode = gameModeSelectionViewNode
         case .singlePlayerButton:
             gameStateMachine?.enter(GameStageSelectionState.self)
         case .multiplayerButton:
-            gameStateMachine?.enter(GameStageSelectionState.self)
+            transit(from: gameModeSelectionViewNode, to: multiplayerActionViewNode)
+            navigationStack.append(gameModeSelectionViewNode)
+            currentViewNode = multiplayerActionViewNode
+        case .backButton:
+            guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
+                return
+            }
+            transit(from: currentViewNode, to: previousViewNode)
+            self.currentViewNode = previousViewNode
         default:
             print("Unknown node tapped:", tappedNode)
         }
@@ -90,6 +114,16 @@ extension GameHomeScene {
         backgroundLayer.addChild(backgroundNode)
     }
     
+    private func setUpBackButton() {
+        backNode.size = backNode.size.scaleTo(width: size.width / 7)
+        backNode.position = .init(
+            x: -size.width / 2 + backNode.size.width / 1.5,
+            y: size.height / 2 - backNode.size.height / 1.5
+        )
+        backNode.isHidden = true
+        uiLayer.addChild(backNode)
+    }
+    
     private func setUpStartView() {
         let gameIconTexture = SKTexture(imageNamed: "GameOfRunes-logo-transparent")
         let gameIcon = SKSpriteNode(
@@ -114,23 +148,50 @@ extension GameHomeScene {
     private func setUpGameModeSelectionView() {
         let singlePlayerButtonTexture = SKTexture(imageNamed: "single-player-button")
         let singlePlayerButton = ButtonNode(
-            size: singlePlayerButtonTexture.size().scaleTo(width: size.width * 0.7),
+            size: singlePlayerButtonTexture.size().scaleTo(width: size.width * 0.4),
             texture: singlePlayerButtonTexture,
             buttonType: .singlePlayerButton,
-            position: .init(x: 0.0, y: size.height * 0.125)
+            position: .init(x: 0.0, y: size.height * 0.2)
         )
         
         let multiplayerButtonTexture = SKTexture(imageNamed: "multiplayer-button")
         let multiplayerButton = ButtonNode(
-            size: multiplayerButtonTexture.size().scaleTo(width: size.width * 0.7),
+            size: multiplayerButtonTexture.size().scaleTo(width: size.width * 0.4),
             texture: multiplayerButtonTexture,
             buttonType: .multiplayerButton,
-            position: .init(x: 0.0, y: -size.height * 0.225)
+            position: .init(x: 0.0, y: -size.height * 0.2)
         )
         
         gameModeSelectionViewNode.addChild(singlePlayerButton)
         gameModeSelectionViewNode.addChild(multiplayerButton)
         gameModeSelectionViewNode.alpha = .zero
         uiLayer.addChild(gameModeSelectionViewNode)
+    }
+    
+    private func setUpMultiplayerActionView() {
+        let hostRoomButtonTexture = SKTexture(imageNamed: "host-room-button")
+        let hostRoomButton = ButtonNode(
+            size: hostRoomButtonTexture.size().scaleTo(height: size.width * 0.4),
+            texture: hostRoomButtonTexture,
+            buttonType: .hostRoomButton,
+            position: .init(x: -size.width * 0.225, y: 0.0)
+        )
+        
+        let joinRoomButtonTexture = SKTexture(imageNamed: "join-room-button")
+        let joinRoomButton = ButtonNode(
+            size: joinRoomButtonTexture.size().scaleTo(height: size.width * 0.4),
+            texture: joinRoomButtonTexture,
+            buttonType: .joinRoomButton,
+            position: .init(x: size.width * 0.225, y: 0.0)
+        )
+        
+        multiplayerActionViewNode.addChild(hostRoomButton)
+        multiplayerActionViewNode.addChild(joinRoomButton)
+        multiplayerActionViewNode.alpha = .zero
+        uiLayer.addChild(multiplayerActionViewNode)
+    }
+    
+    private func setUpJoinRoomView() {
+        
     }
 }

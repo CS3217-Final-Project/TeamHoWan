@@ -1,8 +1,8 @@
 {
   "images" : [
     {
+      "filename" : "host-room-button.png",
       "idiom" : "universal",
-      "filename" : "joingame.png",
       "scale" : "1x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

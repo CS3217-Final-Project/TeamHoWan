@@ -29,6 +29,7 @@
 		4A45E90124435C5E00F9FA22 /* GameModeSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */; };
 		4A45E9032443730A00F9FA22 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9022443730A00F9FA22 /* HomeViewController.swift */; };
 		4A45E9052443868E00F9FA22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A45E9042443868E00F9FA22 /* GoogleService-Info.plist */; };
+		4A45E9072443990200F9FA22 /* BackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9062443990200F9FA22 /* BackNode.swift */; };
 		4A5B423E243F27A800DF4D32 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B423D243F27A800DF4D32 /* PowerUp.swift */; };
 		4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */; };
 		4A6213DE24309B0500FABB48 /* AvatarSelectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */; };
@@ -235,6 +236,7 @@
 		4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionState.swift; sourceTree = "<group>"; };
 		4A45E9022443730A00F9FA22 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A45E9042443868E00F9FA22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4A45E9062443990200F9FA22 /* BackNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackNode.swift; sourceTree = "<group>"; };
 		4A5B423D243F27A800DF4D32 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4A6213DB2430941000FABB48 /* AvatarOverviewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarOverviewNode.swift; sourceTree = "<group>"; };
 		4A6213DD24309B0500FABB48 /* AvatarSelectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionNode.swift; sourceTree = "<group>"; };
@@ -602,8 +604,9 @@
 			children = (
 				8AAE9BFF241E2DE200D29593 /* DroppedManaNode */,
 				4A8F0AA624191B6D00CD730B /* Player Area */,
-				8AAADE4924191D7A00606298 /* ButtonNode */,
+				8AAADE4924191D7A00606298 /* Button Node */,
 				4A09C4F4242FCB9D00CA7625 /* Game Map */,
+				4A45E9062443990200F9FA22 /* BackNode.swift */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
 				56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */,
 			);
@@ -883,12 +886,12 @@
 			path = PowerUps;
 			sourceTree = "<group>";
 		};
-		8AAADE4924191D7A00606298 /* ButtonNode */ = {
+		8AAADE4924191D7A00606298 /* Button Node */ = {
 			isa = PBXGroup;
 			children = (
 				8A5CE9C62418893B00BEC4B9 /* ButtonNode.swift */,
 			);
-			path = ButtonNode;
+			path = "Button Node";
 			sourceTree = "<group>";
 		};
 		8AAE9BFF241E2DE200D29593 /* DroppedManaNode */ = {
@@ -1350,6 +1353,7 @@
 				56FF3A2024405B9800745A8D /* HellfirePowerUp.swift in Sources */,
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
+				4A45E9072443990200F9FA22 /* BackNode.swift in Sources */,
 				56BEDFA62441620A001737BC /* AllAnimationPowerUp.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
 				4A1B334624330CAB00B67B91 /* Storage.swift in Sources */,
