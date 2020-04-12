@@ -21,15 +21,6 @@ class GameEngineTest: BaseUnitTest {
         }
         baseNumberOfAdditions = 3 + GameConfig.GamePlayScene.numEndPoints
     }
-    
-//    func testEmptyEntities() {
-//        for entityType in EntityType.allCases {
-//            XCTAssertTrue(gameEngine.entities(for: entityType).isEmpty)
-//        }
-//
-//        XCTAssertTrue(gameEngine.entities(for: .enemy).isEmpty)
-//        XCTAssertTrue(gameEngine.entities(for: .player).isEmpty)
-//    }
 
     /**
      When `RootRenderNode` is first initialised, it already adds Entities to `GameEngine`.
@@ -60,7 +51,8 @@ class GameEngineTest: BaseUnitTest {
             Set([bossEnemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity]))
         XCTAssertTrue(gameEngine.entities(for: .enemy) == [bossEnemyEntity])
         gameEngine.add(endPointEntity)
-        verify(gameEngine, times(baseNumberOfAdditions + 5 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
+        verify(gameEngine, times(baseNumberOfAdditions + 5
+                                + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
         XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity) == Set([bossEnemyEntity]))
@@ -68,7 +60,8 @@ class GameEngineTest: BaseUnitTest {
             Set([bossEnemyEntity.component(ofType: GestureEntityComponent.self)?.gestureEntity]))
         XCTAssertTrue(gameEngine.entities(for: .enemy) == [bossEnemyEntity])
         gameEngine.add(darkVortexPowerUpEntity)
-        verify(gameEngine, times(baseNumberOfAdditions + 7 + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
+        verify(gameEngine, times(baseNumberOfAdditions + 7
+                                + GameConfig.GamePlayScene.numEndPoints)).add(any(Entity.self))
         XCTAssertTrue(gameEngine.entities(for: .timerEntity).count == 2)
         XCTAssertTrue(Set([timerEntity]).isSubset(of: gameEngine.entities(for: .timerEntity)))
         XCTAssertTrue(gameEngine.entities(for: .enemyEntity) == Set([bossEnemyEntity]))
@@ -108,7 +101,8 @@ class GameEngineTest: BaseUnitTest {
     func testMoveComponents() {
         gameEngine.add(bossEnemyEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
-        XCTAssertEqual(gameEngine.moveComponents(for: .player).count, GameConfig.GamePlayScene.numEndPoints) //AttractionEntity
+        XCTAssertEqual(gameEngine.moveComponents(for: .player).count,
+                       GameConfig.GamePlayScene.numEndPoints) //AttractionEntity
         gameEngine.add(endPointEntity)
         XCTAssertTrue(gameEngine.moveComponents(for: .enemy).count == 1)
         XCTAssertTrue(gameEngine.moveComponents(for: .player).count == GameConfig.GamePlayScene.numEndPoints * 2)

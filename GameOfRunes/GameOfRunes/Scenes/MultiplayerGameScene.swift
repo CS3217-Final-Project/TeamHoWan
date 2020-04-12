@@ -8,6 +8,18 @@
 
 import SpriteKit
 
+/**
+ `SKScene` for the multiplayer game. This game has 2 main games
+ running at the same time (the local (main) game, and the remote (mini-map)
+ game). Each game is updated by their own respective game engines, which
+ in turn will update according to the normal game engine logic and periodically
+ sync the game state with the game state obtained via the network (in order
+ for multiplayer to function properly).
+ - The local (main) game is rooted at `rootRenderNode` and is associated
+ with the `MultiplayerLocalGameEngine`
+ - The remote (mini-map) game is rooted at `remoteRootRenderNode` and
+ is associated with the `MultiplayerRemoteGameEngine`
+ */
 class MultiplayerGameScene: GameScene {
     var remoteRootRenderNode: RemoteRootRenderNode!
     override init(size: CGSize, gameStateMachine: GameStateMachine) {

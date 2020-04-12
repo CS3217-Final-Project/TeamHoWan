@@ -50,8 +50,6 @@ class HomeViewController: UIViewController {
         // Self.storage.reset()
         
         if Self.storage.isFirstInit {
-            //TODO: DEBUG
-            print("this is the first init")
             initStagesInDatabase()
         }
     }
@@ -255,7 +253,7 @@ extension HomeViewController {
     }
 }
 
-// TODO: Get rid of this after code finalisation
+// TODO: For temporary Multiplayer Button: Get rid of this after UI For Multiplayer is done
 extension HomeViewController {
     private func setUpMultiplayerButton() {
         view.addSubview(multiplayerButton)
@@ -276,7 +274,6 @@ extension HomeViewController {
         UIView.animate(withDuration: 0.05) {
             sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
         }
-        print("multiplayer button tapped")
         clickSoundPlayer.play()
     }
 

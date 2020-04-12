@@ -9,13 +9,20 @@
 import SpriteKit
 import GameplayKit
 
+/**
+ `SKScene` for the single player game. The `SKScene` acts as the
+ root for all UI nodes.
+ - Manages state and scene transitions through `GameStateMachine`.
+ Any transitions related to states and scenes should be propagated to
+ this class (and in turn `GameStateMachine`) for handling.
+ - The immediate children of the `SKScene` should be `RootRenderNode`s,
+ which contain the logic used to implement the UI of the game.
+ - Game Loop originates in this class' `update()` method
+ */
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
     weak var gameStateMachine: GameStateMachine?
-    var center: CGPoint {
-        .init(x: frame.midX, y: frame.midY)
-    }
     var rootRenderNode: RootRenderNode!
     var deltaTime: TimeInterval = 0.0
 
@@ -61,6 +68,10 @@ class GameScene: SKScene {
         rootRenderNode.update(with: deltaTime)
     }
 
+    /**
+     Transitions the game into the `GameEndState`, with a win/lose condition
+     and the final score.
+     */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
         gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
         gameStateMachine?.state(forClass: GameEndState.self)?.finalScore = finalScore
@@ -69,7 +80,8 @@ class GameScene: SKScene {
 }
 
 /**
- Extension to deal with button-related logic (when buttons are tapped)
+ Extension to deal with button-related logic (when buttons are tapped).
+ Propagates them to `RootRenderNode`.
  */
 extension GameScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
@@ -77,13 +89,10 @@ extension GameScene: TapResponder {
         case .pauseButton:
             gameStateMachine?.enter(GamePauseState.self)
         case .summonButton:
-            // TODO: Check if this can be re-factored
             rootRenderNode.summonButtonTapped()
         case .powerUpIconButton:
-            // TODO: Check if this can be re-factored
             rootRenderNode.powerUpButtonTapped()
         default:
-            // TODO: This should be re-factored
             print("Unknown node tapped")
         }
     }

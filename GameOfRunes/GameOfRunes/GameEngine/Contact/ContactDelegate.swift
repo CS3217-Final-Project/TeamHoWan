@@ -35,6 +35,7 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     // Contact detected by SpriteKit's physics system
     func didBegin(_ contact: SKPhysicsContact) {
         // Check that the Collision is Between Nodes rooted at the same RootRenderNode
+        // (so that only collisions within the local game or within the remote game are considered)
         guard let rootRenderNodeA = contact.bodyA.node?.parent?.parent as? RootRenderNode,
             let rootRenderNodeB = contact.bodyB.node?.parent?.parent as? RootRenderNode,
             rootRenderNodeA == rootRenderNodeB else {

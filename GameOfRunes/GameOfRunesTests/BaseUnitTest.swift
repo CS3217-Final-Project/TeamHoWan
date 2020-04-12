@@ -17,13 +17,14 @@ class BaseUnitTest: XCTestCase {
     var testAvatar: Avatar!
     var gameScene: GameScene!
     var gameEngine: MockGameEngine!
+    var rootRenderNode: RootRenderNode!
     var removeDelegate: MockRemoveDelegate!
-    
+
     var scoreNode: ScoreNode!
     var healthBarNode: HealthBarNode!
     var manaBarNode: ManaBarNode!
     var droppedManaNode: MockDroppedManaNode!
-    
+
     var timerEntity: MockTimerEntity!
     var bossEnemyEntity: Entity!
     // Note: This is not the gesture entity from enemyEntity.
@@ -33,12 +34,10 @@ class BaseUnitTest: XCTestCase {
     var endPointAttractionEntities: [AttractionEntity]!
     var darkVortexPowerUpEntity: DarkVortexPowerUpEntity!
     var droppedManaEntity: MockDroppedManaEntity!
-    
+
     var healthComponent: MockHealthComponent!
     var manaComponent: MockManaComponent!
 
-    // TODO: Added by you
-    var rootRenderNode: RootRenderNode!
 
     override func setUp() {
         super.setUp()

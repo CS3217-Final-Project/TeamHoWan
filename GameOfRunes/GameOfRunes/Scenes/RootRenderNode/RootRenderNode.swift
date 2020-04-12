@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+/**
+ `SKNode` that acts as the root node for all the UI elements
+ required for a game. This class establishes the UI for the game.
+ */
 class RootRenderNode: SKNode {
     var gameEngine: GameEngineFacade
     private(set) var size: CGSize
@@ -62,6 +66,7 @@ class RootRenderNode: SKNode {
 
     /**
      Minimal initialiser that only populates required instance parameters.
+     No setting up of UI elements is performed.
      Called by Subclass `RemoteRootRenderNode`.
      */
     init(gameEngine: GameEngineFacade, size: CGSize) {
@@ -262,7 +267,8 @@ class RootRenderNode: SKNode {
 }
 
 /**
- Extension to deal with button-related logic
+ Extension to deal with button-related logic (when calls are
+ propagated from `GameScene`
  */
 extension RootRenderNode {
     func summonButtonTapped() {
@@ -275,7 +281,7 @@ extension RootRenderNode {
 }
 
 /**
- Extension to propagate Scene-related logic to GameScene
+ Extension to propagate Scene-related logic to `GameScene`
  */
 extension RootRenderNode {
     /**

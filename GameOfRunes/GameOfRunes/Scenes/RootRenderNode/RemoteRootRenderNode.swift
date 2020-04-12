@@ -10,7 +10,9 @@ import SpriteKit
 
 /**
  This class is the RootRenderNode for the Remote Game/MiniMap.
- All UI for the MiniMap is established in this class. 
+ All UI for the MiniMap is established in this class.
+ - Note: See documentation in the `init()` method for the differences
+ in the UI for `RootRenderNode` and `RemoteRootRenderNode`.
  */
 class RemoteRootRenderNode: RootRenderNode {
     /**
@@ -36,6 +38,12 @@ class RemoteRootRenderNode: RootRenderNode {
         setUpEndPoint()
     }
 
+    /**
+     Sets up the EndPoint in the Minimap.
+     - Note: `RemoteRootRenderNode` implements its own version of
+     this method because there is no `PlayerAreaNode` to take coordinate
+     references from (because it is not set up in `RemoteRootRenderNode`).
+     */
     private func setUpEndPoint() {
         guard GameConfig.GamePlayScene.numEndPoints > 0 else {
             fatalError("There must be more than 1 lane")
