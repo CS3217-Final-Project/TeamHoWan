@@ -19,7 +19,6 @@ class GameHomeScene: SKScene {
     private weak var currentViewNode: SKNode?
     private var navigationStack: [SKNode] = [] {
         didSet {
-            print(navigationStack)
             backNode.isHidden = navigationStack.isEmpty
         }
     }
