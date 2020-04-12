@@ -22,9 +22,6 @@ import SpriteKit
  */
 class MultiplayerGameScene: GameScene {
     var remoteRootRenderNode: RemoteRootRenderNode!
-    override init(size: CGSize, gameStateMachine: GameStateMachine) {
-        super.init(size: size, gameStateMachine: gameStateMachine)
-    }
 
     override func sceneDidLoad() {
         guard let stage = gameStateMachine?.stage,
@@ -33,33 +30,37 @@ class MultiplayerGameScene: GameScene {
         }
 
         // Local Game
-        let localGameEngine = MultiplayerLocalGameEngine(stage: stage,
-                                                         avatar: avatar)
+        let localGameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar)
         physicsWorld.contactDelegate = localGameEngine.contactDelegate
-        self.rootRenderNode = RootRenderNode(gameEngine: localGameEngine,
-                                             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
-                                             position: self.position,
-                                             size: size)
+        
+        rootRenderNode = RootRenderNode(
+            gameEngine: localGameEngine,
+            zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
+            position: position,
+            size: size
+        )
+        
         addChild(rootRenderNode)
 
         // Remote Game (MiniMap)
-        let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage,
-                                                           avatar: avatar)
+        let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage, avatar: avatar)
         let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootHeight = size.height * GameConfig.MultiplayerGameScene.scalingFactor
-        let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth,
-                                         y: size.height - remoteRootHeight)
-        self.remoteRootRenderNode = RemoteRootRenderNode(gameEngine: remoteGameEngine,
-                                                         zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
-                                                         position: remoteRootPosition,
-                                                         size: CGSize(width: remoteRootWidth,
-                                                                      height: remoteRootHeight))
-        self.remoteRootRenderNode.alpha = GameConfig.MultiplayerGameScene.miniMapAlpha
+        let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
+        
+        remoteRootRenderNode = RemoteRootRenderNode(
+            gameEngine: remoteGameEngine,
+            zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
+            position: remoteRootPosition,
+            size: CGSize(width: remoteRootWidth, height: remoteRootHeight)
+        )
+        remoteRootRenderNode.alpha = GameConfig.MultiplayerGameScene.miniMapAlpha
+        
         addChild(remoteRootRenderNode)
     }
 
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
-        self.remoteRootRenderNode.update(with: self.deltaTime)
+        self.remoteRootRenderNode.update(with: deltaTime)
     }
 }

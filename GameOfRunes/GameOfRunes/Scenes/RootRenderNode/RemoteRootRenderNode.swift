@@ -26,18 +26,19 @@ class RemoteRootRenderNode: RootRenderNode {
                   zPosition: CGFloat,
                   position: CGPoint,
                   size: CGSize) {
+        
         super.init(gameEngine: gameEngine, size: size)
         self.position = position
         self.zPosition = zPosition
-
+        
         // UI
         buildLayers()
         setUpBackground()
-
+        
         // Entities
         setUpEndPoint()
     }
-
+    
     /**
      Sets up the EndPoint in the Minimap.
      - Note: `RemoteRootRenderNode` implements its own version of

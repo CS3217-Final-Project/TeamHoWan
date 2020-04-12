@@ -22,9 +22,9 @@ import GameplayKit
 class GameScene: SKScene {
     private var lastUpdateTime: TimeInterval = 0.0
     private lazy var maximumUpdateDeltaTime: TimeInterval = { 1 / .init((view?.preferredFramesPerSecond ?? 60)) }()
-    weak var gameStateMachine: GameStateMachine?
+    private(set) weak var gameStateMachine: GameStateMachine?
     var rootRenderNode: RootRenderNode!
-    var deltaTime: TimeInterval = 0.0
+    private(set) var deltaTime: TimeInterval = 0.0
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
@@ -49,13 +49,16 @@ class GameScene: SKScene {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
-        let gameEngine = GameEngine(stage: stage,
-                                    avatar: avatar)
+        let gameEngine = GameEngine(stage: stage, avatar: avatar)
         physicsWorld.contactDelegate = gameEngine.contactDelegate
-        self.rootRenderNode = RootRenderNode(gameEngine: gameEngine,
-                                             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
-                                             position: self.position,
-                                             size: size)
+        
+        rootRenderNode = RootRenderNode(
+            gameEngine: gameEngine,
+            zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
+            position: position,
+            size: size
+        )
+        
         addChild(rootRenderNode)
     }
 

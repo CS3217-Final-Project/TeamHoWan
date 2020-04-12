@@ -37,16 +37,17 @@ class RootRenderNode: SKNode {
          zPosition: CGFloat,
          position: CGPoint,
          size: CGSize) {
+        
         self.gameEngine = gameEngine
         self.size = size
         super.init()
         self.position = position
-
+        
         // Allows RootRenderNode to add Entities during set-up
         self.gameEngine.rootRenderNode = self
         self.zPosition = zPosition
         self.isUserInteractionEnabled = true
-
+        
         // UI
         buildLayers()
         setUpBackground()

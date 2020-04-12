@@ -38,7 +38,6 @@ class BaseUnitTest: XCTestCase {
     var healthComponent: MockHealthComponent!
     var manaComponent: MockManaComponent!
 
-
     override func setUp() {
         super.setUp()
         TextureContainer.loadTextures()

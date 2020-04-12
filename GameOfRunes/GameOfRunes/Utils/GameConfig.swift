@@ -66,19 +66,19 @@ enum GameConfig {
     }
 
     enum GamePauseScene {
-        static let buttonWidthRatio: CGFloat = 1 / 8
-        static let buttonHeightRatio: CGFloat = 1 / 8
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum GameEndScene {
         static let fontSizeRatio: CGFloat = 1 / 12
-        static let buttonWidthRatio: CGFloat = 1 / 8
-        static let buttonHeightRatio: CGFloat = 1 / 8
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum GamePlayScene {
-        static let buttonWidthRatio: CGFloat = 1 / 10
-        static let buttonHeightRatio: CGFloat = 1 / 10
+        static let buttonWidthRatio: CGFloat = 1 / 8
+        static let buttonHeightRatio: CGFloat = 1 / 8
         static let buttonMargin: CGFloat = 10
         
         // zPositions
