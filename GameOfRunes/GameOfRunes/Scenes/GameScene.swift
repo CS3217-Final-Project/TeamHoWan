@@ -151,7 +151,7 @@ class GameScene: SKScene, GameSceneFacade {
         )
         let pauseButton = ButtonNode(
             size: buttonSize,
-            texture: .init(imageNamed: "\(ButtonType.pauseButton)"),
+            texture: .init(imageNamed: "pause-button"),
             buttonType: .pauseButton,
             position: .init(x: frame.maxX, y: frame.maxY)
                 + .init(dx: -buttonSize.width / 2, dy: -buttonSize.height / 2)
