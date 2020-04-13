@@ -12,14 +12,14 @@ import GameplayKit
 class ContactDelegate: NSObject, SKPhysicsContactDelegate {
     private var dispatcher = [Pair<CollisionType>: Collision]()
 
-    init(gameEngine: GameEngine) {
-        let enemyUnitPlayerUnitCollision = CollisionEnemyUnitPlayerUnit(gameEngine)
+    override init() {
+        let enemyUnitPlayerUnitCollision = CollisionEnemyUnitPlayerUnit()
         let enemyUnitPlayerUnitPair = Pair<CollisionType>(.enemyUnit, .playerUnit)
-        let enemyUnitPowerUpCollision = CollisionEnemyUnitPowerUp(gameEngine)
+        let enemyUnitPowerUpCollision = CollisionEnemyUnitPowerUp()
         let enemyUnitPowerUpPair = Pair<CollisionType>(.enemyUnit, .powerUp)
-        let enemyUnitPlayerEndPointCollision = CollisionEnemyUnitPlayerEndPoint(gameEngine)
+        let enemyUnitPlayerEndPointCollision = CollisionEnemyUnitPlayerEndPoint()
         let enemyUnitPlayerEndPointPair = Pair<CollisionType>(.enemyUnit, .playerEndPoint)
-        let playerUnitEnemyEndPointCollision = CollisionPlayerUnitEnemyEndPoint(gameEngine)
+        let playerUnitEnemyEndPointCollision = CollisionPlayerUnitEnemyEndPoint()
         let playerUnitEnemyEndPointPair = Pair<CollisionType>(.playerUnit, .enemyEndPoint)
         
         dispatcher[enemyUnitPlayerUnitPair] = enemyUnitPlayerUnitCollision
@@ -38,7 +38,8 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         // (so that only collisions within the local game or within the remote game are considered)
         guard let rootRenderNodeA = contact.bodyA.node?.parent?.parent as? RootRenderNode,
             let rootRenderNodeB = contact.bodyB.node?.parent?.parent as? RootRenderNode,
-            rootRenderNodeA == rootRenderNodeB else {
+            rootRenderNodeA == rootRenderNodeB,
+            let gameEngine = rootRenderNodeA.gameEngine as? GameEngine else {
                 return
         }
 
@@ -50,6 +51,6 @@ class ContactDelegate: NSObject, SKPhysicsContactDelegate {
         }
         
         dispatcher[Pair(entityACollisionType, entityBCollisionType)]?
-            .resolveCollision(firstEntity: entityA, secondEntity: entityB)
+            .resolveCollision(firstEntity: entityA, secondEntity: entityB, gameEngine: gameEngine)
     }
 }

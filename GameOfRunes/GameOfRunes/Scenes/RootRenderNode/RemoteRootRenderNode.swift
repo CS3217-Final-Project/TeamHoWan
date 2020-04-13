@@ -45,7 +45,6 @@ class RemoteRootRenderNode: RootRenderNode {
     override func buildLayers() {
         super.buildLayers()
         gestureLayer.isHidden = true
-        playerAreaLayer.isHidden = true
         manaDropLayer.isHidden = true
     }
     

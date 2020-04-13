@@ -17,7 +17,6 @@ class EnemyEntity: Entity {
         super.init()
 
         guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
-            print("Unable to obtain rootRenderNode size")
             return
         }
 

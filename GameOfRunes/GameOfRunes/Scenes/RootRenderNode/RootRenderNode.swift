@@ -10,7 +10,8 @@ import SpriteKit
 
 /**
  `SKNode` that acts as the root node for all the UI elements
- required for a game. This class establishes the UI for the game.
+ required for a game. This class establishes the UI for the game (in Single
+ Player Mode)
  */
 class RootRenderNode: SKNode {
     var gameEngine: GameEngineFacade
@@ -25,7 +26,7 @@ class RootRenderNode: SKNode {
     private var unitLayer: SKNode!
     private var removalAnimationLayer: SKNode!
     var gestureLayer: SKNode!
-    var playerAreaLayer: SKNode!
+    private var playerAreaLayer: SKNode!
     var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
 

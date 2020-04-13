@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameEngine: GameEngineFacade {
     private lazy var removeDelegate: RemoveDelegate = .init(gameEngine: self)
-    private(set) lazy var contactDelegate: ContactDelegate = .init(gameEngine: self)
+    private(set) lazy var contactDelegate: ContactDelegate = .init()
     private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
