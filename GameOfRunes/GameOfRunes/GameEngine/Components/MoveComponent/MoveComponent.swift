@@ -14,8 +14,10 @@ class MoveComponent: GKAgent2D, GKAgentDelegate, Component {
         .moveComponent
     }
     var activePauses = 0
+    let initialMaxSpeed: Float
     
     init(maxSpeed: Float, maxAcceleration: Float, radius: Float) {
+        initialMaxSpeed = maxSpeed
         super.init()
         delegate = self
         self.maxSpeed = maxSpeed

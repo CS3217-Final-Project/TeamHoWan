@@ -34,7 +34,7 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     
     func setInitialGesture(for entity: Entity) {
         guard entity.type == .enemyEntity,
-            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node,
+            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
             let gesture = generateGesture(for: entity) else {
                 return
         }
@@ -48,7 +48,7 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     
     func setGesture(for entity: Entity, using gesture: CustomGesture?) {
         guard entity.type == .enemyEntity,
-            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node else {
+            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
                 return
         }
         

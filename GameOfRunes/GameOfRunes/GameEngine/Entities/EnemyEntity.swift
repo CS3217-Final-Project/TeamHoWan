@@ -15,11 +15,13 @@ class EnemyEntity: Entity {
 
     init(enemyType: EnemyType, gameEngine: GameEngine) {
         super.init()
-        
+
+        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
+            return
+        }
+
         let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        
-        let sceneSize = gameEngine.gameScene?.size ?? UIScreen.main.bounds.size
-        enemyNode.size = enemyNode.size.scaleTo(width: sceneSize.width / 6)
+        enemyNode.size = enemyNode.size.scaleTo(width: renderNodeSize.width / 6)
         CollisionType.enemyUnit.setPhysicsBody(
             for: enemyNode,
             with: enemyNode.size
@@ -38,9 +40,15 @@ class EnemyEntity: Entity {
         )
  
         let spriteComponent = SpriteComponent(node: enemyNode, layerType: .unitLayer)
+
+        // Monster Speed and Acceleration are Proportionate to Screen Size (Treat speed as ratio)
+        let timetaken = GameConfig.Unit.standardUnitTraversalTime
+        let enemyMaxSpeed = ((enemyType.speed / 100.0) * Float(renderNodeSize.height)) / timetaken
+        let enemyMaxAcceleration = GameConfig.Unit.accelerationScalingFactor * enemyMaxSpeed
+
         let moveComponent = MoveComponent(
-            maxSpeed: enemyType.speed,
-            maxAcceleration: 5.0,
+            maxSpeed: enemyMaxSpeed,
+            maxAcceleration: enemyMaxAcceleration,
             radius: .init(enemyNode.size.height / 2)
         )
         let teamComponent = TeamComponent(team: .enemy)

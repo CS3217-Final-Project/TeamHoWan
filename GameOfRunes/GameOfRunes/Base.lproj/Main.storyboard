@@ -25,7 +25,6 @@
         <!--Game View Controller-->
         <scene sceneID="0RJ-kr-sZp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vQq-VS-aJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="GameVC" id="YdL-8S-BLy" customClass="GameViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GY3-bA-5kC" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
@@ -34,8 +33,24 @@
                         <viewLayoutGuide key="safeArea" id="ElN-mG-Xag"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQq-VS-aJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="88"/>
+        </scene>
+        <!--Multiplayer Game View Controller-->
+        <scene sceneID="GQE-Sc-wfs">
+            <objects>
+                <viewController storyboardIdentifier="MultiplayerGameVC" id="dQi-qy-Knl" customClass="MultiplayerGameViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="emX-XA-flS" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="8e8-xj-A9S"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vWG-qi-I7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="1179"/>
         </scene>
     </scenes>
 </document>

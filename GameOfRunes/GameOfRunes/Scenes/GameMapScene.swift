@@ -172,8 +172,6 @@ extension GameMapScene {
     }
     
     private func setUpStageNodes() {
-        // TODO: change to access from storage when persistence is implemented
-        
         let stages = HomeViewController.storage.loadAllStages()
         let stageNodes = stages.map { StageNode(stage: $0, mapSize: mapSize) }
         stageNodes.forEach { stageNodeLayer.addChild($0) }

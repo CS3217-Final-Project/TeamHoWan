@@ -58,7 +58,8 @@ class RemoveDelegate {
     }
     
     func removeDroppedMana(_ entity: Entity) {
-        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+        guard let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let renderNode = gameEngine?.rootRenderNode else {
             return
         }
         
@@ -76,8 +77,8 @@ class RemoveDelegate {
         let animationNode = SKSpriteNode()
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
-        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-        
+        renderNode.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
+
         gameEngine?.remove(entity)
     }
     
@@ -90,7 +91,8 @@ class RemoveDelegate {
      */
     private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity,
-            let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
+            let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let renderNode = gameEngine?.rootRenderNode else {
                 return
         }
 
@@ -120,8 +122,8 @@ class RemoveDelegate {
             }
             self?.gameEngine?.metadata.numEnemiesOnField -= 1
         })
-        gameEngine?.gameScene?.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
-        
+        renderNode.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
+
         // Changing physicsBody to nil is necessary because SpriteComponent and PhysicsBody do not get
         // deinit immediately, leading to >1 contacts detected.
         spriteComponent.node.physicsBody = nil

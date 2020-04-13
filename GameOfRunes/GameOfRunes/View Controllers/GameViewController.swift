@@ -1,18 +1,18 @@
 //
-  //  GameViewController.swift
-  //  GameOfRunes
-  //
-  //  Created by Jermy on 8/3/20.
-  //  Copyright © 2020 TeamHoWan. All rights reserved.
-  //
+//  GameViewController.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 8/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
 
-  import UIKit
-  import SpriteKit
-  import GameplayKit
-  
-  class GameViewController: UIViewController {
+import UIKit
+import SpriteKit
+import GameplayKit
+
+class GameViewController: UIViewController {
     private var sceneManager: SceneManager!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let view = view as? SKView {
@@ -29,12 +29,12 @@
             gameStateMachine.enter(GameSelectionState.self)
         }
     }
-    
+
     override var shouldAutorotate: Bool {
         true
     }
-    
+
     override var prefersStatusBarHidden: Bool {
         true
     }
-  }
+}

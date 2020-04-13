@@ -20,6 +20,7 @@ class SceneManager {
         case pause
         case end(win: Bool)
         case map
+        case multiplayerPlay
     }
     
     private let presentingView: SKView
@@ -28,10 +29,14 @@ class SceneManager {
         size: self.presentingView.bounds.size,
         gameStateMachine: gameStateMachine
     )
+    private lazy var multiplayerGamePlayScene: MultiplayerGameScene = .init(
+        size: self.presentingView.bounds.size,
+        gameStateMachine: gameStateMachine
+    )
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
     private let gameMapScene: GameMapScene
-    
+
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
         // TODO: The following can be removed once the code is in production
         presentingView.showsFPS = true
@@ -67,6 +72,9 @@ class SceneManager {
         case .map:
             refreshGameMap()
             scene = gameMapScene
+            transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        case .multiplayerPlay:
+            scene = multiplayerGamePlayScene
             transition = .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         }
         

@@ -25,7 +25,11 @@ class DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
     }
     
     func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
-        let radius = (gameEngine.gameScene?.size.width ?? UIScreen.main.bounds.width) / 3
+        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
+            return
+        }
+
+        let radius = renderNodeSize.width / 3
         let powerUpSize: CGSize = .init(width: radius, height: radius)
         
         guard let entity = createEntity(at: position, with: powerUpSize) else {

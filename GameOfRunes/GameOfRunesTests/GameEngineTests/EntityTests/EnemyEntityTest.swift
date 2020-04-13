@@ -20,7 +20,6 @@ class EnemyEntityTest: BaseUnitTest {
                 return
         }
         
-        XCTAssertTrue(bossEnemyEntity.component(ofType: MoveComponent.self)?.maxSpeed == enemyType.speed)
         XCTAssertTrue(gestureEntity.component(ofType: ParentEntityComponent.self)?.parent == bossEnemyEntity)
         XCTAssertTrue(bossEnemyEntity.component(ofType: HealthComponent.self)?.healthPoints == enemyType.health)
         XCTAssertTrue(enemyType.gesturesAvailable.contains(gesture))
