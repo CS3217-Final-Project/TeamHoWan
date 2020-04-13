@@ -204,8 +204,7 @@ class RootRenderNode: SKNode {
 
         let enemyEndPointNode = SKSpriteNode(color: .clear, size: newEndPointSize)
         let yPosition = (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * size.height
-        enemyEndPointNode.position = .init(x: size.width,
-                                           y: yPosition)
+        enemyEndPointNode.position = .init(x: center.x, y: yPosition)
         gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
 
