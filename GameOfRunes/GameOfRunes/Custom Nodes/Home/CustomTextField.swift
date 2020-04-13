@@ -13,6 +13,8 @@ class CustomTextField: UITextField {
         super.init(
             frame: .init(origin: .zero, size: size.scaleTo(width: size.width / 2, widthToHeightRatio: 2))
         )
+        
+        autocorrectionType = .no
     }
     
     @available(*, unavailable)
