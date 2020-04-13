@@ -11,7 +11,9 @@ import SpriteKit
 /**
  `SKNode` that acts as the root node for all the UI elements
  required for a game. This class establishes the UI for the game (in Single
- Player Mode)
+ Player Mode). It comes packaged together with a GameEngine so that
+ an entire game unit can be added to a `GameScene` just by initialising
+ an instance of this class.
  */
 class RootRenderNode: SKNode {
     var gameEngine: GameEngineFacade
