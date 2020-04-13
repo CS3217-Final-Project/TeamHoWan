@@ -25,10 +25,13 @@ class GameScene: SKScene {
     private(set) weak var gameStateMachine: GameStateMachine?
     var rootRenderNode: RootRenderNode!
     private(set) var deltaTime: TimeInterval = 0.0
+    private var contactDelegate: ContactDelegate
 
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
+        self.contactDelegate = ContactDelegate()
         super.init(size: size)
+        physicsWorld.contactDelegate = self.contactDelegate
         
         registerForPauseNotifications()
     }
@@ -50,7 +53,6 @@ class GameScene: SKScene {
         }
 
         let gameEngine = GameEngine(stage: stage, avatar: avatar)
-        physicsWorld.contactDelegate = gameEngine.contactDelegate
         
         rootRenderNode = RootRenderNode(
             gameEngine: gameEngine,

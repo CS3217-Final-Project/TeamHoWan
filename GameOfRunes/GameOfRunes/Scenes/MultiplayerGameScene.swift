@@ -31,8 +31,6 @@ class MultiplayerGameScene: GameScene {
 
         // Local Game
         let localGameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar)
-        physicsWorld.contactDelegate = localGameEngine.contactDelegate
-        
         rootRenderNode = LocalRootRenderNode(
             gameEngine: localGameEngine,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
