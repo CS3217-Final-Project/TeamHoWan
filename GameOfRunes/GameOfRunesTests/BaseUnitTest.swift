@@ -70,6 +70,8 @@ class BaseUnitTest: XCTestCase {
                                         zPosition: 0,
                                         position: gameScene.position,
                                         size: gameScene.size)
+        gameEngine.rootRenderNode = rootRenderNode
+        rootRenderNode.gameEngine = gameEngine
         gameScene.addChild(rootRenderNode)
         removeDelegate = MockRemoveDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
