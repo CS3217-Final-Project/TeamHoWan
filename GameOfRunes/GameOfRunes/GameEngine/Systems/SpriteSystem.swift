@@ -19,12 +19,8 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
 
-        guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {
-            return
-        }
-
-        guard let renderNode = gameEngine?.rootRenderNode else {
-            print("GameEngine's rootRenderNode is nil")
+        guard let spriteComponent = entity.component(ofType: SpriteComponent.self),
+            let renderNode = gameEngine?.rootRenderNode else {
             return
         }
 
