@@ -35,12 +35,13 @@ class RootRenderNode: SKNode {
     private var gestureAreaNode: GestureAreaNode!
     private var bgmNode: SKAudioNode!
 
-    init(gameEngine: GameEngineFacade,
+    init(stage: Stage,
+         avatar: Avatar,
          zPosition: CGFloat,
          position: CGPoint,
          size: CGSize) {
-        
-        self.gameEngine = gameEngine
+
+        self.gameEngine = GameEngine(stage: stage, avatar: avatar)
         self.size = size
         super.init()
         self.position = position

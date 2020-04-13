@@ -30,9 +30,9 @@ class MultiplayerGameScene: GameScene {
         }
 
         // Local Game
-        let localGameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar)
         rootRenderNode = LocalRootRenderNode(
-            gameEngine: localGameEngine,
+            stage: stage,
+            avatar: avatar,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
             position: position,
             size: size
@@ -41,13 +41,13 @@ class MultiplayerGameScene: GameScene {
         addChild(rootRenderNode)
 
         // Remote Game (MiniMap)
-        let remoteGameEngine = MultiplayerRemoteGameEngine(stage: stage, avatar: avatar)
         let remoteRootWidth = size.width * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootHeight = size.height * GameConfig.MultiplayerGameScene.scalingFactor
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
         
         remoteRootRenderNode = RemoteRootRenderNode(
-            gameEngine: remoteGameEngine,
+            stage: stage,
+            avatar: avatar,
             zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
             position: remoteRootPosition,
             size: CGSize(width: remoteRootWidth, height: remoteRootHeight)

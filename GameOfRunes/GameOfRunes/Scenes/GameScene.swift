@@ -52,10 +52,9 @@ class GameScene: SKScene {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
-        let gameEngine = GameEngine(stage: stage, avatar: avatar)
-        
         rootRenderNode = RootRenderNode(
-            gameEngine: gameEngine,
+            stage: stage,
+            avatar: avatar,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
             position: position,
             size: size

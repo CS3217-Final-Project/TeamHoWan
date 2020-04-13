@@ -20,11 +20,13 @@ class LocalRootRenderNode: RootRenderNode {
      Note that unlike `RootRenderNode`, `LocalRootRenderNode` has:
      - No Pause Button
      */
-    override init(gameEngine: GameEngineFacade,
+    override init(stage: Stage,
+                  avatar: Avatar,
                   zPosition: CGFloat,
                   position: CGPoint,
                   size: CGSize) {
 
+        let gameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar)
         super.init(gameEngine: gameEngine, size: size)
         self.position = position
         self.zPosition = zPosition
