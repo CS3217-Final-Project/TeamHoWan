@@ -115,6 +115,11 @@ extension GameHomeScene: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         inputName = textField.text ?? ""
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 // MARK: - Tap Responder
@@ -189,6 +194,7 @@ extension GameHomeScene {
         nameField.font = UIFont(name: GameConfig.fontName, size: nameField.frame.size.height / 5)
         nameField.placeholder = "Enter a name"
         nameField.delegate = self
+        nameField.textColor = .black
     }
     
     private func setUpViews() {
