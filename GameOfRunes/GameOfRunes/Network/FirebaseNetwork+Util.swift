@@ -8,19 +8,15 @@
 
 import Foundation
 
-fileprivate let encoder = JSONEncoder()
-fileprivate let decoder = JSONDecoder()
+private let encoder = JSONEncoder()
+private let decoder = JSONDecoder()
 
 extension FirebaseNetwork {
     /**
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */
     func generateRandomId() -> String {
-        var random = String(Int.random(in: 0 ..< 100000))
-        while random.count < 5 {
-            random = "0\(random)"
-        }
-        return random
+        .init(format: "%05d", Int.random(in: 0 ..< 100_000))
     }
     
     /**
@@ -100,8 +96,14 @@ extension FirebaseNetwork {
      */
     func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool,
                           powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
-        return createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost,
-                                isReady: isReady, powerUp: powerUp, monsters: monsters)
+        createPlayerDict(
+            uid: playerData.uid,
+            name: playerData.name,
+            isHost: isHost,
+            isReady: isReady,
+            powerUp: powerUp,
+            monsters: monsters
+        )
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {

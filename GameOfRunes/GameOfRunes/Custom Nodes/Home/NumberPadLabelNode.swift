@@ -8,42 +8,38 @@
 
 import SpriteKit
 
-class NumberPadLabelNode: SKSpriteNode {
-    private let labelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    var displayLabel: String {
+class NumberPadLabelNode: StackedLabelsNode {
+    var header: String {
         get {
-            labelNode.text ?? ""
+            topLabelNode.text ?? ""
         }
         set {
-            labelNode.text = newValue
+            topLabelNode.text = newValue
         }
     }
-    override var size: CGSize {
-        didSet {
-            guard oldValue != size else {
-                return
-            }
-            layoutLabelNode()
+    var displayedValue: String {
+        get {
+            bottomLabelNode.text ?? ""
+        }
+        set {
+            bottomLabelNode.text = newValue
         }
     }
     
     init() {
-        let texture = SKTexture(imageNamed: "label")
-        super.init(texture: texture, color: .clear, size: texture.size())
+        super.init(backgroundTexture: .init(imageNamed: "stacked-labels"))
         
-        labelNode.fontColor = .black
-        labelNode.zPosition = 1
-        
-        addChild(labelNode)
+        topLabelNode.fontColor = .black
+        bottomLabelNode.fontColor = .black
     }
     
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func layoutTopLabelNode() {
+        topLabelNode.position = .init(x: 0.0, y: size.height / 12)
+        topLabelNode.fontSize = size.height / 6
     }
     
-    private func layoutLabelNode() {
-        labelNode.position = .init(x: 0.0, y: -size.height / 6)
-        labelNode.fontSize = size.height / 2.5
+    override func layoutBottomLabelNode() {
+        bottomLabelNode.position = .init(x: 0.0, y: -size.height / 4.5)
+        bottomLabelNode.fontSize = size.height / 4.5
     }
 }

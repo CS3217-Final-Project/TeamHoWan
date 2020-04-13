@@ -10,12 +10,20 @@ import SpriteKit
 
 class NumberPadNode: SKSpriteNode, TapResponder {
     private let displayLabelNode: NumberPadLabelNode = .init()
-    var displayValue: String {
+    var header: String {
         get {
-            displayLabelNode.displayLabel
+            displayLabelNode.header
         }
         set {
-            displayLabelNode.displayLabel = newValue
+            displayLabelNode.header = newValue
+        }
+    }
+    var displayedValue: String {
+        get {
+            displayLabelNode.displayedValue
+        }
+        set {
+            displayLabelNode.displayedValue = newValue
         }
     }
     private var _limit = 1
@@ -71,6 +79,14 @@ class NumberPadNode: SKSpriteNode, TapResponder {
         }
     }
     
+    override var isUserInteractionEnabled: Bool {
+        didSet {
+            numberPadButtonNodes.forEach {
+                row in row.forEach { node in node.isUserInteractionEnabled = isUserInteractionEnabled }
+            }
+        }
+    }
+    
     init(size: CGSize, limit: Int) {
         super.init(texture: nil, color: .clear, size: size)
         
@@ -88,14 +104,14 @@ class NumberPadNode: SKSpriteNode, TapResponder {
         
         switch numberPadButtonNode.feedbackValue {
         case "<-":
-            displayValue = String(displayValue.dropLast())
+            displayedValue = String(displayedValue.dropLast())
         case "X":
-            displayValue = ""
+            displayedValue = ""
         default:
-            guard displayValue.count < limit else {
+            guard displayedValue.count < limit else {
                 return
             }
-            displayValue += numberPadButtonNode.feedbackValue
+            displayedValue += numberPadButtonNode.feedbackValue
         }
     }
     
@@ -105,7 +121,7 @@ class NumberPadNode: SKSpriteNode, TapResponder {
     }
     
     private func layoutDisplayLabelNode() {
-        displayLabelNode.size = size.scaleTo(height: size.width / 3, heightToWidthRatio: 1 / 4.5)
+        displayLabelNode.size = size.scaleTo(height: size.width / 1.75, heightToWidthRatio: 1 / 2.25)
         displayLabelNode.position = .init(x: 0.0, y: (size.height - displayLabelNode.size.height) / 2)
     }
     

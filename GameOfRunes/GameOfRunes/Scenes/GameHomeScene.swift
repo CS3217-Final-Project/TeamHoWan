@@ -19,10 +19,18 @@ class GameHomeScene: SKScene {
     private let hostRoomViewNode: SKNode = .init()
     private weak var currentViewNode: SKNode? {
         didSet {
+            guard oldValue != currentViewNode else {
+                return
+            }
+            
             if currentViewNode is MultiplayerActionViewNode {
-                nameField.isHidden = false
-            } else {
-                nameField.isHidden = true
+                UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveLinear, animations: {
+                    self.nameField.alpha = 1
+                })
+            } else if nameField.alpha != .zero {
+                UIView.animate(withDuration: 0.25) {
+                    self.nameField.alpha = .zero
+                }
                 nameField.resignFirstResponder()
             }
         }
@@ -33,9 +41,9 @@ class GameHomeScene: SKScene {
         }
     }
     
-    private var inputName = "" {
+    private var playerName = "" {
         didSet {
-            multiplayerActionViewNode.isUserInteractionEnabled = !inputName.isEmpty
+            multiplayerActionViewNode.isUserInteractionEnabled = !playerName.isEmpty
         }
     }
     
@@ -108,6 +116,7 @@ class GameHomeScene: SKScene {
             let currentState = nodeB.isUserInteractionEnabled
             // ensures this node doesn't get tapped multiple times while fading in
             nodeB.isUserInteractionEnabled = false
+            
             nodeB.run(.fadeIn(withDuration: 0.25)) {
                 // sets nodeB back to original state
                 nodeB.isUserInteractionEnabled = currentState
@@ -115,6 +124,9 @@ class GameHomeScene: SKScene {
                 self.backNode.isUserInteractionEnabled = true
             }
         }
+        
+        // update current view node
+        currentViewNode = nodeB
     }
 }
 
@@ -135,7 +147,7 @@ extension GameHomeScene: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        inputName = textField.text ?? ""
+        playerName = textField.text ?? ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -151,27 +163,25 @@ extension GameHomeScene: TapResponder {
         case .startButton:
             transit(from: startViewNode, to: gameModeSelectionViewNode)
             navigationStack.append(startViewNode)
-            currentViewNode = gameModeSelectionViewNode
         case .singlePlayerButton:
             gameStateMachine?.enter(GameStageSelectionState.self)
         case .multiplayerButton:
             transit(from: gameModeSelectionViewNode, to: multiplayerActionViewNode)
             navigationStack.append(gameModeSelectionViewNode)
-            currentViewNode = multiplayerActionViewNode
         case .joinRoomButton:
             transit(from: multiplayerActionViewNode, to: joinRoomViewNode)
             navigationStack.append(multiplayerActionViewNode)
-            currentViewNode = joinRoomViewNode
-            joinRoomViewNode.numberPadNode.displayValue = ""
+            joinRoomViewNode.inputRoomId = ""
         case .joinButton:
             // do firebase connection here
+            //player name
+            //room code => joinRoomViewNode.inputRoomId
             return
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
             }
             transit(from: currentViewNode, to: previousViewNode)
-            self.currentViewNode = previousViewNode
         default:
             print("Unknown node tapped:", tappedNode)
         }
@@ -210,7 +220,7 @@ extension GameHomeScene {
     }
     
     private func setUpNameField() {
-        nameField.isHidden = true
+        nameField.alpha = .zero
         nameField.background = UIImage(named: "name-label")
         nameField.textAlignment = .center
         nameField.font = UIFont(name: GameConfig.fontName, size: nameField.frame.size.height / 5)

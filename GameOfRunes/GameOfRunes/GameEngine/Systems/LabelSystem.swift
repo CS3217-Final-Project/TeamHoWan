@@ -19,11 +19,12 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
     override func addComponent(foundIn entity: GKEntity) {
         super.addComponent(foundIn: entity)
         
-        guard let labelComponent = entity.component(ofType: LabelComponent.self) else {
+        guard let labelComponent = entity.component(ofType: LabelComponent.self),
+            let rootRenderNode = gameEngine?.rootRenderNode else {
             return
         }
         
-        gameEngine?.gameScene?.addNodeToLayer(layer: labelComponent.layerType, node: labelComponent.node)
+        rootRenderNode.addNodeToLayer(layer: labelComponent.layerType, node: labelComponent.node)
     }
     
     func setLabel(entity: Entity, label: String) {

@@ -32,8 +32,6 @@ struct EnemySpawnUnit {
     
     /** Initialiser to create multiple spawn wave.*/
     init(_ monsters: [[EnemyType?]]) {
-        // TODO: Might want to check and remove invalid waves?? Or fill up with placeholder values?
-        // Alternatively, we can assume that the data given is valid
         unit = monsters
         assert(checkRepresentation())
     }

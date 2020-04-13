@@ -9,12 +9,11 @@
 import SpriteKit
 
 /**
- Methods and properties exposed to the GameScene
+ Methods and properties exposed to the RootRenderNode
  */
 protocol GameEngineFacade {
-    // Specifically for SpriteKit's contact detection
-    var contactDelegate: ContactDelegate { get }
     var metadata: GameMetaData { get }
+    var rootRenderNode: RootRenderNode? { get set }
 
     func update(with deltaTime: TimeInterval)
     func startNextSpawnWave()

@@ -50,11 +50,11 @@ class GameViewController: UIViewController {
             gameStateMachine.enter(GameModeSelectionState.self)
         }
     }
-    
+
     override var shouldAutorotate: Bool {
         true
     }
-    
+
     override var prefersStatusBarHidden: Bool {
         true
     }

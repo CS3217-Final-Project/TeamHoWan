@@ -88,7 +88,7 @@ extension MoveSystem {
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entityMoveComponent.activePauses -= 1
             if entityMoveComponent.activePauses == 0 {
-                entityMoveComponent.maxSpeed = enemyType.speed
+                entityMoveComponent.maxSpeed = entityMoveComponent.initialMaxSpeed
             }
         })
         

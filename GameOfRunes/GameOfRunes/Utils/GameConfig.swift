@@ -31,9 +31,13 @@ enum GameConfig {
         static let normalMovementSpeed: Float = 100.0
         static let fastMovementSpeed: Float = 150.0
         static let bossMovementSpeed: Float = 25.0
+        static let standardUnitTraversalTime: Float = 7.5
+        static let accelerationScalingFactor: Float = 1.0
     }
     
     enum Enemy {
+        static let runeScalingFactor: CGFloat = 0.4
+        static let gestureBubbleOffsetPercentage: CGFloat = 0.95
         static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let normalScore = 10
 
@@ -78,6 +82,7 @@ enum GameConfig {
         static let buttonMargin: CGFloat = 10
         
         // zPositions
+        static let rootRenderNodeZPosition: CGFloat = 0
         static let backgroundLayerZPosition: CGFloat = -100
         static let powerUpAnimationLayerZPosition: CGFloat = 0
         static let unitLayerZPosition: CGFloat = 100
@@ -96,8 +101,8 @@ enum GameConfig {
 
         // Spawning of Enemies
         static let numLanes: Int = 3
-        static let horizontalOffSet: CGFloat = 100.0
-        static let verticalOffSet: CGFloat = 100.0
+        static let horizontalOffSetRatio: CGFloat = 0.1
+        static let verticalOffSetRatio: CGFloat = 0.03
         static let numEndPoints: Int = 3
         
         static func calculateHorizontallyDistributedPoints(
@@ -109,7 +114,7 @@ enum GameConfig {
             let xPositionNumerator = 2 * laneIndex + 1
             let xPositionDenominator = 2 * totalPoints
             let xPositionRatio = CGFloat(xPositionNumerator) / CGFloat(xPositionDenominator)
-            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSet
+            let edgeOffset = GameConfig.GamePlayScene.horizontalOffSetRatio * width
             let xPosition = (width - 2 * edgeOffset) * xPositionRatio + edgeOffset
             
             return .init(x: xPosition, y: yPosition)
@@ -129,5 +134,11 @@ enum GameConfig {
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
         static let uiLayerZPosition: CGFloat = 0
+    }
+
+    enum MultiplayerGameScene {
+        static let miniMapAlpha: CGFloat = 0.7
+        static let miniMapZPosition: CGFloat = 1_500
+        static let scalingFactor: CGFloat = 0.3 //Size of Minimap Relative to Screen Size
     }
 }
