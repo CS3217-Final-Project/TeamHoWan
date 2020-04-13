@@ -28,7 +28,7 @@ class AvatarLabelNode: SKSpriteNode {
     }
     
     init() {
-        let texture = SKTexture(imageNamed: "avatar-name-label")
+        let texture = SKTexture(imageNamed: "name-label")
         super.init(texture: texture, color: .clear, size: texture.size())
         
         labelNode.fontColor = .black

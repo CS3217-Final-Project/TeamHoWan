@@ -10,16 +10,27 @@ import SpriteKit
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
+    private let nameField: CustomTextField
     private let backNode: BackNode = .init()
-    private let startViewNode: SKNode = .init()
-    private let gameModeSelectionViewNode: SKNode = .init()
-    private let multiplayerActionViewNode: SKNode = .init()
+    private let startViewNode: StartViewNode
+    private let gameModeSelectionViewNode: GameModeSelectionViewNode
+    private let multiplayerActionViewNode: MultiplayerActionViewNode
     private let joinRoomViewNode: SKNode = .init()
     private let hostRoomViewNode: SKNode = .init()
-    private weak var currentViewNode: SKNode?
+    private weak var currentViewNode: SKNode? {
+        didSet {
+            nameField.isHidden = !(currentViewNode is MultiplayerActionViewNode)
+        }
+    }
     private var navigationStack: [SKNode] = [] {
         didSet {
             backNode.isHidden = navigationStack.isEmpty
+        }
+    }
+    
+    private var inputName = "" {
+        didSet {
+            multiplayerActionViewNode.isUserInteractionEnabled = !inputName.isEmpty
         }
     }
     
@@ -31,6 +42,11 @@ class GameHomeScene: SKScene {
     
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
+        
+        startViewNode = .init(size: size)
+        gameModeSelectionViewNode = .init(size: size)
+        multiplayerActionViewNode = .init(size: size)
+        nameField = .init(size: size)
         super.init(size: size)
         
         anchorPoint = .init(x: 0.5, y: 0.5)
@@ -51,18 +67,51 @@ class GameHomeScene: SKScene {
         buildLayers()
         setUpBackground()
         setUpBackButton()
-        setUpStartView()
-        setUpGameModeSelectionView()
-        setUpMultiplayerActionView()
-        setUpJoinRoomView()
+        setUpNameField()
+        setUpViews()
         
         addChild(bgmNode)
+        
+    }
+    
+    override func didMove(to view: SKView) {
+        let nodeSize = multiplayerActionViewNode.calculateAccumulatedFrame().size
+        nameField.center = convertPoint(
+            toView: multiplayerActionViewNode.position + .init(dx: 0.0, dy: nodeSize.height)
+        )
+        
+        view.addSubview(nameField)
+    }
+    
+    override func willMove(from view: SKView) {
+        nameField.removeFromSuperview()
     }
     
     private func transit(from nodeA: SKNode, to nodeB: SKNode) {
         nodeA.run(.fadeOut(withDuration: 0.25)) {
             nodeB.run(.fadeIn(withDuration: 0.25))
         }
+    }
+}
+
+extension GameHomeScene: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if string.isEmpty {
+            return true
+        } else if (textField.text ?? "").count > 12 {
+            return false
+        } else {
+            let invalidChars = CharacterSet(charactersIn: ";,.-+=*/")
+            return string.removingCharacters(in: invalidChars) == string
+        }
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        inputName = textField.text ?? ""
     }
 }
 
@@ -123,74 +172,23 @@ extension GameHomeScene {
         uiLayer.addChild(backNode)
     }
     
-    private func setUpStartView() {
-        let gameIconTexture = SKTexture(imageNamed: "GameOfRunes-logo-transparent")
-        let gameIcon = SKSpriteNode(
-            texture: gameIconTexture,
-            size: gameIconTexture.size().scaleTo(width: size.width * 0.8)
-        )
-        gameIcon.position = .init(x: 0.0, y: size.height * 0.125)
-        
-        let buttonTexture = SKTexture(imageNamed: "start-button-glow")
-        let startButton = ButtonNode(
-            size: buttonTexture.size().scaleTo(width: size.width * 0.8),
-            texture: buttonTexture,
-            buttonType: .startButton,
-            position: .init(x: 0.0, y: -size.height * 0.3)
-        )
-        
-        startViewNode.addChild(gameIcon)
-        startViewNode.addChild(startButton)
-        uiLayer.addChild(startViewNode)
+    private func setUpNameField() {
+        nameField.isHidden = true
+        nameField.background = UIImage(named: "name-label")
+        nameField.textAlignment = .center
+        nameField.font = UIFont(name: GameConfig.fontName, size: nameField.frame.size.height / 5)
+        nameField.placeholder = "Enter a name"
+        nameField.delegate = self
     }
     
-    private func setUpGameModeSelectionView() {
-        let singlePlayerButtonTexture = SKTexture(imageNamed: "single-player-button")
-        let singlePlayerButton = ButtonNode(
-            size: singlePlayerButtonTexture.size().scaleTo(width: size.width * 0.4),
-            texture: singlePlayerButtonTexture,
-            buttonType: .singlePlayerButton,
-            position: .init(x: 0.0, y: size.height * 0.2)
-        )
+    private func setUpViews() {
+        uiLayer.addChild(startViewNode)
         
-        let multiplayerButtonTexture = SKTexture(imageNamed: "multiplayer-button")
-        let multiplayerButton = ButtonNode(
-            size: multiplayerButtonTexture.size().scaleTo(width: size.width * 0.4),
-            texture: multiplayerButtonTexture,
-            buttonType: .multiplayerButton,
-            position: .init(x: 0.0, y: -size.height * 0.2)
-        )
-        
-        gameModeSelectionViewNode.addChild(singlePlayerButton)
-        gameModeSelectionViewNode.addChild(multiplayerButton)
         gameModeSelectionViewNode.alpha = .zero
         uiLayer.addChild(gameModeSelectionViewNode)
-    }
-    
-    private func setUpMultiplayerActionView() {
-        let hostRoomButtonTexture = SKTexture(imageNamed: "host-room-button")
-        let hostRoomButton = ButtonNode(
-            size: hostRoomButtonTexture.size().scaleTo(height: size.width * 0.4),
-            texture: hostRoomButtonTexture,
-            buttonType: .hostRoomButton,
-            position: .init(x: -size.width * 0.225, y: 0.0)
-        )
         
-        let joinRoomButtonTexture = SKTexture(imageNamed: "join-room-button")
-        let joinRoomButton = ButtonNode(
-            size: joinRoomButtonTexture.size().scaleTo(height: size.width * 0.4),
-            texture: joinRoomButtonTexture,
-            buttonType: .joinRoomButton,
-            position: .init(x: size.width * 0.225, y: 0.0)
-        )
-        
-        multiplayerActionViewNode.addChild(hostRoomButton)
-        multiplayerActionViewNode.addChild(joinRoomButton)
         multiplayerActionViewNode.alpha = .zero
+        multiplayerActionViewNode.isUserInteractionEnabled = false
         uiLayer.addChild(multiplayerActionViewNode)
-    }
-    
-    private func setUpJoinRoomView() {
-        
     }
 }
