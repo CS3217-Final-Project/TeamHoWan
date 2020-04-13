@@ -9,14 +9,14 @@
 import SpriteKit
 
 /**
- This class is the RootRenderNode for the Remote Game/MiniMap.
- All UI for the MiniMap is established in this class.
+ This class is the RootRenderNode for the Remote Game/MiniMap for
+ Multiplayer Mode. All UI for the MiniMap is established in this class.
  - Note: See documentation in the `init()` method for the differences
  in the UI for `RootRenderNode` and `RemoteRootRenderNode`.
  */
 class RemoteRootRenderNode: RootRenderNode {
     /**
-     Note that unlike `LocalRootRenderNode`, `RemoteRootRenderNode` has:
+     Note that unlike `RootRenderNode`, `RemoteRootRenderNode` has:
      - No Background Music
      - No Pause Button
      - No Player Area
@@ -38,6 +38,16 @@ class RemoteRootRenderNode: RootRenderNode {
         // Entities
         setUpEndPoint()
     }
+
+    /**
+     Hides unnecessary layers in `RootRenderNode`
+     */
+    override func buildLayers() {
+        super.buildLayers()
+        gestureLayer.isHidden = true
+        playerAreaLayer.isHidden = true
+        manaDropLayer.isHidden = true
+    }
     
     /**
      Sets up the EndPoint in the Minimap.
@@ -45,7 +55,7 @@ class RemoteRootRenderNode: RootRenderNode {
      this method because there is no `PlayerAreaNode` to take coordinate
      references from (because it is not set up in `RemoteRootRenderNode`).
      */
-    private func setUpEndPoint() {
+    override func setUpEndPoint() {
         guard GameConfig.GamePlayScene.numEndPoints > 0 else {
             fatalError("There must be more than 1 lane")
         }

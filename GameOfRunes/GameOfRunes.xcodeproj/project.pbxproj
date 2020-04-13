@@ -151,6 +151,7 @@
 		8A712E7E242318C900B3824E /* DarkVortexPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */; };
 		8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A712E812423693200B3824E /* SpriteLayerType.swift */; };
 		8A76F9C4242FA9E100917D3F /* EnemyWaveCreatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */; };
+		8A8D9E71244471570096A6DC /* LocalRootRenderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8D9E70244471570096A6DC /* LocalRootRenderNode.swift */; };
 		8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAADE4A24191D8D00606298 /* TapResponder.swift */; };
 		8AAE9C01241E2DF300D29593 /* DroppedManaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */; };
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
@@ -354,6 +355,7 @@
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
 		8A712E812423693200B3824E /* SpriteLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerType.swift; sourceTree = "<group>"; };
 		8A76F9C3242FA9E100917D3F /* EnemyWaveCreatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyWaveCreatorTest.swift; sourceTree = "<group>"; };
+		8A8D9E70244471570096A6DC /* LocalRootRenderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRootRenderNode.swift; sourceTree = "<group>"; };
 		8AAADE4A24191D8D00606298 /* TapResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapResponder.swift; sourceTree = "<group>"; };
 		8AAE9C00241E2DF300D29593 /* DroppedManaNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaNode.swift; sourceTree = "<group>"; };
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
@@ -844,6 +846,7 @@
 			children = (
 				8A649E9024405130005A5371 /* RootRenderNode.swift */,
 				8A32CB6F244232DD00E509D6 /* RemoteRootRenderNode.swift */,
+				8A8D9E70244471570096A6DC /* LocalRootRenderNode.swift */,
 			);
 			path = RootRenderNode;
 			sourceTree = "<group>";
@@ -1203,6 +1206,7 @@
 				8A32CB6E24421BCE00E509D6 /* MultiplayerRemoteGameEngine.swift in Sources */,
 				4AC87A54241E146800D79639 /* PowerUpContainerNode.swift in Sources */,
 				4AA508D5241622B900D9ADE4 /* GKAgent2D+typeConversionHelpers.swift in Sources */,
+				8A8D9E71244471570096A6DC /* LocalRootRenderNode.swift in Sources */,
 				56D2A649242C3BEB00BDD5DC /* ContactDelegate.swift in Sources */,
 				8A649E9324409C52005A5371 /* MultiplayerGameViewController.swift in Sources */,
 				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,

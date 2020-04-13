@@ -24,10 +24,11 @@ class RootRenderNode: SKNode {
     private var powerUpAnimationLayer: SKNode!
     private var unitLayer: SKNode!
     private var removalAnimationLayer: SKNode!
-    private var gestureLayer: SKNode!
-    private var playerAreaLayer: SKNode!
-    private var manaDropLayer: SKNode!
+    var gestureLayer: SKNode!
+    var playerAreaLayer: SKNode!
+    var manaDropLayer: SKNode!
     private var highestPriorityLayer: SKNode!
+
     private var playerAreaNode: PlayerAreaNode!
     var playerEndPoint: SKSpriteNode!
     private var gestureAreaNode: GestureAreaNode!
@@ -61,8 +62,7 @@ class RootRenderNode: SKNode {
         setUpTimer(isCountdown: false)
 
         // Set Up Background Music
-        bgmNode = .init(fileNamed: "Disturbance in Agustria")
-        addChild(bgmNode)
+        setUpBackgroundMusic()
     }
 
     /**
@@ -126,7 +126,7 @@ class RootRenderNode: SKNode {
         backgroundLayer.addChild(backgroundNode)
     }
 
-    private func setUpPlayerArea() {
+    func setUpPlayerArea() {
         let playerAreaWidth = size.width
         let playerAreaHeight = size.height * GameConfig.GamePlayScene.playerAreaHeightRatio
         playerAreaNode = .init(
@@ -138,7 +138,7 @@ class RootRenderNode: SKNode {
         playerAreaLayer.addChild(playerAreaNode)
     }
 
-    private func setUpGestureArea() {
+    func setUpGestureArea() {
         gestureAreaNode = .init(
             size: size.applying(.init(scaleX: 1.0, y: GameConfig.GamePlayScene.gestureAreaHeightRatio)),
             gameEngine: gameEngine
@@ -148,7 +148,7 @@ class RootRenderNode: SKNode {
         gestureLayer.addChild(gestureAreaNode)
     }
 
-    private func setUpPauseButton() {
+    func setUpPauseButton() {
         // Re-position and resize
         let buttonMargin = GameConfig.GamePlayScene.buttonMargin
         let buttonSize = CGSize(
@@ -170,7 +170,7 @@ class RootRenderNode: SKNode {
         highestPriorityLayer.addChild(pauseButton)
     }
 
-    private func setUpEndPoint() {
+    func setUpEndPoint() {
         guard GameConfig.GamePlayScene.numEndPoints > 0 else {
             fatalError("There must be more than 1 lane")
         }
@@ -205,7 +205,7 @@ class RootRenderNode: SKNode {
         gameEngine.addEndPointEntity(node: enemyEndPointNode, team: .enemy)
     }
 
-    private func setUpPlayer() {
+    func setUpPlayer() {
         let healthNode = setUpPlayerHealth()
         let manaNode = setUpPlayerMana()
         let scoreNode = playerAreaNode.scoreNode
@@ -227,7 +227,7 @@ class RootRenderNode: SKNode {
         return manaBarNode
     }
 
-    private func setUpTimer(isCountdown: Bool, initialTimerValue: TimeInterval = 0) {
+    func setUpTimer(isCountdown: Bool, initialTimerValue: TimeInterval = 0) {
         let timerNode = SKLabelNode(fontNamed: "DragonFire")
 
         timerNode.fontSize = 50
@@ -239,6 +239,11 @@ class RootRenderNode: SKNode {
         timerNode.text = "\(Int(initialTimerValue))"
 
         gameEngine.addTimerEntity(timerNode: timerNode, initialTimerValue: initialTimerValue)
+    }
+
+    func setUpBackgroundMusic() {
+        bgmNode = .init(fileNamed: "Disturbance in Agustria")
+        addChild(bgmNode)
     }
 
     func addNodeToLayer(layer: SpriteLayerType, node: SKNode) {

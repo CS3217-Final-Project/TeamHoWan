@@ -7,8 +7,6 @@
 //
 
 struct CollisionEnemyUnitPlayerUnit: Collision {
-    private weak var gameEngine: GameEngine?
-    
     init(_ gameEngine: GameEngine) {
         self.gameEngine = gameEngine
     }
