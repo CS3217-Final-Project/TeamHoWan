@@ -15,7 +15,7 @@ class GameHomeScene: SKScene {
     private let startViewNode: StartViewNode
     private let gameModeSelectionViewNode: GameModeSelectionViewNode
     private let multiplayerActionViewNode: MultiplayerActionViewNode
-    private let joinRoomViewNode: SKNode = .init()
+    private let joinRoomViewNode: JoinRoomViewNode
     private let hostRoomViewNode: SKNode = .init()
     private weak var currentViewNode: SKNode? {
         didSet {
@@ -43,10 +43,12 @@ class GameHomeScene: SKScene {
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         
+        nameField = .init(size: size)
         startViewNode = .init(size: size)
         gameModeSelectionViewNode = .init(size: size)
         multiplayerActionViewNode = .init(size: size)
-        nameField = .init(size: size)
+        joinRoomViewNode = .init(size: size)
+        
         super.init(size: size)
         
         anchorPoint = .init(x: 0.5, y: 0.5)
@@ -129,6 +131,14 @@ extension GameHomeScene: TapResponder {
             transit(from: gameModeSelectionViewNode, to: multiplayerActionViewNode)
             navigationStack.append(gameModeSelectionViewNode)
             currentViewNode = multiplayerActionViewNode
+        case .joinRoomButton:
+            transit(from: multiplayerActionViewNode, to: joinRoomViewNode)
+            navigationStack.append(multiplayerActionViewNode)
+            currentViewNode = joinRoomViewNode
+            joinRoomViewNode.numberPadNode.displayValue = ""
+        case .joinButton:
+            // do firebase connection here
+            return
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -190,5 +200,8 @@ extension GameHomeScene {
         multiplayerActionViewNode.alpha = .zero
         multiplayerActionViewNode.isUserInteractionEnabled = false
         uiLayer.addChild(multiplayerActionViewNode)
+        
+        joinRoomViewNode.alpha = .zero
+        uiLayer.addChild(joinRoomViewNode)
     }
 }

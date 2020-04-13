@@ -27,4 +27,5 @@ enum ButtonType {
     case hostRoomButton
     case joinButton
     case leaveButton
+    case anyButton
 }
