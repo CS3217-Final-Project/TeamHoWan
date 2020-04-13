@@ -19,7 +19,12 @@ class GameHomeScene: SKScene {
     private let hostRoomViewNode: SKNode = .init()
     private weak var currentViewNode: SKNode? {
         didSet {
-            nameField.isHidden = !(currentViewNode is MultiplayerActionViewNode)
+            if currentViewNode is MultiplayerActionViewNode {
+                nameField.isHidden = false
+            } else {
+                nameField.isHidden = true
+                nameField.resignFirstResponder()
+            }
         }
     }
     private var navigationStack: [SKNode] = [] {
@@ -90,8 +95,25 @@ class GameHomeScene: SKScene {
     }
     
     private func transit(from nodeA: SKNode, to nodeB: SKNode) {
+        let currentState = nodeA.isUserInteractionEnabled
+        // ensures this node doesn't get tapped multiple times while fading out
+        nodeA.isUserInteractionEnabled = false
+        // ensures back button doesn't get tapped multiple times while fading out
+        backNode.isUserInteractionEnabled = false
+        
         nodeA.run(.fadeOut(withDuration: 0.25)) {
-            nodeB.run(.fadeIn(withDuration: 0.25))
+            // sets nodeA back to original state
+            nodeA.isUserInteractionEnabled = currentState
+            
+            let currentState = nodeB.isUserInteractionEnabled
+            // ensures this node doesn't get tapped multiple times while fading in
+            nodeB.isUserInteractionEnabled = false
+            nodeB.run(.fadeIn(withDuration: 0.25)) {
+                // sets nodeB back to original state
+                nodeB.isUserInteractionEnabled = currentState
+                // activates back button
+                self.backNode.isUserInteractionEnabled = true
+            }
         }
     }
 }

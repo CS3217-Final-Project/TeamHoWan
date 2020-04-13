@@ -9,8 +9,26 @@
 import SpriteKit
 
 class GameModeSelectionViewNode: SKNode {
+    private let multiplayerButton: ButtonNode
+    
+    override var isUserInteractionEnabled: Bool {
+        didSet {
+            multiplayerButton.isUserInteractionEnabled = isUserInteractionEnabled
+        }
+    }
+    
     init(size: CGSize) {
+        let multiplayerButtonTexture = SKTexture(imageNamed: "multiplayer-button")
+        multiplayerButton = ButtonNode(
+            size: multiplayerButtonTexture.size().scaleTo(width: size.width * 0.4),
+            texture: multiplayerButtonTexture,
+            buttonType: .multiplayerButton,
+            position: .init(x: 0.0, y: -size.height * 0.2)
+        )
+        
         super.init()
+        
+        isUserInteractionEnabled = true
         
         let singlePlayerButtonTexture = SKTexture(imageNamed: "single-player-button")
         let singlePlayerButton = ButtonNode(
@@ -18,14 +36,6 @@ class GameModeSelectionViewNode: SKNode {
             texture: singlePlayerButtonTexture,
             buttonType: .singlePlayerButton,
             position: .init(x: 0.0, y: size.height * 0.2)
-        )
-        
-        let multiplayerButtonTexture = SKTexture(imageNamed: "multiplayer-button")
-        let multiplayerButton = ButtonNode(
-            size: multiplayerButtonTexture.size().scaleTo(width: size.width * 0.4),
-            texture: multiplayerButtonTexture,
-            buttonType: .multiplayerButton,
-            position: .init(x: 0.0, y: -size.height * 0.2)
         )
         
         addChild(singlePlayerButton)

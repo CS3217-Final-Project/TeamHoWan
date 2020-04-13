@@ -9,8 +9,8 @@
 import SpriteKit
 
 class MultiplayerActionViewNode: SKNode {
-    let hostRoomButton: ButtonNode
-    let joinRoomButton: ButtonNode
+    private let hostRoomButton: ButtonNode
+    private let joinRoomButton: ButtonNode
     
     override var isUserInteractionEnabled: Bool {
         didSet {

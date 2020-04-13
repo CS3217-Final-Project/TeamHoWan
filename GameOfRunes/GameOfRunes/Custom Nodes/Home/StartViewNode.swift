@@ -9,8 +9,26 @@
 import SpriteKit
 
 class StartViewNode: SKNode {
+    private let startButton: ButtonNode
+    
+    override var isUserInteractionEnabled: Bool {
+        didSet {
+            startButton.isUserInteractionEnabled = isUserInteractionEnabled
+        }
+    }
+    
     init(size: CGSize) {
+        let buttonTexture = SKTexture(imageNamed: "start-button-glow")
+        startButton = ButtonNode(
+            size: buttonTexture.size().scaleTo(width: size.width * 0.8),
+            texture: buttonTexture,
+            buttonType: .startButton,
+            position: .init(x: 0.0, y: -size.height * 0.3)
+        )
+        
         super.init()
+        
+        isUserInteractionEnabled = true
         
         let gameIconTexture = SKTexture(imageNamed: "GameOfRunes-logo-transparent")
         let gameIcon = SKSpriteNode(
@@ -18,14 +36,6 @@ class StartViewNode: SKNode {
             size: gameIconTexture.size().scaleTo(width: size.width * 0.8)
         )
         gameIcon.position = .init(x: 0.0, y: size.height * 0.125)
-        
-        let buttonTexture = SKTexture(imageNamed: "start-button-glow")
-        let startButton = ButtonNode(
-            size: buttonTexture.size().scaleTo(width: size.width * 0.8),
-            texture: buttonTexture,
-            buttonType: .startButton,
-            position: .init(x: 0.0, y: -size.height * 0.3)
-        )
         
         addChild(gameIcon)
         addChild(startButton)
