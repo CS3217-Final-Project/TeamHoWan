@@ -8,15 +8,20 @@
 
 import Foundation
 
-fileprivate let encoder = JSONEncoder()
-fileprivate let decoder = JSONDecoder()
-
 extension FirebaseNetwork {
+    private var encoder: JSONEncoder {
+        JSONEncoder()
+    }
+
+    private var decoder: JSONDecoder {
+        JSONDecoder()
+    }
+    
     /**
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */
     func generateRandomId() -> String {
-        var random = String(Int.random(in: 0 ..< 100000))
+        var random = String(Int.random(in: 0 ..< 100_000))
         while random.count < 5 {
             random = "0\(random)"
         }
@@ -43,7 +48,7 @@ extension FirebaseNetwork {
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
         
-        let decodedMonsters: [MonsterModel]? = decodeMonsters(data: monsters)
+        let decodedMonsters: [MonsterModel] = decodeMonsters(data: monsters)
         let decodedPowerUp: PowerUpModel? = decodePowerUp(data: powerUp)
         return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
                            powerUp: decodedPowerUp, monsters: decodedMonsters)
@@ -82,7 +87,7 @@ extension FirebaseNetwork {
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
     func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
-                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
+                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
         let encodedMonsters = encodeMonsters(monsters: monsters)
         return [
@@ -99,9 +104,9 @@ extension FirebaseNetwork {
      Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
      */
     func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool,
-                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) -> [String: AnyObject] {
-        return createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost,
-                                isReady: isReady, powerUp: powerUp, monsters: monsters)
+                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
+        createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost,
+                         isReady: isReady, powerUp: powerUp, monsters: monsters)
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {
@@ -114,7 +119,7 @@ extension FirebaseNetwork {
         return encodedPowerUp
     }
     
-    func encodeMonsters(monsters: [MonsterModel]?) -> [String: Any] {
+    func encodeMonsters(monsters: [MonsterModel]) -> [String: Any] {
         var encodedMonsters: [String: Any] = [:]
         do {
             let monsterData = try encoder.encode(monsters)
@@ -136,15 +141,15 @@ extension FirebaseNetwork {
         return decodedPowerUp
     }
     
-    func decodeMonsters(data: AnyObject?) -> [MonsterModel]? {
+    func decodeMonsters(data: AnyObject?) -> [MonsterModel] {
         guard let data = data else {
-            return nil
+            return []
         }
         var decodedMonsters: [MonsterModel]?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
             decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
         } catch { }
-        return decodedMonsters
+        return decodedMonsters ?? []
     }
 }

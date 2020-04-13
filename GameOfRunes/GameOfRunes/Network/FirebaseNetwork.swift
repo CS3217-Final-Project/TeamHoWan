@@ -9,9 +9,8 @@
 import Firebase
 
 class FirebaseNetwork: NetworkInterface {
-
     let dbRef: DatabaseReference = Database.database().reference()
-    var observers: [Observer] = []
+    var observers: [FirebaseObserver] = []
     
     func createRoom(uid: String,
                     name: String,
@@ -20,14 +19,14 @@ class FirebaseNetwork: NetworkInterface {
         let roomId = generateRandomId()
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+        ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             if snapshot.value as? [String: AnyObject] != nil {
                 // The room already exists, try generating another id.
-                self.createRoom(uid: uid, name: name, onComplete, onError)
+                self?.createRoom(uid: uid, name: name, onComplete, onError)
                 return
             }
             
-            let playerDict = self.createPlayerDict(uid: uid, name: name, isHost: true, isReady: false)
+            let playerDict = self?.createPlayerDict(uid: uid, name: name, isHost: true, isReady: false)
             var roomDict: [String: AnyObject] = [:]
             roomDict.updateValue(roomId as AnyObject, forKey: FirebaseKeys.rooms_roomId)
             roomDict.updateValue([uid: playerDict] as AnyObject, forKey: FirebaseKeys.rooms_players)
@@ -207,7 +206,7 @@ class FirebaseNetwork: NetworkInterface {
             onError(err)
         }
         
-        self.observers.append(Observer(withHandle: handle, withRef: ref))
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
     }
     
     func removeObservers() {
@@ -291,14 +290,4 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
-}
-
-struct Observer {
-    var handle: DatabaseHandle
-    var reference: DatabaseReference
-    
-    init(withHandle handle: DatabaseHandle, withRef reference: DatabaseReference) {
-        self.handle = handle
-        self.reference = reference
-    }
 }

@@ -1,5 +1,5 @@
 //
-//  MultiplayerViewController.swift
+//  MultiplayerScreenViewController.swift
 //  GameOfRunes
 //
 //  Created by Andy on 4/4/20.
