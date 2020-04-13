@@ -147,7 +147,8 @@ extension GameHomeScene: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        let processedText = (textField.text ?? "").replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
+        let processedText = (textField.text ?? "")
+            .replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
         playerName = processedText.trimmingCharacters(in: .whitespacesAndNewlines)
         textField.text = processedText
     }

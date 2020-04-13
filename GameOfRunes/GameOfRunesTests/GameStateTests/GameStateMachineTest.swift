@@ -37,9 +37,11 @@ class GameStateMachineTest: BaseUnitTest {
                                                          gameStageSelectionState,
                                                          gameModeSelectionState]
         ).withEnabledSuperclassSpy()
-
-        sceneManager = MockSceneManager(presentingView: SKView(),
-                                        gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
+        
+        sceneManager = MockSceneManager(
+            presentingView: SKView(frame: .init(origin: .zero, size: .init(width: 2000, height: 2000))),
+            gameStateMachine: gameStateMachine
+        ).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
         gameStateMachine.stage = testStage
         gameStateMachine.avatar = testAvatar
@@ -82,12 +84,12 @@ class GameStateMachineTest: BaseUnitTest {
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))
     }
-    /*
+    
     func testModeSelectionState() {
         gameStateMachine.enter(MockGameModeSelectionState.self)
         verify(gameModeSelectionState, times(1)).didEnter(from: any(GKState.self))
         verify(sceneManager, times(1)).transitionToScene(
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))
-    }*/
+    }
 }
