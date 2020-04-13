@@ -29,7 +29,6 @@
 		4A45E90124435C5E00F9FA22 /* GameModeSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */; };
 		4A45E9032443730A00F9FA22 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9022443730A00F9FA22 /* HomeViewController.swift */; };
 		4A45E9072443990200F9FA22 /* BackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9062443990200F9FA22 /* BackNode.swift */; };
-		4A45E90B2443A2AA00F9FA22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A45E90A2443A2AA00F9FA22 /* GoogleService-Info.plist */; };
 		4A45E90E2444467500F9FA22 /* StartViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90D2444467500F9FA22 /* StartViewNode.swift */; };
 		4A45E9102444475600F9FA22 /* GameModeSelectionViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90F2444475600F9FA22 /* GameModeSelectionViewNode.swift */; };
 		4A45E9122444483F00F9FA22 /* MultiplayerActionViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E9112444483F00F9FA22 /* MultiplayerActionViewNode.swift */; };
@@ -245,7 +244,6 @@
 		4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionState.swift; sourceTree = "<group>"; };
 		4A45E9022443730A00F9FA22 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A45E9062443990200F9FA22 /* BackNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackNode.swift; sourceTree = "<group>"; };
-		4A45E90A2443A2AA00F9FA22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A45E90D2444467500F9FA22 /* StartViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewNode.swift; sourceTree = "<group>"; };
 		4A45E90F2444475600F9FA22 /* GameModeSelectionViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionViewNode.swift; sourceTree = "<group>"; };
 		4A45E9112444483F00F9FA22 /* MultiplayerActionViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerActionViewNode.swift; sourceTree = "<group>"; };
@@ -722,7 +720,6 @@
 				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
-				4A45E90A2443A2AA00F9FA22 /* GoogleService-Info.plist */,
 			);
 			path = GameOfRunes;
 			sourceTree = "<group>";
@@ -1136,7 +1133,6 @@
 				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
-				4A45E90B2443A2AA00F9FA22 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
