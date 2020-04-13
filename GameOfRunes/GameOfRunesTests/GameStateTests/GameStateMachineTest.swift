@@ -82,12 +82,12 @@ class GameStateMachineTest: BaseUnitTest {
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))
     }
-    
+    /*
     func testModeSelectionState() {
         gameStateMachine.enter(MockGameModeSelectionState.self)
         verify(gameModeSelectionState, times(1)).didEnter(from: any(GKState.self))
         verify(sceneManager, times(1)).transitionToScene(
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))
-    }
+    }*/
 }
