@@ -84,12 +84,11 @@ extension MoveSystem {
 
         // Hack
         entityMoveComponent.activePauses += 1
-        let originalMaxSpeed = entityMoveComponent.maxSpeed
         entityMoveComponent.maxSpeed = speed
         Timer.scheduledTimer(withTimeInterval: duration, repeats: false, block: { _ in
             entityMoveComponent.activePauses -= 1
             if entityMoveComponent.activePauses == 0 {
-                entityMoveComponent.maxSpeed = originalMaxSpeed
+                entityMoveComponent.maxSpeed = entityMoveComponent.initialMaxSpeed
             }
         })
         
