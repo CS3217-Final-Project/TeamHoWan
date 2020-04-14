@@ -10,6 +10,9 @@ import SpriteKit
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
+    private lazy var dbRef: NetworkInterface = FirebaseNetwork()
+    private lazy var playerData = PlayerData()
+    
     private let nameField: CustomTextField
     private let backNode: BackNode = .init()
     private let startViewNode: StartViewNode
@@ -17,6 +20,7 @@ class GameHomeScene: SKScene {
     private let multiplayerActionViewNode: MultiplayerActionViewNode
     private let joinRoomViewNode: JoinRoomViewNode
     private let hostRoomViewNode: SKNode = .init()
+    
     private weak var currentViewNode: SKNode? {
         didSet {
             guard oldValue != currentViewNode else {
@@ -44,6 +48,15 @@ class GameHomeScene: SKScene {
     private var playerName = "" {
         didSet {
             multiplayerActionViewNode.isUserInteractionEnabled = !playerName.isEmpty
+        }
+    }
+    
+    private var roomId: String {
+        get {
+            joinRoomViewNode.inputRoomId
+        }
+        set {
+            joinRoomViewNode.inputRoomId = newValue
         }
     }
     
@@ -86,7 +99,6 @@ class GameHomeScene: SKScene {
         setUpViews()
         
         addChild(bgmNode)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -172,14 +184,19 @@ extension GameHomeScene: TapResponder {
             transit(from: gameModeSelectionViewNode, to: multiplayerActionViewNode)
             navigationStack.append(gameModeSelectionViewNode)
         case .joinRoomButton:
+            playerData.name = playerName
             transit(from: multiplayerActionViewNode, to: joinRoomViewNode)
             navigationStack.append(multiplayerActionViewNode)
             joinRoomViewNode.inputRoomId = ""
         case .joinButton:
-            // do firebase connection here
-            //player name
-            //room code => joinRoomViewNode.inputRoomId
-            return
+            dbRef.joinRoom(uid: playerData.uid,
+                           name: playerData.name,
+                           forRoomId: joinRoomViewNode.inputRoomId,
+                           joinRoomSuccess,
+                           roomNotOpen,
+                           roomDoesNotExist,
+                           generalErrorHandler
+            )
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -244,5 +261,40 @@ extension GameHomeScene {
         
         joinRoomViewNode.alpha = .zero
         uiLayer.addChild(joinRoomViewNode)
+    }
+}
+
+extension GameHomeScene {
+    func createRoom() {
+        dbRef.createRoom(uid: playerData.uid,
+                         name: playerData.name,
+                         createRoomSuccess,
+                         generalErrorHandler
+        )
+    }
+
+    func createRoomSuccess(roomId: String) {
+        self.roomId = roomId
+        // Transit to room view
+    }
+
+    func joinRoomSuccess() {
+        // Transit to room view.
+    }
+    
+    func roomNotOpen() {
+        // Show error alert room not open.
+    }
+    
+    func roomDoesNotExist() {
+        // Show error alert room does not exist.
+    }
+    
+    func uponRoomClose() {
+        // Transit back to multiplayer view.
+    }
+
+    func generalErrorHandler(error: Error) {
+        // Show error alert with error message
     }
 }

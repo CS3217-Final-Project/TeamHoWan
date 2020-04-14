@@ -8,7 +8,6 @@
 
 struct FirebaseKeys {
     static let defaultFalse = false
-    static let defaultName = "Anonymous"
     static let defaultEmptyString = ""
     
     // Room keys

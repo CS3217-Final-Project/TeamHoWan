@@ -19,7 +19,7 @@ class PlayerModel: Codable {
     var powerUpActivated: PowerUpModel?
     var monsters: [MonsterModel]?
     
-    init(uid: String, name: String = FirebaseKeys.defaultName, isHost: Bool,
+    init(uid: String, name: String = FirebaseKeys.defaultEmptyString, isHost: Bool,
          isReady: Bool = false, powerUp: PowerUpModel? = nil, monsters: [MonsterModel]? = nil) {
         self.uid = uid
         self.name = name

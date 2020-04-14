@@ -81,7 +81,7 @@ protocol NetworkInterface {
      - onComplete: completion handler
      - onError: error handler
      */
-    func changeReadyState(uid: String,
+    func toggleReadyState(uid: String,
                           forRoomId id: String,
                           _ onComplete: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
@@ -113,10 +113,12 @@ protocol NetworkInterface {
      and changes the `hasStarted` flag of the room.
      - Parameters:
      - roomId: the room id
+     - notAllReady: callback fired when not everyone in the room is ready.
      - onComplete: completion handler
      - onError: callback that is fired if there is an error
      */
     func startGame(roomId: String,
+                   _ notAllReady: @escaping () -> Void,
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void)
     
@@ -156,7 +158,7 @@ protocol NetworkInterface {
      - onComplete: a closure run when this process completes
      - onError: a closure run when an error occurs
      */
-    func updateMonsters(roomId: String,
+    func pushMonsters(roomId: String,
                         uid: String,
                         monsters: [MonsterModel],
                         _ onComplete: @escaping () -> Void,
@@ -171,7 +173,7 @@ protocol NetworkInterface {
      - onComplete: a closure run when this process completes
      - onError: a closure run when an error occurs
      */
-    func updatePowerUp(roomId: String,
+    func pushPowerUp(roomId: String,
                        uid: String,
                        powerUp: PowerUpModel,
                        _ onComplete: @escaping () -> Void,

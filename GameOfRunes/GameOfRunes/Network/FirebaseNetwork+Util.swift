@@ -34,7 +34,7 @@ extension FirebaseNetwork {
         }
         let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultFalse
         let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
-        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultName
+        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]

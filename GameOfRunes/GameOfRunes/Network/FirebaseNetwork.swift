@@ -9,7 +9,6 @@
 import Firebase
 
 class FirebaseNetwork: NetworkInterface {
-
     let dbRef: DatabaseReference = Database.database().reference()
     var observers: [Observer] = []
     
@@ -146,7 +145,7 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func changeReadyState(uid: String,
+    func toggleReadyState(uid: String,
                           forRoomId roomId: String,
                           _ onComplete: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
@@ -243,8 +242,29 @@ class FirebaseNetwork: NetworkInterface {
 
     func startGame(roomId: String,
                    _ onComplete: @escaping () -> Void,
+                   _ notAllReady: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players]))
         
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard let playersData = snapshot.value as? [String: AnyObject] else {
+                // Players object does not exist in firebase.
+                return
+            }
+            var players: [PlayerModel] = []
+            for player in playersData {
+                players.append(self.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value))
+            }
+            // Check whether all players are ready - throw handler if not
+            guard players.allSatisfy({ $0.isReady }) else {
+                notAllReady()
+                return
+            }
+            
+            onComplete()
+        }) { err in
+            onError(err)
+        }
     }
     
     func observeGameState(roomId: String,
@@ -255,7 +275,7 @@ class FirebaseNetwork: NetworkInterface {
         
     }
     
-    func updateMonsters(roomId: String,
+    func pushMonsters(roomId: String,
                         uid: String,
                         monsters: [MonsterModel],
                         _ onComplete: @escaping () -> Void,
@@ -264,7 +284,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_monsters]))
         let encodedMonsters = encodeMonsters(monsters: monsters)
-        ref.setValue(encodedMonsters, withCompletionBlock: { err, ref in
+        ref.setValue(encodedMonsters, withCompletionBlock: { err, _ in
             if let error = err {
                 onError(error)
                 return
@@ -273,7 +293,7 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
-    func updatePowerUp(roomId: String,
+    func pushPowerUp(roomId: String,
                        uid: String,
                        powerUp: PowerUpModel,
                        _ onComplete: @escaping () -> Void,
@@ -282,7 +302,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_powerUp]))
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
-        ref.setValue(encodedPowerUp, withCompletionBlock: { err, ref in
+        ref.setValue(encodedPowerUp, withCompletionBlock: { err, _ in
             if let error = err {
                 onError(error)
                 return
