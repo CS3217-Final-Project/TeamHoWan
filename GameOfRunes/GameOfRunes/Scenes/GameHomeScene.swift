@@ -131,13 +131,27 @@ class GameHomeScene: SKScene {
         currentViewNode = nodeB
     }
     
-    private func presentJoinAlert() {
-        alertNode.identifier = "join"
-        alertNode.alertDescription = "Trying to establish connection to room..."
+    private func presentResetDataAlert() {
+        alertNode.identifier = "reset"
+        alertNode.alertDescription = "Do you want to reset all game data?"
         alertNode.disableBackgroundContent = true
         alertNode.dimBackgroundContent = true
+        alertNode.showTick = true
+        alertNode.showCross = true
+        alertNode.showLoader = false
+        alertNode.status = .warning
+        alertNode.isHidden = false
+    }
+    
+    private func presentJoinAlert() {
+        alertNode.identifier = "join"
+        alertNode.alertDescription = "Establishing connection to room..."
+        alertNode.disableBackgroundContent = true
+        alertNode.dimBackgroundContent = true
+        alertNode.showTick = false
         alertNode.showCross = true
         alertNode.showLoader = true
+        alertNode.status = nil
         alertNode.isHidden = false
     }
 }
@@ -175,6 +189,8 @@ extension GameHomeScene: UITextFieldDelegate {
 extension GameHomeScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         switch tappedNode.buttonType {
+        case .settingsButton:
+            presentResetDataAlert()
         case .startButton:
             transit(from: startViewNode, to: gameModeSelectionViewNode)
             navigationStack.append(startViewNode)
@@ -192,7 +208,6 @@ extension GameHomeScene: TapResponder {
             // do firebase connection here
             //player name
             //room code => joinRoomViewNode.inputRoomId
-            return
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -209,8 +224,19 @@ extension GameHomeScene: AlertResponder {
     func crossOnTapped(sender: AlertNode) {
         if sender.identifier == "join" {
             // do sth like terminate the joining?
-            sender.isHidden = true
         }
+        
+        sender.isHidden = true
+    }
+    
+    func tickOnTapped(sender: AlertNode) {
+        if sender.identifier == "reset" {
+            sender.showLoader = true
+            GameViewController.storage.reset()
+            GameViewController.initStagesInDatabase()
+        }
+        
+        sender.isHidden = true
     }
 }
 

@@ -10,20 +10,30 @@ import SpriteKit
 
 class StartViewNode: SKNode {
     private let startButton: ButtonNode
+    private let settingsButton: ButtonNode
     
     override var isUserInteractionEnabled: Bool {
         didSet {
             startButton.isUserInteractionEnabled = isUserInteractionEnabled
+            settingsButton.isUserInteractionEnabled = isUserInteractionEnabled
         }
     }
     
     init(size: CGSize) {
-        let buttonTexture = SKTexture(imageNamed: "start-button-glow")
+        let startButtonTexture = SKTexture(imageNamed: "start-button-glow")
         startButton = ButtonNode(
-            size: buttonTexture.size().scaleTo(width: size.width * 0.8),
-            texture: buttonTexture,
+            size: startButtonTexture.size().scaleTo(width: size.width * 0.8),
+            texture: startButtonTexture,
             buttonType: .startButton,
-            position: .init(x: 0.0, y: -size.height * 0.3)
+            position: .init(x: 0.0, y: -size.height * 0.275)
+        )
+        
+        let settingsButtonTexture = SKTexture(imageNamed: "settings-button")
+        settingsButton = ButtonNode(
+            size: settingsButtonTexture.size().scaleTo(width: size.width * 0.8),
+            texture: settingsButtonTexture,
+            buttonType: .settingsButton,
+            position: .init(x: 0.0, y: -size.height * 0.425)
         )
         
         super.init()
@@ -39,6 +49,7 @@ class StartViewNode: SKNode {
         
         addChild(gameIcon)
         addChild(startButton)
+        addChild(settingsButton)
     }
     
     @available(*, unavailable)

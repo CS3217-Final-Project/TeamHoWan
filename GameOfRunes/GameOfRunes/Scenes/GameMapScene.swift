@@ -241,7 +241,7 @@ extension GameMapScene {
      This function is called by GameEndState in order to update the front-end
      when the back-end changes (e.g. stage's highscore/achievement level are update)
      */
-    func refreshGameMap() {
+    func refreshSelectedStage() {
         // load only the updated stage
         guard let selectedStageNode = selectedStageNode,
             let updatedStage = GameViewController.storage.load(stageName: selectedStageNode.stage.name) else {

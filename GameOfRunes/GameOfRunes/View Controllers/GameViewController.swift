@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         
         if Self.storage.isFirstInit {
             print("First-time initialisation of stages in database")
-            self.initStagesInDatabase()
+            Self.initStagesInDatabase()
             print("Done initialising stages")
         }
         
@@ -64,7 +64,7 @@ extension GameViewController {
      by the `isFirstInit` property). This function will populate the Realm database
      with some default levels.
      */
-    func initStagesInDatabase() {
+    static func initStagesInDatabase() {
         guard let stage1EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 1),
             let stage2EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 2),
             let stage3EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 3),

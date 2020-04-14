@@ -30,4 +30,5 @@ enum ButtonType {
     case anyButton
     case tickButton
     case crossButton
+    case settingsButton
 }
