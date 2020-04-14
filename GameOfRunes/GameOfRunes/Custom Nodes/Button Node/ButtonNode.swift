@@ -14,11 +14,15 @@ import SpriteKit
  */
 class ButtonNode: SKSpriteNode {
     private static let onTappedScaleFactor: CGFloat = 0.9
+    weak var customResponder: TapResponder?
     var responder: TapResponder {
-        guard let responder = scene as? TapResponder else {
-            fatalError("This node can only be used within a `TapResponder` scene.")
+        if let responder = customResponder {
+            return responder
+        } else if let responder = scene as? TapResponder {
+            return responder
+        } else {
+            fatalError("No tap responder can be found")
         }
-        return responder
     }
     private var identitySize: CGSize
     override var size: CGSize {
@@ -31,7 +35,7 @@ class ButtonNode: SKSpriteNode {
     }
     let buttonType: ButtonType
 
-    init(size: CGSize, texture: SKTexture?, buttonType: ButtonType, position: CGPoint = .zero) {
+    init(size: CGSize, texture: SKTexture?, buttonType: ButtonType = .anyButton, position: CGPoint = .zero) {
         self.buttonType = buttonType
         identitySize = size
         super.init(texture: texture, color: .clear, size: size)

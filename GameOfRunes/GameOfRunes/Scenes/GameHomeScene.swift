@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
+    private let alertNode: AlertNode
     private let nameField: CustomTextField
     private let backNode: BackNode = .init()
     private let startViewNode: StartViewNode
@@ -56,6 +57,7 @@ class GameHomeScene: SKScene {
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
         
+        alertNode = .init(size: size)
         nameField = .init(size: size)
         startViewNode = .init(size: size)
         gameModeSelectionViewNode = .init(size: size)
@@ -65,6 +67,7 @@ class GameHomeScene: SKScene {
         super.init(size: size)
         
         anchorPoint = .init(x: 0.5, y: 0.5)
+        alertNode.responder = self
     }
     
     deinit {
@@ -86,7 +89,6 @@ class GameHomeScene: SKScene {
         setUpViews()
         
         addChild(bgmNode)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -127,6 +129,16 @@ class GameHomeScene: SKScene {
         
         // update current view node
         currentViewNode = nodeB
+    }
+    
+    private func presentJoinAlert() {
+        alertNode.identifier = "join"
+        alertNode.alertDescription = "Trying to establish connection to room..."
+        alertNode.disableBackgroundContent = true
+        alertNode.dimBackgroundContent = true
+        alertNode.showCross = true
+        alertNode.showLoader = true
+        alertNode.isHidden = false
     }
 }
 
@@ -176,6 +188,7 @@ extension GameHomeScene: TapResponder {
             navigationStack.append(multiplayerActionViewNode)
             joinRoomViewNode.inputRoomId = ""
         case .joinButton:
+            presentJoinAlert()
             // do firebase connection here
             //player name
             //room code => joinRoomViewNode.inputRoomId
@@ -187,6 +200,16 @@ extension GameHomeScene: TapResponder {
             transit(from: currentViewNode, to: previousViewNode)
         default:
             print("Unknown node tapped:", tappedNode)
+        }
+    }
+}
+
+// MARK: - AlertResponder
+extension GameHomeScene: AlertResponder {
+    func crossOnTapped(sender: AlertNode) {
+        if sender.identifier == "join" {
+            // do sth like terminate the joining?
+            sender.isHidden = true
         }
     }
 }
@@ -219,6 +242,7 @@ extension GameHomeScene {
             y: size.height / 2 - backNode.size.height / 1.5
         )
         backNode.isHidden = true
+        backNode.zPosition = 50
         uiLayer.addChild(backNode)
     }
     
@@ -244,5 +268,8 @@ extension GameHomeScene {
         
         joinRoomViewNode.alpha = .zero
         uiLayer.addChild(joinRoomViewNode)
+        
+        alertNode.isHidden = true
+        uiLayer.addChild(alertNode)
     }
 }

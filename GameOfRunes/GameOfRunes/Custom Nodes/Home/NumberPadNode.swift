@@ -42,7 +42,7 @@ class NumberPadNode: SKSpriteNode, TapResponder {
         let numberNodes: [NumberPadButtonNode] = (0...9).map {
             let node = NumberPadButtonNode(backgroundTexture: numberNodeTexture, feedbackValue: "\($0)")
             node.displayValue = node.feedbackValue
-            node.numberPadButtonResponder = self
+            node.customResponder = self
             node.zPosition = 1
             return node
         }
@@ -51,14 +51,14 @@ class NumberPadNode: SKSpriteNode, TapResponder {
             backgroundTexture: .init(imageNamed: "delete-button"),
             feedbackValue: "<-"
         )
-        deleteNode.numberPadButtonResponder = self
+        deleteNode.customResponder = self
         deleteNode.zPosition = 1
         
         let clearNode: NumberPadButtonNode = .init(
             backgroundTexture: .init(imageNamed: "clear-button"),
             feedbackValue: "X"
         )
-        clearNode.numberPadButtonResponder = self
+        clearNode.customResponder = self
         clearNode.zPosition = 1
         
         nodes.append([numberNodes[1], numberNodes[2], numberNodes[3]])

@@ -19,7 +19,6 @@ class NumberPadButtonNode: ButtonNode {
         }
     }
     var feedbackValue: String
-    weak var numberPadButtonResponder: TapResponder?
     
     override var size: CGSize {
         didSet {
@@ -30,19 +29,11 @@ class NumberPadButtonNode: ButtonNode {
         }
     }
     
-    override var responder: TapResponder {
-        guard let responder = numberPadButtonResponder else {
-            fatalError("NumberPadButtonNode should have a tap responder")
-        }
-        return responder
-    }
-    
     init(backgroundTexture: SKTexture?, feedbackValue: String) {
         self.feedbackValue = feedbackValue
         super.init(
             size: backgroundTexture?.size() ?? .zero,
-            texture: backgroundTexture,
-            buttonType: .anyButton
+            texture: backgroundTexture
         )
         
         displayLabelNode.fontColor = .init(hex: "#fefb9e", alpha: 1.0)

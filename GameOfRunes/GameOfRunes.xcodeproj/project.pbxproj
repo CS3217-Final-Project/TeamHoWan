@@ -78,6 +78,10 @@
 		4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AA5B37F2417879B008D4953 /* Assets.xcassets */; };
 		4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */; };
 		4AA5B3842417BA71008D4953 /* SKSpriteNode+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5B3832417BA71008D4953 /* SKSpriteNode+helpers.swift */; };
+		4AA6DD882445FC8C008E279D /* AlertNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA6DD872445FC8C008E279D /* AlertNode.swift */; };
+		4AA6DD8A244617CE008E279D /* AlertViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA6DD89244617CE008E279D /* AlertViewNode.swift */; };
+		4AA6DD8C244623BD008E279D /* LoaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA6DD8B244623BD008E279D /* LoaderNode.swift */; };
+		4AA6DD8E244626DB008E279D /* AlertResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA6DD8D244626DB008E279D /* AlertResponder.swift */; };
 		4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB47A3E2423F0F700EDADC1 /* ManaType.swift */; };
 		4AB6BDF5242789D80046F5AB /* HealthBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */; };
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
@@ -301,6 +305,10 @@
 		4AA5B37F2417879B008D4953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AA5B3812417B8D7008D4953 /* BarDividerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDividerNode.swift; sourceTree = "<group>"; };
 		4AA5B3832417BA71008D4953 /* SKSpriteNode+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+helpers.swift"; sourceTree = "<group>"; };
+		4AA6DD872445FC8C008E279D /* AlertNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNode.swift; sourceTree = "<group>"; };
+		4AA6DD89244617CE008E279D /* AlertViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewNode.swift; sourceTree = "<group>"; };
+		4AA6DD8B244623BD008E279D /* LoaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderNode.swift; sourceTree = "<group>"; };
+		4AA6DD8D244626DB008E279D /* AlertResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertResponder.swift; sourceTree = "<group>"; };
 		4AB47A3E2423F0F700EDADC1 /* ManaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaType.swift; sourceTree = "<group>"; };
 		4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNodeTest.swift; sourceTree = "<group>"; };
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
@@ -504,6 +512,7 @@
 				4A1B334524330CAB00B67B91 /* Storage.swift */,
 				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
 				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
+				4AA6DD8D244626DB008E279D /* AlertResponder.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -656,6 +665,9 @@
 				4A09C4F4242FCB9D00CA7625 /* Game Map */,
 				4A45E90C2444460600F9FA22 /* Home */,
 				4A45E9062443990200F9FA22 /* BackNode.swift */,
+				4AA6DD872445FC8C008E279D /* AlertNode.swift */,
+				4AA6DD89244617CE008E279D /* AlertViewNode.swift */,
+				4AA6DD8B244623BD008E279D /* LoaderNode.swift */,
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
 				56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */,
 			);
@@ -1266,6 +1278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */,
+				4AA6DD8C244623BD008E279D /* LoaderNode.swift in Sources */,
 				56DE064624417555003D6A8E /* GameEngineFacade.swift in Sources */,
 				56D2A650242C502B00BDD5DC /* ComponentType.swift in Sources */,
 				C6AC4777243256690078D5F1 /* PowerUpComponent.swift in Sources */,
@@ -1287,6 +1300,7 @@
 				8A649E9524409E26005A5371 /* GameInMultiplayerPlayState.swift in Sources */,
 				4A1B334424328ACE00B67B91 /* EnemyTypeRealmModel.swift in Sources */,
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
+				4AA6DD8E244626DB008E279D /* AlertResponder.swift in Sources */,
 				56FF3A24244060AB00745A8D /* IcePrisonPowerUp.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
@@ -1368,6 +1382,7 @@
 				4A09C4EC242E465200CA7625 /* GameMapScene.swift in Sources */,
 				8A649E9124405130005A5371 /* RootRenderNode.swift in Sources */,
 				4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */,
+				4AA6DD8A244617CE008E279D /* AlertViewNode.swift in Sources */,
 				8A712E822423693200B3824E /* SpriteLayerType.swift in Sources */,
 				4AA5B3822417B8D7008D4953 /* BarDividerNode.swift in Sources */,
 				C6AFF67E24191A2A0076F02B /* GameEngine+SystemDelegate.swift in Sources */,
@@ -1443,6 +1458,7 @@
 				8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */,
 				4A5B423E243F27A800DF4D32 /* PowerUp.swift in Sources */,
 				C6AACD42243605BD0012C7D9 /* DivineShieldPowerUpEntity.swift in Sources */,
+				4AA6DD882445FC8C008E279D /* AlertNode.swift in Sources */,
 				8A32CB70244232DD00E509D6 /* RemoteRootRenderNode.swift in Sources */,
 				4A09C4F8242FCBDD00CA7625 /* StageNode.swift in Sources */,
 				563F3DED24171B4A009381B9 /* GameScene.swift in Sources */,
