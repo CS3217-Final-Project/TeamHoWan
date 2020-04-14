@@ -11,7 +11,7 @@ import Cuckoo
 import SpriteKit
 import GameplayKit
 @testable import GameOfRunes
-
+/*
 class GameStateMachineTest: BaseUnitTest {
     var gameInPlayState: MockGameInPlayState!
     var gameStartState: MockGameStartState!
@@ -20,7 +20,7 @@ class GameStateMachineTest: BaseUnitTest {
     var gameStageSelectionState: MockGameStageSelectionState!
     var gameModeSelectionState: MockGameModeSelectionState!
     var sceneManager: MockSceneManager!
-/*
+ 
     override func setUp() {
         super.setUp()
         gameInPlayState = MockGameInPlayState().withEnabledSuperclassSpy()
@@ -92,5 +92,5 @@ class GameStateMachineTest: BaseUnitTest {
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))
     }
- */
 }
+*/
