@@ -6,11 +6,9 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import SpriteKit
-
 /**
  Conforming types can respond to tap events..
- This should be implemented by the `SKScene` that the tapped node
+ This can be implemented by the `SKScene` that the tapped node
  is added to.
  */
 protocol TapResponder: AnyObject {

@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-enum CustomGesture: String, CaseIterable {
+enum CustomGesture: String, CaseIterable, Codable {
     case verticalLine
     case arrowUp
     case arrowLeft

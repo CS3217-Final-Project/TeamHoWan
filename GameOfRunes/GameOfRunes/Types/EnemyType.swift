@@ -9,7 +9,7 @@
 import SpriteKit
 import RealmSwift
 
-@objc enum EnemyType: Int, CaseIterable, CustomStringConvertible, RealmEnum {
+@objc enum EnemyType: Int, CaseIterable, CustomStringConvertible, RealmEnum, Codable {
     case evilKnight
     case orc1
     case orc2

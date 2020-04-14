@@ -129,6 +129,12 @@ enum GameConfig {
         static let stageNodeLayerZPosition: CGFloat = 0
         static let cameraLayerZPosition: CGFloat = 100
     }
+    
+    enum GameHomeScene {
+        // zPositions
+        static let backgroundLayerZPosition: CGFloat = -100
+        static let uiLayerZPosition: CGFloat = 0
+    }
 
     enum MultiplayerGameScene {
         static let miniMapAlpha: CGFloat = 0.7

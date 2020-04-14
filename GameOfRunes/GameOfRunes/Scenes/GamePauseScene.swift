@@ -67,11 +67,11 @@ class GamePauseScene: SKScene, TapResponder {
         case .resumeButton:
             gameStateMachine?.enter(GameInPlayState.self)
         case .homeButton:
-            gameStateMachine?.enter(GameSelectionState.self)
+            gameStateMachine?.enter(GameStageSelectionState.self)
         case .restartButton:
             gameStateMachine?.enter(GameStartState.self)
         default:
-            print("Unknown node tapped")
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }

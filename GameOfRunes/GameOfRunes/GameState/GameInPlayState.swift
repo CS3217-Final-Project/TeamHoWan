@@ -23,6 +23,9 @@ class GameInPlayState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
-        sceneManager.transitionToScene(sceneIdentifier: .play)
+        sceneManager.transitionToScene(
+            sceneIdentifier: .play,
+            transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        )
     }
 }

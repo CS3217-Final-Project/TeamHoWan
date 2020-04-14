@@ -47,6 +47,8 @@ class GameScene: SKScene {
     }
     
     override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
         guard let stage = gameStateMachine?.stage,
             let avatar = gameStateMachine?.avatar else {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
@@ -97,7 +99,7 @@ extension GameScene: TapResponder {
         case .powerUpIconButton:
             rootRenderNode.powerUpButtonTapped()
         default:
-            print("Unknown node tapped")
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }

@@ -3,6 +3,7 @@ platform :ios, "13.2"
 target "GameOfRunes" do
   pod "SwiftLint"
   pod "SnapKit"
+  pod "Firebase/Database"
   pod "RealmSwift", :modular_headers => true
   pod "Realm", :modular_headers => true
   

@@ -32,7 +32,7 @@ class MultiplayerGameViewController: UIViewController {
     // Remove this when there is an established method of determining
     // what stage to use for the Multiplayer game
     private func getMultiplayerStage() -> Stage {
-        let stages = HomeViewController.storage.loadAllStages()
+        let stages = GameViewController.storage.loadAllStages()
         return stages[3]
     }
 

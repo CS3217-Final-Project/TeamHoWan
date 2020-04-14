@@ -12,6 +12,7 @@ class GameMapScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
     private var previousCameraPosition: CGPoint = .zero
     private var mapSize: CGSize!
+    private let backNode: BackNode = .init()
     private var stagePreviewNode: StagePreviewNode!
     private var stageSelectionNode: StageSelectionNode!
     private var selectedStageNode: StageNode? {
@@ -48,10 +49,13 @@ class GameMapScene: SKScene {
     }
     
     override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
         buildLayers()
         setUpMap()
         setUpStageNodes()
         setUpCamera()
+        setUpBackButton()
         setUpStagePreview()
         setUpStageSelection()
         
@@ -70,19 +74,6 @@ class GameMapScene: SKScene {
         super.willMove(from: view)
         
         view.gestureRecognizers?.forEach { view.removeGestureRecognizer($0) }
-    }
-    
-    private func setUpScene() {
-        
-        // add play button
-        let texture = SKTexture(imageNamed: "play-button")
-        let playButton = ButtonNode(
-            size: texture.size(),
-            texture: texture,
-            buttonType: .playButton
-        )
-        
-        addChild(playButton)
     }
     
     deinit {
@@ -137,8 +128,10 @@ extension GameMapScene: TapResponder {
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
         case .powerUpIconButton:
             stageSelectionNode.updatePowerUpDescription()
+        case .backButton:
+            gameStateMachine?.enter(GameModeSelectionState.self)
         default:
-            return
+            print("Unknown node tapped:", tappedNode)
         }
     }
 }
@@ -172,12 +165,12 @@ extension GameMapScene {
     }
     
     private func setUpStageNodes() {
-        let stages = HomeViewController.storage.loadAllStages()
+        let stages = GameViewController.storage.loadAllStages()
         let stageNodes = stages.map { StageNode(stage: $0, mapSize: mapSize) }
         stageNodes.forEach { stageNodeLayer.addChild($0) }
         
         // make camera start at first stage
-        previousCameraPosition = stageNodes[0].position
+        previousCameraPosition = stageNodes.first?.position ?? .zero
     }
     
     private func setUpCamera() {
@@ -196,6 +189,16 @@ extension GameMapScene {
         camera.constraints = [.positionX(xRange, y: yRange)]
         
         cameraLayer.addChild(camera)
+    }
+    
+    private func setUpBackButton() {
+        backNode.size = backNode.size.scaleTo(width: size.width / 7)
+        backNode.position = .init(
+            x: -size.width / 2 + backNode.size.width / 1.5,
+            y: size.height / 2 - backNode.size.height / 1.5
+        )
+        backNode.zPosition = -50
+        camera?.addChild(backNode)
     }
     
     private func setUpStagePreview() {
@@ -241,7 +244,7 @@ extension GameMapScene {
     func refreshGameMap() {
         // load only the updated stage
         guard let selectedStageNode = selectedStageNode,
-            let updatedStage = HomeViewController.storage.load(stageName: selectedStageNode.stage.name) else {
+            let updatedStage = GameViewController.storage.load(stageName: selectedStageNode.stage.name) else {
                 return
         }
         
