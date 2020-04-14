@@ -170,7 +170,7 @@ extension GameMapScene {
         stageNodes.forEach { stageNodeLayer.addChild($0) }
         
         // make camera start at first stage
-        previousCameraPosition = stageNodes[0].position
+        previousCameraPosition = stageNodes.first?.position ?? .zero
     }
     
     private func setUpCamera() {
