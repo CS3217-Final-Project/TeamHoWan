@@ -11,7 +11,7 @@ import Cuckoo
 import SpriteKit
 import GameplayKit
 @testable import GameOfRunes
-/*
+
 class GameStateMachineTest: BaseUnitTest {
     var gameInPlayState: MockGameInPlayState!
     var gameStartState: MockGameStartState!
@@ -93,4 +93,3 @@ class GameStateMachineTest: BaseUnitTest {
             transition: any(SKTransition.self))
     }
 }
-*/

@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import GameOfRunes
-/*
+
 class GameStateTest: BaseUnitTest {
     var gameInPlayState: MockGameInPlayState!
     var gameStartState: MockGameStartState!
@@ -81,4 +81,3 @@ class GameStateTest: BaseUnitTest {
         XCTAssertFalse(gameModeSelectionState.isValidNextState(MockGameModeSelectionState.self))
     }
 }
- */
