@@ -85,6 +85,7 @@
 		4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB47A3E2423F0F700EDADC1 /* ManaType.swift */; };
 		4AB6BDF5242789D80046F5AB /* HealthBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */; };
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
+		4AC6E4C1244656F70082DF53 /* NumberPadResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
 		4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4B241A3EB100D79639 /* PowerUpType.swift */; };
@@ -312,6 +313,7 @@
 		4AB47A3E2423F0F700EDADC1 /* ManaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaType.swift; sourceTree = "<group>"; };
 		4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNodeTest.swift; sourceTree = "<group>"; };
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
+		4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadResponder.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
 		4AC87A4B241A3EB100D79639 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */,
 				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
 				4AA6DD8D244626DB008E279D /* AlertResponder.swift */,
+				4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1302,6 +1305,7 @@
 				4AA5B3782416CE7B008D4953 /* CGVector+vectorManipulationHelpers.swift in Sources */,
 				4AA6DD8E244626DB008E279D /* AlertResponder.swift in Sources */,
 				56FF3A24244060AB00745A8D /* IcePrisonPowerUp.swift in Sources */,
+				4AC6E4C1244656F70082DF53 /* NumberPadResponder.swift in Sources */,
 				4AA5B364241650A1008D4953 /* TeamComponent.swift in Sources */,
 				4AA5B37C241769C4008D4953 /* ProgressBarNode.swift in Sources */,
 				56445ECE242EFCE600D5DCBE /* ComboEntity.swift in Sources */,

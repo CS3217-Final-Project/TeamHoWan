@@ -11,24 +11,29 @@ import SpriteKit
 class JoinRoomViewNode: SKNode {
     private let numberPadNode: NumberPadNode
     private let joinButton: ButtonNode
-    var inputRoomId: String {
-        get {
-            numberPadNode.displayedValue
-        }
-        set {
-            numberPadNode.displayedValue = newValue
+    var inputRoomId = "" {
+        didSet {
+            numberPadNode.displayedValue = inputRoomId
+            joinButton.isUserInteractionEnabled = inputRoomId.count == numberPadNode.limit
+            joinButton.alpha = joinButton.isUserInteractionEnabled ? 1 : 0.7
         }
     }
     
     override var isUserInteractionEnabled: Bool {
         didSet {
             numberPadNode.isUserInteractionEnabled = isUserInteractionEnabled
-            joinButton.isUserInteractionEnabled = isUserInteractionEnabled
+            
+            if !isUserInteractionEnabled {
+                joinButton.isUserInteractionEnabled = false
+            }
         }
     }
     
     init(size: CGSize) {
-        numberPadNode = .init(size: size.scaleTo(width: size.width * 0.525, widthToHeightRatio: 3 / 5.75), limit: 5)
+        numberPadNode = .init(
+            size: size.scaleTo(width: size.width * 0.525, widthToHeightRatio: 3 / 5.75),
+            limit: 5
+        )
         numberPadNode.position = .init(x: 0.0, y: size.height / 10)
         numberPadNode.header = "Room ID"
         
@@ -44,6 +49,8 @@ class JoinRoomViewNode: SKNode {
         
         isUserInteractionEnabled = true
         
+        numberPadNode.responder = self
+        
         addChild(numberPadNode)
         addChild(joinButton)
     }
@@ -51,5 +58,11 @@ class JoinRoomViewNode: SKNode {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension JoinRoomViewNode: NumberPadResponder {
+    func displayedValueDidChanged(newValue: String) {
+        inputRoomId = newValue
     }
 }

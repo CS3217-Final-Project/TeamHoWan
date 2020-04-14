@@ -10,6 +10,7 @@ import SpriteKit
 
 class NumberPadNode: SKSpriteNode, TapResponder {
     private let displayLabelNode: NumberPadLabelNode = .init()
+    weak var responder: NumberPadResponder?
     var header: String {
         get {
             displayLabelNode.header
@@ -113,6 +114,8 @@ class NumberPadNode: SKSpriteNode, TapResponder {
             }
             displayedValue += numberPadButtonNode.feedbackValue
         }
+        
+        responder?.displayedValueDidChanged(newValue: displayedValue)
     }
     
     @available(*, unavailable)
