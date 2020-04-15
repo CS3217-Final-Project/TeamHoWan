@@ -811,6 +811,18 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		565863F02446D68300206E29 /* NetworkModels */ = {
+			isa = PBXGroup;
+			children = (
+				56FC8CF3243426A800B6DBC9 /* PlayerModel.swift */,
+				C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */,
+				C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */,
+				C6AACD58244483870012C7D9 /* RoomModel.swift */,
+				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
+			);
+			path = NetworkModels;
+			sourceTree = "<group>";
+		};
 		566121D7241682C500475CE1 /* Gesture Recogniser */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,11 +853,7 @@
 		56FC8CF22434239500B6DBC9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				56FC8CF3243426A800B6DBC9 /* PlayerModel.swift */,
-				C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */,
-				C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */,
-				C6AACD58244483870012C7D9 /* RoomModel.swift */,
-				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
+				565863F02446D68300206E29 /* NetworkModels */,
 				56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */,
 				56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */,
 				C6AACD5E244490E10012C7D9 /* FirebaseObserver.swift */,

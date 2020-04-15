@@ -239,7 +239,7 @@ class FirebaseNetwork: NetworkInterface {
             onError(err)
         }
     }
-
+    
     func startGame(roomId: String,
                    _ onComplete: @escaping () -> Void,
                    _ notAllReady: @escaping () -> Void,
@@ -276,10 +276,10 @@ class FirebaseNetwork: NetworkInterface {
     }
     
     func pushMonsters(roomId: String,
-                        uid: String,
-                        monsters: [MonsterModel],
-                        _ onComplete: @escaping () -> Void,
-                        _ onError: @escaping (Error) -> Void) {
+                      uid: String,
+                      monsters: [MonsterModel],
+                      _ onComplete: @escaping () -> Void,
+                      _ onError: @escaping (Error) -> Void) {
         
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_monsters]))
@@ -294,10 +294,10 @@ class FirebaseNetwork: NetworkInterface {
     }
     
     func pushPowerUp(roomId: String,
-                       uid: String,
-                       powerUp: PowerUpModel,
-                       _ onComplete: @escaping () -> Void,
-                       _ onError: @escaping (Error) -> Void) {
+                     uid: String,
+                     powerUp: PowerUpModel,
+                     _ onComplete: @escaping () -> Void,
+                     _ onError: @escaping (Error) -> Void) {
         
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_powerUp]))

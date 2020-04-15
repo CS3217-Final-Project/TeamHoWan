@@ -18,8 +18,11 @@ class AlertNode: SKNode {
     private let viewNode: AlertViewNode
     weak var responder: AlertResponder?
     var identifier: String?
-    /** Dims all other contents in the view where this node is presented.
-     Does not work when background content is enabled.*/
+    
+    /**
+     Dims all other contents in the view where this node is presented.
+     Does not work when background content is enabled.
+     */
     var dimBackgroundContent: Bool {
         get {
             screeningNode.color != .clear
@@ -28,7 +31,10 @@ class AlertNode: SKNode {
             screeningNode.color = newValue ? .black : .clear
         }
     }
-    /** Disable user interaction with all other contents in the view where this node is presented*/
+    
+    /**
+     Disable user interaction with all other contents in the view where this node is presented
+     */
     var disableBackgroundContent: Bool {
         get {
             !screeningNode.isHidden

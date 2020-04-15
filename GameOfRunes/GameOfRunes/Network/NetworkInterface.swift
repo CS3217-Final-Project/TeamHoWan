@@ -12,7 +12,6 @@ import Foundation
  Interface for the network. Contains methods to obtain/receive information from the game network.
  */
 protocol NetworkInterface {
-    
     // ================================== Room functions =========================================
     
     /**
@@ -159,10 +158,10 @@ protocol NetworkInterface {
      - onError: a closure run when an error occurs
      */
     func pushMonsters(roomId: String,
-                        uid: String,
-                        monsters: [MonsterModel],
-                        _ onComplete: @escaping () -> Void,
-                        _ onError: @escaping (Error) -> Void)
+                      uid: String,
+                      monsters: [MonsterModel],
+                      _ onComplete: @escaping () -> Void,
+                      _ onError: @escaping (Error) -> Void)
     
     /**
      Update with a powerUp activation event.
@@ -174,8 +173,14 @@ protocol NetworkInterface {
      - onError: a closure run when an error occurs
      */
     func pushPowerUp(roomId: String,
-                       uid: String,
-                       powerUp: PowerUpModel,
-                       _ onComplete: @escaping () -> Void,
-                       _ onError: @escaping (Error) -> Void)
+                     uid: String,
+                     powerUp: PowerUpModel,
+                     _ onComplete: @escaping () -> Void,
+                     _ onError: @escaping (Error) -> Void)
+}
+
+extension NetworkInterface {
+    func checkForConnection() {
+        // TODO: Implementation
+    }
 }

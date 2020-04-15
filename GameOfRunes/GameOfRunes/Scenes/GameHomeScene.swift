@@ -144,27 +144,20 @@ class GameHomeScene: SKScene {
         currentViewNode = nodeB
     }
     
-    private func presentResetDataAlert() {
-        alertNode.identifier = "reset"
-        alertNode.alertDescription = "Do you want to reset all game data?"
-        alertNode.disableBackgroundContent = true
-        alertNode.dimBackgroundContent = true
-        alertNode.showTick = true
-        alertNode.showCross = true
-        alertNode.showLoader = false
-        alertNode.status = .warning
-        alertNode.isHidden = false
-    }
-    
-    private func presentJoinAlert() {
-        alertNode.identifier = "join"
-        alertNode.alertDescription = "Establishing connection to room..."
-        alertNode.disableBackgroundContent = true
-        alertNode.dimBackgroundContent = true
-        alertNode.showTick = false
-        alertNode.showCross = true
-        alertNode.showLoader = true
-        alertNode.status = nil
+    private func presentAlert(identifier: String,
+                              alertDescription: String,
+                              showTick: Bool,
+                              showCross: Bool,
+                              showLoader: Bool,
+                              status: AlertNode.Status?,
+                              disableBackgroundContent: Bool = true,
+                              dimBackgroundContent: Bool = true) {
+        alertNode.identifier = identifier
+        alertNode.alertDescription = alertDescription
+        alertNode.showTick = showTick
+        alertNode.showCross = showCross
+        alertNode.showLoader = showLoader
+        alertNode.status = status
         alertNode.isHidden = false
     }
 }
@@ -203,7 +196,12 @@ extension GameHomeScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         switch tappedNode.buttonType {
         case .settingsButton:
-            presentResetDataAlert()
+            presentAlert(identifier: "reset",
+                         alertDescription: "Do you want to reset all game data?",
+                         showTick: true,
+                         showCross: true,
+                         showLoader: false,
+                         status: .warning)
         case .startButton:
             transit(from: startViewNode, to: gameModeSelectionViewNode)
             navigationStack.append(startViewNode)
@@ -218,21 +216,7 @@ extension GameHomeScene: TapResponder {
             navigationStack.append(multiplayerActionViewNode)
             joinRoomViewNode.inputRoomId = ""
         case .joinButton:
-<<<<<<< HEAD
-            dbRef.joinRoom(uid: playerData.uid,
-                           name: playerData.name,
-                           forRoomId: joinRoomViewNode.inputRoomId,
-                           joinRoomSuccess,
-                           roomNotOpen,
-                           roomDoesNotExist,
-                           generalErrorHandler
-            )
-=======
-            presentJoinAlert()
-            // do firebase connection here
-            //player name
-            //room code => joinRoomViewNode.inputRoomId
->>>>>>> ca8f90b39137c8d0aa45b23401afe26f13671847
+            joinRoom()
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -249,8 +233,10 @@ extension GameHomeScene: AlertResponder {
     func crossOnTapped(sender: AlertNode) {
         if sender.identifier == "join" {
             // do sth like terminate the joining?
+        } else if sender.identifier == "room_close" {
+            // transition back to multiplayer view
         }
-        
+
         sender.isHidden = true
     }
     
@@ -326,7 +312,13 @@ extension GameHomeScene {
 }
 
 extension GameHomeScene {
-    func createRoom() {
+    private func createRoom() {
+        presentAlert(identifier: "create",
+                     alertDescription: "Creating a room...",
+                     showTick: false,
+                     showCross: false,
+                     showLoader: true,
+                     status: nil)
         dbRef.createRoom(uid: playerData.uid,
                          name: playerData.name,
                          createRoomSuccess,
@@ -334,28 +326,68 @@ extension GameHomeScene {
         )
     }
 
-    func createRoomSuccess(roomId: String) {
+    private func createRoomSuccess(roomId: String) {
+        alertNode.isHidden = true
         self.roomId = roomId
         // Transit to room view
     }
+    
+    private func joinRoom() {
+        presentAlert(identifier: "join",
+                     alertDescription: "Joining the room...",
+                     showTick: false,
+                     showCross: false,
+                     showLoader: true,
+                     status: nil)
+        dbRef.joinRoom(uid: playerData.uid,
+                       name: playerData.name,
+                       forRoomId: joinRoomViewNode.inputRoomId,
+                       joinRoomSuccess,
+                       roomNotOpen,
+                       roomDoesNotExist,
+                       generalErrorHandler)
+    }
 
-    func joinRoomSuccess() {
+    private func joinRoomSuccess() {
+        alertNode.isHidden = true
         // Transit to room view.
     }
     
-    func roomNotOpen() {
-        // Show error alert room not open.
+    private func roomNotOpen() {
+        presentAlert(identifier: "error",
+                     alertDescription: "Room is full!",
+                     showTick: true,
+                     showCross: false,
+                     showLoader: false,
+                     status: .warning)
+        roomId = ""
     }
     
-    func roomDoesNotExist() {
-        // Show error alert room does not exist.
+    private func roomDoesNotExist() {
+        presentAlert(identifier: "error",
+                     alertDescription: "Room does not exist!",
+                     showTick: true,
+                     showCross: false,
+                     showLoader: false,
+                     status: .warning)
+        roomId = ""
     }
     
-    func uponRoomClose() {
-        // Transit back to multiplayer view.
+    private func uponRoomClose() {
+        presentAlert(identifier: "room_close",
+                     alertDescription: "Room has been closed!",
+                     showTick: true,
+                     showCross: false,
+                     showLoader: false,
+                     status: .warning)
     }
 
-    func generalErrorHandler(error: Error) {
-        // Show error alert with error message
+    private func generalErrorHandler(error: Error) {
+        presentAlert(identifier: "error",
+                     alertDescription: error.localizedDescription,
+                     showTick: true,
+                     showCross: false,
+                     showLoader: false,
+                     status: .warning)
     }
 }
