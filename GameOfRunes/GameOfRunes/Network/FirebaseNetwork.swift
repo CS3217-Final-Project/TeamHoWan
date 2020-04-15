@@ -310,5 +310,4 @@ class FirebaseNetwork: NetworkInterface {
             onComplete()
         })
     }
-    
 }
