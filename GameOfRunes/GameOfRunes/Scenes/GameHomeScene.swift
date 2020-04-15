@@ -17,7 +17,7 @@ class GameHomeScene: SKScene {
     private let gameModeSelectionViewNode: GameModeSelectionViewNode
     private let multiplayerActionViewNode: MultiplayerActionViewNode
     private let joinRoomViewNode: JoinRoomViewNode
-    private let hostRoomViewNode: SKNode = .init()
+    private let roomViewNode: SKNode = .init()
     private weak var currentViewNode: SKNode? {
         didSet {
             guard oldValue != currentViewNode else {
@@ -143,6 +143,18 @@ class GameHomeScene: SKScene {
         alertNode.isHidden = false
     }
     
+    private func presentSuccessAlert(message: String) {
+        alertNode.identifier = "success"
+        alertNode.alertDescription = message
+        alertNode.disableBackgroundContent = true
+        alertNode.dimBackgroundContent = true
+        alertNode.showTick = true
+        alertNode.showCross = false
+        alertNode.showLoader = false
+        alertNode.status = .success
+        alertNode.isHidden = false
+    }
+    
     private func presentJoinAlert() {
         alertNode.identifier = "join"
         alertNode.alertDescription = "Establishing connection to room..."
@@ -234,6 +246,8 @@ extension GameHomeScene: AlertResponder {
             sender.showLoader = true
             GameViewController.storage.reset()
             GameViewController.initStagesInDatabase()
+            presentSuccessAlert(message: "Game data has been successfully reset")
+            return
         }
         
         sender.isHidden = true
