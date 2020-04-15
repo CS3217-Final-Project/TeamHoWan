@@ -86,6 +86,9 @@
 		4AB6BDF5242789D80046F5AB /* HealthBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */; };
 		4AB6BDF724278D840046F5AB /* ManaBarNodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */; };
 		4AC6E4C1244656F70082DF53 /* NumberPadResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */; };
+		4AC6E4C32446F9C10082DF53 /* WaitingRoomViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E4C22446F9C10082DF53 /* WaitingRoomViewNode.swift */; };
+		4AC6E4C524476A170082DF53 /* PlayOrReadyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E4C424476A170082DF53 /* PlayOrReadyNode.swift */; };
+		4AC6E4C7244777B30082DF53 /* PowerUpContainerResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E4C6244777B30082DF53 /* PowerUpContainerResponder.swift */; };
 		4AC87A482419ED4200D79639 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A452419ED4100D79639 /* click1.mp3 */; };
 		4AC87A492419ED4200D79639 /* click3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AC87A462419ED4200D79639 /* click3.mp3 */; };
 		4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A4B241A3EB100D79639 /* PowerUpType.swift */; };
@@ -314,6 +317,9 @@
 		4AB6BDF4242789D80046F5AB /* HealthBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBarNodeTest.swift; sourceTree = "<group>"; };
 		4AB6BDF624278D840046F5AB /* ManaBarNodeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarNodeTest.swift; sourceTree = "<group>"; };
 		4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadResponder.swift; sourceTree = "<group>"; };
+		4AC6E4C22446F9C10082DF53 /* WaitingRoomViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoomViewNode.swift; sourceTree = "<group>"; };
+		4AC6E4C424476A170082DF53 /* PlayOrReadyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOrReadyNode.swift; sourceTree = "<group>"; };
+		4AC6E4C6244777B30082DF53 /* PowerUpContainerResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpContainerResponder.swift; sourceTree = "<group>"; };
 		4AC87A452419ED4100D79639 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		4AC87A462419ED4200D79639 /* click3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click3.mp3; sourceTree = "<group>"; };
 		4AC87A4B241A3EB100D79639 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
@@ -516,6 +522,7 @@
 				8AAADE4A24191D8D00606298 /* TapResponder.swift */,
 				4AA6DD8D244626DB008E279D /* AlertResponder.swift */,
 				4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */,
+				4AC6E4C6244777B30082DF53 /* PowerUpContainerResponder.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -528,6 +535,8 @@
 				4A45E9112444483F00F9FA22 /* MultiplayerActionViewNode.swift */,
 				4A45E9152444672F00F9FA22 /* CustomTextField.swift */,
 				4A45E91724446C7200F9FA22 /* JoinRoomViewNode.swift */,
+				4AC6E4C22446F9C10082DF53 /* WaitingRoomViewNode.swift */,
+				4AC6E4C424476A170082DF53 /* PlayOrReadyNode.swift */,
 				4A45E91924446DDE00F9FA22 /* NumberPadNode.swift */,
 				4A45E923244491D600F9FA22 /* NumberPadLabelNode.swift */,
 				4A45E91F2444751800F9FA22 /* NumberPadButtonNode.swift */,
@@ -1319,6 +1328,7 @@
 				8A649E9324409C52005A5371 /* MultiplayerGameViewController.swift in Sources */,
 				C6AACD3C243342A20012C7D9 /* AttractionEntitiesSystem.swift in Sources */,
 				C6AACD4924407D2C0012C7D9 /* CollisionEnemyUnitPlayerUnit.swift in Sources */,
+				4AC6E4C7244777B30082DF53 /* PowerUpContainerResponder.swift in Sources */,
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,
 				4A45E91A24446DDE00F9FA22 /* NumberPadNode.swift in Sources */,
@@ -1349,6 +1359,7 @@
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,
 				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
 				4A45E8FF2443573200F9FA22 /* GameHomeScene.swift in Sources */,
+				4AC6E4C32446F9C10082DF53 /* WaitingRoomViewNode.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
 				4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */,
 				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
@@ -1365,6 +1376,7 @@
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
 				8A5CE9BE24187F2300BEC4B9 /* SceneManager.swift in Sources */,
 				8AAADE4B24191D8D00606298 /* TapResponder.swift in Sources */,
+				4AC6E4C524476A170082DF53 /* PlayOrReadyNode.swift in Sources */,
 				4AA5B3762416C6BB008D4953 /* CGSize+resizeHelpers.swift in Sources */,
 				4A8F0AA824191BBF00CD730B /* PlayerAreaNode.swift in Sources */,
 				4A1B33402432845D00B67B91 /* EnemyWaveRealmModel.swift in Sources */,

@@ -17,8 +17,10 @@ class AvatarOverviewNode: SKSpriteNode {
     var selectedAvatar: Avatar? {
         didSet {
             guard let avatar = selectedAvatar else {
+                setComponentsToVisible(isVisible: false)
                 return
             }
+            setComponentsToVisible(isVisible: true)
             
             avatarLabelNode.avatarName = avatar.name
             
@@ -55,6 +57,8 @@ class AvatarOverviewNode: SKSpriteNode {
         manaBarNode.zPosition = 3
         powerUpDescriptionNode.zPosition = 1
         
+        setComponentsToVisible(isVisible: false)
+        
         addChild(avatarLabelNode)
         addChild(avatarSelectionNode)
         addChild(healthBarNode)
@@ -67,8 +71,12 @@ class AvatarOverviewNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updatePowerUpDescription() {
-        powerUpDescriptionNode.updatePowerUpDescription()
+    private func setComponentsToVisible(isVisible: Bool) {
+        avatarLabelNode.isHidden = !isVisible
+        avatarSelectionNode.isHidden = !isVisible
+        healthBarNode.isHidden = !isVisible
+        manaBarNode.isHidden = !isVisible
+        powerUpDescriptionNode.isHidden = !isVisible
     }
     
     private func layoutAvatarLabelNode() {

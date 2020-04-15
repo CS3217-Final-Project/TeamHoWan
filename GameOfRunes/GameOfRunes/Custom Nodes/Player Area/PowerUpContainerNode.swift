@@ -10,6 +10,7 @@ import SpriteKit
 
 class PowerUpContainerNode: SKSpriteNode {
     private static let spacingBetweenPowerUpNodes: CGFloat = 20.0
+    weak var responder: PowerUpContainerResponder?
     var powerUpTypes: [PowerUpType] {
         didSet {
             guard oldValue != powerUpTypes else {
@@ -34,6 +35,7 @@ class PowerUpContainerNode: SKSpriteNode {
                 return
             }
             powerUpNodes.forEach { $0.selected = $0.powerUpType == selectedPowerUp }
+            responder?.selectedPowerUpDidChanged(newValue: selectedPowerUp)
         }
     }
     

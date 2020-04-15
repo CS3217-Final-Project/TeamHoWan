@@ -127,7 +127,8 @@ extension GameMapScene: TapResponder {
         case .rightButton:
             stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
         case .powerUpIconButton:
-            stageSelectionNode.updatePowerUpDescription()
+            // ignore
+            return
         case .backButton:
             gameStateMachine?.enter(GameModeSelectionState.self)
         default:
