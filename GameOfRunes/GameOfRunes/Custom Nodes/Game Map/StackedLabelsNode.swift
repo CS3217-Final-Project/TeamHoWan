@@ -21,6 +21,16 @@ class StackedLabelsNode: SKSpriteNode {
         }
     }
     
+    lazy var layoutTopLabelNode: () -> Void = {
+        self.topLabelNode.position = .init(x: 0.0, y: self.size.height / 6)
+        self.topLabelNode.fontSize = self.size.height / 4
+    }
+    
+    lazy var layoutBottomLabelNode: () -> Void = {
+        self.bottomLabelNode.position = .init(x: 0.0, y: -self.size.height / 6)
+        self.bottomLabelNode.fontSize = self.size.height / 4
+    }
+    
     init(backgroundTexture: SKTexture? = nil) {
         super.init(texture: backgroundTexture, color: .clear, size: backgroundTexture?.size() ?? .zero)
         
@@ -37,15 +47,5 @@ class StackedLabelsNode: SKSpriteNode {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func layoutTopLabelNode() {
-        topLabelNode.position = .init(x: 0.0, y: size.height / 6)
-        topLabelNode.fontSize = size.height / 4
-    }
-    
-    func layoutBottomLabelNode() {
-        bottomLabelNode.position = .init(x: 0.0, y: -size.height / 6)
-        bottomLabelNode.fontSize = size.height / 4
     }
 }

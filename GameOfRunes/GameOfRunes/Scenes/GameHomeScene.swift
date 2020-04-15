@@ -225,22 +225,26 @@ extension GameHomeScene: TapResponder {
         case .joinButton:
             presentJoinAlert()
             // do firebase connection here
-            //player name
-            //room code => joinRoomViewNode.inputRoomId
             
             // mimics the firebase connection time
+            // frontend placeholder
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 self.alertNode.isHidden = true
                 // success
                 self.waitingRoomViewNode.isHost = false
+                self.waitingRoomViewNode.playerName = self.playerName
+                self.waitingRoomViewNode.roomId = self.joinRoomViewNode.inputRoomId
                 self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
                 // removes multiplayerActionViewNode from stack
                 _ = self.navigationStack.popLast()
             }
         case .hostRoomButton:
             // do firebase connection here
-            //player name
+            
+            // frontend placeholder
             waitingRoomViewNode.isHost = true
+            waitingRoomViewNode.hostName = playerName
+            waitingRoomViewNode.roomId = .init(format: "%05d", Int.random(in: 0 ..< 100_000))
             transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
         case .leaveButton:
             // do firebase connection here
@@ -254,6 +258,9 @@ extension GameHomeScene: TapResponder {
                 return
             }
             transit(from: currentViewNode, to: previousViewNode)
+        case .powerUpIconButton:
+            // ignore
+            return
         default:
             print("Unknown node tapped:", tappedNode)
         }
@@ -311,7 +318,7 @@ extension GameHomeScene {
             y: size.height / 2 - backNode.size.height / 1.5
         )
         backNode.isHidden = true
-        backNode.zPosition = 50
+        backNode.zPosition = 100
         uiLayer.addChild(backNode)
     }
     

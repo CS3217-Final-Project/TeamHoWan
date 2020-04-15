@@ -22,7 +22,7 @@ class AvatarOverviewNode: SKSpriteNode {
             }
             setComponentsToVisible(isVisible: true)
             
-            avatarLabelNode.avatarName = avatar.name
+            avatarLabelNode.displayedValue = customName ?? avatar.name
             
             avatarSelectionNode.avatar = avatar
             
@@ -47,6 +47,17 @@ class AvatarOverviewNode: SKSpriteNode {
             layoutPowerUpDescriptionNode()
         }
     }
+    var viewOnlyAvatar: Bool = false {
+        didSet {
+            avatarSelectionNode.leftArrowNode.isHidden = viewOnlyAvatar
+            avatarSelectionNode.rightArrowNode.isHidden = viewOnlyAvatar
+        }
+    }
+    var customName: String? {
+        didSet {
+            avatarLabelNode.displayedValue = customName ?? selectedAvatar?.name ?? ""
+        }
+    }
     
     init() {
         super.init(texture: nil, color: .clear, size: .zero)
@@ -58,6 +69,9 @@ class AvatarOverviewNode: SKSpriteNode {
         powerUpDescriptionNode.zPosition = 1
         
         setComponentsToVisible(isVisible: false)
+        
+        avatarSelectionNode.leftArrowNode.customResponder = self
+        avatarSelectionNode.rightArrowNode.customResponder = self
         
         addChild(avatarLabelNode)
         addChild(avatarSelectionNode)
@@ -81,16 +95,12 @@ class AvatarOverviewNode: SKSpriteNode {
     
     private func layoutAvatarLabelNode() {
         avatarLabelNode.size = avatarLabelNode.size.scaleTo(width: size.width)
-        avatarLabelNode.position = .init(x: 0.0, y: (size.height - avatarLabelNode.size.height) / 2)
+        avatarLabelNode.position = .init(x: 0.0, y: size.height / 2.5)
     }
     
     private func layoutAvatarSelectionNode() {
         avatarSelectionNode.size = size.applying(.init(scaleX: 1.0, y: 0.35))
-        // avatarSelectionNode.position = .init(x: 0.0, y: size.height / 7)
-        avatarSelectionNode.position = .init(
-            x: 0.0,
-            y: (size.height - avatarSelectionNode.size.height) / 2 - avatarLabelNode.size.height
-        )
+        avatarSelectionNode.position = .init( x: 0.0, y: size.height / 6.5)
     }
     
     private func layoutHealthBarNode() {
@@ -106,5 +116,11 @@ class AvatarOverviewNode: SKSpriteNode {
     private func layoutPowerUpDescriptionNode() {
         powerUpDescriptionNode.size = size.applying(.init(scaleX: 1.0, y: 0.25))
         powerUpDescriptionNode.position = .init(x: 0.0, y: (-size.height + powerUpDescriptionNode.size.height) / 2)
+    }
+}
+
+extension AvatarOverviewNode: TapResponder {
+    func onTapped(tappedNode: ButtonNode) {
+        selectedAvatar = tappedNode.buttonType == .leftButton ? selectedAvatar?.prevAvatar : selectedAvatar?.nextAvatar
     }
 }
