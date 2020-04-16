@@ -129,6 +129,10 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
         roomIdDisplayNode.layoutTopLabelNode()
         roomIdDisplayNode.layoutBottomLabelNode()
+         
+        dbRef.observeRoomState(forRoomId: roomId,
+                               onDataChange,
+                               onRoomClose, { _ in })
         
         addChild(roomIdDisplayNode)
         addChild(hostIcon)
@@ -137,14 +141,7 @@ class WaitingRoomViewNode: SKSpriteNode {
         addChild(leaveNode)
         addChild(playOrReadyNode)
     }
-    
-    func setUpRoom() {
-        dbRef.observeRoomState(forRoomId: roomId,
-                               onDataChange,
-                               onRoomClose,
-                               generalErrorHandler)
-    }
-    
+
     func onDataChange(roomModel: RoomModel) {
         let players = roomModel.players
         for player in players {

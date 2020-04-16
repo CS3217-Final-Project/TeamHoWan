@@ -9,6 +9,7 @@
 struct FirebaseKeys {
     static let defaultFalse = false
     static let defaultEmptyString = ""
+    static let defaultAvatar = Avatar.elementalWizard.name
     
     // Room keys
     static let rooms = "rooms"

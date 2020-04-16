@@ -13,6 +13,6 @@ import Foundation
  */
 class PlayerData {
     var name: String = ""
-    var avatar: Avatar?
+    var avatar: Avatar = .elementalWizard
     let uid: String = UUID().uuidString
 }

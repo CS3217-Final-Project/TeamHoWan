@@ -212,10 +212,15 @@ class FirebaseNetwork: NetworkInterface {
                           _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, id]))
         let handle = ref.observe(.value, with: { snapshot in
-            guard let roomDict = snapshot.value as? [String: AnyObject] else {
+            guard let roomSnap = snapshot.value as? [String: AnyObject] else {
                 // Room does not exist
                 return
             }
+            guard let roomId = roomSnap.keys.first else {
+                // Room does not have a room Id
+                return
+            }
+            let roomDict = roomSnap[roomId] as? [String: AnyObject] ?? [:]
             onDataChange(self.firebaseRoomModelFactory(forDict: roomDict))
             
         }) { err in
