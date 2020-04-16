@@ -20,7 +20,7 @@ class GameHomeScene: SKScene {
     private let gameModeSelectionViewNode: GameModeSelectionViewNode
     private let multiplayerActionViewNode: MultiplayerActionViewNode
     private let joinRoomViewNode: JoinRoomViewNode
-    private let hostRoomViewNode: SKNode = .init()
+    private let waitingRoomViewNode: WaitingRoomViewNode
     
     private weak var currentViewNode: SKNode? {
         didSet {
@@ -38,11 +38,13 @@ class GameHomeScene: SKScene {
                 }
                 nameField.resignFirstResponder()
             }
+            
+            refreshBackNode()
         }
     }
     private var navigationStack: [SKNode] = [] {
         didSet {
-            backNode.isHidden = navigationStack.isEmpty
+            refreshBackNode()
         }
     }
     
@@ -76,6 +78,7 @@ class GameHomeScene: SKScene {
         gameModeSelectionViewNode = .init(size: size)
         multiplayerActionViewNode = .init(size: size)
         joinRoomViewNode = .init(size: size)
+        waitingRoomViewNode = .init(size: size)
         
         super.init(size: size)
         
@@ -115,6 +118,10 @@ class GameHomeScene: SKScene {
     
     override func willMove(from view: SKView) {
         nameField.removeFromSuperview()
+    }
+    
+    private func refreshBackNode() {
+        backNode.isHidden = navigationStack.isEmpty || currentViewNode is WaitingRoomViewNode
     }
     
     private func transit(from nodeA: SKNode, to nodeB: SKNode) {
@@ -161,7 +168,7 @@ class GameHomeScene: SKScene {
         alertNode.isHidden = false
     }
 }
-
+    
 extension GameHomeScene: UITextFieldDelegate {
     func textField(
         _ textField: UITextField,
@@ -217,11 +224,39 @@ extension GameHomeScene: TapResponder {
             joinRoomViewNode.inputRoomId = ""
         case .joinButton:
             joinRoom()
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.alertNode.isHidden = true
+                // success
+                self.waitingRoomViewNode.isHost = false
+                self.waitingRoomViewNode.playerName = self.playerName
+                self.waitingRoomViewNode.roomId = self.joinRoomViewNode.inputRoomId
+                self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
+                // removes multiplayerActionViewNode from stack
+                _ = self.navigationStack.popLast()
+            }
+        case .hostRoomButton:
+            // do firebase connection here
+            
+            // frontend placeholder
+            waitingRoomViewNode.isHost = true
+            waitingRoomViewNode.hostName = playerName
+            waitingRoomViewNode.roomId = .init(format: "%05d", Int.random(in: 0 ..< 100_000))
+            transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
+        case .leaveButton:
+            // do firebase connection here
+            transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+        case .playButton:
+            // check if other player is ready
+            // transit to multiplayer game scene
+            return
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
             }
             transit(from: currentViewNode, to: previousViewNode)
+        case .powerUpIconButton:
+            // ignore
+            return
         default:
             print("Unknown node tapped:", tappedNode)
         }
@@ -245,6 +280,13 @@ extension GameHomeScene: AlertResponder {
             sender.showLoader = true
             GameViewController.storage.reset()
             GameViewController.initStagesInDatabase()
+            presentAlert(identifier: "success",
+                         alertDescription: "Game data has been successfully reset",
+                         showTick: true,
+                         showCross: false,
+                         showLoader: false,
+                         status: .success)
+            return
         }
         
         sender.isHidden = true
@@ -279,7 +321,7 @@ extension GameHomeScene {
             y: size.height / 2 - backNode.size.height / 1.5
         )
         backNode.isHidden = true
-        backNode.zPosition = 50
+        backNode.zPosition = 100
         uiLayer.addChild(backNode)
     }
     
@@ -306,11 +348,15 @@ extension GameHomeScene {
         joinRoomViewNode.alpha = .zero
         uiLayer.addChild(joinRoomViewNode)
         
+        waitingRoomViewNode.alpha = .zero
+        uiLayer.addChild(waitingRoomViewNode)
+        
         alertNode.isHidden = true
         uiLayer.addChild(alertNode)
     }
 }
 
+// MARK: - Firebase Methods
 extension GameHomeScene {
     private func createRoom() {
         presentAlert(identifier: "create",

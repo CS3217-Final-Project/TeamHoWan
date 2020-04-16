@@ -64,10 +64,6 @@ class StageSelectionNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updatePowerUpDescription() {
-        avatarOverviewNode.updatePowerUpDescription()
-    }
-    
     private func layoutStageOverviewNode() {
         stageOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.775))
         stageOverviewNode.position = .init(x: -size.width / 4.5, y: size.height / 11)

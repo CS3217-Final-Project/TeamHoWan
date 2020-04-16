@@ -40,15 +40,15 @@ class StagePreviewLabelNode: StackedLabelsNode {
         
         topLabelNode.fontColor = .white
         bottomLabelNode.fontColor = .white
-    }
-    
-    override func layoutTopLabelNode() {
-        topLabelNode.position = .init(x: 0.0, y: -size.height / 40)
-        topLabelNode.fontSize = size.height / 4
-    }
-    
-    override func layoutBottomLabelNode() {
-        bottomLabelNode.position = .init(x: 0.0, y: -size.height / 3.25)
-        bottomLabelNode.fontSize = size.height / 7
+        
+        layoutTopLabelNode = {
+            self.topLabelNode.position = .init(x: 0.0, y: -self.size.height / 40)
+            self.topLabelNode.fontSize = self.size.height / 4
+        }
+        
+        layoutBottomLabelNode = {
+            self.bottomLabelNode.position = .init(x: 0.0, y: -self.size.height / 3.25)
+            self.bottomLabelNode.fontSize = self.size.height / 7
+        }
     }
 }

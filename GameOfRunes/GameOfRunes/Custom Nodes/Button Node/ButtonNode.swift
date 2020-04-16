@@ -33,7 +33,7 @@ class ButtonNode: SKSpriteNode {
             identitySize = size
         }
     }
-    let buttonType: ButtonType
+    var buttonType: ButtonType
 
     init(size: CGSize, texture: SKTexture?, buttonType: ButtonType = .anyButton, position: CGPoint = .zero) {
         self.buttonType = buttonType
