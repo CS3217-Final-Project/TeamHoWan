@@ -21,7 +21,7 @@ class GameHomeScene: SKScene {
     private lazy var gameModeSelectionViewNode: GameModeSelectionViewNode = .init(size: size)
     private lazy var multiplayerActionViewNode: MultiplayerActionViewNode = .init(size: size)
     private lazy var joinRoomViewNode: JoinRoomViewNode = .init(size: size)
-    private lazy var waitingRoomViewNode: WaitingRoomViewNode = .init(dbRef: dbRef, size: size)
+    private lazy var waitingRoomViewNode: WaitingRoomViewNode = .init(size: size)
     
     private weak var currentViewNode: SKNode? {
         didSet {
@@ -337,6 +337,10 @@ extension GameHomeScene {
     private func createRoomSuccess(roomId: String) {
         alertNode.isHidden = true
         self.roomId = roomId
+        dbRef.observeRoomState(forRoomId: roomId,
+                               onDataChange,
+                               onRoomClose,
+                               selfGeneralErrorHandler)
         
         // Set up the waiting room and transition to it
         waitingRoomViewNode.isHost = true
@@ -363,6 +367,10 @@ extension GameHomeScene {
     }
     
     private func joinRoomSuccess() {
+        dbRef.observeRoomState(forRoomId: roomId,
+                               onDataChange,
+                               onRoomClose,
+                               selfGeneralErrorHandler)
         alertNode.isHidden = true
         
         // Set up the waiting room and transition to it
@@ -429,6 +437,31 @@ extension GameHomeScene {
         // TODO: Toggle front end ready identifier (some tick?)
     }
     
+    func onDataChange(roomModel: RoomModel) {
+        let players = roomModel.players
+        for player in players {
+            // TODO: Check isReady for front end component to show that player is ready
+            if player.isHost {
+                waitingRoomViewNode.hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.hostName = player.name
+            } else {
+                waitingRoomViewNode.playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.playerName = player.name
+            }
+        }
+    }
+    
+    func onRoomClose() {
+        presentAlert(identifier: "error",
+                     alertNode: alertNode,
+                     alertDescription: "Room has been closed!",
+                     showTick: false,
+                     showCross: true,
+                     showLoader: false,
+                     status: .warning)
+        transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+    }
+    
     private func startGame() {
         dbRef.startGame(roomId: roomId,
                         notAllReady,
@@ -441,7 +474,7 @@ extension GameHomeScene {
                      alertNode: alertNode,
                      alertDescription: "Not all players are ready!",
                      showTick: false,
-                     showCross: false,
+                     showCross: true,
                      showLoader: false,
                      status: .warning)
     }

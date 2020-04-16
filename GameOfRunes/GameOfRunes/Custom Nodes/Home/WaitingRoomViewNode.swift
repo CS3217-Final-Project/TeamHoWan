@@ -9,14 +9,18 @@
 import SpriteKit
 
 class WaitingRoomViewNode: SKSpriteNode {
+    
     private let roomIdDisplayNode: StackedLabelsNode = .init(backgroundTexture: .init(imageNamed: "stacked-labels"))
     private let hostIcon: SKSpriteNode = .init(imageNamed: "host-icon")
+    
+    // TODO: Not sure which node is the player's one, should we separate it out this way?
     private let hostAvatarOverviewNode: AvatarOverviewNode
+    
+    // TODO: Might want to use an array so to show Wai Kay it is extensible to more players?
     private let playerAvatarOverviewNode: AvatarOverviewNode
     private let leaveNode: ButtonNode
     private let playOrReadyNode: PlayOrReadyNode
-    private let dbRef: NetworkInterface
-    
+
     var roomId: String {
         get {
             roomIdDisplayNode.bottomLabelNode.text ?? ""
@@ -83,8 +87,7 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
     }
     
-    init(dbRef: NetworkInterface, size: CGSize) {
-        self.dbRef = dbRef
+    init(size: CGSize) {
         hostAvatarOverviewNode = .init()
         playerAvatarOverviewNode = .init()
         
@@ -130,10 +133,6 @@ class WaitingRoomViewNode: SKSpriteNode {
         roomIdDisplayNode.layoutTopLabelNode()
         roomIdDisplayNode.layoutBottomLabelNode()
          
-        dbRef.observeRoomState(forRoomId: roomId,
-                               onDataChange,
-                               onRoomClose, { _ in })
-        
         addChild(roomIdDisplayNode)
         addChild(hostIcon)
         addChild(hostAvatarOverviewNode)
@@ -142,24 +141,6 @@ class WaitingRoomViewNode: SKSpriteNode {
         addChild(playOrReadyNode)
     }
 
-    func onDataChange(roomModel: RoomModel) {
-        let players = roomModel.players
-        for player in players {
-        // TODO: Check isReady for front end component to show that player is ready
-            if player.isHost {
-                hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                hostName = player.name
-            } else {
-                playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                playerName = player.name
-            }
-        }
-    }
-    
-    func onRoomClose() {
-        // Transition back to multiplayer view
-    }
-    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

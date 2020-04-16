@@ -14,6 +14,7 @@ class AvatarOverviewNode: SKSpriteNode {
     private let healthBarNode = HealthBarNode()
     private let manaBarNode = ManaBarNode()
     private let powerUpDescriptionNode = PowerUpDescriptionNode()
+
     var selectedAvatar: Avatar? {
         didSet {
             guard let avatar = selectedAvatar else {
