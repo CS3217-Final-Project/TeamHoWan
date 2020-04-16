@@ -10,8 +10,4 @@ import GameplayKit
 
 class MultiplayerLocalGameEngine: GameEngine {
     private let network: NetworkInterface = FirebaseNetwork()
-    
-    override func update(with deltaTime: TimeInterval) {
-        super.update(with: deltaTime)
-    }
 }

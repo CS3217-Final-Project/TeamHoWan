@@ -81,8 +81,8 @@ class NumberPadNode: SKSpriteNode, TapResponder {
     
     override var isUserInteractionEnabled: Bool {
         didSet {
-            numberPadButtonNodes.forEach {
-                row in row.forEach { node in node.isUserInteractionEnabled = isUserInteractionEnabled }
+            numberPadButtonNodes.forEach { row in
+                row.forEach { node in node.isUserInteractionEnabled = isUserInteractionEnabled }
             }
         }
     }

@@ -21,7 +21,7 @@ class MultiplayerScreenViewController: UIViewController {
     
     // TODO: Does this need to be a singleton?
     private let dbRef: NetworkInterface = FirebaseNetwork()
-    private var playerData: PlayerData = PlayerData()
+    private var playerData = PlayerData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +65,8 @@ class MultiplayerScreenViewController: UIViewController {
         view.bringSubviewToFront(nameButton)
         
         // TODO: Create name button asset and set up button. Decide on how to allow user to input name.
-        //        UIViewController.setUpButton(view: view, button: nameButton, buttonImageName: "",
-        //                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
+//        UIViewController.setUpButton(view: view, button: nameButton, buttonImageName: "",
+//                                     viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
         nameButton.addTarget(self, action: #selector(onTapped), for: .touchDown)
         nameButton.addTarget(self, action: #selector(onTouchedUpOutside), for: .touchUpOutside)
         nameButton.addTarget(self, action: #selector(joinRoomStart), for: .touchUpInside)

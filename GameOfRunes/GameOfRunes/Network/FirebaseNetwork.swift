@@ -57,7 +57,7 @@ class FirebaseNetwork: NetworkInterface {
                   _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+        ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let roomDict = snapshot.value as? [String: AnyObject] else {
                 onRoomNotExist()
                 return
@@ -76,7 +76,7 @@ class FirebaseNetwork: NetworkInterface {
                 // Player already inside the game
                 return
             }
-            let playerDict = self.createPlayerDict(uid: uid, name: name, isHost: false, isReady: false)
+            let playerDict = self?.createPlayerDict(uid: uid, name: name, isHost: false, isReady: false)
             let currentUserRef = ref.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms_players, uid]))
             currentUserRef.setValue(playerDict, withCompletionBlock: { err, _ in
                 if let error = err {
@@ -124,13 +124,13 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid]))
         let isHostRef = ref.child(FirebaseKeys.rooms_players_isHost)
         
-        isHostRef.observeSingleEvent(of: .value, with: { snapshot in
+        isHostRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let isHost = snapshot.value as? Bool else {
                 // Player does not exist
                 return
             }
             if isHost {
-                self.closeRoom(uid: uid, forRoomId: roomId, {}, onError)
+                self?.closeRoom(uid: uid, forRoomId: roomId, {}, onError)
             } else {
                 ref.setValue(nil, withCompletionBlock: { err, _ in
                     if let error = err {
@@ -195,13 +195,13 @@ class FirebaseNetwork: NetworkInterface {
                           _ onRoomClose: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, id]))
-        let handle = ref.observe(.value, with: { snapshot in
-            guard let roomDict = snapshot.value as? [String: AnyObject] else {
-                // Room does not exist
-                return
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let roomDict = snapshot.value as? [String: AnyObject],
+                let roomModel = self?.firebaseRoomModelFactory(forDict: roomDict) else {
+                    // Room does not exist
+                    return
             }
-            onDataChange(self.firebaseRoomModelFactory(forDict: roomDict))
-            
+            onDataChange(roomModel)
         }) { err in
             onError(err)
         }
@@ -263,7 +263,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_monsters]))
         let encodedMonsters = encodeMonsters(monsters: monsters)
-        ref.setValue(encodedMonsters, withCompletionBlock: { err, ref in
+        ref.setValue(encodedMonsters, withCompletionBlock: { err, _ in
             if let error = err {
                 onError(error)
                 return
@@ -281,7 +281,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_powerUp]))
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
-        ref.setValue(encodedPowerUp, withCompletionBlock: { err, ref in
+        ref.setValue(encodedPowerUp, withCompletionBlock: { err, _ in
             if let error = err {
                 onError(error)
                 return
@@ -299,7 +299,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_metadata]))
         let encodedMetadata = encodeMetadata(metadata: metadata)
-        ref.setValue(encodedMetadata, withCompletionBlock: { err, ref in
+        ref.setValue(encodedMetadata, withCompletionBlock: { err, _ in
             if let error = err {
                 onError(error)
                 return
