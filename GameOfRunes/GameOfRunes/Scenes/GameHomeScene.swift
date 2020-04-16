@@ -232,6 +232,7 @@ extension GameHomeScene: TapResponder {
                 self.alertNode.isHidden = true
                 // success
                 self.waitingRoomViewNode.isHost = false
+                self.waitingRoomViewNode.isReady = false
                 self.waitingRoomViewNode.playerName = self.playerName
                 self.waitingRoomViewNode.roomId = self.joinRoomViewNode.inputRoomId
                 self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
@@ -243,6 +244,7 @@ extension GameHomeScene: TapResponder {
             
             // frontend placeholder
             waitingRoomViewNode.isHost = true
+            waitingRoomViewNode.isReady = false
             waitingRoomViewNode.hostName = playerName
             waitingRoomViewNode.roomId = .init(format: "%05d", Int.random(in: 0 ..< 100_000))
             transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
@@ -253,6 +255,10 @@ extension GameHomeScene: TapResponder {
             // check if other player is ready
             // transit to multiplayer game scene
             return
+        case .readyButton:
+            // do firebase connection here
+            // swiftlint:disable:toggle_bool
+            waitingRoomViewNode.isReady = !waitingRoomViewNode.isReady
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return

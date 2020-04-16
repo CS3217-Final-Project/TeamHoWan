@@ -2,26 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YdL-8S-BLy">
     <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="tXr-a1-R10">
-            <objects>
-                <viewController storyboardIdentifier="HomeVC" id="BV1-FR-VrT" customClass="HomeViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138.84892086330936" y="88.489208633093526"/>
-        </scene>
         <!--Game View Controller-->
         <scene sceneID="0RJ-kr-sZp">
             <objects>
@@ -36,52 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQq-VS-aJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1793" y="88"/>
-        </scene>
-        <!--Selector View Controller-->
-        <scene sceneID="oDO-qo-Qhp">
-            <objects>
-                <viewController storyboardIdentifier="SelectorVC" id="XT0-g9-anS" customClass="SelectorViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="17V-l0-5Oz">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="EKX-IR-PZk"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QrQ-QE-2Mn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="962.58992805755406" y="87.949640287769782"/>
-        </scene>
-        <!--Multiplayer Screen View Controller-->
-        <scene sceneID="u6W-Fz-GPj">
-            <objects>
-                <viewController storyboardIdentifier="MultiplayerVC" id="T9I-vA-GV7" customClass="MultiplayerScreenViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="a63-yw-XdW">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="BC0-qX-FcT"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dGU-Zq-yv1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="963" y="-590"/>
-        </scene>
-        <!--Multiplayer Game View Controller-->
-        <scene sceneID="GQE-Sc-wfs">
-            <objects>
-                <viewController storyboardIdentifier="MultiplayerGameVC" id="dQi-qy-Knl" customClass="MultiplayerGameViewController" customModule="GameOfRunes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="emX-XA-flS" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="8e8-xj-A9S"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vWG-qi-I7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="653" y="1179"/>
+            <point key="canvasLocation" x="481" y="88"/>
         </scene>
     </scenes>
 </document>

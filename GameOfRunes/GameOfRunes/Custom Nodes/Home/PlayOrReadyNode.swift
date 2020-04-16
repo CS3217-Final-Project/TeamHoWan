@@ -12,6 +12,12 @@ class PlayOrReadyNode: ButtonNode {
     static let playButtonTexture = SKTexture(imageNamed: "play-button")
     static let readyButtonTexture = SKTexture(imageNamed: "ready-button")
     
+    override var isUserInteractionEnabled: Bool {
+        didSet {
+            alpha = isUserInteractionEnabled ? 1 : 0.7
+        }
+    }
+    
     override var buttonType: ButtonType {
         didSet {
             texture = buttonType == .playButton ? Self.playButtonTexture : Self.readyButtonTexture
