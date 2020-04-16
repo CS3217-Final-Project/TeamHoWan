@@ -38,7 +38,7 @@ class SelectorViewController: UIViewController {
     private func setUpSinglePlayerButton() {
         view.addSubview(singlePlayerButton)
         view.bringSubviewToFront(singlePlayerButton)
-        UIViewController.setUpButton(view: view, button: singlePlayerButton, buttonImageName: "singleplayer",
+        UIViewController.setUpButton(view: view, button: singlePlayerButton, buttonImageName: "single-player-button",
                                      viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 0.75, sizeScale: 0.7)
         addSpActions()
     }
@@ -46,7 +46,7 @@ class SelectorViewController: UIViewController {
     private func setUpMultiplayerButton() {
         view.addSubview(multiplayerButton)
         view.bringSubviewToFront(multiplayerButton)
-        UIViewController.setUpButton(view: view, button: multiplayerButton, buttonImageName: "multiplayer",
+        UIViewController.setUpButton(view: view, button: multiplayerButton, buttonImageName: "multiplayer-button",
                                      viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.45, sizeScale: 0.7)
         addMpActions()
     }

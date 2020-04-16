@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum ButtonType: String {
+enum ButtonType {
     case summonButton
     case pauseButton
     case resumeButton
@@ -19,4 +19,13 @@ enum ButtonType: String {
     case leftButton
     case rightButton
     case powerUpIconButton
+    case startButton
+    case multiplayerButton
+    case singlePlayerButton
+    case backButton
+    case joinRoomButton
+    case hostRoomButton
+    case joinButton
+    case leaveButton
+    case anyButton
 }

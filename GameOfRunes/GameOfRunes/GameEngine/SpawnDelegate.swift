@@ -53,7 +53,7 @@ class SpawnDelegate {
         let playerUnitEntity = PlayerUnitEntity(gameEngine: gameEngine)
         
         guard let spriteComponent = playerUnitEntity.component(ofType: SpriteComponent.self),
-            let playerEndPoint = gameEngine?.gameScene?.playerEndPoint else {
+            let playerEndPoint = gameEngine?.rootRenderNode?.playerEndPoint else {
                 return
         }
         
@@ -85,15 +85,15 @@ class SpawnDelegate {
 
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let sceneSize = gameEngine.gameScene?.size else {
+            let renderNodeSize = gameEngine.rootRenderNode?.size else {
                 return
         }
 
         spriteComponent.node.position = GameConfig.GamePlayScene.calculateHorizontallyDistributedPoints(
-            width: sceneSize.width,
+            width: renderNodeSize.width,
             laneIndex: laneIndex,
             totalPoints: GameConfig.GamePlayScene.numLanes,
-            yPosition: sceneSize.height - GameConfig.GamePlayScene.verticalOffSet
+            yPosition: (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * renderNodeSize.height
         )
 
         gameEngine.add(enemyEntity)

@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import SnapKit
-import RealmSwift
 
 class HomeViewController: UIViewController {
     private var viewPortWidth: CGFloat {
@@ -19,12 +18,13 @@ class HomeViewController: UIViewController {
         view.frame.size.height
     }
     private let startButton = UIButton()
-    // TODO: Perhaps shift it to some other static class? Or no need make static?
-    static let storage: Storage = RealmStorage()
     // TODO: Need to make soundPlayer accessible by more view controllers
     private var bgmPlayer = AVAudioPlayer()
     private var clickSoundPlayer = AVAudioPlayer()
-    
+
+    // TODO: Get rid of this after Jeremy is done with FrontEnd for Multiplayer
+    private let multiplayerButton = UIButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHomeBackground()
@@ -33,21 +33,8 @@ class HomeViewController: UIViewController {
         setUpAudioPlayer(audioPlayer: &bgmPlayer, filename: "Destiny-Ablaze", type: "mp3", loopCount: -1)
         setUpAudioPlayer(audioPlayer: &clickSoundPlayer, filename: "click3", type: "mp3")
         
-        // temporary load here to reduce delay in starting game
-        DispatchQueue.global(qos: .utility).async {
-            // set up animation textures in background
-            TextureContainer.loadTextures()
-            print("Done loading textures")
-        }
-        
-        // uncomment to reset install all the stages
-        // Self.storage.reset()
-        
-        if Self.storage.isFirstInit {
-            //TODO: DEBUG
-            print("this is the first init")
-            initStagesInDatabase()
-        }
+        // TODO: Get rid of this during code finalisation
+        setUpMultiplayerButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +80,7 @@ class HomeViewController: UIViewController {
                                      viewPortWidth: viewPortWidth, xMultiplier: 1, yMultiplier: 1.6, sizeScale: 0.8)
         addActions()
     }
-    
+
     private func setUpAudioPlayer(
         audioPlayer: inout AVAudioPlayer,
         filename: String,
@@ -164,92 +151,6 @@ extension HomeViewController {
     }
 }
 
-// MARK: - Initialise Data in Realm Database
-extension HomeViewController {
-    /**
-     This function is called whenever the Realm database is empty (as determined
-     by the `isFirstInit` property). This function will populate the Realm database
-     with some default levels.
-     */
-    func initStagesInDatabase() {
-        guard let stage1EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 1),
-            let stage2EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 2),
-            let stage3EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 3),
-            let stage4EnemyWaveData = try? EnemyWaveCreator.getStageEnemyWaveDataAndSpawnInterval(stageNumber: 4) else {
-                print("Unable to load Enemies from EnemyWaveCreator")
-                return
-        }
-        
-        let stage1 = Stage(
-            name: "The Beginning",
-            chapter: "Peasant Land 1",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.6, y: -0.55),
-            arena: .arena1,
-            difficulty: 100,
-            numWaves: stage1EnemyWaveData.0.count,
-            enemyWaves: stage1EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage1EnemyWaveData.1,
-            achievementBMinScore: 10,
-            achievementAMinScore: 40,
-            achievementSMinScore: 50,
-            achievement: .empty
-        )
-        
-        let stage2 = Stage(
-            name: "Warrior Arena",
-            chapter: "Peasant Land 2",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.17, y: -0.43),
-            arena: .arena1,
-            difficulty: 200,
-            numWaves: stage2EnemyWaveData.0.count,
-            enemyWaves: stage2EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage2EnemyWaveData.1,
-            achievementBMinScore: 20,
-            achievementAMinScore: 50,
-            achievementSMinScore: 70,
-            achievement: .empty
-        )
-        
-        let stage3 = Stage(
-            name: "Cathedral Mayhem",
-            chapter: "Peasant Land 3",
-            category: .normal,
-            relativePositionRatioInMap: (x: 0.66, y: -0.28),
-            arena: .arena1,
-            difficulty: 300,
-            numWaves: stage3EnemyWaveData.0.count,
-            enemyWaves: stage3EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage3EnemyWaveData.1,
-            achievementBMinScore: 30,
-            achievementAMinScore: 70,
-            achievementSMinScore: 90,
-            achievement: .empty
-        )
-        
-        let stage4 = Stage(
-            name: "The Crossing",
-            chapter: "Peasant Land 4",
-            category: .boss,
-            relativePositionRatioInMap: (x: 0.25, y: -0.22),
-            arena: .arena1,
-            difficulty: 500,
-            numWaves: stage4EnemyWaveData.0.count,
-            enemyWaves: stage4EnemyWaveData.0,
-            enemyWaveSpawnInterval: stage4EnemyWaveData.1,
-            achievementBMinScore: 50,
-            achievementAMinScore: 80,
-            achievementSMinScore: 100,
-            achievement: .empty
-        )
-        
-        let stages = [stage1, stage2, stage3, stage4]
-        Self.storage.save(stages: stages)
-        Self.storage.didInitialise()
-    }
-}
-
 extension UIViewController {
     static func setUpButton(view: UIView,
                             button: UIButton,
@@ -275,4 +176,49 @@ extension UIViewController {
         button.setBackgroundImage(buttonImage, for: .normal)
     }
     
+}
+
+// TODO: For temporary Multiplayer Button: Get rid of this after UI For Multiplayer is done
+extension HomeViewController {
+    private func setUpMultiplayerButton() {
+        view.addSubview(multiplayerButton)
+        view.bringSubviewToFront(multiplayerButton)
+        multiplayerButton.setTitle("Multiplayer", for: .normal)
+
+        multiplayerButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().labeled("multiplayerButtonCenterX")
+            make.centerY.equalToSuperview().multipliedBy(1.8).labeled("multiplayerButtonCenterY")
+        }
+
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTapped), for: .touchDown)
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTouchUpOutside), for: .touchUpOutside)
+        multiplayerButton.addTarget(self, action: #selector(multiplayerButtonTouchUpInside), for: .touchUpInside)
+    }
+
+    @objc private func multiplayerButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.05) {
+            sender.transform = CGAffineTransform(scaleX: 0.90, y: 0.9)
+        }
+        clickSoundPlayer.play()
+    }
+
+    @objc private func multiplayerButtonTouchUpOutside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
+    }
+
+    @objc private func multiplayerButtonTouchUpInside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            sender.transform = CGAffineTransform.identity
+        }
+
+        guard let multiplayerGameVC = storyboard?.instantiateViewController(identifier: "MultiplayerGameVC") else {
+            return
+        }
+        
+        multiplayerGameVC.modalPresentationStyle = .fullScreen
+        multiplayerGameVC.modalTransitionStyle = .crossDissolve
+        present(multiplayerGameVC, animated: true)
+    }
 }

@@ -13,7 +13,7 @@ class GamePauseState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         stateClass is GameInPlayState.Type
-            || stateClass is GameSelectionState.Type
+            || stateClass is GameStageSelectionState.Type
             || stateClass is GameStartState.Type
     }
     
@@ -25,6 +25,9 @@ class GamePauseState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
-        sceneManager.transitionToScene(sceneIdentifier: .pause)
+        sceneManager.transitionToScene(
+            sceneIdentifier: .pause,
+            transition: .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+        )
     }
 }

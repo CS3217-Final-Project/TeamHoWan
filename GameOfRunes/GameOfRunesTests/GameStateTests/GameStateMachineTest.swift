@@ -17,26 +17,31 @@ class GameStateMachineTest: BaseUnitTest {
     var gameStartState: MockGameStartState!
     var gamePauseState: MockGamePauseState!
     var gameEndState: MockGameEndState!
-    var gameSelectionState: MockGameSelectionState!
+    var gameStageSelectionState: MockGameStageSelectionState!
+    var gameModeSelectionState: MockGameModeSelectionState!
     var sceneManager: MockSceneManager!
-
+ 
     override func setUp() {
         super.setUp()
         gameInPlayState = MockGameInPlayState().withEnabledSuperclassSpy()
         gameStartState = MockGameStartState().withEnabledSuperclassSpy()
         gamePauseState = MockGamePauseState().withEnabledSuperclassSpy()
         gameEndState = MockGameEndState().withEnabledSuperclassSpy()
-        gameSelectionState = MockGameSelectionState().withEnabledSuperclassSpy()
+        gameStageSelectionState = MockGameStageSelectionState().withEnabledSuperclassSpy()
+        gameModeSelectionState = MockGameModeSelectionState().withEnabledSuperclassSpy()
 
         gameStateMachine = MockGameStateMachine(states: [gameInPlayState,
                                                          gameStartState,
                                                          gamePauseState,
                                                          gameEndState,
-                                                         gameSelectionState]
+                                                         gameStageSelectionState,
+                                                         gameModeSelectionState]
         ).withEnabledSuperclassSpy()
-
-        sceneManager = MockSceneManager(presentingView: SKView(),
-                                        gameStateMachine: gameStateMachine).withEnabledSuperclassSpy()
+        
+        sceneManager = MockSceneManager(
+            presentingView: SKView(frame: .init(origin: .zero, size: .init(width: 2_000, height: 2_000))),
+            gameStateMachine: gameStateMachine
+        ).withEnabledSuperclassSpy()
         gameStateMachine.sceneManager = sceneManager
         gameStateMachine.stage = testStage
         gameStateMachine.avatar = testAvatar
@@ -51,24 +56,40 @@ class GameStateMachineTest: BaseUnitTest {
     func testInPlayState() {
         gameStateMachine.enter(MockGameInPlayState.self)
         verify(gameInPlayState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
     }
 
     func testPauseState() {
         gameStateMachine.enter(MockGamePauseState.self)
         verify(gamePauseState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
     }
 
     func testEndState() {
         gameStateMachine.enter(MockGameEndState.self)
         verify(gameEndState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
     }
     
-    func testSelectionState() {
-        gameStateMachine.enter(MockGameSelectionState.self)
-        verify(gameSelectionState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).transitionToScene(sceneIdentifier: any(SceneManager.SceneIdentifier.self))
+    func testStageSelectionState() {
+        gameStateMachine.enter(MockGameStageSelectionState.self)
+        verify(gameStageSelectionState, times(1)).didEnter(from: any(GKState.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
+    }
+    
+    func testModeSelectionState() {
+        gameStateMachine.enter(MockGameModeSelectionState.self)
+        verify(gameModeSelectionState, times(1)).didEnter(from: any(GKState.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
     }
 }

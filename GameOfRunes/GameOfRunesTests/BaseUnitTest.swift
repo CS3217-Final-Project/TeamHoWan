@@ -17,13 +17,14 @@ class BaseUnitTest: XCTestCase {
     var testAvatar: Avatar!
     var gameScene: GameScene!
     var gameEngine: MockGameEngine!
+    var rootRenderNode: RootRenderNode!
     var removeDelegate: MockRemoveDelegate!
-    
+
     var scoreNode: ScoreNode!
     var healthBarNode: HealthBarNode!
     var manaBarNode: ManaBarNode!
     var droppedManaNode: MockDroppedManaNode!
-    
+
     var timerEntity: MockTimerEntity!
     var bossEnemyEntity: Entity!
     // Note: This is not the gesture entity from enemyEntity.
@@ -33,7 +34,7 @@ class BaseUnitTest: XCTestCase {
     var endPointAttractionEntities: [AttractionEntity]!
     var darkVortexPowerUpEntity: DarkVortexPowerUpEntity!
     var droppedManaEntity: MockDroppedManaEntity!
-    
+
     var healthComponent: MockHealthComponent!
     var manaComponent: MockManaComponent!
 
@@ -62,8 +63,16 @@ class BaseUnitTest: XCTestCase {
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(gameScene: gameScene, stage: testStage, avatar: testAvatar)
+        gameEngine = MockGameEngine(stage: testStage, avatar: testAvatar)
             .withEnabledSuperclassSpy()
+        rootRenderNode = RootRenderNode(stage: testStage,
+                                        avatar: testAvatar,
+                                        zPosition: 0,
+                                        position: gameScene.position,
+                                        size: gameScene.size)
+        gameEngine.rootRenderNode = rootRenderNode
+        rootRenderNode.gameEngine = gameEngine
+        gameScene.addChild(rootRenderNode)
         removeDelegate = MockRemoveDelegate(gameEngine: gameEngine)
             .withEnabledSuperclassSpy()
         

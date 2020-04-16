@@ -7,5 +7,5 @@
 //
 
 protocol Collision {
-    func resolveCollision(firstEntity: Entity, secondEntity: Entity)
+    func resolveCollision(firstEntity: Entity, secondEntity: Entity, gameEngine: GameEngine)
 }

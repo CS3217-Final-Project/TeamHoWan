@@ -14,7 +14,12 @@ extension SKSpriteNode {
         effectNode.name = "glow"
         effectNode.shouldRasterize = true
         addChild(effectNode)
-        effectNode.addChild(SKSpriteNode(texture: texture))
+        
+        // Ensure that Glow is proportionate to current SpriteNode size
+        let effectBaseNode = SKSpriteNode(texture: texture)
+        effectBaseNode.size = size.applying(.init(scaleX: 1.2, y: 3))
+        effectNode.addChild(effectBaseNode)
+
         effectNode.filter = CIFilter(name: "CIGaussianBlur", parameters: ["inputRadius": radius])
     }
     

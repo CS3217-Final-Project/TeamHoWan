@@ -27,7 +27,7 @@ class StageOverviewLabelNode: StackedLabelsNode {
     }
     
     init() {
-        super.init(backgroundTexture: .init(imageNamed: "stage-label"))
+        super.init(backgroundTexture: .init(imageNamed: "stacked-labels"))
         
         topLabelNode.fontColor = .black
         bottomLabelNode.fontColor = .black

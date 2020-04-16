@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1389,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  SpriteComponent.swift
@@ -1469,9 +1469,9 @@ import SpriteKit
     
     
     
-     override func setGestureConstraint(referenceNode: SKNode)  {
+     override func setGestureConstraint(referenceNode: SKSpriteNode)  {
         
-    return cuckoo_manager.call("setGestureConstraint(referenceNode: SKNode)",
+    return cuckoo_manager.call("setGestureConstraint(referenceNode: SKSpriteNode)",
             parameters: (referenceNode),
             escapingParameters: (referenceNode),
             superclassCall:
@@ -1501,9 +1501,9 @@ import SpriteKit
 	    }
 	    
 	    
-	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.ClassStubNoReturnFunction<(SKNode)> where M1.MatchedType == SKNode {
-	        let matchers: [Cuckoo.ParameterMatcher<(SKNode)>] = [wrap(matchable: referenceNode) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteComponent.self, method: "setGestureConstraint(referenceNode: SKNode)", parameterMatchers: matchers))
+	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.ClassStubNoReturnFunction<(SKSpriteNode)> where M1.MatchedType == SKSpriteNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode)>] = [wrap(matchable: referenceNode) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteComponent.self, method: "setGestureConstraint(referenceNode: SKSpriteNode)", parameterMatchers: matchers))
 	    }
 	    
 	}
@@ -1533,9 +1533,9 @@ import SpriteKit
 	
 	    
 	    @discardableResult
-	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.__DoNotUse<(SKNode), Void> where M1.MatchedType == SKNode {
-	        let matchers: [Cuckoo.ParameterMatcher<(SKNode)>] = [wrap(matchable: referenceNode) { $0 }]
-	        return cuckoo_manager.verify("setGestureConstraint(referenceNode: SKNode)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.__DoNotUse<(SKSpriteNode), Void> where M1.MatchedType == SKSpriteNode {
+	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode)>] = [wrap(matchable: referenceNode) { $0 }]
+	        return cuckoo_manager.verify("setGestureConstraint(referenceNode: SKSpriteNode)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	}
@@ -1565,14 +1565,14 @@ import SpriteKit
     
 
     
-     override func setGestureConstraint(referenceNode: SKNode)   {
+     override func setGestureConstraint(referenceNode: SKSpriteNode)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1681,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1877,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +1986,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2095,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +2203,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GestureEntity.swift
@@ -2311,7 +2311,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +2419,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +2528,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +2637,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2746,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  TimerEntity.swift
@@ -2854,7 +2854,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  SystemDelegate.swift
@@ -2869,7 +2869,7 @@ import Cuckoo
 
 import GameplayKit
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameEngine.swift
@@ -2907,20 +2907,6 @@ import SpriteKit
     
     
     
-     override var contactDelegate: ContactDelegate {
-        get {
-            return cuckoo_manager.getter("contactDelegate",
-                superclassCall:
-                    
-                    super.contactDelegate
-                    ,
-                defaultCall: __defaultImplStub!.contactDelegate)
-        }
-        
-    }
-    
-    
-    
      override var systems: [ComponentType: System] {
         get {
             return cuckoo_manager.getter("systems",
@@ -2935,14 +2921,24 @@ import SpriteKit
     
     
     
-     override var gameScene: GameSceneFacade? {
+     override var rootRenderNode: RootRenderNode? {
         get {
-            return cuckoo_manager.getter("gameScene",
+            return cuckoo_manager.getter("rootRenderNode",
                 superclassCall:
                     
-                    super.gameScene
+                    super.rootRenderNode
                     ,
-                defaultCall: __defaultImplStub!.gameScene)
+                defaultCall: __defaultImplStub!.rootRenderNode)
+        }
+        
+        set {
+            cuckoo_manager.setter("rootRenderNode",
+                value: newValue,
+                superclassCall:
+                    
+                    super.rootRenderNode = newValue
+                    ,
+                defaultCall: __defaultImplStub!.rootRenderNode = newValue)
         }
         
     }
@@ -3377,18 +3373,13 @@ import SpriteKit
 	    }
 	    
 	    
-	    var contactDelegate: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, ContactDelegate> {
-	        return .init(manager: cuckoo_manager, name: "contactDelegate")
-	    }
-	    
-	    
 	    var systems: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, [ComponentType: System]> {
 	        return .init(manager: cuckoo_manager, name: "systems")
 	    }
 	    
 	    
-	    var gameScene: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, GameSceneFacade?> {
-	        return .init(manager: cuckoo_manager, name: "gameScene")
+	    var rootRenderNode: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameEngine, RootRenderNode> {
+	        return .init(manager: cuckoo_manager, name: "rootRenderNode")
 	    }
 	    
 	    
@@ -3547,18 +3538,13 @@ import SpriteKit
 	
 	    
 	    
-	    var contactDelegate: Cuckoo.VerifyReadOnlyProperty<ContactDelegate> {
-	        return .init(manager: cuckoo_manager, name: "contactDelegate", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
 	    var systems: Cuckoo.VerifyReadOnlyProperty<[ComponentType: System]> {
 	        return .init(manager: cuckoo_manager, name: "systems", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
-	    var gameScene: Cuckoo.VerifyReadOnlyProperty<GameSceneFacade?> {
-	        return .init(manager: cuckoo_manager, name: "gameScene", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var rootRenderNode: Cuckoo.VerifyOptionalProperty<RootRenderNode> {
+	        return .init(manager: cuckoo_manager, name: "rootRenderNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
@@ -3734,14 +3720,6 @@ import SpriteKit
  class GameEngineStub: GameEngine {
     
     
-     override var contactDelegate: ContactDelegate {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (ContactDelegate).self)
-        }
-        
-    }
-    
-    
      override var systems: [ComponentType: System] {
         get {
             return DefaultValueRegistry.defaultValue(for: ([ComponentType: System]).self)
@@ -3750,10 +3728,12 @@ import SpriteKit
     }
     
     
-     override var gameScene: GameSceneFacade? {
+     override var rootRenderNode: RootRenderNode? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (GameSceneFacade?).self)
+            return DefaultValueRegistry.defaultValue(for: (RootRenderNode?).self)
         }
+        
+        set { }
         
     }
     
@@ -3888,7 +3868,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4054,7 +4034,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  HealthSystem.swift
@@ -4190,7 +4170,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  ManaSystem.swift
@@ -4356,7 +4336,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  MoveSystem.swift
@@ -4492,7 +4472,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  SpriteSystem.swift
@@ -4778,7 +4758,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  TimerSystem.swift
@@ -4974,7 +4954,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameEndState.swift
@@ -5228,7 +5208,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameInPlayState.swift
@@ -5364,7 +5344,143 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-13 18:27:53 +0000
+
+//
+//  GameModeSelectionState.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 12/4/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockGameModeSelectionState: GameModeSelectionState, Cuckoo.ClassMock {
+    
+     typealias MocksType = GameModeSelectionState
+    
+     typealias Stubbing = __StubbingProxy_GameModeSelectionState
+     typealias Verification = __VerificationProxy_GameModeSelectionState
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: GameModeSelectionState?
+
+     func enableDefaultImplementation(_ stub: GameModeSelectionState) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        
+    return cuckoo_manager.call("isValidNextState(_: AnyClass) -> Bool",
+            parameters: (stateClass),
+            escapingParameters: (stateClass),
+            superclassCall:
+                
+                super.isValidNextState(stateClass)
+                ,
+            defaultCall: __defaultImplStub!.isValidNextState(stateClass))
+        
+    }
+    
+    
+    
+     override func didEnter(from previousState: GKState?)  {
+        
+    return cuckoo_manager.call("didEnter(from: GKState?)",
+            parameters: (previousState),
+            escapingParameters: (previousState),
+            superclassCall:
+                
+                super.didEnter(from: previousState)
+                ,
+            defaultCall: __defaultImplStub!.didEnter(from: previousState))
+        
+    }
+    
+
+	 struct __StubbingProxy_GameModeSelectionState: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.ClassStubFunction<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameModeSelectionState.self, method: "isValidNextState(_: AnyClass) -> Bool", parameterMatchers: matchers))
+	    }
+	    
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKState?)> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameModeSelectionState.self, method: "didEnter(from: GKState?)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_GameModeSelectionState: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.__DoNotUse<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return cuckoo_manager.verify("isValidNextState(_: AnyClass) -> Bool", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.__DoNotUse<(GKState?), Void> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return cuckoo_manager.verify("didEnter(from: GKState?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class GameModeSelectionStateStub: GameModeSelectionState {
+    
+
+    
+
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool  {
+        return DefaultValueRegistry.defaultValue(for: (Bool).self)
+    }
+    
+     override func didEnter(from previousState: GKState?)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GamePauseState.swift
@@ -5500,10 +5616,10 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameSelectionState.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-13 18:27:53 +0000
 
 //
-//  GameSelectionState.swift
+//  GameStageSelectionState.swift
 //  GameOfRunes
 //
 //  Created by Jermy on 28/3/20.
@@ -5516,19 +5632,19 @@ import Cuckoo
 import GameplayKit
 
 
- class MockGameSelectionState: GameSelectionState, Cuckoo.ClassMock {
+ class MockGameStageSelectionState: GameStageSelectionState, Cuckoo.ClassMock {
     
-     typealias MocksType = GameSelectionState
+     typealias MocksType = GameStageSelectionState
     
-     typealias Stubbing = __StubbingProxy_GameSelectionState
-     typealias Verification = __VerificationProxy_GameSelectionState
+     typealias Stubbing = __StubbingProxy_GameStageSelectionState
+     typealias Verification = __VerificationProxy_GameStageSelectionState
 
      let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
 
     
-    private var __defaultImplStub: GameSelectionState?
+    private var __defaultImplStub: GameStageSelectionState?
 
-     func enableDefaultImplementation(_ stub: GameSelectionState) {
+     func enableDefaultImplementation(_ stub: GameStageSelectionState) {
         __defaultImplStub = stub
         cuckoo_manager.enableDefaultStubImplementation()
     }
@@ -5570,7 +5686,7 @@ import GameplayKit
     }
     
 
-	 struct __StubbingProxy_GameSelectionState: Cuckoo.StubbingProxy {
+	 struct __StubbingProxy_GameStageSelectionState: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	
 	     init(manager: Cuckoo.MockManager) {
@@ -5580,17 +5696,17 @@ import GameplayKit
 	    
 	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.ClassStubFunction<(AnyClass), Bool> where M1.MatchedType == AnyClass {
 	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameSelectionState.self, method: "isValidNextState(_: AnyClass) -> Bool", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameStageSelectionState.self, method: "isValidNextState(_: AnyClass) -> Bool", parameterMatchers: matchers))
 	    }
 	    
 	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKState?)> where M1.OptionalMatchedType == GKState {
 	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameSelectionState.self, method: "didEnter(from: GKState?)", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameStageSelectionState.self, method: "didEnter(from: GKState?)", parameterMatchers: matchers))
 	    }
 	    
 	}
 
-	 struct __VerificationProxy_GameSelectionState: Cuckoo.VerificationProxy {
+	 struct __VerificationProxy_GameStageSelectionState: Cuckoo.VerificationProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
 	    private let callMatcher: Cuckoo.CallMatcher
 	    private let sourceLocation: Cuckoo.SourceLocation
@@ -5619,7 +5735,7 @@ import GameplayKit
 	}
 }
 
- class GameSelectionStateStub: GameSelectionState {
+ class GameStageSelectionStateStub: GameStageSelectionState {
     
 
     
@@ -5636,7 +5752,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameStartState.swift
@@ -5772,7 +5888,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameStateMachine.swift
@@ -5980,7 +6096,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  GameScene.swift
@@ -6018,56 +6134,52 @@ import SpriteKit
     
     
     
-     override var center: CGPoint {
+     override var gameStateMachine: GameStateMachine? {
         get {
-            return cuckoo_manager.getter("center",
+            return cuckoo_manager.getter("gameStateMachine",
                 superclassCall:
                     
-                    super.center
+                    super.gameStateMachine
                     ,
-                defaultCall: __defaultImplStub!.center)
+                defaultCall: __defaultImplStub!.gameStateMachine)
         }
         
     }
     
     
     
-     override var playerAreaNode: PlayerAreaNode! {
+     override var rootRenderNode: RootRenderNode! {
         get {
-            return cuckoo_manager.getter("playerAreaNode",
+            return cuckoo_manager.getter("rootRenderNode",
                 superclassCall:
                     
-                    super.playerAreaNode
+                    super.rootRenderNode
                     ,
-                defaultCall: __defaultImplStub!.playerAreaNode)
+                defaultCall: __defaultImplStub!.rootRenderNode)
+        }
+        
+        set {
+            cuckoo_manager.setter("rootRenderNode",
+                value: newValue,
+                superclassCall:
+                    
+                    super.rootRenderNode = newValue
+                    ,
+                defaultCall: __defaultImplStub!.rootRenderNode = newValue)
         }
         
     }
     
     
     
-     override var playerEndPoint: SKSpriteNode! {
+     override var deltaTime: TimeInterval {
         get {
-            return cuckoo_manager.getter("playerEndPoint",
+            return cuckoo_manager.getter("deltaTime",
                 superclassCall:
                     
-                    super.playerEndPoint
+                    super.deltaTime
                     ,
-                defaultCall: __defaultImplStub!.playerEndPoint)
-        }
-        
-    }
-    
-    
-    
-     override var gestureAreaNode: GestureAreaNode! {
-        get {
-            return cuckoo_manager.getter("gestureAreaNode",
-                superclassCall:
-                    
-                    super.gestureAreaNode
-                    ,
-                defaultCall: __defaultImplStub!.gestureAreaNode)
+                defaultCall: __defaultImplStub!.deltaTime)
         }
         
     }
@@ -6108,21 +6220,6 @@ import SpriteKit
     
     
     
-     override func addNodeToLayer(layer: SpriteLayerType, node: SKNode)  {
-        
-    return cuckoo_manager.call("addNodeToLayer(layer: SpriteLayerType, node: SKNode)",
-            parameters: (layer, node),
-            escapingParameters: (layer, node),
-            superclassCall:
-                
-                super.addNodeToLayer(layer: layer, node: node)
-                ,
-            defaultCall: __defaultImplStub!.addNodeToLayer(layer: layer, node: node))
-        
-    }
-    
-    
-    
      override func gameDidEnd(didWin: Bool, finalScore: Int)  {
         
     return cuckoo_manager.call("gameDidEnd(didWin: Bool, finalScore: Int)",
@@ -6145,23 +6242,18 @@ import SpriteKit
 	    }
 	    
 	    
-	    var center: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, CGPoint> {
-	        return .init(manager: cuckoo_manager, name: "center")
+	    var gameStateMachine: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, GameStateMachine?> {
+	        return .init(manager: cuckoo_manager, name: "gameStateMachine")
 	    }
 	    
 	    
-	    var playerAreaNode: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, PlayerAreaNode?> {
-	        return .init(manager: cuckoo_manager, name: "playerAreaNode")
+	    var rootRenderNode: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameScene, RootRenderNode> {
+	        return .init(manager: cuckoo_manager, name: "rootRenderNode")
 	    }
 	    
 	    
-	    var playerEndPoint: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, SKSpriteNode?> {
-	        return .init(manager: cuckoo_manager, name: "playerEndPoint")
-	    }
-	    
-	    
-	    var gestureAreaNode: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, GestureAreaNode?> {
-	        return .init(manager: cuckoo_manager, name: "gestureAreaNode")
+	    var deltaTime: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameScene, TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "deltaTime")
 	    }
 	    
 	    
@@ -6173,11 +6265,6 @@ import SpriteKit
 	    func update<M1: Cuckoo.Matchable>(_ currentTime: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
 	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: currentTime) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameScene.self, method: "update(_: TimeInterval)", parameterMatchers: matchers))
-	    }
-	    
-	    func addNodeToLayer<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(layer: M1, node: M2) -> Cuckoo.ClassStubNoReturnFunction<(SpriteLayerType, SKNode)> where M1.MatchedType == SpriteLayerType, M2.MatchedType == SKNode {
-	        let matchers: [Cuckoo.ParameterMatcher<(SpriteLayerType, SKNode)>] = [wrap(matchable: layer) { $0.0 }, wrap(matchable: node) { $0.1 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameScene.self, method: "addNodeToLayer(layer: SpriteLayerType, node: SKNode)", parameterMatchers: matchers))
 	    }
 	    
 	    func gameDidEnd<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(didWin: M1, finalScore: M2) -> Cuckoo.ClassStubNoReturnFunction<(Bool, Int)> where M1.MatchedType == Bool, M2.MatchedType == Int {
@@ -6200,23 +6287,18 @@ import SpriteKit
 	
 	    
 	    
-	    var center: Cuckoo.VerifyReadOnlyProperty<CGPoint> {
-	        return .init(manager: cuckoo_manager, name: "center", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var gameStateMachine: Cuckoo.VerifyReadOnlyProperty<GameStateMachine?> {
+	        return .init(manager: cuckoo_manager, name: "gameStateMachine", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
-	    var playerAreaNode: Cuckoo.VerifyReadOnlyProperty<PlayerAreaNode?> {
-	        return .init(manager: cuckoo_manager, name: "playerAreaNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var rootRenderNode: Cuckoo.VerifyOptionalProperty<RootRenderNode> {
+	        return .init(manager: cuckoo_manager, name: "rootRenderNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
-	    var playerEndPoint: Cuckoo.VerifyReadOnlyProperty<SKSpriteNode?> {
-	        return .init(manager: cuckoo_manager, name: "playerEndPoint", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var gestureAreaNode: Cuckoo.VerifyReadOnlyProperty<GestureAreaNode?> {
-	        return .init(manager: cuckoo_manager, name: "gestureAreaNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var deltaTime: Cuckoo.VerifyReadOnlyProperty<TimeInterval> {
+	        return .init(manager: cuckoo_manager, name: "deltaTime", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -6234,12 +6316,6 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
-	    func addNodeToLayer<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(layer: M1, node: M2) -> Cuckoo.__DoNotUse<(SpriteLayerType, SKNode), Void> where M1.MatchedType == SpriteLayerType, M2.MatchedType == SKNode {
-	        let matchers: [Cuckoo.ParameterMatcher<(SpriteLayerType, SKNode)>] = [wrap(matchable: layer) { $0.0 }, wrap(matchable: node) { $0.1 }]
-	        return cuckoo_manager.verify("addNodeToLayer(layer: SpriteLayerType, node: SKNode)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-	    }
-	    
-	    @discardableResult
 	    func gameDidEnd<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(didWin: M1, finalScore: M2) -> Cuckoo.__DoNotUse<(Bool, Int), Void> where M1.MatchedType == Bool, M2.MatchedType == Int {
 	        let matchers: [Cuckoo.ParameterMatcher<(Bool, Int)>] = [wrap(matchable: didWin) { $0.0 }, wrap(matchable: finalScore) { $0.1 }]
 	        return cuckoo_manager.verify("gameDidEnd(didWin: Bool, finalScore: Int)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -6251,33 +6327,27 @@ import SpriteKit
  class GameSceneStub: GameScene {
     
     
-     override var center: CGPoint {
+     override var gameStateMachine: GameStateMachine? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (CGPoint).self)
+            return DefaultValueRegistry.defaultValue(for: (GameStateMachine?).self)
         }
         
     }
     
     
-     override var playerAreaNode: PlayerAreaNode! {
+     override var rootRenderNode: RootRenderNode! {
         get {
-            return DefaultValueRegistry.defaultValue(for: (PlayerAreaNode?).self)
+            return DefaultValueRegistry.defaultValue(for: (RootRenderNode?).self)
         }
+        
+        set { }
         
     }
     
     
-     override var playerEndPoint: SKSpriteNode! {
+     override var deltaTime: TimeInterval {
         get {
-            return DefaultValueRegistry.defaultValue(for: (SKSpriteNode?).self)
-        }
-        
-    }
-    
-    
-     override var gestureAreaNode: GestureAreaNode! {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (GestureAreaNode?).self)
+            return DefaultValueRegistry.defaultValue(for: (TimeInterval).self)
         }
         
     }
@@ -6294,10 +6364,6 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-     override func addNodeToLayer(layer: SpriteLayerType, node: SKNode)   {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
      override func gameDidEnd(didWin: Bool, finalScore: Int)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -6305,7 +6371,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-12 00:39:58 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-13 18:27:53 +0000
 
 //
 //  SceneManager.swift
@@ -6346,16 +6412,16 @@ import SpriteKit
     
     
     
-     override func transitionToScene(sceneIdentifier: SceneIdentifier)  {
+     override func transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)  {
         
-    return cuckoo_manager.call("transitionToScene(sceneIdentifier: SceneIdentifier)",
-            parameters: (sceneIdentifier),
-            escapingParameters: (sceneIdentifier),
+    return cuckoo_manager.call("transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)",
+            parameters: (sceneIdentifier, transition),
+            escapingParameters: (sceneIdentifier, transition),
             superclassCall:
                 
-                super.transitionToScene(sceneIdentifier: sceneIdentifier)
+                super.transitionToScene(sceneIdentifier: sceneIdentifier, transition: transition)
                 ,
-            defaultCall: __defaultImplStub!.transitionToScene(sceneIdentifier: sceneIdentifier))
+            defaultCall: __defaultImplStub!.transitionToScene(sceneIdentifier: sceneIdentifier, transition: transition))
         
     }
     
@@ -6383,9 +6449,9 @@ import SpriteKit
 	    }
 	    
 	    
-	    func transitionToScene<M1: Cuckoo.Matchable>(sceneIdentifier: M1) -> Cuckoo.ClassStubNoReturnFunction<(SceneIdentifier)> where M1.MatchedType == SceneIdentifier {
-	        let matchers: [Cuckoo.ParameterMatcher<(SceneIdentifier)>] = [wrap(matchable: sceneIdentifier) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "transitionToScene(sceneIdentifier: SceneIdentifier)", parameterMatchers: matchers))
+	    func transitionToScene<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(sceneIdentifier: M1, transition: M2) -> Cuckoo.ClassStubNoReturnFunction<(SceneIdentifier, SKTransition)> where M1.MatchedType == SceneIdentifier, M2.MatchedType == SKTransition {
+	        let matchers: [Cuckoo.ParameterMatcher<(SceneIdentifier, SKTransition)>] = [wrap(matchable: sceneIdentifier) { $0.0 }, wrap(matchable: transition) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)", parameterMatchers: matchers))
 	    }
 	    
 	    func beginNewStage() -> Cuckoo.ClassStubNoReturnFunction<()> {
@@ -6410,9 +6476,9 @@ import SpriteKit
 	
 	    
 	    @discardableResult
-	    func transitionToScene<M1: Cuckoo.Matchable>(sceneIdentifier: M1) -> Cuckoo.__DoNotUse<(SceneIdentifier), Void> where M1.MatchedType == SceneIdentifier {
-	        let matchers: [Cuckoo.ParameterMatcher<(SceneIdentifier)>] = [wrap(matchable: sceneIdentifier) { $0 }]
-	        return cuckoo_manager.verify("transitionToScene(sceneIdentifier: SceneIdentifier)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    func transitionToScene<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(sceneIdentifier: M1, transition: M2) -> Cuckoo.__DoNotUse<(SceneIdentifier, SKTransition), Void> where M1.MatchedType == SceneIdentifier, M2.MatchedType == SKTransition {
+	        let matchers: [Cuckoo.ParameterMatcher<(SceneIdentifier, SKTransition)>] = [wrap(matchable: sceneIdentifier) { $0.0 }, wrap(matchable: transition) { $0.1 }]
+	        return cuckoo_manager.verify("transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -6430,7 +6496,7 @@ import SpriteKit
     
 
     
-     override func transitionToScene(sceneIdentifier: SceneIdentifier)   {
+     override func transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
