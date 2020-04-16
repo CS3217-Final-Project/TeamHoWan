@@ -9,14 +9,9 @@
 import SpriteKit
 
 class WaitingRoomViewNode: SKSpriteNode {
-    
     private let roomIdDisplayNode: StackedLabelsNode = .init(backgroundTexture: .init(imageNamed: "stacked-labels"))
     private let hostIcon: SKSpriteNode = .init(imageNamed: "host-icon")
-    
-    // TODO: Not sure which node is the player's one, should we separate it out this way?
     private let hostAvatarOverviewNode: AvatarOverviewNode
-    
-    // TODO: Might want to use an array so to show Wai Kay it is extensible to more players?
     private let playerAvatarOverviewNode: AvatarOverviewNode
     private let leaveNode: ButtonNode
     private let playOrReadyNode: PlayOrReadyNode

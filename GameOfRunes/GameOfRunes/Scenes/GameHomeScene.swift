@@ -405,16 +405,6 @@ extension GameHomeScene {
         roomId = ""
     }
     
-    private func uponRoomClose() {
-        presentAlert(identifier: "room_close",
-                     alertNode: alertNode,
-                     alertDescription: "Room has been closed!",
-                     showTick: true,
-                     showCross: false,
-                     showLoader: false,
-                     status: .warning)
-    }
-    
     private func leaveRoom() {
         dbRef.leaveRoom(uid: playerData.uid,
                         fromRoomId: roomId,
@@ -424,6 +414,7 @@ extension GameHomeScene {
     
     private func leaveRoomSuccess() {
         transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+        dbRef.removeObservers()
     }
     
     private func toggleReady() {
@@ -460,6 +451,7 @@ extension GameHomeScene {
                      showLoader: false,
                      status: .warning)
         transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+        dbRef.removeObservers()
     }
     
     private func startGame() {

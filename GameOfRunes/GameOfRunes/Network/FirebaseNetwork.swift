@@ -216,13 +216,7 @@ class FirebaseNetwork: NetworkInterface {
                 // Room does not exist
                 return
             }
-            guard let roomId = roomSnap.keys.first else {
-                // Room does not have a room Id
-                return
-            }
-            let roomDict = roomSnap[roomId] as? [String: AnyObject] ?? [:]
-            onDataChange(self.firebaseRoomModelFactory(forDict: roomDict))
-            
+            onDataChange(self.firebaseRoomModelFactory(forDict: roomSnap))
         }) { err in
             onError(err)
         }
