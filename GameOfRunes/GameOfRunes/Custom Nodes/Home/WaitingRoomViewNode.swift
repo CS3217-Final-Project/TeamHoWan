@@ -11,8 +11,8 @@ import SpriteKit
 class WaitingRoomViewNode: SKSpriteNode {
     private let roomIdDisplayNode: StackedLabelsNode = .init(backgroundTexture: .init(imageNamed: "stacked-labels"))
     private let hostIcon: SKSpriteNode = .init(imageNamed: "host-icon")
-    private let hostAvatarOverviewNode: AvatarOverviewNode
-    private let playerAvatarOverviewNode: AvatarOverviewNode
+    private let myAvatarOverviewNode: AvatarOverviewNode
+    private let otherAvatarOverviewNode: AvatarOverviewNode
     private let leaveNode: ButtonNode
     private let playOrReadyNode: PlayOrReadyNode
 
@@ -30,41 +30,43 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
         set {
             playOrReadyNode.buttonType = newValue ? .playButton : .readyButton
-            
-            hostAvatarOverviewNode.viewOnlyAvatar = !isHost
-            playerAvatarOverviewNode.viewOnlyAvatar = isHost
+            if newValue {
+                hostIcon.position = .init(x: -size.width / 9, y: size.height / 4.5)
+            } else {
+                hostIcon.position = .init(x: size.width / 3, y: size.height / 4.5)
+            }
         }
     }
-    var hostSelectedAvatar: Avatar? {
+    var mySelectedAvatar: Avatar? {
         get {
-            hostAvatarOverviewNode.selectedAvatar
+            myAvatarOverviewNode.selectedAvatar
         }
         set {
-            hostAvatarOverviewNode.selectedAvatar = newValue
+            myAvatarOverviewNode.selectedAvatar = newValue
         }
     }
-    var playerSelectedAvatar: Avatar? {
+    var otherSelectedAvatar: Avatar? {
         get {
-            playerAvatarOverviewNode.selectedAvatar
+            otherAvatarOverviewNode.selectedAvatar
         }
         set {
-            playerAvatarOverviewNode.selectedAvatar = newValue
+            otherAvatarOverviewNode.selectedAvatar = newValue
         }
     }
-    var hostName: String? {
+    var myName: String? {
         get {
-            hostAvatarOverviewNode.customName
+            myAvatarOverviewNode.customName
         }
         set {
-            hostAvatarOverviewNode.customName = newValue
+            myAvatarOverviewNode.customName = newValue
         }
     }
-    var playerName: String? {
+    var otherName: String? {
         get {
-            playerAvatarOverviewNode.customName
+            otherAvatarOverviewNode.customName
         }
         set {
-            playerAvatarOverviewNode.customName = newValue
+            otherAvatarOverviewNode.customName = newValue
         }
     }
     
@@ -82,9 +84,9 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
     }
     
-    init(size: CGSize) {
-        hostAvatarOverviewNode = .init()
-        playerAvatarOverviewNode = .init()
+    init(homeScene: GameHomeScene, size: CGSize) {
+        myAvatarOverviewNode = .init(homeScene: homeScene)
+        otherAvatarOverviewNode = .init()
         
         let leaveButtonTexture = SKTexture(imageNamed: "leave-button")
         leaveNode = .init(
@@ -105,8 +107,8 @@ class WaitingRoomViewNode: SKSpriteNode {
         
         roomIdDisplayNode.zPosition = 50
         hostIcon.zPosition = 75
-        hostAvatarOverviewNode.zPosition = 50
-        playerAvatarOverviewNode.zPosition = 50
+        myAvatarOverviewNode.zPosition = 50
+        otherAvatarOverviewNode.zPosition = 50
         leaveNode.zPosition = 50
         playOrReadyNode.zPosition = 50
         
@@ -127,15 +129,23 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
         roomIdDisplayNode.layoutTopLabelNode()
         roomIdDisplayNode.layoutBottomLabelNode()
-         
+        
+        myAvatarOverviewNode.viewOnlyAvatar = false
+        otherAvatarOverviewNode.viewOnlyAvatar = true
+        
         addChild(roomIdDisplayNode)
         addChild(hostIcon)
-        addChild(hostAvatarOverviewNode)
-        addChild(playerAvatarOverviewNode)
+        addChild(myAvatarOverviewNode)
+        addChild(otherAvatarOverviewNode)
         addChild(leaveNode)
         addChild(playOrReadyNode)
     }
-
+    
+    func setOthersToNil() {
+        otherName = nil
+        otherSelectedAvatar = nil
+    }
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -148,17 +158,17 @@ class WaitingRoomViewNode: SKSpriteNode {
     
     private func layoutHostIcon() {
         hostIcon.size = hostIcon.size.scaleTo(width: size.width * 0.075)
-        hostIcon.position = .init(x: -size.width / 9, y: size.height / 4.5)
+        hostIcon.position = .init(x: size.width / 3, y: size.height / 4.5)
     }
     
     private func layoutHostAvatarOverviewNode() {
-        hostAvatarOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.65))
-        hostAvatarOverviewNode.position = .init(x: -size.width / 4.5, y: size.height / 40)
+        myAvatarOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.65))
+        myAvatarOverviewNode.position = .init(x: -size.width / 4.5, y: size.height / 40)
     }
     
     private func layoutPlayerAvatarOverviewNode() {
-        playerAvatarOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.65))
-        playerAvatarOverviewNode.position = .init(x: size.width / 4.5, y: size.height / 40)
+        otherAvatarOverviewNode.size = size.applying(.init(scaleX: 0.4, y: 0.65))
+        otherAvatarOverviewNode.position = .init(x: size.width / 4.5, y: size.height / 40)
     }
     
     private func layoutLeaveNode() {

@@ -91,14 +91,12 @@ protocol NetworkInterface {
      - uid: uid of the Player
      - forRoomId: room id of the room that the player is in
      - avatar: string representing the avatar to be changed to
-     - onComplete: completion handler
      - onError: error handler
      */
     func setAvatar(uid: String,
-                      forRoomId id: String,
-                      avatar: String,
-                      _ onComplete: @escaping () -> Void,
-                      _ onError: @escaping (Error) -> Void)
+                   forRoomId id: String,
+                   avatar: String,
+                   _ onError: @escaping (Error) -> Void)
     
     /**
      Creates a listener for a room instance.

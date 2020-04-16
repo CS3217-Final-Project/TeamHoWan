@@ -21,7 +21,7 @@ class GameHomeScene: SKScene {
     private lazy var gameModeSelectionViewNode: GameModeSelectionViewNode = .init(size: size)
     private lazy var multiplayerActionViewNode: MultiplayerActionViewNode = .init(size: size)
     private lazy var joinRoomViewNode: JoinRoomViewNode = .init(size: size)
-    private lazy var waitingRoomViewNode: WaitingRoomViewNode = .init(size: size)
+    private lazy var waitingRoomViewNode: WaitingRoomViewNode = .init(homeScene: self, size: size)
     
     private weak var currentViewNode: SKNode? {
         didSet {
@@ -344,7 +344,7 @@ extension GameHomeScene {
         
         // Set up the waiting room and transition to it
         waitingRoomViewNode.isHost = true
-        waitingRoomViewNode.hostName = playerName
+        waitingRoomViewNode.myName = playerName
         waitingRoomViewNode.roomId = roomId
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
@@ -375,7 +375,7 @@ extension GameHomeScene {
         
         // Set up the waiting room and transition to it
         self.waitingRoomViewNode.isHost = false
-        self.waitingRoomViewNode.playerName = self.playerName
+        self.waitingRoomViewNode.myName = self.playerName
         self.waitingRoomViewNode.roomId = roomId
         self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
         
@@ -429,20 +429,23 @@ extension GameHomeScene {
     }
     
     func onDataChange(roomModel: RoomModel) {
+        waitingRoomViewNode.setOthersToNil()
+        
         let players = roomModel.players
         for player in players {
             // TODO: Check isReady for front end component to show that player is ready
-            if player.isHost {
-                waitingRoomViewNode.hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.hostName = player.name
+            if player.uid == playerData.uid {
+                waitingRoomViewNode.mySelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.myName = player.name
             } else {
-                waitingRoomViewNode.playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.playerName = player.name
+                waitingRoomViewNode.otherSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.otherName = player.name
             }
         }
     }
     
     func onRoomClose() {
+        dbRef.removeObservers()
         presentAlert(identifier: "error",
                      alertNode: alertNode,
                      alertDescription: "Room has been closed!",
@@ -451,7 +454,6 @@ extension GameHomeScene {
                      showLoader: false,
                      status: .warning)
         transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
-        dbRef.removeObservers()
     }
     
     private func startGame() {
@@ -475,10 +477,20 @@ extension GameHomeScene {
         // TODO: Transition to multiplayer game scene
     }
     
+    func toggleAvatar(avatar: Avatar?) {
+        guard let avatar = avatar else {
+            return
+        }
+        playerData.avatar = avatar
+        dbRef.setAvatar(uid: playerData.uid,
+                        forRoomId: roomId,
+                        avatar: avatar.name,
+                        selfGeneralErrorHandler)
+    }
+    
     private func selfGeneralErrorHandler(error: Error) {
         generalErrorHandler(alertNode: alertNode, error: error)
     }
-    
 }
 
 extension SKNode {

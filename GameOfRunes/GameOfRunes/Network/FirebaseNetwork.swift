@@ -191,10 +191,9 @@ class FirebaseNetwork: NetworkInterface {
     }
     
     func setAvatar(uid: String,
-                      forRoomId id: String,
-                      avatar: String,
-                      _ onComplete: @escaping () -> Void,
-                      _ onError: @escaping (Error) -> Void) {
+                   forRoomId id: String,
+                   avatar: String,
+                   _ onError: @escaping (Error) -> Void) {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, id, FirebaseKeys.rooms_players, uid,
                                                      FirebaseKeys.rooms_players_avatar]))
         ref.setValue(avatar, withCompletionBlock: { err, _ in
@@ -202,7 +201,6 @@ class FirebaseNetwork: NetworkInterface {
                 onError(error)
                 return
             }
-            onComplete()
         })
     }
     
@@ -214,9 +212,15 @@ class FirebaseNetwork: NetworkInterface {
         let handle = ref.observe(.value, with: { snapshot in
             guard let roomSnap = snapshot.value as? [String: AnyObject] else {
                 // Room does not exist
+                onRoomClose()
                 return
             }
-            onDataChange(self.firebaseRoomModelFactory(forDict: roomSnap))
+            let roomModel = self.firebaseRoomModelFactory(forDict: roomSnap)
+            guard !roomModel.players.isEmpty else {
+                onRoomClose()
+                return
+            }
+            onDataChange(roomModel)
         }) { err in
             onError(err)
         }
