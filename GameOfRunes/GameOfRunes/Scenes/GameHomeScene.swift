@@ -433,7 +433,7 @@ extension GameHomeScene {
         
         let players = roomModel.players
         for player in players {
-            // TODO: Check isReady for front end component to show that player is ready
+            // TODO: isReady for front end component to show that player is ready
             if player.uid == playerData.uid {
                 waitingRoomViewNode.mySelectedAvatar = Avatar.getAvatar(withName: player.avatar)
                 waitingRoomViewNode.myName = player.name
@@ -475,6 +475,7 @@ extension GameHomeScene {
     
     private func startGameSuccess() {
         // TODO: Transition to multiplayer game scene
+        gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }
     
     func toggleAvatar(avatar: Avatar?) {

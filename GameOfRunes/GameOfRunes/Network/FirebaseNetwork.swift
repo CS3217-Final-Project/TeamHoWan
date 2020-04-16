@@ -244,7 +244,7 @@ class FirebaseNetwork: NetworkInterface {
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
             guard (snapshot.value as? Bool) != nil else {
-                // Room does not exist
+                // TODO: Custom error - room does not exist
                 return
             }
             ref.setValue(to, withCompletionBlock: { err, _ in
@@ -266,8 +266,10 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players]))
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard let playersData = snapshot.value as? [String: AnyObject] else {
-                // Players object does not exist in firebase.
+            guard let playersData = snapshot.value as? [String: AnyObject],
+                playersData.count > 1 else {
+                // TODO: Custom errors
+                // Players object does not exist in firebase / only 1 or less players in the room.
                 return
             }
             var players: [PlayerModel] = []
