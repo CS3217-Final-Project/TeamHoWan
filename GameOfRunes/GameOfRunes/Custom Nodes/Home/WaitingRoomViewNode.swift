@@ -15,6 +15,8 @@ class WaitingRoomViewNode: SKSpriteNode {
     private let playerAvatarOverviewNode: AvatarOverviewNode
     private let leaveNode: ButtonNode
     private let playOrReadyNode: PlayOrReadyNode
+    private let dbRef: NetworkInterface
+    
     var roomId: String {
         get {
             roomIdDisplayNode.bottomLabelNode.text ?? ""
@@ -81,9 +83,9 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
     }
     
-    init(size: CGSize) {
+    init(dbRef: NetworkInterface, size: CGSize) {
+        self.dbRef = dbRef
         hostAvatarOverviewNode = .init()
-        
         playerAvatarOverviewNode = .init()
         
         let leaveButtonTexture = SKTexture(imageNamed: "leave-button")
@@ -128,18 +130,33 @@ class WaitingRoomViewNode: SKSpriteNode {
         roomIdDisplayNode.layoutTopLabelNode()
         roomIdDisplayNode.layoutBottomLabelNode()
         
-        // TODO: change to load from firebase
-        hostSelectedAvatar = .elementalWizard
-        playerSelectedAvatar = .elementalWizard
-        hostName = "Xiao Ming"
-        playerName = "Xiao Li"
-        
         addChild(roomIdDisplayNode)
         addChild(hostIcon)
         addChild(hostAvatarOverviewNode)
         addChild(playerAvatarOverviewNode)
         addChild(leaveNode)
         addChild(playOrReadyNode)
+    }
+    
+    func setUpRoom() {
+        dbRef.observeRoomState(forRoomId: roomId,
+                               onDataChange,
+                               onRoomClose,
+                               generalErrorHandler)
+    }
+    
+    func onDataChange(roomModel: RoomModel) {
+        let players = roomModel.players
+        for player in players {
+        // TODO: Pass in playerReady: Bool for front end component to show that player is ready
+            if player.isHost {
+                hostSelectedAvatar = player.avatar
+                hostName = player.name
+            } else {
+                playerSelectedAvatar = player.avatar
+                playerName = player.name
+            }
+        }
     }
     
     @available(*, unavailable)
