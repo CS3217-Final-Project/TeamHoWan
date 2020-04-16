@@ -43,11 +43,14 @@ extension FirebaseNetwork {
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
+        let metadata = description[FirebaseKeys.rooms_players_metadata]
         
-        let decodedMonsters: [MonsterModel] = decodeMonsters(data: monsters)
-        let decodedPowerUp: PowerUpModel? = decodePowerUp(data: powerUp)
+        let decodedMonsters = decodeMonsters(data: monsters)
+        let decodedPowerUp = decodePowerUp(data: powerUp)
+        let decodedMetadata = decodeMetadata(data: metadata)
+        
         return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
-                           powerUp: decodedPowerUp, monsters: decodedMonsters)
+                           powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
     }
     
     /**
@@ -82,32 +85,44 @@ extension FirebaseNetwork {
      - isReady: whether the player is ready
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
-    func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
-                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
+    func createPlayerDict(uid: String,
+                          name: String,
+                          isHost: Bool,
+                          isReady: Bool,
+                          powerUp: PowerUpModel? = nil,
+                          monsters: [MonsterModel] = [],
+                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
         let encodedMonsters = encodeMonsters(monsters: monsters)
+        let encodedMetadata = encodeMetadata(metadata: metadata)
         return [
             FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
             FirebaseKeys.rooms_players_uid: uid as AnyObject,
             FirebaseKeys.rooms_players_name: name as AnyObject,
             FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
             FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
-            FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
+            FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject,
+            FirebaseKeys.rooms_players_metadata: encodedMetadata as AnyObject
         ]
     }
     
     /**
      Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
      */
-    func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool,
-                          powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
+    func createPlayerDict(playerData: PlayerData,
+                          isHost: Bool,
+                          isReady: Bool,
+                          powerUp: PowerUpModel? = nil,
+                          monsters: [MonsterModel] = [],
+                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
         createPlayerDict(
             uid: playerData.uid,
             name: playerData.name,
             isHost: isHost,
             isReady: isReady,
             powerUp: powerUp,
-            monsters: monsters
+            monsters: monsters,
+            metadata: metadata
         )
     }
     
@@ -129,6 +144,16 @@ extension FirebaseNetwork {
                 as? [String: Any] ?? [:]
         } catch { }
         return encodedMonsters
+    }
+    
+    func encodeMetadata(metadata: MetadataModel?) -> [String: Any] {
+        var encodedMetadata: [String: Any] = [:]
+        do {
+            let metadataData = try encoder.encode(metadata)
+            encodedMetadata = try JSONSerialization.jsonObject(with: metadataData, options: .allowFragments)
+                as? [String: Any] ?? [:]
+        } catch { }
+        return encodedMetadata
     }
     
     func decodePowerUp(data: AnyObject?) -> PowerUpModel? {
@@ -153,5 +178,17 @@ extension FirebaseNetwork {
             decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
         } catch { }
         return decodedMonsters ?? []
+    }
+    
+    func decodeMetadata(data: AnyObject?) -> MetadataModel? {
+        guard let data = data else {
+            return nil
+        }
+        var decodedMetadata: MetadataModel?
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            decodedMetadata = try decoder.decode(MetadataModel.self, from: jsonData)
+        } catch { }
+        return decodedMetadata
     }
 }

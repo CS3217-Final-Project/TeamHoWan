@@ -26,8 +26,8 @@ class LocalRootRenderNode: RootRenderNode {
                   position: CGPoint,
                   size: CGSize) {
 
-        let gameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar)
-        super.init(gameEngine: gameEngine, size: size)
+        super.init(size: size)
+        self.gameEngine = MultiplayerLocalGameEngine(stage: stage, avatar: avatar, renderNode: self)
         self.position = position
         self.zPosition = zPosition
         self.isUserInteractionEnabled = true

@@ -6,8 +6,12 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import Foundation
+import GameplayKit
 
 class MultiplayerLocalGameEngine: GameEngine {
+    private let network: NetworkInterface = FirebaseNetwork()
     
+    override func update(with deltaTime: TimeInterval) {
+        super.update(with: deltaTime)
+    }
 }

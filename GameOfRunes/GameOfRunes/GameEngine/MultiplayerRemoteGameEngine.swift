@@ -6,8 +6,8 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import Foundation
+import GameplayKit
 
 class MultiplayerRemoteGameEngine: GameEngine {
-    
+    private let network: NetworkInterface = FirebaseNetwork()
 }

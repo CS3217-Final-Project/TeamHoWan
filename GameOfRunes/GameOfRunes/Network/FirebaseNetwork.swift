@@ -290,4 +290,22 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
+    func updateMetadata(roomId: String,
+                        uid: String,
+                        metadata: MetadataModel,
+                        _ onComplete: @escaping () -> Void,
+                        _ onError: @escaping (Error) -> Void) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_metadata]))
+        let encodedMetadata = encodeMetadata(metadata: metadata)
+        ref.setValue(encodedMetadata, withCompletionBlock: { err, ref in
+            if let error = err {
+                onError(error)
+                return
+            }
+            onComplete()
+        })
+    }
+    
 }

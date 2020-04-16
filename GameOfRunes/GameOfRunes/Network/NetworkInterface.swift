@@ -176,4 +176,10 @@ protocol NetworkInterface {
                        powerUp: PowerUpModel,
                        _ onComplete: @escaping () -> Void,
                        _ onError: @escaping (Error) -> Void)
+    
+    func updateMetadata(roomId: String,
+                        uid:String,
+                        metadata: MetadataModel,
+                        _ onComplete: @escaping () -> Void,
+                        _ onError: @escaping (Error) -> Void)
 }

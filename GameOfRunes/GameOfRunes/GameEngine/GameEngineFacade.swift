@@ -13,7 +13,7 @@ import SpriteKit
  */
 protocol GameEngineFacade {
     var metadata: GameMetaData { get }
-    var rootRenderNode: RootRenderNode? { get set }
+    var rootRenderNode: RootRenderNode? { get }
 
     func update(with deltaTime: TimeInterval)
     func startNextSpawnWave()
