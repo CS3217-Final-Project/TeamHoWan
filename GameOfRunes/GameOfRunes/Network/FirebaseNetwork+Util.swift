@@ -9,6 +9,7 @@
 import Foundation
 
 extension FirebaseNetwork {
+    // TODO: Does this create a new encoder/decoder object every time it is called?
     private var encoder: JSONEncoder {
         JSONEncoder()
     }
@@ -45,12 +46,13 @@ extension FirebaseNetwork {
         let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
         let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
+        let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultEmptyString
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
         
         let decodedMonsters: [MonsterModel] = decodeMonsters(data: monsters)
         let decodedPowerUp: PowerUpModel? = decodePowerUp(data: powerUp)
-        return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
+        return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady, avatar: avatar,
                            powerUp: decodedPowerUp, monsters: decodedMonsters)
     }
     
@@ -86,7 +88,7 @@ extension FirebaseNetwork {
      - isReady: whether the player is ready
      - Returns: a dictionary representing the player object, ready to be inserted into firebase
      */
-    func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool,
+    func createPlayerDict(uid: String, name: String, isHost: Bool, isReady: Bool, avatar: String = "",
                           powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
         let encodedMonsters = encodeMonsters(monsters: monsters)
@@ -95,6 +97,7 @@ extension FirebaseNetwork {
             FirebaseKeys.rooms_players_uid: uid as AnyObject,
             FirebaseKeys.rooms_players_name: name as AnyObject,
             FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
+            FirebaseKeys.rooms_players_avatar: avatar as AnyObject,
             FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
             FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject
         ]
@@ -103,10 +106,9 @@ extension FirebaseNetwork {
     /**
      Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
      */
-    func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool,
+    func createPlayerDict(playerData: PlayerData, isHost: Bool, isReady: Bool, avatar: String = "",
                           powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) -> [String: AnyObject] {
-        createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost,
-                         isReady: isReady, powerUp: powerUp, monsters: monsters)
+        createPlayerDict(uid: playerData.uid, name: playerData.name, isHost: isHost, isReady: isReady, avatar: avatar, powerUp: powerUp, monsters: monsters)
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {

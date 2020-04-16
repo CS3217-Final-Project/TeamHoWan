@@ -22,6 +22,7 @@ struct FirebaseKeys {
     static let rooms_players_isHost = "is_host"
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
+    static let rooms_players_avatar = "avatar"
     static let rooms_players_powerUp = "powerUp"
     static let rooms_players_monsters = "monsters"
 

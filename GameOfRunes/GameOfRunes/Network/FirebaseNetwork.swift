@@ -190,6 +190,22 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
+    func setAvatar(uid: String,
+                      forRoomId id: String,
+                      avatar: String,
+                      _ onComplete: @escaping () -> Void,
+                      _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, id, FirebaseKeys.rooms_players, uid,
+                                                     FirebaseKeys.rooms_players_avatar]))
+        ref.setValue(avatar, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError(error)
+                return
+            }
+            onComplete()
+        })
+    }
+    
     func observeRoomState(forRoomId id: String,
                           _ onDataChange: @escaping (RoomModel) -> Void,
                           _ onRoomClose: @escaping () -> Void,

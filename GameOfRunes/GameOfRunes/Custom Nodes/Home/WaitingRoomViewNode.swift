@@ -148,15 +148,19 @@ class WaitingRoomViewNode: SKSpriteNode {
     func onDataChange(roomModel: RoomModel) {
         let players = roomModel.players
         for player in players {
-        // TODO: Pass in playerReady: Bool for front end component to show that player is ready
+        // TODO: Check isReady for front end component to show that player is ready
             if player.isHost {
-                hostSelectedAvatar = player.avatar
+                hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
                 hostName = player.name
             } else {
-                playerSelectedAvatar = player.avatar
+                playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
                 playerName = player.name
             }
         }
+    }
+    
+    func onRoomClose() {
+        // Transition back to multiplayer view
     }
     
     @available(*, unavailable)

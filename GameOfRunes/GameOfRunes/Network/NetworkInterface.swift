@@ -86,6 +86,21 @@ protocol NetworkInterface {
                           _ onError: @escaping (Error) -> Void)
     
     /**
+     Toggle the player's avatar in the room that the player is in.
+     - Parameters:
+     - uid: uid of the Player
+     - forRoomId: room id of the room that the player is in
+     - avatar: string representing the avatar to be changed to
+     - onComplete: completion handler
+     - onError: error handler
+     */
+    func setAvatar(uid: String,
+                      forRoomId id: String,
+                      avatar: String,
+                      _ onComplete: @escaping () -> Void,
+                      _ onError: @escaping (Error) -> Void)
+    
+    /**
      Creates a listener for a room instance.
      This listener is fired every time any child is changed in the Room object in the database.
      This method should be used by the client to know when the game starts,
