@@ -107,6 +107,31 @@ class AlertNode: SKNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func presentAlert(
+        alertDescription: String,
+        showTick: Bool,
+        showCross: Bool,
+        showLoader: Bool,
+        identifier: String? = nil,
+        status: Status? = nil,
+        disableBackgroundContent: Bool = true,
+        dimBackgroundContent: Bool = true
+    ) {
+        self.alertDescription = alertDescription
+        self.showTick = showTick
+        self.showCross = showCross
+        self.showLoader = showLoader
+        self.identifier = identifier
+        self.status = status
+        self.disableBackgroundContent = disableBackgroundContent
+        self.dimBackgroundContent = dimBackgroundContent
+        isHidden = false
+    }
+    
+    func hideAlert() {
+        isHidden = true
+    }
 }
 
 extension AlertNode: TapResponder {

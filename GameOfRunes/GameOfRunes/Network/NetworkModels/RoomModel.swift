@@ -36,4 +36,26 @@ class RoomModel: Codable {
     func toString() -> String {
         "roomId: \(roomId)\nplayers: \(players)\nroomIsOpen: \(isOpen)"
     }
+    
+    func convertToRoom(with localPlayerUid: String) -> Room {
+        var updatedRoom = Room(roomId: roomId)
+        
+        updatedRoom.isReady = true
+        players.forEach { player in
+            if !player.isHost {
+                updatedRoom.isReady = updatedRoom.isReady && player.isReady
+            }
+            
+            if player.uid == localPlayerUid {
+                updatedRoom.localPlayer = player.toPlayer
+                updatedRoom.localPlayerIsHost = player.isHost
+            } else {
+                updatedRoom.remoteplayers.append(player.toPlayer)
+            }
+        }
+        
+        updatedRoom.isReady = updatedRoom.isReady && !updatedRoom.remoteplayers.isEmpty
+        
+        return updatedRoom
+    }
 }

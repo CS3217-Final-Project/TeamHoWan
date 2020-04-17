@@ -12,14 +12,14 @@ class WaitingRoomViewNode: SKSpriteNode {
     private let roomIdDisplayNode: StackedLabelsNode = .init(backgroundTexture: .init(imageNamed: "stacked-labels"))
     private let hostIcon: SKSpriteNode = .init(imageNamed: "host-icon")
     private let readyIcon: SKSpriteNode = .init(imageNamed: "tick")
-    private let hostAvatarOverviewNode: AvatarOverviewNode
-    private let playerAvatarOverviewNode: AvatarOverviewNode
+    private let hostAvatarOverviewNode: AvatarOverviewNode = .init()
+    private let playerAvatarOverviewNode: AvatarOverviewNode = .init()
     private let leaveNode: ButtonNode
     private let playOrReadyNode: PlayOrReadyNode
 
-    var roomId: String {
+    var roomId: String? {
         get {
-            roomIdDisplayNode.bottomLabelNode.text ?? ""
+            roomIdDisplayNode.bottomLabelNode.text
         }
         set {
             roomIdDisplayNode.bottomLabelNode.text = newValue
@@ -77,6 +77,15 @@ class WaitingRoomViewNode: SKSpriteNode {
             playerAvatarOverviewNode.customName = newValue
         }
     }
+    var avatarOverviewNodeResponder: AvatarOverviewNodeResponder? {
+        get {
+            isHost ? hostAvatarOverviewNode.responder : playerAvatarOverviewNode.responder
+        }
+        set {
+            hostAvatarOverviewNode.responder = newValue
+            playerAvatarOverviewNode.responder = newValue
+        }
+    }
     
     override var size: CGSize {
         didSet {
@@ -93,10 +102,7 @@ class WaitingRoomViewNode: SKSpriteNode {
         }
     }
     
-    init(homeScene: GameHomeScene, size: CGSize) {
-        hostAvatarOverviewNode = .init(homeScene: homeScene)
-        playerAvatarOverviewNode = .init(homeScene: homeScene)
-        
+    init(size: CGSize) {
         let leaveButtonTexture = SKTexture(imageNamed: "leave-button")
         leaveNode = .init(
             size: leaveButtonTexture.size(),
@@ -147,11 +153,6 @@ class WaitingRoomViewNode: SKSpriteNode {
         addChild(playerAvatarOverviewNode)
         addChild(leaveNode)
         addChild(playOrReadyNode)
-    }
-    
-    func setOthersToNil() {
-        playerName = nil
-        playerSelectedAvatar = nil
     }
 
     @available(*, unavailable)

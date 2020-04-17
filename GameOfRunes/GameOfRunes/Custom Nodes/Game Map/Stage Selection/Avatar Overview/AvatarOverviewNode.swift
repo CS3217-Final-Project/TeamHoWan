@@ -14,7 +14,7 @@ class AvatarOverviewNode: SKSpriteNode {
     private let healthBarNode = HealthBarNode()
     private let manaBarNode = ManaBarNode()
     private let powerUpDescriptionNode = PowerUpDescriptionNode()
-    private weak var homeScene: GameHomeScene?
+    weak var responder: AvatarOverviewNodeResponder?
     
     var selectedAvatar: Avatar? {
         didSet {
@@ -61,8 +61,7 @@ class AvatarOverviewNode: SKSpriteNode {
         }
     }
     
-    init(homeScene: GameHomeScene? = nil) {
-        self.homeScene = homeScene
+    init() {
         super.init(texture: nil, color: .clear, size: .zero)
         
         avatarLabelNode.zPosition = 1
@@ -125,8 +124,6 @@ class AvatarOverviewNode: SKSpriteNode {
 extension AvatarOverviewNode: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         selectedAvatar = tappedNode.buttonType == .leftButton ? selectedAvatar?.prevAvatar : selectedAvatar?.nextAvatar
-        if let homeScene = homeScene {
-            homeScene.toggleAvatar(avatar: selectedAvatar)
-        }
+        responder?.selectedAvatarDidChanged(newValue: selectedAvatar)
     }
 }

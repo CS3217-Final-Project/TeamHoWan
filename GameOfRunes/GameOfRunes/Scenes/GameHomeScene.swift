@@ -11,18 +11,37 @@ import SpriteKit
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
     private lazy var dbRef: NetworkInterface = FirebaseNetwork()
-    private lazy var playerData = PlayerData()
+    private var room: Room = .init() {
+        didSet {
+            let localPlayer = room.localPlayer
+            let remotePlayer = room.remoteplayers.first
+            
+            // update this to latest
+            localPlayerUid = localPlayer?.uid
+            
+            // refresh frontend
+            waitingRoomViewNode.roomId = room.roomId
+            waitingRoomViewNode.isHost = room.localPlayerIsHost
+            waitingRoomViewNode.isReady = room.isReady
+            waitingRoomViewNode.hostSelectedAvatar = room.localPlayerIsHost ? localPlayer?.avatar : remotePlayer?.avatar
+            waitingRoomViewNode.playerSelectedAvatar = room.localPlayerIsHost
+                ? remotePlayer?.avatar
+                : localPlayer?.avatar
+            waitingRoomViewNode.hostName = room.localPlayerIsHost ? localPlayer?.name : remotePlayer?.name
+            waitingRoomViewNode.playerName = room.localPlayerIsHost ? remotePlayer?.name : localPlayer?.name
+        }
+    }
+    private var localPlayerUid: String?
     
     // Nodes
-    private lazy var alertNode: AlertNode = .init(size: size)
-    private lazy var nameField: CustomTextField = .init(size: size)
-    private lazy var backNode: BackNode = .init()
-    private lazy var startViewNode: StartViewNode = .init(size: size)
-    private lazy var gameModeSelectionViewNode: GameModeSelectionViewNode = .init(size: size)
-    private lazy var multiplayerActionViewNode: MultiplayerActionViewNode = .init(size: size)
-    private lazy var joinRoomViewNode: JoinRoomViewNode = .init(size: size)
-    private lazy var waitingRoomViewNode: WaitingRoomViewNode = .init(homeScene: self, size: size)
-    
+    private let alertNode: AlertNode
+    private let nameField: CustomTextField
+    private let backNode: BackNode = .init()
+    private let startViewNode: StartViewNode
+    private let gameModeSelectionViewNode: GameModeSelectionViewNode
+    private let multiplayerActionViewNode: MultiplayerActionViewNode
+    private let joinRoomViewNode: JoinRoomViewNode
+    private let waitingRoomViewNode: WaitingRoomViewNode
     private weak var currentViewNode: SKNode? {
         didSet {
             guard oldValue != currentViewNode else {
@@ -43,38 +62,40 @@ class GameHomeScene: SKScene {
             refreshBackNode()
         }
     }
-    private var navigationStack: [SKNode] = [] {
+    var navigationStack: [SKNode] = [] {
         didSet {
             refreshBackNode()
         }
     }
     
-    private var playerName = "" {
+    var playerName = "" {
         didSet {
             multiplayerActionViewNode.isUserInteractionEnabled = !playerName.isEmpty
-        }
-    }
-    
-    private var roomId: String {
-        get {
-            joinRoomViewNode.inputRoomId
-        }
-        set {
-            joinRoomViewNode.inputRoomId = newValue
         }
     }
     
     // layers
     private let backgroundLayer: SKNode = .init()
     private let uiLayer: SKNode = .init()
+    
     private let bgmNode: SKAudioNode = .init(fileNamed: "Destiny-Ablaze")
     
     init(size: CGSize, gameStateMachine: GameStateMachine) {
         self.gameStateMachine = gameStateMachine
+        
+        alertNode = .init(size: size)
+        nameField = .init(size: size)
+        startViewNode = .init(size: size)
+        gameModeSelectionViewNode = .init(size: size)
+        multiplayerActionViewNode = .init(size: size)
+        joinRoomViewNode = .init(size: size)
+        waitingRoomViewNode = .init(size: size)
+        
         super.init(size: size)
         
         anchorPoint = .init(x: 0.5, y: 0.5)
         alertNode.responder = self
+        waitingRoomViewNode.avatarOverviewNodeResponder = self
     }
     
     deinit {
@@ -115,7 +136,7 @@ class GameHomeScene: SKScene {
         backNode.isHidden = navigationStack.isEmpty || currentViewNode is WaitingRoomViewNode
     }
     
-    private func transit(from nodeA: SKNode, to nodeB: SKNode) {
+    func transit(from nodeA: SKNode, to nodeB: SKNode) {
         let currentState = nodeA.isUserInteractionEnabled
         // ensures this node doesn't get tapped multiple times while fading out
         nodeA.isUserInteractionEnabled = false
@@ -141,34 +162,16 @@ class GameHomeScene: SKScene {
         // update current view node
         currentViewNode = nodeB
     }
-}
-
-extension GameHomeScene: UITextFieldDelegate {
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        if string.isEmpty || string == " " {
-            return true
-        } else if (textField.text ?? "").count > 12 {
-            return false
-        } else {
-            // ensures all characters are alphanumerics
-            return string.removingCharacters(in: .alphanumerics).isEmpty
-        }
-    }
     
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        let processedText = (textField.text ?? "")
-            .replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
-        playerName = processedText.trimmingCharacters(in: .whitespacesAndNewlines)
-        textField.text = processedText
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    private func presentResetDataAlert() {
+        alertNode.presentAlert(
+            alertDescription: "Do you want to reset all game data?",
+            showTick: true,
+            showCross: true,
+            showLoader: false,
+            identifier: "reset",
+            status: .warning
+        )
     }
 }
 
@@ -177,13 +180,7 @@ extension GameHomeScene: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         switch tappedNode.buttonType {
         case .settingsButton:
-            presentAlert(identifier: "reset",
-                         alertNode: alertNode,
-                         alertDescription: "Do you want to reset all game data?",
-                         showTick: true,
-                         showCross: true,
-                         showLoader: false,
-                         status: .warning)
+            presentResetDataAlert()
         case .startButton:
             transit(from: startViewNode, to: gameModeSelectionViewNode)
             navigationStack.append(startViewNode)
@@ -193,25 +190,19 @@ extension GameHomeScene: TapResponder {
             transit(from: gameModeSelectionViewNode, to: multiplayerActionViewNode)
             navigationStack.append(gameModeSelectionViewNode)
         case .joinRoomButton:
-            playerData.name = playerName
             transit(from: multiplayerActionViewNode, to: joinRoomViewNode)
             navigationStack.append(multiplayerActionViewNode)
-            roomId = ""
+            joinRoomViewNode.inputRoomId = ""
         case .joinButton:
             joinRoom()
         case .hostRoomButton:
-            playerData.name = playerName
             createRoom()
         case .leaveButton:
             leaveRoom()
         case .playButton:
-            toggleReady()
             startGame()
-            return
         case .readyButton:
-            // do firebase connection here
-            // swiftlint:disable:toggle_bool
-            waitingRoomViewNode.isReady = !waitingRoomViewNode.isReady
+            toggleReady()
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -220,42 +211,9 @@ extension GameHomeScene: TapResponder {
         case .powerUpIconButton:
             // ignore
             return
-        case .readyButton:
-            toggleReady()
         default:
             print("Unknown node tapped: \(tappedNode)")
         }
-    }
-}
-
-// MARK: - AlertResponder
-extension GameHomeScene: AlertResponder {
-    func crossOnTapped(sender: AlertNode) {
-        if sender.identifier == "join" {
-            // do sth like terminate the joining?
-        } else if sender.identifier == "room_close" {
-            // transition back to multiplayer view
-        }
-        
-        sender.isHidden = true
-    }
-    
-    func tickOnTapped(sender: AlertNode) {
-        if sender.identifier == "reset" {
-            sender.showLoader = true
-            GameViewController.storage.reset()
-            GameViewController.initStagesInDatabase()
-            presentAlert(identifier: "success",
-                         alertNode: alertNode,
-                         alertDescription: "Game data has been successfully reset",
-                         showTick: true,
-                         showCross: false,
-                         showLoader: false,
-                         status: .success)
-            return
-        }
-        
-        sender.isHidden = true
     }
 }
 
@@ -322,65 +280,81 @@ extension GameHomeScene {
     }
 }
 
-// MARK: - Firebase Methods
+// MARK: - AvatarOverviewNodeResponder
+extension GameHomeScene: AvatarOverviewNodeResponder {
+    func selectedAvatarDidChanged(newValue: Avatar?) {
+        guard let avatar = newValue, let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+        dbRef.setAvatar(
+            uid: localPlayerUid,
+            roomId: roomId,
+            avatar: avatar.name,
+            completion: nil,
+            onError: presentErrorAlert
+        )
+    }
+}
+
+// MARK: - Network synchronisation
 extension GameHomeScene {
     private func createRoom() {
-        presentAlert(identifier: "create",
-                     alertNode: alertNode,
-                     alertDescription: "Creating a room...",
-                     showTick: false,
-                     showCross: false,
-                     showLoader: true,
-                     status: nil)
-        dbRef.createRoom(uid: playerData.uid,
-                         name: playerData.name,
-                         createRoomSuccess,
-                         selfGeneralErrorHandler)
+        alertNode.presentAlert(alertDescription: "Creating a room", showTick: false, showCross: false, showLoader: true)
+        
+        dbRef.createRoom(
+            uid: UUID().uuidString,
+            name: playerName,
+            completion: createRoomSuccess,
+            onError: presentErrorAlert
+        )
     }
     
-    private func createRoomSuccess(roomId: String) {
-        alertNode.isHidden = true
-        self.roomId = roomId
-        dbRef.observeRoomState(forRoomId: roomId,
-                               onDataChange,
-                               onRoomClose,
-                               selfGeneralErrorHandler)
+    private func createRoomSuccess(uid: String, roomId: String) {
+        alertNode.hideAlert()
         
-        // Set up the waiting room and transition to it
-        waitingRoomViewNode.isHost = true
-        waitingRoomViewNode.hostName = playerData.name
-        waitingRoomViewNode.roomId = roomId
+        localPlayerUid = uid
+        
+        dbRef.observeRoomState(
+            roomId: roomId,
+            onDataChange: onDataChange,
+            onRoomClose: onRoomClose,
+            onError: presentErrorAlert
+        )
+        
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
     
     private func joinRoom() {
-        presentAlert(identifier: "join",
-                     alertNode: alertNode,
-                     alertDescription: "Joining the room...",
-                     showTick: false,
-                     showCross: false,
-                     showLoader: true,
-                     status: nil)
-        dbRef.joinRoom(uid: playerData.uid,
-                       name: playerData.name,
-                       forRoomId: roomId,
-                       joinRoomSuccess,
-                       roomNotOpen,
-                       roomDoesNotExist,
-                       selfGeneralErrorHandler)
+        alertNode.presentAlert(
+            alertDescription: "Joining the room",
+            showTick: false,
+            showCross: false,
+            showLoader: true
+        )
+        
+        dbRef.joinRoom(
+            uid: UUID().uuidString,
+            name: playerName,
+            roomId: joinRoomViewNode.inputRoomId,
+            completion: joinRoomSuccess,
+            onRoomNotOpen: roomNotOpen,
+            onRoomNotExist: roomDoesNotExist,
+            onError: presentErrorAlert
+        )
     }
     
-    private func joinRoomSuccess() {
-        dbRef.observeRoomState(forRoomId: roomId,
-                               onDataChange,
-                               onRoomClose,
-                               selfGeneralErrorHandler)
-        alertNode.isHidden = true
+    private func joinRoomSuccess(uid: String) {
+        alertNode.hideAlert()
         
-        // Set up the waiting room and transition to it
-        self.waitingRoomViewNode.isHost = false
-        self.waitingRoomViewNode.playerName = self.playerName
-        self.waitingRoomViewNode.roomId = roomId
+        localPlayerUid = uid
+        
+        dbRef.observeRoomState(
+            roomId: joinRoomViewNode.inputRoomId,
+            onDataChange: onDataChange,
+            onRoomClose: onRoomClose,
+            onError: presentErrorAlert
+        )
+        
         self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
         
         // removes multiplayerActionViewNode from stack
@@ -388,53 +362,59 @@ extension GameHomeScene {
     }
     
     private func roomNotOpen() {
-        presentAlert(identifier: "error",
-                     alertNode: alertNode,
-                     alertDescription: "Room is full!",
-                     showTick: true,
-                     showCross: false,
-                     showLoader: false,
-                     status: .warning)
-        roomId = ""
+        alertNode.presentAlert(
+            alertDescription: "Room is full",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
+        )
     }
     
     private func roomDoesNotExist() {
-        presentAlert(identifier: "error",
-                     alertNode: alertNode,
-                     alertDescription: "Room does not exist!",
-                     showTick: true,
-                     showCross: false,
-                     showLoader: false,
-                     status: .warning)
-        roomId = ""
+        alertNode.presentAlert(
+            alertDescription: "Room does not exist",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
+        )
     }
     
     private func leaveRoom() {
-        dbRef.leaveRoom(uid: playerData.uid,
-                        fromRoomId: roomId,
-                        leaveRoomSuccess,
-                        selfGeneralErrorHandler)
+        guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+        dbRef.leaveRoom(uid: localPlayerUid, roomId: roomId, completion: leaveRoomSuccess, onError: presentErrorAlert)
     }
     
     private func leaveRoomSuccess() {
         transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+        
         dbRef.removeObservers()
+        
+        // reset the room
+        room = .init()
     }
     
     private func toggleReady() {
-        dbRef.toggleReadyState(uid: playerData.uid,
-                               forRoomId: roomId,
-                               readySuccess,
-                               selfGeneralErrorHandler)
+        guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+        dbRef.toggleReadyState(
+            uid: localPlayerUid,
+            roomId: roomId,
+            completion: nil,
+            onError: presentErrorAlert
+        )
     }
     
-    private func readySuccess() {
-        // TODO: Toggle front end ready identifier (some tick?)
-    }
-    
-    func onDataChange(roomModel: RoomModel) {
-        waitingRoomViewNode.setOthersToNil()
-        
+    private func onDataChange(roomModel: RoomModel) {
+        guard let localPlayerUid = localPlayerUid else {
+            return
+        }
+        room = roomModel.convertToRoom(with: localPlayerUid)
+        /*
         let players = roomModel.players
         for player in players {
             // TODO: isReady for front end component to show that player is ready
@@ -446,83 +426,59 @@ extension GameHomeScene {
                 waitingRoomViewNode.playerName = player.name
             }
         }
+        */
     }
     
-    func onRoomClose() {
-        dbRef.removeObservers()
-        presentAlert(identifier: "error",
-                     alertNode: alertNode,
-                     alertDescription: "Room has been closed!",
-                     showTick: false,
-                     showCross: true,
-                     showLoader: false,
-                     status: .warning)
+    private func onRoomClose() {
+        alertNode.presentAlert(
+            alertDescription: "Room has been closed",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
+        )
+        
         transit(from: waitingRoomViewNode, to: multiplayerActionViewNode)
+        
+        dbRef.removeObservers()
+        
+        // reset the room
+        room = .init()
     }
     
     private func startGame() {
-        dbRef.startGame(roomId: roomId,
-                        notAllReady,
-                        startGameSuccess,
-                        selfGeneralErrorHandler)
+        guard let roomId = room.roomId else {
+            return
+        }
+        dbRef.startGame(
+            roomId: roomId,
+            completion: startGameSuccess,
+            onNotAllReady: notAllReady,
+            onError: presentErrorAlert
+        )
     }
     
     private func notAllReady() {
-        presentAlert(identifier: "error",
-                     alertNode: alertNode,
-                     alertDescription: "Not all players are ready!",
-                     showTick: false,
-                     showCross: true,
-                     showLoader: false,
-                     status: .warning)
+        alertNode.presentAlert(
+            alertDescription: "Not all players are ready",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
+        )
     }
     
     private func startGameSuccess() {
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }
     
-    func toggleAvatar(avatar: Avatar?) {
-        guard let avatar = avatar else {
-            return
-        }
-        playerData.avatar = avatar
-        dbRef.setAvatar(uid: playerData.uid,
-                        forRoomId: roomId,
-                        avatar: avatar.name,
-                        selfGeneralErrorHandler)
-    }
-    
-    private func selfGeneralErrorHandler(error: Error) {
-        generalErrorHandler(alertNode: alertNode, error: error)
-    }
-}
-
-extension SKNode {
-    func presentAlert(identifier: String,
-                      alertNode: AlertNode,
-                      alertDescription: String,
-                      showTick: Bool,
-                      showCross: Bool,
-                      showLoader: Bool,
-                      status: AlertNode.Status?,
-                      disableBackgroundContent: Bool = true,
-                      dimBackgroundContent: Bool = true) {
-        alertNode.identifier = identifier
-        alertNode.alertDescription = alertDescription
-        alertNode.showTick = showTick
-        alertNode.showCross = showCross
-        alertNode.showLoader = showLoader
-        alertNode.status = status
-        alertNode.isHidden = false
-    }
-    
-    func generalErrorHandler(alertNode: AlertNode, error: Error) {
-        presentAlert(identifier: "error",
-                     alertNode: alertNode,
-                     alertDescription: error.localizedDescription,
-                     showTick: true,
-                     showCross: false,
-                     showLoader: false,
-                     status: .warning)
+    private func presentErrorAlert(error: Error) {
+        alertNode.presentAlert(
+            alertDescription: error.localizedDescription,
+            showTick: true,
+            showCross: false,
+            showLoader: false,
+            status: .warning
+        )
     }
 }
