@@ -11,6 +11,7 @@ import SpriteKit
 class WaitingRoomViewNode: SKSpriteNode {
     private let roomIdDisplayNode: StackedLabelsNode = .init(backgroundTexture: .init(imageNamed: "stacked-labels"))
     private let hostIcon: SKSpriteNode = .init(imageNamed: "host-icon")
+    private let readyIcon: SKSpriteNode = .init(imageNamed: "tick")
     private let hostAvatarOverviewNode: AvatarOverviewNode
     private let playerAvatarOverviewNode: AvatarOverviewNode
     private let leaveNode: ButtonNode
@@ -33,6 +34,15 @@ class WaitingRoomViewNode: SKSpriteNode {
             
             hostAvatarOverviewNode.viewOnlyAvatar = !isHost
             playerAvatarOverviewNode.viewOnlyAvatar = isHost
+            
+            refreshView()
+        }
+    }
+    var isReady: Bool = false {
+        didSet {
+            readyIcon.isHidden = !isReady
+            
+            refreshView()
         }
     }
     var hostSelectedAvatar: Avatar? {
@@ -75,6 +85,7 @@ class WaitingRoomViewNode: SKSpriteNode {
             }
             layoutRoomIdDisplayNode()
             layoutHostIcon()
+            layoutReadyIcon()
             layoutHostAvatarOverviewNode()
             layoutPlayerAvatarOverviewNode()
             layoutLeaveNode()
@@ -105,6 +116,7 @@ class WaitingRoomViewNode: SKSpriteNode {
         
         roomIdDisplayNode.zPosition = 50
         hostIcon.zPosition = 75
+        readyIcon.zPosition = 75
         hostAvatarOverviewNode.zPosition = 50
         playerAvatarOverviewNode.zPosition = 50
         leaveNode.zPosition = 50
@@ -130,6 +142,7 @@ class WaitingRoomViewNode: SKSpriteNode {
          
         addChild(roomIdDisplayNode)
         addChild(hostIcon)
+        addChild(readyIcon)
         addChild(hostAvatarOverviewNode)
         addChild(playerAvatarOverviewNode)
         addChild(leaveNode)
@@ -146,6 +159,15 @@ class WaitingRoomViewNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func refreshView() {
+        if isHost {
+            playOrReadyNode.isUserInteractionEnabled = isReady
+        } else {
+            playOrReadyNode.isUserInteractionEnabled = true
+            playerAvatarOverviewNode.viewOnlyAvatar = isReady
+        }
+    }
+    
     private func layoutRoomIdDisplayNode() {
         roomIdDisplayNode.size = .init(width: size.width * 0.65, height: size.height / 7.5)
         roomIdDisplayNode.position = .init(x: 0.0, y: size.height / 2.425)
@@ -154,6 +176,11 @@ class WaitingRoomViewNode: SKSpriteNode {
     private func layoutHostIcon() {
         hostIcon.size = hostIcon.size.scaleTo(width: size.width * 0.075)
         hostIcon.position = .init(x: -size.width / 9, y: size.height / 4.5)
+    }
+    
+    private func layoutReadyIcon() {
+        readyIcon.size = readyIcon.size.scaleTo(width: size.width * 0.075)
+        readyIcon.position = .init(x: size.width / 2.9, y: size.height / 4.5)
     }
     
     private func layoutHostAvatarOverviewNode() {

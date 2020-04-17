@@ -118,9 +118,7 @@
 		566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121D8241682DD00475CE1 /* DBPathRecognizer.swift */; };
 		566121DB2416838000475CE1 /* CustomGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DA2416838000475CE1 /* CustomGesture.swift */; };
 		566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566121DC24168ADC00475CE1 /* GestureComponent.swift */; };
-		56717E0B244608BB00224397 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56717E08244608BB00224397 /* GameViewController.swift */; };
-		56717E0C244608BB00224397 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56717E09244608BB00224397 /* HomeViewController.swift */; };
-		56717E0D244608BB00224397 /* MultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56717E0A244608BB00224397 /* MultiplayerGameViewController.swift */; };
+		56A8C1802449B3B400F94CA3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A8C17F2449B3B400F94CA3 /* GameViewController.swift */; };
 		56BEDFA0244161C7001737BC /* TapActivatedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BEDF9F244161C7001737BC /* TapActivatedPowerUp.swift */; };
 		56BEDFA2244161D9001737BC /* ImmediatelyActivatedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BEDFA1244161D9001737BC /* ImmediatelyActivatedPowerUp.swift */; };
 		56BEDFA4244161F7001737BC /* CastingAnimationPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BEDFA3244161F7001737BC /* CastingAnimationPowerUp.swift */; };
@@ -259,7 +257,6 @@
 		4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitEntity.swift; sourceTree = "<group>"; };
 		4A45E8FE2443573200F9FA22 /* GameHomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeScene.swift; sourceTree = "<group>"; };
 		4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionState.swift; sourceTree = "<group>"; };
-		4A45E9022443730A00F9FA22 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A45E9062443990200F9FA22 /* BackNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackNode.swift; sourceTree = "<group>"; };
 		4A45E90D2444467500F9FA22 /* StartViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewNode.swift; sourceTree = "<group>"; };
 		4A45E90F2444475600F9FA22 /* GameModeSelectionViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionViewNode.swift; sourceTree = "<group>"; };
@@ -354,9 +351,7 @@
 		566121D8241682DD00475CE1 /* DBPathRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPathRecognizer.swift; sourceTree = "<group>"; };
 		566121DA2416838000475CE1 /* CustomGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGesture.swift; sourceTree = "<group>"; };
 		566121DC24168ADC00475CE1 /* GestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureComponent.swift; sourceTree = "<group>"; };
-		56717E08244608BB00224397 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		56717E09244608BB00224397 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		56717E0A244608BB00224397 /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
+		56A8C17F2449B3B400F94CA3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		56BEDF9F244161C7001737BC /* TapActivatedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapActivatedPowerUp.swift; sourceTree = "<group>"; };
 		56BEDFA1244161D9001737BC /* ImmediatelyActivatedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediatelyActivatedPowerUp.swift; sourceTree = "<group>"; };
 		56BEDFA3244161F7001737BC /* CastingAnimationPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingAnimationPowerUp.swift; sourceTree = "<group>"; };
@@ -409,7 +404,6 @@
 		8A5CE9C824189AC800BEC4B9 /* GameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScene.swift; sourceTree = "<group>"; };
 		8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		8A649E9024405130005A5371 /* RootRenderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRenderNode.swift; sourceTree = "<group>"; };
-		8A649E9224409C52005A5371 /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
 		8A649E9424409E26005A5371 /* GameInMultiplayerPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInMultiplayerPlayState.swift; sourceTree = "<group>"; };
 		8A649E9624409EB6005A5371 /* MultiplayerGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameScene.swift; sourceTree = "<group>"; };
 		8A712E7D242318C900B3824E /* DarkVortexPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkVortexPowerUpEntity.swift; sourceTree = "<group>"; };
@@ -706,9 +700,7 @@
 		4ACAF529242A71BB0062DDBA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				56717E08244608BB00224397 /* GameViewController.swift */,
-				56717E09244608BB00224397 /* HomeViewController.swift */,
-				56717E0A244608BB00224397 /* MultiplayerGameViewController.swift */,
+				56A8C17F2449B3B400F94CA3 /* GameViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1060,8 +1052,6 @@
 			isa = PBXGroup;
 			children = (
 				56F305012431EFFD0025EA9A /* GeneratedMocks.swift */,
-				8A649E9224409C52005A5371 /* MultiplayerGameViewController.swift */,
-				4A45E9022443730A00F9FA22 /* HomeViewController.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1345,7 +1335,6 @@
 				560DEDA0242B9AC600A6D9A6 /* MultiplierComponent.swift in Sources */,
 				4A09C4FF242FE50300CA7625 /* BattleNode.swift in Sources */,
 				4A45E91A24446DDE00F9FA22 /* NumberPadNode.swift in Sources */,
-				56717E0B244608BB00224397 /* GameViewController.swift in Sources */,
 				4AC87A4C241A3EB100D79639 /* PowerUpType.swift in Sources */,
 				4A45E9202444751800F9FA22 /* NumberPadButtonNode.swift in Sources */,
 				8A5CE9C72418893B00BEC4B9 /* ButtonNode.swift in Sources */,
@@ -1371,7 +1360,6 @@
 				4A09C4FA242FE41900CA7625 /* StagePreviewNode.swift in Sources */,
 				4AB47A3F2423F0F700EDADC1 /* ManaType.swift in Sources */,
 				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
-				56717E0D244608BB00224397 /* MultiplayerGameViewController.swift in Sources */,
 				4A45E8FF2443573200F9FA22 /* GameHomeScene.swift in Sources */,
 				4AC6E4C32446F9C10082DF53 /* WaitingRoomViewNode.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
@@ -1385,7 +1373,6 @@
 				56FF3A2C2440633400745A8D /* HeroicCallPowerUp.swift in Sources */,
 				C6AACD59244483870012C7D9 /* RoomModel.swift in Sources */,
 				560DED9A242B902400A6D9A6 /* ScoreSystem.swift in Sources */,
-				56717E0C244608BB00224397 /* HomeViewController.swift in Sources */,
 				8A3C4DE2242F15DE0022FD59 /* EnemyWaveCreator.swift in Sources */,
 				C6AC47692430B0C90078D5F1 /* GestureEntityComponent.swift in Sources */,
 				8A5CE9B824187EBB00BEC4B9 /* GameStartState.swift in Sources */,
@@ -1476,6 +1463,7 @@
 				56FF3A2024405B9800745A8D /* HellfirePowerUp.swift in Sources */,
 				4A768F172430173C000F3F05 /* PlayNode.swift in Sources */,
 				4AA5B37E24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift in Sources */,
+				56A8C1802449B3B400F94CA3 /* GameViewController.swift in Sources */,
 				4A45E9072443990200F9FA22 /* BackNode.swift in Sources */,
 				56BEDFA62441620A001737BC /* AllAnimationPowerUp.swift in Sources */,
 				4AA5B36624165601008D4953 /* CGPoint+pointManipulationHelpers.swift in Sources */,
