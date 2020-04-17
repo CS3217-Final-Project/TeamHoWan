@@ -12,7 +12,7 @@ import GameplayKit
 class GameStageSelectionState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        stateClass is GameStartState.Type
+        stateClass is GameStartState.Type || stateClass is GameModeSelectionState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
