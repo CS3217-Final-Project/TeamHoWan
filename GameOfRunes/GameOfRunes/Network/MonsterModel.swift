@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import UIKit
+import GameplayKit
 
 /**
  Model representing a Monsters on the network.
@@ -23,5 +23,21 @@ class MonsterModel: Codable {
         self.enemyType = enemyType
         self.position = position
         self.gestureType = gestureType
+    }
+    
+    init?(_ entity: Entity, uuid: String?) {
+        guard entity.type == .enemyEntity,
+            let uuid = uuid,
+            let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType,
+            let position = entity.component(ofType: MoveComponent.self)?.cgPosition,
+            let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity,
+            let gesture = gestureEntity.component(ofType: GestureComponent.self)?.gesture else {
+                return nil
+        }
+        
+        self.uuid = uuid
+        self.enemyType = enemyType
+        self.position = position
+        self.gestureType = gesture
     }
 }

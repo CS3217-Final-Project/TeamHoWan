@@ -12,7 +12,7 @@ import UIKit
  Model representing a Player on the network.
  */
 class PlayerModel: Codable {
-    var uid: String
+    let uid: String
     var name: String
     var isHost: Bool
     var isReady: Bool

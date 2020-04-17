@@ -14,12 +14,12 @@ import UIKit
  */
 class PowerUpModel: Codable {
     let uuid: String
-    var powerUpType: PowerUpType
+    var powerUpType: PowerUpType?
     var position: CGPoint?
     var size: CGSize?
     
-    init(uuid: String, powerUpType: PowerUpType, position: CGPoint? = nil, size: CGSize? = nil) {
-        self.uuid = uuid
+    init(powerUpType: PowerUpType?, position: CGPoint? = nil, size: CGSize? = nil) {
+        self.uuid = Util.generateUuid()
         self.powerUpType = powerUpType
         self.position = position
         self.size = size

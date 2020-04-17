@@ -188,6 +188,7 @@
 		C69B1D64242684B200D8D0D3 /* BaseUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */; };
 		C69B1D662426855400D8D0D3 /* GameEngineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B1D652426855400D8D0D3 /* GameEngineTest.swift */; };
 		C69B35DF2448A60700BC2343 /* MetadataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B35DE2448A60700BC2343 /* MetadataModel.swift */; };
+		C69B35E12449A9E900BC2343 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69B35E02449A9E900BC2343 /* Util.swift */; };
 		C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */; };
 		C6A99CF2241FCC2D003AE88A /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */; };
 		C6AACD3824333A4C0012C7D9 /* AttractionEntitiesComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD3724333A4C0012C7D9 /* AttractionEntitiesComponent.swift */; };
@@ -426,6 +427,7 @@
 		C69B1D63242684B200D8D0D3 /* BaseUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUnitTest.swift; sourceTree = "<group>"; };
 		C69B1D652426855400D8D0D3 /* GameEngineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineTest.swift; sourceTree = "<group>"; };
 		C69B35DE2448A60700BC2343 /* MetadataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataModel.swift; sourceTree = "<group>"; };
+		C69B35E02449A9E900BC2343 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6A99CEF241FCAD0003AE88A /* TimerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEntity.swift; sourceTree = "<group>"; };
 		C6A99CF1241FCC2D003AE88A /* LabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		C6A99CF3241FCD15003AE88A /* LabelSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSystem.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
+				C69B35E02449A9E900BC2343 /* Util.swift */,
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
 				C6AACD4A24407E930012C7D9 /* Pair.swift */,
 				4A1B333B24327FFE00B67B91 /* RealmStorage.swift */,
@@ -1353,6 +1356,7 @@
 				19D664CB24207ECE00351C92 /* Component.swift in Sources */,
 				4A45E8FF2443573200F9FA22 /* GameHomeScene.swift in Sources */,
 				56E82D702417E9D2009172C6 /* GameConfig.swift in Sources */,
+				C69B35E12449A9E900BC2343 /* Util.swift in Sources */,
 				4A6213EA2430BDD600FABB48 /* ArrowNode.swift in Sources */,
 				C6AFF68D241A7A530076F02B /* SpriteSystem.swift in Sources */,
 				C6AACD4F244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift in Sources */,

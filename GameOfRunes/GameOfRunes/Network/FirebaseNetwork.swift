@@ -16,7 +16,7 @@ class FirebaseNetwork: NetworkInterface {
                     name: String,
                     _ onComplete: @escaping (String) -> Void,
                     _ onError: @escaping (Error) -> Void) {
-        let roomId = generateRandomId()
+        let roomId = Util.generateUuid()
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
         
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in

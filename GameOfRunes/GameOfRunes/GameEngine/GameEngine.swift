@@ -14,7 +14,7 @@ class GameEngine: GameEngineFacade {
     private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
-    private var toRemoveEntities = Set<Entity>()
+    private(set) var toRemoveEntities = Set<Entity>()
     let metadata: GameMetaData
     private(set) weak var rootRenderNode: RootRenderNode?
 
@@ -61,12 +61,14 @@ class GameEngine: GameEngineFacade {
         }()
     }
     
-    func add(_ entity: Entity) {
+    @discardableResult
+    func add(_ entity: Entity) -> Bool {
         guard entities[entity.type]?.insert(entity).inserted == true else {
-            return
+            return false
         }
         
         addComponents(foundIn: entity)
+        return true
     }
     
     func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode) {
