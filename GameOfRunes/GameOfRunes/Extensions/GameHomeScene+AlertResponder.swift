@@ -8,12 +8,6 @@
 
 extension GameHomeScene: AlertResponder {
     func crossOnTapped(sender: AlertNode) {
-        if sender.identifier == "join" {
-            // do sth like terminate the joining?
-        } else if sender.identifier == "room_close" {
-            // transition back to multiplayer view
-        }
-        
         sender.hideAlert()
     }
     

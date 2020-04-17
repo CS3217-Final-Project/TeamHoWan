@@ -456,6 +456,12 @@ extension GameHomeScene {
     }
     
     private func startGameSuccess() {
+        // placeholder to prevent crash
+        gameStateMachine?.avatar = .elementalWizard
+        gameStateMachine?.stage = GameViewController.storage.load(stageName: "Cathedral Mayhem")
+        
+        // @brian - room will contain everything u need for the setting up of the scenes
+        gameStateMachine?.room = room
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }
     
