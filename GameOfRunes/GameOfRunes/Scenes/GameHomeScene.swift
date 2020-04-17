@@ -344,7 +344,7 @@ extension GameHomeScene {
         
         // Set up the waiting room and transition to it
         waitingRoomViewNode.isHost = true
-        waitingRoomViewNode.myName = playerName
+        waitingRoomViewNode.hostName = playerData.name
         waitingRoomViewNode.roomId = roomId
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
@@ -375,7 +375,7 @@ extension GameHomeScene {
         
         // Set up the waiting room and transition to it
         self.waitingRoomViewNode.isHost = false
-        self.waitingRoomViewNode.myName = self.playerName
+        self.waitingRoomViewNode.playerName = self.playerName
         self.waitingRoomViewNode.roomId = roomId
         self.transit(from: self.joinRoomViewNode, to: self.waitingRoomViewNode)
         
@@ -434,12 +434,12 @@ extension GameHomeScene {
         let players = roomModel.players
         for player in players {
             // TODO: isReady for front end component to show that player is ready
-            if player.uid == playerData.uid {
-                waitingRoomViewNode.mySelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.myName = player.name
+            if player.isHost {
+                waitingRoomViewNode.hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.hostName = player.name
             } else {
-                waitingRoomViewNode.otherSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.otherName = player.name
+                waitingRoomViewNode.playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
+                waitingRoomViewNode.playerName = player.name
             }
         }
     }
@@ -474,7 +474,6 @@ extension GameHomeScene {
     }
     
     private func startGameSuccess() {
-        // TODO: Transition to multiplayer game scene
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }
     

@@ -161,6 +161,20 @@ protocol NetworkInterface {
                               _ onComplete: @escaping () -> Void,
                               _ onError: @escaping (Error) -> Void)
     
+    
+    /**
+    Get an avatar in given room and given uid.
+     - Parameters:
+     - roomId: the game id concerned
+     - uid: player uid concerned
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func getAvatar(roomId: String,
+                   uid: String,
+                   _ onComplete: @escaping (Avatar) -> Void,
+                   _ onError: @escaping (Error) -> Void)
+
     /**
      Update own monsters on the network.
      - Parameters:

@@ -288,6 +288,24 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
+    func getAvatar(roomId: String,
+                   uid: String,
+                   _ onComplete: @escaping (Avatar) -> Void,
+                   _ onError: @escaping (Error) -> Void) {
+        // TODO: Implement
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_avatar]))
+        ref.observeSingleEvent(of: .value, with: { snap in
+            guard let avatarString = snap.value as? String,
+                let avatar = Avatar.getAvatar(withName: avatarString) else {
+                return
+            }
+            onComplete(avatar)
+        }) { err in
+            onError(err)
+        }
+    }
+
     func observeGameState(roomId: String,
                           _ onEvent: @escaping (PowerUpModel) -> Void,
                           _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
