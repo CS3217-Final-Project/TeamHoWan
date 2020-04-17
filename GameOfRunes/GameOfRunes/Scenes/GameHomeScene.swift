@@ -196,6 +196,7 @@ extension GameHomeScene: TapResponder {
         case .joinButton:
             joinRoom()
         case .hostRoomButton:
+            nameField.resignFirstResponder()
             createRoom()
         case .leaveButton:
             leaveRoom()
