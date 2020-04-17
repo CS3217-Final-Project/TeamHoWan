@@ -414,19 +414,6 @@ extension GameHomeScene {
             return
         }
         room = roomModel.convertToRoom(with: localPlayerUid)
-        /*
-        let players = roomModel.players
-        for player in players {
-            // TODO: isReady for front end component to show that player is ready
-            if player.isHost {
-                waitingRoomViewNode.hostSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.hostName = player.name
-            } else {
-                waitingRoomViewNode.playerSelectedAvatar = Avatar.getAvatar(withName: player.avatar)
-                waitingRoomViewNode.playerName = player.name
-            }
-        }
-        */
     }
     
     private func onRoomClose() {
