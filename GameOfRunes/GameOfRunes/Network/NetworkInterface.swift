@@ -160,8 +160,7 @@ protocol NetworkInterface {
                               to: Bool,
                               _ onComplete: @escaping () -> Void,
                               _ onError: @escaping (Error) -> Void)
-    
-    
+
     /**
      Get an avatar in given room and given uid.
      - Parameters:
