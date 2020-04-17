@@ -209,7 +209,6 @@ extension GameHomeScene: TapResponder {
             startGame()
             return
         case .readyButton:
-            waitingRoomViewNode.isReady = !waitingRoomViewNode.isReady
             toggleReady()
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
@@ -426,7 +425,7 @@ extension GameHomeScene {
     }
     
     private func readySuccess() {
-        // TODO: Toggle front end ready identifier (some tick?)
+        waitingRoomViewNode.isReady = !waitingRoomViewNode.isReady
     }
     
     func onDataChange(roomModel: RoomModel) {
