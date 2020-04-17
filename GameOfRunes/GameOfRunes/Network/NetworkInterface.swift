@@ -163,7 +163,7 @@ protocol NetworkInterface {
     
     
     /**
-    Get an avatar in given room and given uid.
+     Get an avatar in given room and given uid.
      - Parameters:
      - roomId: the game id concerned
      - uid: player uid concerned
@@ -174,7 +174,18 @@ protocol NetworkInterface {
                    uid: String,
                    _ onComplete: @escaping (Avatar) -> Void,
                    _ onError: @escaping (Error) -> Void)
-
+    
+    /**
+     Get all player uid
+     - Parameters:
+     - roomId: the game id concerned
+     - onComplete: a closure run when this process completes
+     - onError: a closure run when an error occurs
+     */
+    func getPlayersUid(roomId: String,
+                       _ onComplete: @escaping ([String]) -> Void,
+                       _ onError: @escaping (Error) -> Void)
+    
     /**
      Update own monsters on the network.
      - Parameters:

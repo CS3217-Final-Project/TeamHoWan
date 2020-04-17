@@ -292,7 +292,6 @@ class FirebaseNetwork: NetworkInterface {
                    uid: String,
                    _ onComplete: @escaping (Avatar) -> Void,
                    _ onError: @escaping (Error) -> Void) {
-        // TODO: Implement
         let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                      uid, FirebaseKeys.rooms_players_avatar]))
         ref.observeSingleEvent(of: .value, with: { snap in
@@ -301,6 +300,21 @@ class FirebaseNetwork: NetworkInterface {
                 return
             }
             onComplete(avatar)
+        }) { err in
+            onError(err)
+        }
+    }
+    
+    func getPlayersUid(roomId: String,
+                       _ onComplete: @escaping ([String]) -> Void,
+                       _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId]))
+        ref.observeSingleEvent(of: .value, with: { snap in
+            guard let room = snap.value as? [String: AnyObject] else {
+                return
+            }
+            let roomModel = self.firebaseRoomModelFactory(forDict: room)
+            onComplete(roomModel.players.map({ $0.uid }))
         }) { err in
             onError(err)
         }
