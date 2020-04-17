@@ -209,9 +209,8 @@ extension GameHomeScene: TapResponder {
             startGame()
             return
         case .readyButton:
-            // do firebase connection here
-            // swiftlint:disable:toggle_bool
             waitingRoomViewNode.isReady = !waitingRoomViewNode.isReady
+            toggleReady()
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -220,8 +219,6 @@ extension GameHomeScene: TapResponder {
         case .powerUpIconButton:
             // ignore
             return
-        case .readyButton:
-            toggleReady()
         default:
             print("Unknown node tapped: \(tappedNode)")
         }
