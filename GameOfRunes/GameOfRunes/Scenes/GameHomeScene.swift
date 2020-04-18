@@ -452,7 +452,7 @@ extension GameHomeScene {
         }
         dbRef.startGame(
             roomId: roomId,
-            completion: startGameSuccess,
+            completion: nil,
             onNotAllReady: notAllReady,
             onError: presentErrorAlert
         )
