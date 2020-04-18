@@ -79,6 +79,7 @@ struct EnemyWaveCreator {
         }
     }
 
+    // Stage used to seed Endless Mode
     static var endlessSeedStage: Stage {
         var fullStageEnemyWave: EnemySpawnUnit
         do {
@@ -104,20 +105,21 @@ struct EnemyWaveCreator {
                      isEndless: true)
     }
 
+    // Empty placeholder stage (for Multiplayer)
     static var emptySeedStage: Stage {
-        return Stage(name: "Empty Stage Seed",
-                     chapter: "",
-                     category: .normal,
-                     relativePositionRatioInMap: (0.0, 0.0),
-                     arena: .arena1,
-                     difficulty: 0,
-                     numWaves: 0,
-                     enemyWaves: .init(),
-                     enemyWaveSpawnInterval: 1.5,
-                     achievementBMinScore: 0,
-                     achievementAMinScore: 0,
-                     achievementSMinScore: 0,
-                     isEndless: false)
+        Stage(name: "Empty Stage Seed",
+              chapter: "",
+              category: .normal,
+              relativePositionRatioInMap: (0.0, 0.0),
+              arena: .arena1,
+              difficulty: 0,
+              numWaves: 0,
+              enemyWaves: .init(),
+              enemyWaveSpawnInterval: 1.5,
+              achievementBMinScore: 0,
+              achievementAMinScore: 0,
+              achievementSMinScore: 0,
+              isEndless: false)
     }
 }
 

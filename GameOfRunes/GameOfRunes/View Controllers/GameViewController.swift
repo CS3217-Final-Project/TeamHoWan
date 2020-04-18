@@ -24,15 +24,13 @@ class GameViewController: UIViewController {
         }
         
         // uncomment to reset install all the stages
-        Self.storage.reset()
+        //Self.storage.reset()
         
         if Self.storage.isFirstInit {
             print("First-time initialisat1ion of stages in database")
             Self.initStagesInDatabase()
             print("Done initialising stages")
         }
-
-        print(Self.storage.loadAllStages()) // TODO: DEBUG
 
         if let view = view as? SKView {
             let gameStateMachine = GameStateMachine(
