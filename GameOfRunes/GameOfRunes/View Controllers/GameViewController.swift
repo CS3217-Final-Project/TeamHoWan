@@ -27,7 +27,7 @@ class GameViewController: UIViewController {
         //Self.storage.reset()
         
         if Self.storage.isFirstInit {
-            print("First-time initialisat1ion of stages in database")
+            print("First-time initialisation of stages in database")
             Self.initStagesInDatabase()
             print("Done initialising stages")
         }
