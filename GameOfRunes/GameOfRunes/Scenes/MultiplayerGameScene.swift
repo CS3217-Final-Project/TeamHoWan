@@ -47,7 +47,7 @@ class MultiplayerGameScene: GameScene {
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
         
         remoteRootRenderNode = RemoteRootRenderNode(
-            stage: EnemyWaveCreator.endlessSeedStage,
+            stage: EnemyWaveCreator.emptySeedStage,
             avatar: remotePlayerAvatar,
             zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
             position: remoteRootPosition,
