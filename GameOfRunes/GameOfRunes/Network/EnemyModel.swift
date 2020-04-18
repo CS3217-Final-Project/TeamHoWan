@@ -1,5 +1,5 @@
 //
-//  MonsterModel.swift
+//  EnemyModel.swift
 //  GameOfRunes
 //
 //  Created by Dong SiJi on 13/4/20.
@@ -12,7 +12,7 @@ import GameplayKit
  Model representing a Monsters on the network.
  Conforms to `Codable` so that it can be encoded before being sent over the network and then subsequently decoded.
  */
-class MonsterModel: Codable {
+class EnemyModel: Codable {
     let uuid: String
     var enemyType: EnemyType
     var position: CGPoint

@@ -17,7 +17,7 @@ class PlayerModel: Codable {
     var isHost: Bool
     var isReady: Bool
     var powerUpActivated: PowerUpModel?
-    var monsters: [MonsterModel]
+    var monsters: [EnemyModel]
     var metadata: MetadataModel?
     
     init(uid: String,
@@ -25,7 +25,7 @@ class PlayerModel: Codable {
          isHost: Bool,
          isReady: Bool = false,
          powerUp: PowerUpModel? = nil,
-         monsters: [MonsterModel] = [],
+         monsters: [EnemyModel] = [],
          metadata: MetadataModel? = nil) {
         self.uid = uid
         self.name = name

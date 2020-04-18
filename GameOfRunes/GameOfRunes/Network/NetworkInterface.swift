@@ -103,6 +103,21 @@ protocol NetworkInterface {
                           _ onRoomClose: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
     
+    func observeEnemy(roomId: String,
+                      uid: String,
+                      _ onDataChange: @escaping ([EnemyModel]) -> Void,
+                      _ onError: @escaping (Error) -> Void)
+    
+    func observeMetadata(roomId: String,
+                         uid: String,
+                         _ onDataChange: @escaping (MetadataModel) -> Void,
+                         _ onError: @escaping (Error) -> Void)
+    
+    func observePowerUp(roomId: String,
+                        uid: String,
+                        _ onDataChange: @escaping (PowerUpModel) -> Void,
+                        _ onError: @escaping (Error) -> Void)
+    
     /**
      Removes all observers.
      */
@@ -130,7 +145,7 @@ protocol NetworkInterface {
      */
     func observeGameState(roomId: String,
                           _ onEvent: @escaping (PowerUpModel) -> Void,
-                          _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
+                          _ onMonsterChange: @escaping ([EnemyModel]) -> Void,
                           _ onMonsterReceived: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void)
     
@@ -158,7 +173,7 @@ protocol NetworkInterface {
      */
     func updateMonsters(roomId: String,
                         uid: String,
-                        monsters: [MonsterModel],
+                        monsters: [EnemyModel],
                         _ onComplete: @escaping () -> Void,
                         _ onError: @escaping (Error) -> Void)
     

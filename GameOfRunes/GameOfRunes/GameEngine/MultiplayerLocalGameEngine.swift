@@ -12,8 +12,8 @@ class MultiplayerLocalGameEngine: GameEngine {
     private let network: NetworkInterface = FirebaseNetwork()
     private let roomId: String
     private let uid: String
-    private var uuidMonsterMapping: [String: Entity] = [:]
-    private var monsterUuidMapping: [Entity: String] = [:]
+    private var uuidEnemyMapping: [String: Entity] = [:]
+    private var enemyUuidMapping: [Entity: String] = [:]
     
     init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
         self.roomId = roomId
@@ -35,12 +35,12 @@ class MultiplayerLocalGameEngine: GameEngine {
         
         var newUuid = Util.generateUuid()
         
-        while uuidMonsterMapping[newUuid] != nil {
+        while uuidEnemyMapping[newUuid] != nil {
             newUuid = Util.generateUuid()
         }
         
-        uuidMonsterMapping[newUuid] = entity
-        monsterUuidMapping[entity] = newUuid
+        uuidEnemyMapping[newUuid] = entity
+        enemyUuidMapping[entity] = newUuid
         return isAdded
     }
     
@@ -48,13 +48,13 @@ class MultiplayerLocalGameEngine: GameEngine {
         let monstersRemoved = toRemoveEntities.filter { entity in entity.type == .enemyEntity }
         
         if !monstersRemoved.isEmpty {
-            let monstersLeft = Set(uuidMonsterMapping.values).symmetricDifference(monstersRemoved)
+            let monstersLeft = Set(uuidEnemyMapping.values).symmetricDifference(monstersRemoved)
             monstersLeft.forEach { entity in
-                guard let uuid = monsterUuidMapping.removeValue(forKey: entity) else {
+                guard let uuid = enemyUuidMapping.removeValue(forKey: entity) else {
                     return
                 }
                 
-                uuidMonsterMapping.removeValue(forKey: uuid)
+                uuidEnemyMapping.removeValue(forKey: uuid)
             }
             
             pushMonstersToNetwork()
@@ -72,7 +72,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     
     private func pushMonstersToNetwork() {
         let monsterModels = Array(entities(for: .enemyEntity).compactMap({ entity in
-            MonsterModel(entity, uuid: monsterUuidMapping[entity])
+            EnemyModel(entity, uuid: enemyUuidMapping[entity])
         }))
         
         network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, {}, { _ in })
@@ -84,7 +84,10 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func pushPowerUpToNetwork(at position: CGPoint, with size: CGSize?) {
-        let powerUpModel = PowerUpModel(powerUpType: metadata.selectedPowerUp, position: position, size: size)
+        guard let powerUp = metadata.selectedPowerUp else {
+            return
+        }
+        let powerUpModel = PowerUpModel(powerUpType: powerUp, position: position, size: size)
         network.updatePowerUp(roomId: roomId, uid: uid, powerUp: powerUpModel, {}, { _ in })
     }
 }

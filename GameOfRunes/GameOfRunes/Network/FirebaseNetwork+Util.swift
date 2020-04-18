@@ -83,7 +83,7 @@ extension FirebaseNetwork {
                           isHost: Bool,
                           isReady: Bool,
                           powerUp: PowerUpModel? = nil,
-                          monsters: [MonsterModel] = [],
+                          monsters: [EnemyModel] = [],
                           metadata: MetadataModel? = nil) -> [String: AnyObject] {
         let encodedPowerUp = encodePowerUp(powerUp: powerUp)
         let encodedMonsters = encodeMonsters(monsters: monsters)
@@ -106,7 +106,7 @@ extension FirebaseNetwork {
                           isHost: Bool,
                           isReady: Bool,
                           powerUp: PowerUpModel? = nil,
-                          monsters: [MonsterModel] = [],
+                          monsters: [EnemyModel] = [],
                           metadata: MetadataModel? = nil) -> [String: AnyObject] {
         createPlayerDict(
             uid: playerData.uid,
@@ -129,7 +129,7 @@ extension FirebaseNetwork {
         return encodedPowerUp
     }
     
-    func encodeMonsters(monsters: [MonsterModel]) -> [String: Any] {
+    func encodeMonsters(monsters: [EnemyModel]) -> [String: Any] {
         var encodedMonsters: [String: Any] = [:]
         do {
             let monsterData = try encoder.encode(monsters)
@@ -161,14 +161,14 @@ extension FirebaseNetwork {
         return decodedPowerUp
     }
     
-    func decodeMonsters(data: AnyObject?) -> [MonsterModel] {
+    func decodeMonsters(data: AnyObject?) -> [EnemyModel] {
         guard let data = data else {
             return []
         }
-        var decodedMonsters: [MonsterModel]?
+        var decodedMonsters: [EnemyModel]?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-            decodedMonsters = try decoder.decode([MonsterModel].self, from: jsonData)
+            decodedMonsters = try decoder.decode([EnemyModel].self, from: jsonData)
         } catch { }
         return decodedMonsters ?? []
     }

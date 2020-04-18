@@ -209,6 +209,60 @@ class FirebaseNetwork: NetworkInterface {
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
     }
     
+    func observeEnemy(roomId: String,
+                      uid: String,
+                      _ onDataChange: @escaping ([EnemyModel]) -> Void,
+                      _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_monsters]))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let monsters = self?.decodeMonsters(data: snapshot.value as AnyObject?) else {
+                return
+            }
+            onDataChange(monsters)
+        }) { err in
+            onError(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func observeMetadata(roomId: String,
+                         uid: String,
+                         _ onDataChange: @escaping (MetadataModel) -> Void,
+                         _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_metadata]))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let metadata = self?.decodeMetadata(data: snapshot.value as AnyObject?) else {
+                return
+            }
+            onDataChange(metadata)
+        }) { err in
+            onError(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func observePowerUp(roomId: String,
+                        uid: String,
+                        _ onDataChange: @escaping (PowerUpModel) -> Void,
+                        _ onError: @escaping (Error) -> Void) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys([FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                     uid, FirebaseKeys.rooms_players_powerUp]))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let powerUp = self?.decodePowerUp(data: snapshot.value as AnyObject?) else {
+                return
+            }
+            onDataChange(powerUp)
+        }) { err in
+            onError(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
     func removeObservers() {
         for observer in self.observers {
             observer.reference.removeObserver(withHandle: observer.handle)
@@ -239,7 +293,7 @@ class FirebaseNetwork: NetworkInterface {
             onError(err)
         }
     }
-
+    
     func startGame(roomId: String,
                    _ onComplete: @escaping () -> Void,
                    _ onError: @escaping (Error) -> Void) {
@@ -248,7 +302,7 @@ class FirebaseNetwork: NetworkInterface {
     
     func observeGameState(roomId: String,
                           _ onEvent: @escaping (PowerUpModel) -> Void,
-                          _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
+                          _ onMonsterChange: @escaping ([EnemyModel]) -> Void,
                           _ onMonsterReceived: @escaping () -> Void,
                           _ onError: @escaping (Error) -> Void) {
         
@@ -256,7 +310,7 @@ class FirebaseNetwork: NetworkInterface {
     
     func updateMonsters(roomId: String,
                         uid: String,
-                        monsters: [MonsterModel],
+                        monsters: [EnemyModel],
                         _ onComplete: @escaping () -> Void,
                         _ onError: @escaping (Error) -> Void) {
         

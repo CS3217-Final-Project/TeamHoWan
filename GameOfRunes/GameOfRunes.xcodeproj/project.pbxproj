@@ -205,7 +205,7 @@
 		C6AACD56244450340012C7D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6AACD55244450340012C7D9 /* GoogleService-Info.plist */; };
 		C6AACD57244450440012C7D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6AACD55244450340012C7D9 /* GoogleService-Info.plist */; };
 		C6AACD59244483870012C7D9 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD58244483870012C7D9 /* RoomModel.swift */; };
-		C6AACD5B2444839F0012C7D9 /* MonsterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */; };
+		C6AACD5B2444839F0012C7D9 /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */; };
 		C6AACD5D244483DC0012C7D9 /* PowerUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */; };
 		C6AACD5F244490E10012C7D9 /* FirebaseObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5E244490E10012C7D9 /* FirebaseObserver.swift */; };
 		C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */; };
@@ -444,7 +444,7 @@
 		C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionPlayerUnitEnemyEndPoint.swift; sourceTree = "<group>"; };
 		C6AACD55244450340012C7D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6AACD58244483870012C7D9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
-		C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterModel.swift; sourceTree = "<group>"; };
+		C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyModel.swift; sourceTree = "<group>"; };
 		C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpModel.swift; sourceTree = "<group>"; };
 		C6AACD5E244490E10012C7D9 /* FirebaseObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObserver.swift; sourceTree = "<group>"; };
 		C6AC47642430AF290078D5F1 /* EnemyTypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypeComponent.swift; sourceTree = "<group>"; };
@@ -846,7 +846,7 @@
 			children = (
 				56FC8CF3243426A800B6DBC9 /* PlayerModel.swift */,
 				C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */,
-				C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */,
+				C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */,
 				C6AACD58244483870012C7D9 /* RoomModel.swift */,
 				C69B35DE2448A60700BC2343 /* MetadataModel.swift */,
 				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
@@ -1379,7 +1379,7 @@
 				C6A99CF0241FCAD0003AE88A /* TimerEntity.swift in Sources */,
 				4A768F1F24307EE7000F3F05 /* StackedLabelsNode.swift in Sources */,
 				4AA5B3842417BA71008D4953 /* SKSpriteNode+helpers.swift in Sources */,
-				C6AACD5B2444839F0012C7D9 /* MonsterModel.swift in Sources */,
+				C6AACD5B2444839F0012C7D9 /* EnemyModel.swift in Sources */,
 				4ACC8BDE2415324400F235AE /* ManaComponent.swift in Sources */,
 				4A1B33392432615C00B67B91 /* AttractionEntity.swift in Sources */,
 				566121DD24168ADC00475CE1 /* GestureComponent.swift in Sources */,
