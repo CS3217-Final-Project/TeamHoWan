@@ -78,6 +78,31 @@ struct EnemyWaveCreator {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
+
+    // TODO: Consider removing this and placing this somewhere else
+    static var templateStage: Stage {
+        var fullStageEnemyWave: EnemySpawnUnit
+        do {
+            let waveUnit1 = try EnemySpawnUnit(nil, .orc1)
+            let waveUnit2 = try EnemySpawnUnit(.orc1, nil, .orc1)
+            fullStageEnemyWave = waveUnit1 + waveUnit2 + waveUnit2 + waveUnit1
+        } catch {
+            fatalError("Unexpected error encountered: \(error)")
+        }
+
+        return Stage(name: "Endless Stage Seed",
+                     chapter: "",
+                     category: .normal,
+                     relativePositionRatioInMap: (0.0, 0.0),
+                     arena: .arena1,
+                     difficulty: 0,
+                     numWaves: 4,
+                     enemyWaves: fullStageEnemyWave,
+                     enemyWaveSpawnInterval: 1.5,
+                     achievementBMinScore: 0,
+                     achievementAMinScore: 0,
+                     achievementSMinScore: 0)
+    }
 }
 
 /** Extension for automatically creating enemy waves based on desired difficulty */

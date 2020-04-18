@@ -50,13 +50,15 @@ class GameScene: SKScene {
         super.sceneDidLoad()
         
         guard let stage = gameStateMachine?.stage,
-            let avatar = gameStateMachine?.avatar else {
+            let avatar = gameStateMachine?.avatar,
+            let isEndless = gameStateMachine?.isEndless else {
             fatalError("Unable to load stage or/and avatar from GameStateMachine")
         }
 
         rootRenderNode = RootRenderNode(
             stage: stage,
             avatar: avatar,
+            isEndless: isEndless,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
             position: position,
             size: size

@@ -457,10 +457,12 @@ extension GameHomeScene {
     }
     
     private func startGameSuccess() {
+        //TODO: Remove this if possible
         // placeholder to prevent crash
-        gameStateMachine?.avatar = .elementalWizard
-        gameStateMachine?.stage = GameViewController.storage.load(stageName: "Cathedral Mayhem")
-        
+//        gameStateMachine?.avatar = .elementalWizard
+//        gameStateMachine?.stage = GameViewController.storage.load(stageName: "Cathedral Mayhem")
+
+        print("Game started successfully")
         // @brian - room will contain everything u need for the setting up of the scenes
         gameStateMachine?.room = room
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)

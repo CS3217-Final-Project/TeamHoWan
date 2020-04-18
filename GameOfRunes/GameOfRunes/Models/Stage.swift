@@ -69,4 +69,5 @@ struct Stage {
 
     var achievement: AchievementLevel = .empty
     var highScore: Int = 0
+    let isEndless: Bool
 }

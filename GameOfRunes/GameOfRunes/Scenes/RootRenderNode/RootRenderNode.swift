@@ -39,11 +39,12 @@ class RootRenderNode: SKNode {
 
     init(stage: Stage,
          avatar: Avatar,
+         isEndless: Bool,
          zPosition: CGFloat,
          position: CGPoint,
          size: CGSize) {
 
-        self.gameEngine = GameEngine(stage: stage, avatar: avatar)
+        self.gameEngine = GameEngine(stage: stage, avatar: avatar, isEndless: isEndless)
         self.size = size
         super.init()
         self.position = position
