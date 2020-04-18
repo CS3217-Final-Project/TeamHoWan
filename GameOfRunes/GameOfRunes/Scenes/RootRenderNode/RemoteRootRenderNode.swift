@@ -27,8 +27,11 @@ class RemoteRootRenderNode: RootRenderNode {
                   zPosition: CGFloat,
                   position: CGPoint,
                   size: CGSize) {
+        // Remote Game will not run on Endless Mode
+        var remoteStage = stage
+        remoteStage.isEndless = false
 
-        let gameEngine = MultiplayerRemoteGameEngine(stage: stage, avatar: avatar)
+        let gameEngine = MultiplayerRemoteGameEngine(stage: remoteStage, avatar: avatar)
         super.init(gameEngine: gameEngine, size: size)
         self.position = position
         self.zPosition = zPosition

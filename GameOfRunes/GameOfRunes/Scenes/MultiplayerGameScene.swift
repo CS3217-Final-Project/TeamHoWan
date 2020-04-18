@@ -28,7 +28,6 @@ class MultiplayerGameScene: GameScene {
             let localPlayerAvatar = roomData.localPlayer?.avatar,
             let remotePlayerAvatar = roomData.remoteplayers.first?.avatar else {
             fatalError("Unable to retrieve Room Data")
-            return
         }
 
         // Local Game
