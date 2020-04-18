@@ -106,6 +106,10 @@ class GameEngine: GameEngineFacade {
         
         toRemoveEntities = []
         
+        didGameEnd()
+    }
+    
+    func didGameEnd() {
         // Player Loses the Game
         if metadata.playerHealth <= 0 {
             rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
