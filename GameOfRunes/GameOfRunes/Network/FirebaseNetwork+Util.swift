@@ -21,12 +21,8 @@ extension FirebaseNetwork {
     /**
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */
-    func generateRandomId() -> String {
-        var random = String(Int.random(in: 0 ..< 100_000))
-        while random.count < 5 {
-            random = "0\(random)"
-        }
-        return random
+    var randomId: String {
+        .init(format: "%05d", Int.random(in: 0 ..< 100_000))
     }
     
     /**

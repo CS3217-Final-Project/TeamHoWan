@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-struct FirebaseKeys {
+enum FirebaseKeys {
     static let defaultFalse = false
     static let defaultEmptyString = ""
     static let defaultAvatar = Avatar.elementalWizard.name
@@ -32,11 +32,7 @@ struct FirebaseKeys {
     ///     - forKeys: an array of keys
     /// - Returns:
     ///     - a String representing the joined keys
-    static func joinKeys(_ keys: [String]) -> String {
-        var finalReference = ""
-        for key in keys {
-            finalReference = "\(finalReference)/\(key)"
-        }
-        return finalReference
+    static func joinKeys(_ keys: String...) -> String {
+        keys.joined(separator: "/")
     }
 }
