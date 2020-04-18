@@ -31,7 +31,9 @@ class GameViewController: UIViewController {
             Self.initStagesInDatabase()
             print("Done initialising stages")
         }
-        
+
+//        print(Self.storage.loadAllStages()) // TODO: DEBUG
+
         if let view = view as? SKView {
             let gameStateMachine = GameStateMachine(
                 states: [GameInPlayState(),

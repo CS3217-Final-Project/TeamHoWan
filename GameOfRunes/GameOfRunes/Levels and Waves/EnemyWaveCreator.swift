@@ -101,7 +101,8 @@ struct EnemyWaveCreator {
                      enemyWaveSpawnInterval: 1.5,
                      achievementBMinScore: 0,
                      achievementAMinScore: 0,
-                     achievementSMinScore: 0)
+                     achievementSMinScore: 0,
+                     isEndless: true)
     }
 }
 

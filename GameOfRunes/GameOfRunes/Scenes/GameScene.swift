@@ -58,7 +58,6 @@ class GameScene: SKScene {
         rootRenderNode = RootRenderNode(
             stage: stage,
             avatar: avatar,
-            isEndless: isEndless,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
             position: position,
             size: size

@@ -29,12 +29,12 @@ class GameEngine: GameEngineFacade {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(stage: Stage, avatar: Avatar, isEndless: Bool) {
+    init(stage: Stage, avatar: Avatar) {
         metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
             manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-            isEndless: isEndless
+            isEndless: stage.isEndless
         )
         
         EntityType.allCases.forEach { entityType in
