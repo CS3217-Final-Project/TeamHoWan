@@ -233,12 +233,12 @@ class FirebaseNetwork: NetworkInterface {
             for player in playersData {
                 players.append(self.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value))
             }
-            // Check whether all players are ready - throw handler if not
-            guard players.allSatisfy({ $0.isReady }) else {
+            // Check whether all non-host players are ready - throw handler if not
+            for player in players where !player.isReady && !player.isHost {
                 onNotAllReady?()
                 return
             }
-            
+
             completion?()
         }) { err in
             onError?(err)
