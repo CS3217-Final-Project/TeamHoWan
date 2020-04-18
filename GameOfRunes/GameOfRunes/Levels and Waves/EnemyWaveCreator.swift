@@ -79,8 +79,7 @@ struct EnemyWaveCreator {
         }
     }
 
-    // TODO: Consider removing this and placing this somewhere else
-    static var templateStage: Stage {
+    static var endlessSeedStage: Stage {
         var fullStageEnemyWave: EnemySpawnUnit
         do {
             let waveUnit1 = try EnemySpawnUnit(nil, .orc1)

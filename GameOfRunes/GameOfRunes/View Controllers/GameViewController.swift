@@ -90,7 +90,7 @@ extension GameViewController {
             achievementAMinScore: 40,
             achievementSMinScore: 50,
             achievement: .empty,
-            isEndless: true
+            isEndless: false
         )
         
         let stage2 = Stage(

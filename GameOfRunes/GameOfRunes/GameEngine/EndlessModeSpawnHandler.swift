@@ -7,16 +7,34 @@
 //
 
 class EndlessModeSpawnHandler {
-    let currentDifficulty: Int
+    var currentDifficulty: Int
     let gameMetaData: GameMetaData
+
+    let difficultyIncrement = 20
+    let maxDifficulty = 100
+    let difficultyToMonstersMap: [Int: [EnemyType]] = [
+        20: [.orc1, .orc2],
+        40: [.orc2, .orc3, .troll1],
+        60: [.orc3, .troll1, .troll2],
+        80: [.orc3, .troll3, .evilKnight],
+        100: [.troll2, .troll3, .evilKnight]
+    ]
+
     init(gameMetaData: GameMetaData) {
         self.gameMetaData = gameMetaData
-        self.currentDifficulty = gameMetaData.stage.difficulty
+        self.currentDifficulty = 0
     }
 
     func addMoreWaves() {
-        let additionalEnemyWaves = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: 100, availableMonsters: [.orc1, .orc2, .evilKnight])
+        if currentDifficulty < maxDifficulty {
+            currentDifficulty += difficultyIncrement
+        }
+
+        guard let availableMonsters = difficultyToMonstersMap[currentDifficulty] else {
+            return
+        }
+
+        let additionalEnemyWaves = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: currentDifficulty, availableMonsters: availableMonsters)
         self.gameMetaData.stageWaves += additionalEnemyWaves
-        print("\(gameMetaData.stageWaves)")
     }
 }

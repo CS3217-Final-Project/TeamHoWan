@@ -24,12 +24,6 @@ class MultiplayerGameScene: GameScene {
     var remoteRootRenderNode: RemoteRootRenderNode!
 
     override func sceneDidLoad() {
-        // TODO: Remove this later (Brian)
-//        guard let stage = gameStateMachine?.stage,
-//            let avatar = gameStateMachine?.avatar else {
-//            fatalError("Unable to load stage or/and avatar from GameStateMachine")
-//        }
-
         guard let roomData = gameStateMachine?.room,
             let localPlayerAvatar = roomData.localPlayer?.avatar,
             let remotePlayerAvatar = roomData.remoteplayers.first?.avatar else {
@@ -39,7 +33,7 @@ class MultiplayerGameScene: GameScene {
 
         // Local Game
         rootRenderNode = LocalRootRenderNode(
-            stage: EnemyWaveCreator.templateStage,
+            stage: EnemyWaveCreator.endlessSeedStage,
             avatar: localPlayerAvatar,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
             position: position,
@@ -54,7 +48,7 @@ class MultiplayerGameScene: GameScene {
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
         
         remoteRootRenderNode = RemoteRootRenderNode(
-            stage: EnemyWaveCreator.templateStage,
+            stage: EnemyWaveCreator.endlessSeedStage,
             avatar: remotePlayerAvatar,
             zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
             position: remoteRootPosition,
