@@ -24,15 +24,15 @@ class GameViewController: UIViewController {
         }
         
         // uncomment to reset install all the stages
-        //Self.storage.reset()
+        Self.storage.reset()
         
         if Self.storage.isFirstInit {
-            print("First-time initialisation of stages in database")
+            print("First-time initialisat1ion of stages in database")
             Self.initStagesInDatabase()
             print("Done initialising stages")
         }
 
-//        print(Self.storage.loadAllStages()) // TODO: DEBUG
+        print(Self.storage.loadAllStages()) // TODO: DEBUG
 
         if let view = view as? SKView {
             let gameStateMachine = GameStateMachine(
@@ -90,7 +90,7 @@ extension GameViewController {
             achievementAMinScore: 40,
             achievementSMinScore: 50,
             achievement: .empty,
-            isEndless: false
+            isEndless: true
         )
         
         let stage2 = Stage(

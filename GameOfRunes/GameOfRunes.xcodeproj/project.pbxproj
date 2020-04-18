@@ -186,6 +186,7 @@
 		8AAE9C03241E335400D29593 /* DroppedManaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */; };
 		8AAE9C05241E42D700D29593 /* DroppedManaResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */; };
 		8AAE9C07241E450300D29593 /* TextureContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAE9C06241E450300D29593 /* TextureContainer.swift */; };
+		8AB10596244B3AEA009538BF /* EndlessModeSpawnHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB10595244B3AEA009538BF /* EndlessModeSpawnHandler.swift */; };
 		8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */; };
 		C60EAF62242E24AF0037BEAC /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF61242E24AF0037BEAC /* PlayerEntity.swift */; };
 		C60EAF64242E26A00037BEAC /* PlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EAF63242E26A00037BEAC /* PlayerComponent.swift */; };
@@ -425,6 +426,7 @@
 		8AAE9C02241E335400D29593 /* DroppedManaEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaEntity.swift; sourceTree = "<group>"; };
 		8AAE9C04241E42D600D29593 /* DroppedManaResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppedManaResponder.swift; sourceTree = "<group>"; };
 		8AAE9C06241E450300D29593 /* TextureContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureContainer.swift; sourceTree = "<group>"; };
+		8AB10595244B3AEA009538BF /* EndlessModeSpawnHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessModeSpawnHandler.swift; sourceTree = "<group>"; };
 		8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInitModel.swift; sourceTree = "<group>"; };
 		92961C070B809EAFEA8C678A /* libPods-GameOfRunes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfRunes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A0713B30729DD96A75248 /* Pods-GameOfRunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfRunes.debug.xcconfig"; path = "Target Support Files/Pods-GameOfRunes/Pods-GameOfRunes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1101,6 +1103,7 @@
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
 				C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */,
 				8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */,
+				8AB10595244B3AEA009538BF /* EndlessModeSpawnHandler.swift */,
 				C6AACD4524407C290012C7D9 /* Contact */,
 				C6AFF67C241919A00076F02B /* Systems */,
 				4ACC8BCF2414D53800F235AE /* Components */,
@@ -1369,6 +1372,7 @@
 				4ACC8BD42414D71100F235AE /* EnemyEntity.swift in Sources */,
 				56C85F832434B0B300B1ADA9 /* FirebaseKeys.swift in Sources */,
 				566121D9241682DD00475CE1 /* DBPathRecognizer.swift in Sources */,
+				8AB10596244B3AEA009538BF /* EndlessModeSpawnHandler.swift in Sources */,
 				4ACC8BD62414D79F00F235AE /* GameEngine.swift in Sources */,
 				8ACFE9A02434C00B00102FF9 /* FirstInitModel.swift in Sources */,
 				4AA5B36224164FC9008D4953 /* Team.swift in Sources */,
