@@ -18,8 +18,11 @@ class AlertNode: SKNode {
     private let viewNode: AlertViewNode
     weak var responder: AlertResponder?
     var identifier: String?
-    /** Dims all other contents in the view where this node is presented.
-     Does not work when background content is enabled.*/
+    
+    /**
+     Dims all other contents in the view where this node is presented.
+     Does not work when background content is enabled.
+     */
     var dimBackgroundContent: Bool {
         get {
             screeningNode.color != .clear
@@ -28,7 +31,10 @@ class AlertNode: SKNode {
             screeningNode.color = newValue ? .black : .clear
         }
     }
-    /** Disable user interaction with all other contents in the view where this node is presented*/
+    
+    /**
+     Disable user interaction with all other contents in the view where this node is presented
+     */
     var disableBackgroundContent: Bool {
         get {
             !screeningNode.isHidden
@@ -100,6 +106,31 @@ class AlertNode: SKNode {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func presentAlert(
+        alertDescription: String,
+        showTick: Bool,
+        showCross: Bool,
+        showLoader: Bool,
+        identifier: String? = nil,
+        status: Status? = nil,
+        disableBackgroundContent: Bool = true,
+        dimBackgroundContent: Bool = true
+    ) {
+        self.alertDescription = alertDescription
+        self.showTick = showTick
+        self.showCross = showCross
+        self.showLoader = showLoader
+        self.identifier = identifier
+        self.status = status
+        self.disableBackgroundContent = disableBackgroundContent
+        self.dimBackgroundContent = dimBackgroundContent
+        isHidden = false
+    }
+    
+    func hideAlert() {
+        isHidden = true
     }
 }
 

@@ -14,6 +14,8 @@ class AvatarOverviewNode: SKSpriteNode {
     private let healthBarNode = HealthBarNode()
     private let manaBarNode = ManaBarNode()
     private let powerUpDescriptionNode = PowerUpDescriptionNode()
+    weak var responder: AvatarOverviewNodeResponder?
+    
     var selectedAvatar: Avatar? {
         didSet {
             guard let avatar = selectedAvatar else {
@@ -122,5 +124,6 @@ class AvatarOverviewNode: SKSpriteNode {
 extension AvatarOverviewNode: TapResponder {
     func onTapped(tappedNode: ButtonNode) {
         selectedAvatar = tappedNode.buttonType == .leftButton ? selectedAvatar?.prevAvatar : selectedAvatar?.nextAvatar
+        responder?.selectedAvatarDidChanged(newValue: selectedAvatar)
     }
 }

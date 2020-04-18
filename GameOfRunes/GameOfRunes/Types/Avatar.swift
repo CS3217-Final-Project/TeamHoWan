@@ -19,6 +19,17 @@ enum Avatar: Int, CaseIterable {
         }
     }
     
+    static func getAvatar(withName: String) -> Avatar? {
+        switch withName {
+        case "Elemental Wizard":
+            return .elementalWizard
+        case "Holy Knight":
+            return .holyKnight
+        default:
+            return nil
+        }
+    }
+    
     var health: Int {
         switch self {
         case .elementalWizard:

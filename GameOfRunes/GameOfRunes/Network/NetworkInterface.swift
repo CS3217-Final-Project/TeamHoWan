@@ -12,7 +12,6 @@ import Foundation
  Interface for the network. Contains methods to obtain/receive information from the game network.
  */
 protocol NetworkInterface {
-    
     // ================================== Room functions =========================================
     
     /**
@@ -21,70 +20,72 @@ protocol NetworkInterface {
      - Parameters:
      - uid: uid of the Player
      - name: name of the Player
-     - onComplete: completion handler
+     - completion: completion handler
      - onError: error handler
      */
-    func createRoom(uid: String,
-                    name: String,
-                    _ onComplete: @escaping (String) -> Void,
-                    _ onError: @escaping (Error) -> Void) 
+    func createRoom(uid: String, name: String, completion: ((String, String) -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Joins a room and creates a reference to the players list inside the room object
      - Parameters:
      - uid: uid of the Player
      - name: name of the Player
-     - forRoomId: the room id this listener is listening to
+     - roomId: the room id this listener is listening to
+     - completion: completion handler
      - onRoomNotOpen: callback that is fired if the room is not open
      - onRoomNotExist: callback that is fired if the room does not exist
-     - onError: callback that is fired if there is an error
+     - onError: error handler
      */
-    func joinRoom(uid: String,
-                  name: String,
-                  forRoomId roomId: String,
-                  _ onSuccess: @escaping () -> Void,
-                  _ onRoomNotOpen: @escaping () -> Void,
-                  _ onRoomNotExist: @escaping () -> Void,
-                  _ onError: @escaping (Error) -> Void)
+    func joinRoom(
+        uid: String,
+        name: String,
+        roomId: String,
+        completion: ((String) -> Void)?,
+        onRoomNotOpen: (() -> Void)?,
+        onRoomNotExist: (() -> Void)?,
+        onError: ((Error) -> Void)?
+    )
     
     /**
      Close the room if the player is the host.
      - Parameters:
      - uid: uid of the Player
-     - forRoomId: room id of the room that the player is in
-     - onComplete: completion handler
+     - roomId: room id of the room that the player is in
+     - completion: completion handler
      - onError: error handler
      */
-    func closeRoom(uid: String,
-                   forRoomId roomId: String,
-                   _ onComplete: @escaping () -> Void,
-                   _ onError: @escaping (Error) -> Void)
+    func closeRoom(uid: String, roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Leave the room that the player is in
      - Parameters:
      - uid: uid of the Player
-     - forRoomId: room id of the room that the player is in
-     - onComplete: completion handler
+     - roomId: room id of the room that the player is in
+     - completion: completion handler
      - onError: error handler
      */
-    func leaveRoom(uid: String,
-                   fromRoomId id: String,
-                   _ onComplete: @escaping () -> Void,
-                   _ onError: @escaping (Error) -> Void)
+    func leaveRoom(uid: String, roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Toggle the player's isReady state in the room that the player is in.
      - Parameters:
      - uid: uid of the Player
-     - forRoomId: room id of the room that the player is in
-     - onComplete: completion handler
+     - roomId: room id of the room that the player is in
+     - completion: completion handler
      - onError: error handler
      */
-    func changeReadyState(uid: String,
-                          forRoomId id: String,
-                          _ onComplete: @escaping () -> Void,
-                          _ onError: @escaping (Error) -> Void)
+    func toggleReadyState(uid: String, roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+    
+    /**
+     Toggle the player's avatar in the room that the player is in.
+     - Parameters:
+     - uid: uid of the Player
+     - roomId: room id of the room that the player is in
+     - avatar: string representing the avatar to be changed to
+     - completion: completion handler
+     - onError: error handler
+     */
+    func setAvatar(uid: String, roomId: String, avatar: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Creates a listener for a room instance.
@@ -93,15 +94,12 @@ protocol NetworkInterface {
      and also be used by the front end to reflect room changes.
      Creates an observer.
      - Parameters:
-     - forRoomId: the room id this listener is listening to
+     - roomId: the room id this listener is listening to
      - onDataChange: callback that is fired every time change is detected
      - onRoomClose: callback that is fired if the room closes
-     - onError: callback that is fired if there is an error
+     - onError: error handler
      */
-    func observeRoomState(forRoomId id: String,
-                          _ onDataChange: @escaping (RoomModel) -> Void,
-                          _ onRoomClose: @escaping () -> Void,
-                          _ onError: @escaping (Error) -> Void)
+    func observeRoomState(roomId: String, onDataChange: ((RoomModel) -> Void)?, onRoomClose: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Removes all observers.
@@ -113,12 +111,11 @@ protocol NetworkInterface {
      and changes the `hasStarted` flag of the room.
      - Parameters:
      - roomId: the room id
-     - onComplete: completion handler
-     - onError: callback that is fired if there is an error
+     - completion: completion handler
+     - onNotAllReady: callback fired when not everyone in the room is ready.
+     - onError: error handler
      */
-    func startGame(roomId: String,
-                   _ onComplete: @escaping () -> Void,
-                   _ onError: @escaping (Error) -> Void)
+    func startGame(roomId: String, completion: (() -> Void)?, onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Listen to changes to the game reference.
@@ -128,24 +125,42 @@ protocol NetworkInterface {
      - onGameStateChange: callback that is fired every time the game state of the other player changes
      - onError: error handler
      */
-    func observeGameState(roomId: String,
-                          _ onEvent: @escaping (PowerUpModel) -> Void,
-                          _ onMonsterChange: @escaping ([MonsterModel]) -> Void,
-                          _ onMonsterReceived: @escaping () -> Void,
-                          _ onError: @escaping (Error) -> Void)
+    func observeGameState(
+        roomId: String,
+        onEvent: ((PowerUpModel) -> Void)?,
+        onMonsterChange: (([MonsterModel]) -> Void)?,
+        onMonsterReceived: (() -> Void)?,
+        onError: ((Error) -> Void)?
+    )
     
     /**
      Updates game boolean flag "has_started" to the specified boolean value
      - Parameters:
      - roomId: the game id concerned
      - to: the boolean value for "has ended" flag
-     - onComplete: a closure run when this process completes
+     - completion: completion handler
+     - onError: error handler
+     */
+    func updateGameHasStarted(roomId: String, to: Bool, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+
+    /**
+     Get an avatar in given room and given uid.
+     - Parameters:
+     - roomId: the game id concerned
+     - uid: player uid concerned
+     - completion: completion handler
+     - onError: error handler
+     */
+    func getAvatar(roomId: String, uid: String, completion: ((Avatar) -> Void)?, onError: ((Error) -> Void)?)
+    
+    /**
+     Get all player uid
+     - Parameters:
+     - roomId: the game id concerned
+     - completion: completion handler
      - onError: a closure run when an error occurs
      */
-    func updateGameHasStarted(roomId: String,
-                              to: Bool,
-                              _ onComplete: @escaping () -> Void,
-                              _ onError: @escaping (Error) -> Void)
+    func getPlayersUid(roomId: String, completion: (([String]) -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Update own monsters on the network.
@@ -153,14 +168,10 @@ protocol NetworkInterface {
      - roomId: the game id concerned
      - uid: UID of the player
      - monsters: the monsters to be sent
-     - onComplete: a closure run when this process completes
-     - onError: a closure run when an error occurs
+     - completion: completion handler
+     - onError: error handler
      */
-    func updateMonsters(roomId: String,
-                        uid: String,
-                        monsters: [MonsterModel],
-                        _ onComplete: @escaping () -> Void,
-                        _ onError: @escaping (Error) -> Void)
+    func pushMonsters(roomId: String, uid: String, monsters: [MonsterModel], completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Update with a powerUp activation event.
@@ -168,12 +179,14 @@ protocol NetworkInterface {
      - roomId: the game id concerned
      - uid: UID of the player
      - powerUp: the powerUp concerned
-     - onComplete: a closure run when this process completes
-     - onError: a closure run when an error occurs
+     - completion: completion handler
+     - onError: error handler
      */
-    func updatePowerUp(roomId: String,
-                       uid: String,
-                       powerUp: PowerUpModel,
-                       _ onComplete: @escaping () -> Void,
-                       _ onError: @escaping (Error) -> Void)
+    func pushPowerUp(roomId: String, uid: String, powerUp: PowerUpModel, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+}
+
+extension NetworkInterface {
+    func checkForConnection() {
+        // TODO: Implementation
+    }
 }
