@@ -213,7 +213,7 @@ class FirebaseNetwork: NetworkInterface {
         observers.forEach { observer in observer.reference.removeObserver(withHandle: observer.handle) }
         observers = []
     }
-
+    
     func startGame(
         roomId: String,
         completion: (() -> Void)? = nil,
@@ -222,24 +222,27 @@ class FirebaseNetwork: NetworkInterface {
     ) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players))
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+        ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let playersData = snapshot.value as? [String: AnyObject],
                 playersData.count > 1 else {
-                // TODO: Custom errors
-                // Players object does not exist in firebase / only 1 or less players in the room.
-                return
+                    // TODO: Custom errors
+                    // Players object does not exist in firebase / only 1 or less players in the room.
+                    return
             }
             var players: [PlayerModel] = []
             for player in playersData {
-                players.append(self.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value))
+                guard let playerModel = self?.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value) else {
+                    return
+                }
+                players.append(playerModel)
             }
             // Check whether all non-host players are ready - throw handler if not
             for player in players where !player.isReady && !player.isHost {
                 onNotAllReady?()
                 return
             }
-
-            completion?()
+            
+            self?.updateGameHasStarted(roomId: roomId, to: true, completion: completion, onError: onError)
         }) { err in
             onError?(err)
         }
@@ -255,6 +258,44 @@ class FirebaseNetwork: NetworkInterface {
         // To be implemented
     }
     
+    func observeGameHasStarted(
+        roomId: String,
+        completion: (() -> Void)? = nil,
+        onError: ((Error) -> Void)? = nil
+    ) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_hasStarted))
+        let handle = ref.observe(.value, with: { snapshot in
+            guard let hasStarted = snapshot.value as? Bool else {
+                // TODO: Custom error - room does not exist
+                return
+            }
+            
+            if hasStarted {
+                completion?()
+            }
+        }) { err in
+            onError?(err)
+        }
+        
+        //        ref.observeSingleEvent(of: .value, with: { snapshot in
+        //            guard (snapshot.value as? Bool) != nil else {
+        //                // TODO: Custom error - room does not exist
+        //                return
+        //            }
+        //            ref.setValue(to, withCompletionBlock: { err, _ in
+        //                if let error = err {
+        //                    onError?(error)
+        //                    return
+        //                }
+        //                completion?()
+        //            })
+        //        }) { err in
+        //            onError?(err)
+        //        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
     func updateGameHasStarted(
         roomId: String,
         to: Bool,
@@ -262,24 +303,32 @@ class FirebaseNetwork: NetworkInterface {
         onError: ((Error) -> Void)? = nil
     ) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_hasStarted))
-        
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard (snapshot.value as? Bool) != nil else {
-                // TODO: Custom error - room does not exist
+        ref.setValue(to, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
                 return
             }
-            ref.setValue(to, withCompletionBlock: { err, _ in
-                if let error = err {
-                    onError?(error)
-                    return
-                }
-                completion?()
-            })
-        }) { err in
-            onError?(err)
-        }
+            completion?()
+        })
+        
+        //        Comment: Don't think we need to have an observable?
+        //        ref.observeSingleEvent(of: .value, with: { snapshot in
+        //            guard (snapshot.value as? Bool) != nil else {
+        //                // TODO: Custom error - room does not exist
+        //                return
+        //            }
+        //            ref.setValue(to, withCompletionBlock: { err, _ in
+        //                if let error = err {
+        //                    onError?(error)
+        //                    return
+        //                }
+        //                completion?()
+        //            })
+        //        }) { err in
+        //            onError?(err)
+        //        }
     }
-
+    
     func getAvatar(
         roomId: String,
         uid: String,
@@ -291,7 +340,7 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { snap in
             guard let avatarString = snap.value as? String,
                 let avatar = Avatar.getAvatar(withName: avatarString) else {
-                return
+                    return
             }
             completion?(avatar)
         }) { err in
@@ -349,7 +398,7 @@ class FirebaseNetwork: NetworkInterface {
             completion?()
         })
     }
-
+    
     func changeRoomOpenState(forRoomId roomId: String,
                              _ onComplete: @escaping () -> Void,
                              _ onError: @escaping (Error) -> Void) {

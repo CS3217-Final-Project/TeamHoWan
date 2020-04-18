@@ -133,6 +133,8 @@ protocol NetworkInterface {
         onError: ((Error) -> Void)?
     )
     
+    func observeGameHasStarted(roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+    
     /**
      Updates game boolean flag "has_started" to the specified boolean value
      - Parameters:

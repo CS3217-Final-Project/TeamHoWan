@@ -322,6 +322,12 @@ extension GameHomeScene {
             onError: presentErrorAlert
         )
         
+        dbRef.observeGameHasStarted(
+            roomId: joinRoomViewNode.inputRoomId,
+            completion: startGameSuccess,
+            onError: presentErrorAlert
+        )
+        
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
     
@@ -353,6 +359,12 @@ extension GameHomeScene {
             roomId: joinRoomViewNode.inputRoomId,
             onDataChange: onDataChange,
             onRoomClose: onRoomClose,
+            onError: presentErrorAlert
+        )
+        
+        dbRef.observeGameHasStarted(
+            roomId: joinRoomViewNode.inputRoomId,
+            completion: startGameSuccess,
             onError: presentErrorAlert
         )
         
@@ -440,7 +452,7 @@ extension GameHomeScene {
         }
         dbRef.startGame(
             roomId: roomId,
-            completion: startGameSuccess,
+            completion: nil,
             onNotAllReady: notAllReady,
             onError: presentErrorAlert
         )
