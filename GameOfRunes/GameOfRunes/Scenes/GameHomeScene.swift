@@ -323,7 +323,7 @@ extension GameHomeScene {
         )
         
         dbRef.observeGameHasStarted(
-            roomId: joinRoomViewNode.inputRoomId,
+            roomId: roomId,
             completion: startGameSuccess,
             onError: presentErrorAlert
         )

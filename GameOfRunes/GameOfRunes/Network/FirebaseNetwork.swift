@@ -277,22 +277,6 @@ class FirebaseNetwork: NetworkInterface {
             onError?(err)
         }
         
-        //        ref.observeSingleEvent(of: .value, with: { snapshot in
-        //            guard (snapshot.value as? Bool) != nil else {
-        //                // TODO: Custom error - room does not exist
-        //                return
-        //            }
-        //            ref.setValue(to, withCompletionBlock: { err, _ in
-        //                if let error = err {
-        //                    onError?(error)
-        //                    return
-        //                }
-        //                completion?()
-        //            })
-        //        }) { err in
-        //            onError?(err)
-        //        }
-        
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
     }
     
@@ -310,23 +294,6 @@ class FirebaseNetwork: NetworkInterface {
             }
             completion?()
         })
-        
-        //        Comment: Don't think we need to have an observable?
-        //        ref.observeSingleEvent(of: .value, with: { snapshot in
-        //            guard (snapshot.value as? Bool) != nil else {
-        //                // TODO: Custom error - room does not exist
-        //                return
-        //            }
-        //            ref.setValue(to, withCompletionBlock: { err, _ in
-        //                if let error = err {
-        //                    onError?(error)
-        //                    return
-        //                }
-        //                completion?()
-        //            })
-        //        }) { err in
-        //            onError?(err)
-        //        }
     }
     
     func getAvatar(
