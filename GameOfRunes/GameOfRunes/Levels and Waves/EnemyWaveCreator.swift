@@ -95,13 +95,29 @@ struct EnemyWaveCreator {
                      relativePositionRatioInMap: (0.0, 0.0),
                      arena: .arena1,
                      difficulty: 0,
-                     numWaves: 4,
+                     numWaves: fullStageEnemyWave.count,
                      enemyWaves: fullStageEnemyWave,
                      enemyWaveSpawnInterval: 1.5,
                      achievementBMinScore: 0,
                      achievementAMinScore: 0,
                      achievementSMinScore: 0,
                      isEndless: true)
+    }
+
+    static var emptySeedStage: Stage {
+        return Stage(name: "Empty Stage Seed",
+                     chapter: "",
+                     category: .normal,
+                     relativePositionRatioInMap: (0.0, 0.0),
+                     arena: .arena1,
+                     difficulty: 0,
+                     numWaves: 0,
+                     enemyWaves: .init(),
+                     enemyWaveSpawnInterval: 1.5,
+                     achievementBMinScore: 0,
+                     achievementAMinScore: 0,
+                     achievementSMinScore: 0,
+                     isEndless: false)
     }
 }
 

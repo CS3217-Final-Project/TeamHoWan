@@ -28,7 +28,6 @@ class MultiplayerGameScene: GameScene {
             let localPlayerAvatar = roomData.localPlayer?.avatar,
             let remotePlayerAvatar = roomData.remoteplayers.first?.avatar else {
             fatalError("Unable to retrieve Room Data")
-            return
         }
 
         // Local Game
@@ -48,7 +47,7 @@ class MultiplayerGameScene: GameScene {
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
         
         remoteRootRenderNode = RemoteRootRenderNode(
-            stage: EnemyWaveCreator.endlessSeedStage,
+            stage: EnemyWaveCreator.emptySeedStage,
             avatar: remotePlayerAvatar,
             zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
             position: remoteRootPosition,

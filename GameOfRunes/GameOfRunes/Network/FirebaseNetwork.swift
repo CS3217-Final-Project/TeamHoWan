@@ -269,7 +269,7 @@ class FirebaseNetwork: NetworkInterface {
                 // TODO: Custom error - room does not exist
                 return
             }
-            
+
             if hasStarted {
                 completion?()
             }
