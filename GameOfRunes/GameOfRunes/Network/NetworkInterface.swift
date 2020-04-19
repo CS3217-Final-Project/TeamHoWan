@@ -13,6 +13,13 @@ import Reachability
  Interface for the network. Contains methods to obtain/receive information from the game network.
  */
 protocol NetworkInterface {
+    /**
+     Connection observer
+     - Parameters:.
+     - uponDisconnect - handler upon disconnection
+     */
+    func addConnectionObserver(uponDisconnect: (() -> Void)?)
+    
     // ================================== Room functions =========================================
     
     /**

@@ -12,6 +12,20 @@ class FirebaseNetwork: NetworkInterface {
     let dbRef: DatabaseReference = Database.database().reference()
     var observers: [FirebaseObserver] = []
     
+    func addConnectionObserver(uponDisconnect: (() -> Void)?) {
+        let ref = Database.database().reference(withPath: ".info/connected")
+        let handle = ref.observe(.value, with: { snapshot in
+          if snapshot.value as? Bool ?? false {
+            print("Connected")
+          } else {
+            if let uponDisconnect = uponDisconnect {
+                uponDisconnect()
+            }
+          }
+        })
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
     func createRoom(
         uid: String,
         name: String,
