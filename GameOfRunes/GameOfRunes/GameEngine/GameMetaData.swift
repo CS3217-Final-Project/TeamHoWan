@@ -11,7 +11,7 @@ import Foundation
 class GameMetaData {
     // TODO: maybe change this to current avatar.
     let avatar: Avatar
-    var stage: Stage
+    let stage: Stage
     var availablePowerUps: [PowerUpType] {
         avatar.powerUps
     }
@@ -36,11 +36,11 @@ class GameMetaData {
     var selectedPowerUp: PowerUpType?
     var isEndless: Bool = false
 
-    init(stage: Stage, avatar: Avatar, manaPointsPerManaUnit: Int, isEndless: Bool) {
+    init(stage: Stage, avatar: Avatar, manaPointsPerManaUnit: Int) {
         self.manaPointsPerManaUnit = manaPointsPerManaUnit
         self.avatar = avatar
         self.stage = stage
-        self.isEndless = isEndless
+        self.isEndless = stage.isEndless
         playerHealth = avatar.health
 
         levelSpawnInterval = stage.enemyWaveSpawnInterval

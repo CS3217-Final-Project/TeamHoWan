@@ -33,8 +33,7 @@ class GameEngine: GameEngineFacade {
         metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
-            manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit,
-            isEndless: stage.isEndless
+            manaPointsPerManaUnit: GameConfig.Mana.manaPerManaUnit
         )
         
         EntityType.allCases.forEach { entityType in

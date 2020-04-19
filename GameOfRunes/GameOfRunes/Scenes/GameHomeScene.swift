@@ -469,6 +469,8 @@ extension GameHomeScene {
     }
     
     private func startGameSuccess() {
+        gameStateMachine?.avatar = nil
+        gameStateMachine?.stage = nil
         gameStateMachine?.room = room
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }

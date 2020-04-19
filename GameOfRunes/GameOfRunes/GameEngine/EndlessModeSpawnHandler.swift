@@ -14,7 +14,7 @@
  */
 class EndlessModeSpawnHandler {
     var currentDifficulty: Int
-    let gameMetaData: GameMetaData
+    weak var gameMetaData: GameMetaData?
 
     let difficultyIncrement = 20
     let maxDifficulty = 100 // Cap on the target difficulty for generated enemy waves
@@ -40,12 +40,13 @@ class EndlessModeSpawnHandler {
             currentDifficulty += difficultyIncrement
         }
 
-        guard let availableMonsters = difficultyToMonstersMap[currentDifficulty] else {
+        guard let availableMonsters = difficultyToMonstersMap[currentDifficulty],
+            let gameMetaData = gameMetaData else {
             return
         }
 
         let additionalEnemyWaves = EnemyWaveCreator.createStageEnemyWave(targetDifficulty: currentDifficulty,
                                                                          availableMonsters: availableMonsters)
-        self.gameMetaData.stageWaves += additionalEnemyWaves
+        gameMetaData.stageWaves += additionalEnemyWaves
     }
 }
