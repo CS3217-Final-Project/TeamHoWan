@@ -20,34 +20,36 @@ class LocalRootRenderNode: RootRenderNode {
      Note that unlike `RootRenderNode`, `LocalRootRenderNode` has:
      - No Pause Button
      */
-    override init(stage: Stage,
-                  avatar: Avatar,
-                  zPosition: CGFloat,
-                  position: CGPoint,
-                  size: CGSize) {
-
+    init(roomId: String,
+         uid: String,
+         stage: Stage,
+         avatar: Avatar,
+         zPosition: CGFloat,
+         position: CGPoint,
+         size: CGSize) {
+        
         super.init(size: size)
         // TODO: pass in the roomid and uid.
-        self.gameEngine = MultiplayerLocalGameEngine(roomId: "",
-                                                     uid: "",
+        self.gameEngine = MultiplayerLocalGameEngine(roomId: roomId,
+                                                     uid: uid,
                                                      stage: stage,
                                                      avatar: avatar,
                                                      renderNode: self)
         self.position = position
         self.zPosition = zPosition
         self.isUserInteractionEnabled = true
-
+        
         // UI
         buildLayers()
         setUpBackground()
         setUpPlayerArea()
         setUpGestureArea()
-
+        
         // Entities
         setUpEndPoint()
         setUpPlayer()
         setUpTimer(isCountdown: false)
-
+        
         // Set Up Background Music
         setUpBackgroundMusic()
     }
