@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Reachability
 
 class GameHomeScene: SKScene {
     private weak var gameStateMachine: GameStateMachine?
@@ -32,6 +33,7 @@ class GameHomeScene: SKScene {
         }
     }
     private var localPlayerUid: String?
+    private var reachability: Reachability?
     
     // Nodes
     private let alertNode: AlertNode
@@ -96,9 +98,17 @@ class GameHomeScene: SKScene {
         anchorPoint = .init(x: 0.5, y: 0.5)
         alertNode.responder = self
         waitingRoomViewNode.avatarOverviewNodeResponder = self
+        
+        do {
+            reachability = try Reachability()
+            if let reachability = reachability {
+                try reachability.startNotifier()
+            }
+        } catch {}
     }
     
     deinit {
+        reachability?.stopNotifier()
         print("deinit game home scene")
     }
     
@@ -300,8 +310,12 @@ extension GameHomeScene: AvatarOverviewNodeResponder {
 // MARK: - Network synchronisation
 extension GameHomeScene {
     private func createRoom() {
-        alertNode.presentAlert(alertDescription: "Creating a room", showTick: false, showCross: false, showLoader: true)
+        if reachability?.connection == .unavailable {
+            showDisconnectionAlert()
+            return
+        }
         
+        alertNode.presentAlert(alertDescription: "Creating a room", showTick: false, showCross: false, showLoader: true)
         dbRef.createRoom(
             uid: UUID().uuidString,
             name: playerName,
@@ -315,17 +329,23 @@ extension GameHomeScene {
         
         localPlayerUid = uid
         
+        dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
         dbRef.observeRoomState(
             roomId: roomId,
             onDataChange: onDataChange,
             onRoomClose: onRoomClose,
             onError: presentErrorAlert
         )
-        
+
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
     
     private func joinRoom() {
+        if reachability?.connection == .unavailable {
+            showDisconnectionAlert()
+            return
+        }
+        
         alertNode.presentAlert(
             alertDescription: "Joining the room",
             showTick: false,
@@ -349,6 +369,7 @@ extension GameHomeScene {
         
         localPlayerUid = uid
         
+        dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
         dbRef.observeRoomState(
             roomId: joinRoomViewNode.inputRoomId,
             onDataChange: onDataChange,
@@ -415,6 +436,9 @@ extension GameHomeScene {
             return
         }
         room = roomModel.convertToRoom(with: localPlayerUid)
+        if roomModel.hasStarted {
+            startGameSuccess()
+        }
     }
     
     private func onRoomClose() {
@@ -440,9 +464,20 @@ extension GameHomeScene {
         }
         dbRef.startGame(
             roomId: roomId,
-            completion: startGameSuccess,
+            completion: nil,
+            insufficientPlayers: insufficientPlayers,
             onNotAllReady: notAllReady,
             onError: presentErrorAlert
+        )
+    }
+    
+    private func insufficientPlayers() {
+        alertNode.presentAlert(
+            alertDescription: "Insufficient players!",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
         )
     }
     
@@ -457,11 +492,8 @@ extension GameHomeScene {
     }
     
     private func startGameSuccess() {
-        // placeholder to prevent crash
-        gameStateMachine?.avatar = .elementalWizard
-        gameStateMachine?.stage = GameViewController.storage.load(stageName: "Cathedral Mayhem")
-        
-        // @brian - room will contain everything u need for the setting up of the scenes
+        gameStateMachine?.avatar = nil
+        gameStateMachine?.stage = nil
         gameStateMachine?.room = room
         gameStateMachine?.enter(GameInMultiplayerPlayState.self)
     }
@@ -474,5 +506,23 @@ extension GameHomeScene {
             showLoader: false,
             status: .warning
         )
+    }
+    
+    private func showDisconnectionAlert() {
+        alertNode.presentAlert(
+            alertDescription: NetworkError.disconnectError.localizedDescription,
+            showTick: true,
+            showCross: false,
+            showLoader: false,
+            status: .warning
+        )
+    }
+    
+    private func uponDisconnect() {
+        showDisconnectionAlert()
+        guard let currentViewNode = currentViewNode else {
+            return
+        }
+        transit(from: currentViewNode, to: multiplayerActionViewNode)
     }
 }

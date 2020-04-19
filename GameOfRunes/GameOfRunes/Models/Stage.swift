@@ -59,7 +59,7 @@ struct Stage {
     let difficulty: Int
     let numWaves: Int
     // might want to add the array of enemies here? But how do we determine the numWaves?
-    let enemyWaves: EnemySpawnUnit
+    var enemyWaves: EnemySpawnUnit
     let enemyWaveSpawnInterval: TimeInterval
 
     // Note: there is not min score for C because player will obtain it as long as he/she wins the game
@@ -69,4 +69,5 @@ struct Stage {
 
     var achievement: AchievementLevel = .empty
     var highScore: Int = 0
+    var isEndless: Bool
 }

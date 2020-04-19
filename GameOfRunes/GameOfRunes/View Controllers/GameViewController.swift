@@ -31,7 +31,7 @@ class GameViewController: UIViewController {
             Self.initStagesInDatabase()
             print("Done initialising stages")
         }
-        
+
         if let view = view as? SKView {
             let gameStateMachine = GameStateMachine(
                 states: [GameInPlayState(),
@@ -87,7 +87,8 @@ extension GameViewController {
             achievementBMinScore: 10,
             achievementAMinScore: 40,
             achievementSMinScore: 50,
-            achievement: .empty
+            achievement: .empty,
+            isEndless: false
         )
         
         let stage2 = Stage(
@@ -103,7 +104,8 @@ extension GameViewController {
             achievementBMinScore: 20,
             achievementAMinScore: 50,
             achievementSMinScore: 70,
-            achievement: .empty
+            achievement: .empty,
+            isEndless: false
         )
         
         let stage3 = Stage(
@@ -119,7 +121,8 @@ extension GameViewController {
             achievementBMinScore: 30,
             achievementAMinScore: 70,
             achievementSMinScore: 90,
-            achievement: .empty
+            achievement: .empty,
+            isEndless: false
         )
         
         let stage4 = Stage(
@@ -135,7 +138,8 @@ extension GameViewController {
             achievementBMinScore: 50,
             achievementAMinScore: 80,
             achievementSMinScore: 100,
-            achievement: .empty
+            achievement: .empty,
+            isEndless: false
         )
         
         let stages = [stage1, stage2, stage3, stage4]

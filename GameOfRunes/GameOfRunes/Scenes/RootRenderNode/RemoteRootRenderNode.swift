@@ -27,7 +27,6 @@ class RemoteRootRenderNode: RootRenderNode {
                   zPosition: CGFloat,
                   position: CGPoint,
                   size: CGSize) {
-
         let gameEngine = MultiplayerRemoteGameEngine(stage: stage, avatar: avatar)
         super.init(gameEngine: gameEngine, size: size)
         self.position = position

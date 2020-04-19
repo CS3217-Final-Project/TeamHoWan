@@ -31,7 +31,6 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         guard let entity = component.entity as? Entity else {
             return
         }
-        // TODO: Refactor fading into a future PowerUpComponent as entities should not have variables
         switch entity.type {
         case .powerUpEntity:
             guard component.time <= 0,

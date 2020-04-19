@@ -104,7 +104,10 @@ enum GameConfig {
         static let horizontalOffSetRatio: CGFloat = 0.1
         static let verticalOffSetRatio: CGFloat = 0.03
         static let numEndPoints: Int = 3
-        
+
+        // Endless Mode
+        static let numEnemyWavesThreshold: Int = 3
+
         static func calculateHorizontallyDistributedPoints(
             width: CGFloat,
             laneIndex: Int,

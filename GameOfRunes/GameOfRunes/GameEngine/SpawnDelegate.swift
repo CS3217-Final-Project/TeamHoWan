@@ -16,10 +16,12 @@ class SpawnDelegate {
     private weak var gameEngine: GameEngine?
     // TODO: When timer is up, should retrieve this information from GameMetaData
     private var timeTillNextSpawn: TimeInterval
+    private let endlessModeSpawnHandler: EndlessModeSpawnHandler
 
     init(gameEngine: GameEngine) {
         self.gameEngine = gameEngine
         self.timeTillNextSpawn = 0
+        self.endlessModeSpawnHandler = EndlessModeSpawnHandler(gameMetaData: gameEngine.metadata)
     }
 
     func update(with deltaTime: TimeInterval) {
@@ -31,7 +33,27 @@ class SpawnDelegate {
         }
     }
 
+    /**
+     Checks if the game is in Endless Mode and if it is, whether the enemy waves need
+     replenishment.
+     */
+    private func checkEndlessModeNeedWaveAddition() -> Bool {
+        guard let gameMetaData = gameEngine?.metadata else {
+            return false
+        }
+
+        let isEndless = gameMetaData.isEndless
+        let hasInsufficientEnemyWaves = gameMetaData.stageWaves.count < GameConfig.GamePlayScene.numEnemyWavesThreshold
+
+        return isEndless && hasInsufficientEnemyWaves
+    }
+
     func startNextSpawnWave() {
+        // Add More Waves for Endless Mode
+        if checkEndlessModeNeedWaveAddition() {
+            self.endlessModeSpawnHandler.addMoreWaves()
+        }
+
         // Check that there are still waves left
         guard let gameMetaData = gameEngine?.metadata,
             !gameMetaData.stageWaves.isEmpty else {
