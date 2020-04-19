@@ -115,6 +115,7 @@ class GameEndScene: SKScene, TapResponder {
             previewVC = nil
             gameStateMachine?.enter(GameStageSelectionState.self)
         case .restartButton:
+            previewVC = nil
             gameStateMachine?.enter(GameStartState.self)
         default:
             print("Unknown node tapped:", tappedNode)
