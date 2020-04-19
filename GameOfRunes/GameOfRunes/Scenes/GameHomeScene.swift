@@ -329,6 +329,7 @@ extension GameHomeScene {
         
         localPlayerUid = uid
         
+        dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
         dbRef.observeRoomState(
             roomId: roomId,
             onDataChange: onDataChange,
@@ -368,6 +369,7 @@ extension GameHomeScene {
         
         localPlayerUid = uid
         
+        dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
         dbRef.observeRoomState(
             roomId: joinRoomViewNode.inputRoomId,
             onDataChange: onDataChange,
