@@ -11,17 +11,14 @@ import Foundation
 class MetadataModel: Codable {
     var playerHealth: Int
     var playerMana: Int
-    var avatar: Avatar
     
-    init(playerHealth: Int, playerMana: Int, avatar: Avatar) {
+    init(playerHealth: Int, playerMana: Int) {
         self.playerHealth = playerHealth
         self.playerMana = playerMana
-        self.avatar = avatar
     }
     
     init(_ metadata: GameMetaData) {
         self.playerHealth = metadata.playerHealth
         self.playerMana = metadata.playerMana
-        self.avatar = metadata.avatar
     }
 }

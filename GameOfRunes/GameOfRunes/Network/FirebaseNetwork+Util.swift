@@ -34,6 +34,7 @@ extension FirebaseNetwork {
         let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultFalse
         let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
         let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
+        let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultAvatar
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
@@ -43,7 +44,7 @@ extension FirebaseNetwork {
         let decodedPowerUp = decodePowerUp(data: powerUp)
         let decodedMetadata = decodeMetadata(data: metadata)
         
-        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady,
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar,
                            powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
     }
     
@@ -83,6 +84,7 @@ extension FirebaseNetwork {
                           name: String,
                           isHost: Bool,
                           isReady: Bool,
+                          avatar: String = FirebaseKeys.defaultAvatar,
                           powerUp: PowerUpModel? = nil,
                           monsters: [EnemyModel] = [],
                           metadata: MetadataModel? = nil) -> [String: AnyObject] {
@@ -94,6 +96,7 @@ extension FirebaseNetwork {
             FirebaseKeys.rooms_players_uid: uid as AnyObject,
             FirebaseKeys.rooms_players_name: name as AnyObject,
             FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
+            FirebaseKeys.rooms_players_avatar: avatar as AnyObject,
             FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
             FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject,
             FirebaseKeys.rooms_players_metadata: encodedMetadata as AnyObject
@@ -114,6 +117,7 @@ extension FirebaseNetwork {
             name: playerData.name,
             isHost: isHost,
             isReady: isReady,
+            avatar: playerData.avatar.name,
             powerUp: powerUp,
             monsters: monsters,
             metadata: metadata
