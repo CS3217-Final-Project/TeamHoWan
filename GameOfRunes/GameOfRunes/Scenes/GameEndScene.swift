@@ -32,7 +32,7 @@ class GameEndScene: SKScene, TapResponder {
         viewRecordingButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GameEndScene.buttonWidthRatio,
                         height: size.width * GameConfig.GameEndScene.buttonHeightRatio),
-            texture: .init(imageNamed: "home-button"),
+            texture: .init(imageNamed: "recording-button"),
             buttonType: .viewRecordingButton
         )
         super.init(size: size)
