@@ -9,8 +9,8 @@
 import Firebase
 
 struct FirebaseObserver {
-    var handle: DatabaseHandle
-    var reference: DatabaseReference
+    let handle: DatabaseHandle
+    let reference: DatabaseReference
     
     init(withHandle handle: DatabaseHandle, withRef reference: DatabaseReference) {
         self.handle = handle

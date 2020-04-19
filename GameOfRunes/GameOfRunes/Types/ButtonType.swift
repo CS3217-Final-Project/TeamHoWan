@@ -28,4 +28,8 @@ enum ButtonType {
     case joinButton
     case leaveButton
     case anyButton
+    case tickButton
+    case crossButton
+    case settingsButton
+    case readyButton
 }

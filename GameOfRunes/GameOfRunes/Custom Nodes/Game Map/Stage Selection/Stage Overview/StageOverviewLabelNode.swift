@@ -31,15 +31,15 @@ class StageOverviewLabelNode: StackedLabelsNode {
         
         topLabelNode.fontColor = .black
         bottomLabelNode.fontColor = .black
-    }
-    
-    override func layoutTopLabelNode() {
-        topLabelNode.position = .init(x: 0.0, y: size.height / 10)
-        topLabelNode.fontSize = size.height / 10
-    }
-    
-    override func layoutBottomLabelNode() {
-        bottomLabelNode.position = .init(x: 0.0, y: -size.height / 5.5)
-        bottomLabelNode.fontSize = size.height / 8
+        
+        layoutTopLabelNode = {
+            self.topLabelNode.position = .init(x: 0.0, y: self.size.height / 10)
+            self.topLabelNode.fontSize = self.size.height / 10
+        }
+        
+        layoutBottomLabelNode = {
+            self.bottomLabelNode.position = .init(x: 0.0, y: -self.size.height / 5.5)
+            self.bottomLabelNode.fontSize = self.size.height / 8
+        }
     }
 }

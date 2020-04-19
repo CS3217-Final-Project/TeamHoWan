@@ -11,7 +11,8 @@ import Foundation
 /**
  Represents the Player's data locally. It stores the player's name and generates the player's UUID.
  */
-struct PlayerData {
-    var name: String = FirebaseKeys.defaultName
+class PlayerData {
+    var name: String = ""
+    var avatar: Avatar = .elementalWizard
     let uid: String = UUID().uuidString
 }

@@ -43,8 +43,6 @@ class AvatarSelectionNode: SKSpriteNode {
     init() {
         super.init(texture: nil, color: .clear, size: .zero)
         
-        avatarSpriteNode.color = .darkGray
-        
         leftArrowNode.zPosition = 2
         rightArrowNode.zPosition = 2
         avatarSpriteNode.zPosition = 1

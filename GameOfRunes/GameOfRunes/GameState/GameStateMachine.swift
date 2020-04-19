@@ -17,6 +17,7 @@ class GameStateMachine: GKStateMachine {
     weak var sceneManager: SceneManager?
     var stage: Stage?
     var avatar: Avatar?
+    var room: Room?
     
     override init(states: [GKState]) {
         super.init(states: states)

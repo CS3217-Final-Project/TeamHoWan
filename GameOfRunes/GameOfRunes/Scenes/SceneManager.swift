@@ -36,7 +36,10 @@ class SceneManager {
     )
     private let gamePauseScene: GamePauseScene
     private let gameEndScene: GameEndScene
-    private let gameMapScene: GameMapScene
+    private lazy var gameMapScene: GameMapScene = .init(
+        size: self.presentingView.bounds.size,
+        gameStateMachine: gameStateMachine
+    )
     private let gameHomeScene: GameHomeScene
 
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
@@ -53,7 +56,6 @@ class SceneManager {
         
         self.gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
-        self.gameMapScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
         self.gameHomeScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
     }
     
@@ -72,7 +74,7 @@ class SceneManager {
             self.gameEndScene.didWin = didWin
             scene = gameEndScene
         case .map:
-            refreshGameMap()
+            gameMapScene.refreshSelectedStage()
             scene = gameMapScene
         case .home:
             scene = gameHomeScene
@@ -86,17 +88,14 @@ class SceneManager {
     /**
      Resets the `GameScene` by creating a new `GameScene` object,
      */
-    func beginNewStage() {
-        gamePlayScene = .init(
-            size: presentingView.bounds.size,
-            gameStateMachine: gameStateMachine
-        )
+    func loadNewStage() {
+        gamePlayScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
     }
-
+    
     /**
-     Refreshes the Game Map (so that back-end updates can be reflected)
-     */
-    private func refreshGameMap() {
-        gameMapScene.refreshGameMap()
+    Resets the `GameMapScene` by creating a new `GameMapScene` object,
+    */
+    func loadNewMap() {
+        gameMapScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
     }
 }

@@ -122,12 +122,9 @@ extension GameMapScene: TapResponder {
             gameStateMachine?.stage = selectedStageNode?.stage
             gameStateMachine?.avatar = stageSelectionNode.selectedAvatar
             gameStateMachine?.enter(GameStartState.self)
-        case .leftButton:
-            stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.prevAvatar
-        case .rightButton:
-            stageSelectionNode.selectedAvatar = stageSelectionNode.selectedAvatar?.nextAvatar
         case .powerUpIconButton:
-            stageSelectionNode.updatePowerUpDescription()
+            // ignore
+            return
         case .backButton:
             gameStateMachine?.enter(GameModeSelectionState.self)
         default:
@@ -241,7 +238,7 @@ extension GameMapScene {
      This function is called by GameEndState in order to update the front-end
      when the back-end changes (e.g. stage's highscore/achievement level are update)
      */
-    func refreshGameMap() {
+    func refreshSelectedStage() {
         // load only the updated stage
         guard let selectedStageNode = selectedStageNode,
             let updatedStage = GameViewController.storage.load(stageName: selectedStageNode.stage.name) else {

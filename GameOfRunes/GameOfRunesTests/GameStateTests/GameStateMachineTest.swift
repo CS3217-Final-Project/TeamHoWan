@@ -50,7 +50,7 @@ class GameStateMachineTest: BaseUnitTest {
     func testStartState() {
         gameStateMachine.enter(MockGameStartState.self)
         verify(gameStartState, times(1)).didEnter(from: any(GKState.self))
-        verify(sceneManager, times(1)).beginNewStage()
+        verify(sceneManager, times(1)).loadNewStage()
     }
 
     func testInPlayState() {

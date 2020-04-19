@@ -26,7 +26,7 @@ class GameStartState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
         
-        sceneManager.beginNewStage()
+        sceneManager.loadNewStage()
         gameStateMachine.enter(GameInPlayState.self)
     }
 }

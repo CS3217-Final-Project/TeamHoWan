@@ -30,7 +30,11 @@ class RemoteRootRenderNode: RootRenderNode {
 
         super.init(size: size)
         // TODO: pass roomid and uid in
-        self.gameEngine = MultiplayerRemoteGameEngine(roomId: "", uid: "", stage: stage, avatar: avatar, renderNode: self)
+        self.gameEngine = MultiplayerRemoteGameEngine(roomId: "",
+                                                      uid: "",
+                                                      stage: stage,
+                                                      avatar: avatar,
+                                                      renderNode: self)
         self.position = position
         self.zPosition = zPosition
         

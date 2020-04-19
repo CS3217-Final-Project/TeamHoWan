@@ -34,11 +34,13 @@ class GameMetaData {
     var levelSpawnInterval: TimeInterval
     var numEnemiesOnField: Int = 0
     var selectedPowerUp: PowerUpType?
+    var isEndless: Bool = false
 
     init(stage: Stage, avatar: Avatar, manaPointsPerManaUnit: Int) {
         self.manaPointsPerManaUnit = manaPointsPerManaUnit
         self.avatar = avatar
         self.stage = stage
+        self.isEndless = stage.isEndless
         playerHealth = avatar.health
 
         levelSpawnInterval = stage.enemyWaveSpawnInterval

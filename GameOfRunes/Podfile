@@ -6,7 +6,8 @@ target "GameOfRunes" do
   pod "Firebase/Database"
   pod "RealmSwift", :modular_headers => true
   pod "Realm", :modular_headers => true
-  
+  pod "ReachabilitySwift"
+
   target "GameOfRunesTests" do
     inherit! :search_paths
     pod "Cuckoo"

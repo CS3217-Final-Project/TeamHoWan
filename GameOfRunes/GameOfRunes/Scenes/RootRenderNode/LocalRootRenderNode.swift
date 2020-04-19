@@ -28,7 +28,11 @@ class LocalRootRenderNode: RootRenderNode {
 
         super.init(size: size)
         // TODO: pass in the roomid and uid.
-        self.gameEngine = MultiplayerLocalGameEngine(roomId: "", uid: "", stage: stage, avatar: avatar, renderNode: self)
+        self.gameEngine = MultiplayerLocalGameEngine(roomId: "",
+                                                     uid: "",
+                                                     stage: stage,
+                                                     avatar: avatar,
+                                                     renderNode: self)
         self.position = position
         self.zPosition = zPosition
         self.isUserInteractionEnabled = true

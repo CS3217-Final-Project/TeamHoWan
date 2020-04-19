@@ -10,7 +10,7 @@ import SpriteKit
 
 class AvatarLabelNode: SKSpriteNode {
     private let labelNode = SKLabelNode(fontNamed: GameConfig.fontName)
-    var avatarName: String {
+    var displayedValue: String {
         get {
             labelNode.text ?? ""
         }

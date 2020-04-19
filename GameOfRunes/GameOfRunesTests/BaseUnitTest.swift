@@ -55,7 +55,8 @@ class BaseUnitTest: XCTestCase {
                           enemyWaveSpawnInterval: 1.0,
                           achievementBMinScore: 10,
                           achievementAMinScore: 40,
-                          achievementSMinScore: 50)
+                          achievementSMinScore: 50,
+                          isEndless: false)
         testAvatar = .elementalWizard
         gameStateMachine.stage = testStage
         gameStateMachine.avatar = testAvatar

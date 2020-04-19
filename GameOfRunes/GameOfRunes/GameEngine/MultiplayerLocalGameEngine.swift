@@ -75,12 +75,12 @@ class MultiplayerLocalGameEngine: GameEngine {
             EnemyModel(entity, uuid: enemyUuidMapping[entity])
         }))
         
-        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, {}, { _ in })
+        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, completion: {}, onError: { _ in })
     }
     
     private func pushMetadataToNetwork() {
         let metadataModel = MetadataModel(metadata)
-        network.updateMetadata(roomId: roomId, uid: uid, metadata: metadataModel, {}, { _ in })
+        network.updateMetadata(roomId: roomId, uid: uid, metadata: metadataModel, completion: {}, onError: { _ in })
     }
     
     private func pushPowerUpToNetwork(at position: CGPoint, with size: CGSize?) {
@@ -88,6 +88,6 @@ class MultiplayerLocalGameEngine: GameEngine {
             return
         }
         let powerUpModel = PowerUpModel(powerUpType: powerUp, position: position, size: size)
-        network.updatePowerUp(roomId: roomId, uid: uid, powerUp: powerUpModel, {}, { _ in })
+        network.updatePowerUp(roomId: roomId, uid: uid, powerUp: powerUpModel, completion: {}, onError: { _ in })
     }
 }

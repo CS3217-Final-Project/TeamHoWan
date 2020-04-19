@@ -78,6 +78,49 @@ struct EnemyWaveCreator {
             fatalError("Unexpected error encountered: \(error)")
         }
     }
+
+    // Stage used to seed Endless Mode
+    static var endlessSeedStage: Stage {
+        var fullStageEnemyWave: EnemySpawnUnit
+        do {
+            let waveUnit1 = try EnemySpawnUnit(nil, .orc1)
+            let waveUnit2 = try EnemySpawnUnit(.orc1, nil, .orc1)
+            fullStageEnemyWave = waveUnit1 + waveUnit2 + waveUnit2 + waveUnit1
+        } catch {
+            fatalError("Unexpected error encountered: \(error)")
+        }
+
+        return Stage(name: "Endless Stage Seed",
+                     chapter: "",
+                     category: .normal,
+                     relativePositionRatioInMap: (0.0, 0.0),
+                     arena: .arena1,
+                     difficulty: 0,
+                     numWaves: fullStageEnemyWave.count,
+                     enemyWaves: fullStageEnemyWave,
+                     enemyWaveSpawnInterval: 1.5,
+                     achievementBMinScore: 0,
+                     achievementAMinScore: 0,
+                     achievementSMinScore: 0,
+                     isEndless: true)
+    }
+
+    // Empty placeholder stage (for Multiplayer)
+    static var emptySeedStage: Stage {
+        Stage(name: "Empty Stage Seed",
+              chapter: "",
+              category: .normal,
+              relativePositionRatioInMap: (0.0, 0.0),
+              arena: .arena1,
+              difficulty: 0,
+              numWaves: 0,
+              enemyWaves: .init(),
+              enemyWaveSpawnInterval: 1.5,
+              achievementBMinScore: 0,
+              achievementAMinScore: 0,
+              achievementSMinScore: 0,
+              isEndless: false)
+    }
 }
 
 /** Extension for automatically creating enemy waves based on desired difficulty */

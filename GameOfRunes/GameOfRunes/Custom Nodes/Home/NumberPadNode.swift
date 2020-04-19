@@ -10,6 +10,7 @@ import SpriteKit
 
 class NumberPadNode: SKSpriteNode, TapResponder {
     private let displayLabelNode: NumberPadLabelNode = .init()
+    weak var responder: NumberPadResponder?
     var header: String {
         get {
             displayLabelNode.header
@@ -35,39 +36,7 @@ class NumberPadNode: SKSpriteNode, TapResponder {
             _limit = max(1, newValue)
         }
     }
-    private lazy var numberPadButtonNodes: [[NumberPadButtonNode]] = {
-        var nodes = [[NumberPadButtonNode]]()
-        
-        let numberNodeTexture = SKTexture(imageNamed: "number-button")
-        let numberNodes: [NumberPadButtonNode] = (0...9).map {
-            let node = NumberPadButtonNode(backgroundTexture: numberNodeTexture, feedbackValue: "\($0)")
-            node.displayValue = node.feedbackValue
-            node.numberPadButtonResponder = self
-            node.zPosition = 1
-            return node
-        }
-        
-        let deleteNode: NumberPadButtonNode = .init(
-            backgroundTexture: .init(imageNamed: "delete-button"),
-            feedbackValue: "<-"
-        )
-        deleteNode.numberPadButtonResponder = self
-        deleteNode.zPosition = 1
-        
-        let clearNode: NumberPadButtonNode = .init(
-            backgroundTexture: .init(imageNamed: "clear-button"),
-            feedbackValue: "X"
-        )
-        clearNode.numberPadButtonResponder = self
-        clearNode.zPosition = 1
-        
-        nodes.append([numberNodes[1], numberNodes[2], numberNodes[3]])
-        nodes.append([numberNodes[4], numberNodes[5], numberNodes[6]])
-        nodes.append([numberNodes[7], numberNodes[8], numberNodes[9]])
-        nodes.append([deleteNode, numberNodes[0], clearNode])
-        
-        return nodes
-    }()
+    private lazy var numberPadButtonNodes: [[NumberPadButtonNode]] = generateNumberPadButtonNodes()
     
     override var size: CGSize {
         didSet {
@@ -113,11 +82,47 @@ class NumberPadNode: SKSpriteNode, TapResponder {
             }
             displayedValue += numberPadButtonNode.feedbackValue
         }
+        
+        responder?.displayedValueDidChanged(newValue: displayedValue)
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func generateNumberPadButtonNodes() -> [[NumberPadButtonNode]] {
+        var nodes = [[NumberPadButtonNode]]()
+        
+        let numberNodeTexture = SKTexture(imageNamed: "number-button")
+        let numberNodes: [NumberPadButtonNode] = (0...9).map {
+            let node = NumberPadButtonNode(backgroundTexture: numberNodeTexture, feedbackValue: "\($0)")
+            node.displayValue = node.feedbackValue
+            node.customResponder = self
+            node.zPosition = 1
+            return node
+        }
+        
+        let deleteNode: NumberPadButtonNode = .init(
+            backgroundTexture: .init(imageNamed: "delete-button"),
+            feedbackValue: "<-"
+        )
+        deleteNode.customResponder = self
+        deleteNode.zPosition = 1
+        
+        let clearNode: NumberPadButtonNode = .init(
+            backgroundTexture: .init(imageNamed: "clear-button"),
+            feedbackValue: "X"
+        )
+        clearNode.customResponder = self
+        clearNode.zPosition = 1
+        
+        nodes.append([numberNodes[1], numberNodes[2], numberNodes[3]])
+        nodes.append([numberNodes[4], numberNodes[5], numberNodes[6]])
+        nodes.append([numberNodes[7], numberNodes[8], numberNodes[9]])
+        nodes.append([deleteNode, numberNodes[0], clearNode])
+        
+        return nodes
     }
     
     private func layoutDisplayLabelNode() {

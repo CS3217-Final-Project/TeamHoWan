@@ -6,10 +6,10 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-struct FirebaseKeys {
+enum FirebaseKeys {
     static let defaultFalse = false
-    static let defaultName = "Anonymous"
     static let defaultEmptyString = ""
+    static let defaultAvatar = Avatar.elementalWizard.name
     
     // Room keys
     static let rooms = "rooms"
@@ -23,6 +23,7 @@ struct FirebaseKeys {
     static let rooms_players_isHost = "is_host"
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
+    static let rooms_players_avatar = "avatar"
     static let rooms_players_powerUp = "powerUp"
     static let rooms_players_monsters = "monsters"
     static let rooms_players_metadata = "metadata"
@@ -32,11 +33,7 @@ struct FirebaseKeys {
     ///     - forKeys: an array of keys
     /// - Returns:
     ///     - a String representing the joined keys
-    static func joinKeys(_ keys: [String]) -> String {
-        var finalReference = ""
-        for key in keys {
-            finalReference = "\(finalReference)/\(key)"
-        }
-        return finalReference
+    static func joinKeys(_ keys: String...) -> String {
+        keys.joined(separator: "/")
     }
 }

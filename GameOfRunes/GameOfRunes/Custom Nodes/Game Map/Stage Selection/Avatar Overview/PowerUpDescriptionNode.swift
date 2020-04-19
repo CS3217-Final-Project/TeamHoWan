@@ -24,6 +24,8 @@ class PowerUpDescriptionNode: SKSpriteNode {
     init() {
         super.init(texture: nil, color: .clear, size: .zero)
         
+        powerUpContainerNode.responder = self
+        
         addChild(powerUpContainerNode)
         addChild(descriptionNode)
     }
@@ -31,20 +33,6 @@ class PowerUpDescriptionNode: SKSpriteNode {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updatePowerUpDescription() {
-        var description = powerUpContainerNode
-            .selectedPowerUp?
-            .powerUp
-            .description
-            .components(separatedBy: "\n") ?? ["", "", ""]
-        while description.count < 3 {
-            description.append("")
-        }
-        descriptionNode.titleLabelNode.text = description[0]
-        descriptionNode.topLabelNode.text = description[1]
-        descriptionNode.bottomLabelNode.text = description[2]
     }
     
     private func layoutPowerUpContainerNode() {
@@ -55,5 +43,20 @@ class PowerUpDescriptionNode: SKSpriteNode {
     private func layoutDescriptionNode() {
         descriptionNode.size = size.applying(.init(scaleX: 1.0, y: 0.55))
         descriptionNode.position = .init(x: 0.0, y: (-size.height + powerUpContainerNode.size.height) / 2)
+    }
+}
+
+extension PowerUpDescriptionNode: PowerUpContainerResponder {
+    func selectedPowerUpDidChanged(newValue: PowerUpType?) {
+        var description = newValue?
+            .powerUp
+            .description
+            .components(separatedBy: "\n") ?? ["", "", ""]
+        while description.count < 3 {
+            description.append("")
+        }
+        descriptionNode.titleLabelNode.text = description[0]
+        descriptionNode.topLabelNode.text = description[1]
+        descriptionNode.bottomLabelNode.text = description[2]
     }
 }

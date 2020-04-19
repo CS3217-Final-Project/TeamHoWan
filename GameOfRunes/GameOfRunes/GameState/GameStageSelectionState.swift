@@ -29,6 +29,8 @@ class GameStageSelectionState: GKState {
                 transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
             )
             return
+        } else if previousState is GameModeSelectionState {
+            sceneManager.loadNewMap()
         }
         
         sceneManager.transitionToScene(sceneIdentifier: .map)

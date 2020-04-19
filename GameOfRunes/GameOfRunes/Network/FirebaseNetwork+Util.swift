@@ -9,6 +9,7 @@
 import Foundation
 
 extension FirebaseNetwork {
+    // TODO: Does this create a new encoder/decoder object every time it is called?
     private var encoder: JSONEncoder {
         JSONEncoder()
     }
@@ -32,7 +33,7 @@ extension FirebaseNetwork {
         }
         let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultFalse
         let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
-        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultName
+        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
         let monsters = description[FirebaseKeys.rooms_players_monsters]
         let powerUp = description[FirebaseKeys.rooms_players_powerUp]
@@ -42,7 +43,7 @@ extension FirebaseNetwork {
         let decodedPowerUp = decodePowerUp(data: powerUp)
         let decodedMetadata = decodeMetadata(data: metadata)
         
-        return PlayerModel(uid: uid, name: name, isHost: isHost, isReady: isReady,
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady,
                            powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
     }
     
@@ -59,7 +60,7 @@ extension FirebaseNetwork {
         let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultFalse
         let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultFalse
         let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultFalse
-        let players = dict[FirebaseKeys.rooms_players_name] as? [String: AnyObject] ?? [:]
+        let players = dict[FirebaseKeys.rooms_players] as? [String: AnyObject] ?? [:]
 
         let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
         for (playerUid, playerDescription) in players {
