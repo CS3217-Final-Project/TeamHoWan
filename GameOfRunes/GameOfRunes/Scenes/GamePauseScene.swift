@@ -66,10 +66,12 @@ class GamePauseScene: SKScene, TapResponder {
             gameStateMachine?.enter(GameInPlayState.self)
         case .homeButton:
             RPScreenRecorder.shared().stopRecording { [weak self] _, _ in
+                print("End recording")
                 self?.gameStateMachine?.enter(GameStageSelectionState.self)
             }
         case .restartButton:
             RPScreenRecorder.shared().stopRecording { [weak self] _, _ in
+                print("End recording")
                 self?.gameStateMachine?.enter(GameStartState.self)
             }
         default:

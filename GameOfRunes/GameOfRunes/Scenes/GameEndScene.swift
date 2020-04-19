@@ -90,7 +90,7 @@ class GameEndScene: SKScene, TapResponder {
                 print(err.localizedDescription)
                 return
             }
-            
+            print("End recording")
             previewVC?.previewControllerDelegate = self
             
             if UIDevice.current.userInterfaceIdiom == .pad {
