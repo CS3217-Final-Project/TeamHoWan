@@ -133,8 +133,6 @@ protocol NetworkInterface {
         onError: ((Error) -> Void)?
     )
     
-    func observeGameHasStarted(roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
-    
     /**
      Updates game boolean flag "has_started" to the specified boolean value
      - Parameters:
@@ -154,15 +152,6 @@ protocol NetworkInterface {
      - onError: error handler
      */
     func getAvatar(roomId: String, uid: String, completion: ((Avatar) -> Void)?, onError: ((Error) -> Void)?)
-    
-    /**
-     Get all player uid
-     - Parameters:
-     - roomId: the game id concerned
-     - completion: completion handler
-     - onError: a closure run when an error occurs
-     */
-    func getPlayersUid(roomId: String, completion: (([String]) -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Update own monsters on the network.

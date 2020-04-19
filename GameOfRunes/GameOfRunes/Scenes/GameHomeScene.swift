@@ -301,7 +301,6 @@ extension GameHomeScene: AvatarOverviewNodeResponder {
 extension GameHomeScene {
     private func createRoom() {
         alertNode.presentAlert(alertDescription: "Creating a room", showTick: false, showCross: false, showLoader: true)
-        
         dbRef.createRoom(
             uid: UUID().uuidString,
             name: playerName,
@@ -321,13 +320,7 @@ extension GameHomeScene {
             onRoomClose: onRoomClose,
             onError: presentErrorAlert
         )
-        
-        dbRef.observeGameHasStarted(
-            roomId: roomId,
-            completion: startGameSuccess,
-            onError: presentErrorAlert
-        )
-        
+
         transit(from: multiplayerActionViewNode, to: waitingRoomViewNode)
     }
     
@@ -359,12 +352,6 @@ extension GameHomeScene {
             roomId: joinRoomViewNode.inputRoomId,
             onDataChange: onDataChange,
             onRoomClose: onRoomClose,
-            onError: presentErrorAlert
-        )
-        
-        dbRef.observeGameHasStarted(
-            roomId: joinRoomViewNode.inputRoomId,
-            completion: startGameSuccess,
             onError: presentErrorAlert
         )
         
@@ -427,6 +414,9 @@ extension GameHomeScene {
             return
         }
         room = roomModel.convertToRoom(with: localPlayerUid)
+        if roomModel.hasStarted {
+            startGameSuccess()
+        }
     }
     
     private func onRoomClose() {

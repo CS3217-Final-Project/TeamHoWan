@@ -257,29 +257,7 @@ class FirebaseNetwork: NetworkInterface {
     ) {
         // To be implemented
     }
-    
-    func observeGameHasStarted(
-        roomId: String,
-        completion: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_hasStarted))
-        let handle = ref.observe(.value, with: { snapshot in
-            guard let hasStarted = snapshot.value as? Bool else {
-                // TODO: Custom error - room does not exist
-                return
-            }
 
-            if hasStarted {
-                completion?()
-            }
-        }) { err in
-            onError?(err)
-        }
-        
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
     func updateGameHasStarted(
         roomId: String,
         to: Bool,
@@ -310,19 +288,6 @@ class FirebaseNetwork: NetworkInterface {
                     return
             }
             completion?(avatar)
-        }) { err in
-            onError?(err)
-        }
-    }
-    
-    func getPlayersUid(roomId: String, completion: (([String]) -> Void)? = nil, onError: ((Error) -> Void)? = nil) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
-        ref.observeSingleEvent(of: .value, with: { snap in
-            guard let room = snap.value as? [String: AnyObject] else {
-                return
-            }
-            let roomModel = self.firebaseRoomModelFactory(forDict: room)
-            completion?(roomModel.players.map({ $0.uid }))
         }) { err in
             onError?(err)
         }
