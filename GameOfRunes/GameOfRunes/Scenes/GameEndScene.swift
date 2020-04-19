@@ -82,6 +82,8 @@ class GameEndScene: SKScene, TapResponder {
         super.didMove(to: view)
         
         statusLabel.text = didWin ? "You Won!" : "You Lost :("
+        
+        previewVC = nil
 
         RPScreenRecorder.shared().stopRecording { [weak self] previewVC, err in
             if let err = err {
@@ -96,7 +98,6 @@ class GameEndScene: SKScene, TapResponder {
                 previewVC?.popoverPresentationController?.sourceRect = .zero
                 previewVC?.popoverPresentationController?.sourceView = view
                 previewVC?.preferredContentSize = (self?.size ?? UIScreen.main.bounds.size)
-                previewVC?.modalTransitionStyle = .flipHorizontal
             }
             
             self?.previewVC = previewVC
