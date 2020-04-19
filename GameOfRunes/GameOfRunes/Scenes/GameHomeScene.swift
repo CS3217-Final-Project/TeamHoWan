@@ -519,7 +519,6 @@ extension GameHomeScene {
         guard let currentViewNode = currentViewNode else {
             return
         }
-        // TODO: Error when name field is non empty but cannot interact with buttons
         transit(from: currentViewNode, to: multiplayerActionViewNode)
     }
 }
