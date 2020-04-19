@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import Reachability
 
 /**
  Interface for the network. Contains methods to obtain/receive information from the game network.
  */
 protocol NetworkInterface {
+    /**
+     Connection observer
+     - Parameters:.
+     - uponDisconnect - handler upon disconnection
+     */
+    func addConnectionObserver(uponDisconnect: (() -> Void)?)
+    
     // ================================== Room functions =========================================
     
     /**
@@ -115,7 +123,9 @@ protocol NetworkInterface {
      - onNotAllReady: callback fired when not everyone in the room is ready.
      - onError: error handler
      */
-    func startGame(roomId: String, completion: (() -> Void)?, onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
+    func startGame(roomId: String, completion: (() -> Void)?, insufficientPlayers: (() -> Void)?,
+                   onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
+        
     
     /**
      Listen to changes to the game reference.
@@ -132,8 +142,6 @@ protocol NetworkInterface {
         onMonsterReceived: (() -> Void)?,
         onError: ((Error) -> Void)?
     )
-    
-    func observeGameHasStarted(roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Updates game boolean flag "has_started" to the specified boolean value
@@ -154,15 +162,6 @@ protocol NetworkInterface {
      - onError: error handler
      */
     func getAvatar(roomId: String, uid: String, completion: ((Avatar) -> Void)?, onError: ((Error) -> Void)?)
-    
-    /**
-     Get all player uid
-     - Parameters:
-     - roomId: the game id concerned
-     - completion: completion handler
-     - onError: a closure run when an error occurs
-     */
-    func getPlayersUid(roomId: String, completion: (([String]) -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Update own monsters on the network.
@@ -189,6 +188,6 @@ protocol NetworkInterface {
 
 extension NetworkInterface {
     func checkForConnection() {
-        // TODO: Implementation
+        
     }
 }

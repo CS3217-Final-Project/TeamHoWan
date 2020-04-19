@@ -117,6 +117,7 @@
 		561AA9BF242EF29C007CFFA5 /* LabelSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A99CF3241FCD15003AE88A /* LabelSystem.swift */; };
 		561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */; };
 		563F3DED24171B4A009381B9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F3DEC24171B49009381B9 /* GameScene.swift */; };
+		56412E7A244C0E0300449780 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56412E79244C0E0300449780 /* NetworkErrors.swift */; };
 		56445ECE242EFCE600D5DCBE /* ComboEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56445ECD242EFCE600D5DCBE /* ComboEntity.swift */; };
 		565E032D2423CA31003B6C67 /* HellfirePowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */; };
 		565E032F2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */; };
@@ -356,6 +357,7 @@
 		560DED9F242B9AC600A6D9A6 /* MultiplierComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplierComponent.swift; sourceTree = "<group>"; };
 		561DB6EA2421CBCE005FA871 /* CircleGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGestureRecognizer.swift; sourceTree = "<group>"; };
 		563F3DEC24171B49009381B9 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		56412E79244C0E0300449780 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		56445ECD242EFCE600D5DCBE /* ComboEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboEntity.swift; sourceTree = "<group>"; };
 		565E032C2423CA31003B6C67 /* HellfirePowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUpEntity.swift; sourceTree = "<group>"; };
 		565E032E2423CC58003B6C67 /* IcePrisonPowerUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcePrisonPowerUpEntity.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			children = (
 				4A09C4F2242FC36200CA7625 /* Stage.swift */,
 				4A1B333D243280E600B67B91 /* StageRealmModel.swift */,
+				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
 				8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */,
 				4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */,
 				4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */,
@@ -836,7 +839,7 @@
 				C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */,
 				C6AACD5A2444839F0012C7D9 /* MonsterModel.swift */,
 				C6AACD58244483870012C7D9 /* RoomModel.swift */,
-				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
+				56412E79244C0E0300449780 /* NetworkErrors.swift */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -1419,6 +1422,7 @@
 				C6A99CF2241FCC2D003AE88A /* LabelComponent.swift in Sources */,
 				4A09C4EC242E465200CA7625 /* GameMapScene.swift in Sources */,
 				8A649E9124405130005A5371 /* RootRenderNode.swift in Sources */,
+				56412E7A244C0E0300449780 /* NetworkErrors.swift in Sources */,
 				4A6213DC2430941000FABB48 /* AvatarOverviewNode.swift in Sources */,
 				C6AACD5F244490E10012C7D9 /* FirebaseObserver.swift in Sources */,
 				4AA6DD8A244617CE008E279D /* AlertViewNode.swift in Sources */,
@@ -1685,13 +1689,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SMQW2H6BP;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BrianYen.TeamHoWan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andyylam.TeamHoWan;
 				PRODUCT_NAME = GameOfRunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1707,13 +1711,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SMQW2H6BP;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BrianYen.TeamHoWan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andyylam.TeamHoWan;
 				PRODUCT_NAME = GameOfRunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1730,7 +1734,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SMQW2H6BP;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1757,7 +1761,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SMQW2H6BP;
+				DEVELOPMENT_TEAM = 8W4BRGAG73;
 				INFOPLIST_FILE = GameOfRunesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
