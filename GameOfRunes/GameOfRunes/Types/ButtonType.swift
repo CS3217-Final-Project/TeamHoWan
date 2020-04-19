@@ -32,4 +32,5 @@ enum ButtonType {
     case crossButton
     case settingsButton
     case readyButton
+    case viewRecordingButton
 }
