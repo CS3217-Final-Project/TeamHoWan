@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Reachability
 
 /**
  Interface for the network. Contains methods to obtain/receive information from the game network.
@@ -115,7 +116,9 @@ protocol NetworkInterface {
      - onNotAllReady: callback fired when not everyone in the room is ready.
      - onError: error handler
      */
-    func startGame(roomId: String, completion: (() -> Void)?, onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
+    func startGame(roomId: String, completion: (() -> Void)?, insufficientPlayers: (() -> Void)?,
+                   onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
+        
     
     /**
      Listen to changes to the game reference.
@@ -178,6 +181,6 @@ protocol NetworkInterface {
 
 extension NetworkInterface {
     func checkForConnection() {
-        // TODO: Implementation
+        
     }
 }

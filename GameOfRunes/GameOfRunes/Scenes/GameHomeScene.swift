@@ -443,8 +443,19 @@ extension GameHomeScene {
         dbRef.startGame(
             roomId: roomId,
             completion: nil,
+            insufficientPlayers: insufficientPlayers,
             onNotAllReady: notAllReady,
             onError: presentErrorAlert
+        )
+    }
+    
+    private func insufficientPlayers() {
+        alertNode.presentAlert(
+            alertDescription: "Insufficient players!",
+            showTick: false,
+            showCross: true,
+            showLoader: false,
+            status: .warning
         )
     }
     

@@ -20,7 +20,6 @@ class FirebaseNetwork: NetworkInterface {
     ) {
         let roomId = randomId
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
-        
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             if snapshot.value as? [String: AnyObject] != nil {
                 // The room already exists, try generating another id.
@@ -68,6 +67,9 @@ class FirebaseNetwork: NetworkInterface {
             }
             guard let isOpen = roomDict[FirebaseKeys.rooms_isOpen] as? Bool,
                 let players = roomDict[FirebaseKeys.rooms_players] as? [String: AnyObject] else {
+                    if let onError = onError {
+                        onError(NetworkError.incorrectDatabaseSchema)
+                    }
                     return
             }
             
@@ -123,6 +125,9 @@ class FirebaseNetwork: NetworkInterface {
         isHostRef.observeSingleEvent(of: .value, with: { snapshot in
             guard let isHost = snapshot.value as? Bool else {
                 // Player does not exist
+                if let onError = onError {
+                    onError(NetworkError.incorrectDatabaseSchema)
+                }
                 return
             }
             if isHost {
@@ -152,6 +157,9 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { snapshot in
             guard let isReady = snapshot.value as? Bool else {
                 // Room does not exist
+                if let onError = onError {
+                    onError(NetworkError.incorrectDatabaseSchema)
+                }
                 return
             }
             ref.setValue(!isReady, withCompletionBlock: { err, _ in
@@ -217,18 +225,27 @@ class FirebaseNetwork: NetworkInterface {
     func startGame(
         roomId: String,
         completion: (() -> Void)? = nil,
+        insufficientPlayers: (() -> Void)? = nil,
         onNotAllReady: (() -> Void)? = nil,
         onError: ((Error) -> Void)? = nil
     ) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players))
         
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let playersData = snapshot.value as? [String: AnyObject],
-                playersData.count > 1 else {
-                    // TODO: Custom errors
-                    // Players object does not exist in firebase / only 1 or less players in the room.
-                    return
+            guard let playersData = snapshot.value as? [String: AnyObject] else {
+                // Players object does not exist
+                if let onError = onError {
+                    onError(NetworkError.incorrectDatabaseSchema)
+                }
+                return
             }
+            guard playersData.count > 1 else {
+                if let insufficientPlayers = insufficientPlayers {
+                    insufficientPlayers()
+                }
+                return
+            }
+            
             var players: [PlayerModel] = []
             for player in playersData {
                 guard let playerModel = self?.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value) else {
@@ -255,7 +272,7 @@ class FirebaseNetwork: NetworkInterface {
         onMonsterReceived: (() -> Void)? = nil,
         onError: ((Error) -> Void)? = nil
     ) {
-        // To be implemented
+        // TODO: implementation
     }
 
     func updateGameHasStarted(
@@ -270,7 +287,9 @@ class FirebaseNetwork: NetworkInterface {
                 onError?(error)
                 return
             }
-            completion?()
+            if let completion = completion, let onError = onError {
+                self.changeRoomOpenState(forRoomId: roomId, completion, onError)
+            }
         })
     }
     
@@ -285,6 +304,9 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { snap in
             guard let avatarString = snap.value as? String,
                 let avatar = Avatar.getAvatar(withName: avatarString) else {
+                    if let onError = onError {
+                        onError(NetworkError.incorrectDatabaseSchema)
+                    }
                     return
             }
             completion?(avatar)
@@ -339,6 +361,7 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { snapshot in
             guard let isOpen = snapshot.value as? Bool else {
                 // Room does not exist
+                onError(NetworkError.incorrectDatabaseSchema)
                 return
             }
             ref.setValue(!isOpen, withCompletionBlock: { err, _ in
