@@ -29,7 +29,7 @@ class EnemyModel: Codable {
         guard entity.type == .enemyEntity,
             let uuid = uuid,
             let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType,
-            let position = entity.component(ofType: MoveComponent.self)?.cgPosition,
+            let position = entity.component(ofType: SpriteComponent.self)?.node.position,
             let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity,
             let gesture = gestureEntity.component(ofType: GestureComponent.self)?.gesture else {
                 return nil
