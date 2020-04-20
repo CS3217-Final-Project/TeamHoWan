@@ -268,6 +268,10 @@ extension GameHomeScene {
         nameField.placeholder = "Enter a name"
         nameField.delegate = self
         nameField.textColor = .black
+        
+        // TODO: remove, only for testing purposes.
+        nameField.text = "Simp"
+        nameField.resignFirstResponder()
     }
     
     private func setUpViews() {

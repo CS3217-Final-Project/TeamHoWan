@@ -41,6 +41,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         
         uuidEnemyMapping[newUuid] = entity
         enemyUuidMapping[entity] = newUuid
+        pushMonstersToNetwork()
         return isAdded
     }
     

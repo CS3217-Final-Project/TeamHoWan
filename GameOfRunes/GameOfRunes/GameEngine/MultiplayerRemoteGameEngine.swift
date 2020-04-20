@@ -19,7 +19,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
         self.uid = uid
         
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
-        
+
         network.observeEnemy(roomId: roomId, uid: uid, { [weak self] enemies in self?.syncEnemies(enemies) }, { _ in })
         network.observeMetadata(roomId: roomId, uid: uid, { [weak self] metadata in self?.syncMetadata(metadata) }, { _ in })
         network.observePowerUp(roomId: roomId, uid: uid, { [weak self] powerUp in self?.activatePowerUp(powerUp) }, { _ in })

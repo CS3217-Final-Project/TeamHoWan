@@ -237,8 +237,9 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.rooms_players_monsters))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let monsters = self?.decodeMonsters(data: snapshot.value as AnyObject?) else {
-                return
+            guard let data = snapshot.value as? [[String: AnyObject]],
+                let monsters = self?.decodeMonsters(data: data) else {
+                    return
             }
             onDataChange(monsters)
         }) { err in
@@ -255,8 +256,9 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.rooms_players_metadata))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let metadata = self?.decodeMetadata(data: snapshot.value as AnyObject?) else {
-                return
+            guard let data = snapshot.value as? [String: AnyObject],
+                let metadata = self?.decodeMetadata(data: data) else {
+                    return
             }
             onDataChange(metadata)
         }) { err in
@@ -273,7 +275,8 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.rooms_players_powerUp))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let powerUp = self?.decodePowerUp(data: snapshot.value as AnyObject?) else {
+            guard let data = snapshot.value as? [String: AnyObject],
+                let powerUp = self?.decodePowerUp(data: data) else {
                 return
             }
             onDataChange(powerUp)
