@@ -73,6 +73,12 @@ class MultiplayerRemoteGameEngine: GameEngine {
         
         metadata.selectedPowerUp = powerUp.powerUpType
         let position = CGPoint(x: powerUp.position.x * playArea.width, y: powerUp.position.y * playArea.height)
-        activatePowerUp(at: position, with: powerUp.size)
+        var size: CGSize?
+        
+        if let scaledSize = powerUp.size {
+            size = CGSize(width: scaledSize.width * playArea.width, height: scaledSize.height * playArea.height)
+        }
+        
+        activatePowerUp(at: position, with: size)
     }
 }
