@@ -31,7 +31,6 @@ class RemoteRootRenderNode: RootRenderNode {
          size: CGSize) {
         
         super.init(size: size)
-        // TODO: pass roomid and uid in
         self.gameEngine = MultiplayerRemoteGameEngine(roomId: roomId,
                                                       uid: uid,
                                                       stage: stage,

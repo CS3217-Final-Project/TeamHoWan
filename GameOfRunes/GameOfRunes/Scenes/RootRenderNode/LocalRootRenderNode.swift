@@ -29,7 +29,6 @@ class LocalRootRenderNode: RootRenderNode {
          size: CGSize) {
         
         super.init(size: size)
-        // TODO: pass in the roomid and uid.
         self.gameEngine = MultiplayerLocalGameEngine(roomId: roomId,
                                                      uid: uid,
                                                      stage: stage,

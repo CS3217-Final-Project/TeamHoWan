@@ -25,7 +25,13 @@ class MultiplayerRemoteGameEngine: GameEngine {
         network.observePowerUp(roomId: roomId, uid: uid, { [weak self] powerUp in self?.activatePowerUp(powerUp) }, { _ in })
     }
     
+    override func cleanUpPowerUp() {}
+    
     private func syncEnemies(_ enemies: [EnemyModel]) {
+        guard let size = rootRenderNode?.size else {
+            return
+        }
+        
         Set(uuidEnemyMapping.keys).symmetricDifference(enemies.map({ enemy in enemy.uuid })).forEach { uuid in
             guard let enemy = uuidEnemyMapping[uuid] else {
                 return
@@ -44,8 +50,10 @@ class MultiplayerRemoteGameEngine: GameEngine {
         
         for enemy in enemies {
             let enemyEntity = uuidEnemyMapping[enemy.uuid]
-            enemyEntity?.component(ofType: SpriteComponent.self)?.node.position = enemy.position
-            enemyEntity?.component(ofType: MoveComponent.self)?.cgPosition = enemy.position
+            let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
+            
+            enemyEntity?.component(ofType: SpriteComponent.self)?.node.position = position
+            enemyEntity?.component(ofType: MoveComponent.self)?.cgPosition = position
         }
     }
     
@@ -59,7 +67,12 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     private func activatePowerUp(_ powerUp: PowerUpModel) {
+        guard let playArea = rootRenderNode?.size else {
+            return
+        }
+        
         metadata.selectedPowerUp = powerUp.powerUpType
-        activatePowerUp(at: powerUp.position, with: powerUp.size)
+        let position = CGPoint(x: powerUp.position.x * playArea.width, y: powerUp.position.y * playArea.height)
+        activatePowerUp(at: position, with: powerUp.size)
     }
 }

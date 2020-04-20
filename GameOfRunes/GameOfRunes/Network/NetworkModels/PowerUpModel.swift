@@ -24,4 +24,17 @@ class PowerUpModel: Codable {
         self.position = position
         self.size = size
     }
+    
+    init(powerUpType: PowerUpType,
+         playAreaSize: CGSize,
+         position: CGPoint,
+         size: CGSize? = nil) {
+        self.uuid = Util.generateUuid()
+        self.powerUpType = powerUpType
+        self.position = CGPoint(x: position.x / playAreaSize.width, y: position.y / playAreaSize.height)
+        
+        if let size = size {
+            self.size = CGSize(width: size.width / playAreaSize.width, height: size.height / playAreaSize.height)
+        }
+    }
 }

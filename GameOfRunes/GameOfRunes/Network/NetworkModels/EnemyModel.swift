@@ -25,7 +25,7 @@ class EnemyModel: Codable {
         self.gestureType = gestureType
     }
     
-    init?(_ entity: Entity, uuid: String?) {
+    init?(_ entity: Entity, uuid: String?, playAreaSize: CGSize) {
         guard entity.type == .enemyEntity,
             let uuid = uuid,
             let enemyType = entity.component(ofType: EnemyTypeComponent.self)?.enemyType,
@@ -37,7 +37,7 @@ class EnemyModel: Codable {
         
         self.uuid = uuid
         self.enemyType = enemyType
-        self.position = position
+        self.position = CGPoint(x: position.x / playAreaSize.width, y: position.y / playAreaSize.height)
         self.gestureType = gesture
     }
 }

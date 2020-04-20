@@ -288,14 +288,14 @@ class GameEngine: GameEngineFacade {
     }
     
     func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
+        cleanUpPowerUp()
+        
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            rootRenderNode?.deselectPowerUp()
             return
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
             rootRenderNode?.showPowerUpDisabled(at: position)
-            rootRenderNode?.deselectPowerUp()
             return
         }
         
@@ -303,12 +303,14 @@ class GameEngine: GameEngineFacade {
         
         guard metadata.playerMana >= manaPointsRequired else {
             rootRenderNode?.showInsufficientMana(at: position)
-            rootRenderNode?.deselectPowerUp()
             return
         }
         
         selectedPowerUp.powerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
+    }
+    
+    func cleanUpPowerUp() {
         rootRenderNode?.deselectPowerUp()
     }
     
