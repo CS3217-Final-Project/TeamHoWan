@@ -31,6 +31,14 @@ class PowerUpSystem: GKComponentSystem<PowerUpComponent>, System {
             self.gameEngine?.deactivateInvincibleEndPoint()
         }
     }
+    
+    func addComponent(_ component: Component) {
+        guard let component = component as? PowerUpComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
 
     func removeComponent(_ component: Component) {
         guard let component = component as? PowerUpComponent else {

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +152,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  HealthBarNode.swift
@@ -356,7 +364,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  ManaBarNode.swift
@@ -684,7 +696,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GestureComponent.swift
@@ -793,7 +809,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  HealthComponent.swift
@@ -946,7 +966,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1123,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1204,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1421,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  SpriteComponent.swift
@@ -1572,7 +1608,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1721,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1921,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +2034,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2147,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +2259,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GestureEntity.swift
@@ -2311,7 +2371,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +2483,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +2596,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +2709,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2822,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  TimerEntity.swift
@@ -2854,7 +2934,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  SystemDelegate.swift
@@ -2869,7 +2953,11 @@ import Cuckoo
 
 import GameplayKit
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameEngine.swift
@@ -3948,7 +4036,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  RemoveDelegate.swift
@@ -4114,7 +4206,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  HealthSystem.swift
@@ -4170,6 +4266,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4195,6 +4306,11 @@ import GameplayKit
 	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(Entity), Int?> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "minusHealthPoints(for: Entity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -4225,6 +4341,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4243,6 +4365,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Int?).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4250,7 +4376,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  ManaSystem.swift
@@ -4288,6 +4418,21 @@ import GameplayKit
 
     
 
+    
+    
+    
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
     
     
     
@@ -4343,6 +4488,11 @@ import GameplayKit
 	    }
 	    
 	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
@@ -4375,6 +4525,12 @@ import GameplayKit
 	
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4401,6 +4557,10 @@ import GameplayKit
     
 
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4416,7 +4576,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  MoveSystem.swift
@@ -4472,6 +4636,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4497,6 +4676,11 @@ import GameplayKit
 	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
 	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "update(deltaTime: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -4527,6 +4711,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4545,6 +4735,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4552,7 +4746,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  SpriteSystem.swift
@@ -4618,6 +4816,21 @@ import GameplayKit
                 super.removeComponent(foundIn: entity)
                 ,
             defaultCall: __defaultImplStub!.removeComponent(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
         
     }
     
@@ -4715,6 +4928,11 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(foundIn: GKEntity)", parameterMatchers: matchers))
 	    }
 	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
@@ -4769,6 +4987,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4815,6 +5039,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4838,7 +5066,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  TimerSystem.swift
@@ -4924,6 +5156,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4959,6 +5206,11 @@ import GameplayKit
 	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "resetTimer(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -5001,6 +5253,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -5027,6 +5285,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -5034,7 +5296,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameEndState.swift
@@ -5288,7 +5554,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameInPlayState.swift
@@ -5424,7 +5694,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameModeSelectionState.swift
@@ -5560,7 +5834,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GamePauseState.swift
@@ -5696,7 +5974,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameStageSelectionState.swift
@@ -5832,7 +6114,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameStartState.swift
@@ -5968,7 +6254,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameStateMachine.swift
@@ -6220,7 +6510,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  GameScene.swift
@@ -6495,7 +6789,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-21 15:38:16 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-21 14:54:32 +0000
+>>>>>>> 72bb4f68f99b172584da336f8a4c173697a22a0e
 
 //
 //  SceneManager.swift
