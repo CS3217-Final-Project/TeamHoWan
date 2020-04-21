@@ -9,7 +9,6 @@
 import Foundation
 
 extension FirebaseNetwork {
-    // TODO: Does this create a new encoder/decoder object every time it is called?
     private var encoder: JSONEncoder {
         JSONEncoder()
     }
