@@ -45,19 +45,19 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     private func updateComponent(_ component: GestureEntityComponent) {
         guard let entity = component.entity,
             let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
-            let gestureNode = component.gestureEntity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
-                return
+            let gestureNode = component.gestureEntity
+                .component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
+            return
         }
         
         gestureNode.position.x = enemyNode.position.x
-        gestureNode.position.y = enemyNode.position.y + GameConfig.Enemy.gestureBubbleOffsetPercentage * enemyNode.size.height
+        gestureNode.position.y = enemyNode.position.y +
+            GameConfig.Enemy.gestureBubbleOffsetPercentage * enemyNode.size.height
     }
     
     func setInitialGesture(for entity: Entity) {
-        guard entity.type == .enemyEntity,
-            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
-            let gesture = generateGesture(for: entity) else {
-                return
+        guard entity.type == .enemyEntity, let gesture = generateGesture(for: entity) else {
+            return
         }
 
         let gestureEntity = GestureEntity(gesture: gesture, parent: entity)
@@ -66,9 +66,8 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     }
     
     func setGesture(for entity: Entity, using gesture: CustomGesture?) {
-        guard entity.type == .enemyEntity,
-            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
-                return
+        guard entity.type == .enemyEntity else {
+            return
         }
         
         var nextGesture = gesture
