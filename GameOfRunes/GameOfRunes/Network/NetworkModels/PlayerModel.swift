@@ -17,6 +17,7 @@ class PlayerModel: Codable {
     var isHost: Bool
     var isReady: Bool
     var avatar: String
+    var didLose: Bool
     var powerUpActivated: PowerUpModel?
     var monsters: [EnemyModel]
     var metadata: MetadataModel?
@@ -29,6 +30,7 @@ class PlayerModel: Codable {
          name: String = "",
          isReady: Bool = false,
          avatar: String = FirebaseKeys.defaultAvatar,
+         didLose: Bool = false,
          powerUp: PowerUpModel? = nil,
          monsters: [EnemyModel] = [],
          metadata: MetadataModel? = nil) {
@@ -37,6 +39,7 @@ class PlayerModel: Codable {
         self.isHost = isHost
         self.isReady = isReady
         self.avatar = avatar
+        self.didLose = didLose
         self.powerUpActivated = powerUp
         self.monsters = monsters
         self.metadata = metadata

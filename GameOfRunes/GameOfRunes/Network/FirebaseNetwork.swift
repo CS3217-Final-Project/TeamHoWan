@@ -434,6 +434,22 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
+    func updateDidLose(roomId: String,
+                       uid: String,
+                       didLose: Bool,
+                       completion: (() -> Void)?,
+                       onError: ((Error) -> Void)?) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                    uid, FirebaseKeys.rooms_players_didLose))
+        ref.setValue(didLose, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+            completion?()
+        })
+    }
+    
     func changeRoomOpenState(forRoomId roomId: String,
                              _ onComplete: @escaping () -> Void,
                              _ onError: @escaping (Error) -> Void) {

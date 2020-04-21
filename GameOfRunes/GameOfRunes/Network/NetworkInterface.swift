@@ -200,6 +200,12 @@ protocol NetworkInterface {
                         metadata: MetadataModel,
                         completion: (() -> Void)?,
                         onError: ((Error) -> Void)?)
+    
+    func updateDidLose(roomId: String,
+                       uid: String,
+                       didLose: Bool,
+                       completion: (() -> Void)?,
+                       onError: ((Error) -> Void)?)
 }
 
 extension NetworkInterface {

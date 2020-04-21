@@ -23,6 +23,7 @@ class GameInMultiplayerPlayState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
 
+        sceneManager.loadNewMultiplayerScene()
         sceneManager.transitionToScene(
             sceneIdentifier: .multiplayerPlay,
             transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
