@@ -15,13 +15,10 @@ class PlayerUnitEntity: Entity {
 
     init(gameEngine: GameEngine?) {
         super.init()
-        
-        guard let renderNodeSize = gameEngine?.rootRenderNode?.size else {
-            return
-        }
 
+        let renderNodeSize = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size)
         let unitNode = SKSpriteNode(texture: TextureContainer.eliteKnightTextures.first)
-        unitNode.size = unitNode.size.scaleTo(width: renderNodeSize.width / 6)
+        unitNode.size = unitNode.size.scaleTo(width: renderNodeSize.width * GameConfig.GamePlayScene.unitWidthRatio)
         CollisionType.playerUnit.setPhysicsBody(
             for: unitNode,
             with: unitNode.size

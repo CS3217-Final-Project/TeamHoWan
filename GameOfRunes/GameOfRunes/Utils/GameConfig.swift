@@ -99,13 +99,14 @@ enum GameConfig {
         static var gestureAreaHeightRatio: CGFloat {
             1 - playerAreaHeightRatio
         }
+        static let unitWidthRatio: CGFloat = 1 / 6
+        static let removalAnimationWidthRatio: CGFloat = 1 / 5
 
         // Spawning of Enemies
         static let numLanes: Int = 3
         static let horizontalOffSetRatio: CGFloat = 0.1
         static let verticalOffSetRatio: CGFloat = 0.03
         static let numEndPoints: Int = 3
-        static let enemyWidthRatio: CGFloat = 1 / 6
 
         // Endless Mode
         static let numEnemyWavesThreshold: Int = 3
