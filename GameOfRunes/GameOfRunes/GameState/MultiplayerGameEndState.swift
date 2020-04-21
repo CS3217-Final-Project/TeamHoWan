@@ -29,7 +29,7 @@ class MultiplayerGameEndState: GKState {
         }
 
         sceneManager.transitionToScene(
-            sceneIdentifier: .end(win: didWin),
+            sceneIdentifier: .multiplayerEnd(win: didWin),
             transition: .doorsCloseHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
         )
     }

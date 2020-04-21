@@ -71,6 +71,7 @@ class MultiplayerGameScene: GameScene {
     }
     
     override func gameDidEnd(didWin: Bool, finalScore: Int) {
+        print("Multiplayer game ended")
         gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.didWin = didWin
         gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.finalScore = finalScore
         gameStateMachine?.enter(MultiplayerGameEndState.self)
