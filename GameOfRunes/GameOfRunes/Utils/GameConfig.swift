@@ -38,7 +38,6 @@ enum GameConfig {
     enum Enemy {
         static let runeScalingFactor: CGFloat = 0.4
         static let gestureBubbleOffsetPercentage: CGFloat = 0.95
-        static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let normalScore = 10
 
         // Note: monster difficulties must be unique

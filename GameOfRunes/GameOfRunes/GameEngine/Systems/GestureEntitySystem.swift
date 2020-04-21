@@ -49,8 +49,8 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
                 return
         }
         
-        gestureNode.position.x = enemyNode.position.x + GameConfig.Enemy.gestureBubbleOffset.x
-        gestureNode.position.y = enemyNode.position.y + GameConfig.Enemy.gestureBubbleOffset.y
+        gestureNode.position.x = enemyNode.position.x
+        gestureNode.position.y = enemyNode.position.y + GameConfig.Enemy.gestureBubbleOffsetPercentage * enemyNode.size.height
     }
     
     func setInitialGesture(for entity: Entity) {
@@ -61,8 +61,6 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
         }
 
         let gestureEntity = GestureEntity(gesture: gesture, parent: entity)
-//        gestureEntity.component(ofType: SpriteComponent.self)?
-//            .setGestureConstraint(referenceNode: enemyNode)
         let gestureEntityComponent = GestureEntityComponent(gestureEntity)
         entity.addComponent(gestureEntityComponent)
     }
@@ -90,8 +88,6 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
         }
         
         let gestureEntity = GestureEntity(gesture: newGesture, parent: entity)
-//        gestureEntity.component(ofType: SpriteComponent.self)?
-//            .setGestureConstraint(referenceNode: enemyNode)
         let gestureEntityComponent = GestureEntityComponent(gestureEntity)
         entity.addComponent(gestureEntityComponent)
         gameEngine?.addComponent(gestureEntityComponent)
