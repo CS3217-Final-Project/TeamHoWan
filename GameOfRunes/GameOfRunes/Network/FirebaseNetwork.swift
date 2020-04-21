@@ -451,6 +451,7 @@ class FirebaseNetwork: NetworkInterface {
                 onError?(error)
                 return
             }
+            self.dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId)).setValue(nil)
             completion?()
         })
     }
@@ -462,7 +463,7 @@ class FirebaseNetwork: NetworkInterface {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_isOpen))
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard let _ = snapshot.value as? Bool else {
+            guard snapshot.value as? Bool != nil else {
                 onError(NetworkError.incorrectDatabaseSchema)
                 return
             }
