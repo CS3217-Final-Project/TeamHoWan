@@ -58,6 +58,8 @@ enum GameConfig {
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
         static let manaPerManaUnit: Int = 10
+        static let manaUltraRareThreshold: Double = 90.0
+        static let manaRareThreshold: Double = 60.0
     }
 
     enum SceneManager {
