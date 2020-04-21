@@ -22,6 +22,8 @@ class MultiplayerGameInPlayState: GKState {
             let sceneManager = gameStateMachine.sceneManager else {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
+        
+        sceneManager.loadNewMultiplayerScene()
 
         sceneManager.transitionToScene(
             sceneIdentifier: .multiplayerPlay,
