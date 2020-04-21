@@ -41,6 +41,14 @@ class PlayerSystem: GKComponentSystem<PlayerComponent>, System {
         component.scoreNode?.setLabel(label: "\(playerScore.scorePoints)")
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? PlayerComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? PlayerComponent else {
             return

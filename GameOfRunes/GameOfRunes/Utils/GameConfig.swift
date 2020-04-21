@@ -38,7 +38,6 @@ enum GameConfig {
     enum Enemy {
         static let runeScalingFactor: CGFloat = 0.4
         static let gestureBubbleOffsetPercentage: CGFloat = 0.95
-        static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let normalScore = 10
 
         // Note: monster difficulties must be unique
@@ -59,6 +58,8 @@ enum GameConfig {
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
         static let manaPerManaUnit: Int = 10
+        static let manaUltraRareThreshold: Double = 90.0
+        static let manaRareThreshold: Double = 60.0
     }
 
     enum SceneManager {
@@ -104,6 +105,7 @@ enum GameConfig {
         static let horizontalOffSetRatio: CGFloat = 0.1
         static let verticalOffSetRatio: CGFloat = 0.03
         static let numEndPoints: Int = 3
+        static let enemyWidthRatio: CGFloat = 1 / 6
 
         // Endless Mode
         static let numEnemyWavesThreshold: Int = 3

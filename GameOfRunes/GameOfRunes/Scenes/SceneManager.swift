@@ -91,6 +91,10 @@ class SceneManager {
         presentingView.presentScene(scene, transition: transition)
     }
     
+    func loadNewMultiplayerScene() {
+        multiplayerGamePlayScene = .init(size: self.presentingView.bounds.size, gameStateMachine: gameStateMachine)
+    }
+    
     /**
      Resets the `GameScene` by creating a new `GameScene` object,
      */

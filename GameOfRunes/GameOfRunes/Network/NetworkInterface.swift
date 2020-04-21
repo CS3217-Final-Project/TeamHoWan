@@ -107,7 +107,25 @@ protocol NetworkInterface {
      - onRoomClose: callback that is fired if the room closes
      - onError: error handler
      */
-    func observeRoomState(roomId: String, onDataChange: ((RoomModel) -> Void)?, onRoomClose: (() -> Void)?, onError: ((Error) -> Void)?)
+    func observeRoomState(roomId: String,
+                          onDataChange: ((RoomModel) -> Void)?,
+                          onRoomClose: (() -> Void)?,
+                          onError: ((Error) -> Void)?)
+    
+    func observeEnemy(roomId: String,
+                      uid: String,
+                      onDataChange: (([EnemyModel]) -> Void)?,
+                      onError: ((Error) -> Void)?)
+    
+    func observeMetadata(roomId: String,
+                         uid: String,
+                         onDataChange: ((MetadataModel) -> Void)?,
+                         onError: ((Error) -> Void)?)
+    
+    func observePowerUp(roomId: String,
+                        uid: String,
+                        onDataChange: ((PowerUpModel) -> Void)?,
+                        onError: ((Error) -> Void)?)
     
     /**
      Removes all observers.
@@ -125,23 +143,6 @@ protocol NetworkInterface {
      */
     func startGame(roomId: String, completion: (() -> Void)?, insufficientPlayers: (() -> Void)?,
                    onNotAllReady: (() -> Void)?, onError: ((Error) -> Void)?)
-        
-    
-    /**
-     Listen to changes to the game reference.
-     - Parameters:
-     - roomId: the game id to be observed
-     - onMonsterReceived: a callback that is fired every time monsters have been received (sent by the other player)
-     - onGameStateChange: callback that is fired every time the game state of the other player changes
-     - onError: error handler
-     */
-    func observeGameState(
-        roomId: String,
-        onEvent: ((PowerUpModel) -> Void)?,
-        onMonsterChange: (([MonsterModel]) -> Void)?,
-        onMonsterReceived: (() -> Void)?,
-        onError: ((Error) -> Void)?
-    )
     
     /**
      Updates game boolean flag "has_started" to the specified boolean value
@@ -172,7 +173,11 @@ protocol NetworkInterface {
      - completion: completion handler
      - onError: error handler
      */
-    func pushMonsters(roomId: String, uid: String, monsters: [MonsterModel], completion: (() -> Void)?, onError: ((Error) -> Void)?)
+    func updateMonsters(roomId: String,
+                        uid: String,
+                        monsters: [EnemyModel],
+                        completion: (() -> Void)?,
+                        onError: ((Error) -> Void)?)
     
     /**
      Update with a powerUp activation event.
@@ -183,7 +188,24 @@ protocol NetworkInterface {
      - completion: completion handler
      - onError: error handler
      */
-    func pushPowerUp(roomId: String, uid: String, powerUp: PowerUpModel, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+
+    func updatePowerUp(roomId: String,
+                       uid: String,
+                       powerUp: PowerUpModel,
+                       completion: (() -> Void)?,
+                       onError: ((Error) -> Void)?)
+    
+    func updateMetadata(roomId: String,
+                        uid: String,
+                        metadata: MetadataModel,
+                        completion: (() -> Void)?,
+                        onError: ((Error) -> Void)?)
+    
+    func updateDidLose(roomId: String,
+                       uid: String,
+                       didLose: Bool,
+                       completion: (() -> Void)?,
+                       onError: ((Error) -> Void)?)
 }
 
 extension NetworkInterface {

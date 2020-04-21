@@ -59,7 +59,7 @@ class BaseUnitTest: XCTestCase {
                           achievementSMinScore: 50,
                           isEndless: false)
         testAvatar = .elementalWizard
-        testRoom = .init()
+        testRoom = .init(roomId: "Test")
         testRoom.localPlayer = .init(uid: "local player", name: "local player", avatar: .elementalWizard)
         testRoom.remoteplayers.append(.init(uid: "remote player", name: "remote player", avatar: .holyKnight))
         gameStateMachine.stage = testStage
@@ -69,14 +69,13 @@ class BaseUnitTest: XCTestCase {
         // Can't mock gameScene.
         gameScene = GameScene(size: CGSize(),
                               gameStateMachine: gameStateMachine)
-        gameEngine = MockGameEngine(stage: testStage, avatar: testAvatar)
-            .withEnabledSuperclassSpy()
         rootRenderNode = RootRenderNode(stage: testStage,
                                         avatar: testAvatar,
                                         zPosition: 0,
                                         position: gameScene.position,
                                         size: gameScene.size)
-        gameEngine.rootRenderNode = rootRenderNode
+        gameEngine = MockGameEngine(stage: testStage, avatar: testAvatar, renderNode: rootRenderNode)
+            .withEnabledSuperclassSpy()
         rootRenderNode.gameEngine = gameEngine
         gameScene.addChild(rootRenderNode)
         removeDelegate = MockRemoveDelegate(gameEngine: gameEngine)

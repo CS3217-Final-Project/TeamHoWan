@@ -30,6 +30,14 @@ class ScoreSystem: GKComponentSystem<ScoreComponent>, System {
                                          scoreComponent.scorePoints)
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? ScoreComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? ScoreComponent else {
             return

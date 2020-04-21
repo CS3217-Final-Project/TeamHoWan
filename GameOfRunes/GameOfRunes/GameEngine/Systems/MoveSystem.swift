@@ -65,6 +65,14 @@ class MoveSystem: GKComponentSystem<MoveComponent>, System {
         return closestMoveComponent
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? MoveComponent else {
+            return
+        }
+        
+        super.removeComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? MoveComponent else {
             return

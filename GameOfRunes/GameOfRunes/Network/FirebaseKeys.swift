@@ -7,8 +7,8 @@
 //
 
 enum FirebaseKeys {
-    static let defaultFalse = false
-    static let defaultEmptyString = ""
+    static let defaultBool = false
+    static let defaultString = ""
     static let defaultAvatar = Avatar.elementalWizard.name
     
     // Room keys
@@ -24,8 +24,10 @@ enum FirebaseKeys {
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
     static let rooms_players_avatar = "avatar"
+    static let rooms_players_didLose = "did_lose"
     static let rooms_players_powerUp = "powerUp"
     static let rooms_players_monsters = "monsters"
+    static let rooms_players_metadata = "metadata"
 
     /// Joins keys with the required (firebase) separator
     /// - Parameters:

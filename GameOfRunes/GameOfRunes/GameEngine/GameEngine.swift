@@ -14,9 +14,9 @@ class GameEngine: GameEngineFacade {
     private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
-    private var toRemoveEntities = Set<Entity>()
+    private(set) var toRemoveEntities = Set<Entity>()
     let metadata: GameMetaData
-    weak var rootRenderNode: RootRenderNode?
+    private(set) weak var rootRenderNode: RootRenderNode?
 
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -29,7 +29,9 @@ class GameEngine: GameEngineFacade {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(stage: Stage, avatar: Avatar) {
+    init(stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+        self.rootRenderNode = renderNode
+        
         metadata = GameMetaData(
             stage: stage,
             avatar: avatar,
@@ -59,12 +61,14 @@ class GameEngine: GameEngineFacade {
         }()
     }
     
-    func add(_ entity: Entity) {
+    @discardableResult
+    func add(_ entity: Entity) -> Bool {
         guard entities[entity.type]?.insert(entity).inserted == true else {
-            return
+            return false
         }
         
         addComponents(foundIn: entity)
+        return true
     }
     
     func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode) {
@@ -102,6 +106,10 @@ class GameEngine: GameEngineFacade {
         
         toRemoveEntities = []
         
+        didGameEnd()
+    }
+    
+    func didGameEnd() {
         // Player Loses the Game
         if metadata.playerHealth <= 0 {
             rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
@@ -281,13 +289,13 @@ class GameEngine: GameEngineFacade {
     
     func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            rootRenderNode?.deselectPowerUp()
+            cleanUpPowerUp()
             return
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
             rootRenderNode?.showPowerUpDisabled(at: position)
-            rootRenderNode?.deselectPowerUp()
+            cleanUpPowerUp()
             return
         }
         
@@ -295,12 +303,16 @@ class GameEngine: GameEngineFacade {
         
         guard metadata.playerMana >= manaPointsRequired else {
             rootRenderNode?.showInsufficientMana(at: position)
-            rootRenderNode?.deselectPowerUp()
+            cleanUpPowerUp()
             return
         }
         
         selectedPowerUp.powerUp.activate(at: position, with: size, gameEngine: self)
         decreasePlayerMana(by: manaPointsRequired)
+        cleanUpPowerUp()
+    }
+    
+    func cleanUpPowerUp() {
         rootRenderNode?.deselectPowerUp()
     }
     

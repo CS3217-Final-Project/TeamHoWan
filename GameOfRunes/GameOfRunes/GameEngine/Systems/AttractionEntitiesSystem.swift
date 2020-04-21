@@ -36,6 +36,14 @@ class AttractionEntitiesSystem: GKComponentSystem<AttractionEntitiesComponent>, 
         }
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? AttractionEntitiesComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? AttractionEntitiesComponent else {
             return
