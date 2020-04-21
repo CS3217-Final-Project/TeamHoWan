@@ -83,7 +83,7 @@ class MultiplayerLocalGameEngine: GameEngine {
             numPlayerLost += 1
         }
         
-        if numPlayerLost < room.players.count {
+        if numPlayerLost == room.players.count - 1 {
             network.removeObservers()
             rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }

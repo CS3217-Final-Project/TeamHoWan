@@ -26,6 +26,7 @@
 		4A1B334624330CAB00B67B91 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1B334524330CAB00B67B91 /* Storage.swift */; };
 		4A2441B2244F4A09003BC9D8 /* MultiplayerGameEndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2441B1244F4A09003BC9D8 /* MultiplayerGameEndScene.swift */; };
 		4A2441B4244F4BBE003BC9D8 /* MultiplayerGameEndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2441B3244F4BBE003BC9D8 /* MultiplayerGameEndState.swift */; };
+		4A2441B8244F753D003BC9D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A2441B7244F753D003BC9D8 /* GoogleService-Info.plist */; };
 		4A3BD08B2436ACFE0004360A /* PlayerUnitEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */; };
 		4A45E8FF2443573200F9FA22 /* GameHomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E8FE2443573200F9FA22 /* GameHomeScene.swift */; };
 		4A45E90124435C5E00F9FA22 /* GameModeSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */; };
@@ -212,8 +213,6 @@
 		C6AACD4D2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4C2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift */; };
 		C6AACD4F244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD4E244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift */; };
 		C6AACD51244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */; };
-		C6AACD56244450340012C7D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6AACD55244450340012C7D9 /* GoogleService-Info.plist */; };
-		C6AACD57244450440012C7D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6AACD55244450340012C7D9 /* GoogleService-Info.plist */; };
 		C6AACD59244483870012C7D9 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD58244483870012C7D9 /* RoomModel.swift */; };
 		C6AACD5B2444839F0012C7D9 /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */; };
 		C6AACD5D244483DC0012C7D9 /* PowerUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */; };
@@ -267,6 +266,7 @@
 		4A1B334524330CAB00B67B91 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A2441B1244F4A09003BC9D8 /* MultiplayerGameEndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameEndScene.swift; sourceTree = "<group>"; };
 		4A2441B3244F4BBE003BC9D8 /* MultiplayerGameEndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameEndState.swift; sourceTree = "<group>"; };
+		4A2441B7244F753D003BC9D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A3BD08A2436ACFE0004360A /* PlayerUnitEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitEntity.swift; sourceTree = "<group>"; };
 		4A45E8FE2443573200F9FA22 /* GameHomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeScene.swift; sourceTree = "<group>"; };
 		4A45E90024435C5E00F9FA22 /* GameModeSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSelectionState.swift; sourceTree = "<group>"; };
@@ -462,7 +462,6 @@
 		C6AACD4C2440806A0012C7D9 /* CollisionEnemyUnitPlayerEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionEnemyUnitPlayerEndPoint.swift; sourceTree = "<group>"; };
 		C6AACD4E244081000012C7D9 /* CollisionEnemyUnitPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionEnemyUnitPowerUp.swift; sourceTree = "<group>"; };
 		C6AACD50244081650012C7D9 /* CollisionPlayerUnitEnemyEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionPlayerUnitEnemyEndPoint.swift; sourceTree = "<group>"; };
-		C6AACD55244450340012C7D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6AACD58244483870012C7D9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyModel.swift; sourceTree = "<group>"; };
 		C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpModel.swift; sourceTree = "<group>"; };
@@ -780,7 +779,7 @@
 				4AC87A442419ED3400D79639 /* Sounds */,
 				4AA508C62415E0EC00D9ADE4 /* Fonts */,
 				4ACC8BBA2414C69B00F235AE /* Info.plist */,
-				C6AACD55244450340012C7D9 /* GoogleService-Info.plist */,
+				4A2441B7244F753D003BC9D8 /* GoogleService-Info.plist */,
 			);
 			path = GameOfRunes;
 			sourceTree = "<group>";
@@ -1225,7 +1224,7 @@
 				4ACAD1F92434D21000DEE03D /* Lion King Eldigan.mp3 in Resources */,
 				4AC87A492419ED4200D79639 /* click3.mp3 in Resources */,
 				4AA5B3802417879C008D4953 /* Assets.xcassets in Resources */,
-				C6AACD56244450340012C7D9 /* GoogleService-Info.plist in Resources */,
+				4A2441B8244F753D003BC9D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,7 +1232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6AACD57244450440012C7D9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1710,7 +1708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JeremyTanTeamHoWan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1731,7 +1729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JeremyTanTeamHoWan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamHoWan.GameOfRunes;
 				PRODUCT_NAME = GameOfRunes;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
