@@ -35,7 +35,8 @@ extension FirebaseNetwork {
         let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultString
         let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultAvatar
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultBool
-        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar)
+        let didLose = description[FirebaseKeys.rooms_players_didLose] as? Bool ?? FirebaseKeys.defaultBool
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar, didLose: didLose)
     }
     
     /**

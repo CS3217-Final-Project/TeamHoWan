@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +152,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  HealthBarNode.swift
@@ -356,7 +364,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  ManaBarNode.swift
@@ -684,7 +696,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GestureComponent.swift
@@ -793,7 +809,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  HealthComponent.swift
@@ -946,7 +966,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1123,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1204,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1421,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  SpriteComponent.swift
@@ -1572,7 +1608,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1721,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1921,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +2034,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2147,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +2259,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GestureEntity.swift
@@ -2311,7 +2371,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +2483,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +2596,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +2709,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2822,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  TimerEntity.swift
@@ -2854,7 +2934,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  SystemDelegate.swift
@@ -2869,7 +2953,11 @@ import Cuckoo
 
 import GameplayKit
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameEngine.swift
@@ -3948,7 +4036,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  RemoveDelegate.swift
@@ -4114,7 +4206,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  HealthSystem.swift
@@ -4250,7 +4346,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  ManaSystem.swift
@@ -4416,7 +4516,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  MoveSystem.swift
@@ -4552,7 +4656,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  SpriteSystem.swift
@@ -4838,7 +4946,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  TimerSystem.swift
@@ -5034,7 +5146,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameEndState.swift
@@ -5288,7 +5404,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameInPlayState.swift
@@ -5424,7 +5544,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameModeSelectionState.swift
@@ -5560,7 +5684,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GamePauseState.swift
@@ -5696,7 +5824,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameStageSelectionState.swift
@@ -5832,7 +5964,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameStartState.swift
@@ -5968,7 +6104,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameStateMachine.swift
@@ -6220,7 +6360,11 @@ import GameplayKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  GameScene.swift
@@ -6495,7 +6639,11 @@ import SpriteKit
 }
 
 
+<<<<<<< HEAD
 // MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-21 13:15:41 +0000
+=======
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-21 13:06:27 +0000
+>>>>>>> ea0f07db4b4ee4ebeea6071fab70a54ba375cb4e
 
 //
 //  SceneManager.swift
