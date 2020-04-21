@@ -107,6 +107,7 @@ class FirebaseNetwork: NetworkInterface {
                     onError?(error)
                     return
                 }
+                self?.setRoomOpenState(to: false, forRoomId: roomId, {}, { _ in })
                 currentUserRef.onDisconnectRemoveValue()
                 completion?(uid)
             })
@@ -158,6 +159,7 @@ class FirebaseNetwork: NetworkInterface {
                         return
                     }
                 })
+                self?.setRoomOpenState(to: true, forRoomId: roomId, {}, { _ in })
             }
             completion?()
         }) { err in
@@ -353,7 +355,7 @@ class FirebaseNetwork: NetworkInterface {
                 return
             }
             if let completion = completion, let onError = onError {
-                self.setRoomOpenState(to: true, forRoomId: roomId, completion, onError)
+                self.setRoomOpenState(to: false, forRoomId: roomId, completion, onError)
             }
         })
     }
