@@ -16,6 +16,14 @@ class ManaSystem: GKComponentSystem<ManaComponent>, System {
         super.init(componentClass: ManaComponent.self)
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? ManaComponent else {
+            return
+        }
+
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? ManaComponent else {
             return

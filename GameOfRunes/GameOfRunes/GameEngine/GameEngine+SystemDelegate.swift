@@ -43,6 +43,7 @@ extension GameEngine {
     
     func updateSystems(with deltatime: TimeInterval) {
         moveSystem?.update(deltaTime: deltatime)
+        gestureEntitySystem?.update(deltaTime: deltatime)
         playerSystem?.update(deltaTime: deltatime)
         timerSystem?.update(deltaTime: deltatime)
     }
@@ -57,6 +58,14 @@ extension GameEngine {
         systems.values.forEach { system in
             system.removeComponent(foundIn: entity)
         }
+    }
+    
+    func addComponent(_ component: Component) {
+        systems[component.type]?.addComponent(component)
+    }
+    
+    func removeComponent(_ component: Component) {
+        systems[component.type]?.removeComponent(component)
     }
 
     func minusHealthPoints(for entity: Entity) -> Int? {
