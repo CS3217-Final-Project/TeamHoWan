@@ -138,6 +138,12 @@ enum GameConfig {
         static let backgroundLayerZPosition: CGFloat = -100
         static let uiLayerZPosition: CGFloat = 0
     }
+    
+    enum MultiplayerGameEndScene {
+        static let fontSizeRatio: CGFloat = 1 / 12
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
+    }
 
     enum MultiplayerGameScene {
         static let miniMapAlpha: CGFloat = 0.7

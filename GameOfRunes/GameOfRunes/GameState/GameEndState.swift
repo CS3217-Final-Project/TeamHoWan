@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-/** State for `GameStateMachine` when the Game has ended (either
+/** State for `GameStateMachine` when the game has ended (either
  win or lose state has been reached) */
 class GameEndState: GKState {
     // initialise with placeholder value

@@ -19,6 +19,8 @@ class GameStateMachineTest: BaseUnitTest {
     var gameEndState: MockGameEndState!
     var gameStageSelectionState: MockGameStageSelectionState!
     var gameModeSelectionState: MockGameModeSelectionState!
+    var multiplayerGameInPlayState: MockMultiplayerGameInPlayState!
+    var multiplayerGameEndState: MockMultiplayerGameEndState!
     var sceneManager: MockSceneManager!
  
     override func setUp() {
@@ -29,13 +31,17 @@ class GameStateMachineTest: BaseUnitTest {
         gameEndState = MockGameEndState().withEnabledSuperclassSpy()
         gameStageSelectionState = MockGameStageSelectionState().withEnabledSuperclassSpy()
         gameModeSelectionState = MockGameModeSelectionState().withEnabledSuperclassSpy()
+        multiplayerGameInPlayState = MockMultiplayerGameInPlayState().withEnabledSuperclassSpy()
+        multiplayerGameEndState = MockMultiplayerGameEndState().withEnabledSuperclassSpy()
 
         gameStateMachine = MockGameStateMachine(states: [gameInPlayState,
                                                          gameStartState,
                                                          gamePauseState,
                                                          gameEndState,
                                                          gameStageSelectionState,
-                                                         gameModeSelectionState]
+                                                         gameModeSelectionState,
+                                                         multiplayerGameInPlayState,
+                                                         multiplayerGameEndState]
         ).withEnabledSuperclassSpy()
         
         sceneManager = MockSceneManager(
@@ -45,6 +51,7 @@ class GameStateMachineTest: BaseUnitTest {
         gameStateMachine.sceneManager = sceneManager
         gameStateMachine.stage = testStage
         gameStateMachine.avatar = testAvatar
+        gameStateMachine.room = testRoom
     }
 
     func testStartState() {
@@ -88,6 +95,22 @@ class GameStateMachineTest: BaseUnitTest {
     func testModeSelectionState() {
         gameStateMachine.enter(MockGameModeSelectionState.self)
         verify(gameModeSelectionState, times(1)).didEnter(from: any(GKState.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
+    }
+    
+    func testMultiplayerInPlayState() {
+        gameStateMachine.enter(MockMultiplayerGameInPlayState.self)
+        verify(multiplayerGameInPlayState, times(1)).didEnter(from: any(GKState.self))
+        verify(sceneManager, times(1)).transitionToScene(
+            sceneIdentifier: any(SceneManager.SceneIdentifier.self),
+            transition: any(SKTransition.self))
+    }
+    
+    func testMultiplayerEndState() {
+        gameStateMachine.enter(MockMultiplayerGameEndState.self)
+        verify(multiplayerGameEndState, times(1)).didEnter(from: any(GKState.self))
         verify(sceneManager, times(1)).transitionToScene(
             sceneIdentifier: any(SceneManager.SceneIdentifier.self),
             transition: any(SKTransition.self))

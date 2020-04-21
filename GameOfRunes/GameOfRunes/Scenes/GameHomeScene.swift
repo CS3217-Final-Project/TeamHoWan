@@ -495,7 +495,7 @@ extension GameHomeScene {
         gameStateMachine?.avatar = nil
         gameStateMachine?.stage = nil
         gameStateMachine?.room = room
-        gameStateMachine?.enter(GameInMultiplayerPlayState.self)
+        gameStateMachine?.enter(MultiplayerGameInPlayState.self)
     }
     
     private func presentErrorAlert(error: Error) {
