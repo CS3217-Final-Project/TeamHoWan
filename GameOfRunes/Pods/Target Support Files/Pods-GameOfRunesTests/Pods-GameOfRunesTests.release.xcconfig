@@ -33,12 +33,12 @@ LIBRARY_SEARCH_PATHS[sdk=iphoneos9.2] = $(inherited) $(TOOLCHAIN_DIR)/usr/lib/sw
 LIBRARY_SEARCH_PATHS[sdk=iphoneos9.3] = $(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift-$(SWIFT_VERSION)/$(PLATFORM_NAME)
 LIBRARY_SEARCH_PATHS[sdk=iphoneos9.4] = $(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift-$(SWIFT_VERSION)/$(PLATFORM_NAME)
 LIBRARY_SEARCH_PATHS[sdk=iphoneos9.5] = $(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift-$(SWIFT_VERSION)/$(PLATFORM_NAME)
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo/Cuckoo.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo/Cuckoo.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"Cuckoo" -l"c++" -l"icucore" -l"z" -framework "CFNetwork" -framework "CoreTelephony" -framework "Foundation" -framework "Security" -framework "SystemConfiguration" -framework "UIKit" -framework "XCTest"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo/Cuckoo.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo/Cuckoo.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo" "${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift" "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit"
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Cuckoo" "${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift" "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift"
 USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

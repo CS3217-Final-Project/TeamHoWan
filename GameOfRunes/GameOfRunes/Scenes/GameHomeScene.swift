@@ -386,8 +386,8 @@ extension GameHomeScene {
     private func roomNotOpen() {
         alertNode.presentAlert(
             alertDescription: "Room is full",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -396,8 +396,8 @@ extension GameHomeScene {
     private func roomDoesNotExist() {
         alertNode.presentAlert(
             alertDescription: "Room does not exist",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -444,8 +444,8 @@ extension GameHomeScene {
     private func onRoomClose() {
         alertNode.presentAlert(
             alertDescription: "Room has been closed",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -473,9 +473,9 @@ extension GameHomeScene {
     
     private func insufficientPlayers() {
         alertNode.presentAlert(
-            alertDescription: "Insufficient players!",
-            showTick: false,
-            showCross: true,
+            alertDescription: "Insufficient players",
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -484,8 +484,8 @@ extension GameHomeScene {
     private func notAllReady() {
         alertNode.presentAlert(
             alertDescription: "Not all players are ready",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
