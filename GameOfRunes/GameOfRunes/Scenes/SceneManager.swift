@@ -43,7 +43,6 @@ class SceneManager {
     private let gameHomeScene: GameHomeScene
 
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
-        // TODO: The following can be removed once the code is in production
         presentingView.showsFPS = true
         presentingView.showsNodeCount = true
         
