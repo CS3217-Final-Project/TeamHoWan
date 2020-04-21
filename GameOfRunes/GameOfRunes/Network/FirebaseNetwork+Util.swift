@@ -45,7 +45,7 @@ extension FirebaseNetwork {
         let decodedPowerUp = decodePowerUp(data: powerUp)
         let decodedMetadata = decodeMetadata(data: metadata)
         
-        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar,
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar, didLose: didLose,
                            powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
     }
     
