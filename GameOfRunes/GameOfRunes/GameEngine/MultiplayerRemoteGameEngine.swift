@@ -35,6 +35,8 @@ class MultiplayerRemoteGameEngine: GameEngine {
 
     override func cleanUpPowerUp() {}
     
+    override func incrementCombo() {}
+    
     private func syncEnemies(_ enemies: [EnemyModel]) {
         guard let size = rootRenderNode?.size else {
             return
