@@ -22,7 +22,7 @@ class MultiplayerGameEndState: GKState {
     
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        
+        print("entered")
         guard let gameStateMachine = stateMachine as? GameStateMachine,
             let sceneManager = gameStateMachine.sceneManager else {
                 fatalError("No SceneManager associated with GameStateMachine")

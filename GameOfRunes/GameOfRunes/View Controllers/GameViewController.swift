@@ -40,7 +40,8 @@ class GameViewController: UIViewController {
                          GameEndState(),
                          GameStageSelectionState(),
                          GameModeSelectionState(),
-                         MultiplayerGameInPlayState()]
+                         MultiplayerGameInPlayState(),
+                         MultiplayerGameEndState()]
             )
             view.isMultipleTouchEnabled = false
             sceneManager = .init(presentingView: view, gameStateMachine: gameStateMachine)
