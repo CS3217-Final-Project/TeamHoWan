@@ -31,6 +31,8 @@ class MultiplayerRemoteGameEngine: GameEngine {
                                onError: nil)
     }
     
+    override func didGameEnd() {}
+
     override func cleanUpPowerUp() {}
     
     private func syncEnemies(_ enemies: [EnemyModel]) {
