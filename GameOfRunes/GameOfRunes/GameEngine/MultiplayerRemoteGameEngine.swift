@@ -31,6 +31,8 @@ class MultiplayerRemoteGameEngine: GameEngine {
                                onError: nil)
     }
     
+    override func didGameEnd() {}
+
     override func cleanUpPowerUp() {}
     
     private func syncEnemies(_ enemies: [EnemyModel]) {
@@ -49,16 +51,21 @@ class MultiplayerRemoteGameEngine: GameEngine {
         
         for enemy in enemies where uuidEnemyMapping[enemy.uuid] == nil {
             let newEnemy = EnemyEntity(enemyType: enemy.enemyType, gameEngine: self)
-            uuidEnemyMapping[enemy.uuid] = newEnemy
-            setGesture(for: newEnemy, using: enemy.gestureType)
             add(newEnemy)
+            uuidEnemyMapping[enemy.uuid] = newEnemy
         }
         
         for enemy in enemies {
-            let enemyEntity = uuidEnemyMapping[enemy.uuid]
+            guard let enemyEntity = uuidEnemyMapping[enemy.uuid] else {
+                continue
+            }
             let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
+            enemyEntity.component(ofType: SpriteComponent.self)?.node.position = position
             
-            enemyEntity?.component(ofType: SpriteComponent.self)?.node.position = position
+            if enemy.gestureType != enemyEntity.component(ofType: GestureEntityComponent.self)?
+                .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
+                    setGesture(for: enemyEntity, using: enemy.gestureType)
+            }
         }
     }
     

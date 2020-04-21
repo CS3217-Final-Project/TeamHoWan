@@ -89,6 +89,11 @@ class MultiplayerLocalGameEngine: GameEngine {
         }
     }
     
+    override func gestureActivated(gesture: CustomGesture) {
+        super.gestureActivated(gesture: gesture)
+        pushMonstersToNetwork()
+    }
+    
     override func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         pushMonstersToNetwork()
         pushMetadataToNetwork()
