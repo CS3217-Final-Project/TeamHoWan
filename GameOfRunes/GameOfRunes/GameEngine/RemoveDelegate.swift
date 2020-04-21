@@ -53,6 +53,11 @@ class RemoveDelegate {
         if shouldIncreaseScore, let scoreComponent = entity.component(ofType: ScoreComponent.self) {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
+        
+        if entity.type == .enemyEntity,
+            let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity {
+            gameEngine?.remove(gestureEntity)
+        }
 
         removeUnitFromGameWithAnimation(entity, fullAnimation: fullAnimation)
     }
