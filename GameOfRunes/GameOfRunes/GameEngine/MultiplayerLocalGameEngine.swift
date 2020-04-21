@@ -20,6 +20,11 @@ class MultiplayerLocalGameEngine: GameEngine {
         self.uid = uid
         
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
+        network.observeRoomState(roomId: roomId, onDataChange: { [weak self] room in
+                self?.didGameEnd(room: room)
+            }, onRoomClose: { [weak self] in
+                self?.network.removeObservers()
+            }, onError: nil)
     }
     
     override func add(_ entity: Entity) -> Bool {
@@ -62,6 +67,26 @@ class MultiplayerLocalGameEngine: GameEngine {
         }
         
         super.update(with: deltaTime)
+    }
+    
+    override func didGameEnd() {
+        if metadata.playerHealth <= 0 {
+            network.removeObservers()
+            network.updateDidLose(roomId: roomId, uid: uid, didLose: true, completion: nil, onError: nil)
+            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
+        }
+    }
+    
+    private func didGameEnd(room: RoomModel) {
+        var numPlayerLost = 0
+        for player in room.players where player.uid != uid && player.didLose {
+            numPlayerLost += 1
+        }
+        
+        if numPlayerLost == (room.players.count - 1) {
+            network.removeObservers()
+            rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
+        }
     }
     
     override func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {

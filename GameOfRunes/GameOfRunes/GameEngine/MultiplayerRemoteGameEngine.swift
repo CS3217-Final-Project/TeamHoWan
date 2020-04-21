@@ -20,9 +20,15 @@ class MultiplayerRemoteGameEngine: GameEngine {
         
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
 
-        network.observeEnemy(roomId: roomId, uid: uid, { [weak self] enemies in self?.syncEnemies(enemies) }, { _ in })
-        network.observeMetadata(roomId: roomId, uid: uid, { [weak self] metadata in self?.syncMetadata(metadata) }, { _ in })
-        network.observePowerUp(roomId: roomId, uid: uid, { [weak self] powerUp in self?.activatePowerUp(powerUp) }, { _ in })
+        network.observeEnemy(roomId: roomId, uid: uid,
+                             onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
+                             onError: nil)
+        network.observeMetadata(roomId: roomId, uid: uid,
+                                onDataChange: { [weak self] metadata in self?.syncMetadata(metadata) },
+                                onError: nil)
+        network.observePowerUp(roomId: roomId, uid: uid,
+                               onDataChange: { [weak self] powerUp in self?.activatePowerUp(powerUp) },
+                               onError: nil)
     }
     
     override func cleanUpPowerUp() {}
@@ -53,7 +59,6 @@ class MultiplayerRemoteGameEngine: GameEngine {
             let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
             
             enemyEntity?.component(ofType: SpriteComponent.self)?.node.position = position
-            enemyEntity?.component(ofType: MoveComponent.self)?.cgPosition = position
         }
     }
     

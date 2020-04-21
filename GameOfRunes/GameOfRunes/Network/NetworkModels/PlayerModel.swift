@@ -17,6 +17,7 @@ class PlayerModel: Codable {
     var isHost: Bool
     var isReady: Bool
     var avatar: String
+    var didLose: Bool
     var toPlayer: Player {
         .init(uid: uid, name: name, avatar: Avatar.getAvatar(withName: avatar))
     }
@@ -25,11 +26,13 @@ class PlayerModel: Codable {
          isHost: Bool,
          name: String = "",
          isReady: Bool = false,
-         avatar: String = FirebaseKeys.defaultAvatar) {
+         avatar: String = FirebaseKeys.defaultAvatar,
+         didLose: Bool = false) {
         self.uid = uid
         self.name = name
         self.isHost = isHost
         self.isReady = isReady
         self.avatar = avatar
+        self.didLose = didLose
     }
 }

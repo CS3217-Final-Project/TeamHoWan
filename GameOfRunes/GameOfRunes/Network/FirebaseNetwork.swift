@@ -12,6 +12,10 @@ class FirebaseNetwork: NetworkInterface {
     let dbRef: DatabaseReference = Database.database().reference()
     var observers: [FirebaseObserver] = []
     
+    deinit {
+        removeObservers()
+    }
+    
     func addConnectionObserver(uponDisconnect: (() -> Void)?) {
         let ref = Database.database().reference(withPath: ".info/connected")
         let handle = ref.observe(.value, with: { snapshot in
@@ -232,18 +236,18 @@ class FirebaseNetwork: NetworkInterface {
     
     func observeEnemy(roomId: String,
                       uid: String,
-                      _ onDataChange: @escaping ([EnemyModel]) -> Void,
-                      _ onError: @escaping (Error) -> Void) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                      onDataChange: (([EnemyModel]) -> Void)?,
+                      onError: ((Error) -> Void)?) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.games_players_monsters))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
             guard let data = snapshot.value as? [[String: AnyObject]],
                 let monsters = self?.decodeMonsters(data: data) else {
                     return
             }
-            onDataChange(monsters)
+            onDataChange?(monsters)
         }) { err in
-            onError(err)
+            onError?(err)
         }
         
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
@@ -251,18 +255,18 @@ class FirebaseNetwork: NetworkInterface {
     
     func observeMetadata(roomId: String,
                          uid: String,
-                         _ onDataChange: @escaping (MetadataModel) -> Void,
-                         _ onError: @escaping (Error) -> Void) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                         onDataChange: ((MetadataModel) -> Void)?,
+                         onError: ((Error) -> Void)?) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.games_players_metadata))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
             guard let data = snapshot.value as? [String: AnyObject],
                 let metadata = self?.decodeMetadata(data: data) else {
                     return
             }
-            onDataChange(metadata)
+            onDataChange?(metadata)
         }) { err in
-            onError(err)
+            onError?(err)
         }
         
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
@@ -270,18 +274,18 @@ class FirebaseNetwork: NetworkInterface {
     
     func observePowerUp(roomId: String,
                         uid: String,
-                        _ onDataChange: @escaping (PowerUpModel) -> Void,
-                        _ onError: @escaping (Error) -> Void) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                        onDataChange: ((PowerUpModel) -> Void)?,
+                        onError: ((Error) -> Void)?) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.games_players_powerUp))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
             guard let data = snapshot.value as? [String: AnyObject],
                 let powerUp = self?.decodePowerUp(data: data) else {
                     return
             }
-            onDataChange(powerUp)
+            onDataChange?(powerUp)
         }) { err in
-            onError(err)
+            onError?(err)
         }
         
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
@@ -425,6 +429,22 @@ class FirebaseNetwork: NetworkInterface {
         let encodedMetadata = encodeMetadata(metadata: metadata)
         ref.onDisconnectRemoveValue()
         ref.setValue(encodedMetadata, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+            completion?()
+        })
+    }
+    
+    func updateDidLose(roomId: String,
+                       uid: String,
+                       didLose: Bool,
+                       completion: (() -> Void)?,
+                       onError: ((Error) -> Void)?) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                    uid, FirebaseKeys.rooms_players_didLose))
+        ref.setValue(didLose, withCompletionBlock: { err, _ in
             if let error = err {
                 onError?(error)
                 return

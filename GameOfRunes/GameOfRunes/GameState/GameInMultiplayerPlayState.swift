@@ -12,8 +12,7 @@ import GameplayKit
 class GameInMultiplayerPlayState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        //TODO: Determine what are the next valid states when Multiplayer is up
-        return false
+        stateClass is GameEndState.Type
     }
 
     override func didEnter(from previousState: GKState?) {
@@ -24,6 +23,7 @@ class GameInMultiplayerPlayState: GKState {
                 fatalError("No SceneManager associated with GameStateMachine")
         }
 
+        sceneManager.loadNewMultiplayerScene()
         sceneManager.transitionToScene(
             sceneIdentifier: .multiplayerPlay,
             transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)

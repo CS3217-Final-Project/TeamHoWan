@@ -30,11 +30,11 @@ extension FirebaseNetwork {
         guard let description = playerDescription as? [String: AnyObject] else {
             return PlayerModel(uid: uid, isHost: false)
         }
-        let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultFalse
-        let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultEmptyString
-        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
+        let isHost = description[FirebaseKeys.rooms_players_isHost] as? Bool ?? FirebaseKeys.defaultBool
+        let uid = description[FirebaseKeys.rooms_players_uid] as? String ?? FirebaseKeys.defaultString
+        let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultString
         let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultAvatar
-        let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
+        let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultBool
         return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar)
     }
     
@@ -47,10 +47,10 @@ extension FirebaseNetwork {
      - a RoomModel object
      */
     func firebaseRoomModelFactory(forDict dict: [String: AnyObject]) -> RoomModel {
-        let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultEmptyString
-        let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultFalse
-        let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultFalse
-        let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultFalse
+        let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultString
+        let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultBool
+        let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultBool
+        let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultBool
         let players = dict[FirebaseKeys.rooms_players] as? [String: AnyObject] ?? [:]
 
         let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
