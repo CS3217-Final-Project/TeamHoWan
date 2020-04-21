@@ -107,7 +107,6 @@ class FirebaseNetwork: NetworkInterface {
                     onError?(error)
                     return
                 }
-                self?.setRoomOpenState(to: false, forRoomId: roomId, {}, { _ in })
                 currentUserRef.onDisconnectRemoveValue()
                 completion?(uid)
             })
@@ -159,7 +158,6 @@ class FirebaseNetwork: NetworkInterface {
                         return
                     }
                 })
-                self?.setRoomOpenState(to: true, forRoomId: roomId, {}, { _ in })
             }
             completion?()
         }) { err in
@@ -227,6 +225,12 @@ class FirebaseNetwork: NetworkInterface {
             guard !roomModel.players.isEmpty else {
                 onRoomClose?()
                 return
+            }
+            let playerCount = roomModel.players.count
+            if playerCount > 1 {
+                self.setRoomOpenState(to: false, forRoomId: id)
+            } else if playerCount == 1 {
+                self.setRoomOpenState(to: true, forRoomId: id)
             }
             onDataChange?(roomModel)
         }) { err in
@@ -354,9 +358,6 @@ class FirebaseNetwork: NetworkInterface {
                 onError?(error)
                 return
             }
-            if let completion = completion, let onError = onError {
-                self.setRoomOpenState(to: false, forRoomId: roomId, completion, onError)
-            }
         })
     }
     
@@ -456,26 +457,28 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
-    private func setRoomOpenState(to: Bool,
-                                  forRoomId roomId: String,
-                                  _ onComplete: @escaping () -> Void,
-                                  _ onError: @escaping (Error) -> Void) {
+    func setRoomOpenState(to: Bool,
+                          forRoomId roomId: String,
+                          _ onComplete: (() -> Void)? = nil,
+                          _ onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_isOpen))
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
             guard snapshot.value as? Bool != nil else {
-                onError(NetworkError.incorrectDatabaseSchema)
+                if let onError = onError {
+                    onError(NetworkError.incorrectDatabaseSchema)
+                }
                 return
             }
             ref.setValue(to, withCompletionBlock: { err, _ in
                 if let error = err {
-                    onError(error)
+                    onError?(error)
                     return
                 }
-                onComplete()
+                onComplete?()
             })
         }) { err in
-            onError(err)
+            onError?(err)
         }
     }
 }
