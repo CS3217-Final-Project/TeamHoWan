@@ -9,7 +9,6 @@
 import Foundation
 
 extension FirebaseNetwork {
-    // TODO: Does this create a new encoder/decoder object every time it is called?
     private var encoder: JSONEncoder {
         JSONEncoder()
     }
@@ -36,16 +35,7 @@ extension FirebaseNetwork {
         let name = description[FirebaseKeys.rooms_players_name] as? String ?? FirebaseKeys.defaultEmptyString
         let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultAvatar
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultFalse
-        let monsters = description[FirebaseKeys.rooms_players_monsters] as? [[String: AnyObject]] ?? []
-        let powerUp = description[FirebaseKeys.rooms_players_powerUp] as? [String: AnyObject] ?? [:]
-        let metadata = description[FirebaseKeys.rooms_players_metadata] as? [String: AnyObject] ?? [:]
-        
-        let decodedMonsters = decodeMonsters(data: monsters)
-        let decodedPowerUp = decodePowerUp(data: powerUp)
-        let decodedMetadata = decodeMetadata(data: metadata)
-        
-        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar,
-                           powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar)
     }
     
     /**
@@ -84,44 +74,14 @@ extension FirebaseNetwork {
                           name: String,
                           isHost: Bool,
                           isReady: Bool,
-                          avatar: String = FirebaseKeys.defaultAvatar,
-                          powerUp: PowerUpModel? = nil,
-                          monsters: [EnemyModel] = [],
-                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
-        let encodedPowerUp = encodePowerUp(powerUp: powerUp)
-        let encodedMonsters = encodeMonsters(monsters: monsters)
-        let encodedMetadata = encodeMetadata(metadata: metadata)
-        return [
+                          avatar: String = FirebaseKeys.defaultAvatar) -> [String: AnyObject] {
+        [
             FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
             FirebaseKeys.rooms_players_uid: uid as AnyObject,
             FirebaseKeys.rooms_players_name: name as AnyObject,
             FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
-            FirebaseKeys.rooms_players_avatar: avatar as AnyObject,
-            FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
-            FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject,
-            FirebaseKeys.rooms_players_metadata: encodedMetadata as AnyObject
+            FirebaseKeys.rooms_players_avatar: avatar as AnyObject
         ]
-    }
-    
-    /**
-     Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
-     */
-    func createPlayerDict(playerData: PlayerData,
-                          isHost: Bool,
-                          isReady: Bool,
-                          powerUp: PowerUpModel? = nil,
-                          monsters: [EnemyModel] = [],
-                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
-        createPlayerDict(
-            uid: playerData.uid,
-            name: playerData.name,
-            isHost: isHost,
-            isReady: isReady,
-            avatar: playerData.avatar.name,
-            powerUp: powerUp,
-            monsters: monsters,
-            metadata: metadata
-        )
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {

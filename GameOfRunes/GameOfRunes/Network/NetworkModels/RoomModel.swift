@@ -29,14 +29,6 @@ class RoomModel: Codable {
         players.append(player)
     }
     
-    func toggleRoomOpen() {
-        isOpen.toggle()
-    }
-    
-    func toString() -> String {
-        "roomId: \(roomId)\nplayers: \(players)\nroomIsOpen: \(isOpen)"
-    }
-    
     func convertToRoom(with localPlayerUid: String) -> Room {
         var updatedRoom = Room(roomId: roomId)
         
