@@ -114,18 +114,18 @@ protocol NetworkInterface {
     
     func observeEnemy(roomId: String,
                       uid: String,
-                      _ onDataChange: @escaping ([EnemyModel]) -> Void,
-                      _ onError: @escaping (Error) -> Void)
+                      onDataChange: (([EnemyModel]) -> Void)?,
+                      onError: ((Error) -> Void)?)
     
     func observeMetadata(roomId: String,
                          uid: String,
-                         _ onDataChange: @escaping (MetadataModel) -> Void,
-                         _ onError: @escaping (Error) -> Void)
+                         onDataChange: ((MetadataModel) -> Void)?,
+                         onError: ((Error) -> Void)?)
     
     func observePowerUp(roomId: String,
                         uid: String,
-                        _ onDataChange: @escaping (PowerUpModel) -> Void,
-                        _ onError: @escaping (Error) -> Void)
+                        onDataChange: ((PowerUpModel) -> Void)?,
+                        onError: ((Error) -> Void)?)
     
     /**
      Removes all observers.

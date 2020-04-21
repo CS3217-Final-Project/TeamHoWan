@@ -64,6 +64,12 @@ class MultiplayerLocalGameEngine: GameEngine {
         super.update(with: deltaTime)
     }
     
+    override func didGameEnd() {
+        if metadata.playerHealth <= 0 {
+            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
+        }
+    }
+    
     override func activatePowerUp(at position: CGPoint, with size: CGSize? = nil) {
         pushMonstersToNetwork()
         pushMetadataToNetwork()
