@@ -297,17 +297,6 @@ extension RootRenderNode {
      */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
         (scene as? GameScene)?.gameDidEnd(didWin: didWin, finalScore: finalScore)
-        /*
-        if let gameScene = scene as? MultiplayerGameScene {
-            print("Multiplayer game ended")
-            gameScene.gameDidEnd(didWin: didWin, finalScore: finalScore)
-        } else if let gameScene = scene as? GameScene {
-            print("Single player game ended")
-            gameScene.gameDidEnd(didWin: didWin, finalScore: finalScore)
-        } else {
-            print("Scene is not of type GameScene")
-        }
-        */
     }
 }
 
