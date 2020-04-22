@@ -83,7 +83,7 @@ class MultiplayerLocalGameEngine: GameEngine {
             numPlayerLost += 1
         }
         
-        if numPlayerLost == (room.players.count - 1) {
+        if numPlayerLost == room.players.count - 1 {
             network.removeObservers()
             rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
@@ -102,7 +102,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func pushMonstersToNetwork() {
-        let monsterModels = Array<EnemyModel>(entities(for: .enemyEntity).compactMap({ entity in
+        let monsterModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
             guard let playArea = rootRenderNode?.size else {
                 return nil
             }

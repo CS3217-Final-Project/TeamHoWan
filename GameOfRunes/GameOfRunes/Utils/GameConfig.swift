@@ -99,6 +99,8 @@ enum GameConfig {
         static var gestureAreaHeightRatio: CGFloat {
             1 - playerAreaHeightRatio
         }
+        static let unitWidthRatio: CGFloat = 1 / 6
+        static let removalAnimationWidthRatio: CGFloat = 1 / 5
 
         // Spawning of Enemies
         static let numLanes: Int = 3
@@ -138,6 +140,12 @@ enum GameConfig {
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
         static let uiLayerZPosition: CGFloat = 0
+    }
+    
+    enum MultiplayerGameEndScene {
+        static let fontSizeRatio: CGFloat = 1 / 12
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum MultiplayerGameScene {

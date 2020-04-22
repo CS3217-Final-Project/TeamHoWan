@@ -10,7 +10,7 @@ import GameplayKit
 import ReplayKit
 
 /**
- State for `GameStateMachine` when the Game is just starting.
+ State for `GameStateMachine` when the game is just starting.
  This state automatically transitions to `GameInPlayState` when ready.
  */
 class GameStartState: GKState {

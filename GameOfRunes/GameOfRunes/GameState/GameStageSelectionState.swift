@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-/** State for `GameStateMachine` when the player is selecting the Stage. */
+/** State for `GameStateMachine` when the player is selecting the stage. */
 class GameStageSelectionState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
