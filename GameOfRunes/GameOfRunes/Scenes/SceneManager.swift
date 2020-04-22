@@ -107,4 +107,9 @@ class SceneManager {
     func loadNewMap() {
         gameMapScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
     }
+    
+    func resetMultiplayerState() {
+        gameHomeScene.updateStartState(newValue: false)
+        gameHomeScene.updateReadyState(newValue: false)
+    }
 }

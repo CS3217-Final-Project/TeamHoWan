@@ -165,23 +165,27 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func toggleReadyState(
+    func updateReadyState(
         uid: String,
         roomId: String,
+        newValue: Bool,
         completion: (() -> Void)? = nil,
         onError: ((Error) -> Void)? = nil
     ) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid,
-                                                    FirebaseKeys.rooms_players_isReady))
+        let ref = dbRef.child(FirebaseKeys.joinKeys(
+            FirebaseKeys.rooms,
+            roomId,
+            FirebaseKeys.rooms_players,
+            uid,
+            FirebaseKeys.rooms_players_isReady
+        ))
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard let isReady = snapshot.value as? Bool else {
+            guard snapshot.value is Bool else {
                 // Room does not exist
-                if let onError = onError {
-                    onError(NetworkError.incorrectDatabaseSchema)
-                }
+                onError?(NetworkError.incorrectDatabaseSchema)
                 return
             }
-            ref.setValue(!isReady, withCompletionBlock: { err, _ in
+            ref.setValue(newValue, withCompletionBlock: { err, _ in
                 if let error = err {
                     onError?(error)
                     return
@@ -308,22 +312,18 @@ class FirebaseNetwork: NetworkInterface {
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let playersData = snapshot.value as? [String: AnyObject] else {
                 // Players object does not exist
-                if let onError = onError {
-                    onError(NetworkError.incorrectDatabaseSchema)
-                }
+                onError?(NetworkError.incorrectDatabaseSchema)
                 return
             }
             guard playersData.count > 1 else {
-                if let insufficientPlayers = insufficientPlayers {
-                    insufficientPlayers()
-                }
+                insufficientPlayers?()
                 return
             }
             
             var players: [PlayerModel] = []
             for player in playersData {
-                guard let playerModel =
-                    self?.firebasePlayerModelFactory(forUid: player.key, forDescription: player.value) else {
+                guard let playerModel = self?
+                    .firebasePlayerModelFactory(forUid: player.key, forDescription: player.value) else {
                         return
                 }
                 players.append(playerModel)
