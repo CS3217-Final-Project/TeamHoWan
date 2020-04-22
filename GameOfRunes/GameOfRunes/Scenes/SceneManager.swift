@@ -109,7 +109,6 @@ class SceneManager {
     }
     
     func resetMultiplayerState() {
-        gameHomeScene.updateStartState(newValue: false)
-        gameHomeScene.updateReadyState(newValue: false)
+        gameHomeScene.resetRoomState()
     }
 }

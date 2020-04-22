@@ -437,11 +437,44 @@ class FirebaseNetwork: NetworkInterface {
     func updateDidLose(roomId: String,
                        uid: String,
                        didLose: Bool,
-                       completion: (() -> Void)?,
-                       onError: ((Error) -> Void)?) {
+                       completion: (() -> Void)? = nil,
+                       onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
                                                     uid, FirebaseKeys.rooms_players_didLose))
         ref.setValue(didLose, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+            completion?()
+        })
+    }
+    
+    func resetPlayerState(roomId: String,
+                          uid: String,
+                          completion: (() -> Void)? = nil,
+                          onError: ((Error) -> Void)? = nil) {
+        updateDidLose(roomId: roomId, uid: uid, didLose: false, onError: onError)
+        updateReadyState(uid: uid, roomId: roomId, newValue: false, onError: onError)
+        let enemyRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                         uid, FirebaseKeys.rooms_players_monsters))
+        let powerUpRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                           uid, FirebaseKeys.rooms_players_powerUp))
+        let metadataRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                            uid, FirebaseKeys.rooms_players_metadata))
+        enemyRef.removeValue(completionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+        })
+        powerUpRef.removeValue(completionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+        })
+        metadataRef.removeValue(completionBlock: { err, _ in
             if let error = err {
                 onError?(error)
                 return

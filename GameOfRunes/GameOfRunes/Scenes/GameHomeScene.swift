@@ -419,6 +419,23 @@ extension GameHomeScene {
         room = .init()
     }
     
+    func resetRoomState() {
+        guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+
+        dbRef.updateGameHasStarted(roomId: roomId, to: false, completion: nil, onError: presentErrorAlert)
+        dbRef.resetPlayerState(roomId: roomId, uid: localPlayerUid, completion: nil, onError: presentErrorAlert)
+        
+        guard room.localPlayerIsHost else {
+            return
+        }
+        
+        for player in room.remoteplayers {
+            dbRef.resetPlayerState(roomId: roomId, uid: player.uid, completion: nil, onError: presentErrorAlert)
+        }
+    }
+    
     func updateReadyState(newValue: Bool) {
         guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
@@ -430,13 +447,6 @@ extension GameHomeScene {
             completion: nil,
             onError: presentErrorAlert
         )
-    }
-    
-    func updateStartState(newValue: Bool) {
-        guard let roomId = room.roomId else {
-            return
-        }
-        dbRef.updateGameHasStarted(roomId: roomId, to: newValue, completion: nil, onError: nil)
     }
     
     private func onDataChange(roomModel: RoomModel) {

@@ -206,6 +206,11 @@ protocol NetworkInterface {
                        didLose: Bool,
                        completion: (() -> Void)?,
                        onError: ((Error) -> Void)?)
+    
+    func resetPlayerState(roomId: String,
+                          uid: String,
+                          completion: (() -> Void)?,
+                          onError: ((Error) -> Void)?)
 }
 
 extension NetworkInterface {
