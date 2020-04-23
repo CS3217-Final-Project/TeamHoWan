@@ -7,7 +7,6 @@ opt_in_rules:
   - anyobject_protocol
   - array_init
   - attributes
-  - closure_body_length
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
@@ -28,7 +27,6 @@ opt_in_rules:
   - file_name
   - first_where
   - flatmap_over_map_reduce
-  - function_default_parameter_at_end
   - identical_operands
   - implicit_return
   - joined_default_parameter
@@ -81,6 +79,8 @@ disabled_rules:
   - trailing_whitespace
   - large_tuple
   - weak_delegate
+  - function_parameter_count
+  - type_body_length
 
 line_length:
   warning: 120

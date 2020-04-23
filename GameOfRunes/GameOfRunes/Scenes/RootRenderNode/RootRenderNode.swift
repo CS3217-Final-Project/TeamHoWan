@@ -16,7 +16,7 @@ import SpriteKit
  an instance of this class.
  */
 class RootRenderNode: SKNode {
-    var gameEngine: GameEngineFacade
+    var gameEngine: GameEngineFacade!
     private(set) var size: CGSize
     var center: CGPoint {
         .init(x: size.width / 2, y: size.height / 2)
@@ -43,13 +43,12 @@ class RootRenderNode: SKNode {
          position: CGPoint,
          size: CGSize) {
 
-        self.gameEngine = GameEngine(stage: stage, avatar: avatar)
         self.size = size
         super.init()
         self.position = position
+        self.gameEngine = GameEngine(stage: stage, avatar: avatar, renderNode: self)
         
         // Allows RootRenderNode to add Entities during set-up
-        self.gameEngine.rootRenderNode = self
         self.zPosition = zPosition
         self.isUserInteractionEnabled = true
         
@@ -74,11 +73,9 @@ class RootRenderNode: SKNode {
      No setting up of UI elements is performed.
      Called by Subclass `RemoteRootRenderNode`.
      */
-    init(gameEngine: GameEngineFacade, size: CGSize) {
-        self.gameEngine = gameEngine
+    init(size: CGSize) {
         self.size = size
         super.init()
-        self.gameEngine.rootRenderNode = self
     }
 
     @available(*, unavailable)
@@ -299,12 +296,7 @@ extension RootRenderNode {
      transitions (it has a reference to `GameStateMachine` for this purpose.
      */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
-        guard let gameScene = scene as? GameScene else {
-            print("Scene is not of type GameScene")
-            return
-        }
-
-        gameScene.gameDidEnd(didWin: didWin, finalScore: finalScore)
+        (scene as? GameScene)?.gameDidEnd(didWin: didWin, finalScore: finalScore)
     }
 }
 

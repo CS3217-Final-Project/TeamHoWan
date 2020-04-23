@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  DroppedManaNode.swift
@@ -148,7 +148,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  HealthBarNode.swift
@@ -356,7 +356,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  ManaBarNode.swift
@@ -684,7 +684,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +793,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +946,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +1099,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +1176,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  MoveComponent.swift
@@ -1389,7 +1389,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  SpriteComponent.swift
@@ -1572,7 +1572,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1681,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1877,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +1986,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +2095,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +2203,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GestureEntity.swift
@@ -2311,7 +2311,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +2419,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +2528,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +2637,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2746,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  TimerEntity.swift
@@ -2854,7 +2854,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  SystemDelegate.swift
@@ -2869,7 +2869,7 @@ import Cuckoo
 
 import GameplayKit
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameEngine.swift
@@ -2921,6 +2921,20 @@ import SpriteKit
     
     
     
+     override var toRemoveEntities: Set<Entity> {
+        get {
+            return cuckoo_manager.getter("toRemoveEntities",
+                superclassCall:
+                    
+                    super.toRemoveEntities
+                    ,
+                defaultCall: __defaultImplStub!.toRemoveEntities)
+        }
+        
+    }
+    
+    
+    
      override var rootRenderNode: RootRenderNode? {
         get {
             return cuckoo_manager.getter("rootRenderNode",
@@ -2929,16 +2943,6 @@ import SpriteKit
                     super.rootRenderNode
                     ,
                 defaultCall: __defaultImplStub!.rootRenderNode)
-        }
-        
-        set {
-            cuckoo_manager.setter("rootRenderNode",
-                value: newValue,
-                superclassCall:
-                    
-                    super.rootRenderNode = newValue
-                    ,
-                defaultCall: __defaultImplStub!.rootRenderNode = newValue)
         }
         
     }
@@ -2991,9 +2995,9 @@ import SpriteKit
     
     
     
-     override func add(_ entity: Entity)  {
+     override func add(_ entity: Entity) -> Bool {
         
-    return cuckoo_manager.call("add(_: Entity)",
+    return cuckoo_manager.call("add(_: Entity) -> Bool",
             parameters: (entity),
             escapingParameters: (entity),
             superclassCall:
@@ -3076,6 +3080,21 @@ import SpriteKit
                 super.update(with: deltaTime)
                 ,
             defaultCall: __defaultImplStub!.update(with: deltaTime))
+        
+    }
+    
+    
+    
+     override func didGameEnd()  {
+        
+    return cuckoo_manager.call("didGameEnd()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.didGameEnd()
+                ,
+            defaultCall: __defaultImplStub!.didGameEnd())
         
     }
     
@@ -3321,6 +3340,21 @@ import SpriteKit
     
     
     
+     override func cleanUpPowerUp()  {
+        
+    return cuckoo_manager.call("cleanUpPowerUp()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.cleanUpPowerUp()
+                ,
+            defaultCall: __defaultImplStub!.cleanUpPowerUp())
+        
+    }
+    
+    
+    
      override func spawnPlayerUnitWave()  {
         
     return cuckoo_manager.call("spawnPlayerUnitWave()",
@@ -3378,7 +3412,12 @@ import SpriteKit
 	    }
 	    
 	    
-	    var rootRenderNode: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameEngine, RootRenderNode> {
+	    var toRemoveEntities: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, Set<Entity>> {
+	        return .init(manager: cuckoo_manager, name: "toRemoveEntities")
+	    }
+	    
+	    
+	    var rootRenderNode: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, RootRenderNode?> {
 	        return .init(manager: cuckoo_manager, name: "rootRenderNode")
 	    }
 	    
@@ -3398,9 +3437,9 @@ import SpriteKit
 	    }
 	    
 	    
-	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
+	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubFunction<(Entity), Bool> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "add(_: Entity)", parameterMatchers: matchers))
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "add(_: Entity) -> Bool", parameterMatchers: matchers))
 	    }
 	    
 	    func addPlayerEntity<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable, M3: Cuckoo.Matchable>(healthNode: M1, manaNode: M2, scoreNode: M3) -> Cuckoo.ClassStubNoReturnFunction<(HealthBarNode, ManaBarNode, ScoreNode)> where M1.MatchedType == HealthBarNode, M2.MatchedType == ManaBarNode, M3.MatchedType == ScoreNode {
@@ -3426,6 +3465,11 @@ import SpriteKit
 	    func update<M1: Cuckoo.Matchable>(with deltaTime: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
 	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: deltaTime) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "update(with: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func didGameEnd() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "didGameEnd()", parameterMatchers: matchers))
 	    }
 	    
 	    func startNextSpawnWave() -> Cuckoo.ClassStubNoReturnFunction<()> {
@@ -3508,6 +3552,11 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "activatePowerUp(at: CGPoint, with: CGSize?)", parameterMatchers: matchers))
 	    }
 	    
+	    func cleanUpPowerUp() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "cleanUpPowerUp()", parameterMatchers: matchers))
+	    }
+	    
 	    func spawnPlayerUnitWave() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return .init(stub: cuckoo_manager.createStub(for: MockGameEngine.self, method: "spawnPlayerUnitWave()", parameterMatchers: matchers))
@@ -3543,7 +3592,12 @@ import SpriteKit
 	    }
 	    
 	    
-	    var rootRenderNode: Cuckoo.VerifyOptionalProperty<RootRenderNode> {
+	    var toRemoveEntities: Cuckoo.VerifyReadOnlyProperty<Set<Entity>> {
+	        return .init(manager: cuckoo_manager, name: "toRemoveEntities", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var rootRenderNode: Cuckoo.VerifyReadOnlyProperty<RootRenderNode?> {
 	        return .init(manager: cuckoo_manager, name: "rootRenderNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
@@ -3565,9 +3619,9 @@ import SpriteKit
 	
 	    
 	    @discardableResult
-	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Void> where M1.MatchedType == Entity {
+	    func add<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.__DoNotUse<(Entity), Bool> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
-	        return cuckoo_manager.verify("add(_: Entity)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	        return cuckoo_manager.verify("add(_: Entity) -> Bool", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3598,6 +3652,12 @@ import SpriteKit
 	    func update<M1: Cuckoo.Matchable>(with deltaTime: M1) -> Cuckoo.__DoNotUse<(TimeInterval), Void> where M1.MatchedType == TimeInterval {
 	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: deltaTime) { $0 }]
 	        return cuckoo_manager.verify("update(with: TimeInterval)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func didGameEnd() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("didGameEnd()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	    @discardableResult
@@ -3697,6 +3757,12 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
+	    func cleanUpPowerUp() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("cleanUpPowerUp()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func spawnPlayerUnitWave() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return cuckoo_manager.verify("spawnPlayerUnitWave()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -3728,12 +3794,18 @@ import SpriteKit
     }
     
     
+     override var toRemoveEntities: Set<Entity> {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Set<Entity>).self)
+        }
+        
+    }
+    
+    
      override var rootRenderNode: RootRenderNode? {
         get {
             return DefaultValueRegistry.defaultValue(for: (RootRenderNode?).self)
         }
-        
-        set { }
         
     }
     
@@ -3765,8 +3837,8 @@ import SpriteKit
     
 
     
-     override func add(_ entity: Entity)   {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
+     override func add(_ entity: Entity) -> Bool  {
+        return DefaultValueRegistry.defaultValue(for: (Bool).self)
     }
     
      override func addPlayerEntity(healthNode: HealthBarNode, manaNode: ManaBarNode, scoreNode: ScoreNode)   {
@@ -3786,6 +3858,10 @@ import SpriteKit
     }
     
      override func update(with deltaTime: TimeInterval)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func didGameEnd()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
@@ -3853,6 +3929,10 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func cleanUpPowerUp()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func spawnPlayerUnitWave()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -3868,7 +3948,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4034,7 +4114,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  HealthSystem.swift
@@ -4090,6 +4170,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4115,6 +4210,11 @@ import GameplayKit
 	    func minusHealthPoints<M1: Cuckoo.Matchable>(for entity: M1) -> Cuckoo.ClassStubFunction<(Entity), Int?> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "minusHealthPoints(for: Entity) -> Int?", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockHealthSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -4145,6 +4245,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4163,6 +4269,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Int?).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4170,7 +4280,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  ManaSystem.swift
@@ -4208,6 +4318,21 @@ import GameplayKit
 
     
 
+    
+    
+    
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
     
     
     
@@ -4263,6 +4388,11 @@ import GameplayKit
 	    }
 	    
 	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockManaSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
@@ -4295,6 +4425,12 @@ import GameplayKit
 	
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4321,6 +4457,10 @@ import GameplayKit
     
 
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4336,7 +4476,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  MoveSystem.swift
@@ -4392,6 +4532,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4417,6 +4572,11 @@ import GameplayKit
 	    func update<M1: Cuckoo.Matchable>(deltaTime seconds: M1) -> Cuckoo.ClassStubNoReturnFunction<(TimeInterval)> where M1.MatchedType == TimeInterval {
 	        let matchers: [Cuckoo.ParameterMatcher<(TimeInterval)>] = [wrap(matchable: seconds) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "update(deltaTime: TimeInterval)", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMoveSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -4447,6 +4607,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4465,6 +4631,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4472,7 +4642,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  SpriteSystem.swift
@@ -4538,6 +4708,21 @@ import GameplayKit
                 super.removeComponent(foundIn: entity)
                 ,
             defaultCall: __defaultImplStub!.removeComponent(foundIn: entity))
+        
+    }
+    
+    
+    
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
         
     }
     
@@ -4635,6 +4820,11 @@ import GameplayKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(foundIn: GKEntity)", parameterMatchers: matchers))
 	    }
 	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
+	    }
+	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteSystem.self, method: "removeComponent(_: Component)", parameterMatchers: matchers))
@@ -4689,6 +4879,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4735,6 +4931,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4758,7 +4958,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  TimerSystem.swift
@@ -4844,6 +5044,21 @@ import GameplayKit
     
     
     
+     override func addComponent(_ component: Component)  {
+        
+    return cuckoo_manager.call("addComponent(_: Component)",
+            parameters: (component),
+            escapingParameters: (component),
+            superclassCall:
+                
+                super.addComponent(component)
+                ,
+            defaultCall: __defaultImplStub!.addComponent(component))
+        
+    }
+    
+    
+    
      override func removeComponent(_ component: Component)  {
         
     return cuckoo_manager.call("removeComponent(_: Component)",
@@ -4879,6 +5094,11 @@ import GameplayKit
 	    func resetTimer<M1: Cuckoo.Matchable>(_ entity: M1) -> Cuckoo.ClassStubNoReturnFunction<(Entity)> where M1.MatchedType == Entity {
 	        let matchers: [Cuckoo.ParameterMatcher<(Entity)>] = [wrap(matchable: entity) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "resetTimer(_: Entity)", parameterMatchers: matchers))
+	    }
+	    
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockTimerSystem.self, method: "addComponent(_: Component)", parameterMatchers: matchers))
 	    }
 	    
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.ClassStubNoReturnFunction<(Component)> where M1.MatchedType == Component {
@@ -4921,6 +5141,12 @@ import GameplayKit
 	    }
 	    
 	    @discardableResult
+	    func addComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
+	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
+	        return cuckoo_manager.verify("addComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func removeComponent<M1: Cuckoo.Matchable>(_ component: M1) -> Cuckoo.__DoNotUse<(Component), Void> where M1.MatchedType == Component {
 	        let matchers: [Cuckoo.ParameterMatcher<(Component)>] = [wrap(matchable: component) { $0 }]
 	        return cuckoo_manager.verify("removeComponent(_: Component)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -4947,6 +5173,10 @@ import GameplayKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func addComponent(_ component: Component)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func removeComponent(_ component: Component)   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
@@ -4954,7 +5184,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameEndState.swift
@@ -5208,7 +5438,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameInPlayState.swift
@@ -5344,7 +5574,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameModeSelectionState.swift
@@ -5480,7 +5710,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GamePauseState.swift
@@ -5616,7 +5846,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameStageSelectionState.swift
@@ -5752,7 +5982,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameStartState.swift
@@ -5766,6 +5996,7 @@ import Cuckoo
 @testable import GameOfRunes
 
 import GameplayKit
+import ReplayKit
 
 
  class MockGameStartState: GameStartState, Cuckoo.ClassMock {
@@ -5888,7 +6119,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameStateMachine.swift
@@ -5995,6 +6226,30 @@ import GameplayKit
         
     }
     
+    
+    
+     override var room: Room? {
+        get {
+            return cuckoo_manager.getter("room",
+                superclassCall:
+                    
+                    super.room
+                    ,
+                defaultCall: __defaultImplStub!.room)
+        }
+        
+        set {
+            cuckoo_manager.setter("room",
+                value: newValue,
+                superclassCall:
+                    
+                    super.room = newValue
+                    ,
+                defaultCall: __defaultImplStub!.room = newValue)
+        }
+        
+    }
+    
 
     
 
@@ -6020,6 +6275,11 @@ import GameplayKit
 	    
 	    var avatar: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameStateMachine, Avatar> {
 	        return .init(manager: cuckoo_manager, name: "avatar")
+	    }
+	    
+	    
+	    var room: Cuckoo.ClassToBeStubbedOptionalProperty<MockGameStateMachine, Room> {
+	        return .init(manager: cuckoo_manager, name: "room")
 	    }
 	    
 	    
@@ -6050,6 +6310,11 @@ import GameplayKit
 	    
 	    var avatar: Cuckoo.VerifyOptionalProperty<Avatar> {
 	        return .init(manager: cuckoo_manager, name: "avatar", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var room: Cuckoo.VerifyOptionalProperty<Room> {
+	        return .init(manager: cuckoo_manager, name: "room", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -6089,6 +6354,16 @@ import GameplayKit
         
     }
     
+    
+     override var room: Room? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Room?).self)
+        }
+        
+        set { }
+        
+    }
+    
 
     
 
@@ -6096,7 +6371,367 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameState/MultiplayerGameEndState.swift at 2020-04-23 05:57:31 +0000
+
+//
+//  MultiplayerGameEndState.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 21/4/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockMultiplayerGameEndState: MultiplayerGameEndState, Cuckoo.ClassMock {
+    
+     typealias MocksType = MultiplayerGameEndState
+    
+     typealias Stubbing = __StubbingProxy_MultiplayerGameEndState
+     typealias Verification = __VerificationProxy_MultiplayerGameEndState
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: MultiplayerGameEndState?
+
+     func enableDefaultImplementation(_ stub: MultiplayerGameEndState) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var didWin: Bool {
+        get {
+            return cuckoo_manager.getter("didWin",
+                superclassCall:
+                    
+                    super.didWin
+                    ,
+                defaultCall: __defaultImplStub!.didWin)
+        }
+        
+        set {
+            cuckoo_manager.setter("didWin",
+                value: newValue,
+                superclassCall:
+                    
+                    super.didWin = newValue
+                    ,
+                defaultCall: __defaultImplStub!.didWin = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var finalScore: Int {
+        get {
+            return cuckoo_manager.getter("finalScore",
+                superclassCall:
+                    
+                    super.finalScore
+                    ,
+                defaultCall: __defaultImplStub!.finalScore)
+        }
+        
+        set {
+            cuckoo_manager.setter("finalScore",
+                value: newValue,
+                superclassCall:
+                    
+                    super.finalScore = newValue
+                    ,
+                defaultCall: __defaultImplStub!.finalScore = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        
+    return cuckoo_manager.call("isValidNextState(_: AnyClass) -> Bool",
+            parameters: (stateClass),
+            escapingParameters: (stateClass),
+            superclassCall:
+                
+                super.isValidNextState(stateClass)
+                ,
+            defaultCall: __defaultImplStub!.isValidNextState(stateClass))
+        
+    }
+    
+    
+    
+     override func didEnter(from previousState: GKState?)  {
+        
+    return cuckoo_manager.call("didEnter(from: GKState?)",
+            parameters: (previousState),
+            escapingParameters: (previousState),
+            superclassCall:
+                
+                super.didEnter(from: previousState)
+                ,
+            defaultCall: __defaultImplStub!.didEnter(from: previousState))
+        
+    }
+    
+
+	 struct __StubbingProxy_MultiplayerGameEndState: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var didWin: Cuckoo.ClassToBeStubbedProperty<MockMultiplayerGameEndState, Bool> {
+	        return .init(manager: cuckoo_manager, name: "didWin")
+	    }
+	    
+	    
+	    var finalScore: Cuckoo.ClassToBeStubbedProperty<MockMultiplayerGameEndState, Int> {
+	        return .init(manager: cuckoo_manager, name: "finalScore")
+	    }
+	    
+	    
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.ClassStubFunction<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMultiplayerGameEndState.self, method: "isValidNextState(_: AnyClass) -> Bool", parameterMatchers: matchers))
+	    }
+	    
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKState?)> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMultiplayerGameEndState.self, method: "didEnter(from: GKState?)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_MultiplayerGameEndState: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var didWin: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "didWin", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var finalScore: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "finalScore", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.__DoNotUse<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return cuckoo_manager.verify("isValidNextState(_: AnyClass) -> Bool", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.__DoNotUse<(GKState?), Void> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return cuckoo_manager.verify("didEnter(from: GKState?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class MultiplayerGameEndStateStub: MultiplayerGameEndState {
+    
+    
+     override var didWin: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var finalScore: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool  {
+        return DefaultValueRegistry.defaultValue(for: (Bool).self)
+    }
+    
+     override func didEnter(from previousState: GKState?)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/GameState/MultiplayerGameInPlayState.swift at 2020-04-23 05:57:31 +0000
+
+//
+//  MultiplayerGameInPlayState.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 10/4/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+
+ class MockMultiplayerGameInPlayState: MultiplayerGameInPlayState, Cuckoo.ClassMock {
+    
+     typealias MocksType = MultiplayerGameInPlayState
+    
+     typealias Stubbing = __StubbingProxy_MultiplayerGameInPlayState
+     typealias Verification = __VerificationProxy_MultiplayerGameInPlayState
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: MultiplayerGameInPlayState?
+
+     func enableDefaultImplementation(_ stub: MultiplayerGameInPlayState) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+
+    
+
+    
+    
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        
+    return cuckoo_manager.call("isValidNextState(_: AnyClass) -> Bool",
+            parameters: (stateClass),
+            escapingParameters: (stateClass),
+            superclassCall:
+                
+                super.isValidNextState(stateClass)
+                ,
+            defaultCall: __defaultImplStub!.isValidNextState(stateClass))
+        
+    }
+    
+    
+    
+     override func didEnter(from previousState: GKState?)  {
+        
+    return cuckoo_manager.call("didEnter(from: GKState?)",
+            parameters: (previousState),
+            escapingParameters: (previousState),
+            superclassCall:
+                
+                super.didEnter(from: previousState)
+                ,
+            defaultCall: __defaultImplStub!.didEnter(from: previousState))
+        
+    }
+    
+
+	 struct __StubbingProxy_MultiplayerGameInPlayState: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.ClassStubFunction<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMultiplayerGameInPlayState.self, method: "isValidNextState(_: AnyClass) -> Bool", parameterMatchers: matchers))
+	    }
+	    
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.ClassStubNoReturnFunction<(GKState?)> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockMultiplayerGameInPlayState.self, method: "didEnter(from: GKState?)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_MultiplayerGameInPlayState: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	
+	    
+	    @discardableResult
+	    func isValidNextState<M1: Cuckoo.Matchable>(_ stateClass: M1) -> Cuckoo.__DoNotUse<(AnyClass), Bool> where M1.MatchedType == AnyClass {
+	        let matchers: [Cuckoo.ParameterMatcher<(AnyClass)>] = [wrap(matchable: stateClass) { $0 }]
+	        return cuckoo_manager.verify("isValidNextState(_: AnyClass) -> Bool", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func didEnter<M1: Cuckoo.OptionalMatchable>(from previousState: M1) -> Cuckoo.__DoNotUse<(GKState?), Void> where M1.OptionalMatchedType == GKState {
+	        let matchers: [Cuckoo.ParameterMatcher<(GKState?)>] = [wrap(matchable: previousState) { $0 }]
+	        return cuckoo_manager.verify("didEnter(from: GKState?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class MultiplayerGameInPlayStateStub: MultiplayerGameInPlayState {
+    
+
+    
+
+    
+     override func isValidNextState(_ stateClass: AnyClass) -> Bool  {
+        return DefaultValueRegistry.defaultValue(for: (Bool).self)
+    }
+    
+     override func didEnter(from previousState: GKState?)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  GameScene.swift
@@ -6371,7 +7006,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-14 21:36:47 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-23 05:57:31 +0000
 
 //
 //  SceneManager.swift
@@ -6427,6 +7062,21 @@ import SpriteKit
     
     
     
+     override func loadNewMultiplayerScene()  {
+        
+    return cuckoo_manager.call("loadNewMultiplayerScene()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.loadNewMultiplayerScene()
+                ,
+            defaultCall: __defaultImplStub!.loadNewMultiplayerScene())
+        
+    }
+    
+    
+    
      override func loadNewStage()  {
         
     return cuckoo_manager.call("loadNewStage()",
@@ -6455,6 +7105,21 @@ import SpriteKit
         
     }
     
+    
+    
+     override func resetMultiplayerState()  {
+        
+    return cuckoo_manager.call("resetMultiplayerState()",
+            parameters: (),
+            escapingParameters: (),
+            superclassCall:
+                
+                super.resetMultiplayerState()
+                ,
+            defaultCall: __defaultImplStub!.resetMultiplayerState())
+        
+    }
+    
 
 	 struct __StubbingProxy_SceneManager: Cuckoo.StubbingProxy {
 	    private let cuckoo_manager: Cuckoo.MockManager
@@ -6469,6 +7134,11 @@ import SpriteKit
 	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "transitionToScene(sceneIdentifier: SceneIdentifier, transition: SKTransition)", parameterMatchers: matchers))
 	    }
 	    
+	    func loadNewMultiplayerScene() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "loadNewMultiplayerScene()", parameterMatchers: matchers))
+	    }
+	    
 	    func loadNewStage() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "loadNewStage()", parameterMatchers: matchers))
@@ -6477,6 +7147,11 @@ import SpriteKit
 	    func loadNewMap() -> Cuckoo.ClassStubNoReturnFunction<()> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "loadNewMap()", parameterMatchers: matchers))
+	    }
+	    
+	    func resetMultiplayerState() -> Cuckoo.ClassStubNoReturnFunction<()> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return .init(stub: cuckoo_manager.createStub(for: MockSceneManager.self, method: "resetMultiplayerState()", parameterMatchers: matchers))
 	    }
 	    
 	}
@@ -6502,6 +7177,12 @@ import SpriteKit
 	    }
 	    
 	    @discardableResult
+	    func loadNewMultiplayerScene() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("loadNewMultiplayerScene()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
 	    func loadNewStage() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return cuckoo_manager.verify("loadNewStage()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
@@ -6511,6 +7192,12 @@ import SpriteKit
 	    func loadNewMap() -> Cuckoo.__DoNotUse<(), Void> {
 	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
 	        return cuckoo_manager.verify("loadNewMap()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	    @discardableResult
+	    func resetMultiplayerState() -> Cuckoo.__DoNotUse<(), Void> {
+	        let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+	        return cuckoo_manager.verify("resetMultiplayerState()", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
 	    }
 	    
 	}
@@ -6526,11 +7213,19 @@ import SpriteKit
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
+     override func loadNewMultiplayerScene()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
      override func loadNewStage()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
      override func loadNewMap()   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+     override func resetMultiplayerState()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     

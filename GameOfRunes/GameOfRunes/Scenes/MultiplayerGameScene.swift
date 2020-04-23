@@ -25,13 +25,18 @@ class MultiplayerGameScene: GameScene {
 
     override func sceneDidLoad() {
         guard let roomData = gameStateMachine?.room,
-            let localPlayerAvatar = roomData.localPlayer?.avatar,
-            let remotePlayerAvatar = roomData.remoteplayers.first?.avatar else {
+            let roomId = roomData.roomId,
+            let localPlayer = roomData.localPlayer,
+            let remotePlayer = roomData.remoteplayers.first,
+            let localPlayerAvatar = localPlayer.avatar,
+            let remotePlayerAvatar = remotePlayer.avatar else {
             fatalError("Unable to retrieve Room Data")
         }
 
         // Local Game
         rootRenderNode = LocalRootRenderNode(
+            roomId: roomId,
+            uid: localPlayer.uid,
             stage: EnemyWaveCreator.endlessSeedStage,
             avatar: localPlayerAvatar,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,
@@ -47,6 +52,8 @@ class MultiplayerGameScene: GameScene {
         let remoteRootPosition = CGPoint(x: size.width - remoteRootWidth, y: size.height - remoteRootHeight)
         
         remoteRootRenderNode = RemoteRootRenderNode(
+            roomId: roomId,
+            uid: remotePlayer.uid,
             stage: EnemyWaveCreator.emptySeedStage,
             avatar: remotePlayerAvatar,
             zPosition: GameConfig.MultiplayerGameScene.miniMapZPosition,
@@ -61,5 +68,12 @@ class MultiplayerGameScene: GameScene {
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         self.remoteRootRenderNode.update(with: deltaTime)
+    }
+    
+    override func gameDidEnd(didWin: Bool, finalScore: Int) {
+        print("Multiplayer game ended")
+        gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.didWin = didWin
+        gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.finalScore = finalScore
+        gameStateMachine?.enter(MultiplayerGameEndState.self)
     }
 }

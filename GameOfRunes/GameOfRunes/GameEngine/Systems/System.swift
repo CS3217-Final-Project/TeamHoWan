@@ -11,6 +11,7 @@ import GameplayKit
 protocol System: AnyObject {
     func update(deltaTime: TimeInterval)
     func addComponent(foundIn: GKEntity)
+    func addComponent(_ component: Component)
     func removeComponent(foundIn: GKEntity)
     func removeComponent(_ component: Component)
 }

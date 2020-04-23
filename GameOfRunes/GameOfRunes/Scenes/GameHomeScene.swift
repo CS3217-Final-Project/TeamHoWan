@@ -213,7 +213,7 @@ extension GameHomeScene: TapResponder {
         case .playButton:
             startGame()
         case .readyButton:
-            toggleReady()
+            updateReadyState(newValue: !room.isReady)
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -419,13 +419,23 @@ extension GameHomeScene {
         room = .init()
     }
     
-    private func toggleReady() {
+    func resetRoomState() {
         guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
         }
-        dbRef.toggleReadyState(
+
+        dbRef.updateGameHasStarted(roomId: roomId, to: false, completion: nil, onError: presentErrorAlert)
+        dbRef.resetPlayerState(roomId: roomId, uid: localPlayerUid, completion: nil, onError: presentErrorAlert)
+    }
+    
+    private func updateReadyState(newValue: Bool) {
+        guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+        dbRef.updateReadyState(
             uid: localPlayerUid,
             roomId: roomId,
+            newValue: newValue,
             completion: nil,
             onError: presentErrorAlert
         )
@@ -495,7 +505,7 @@ extension GameHomeScene {
         gameStateMachine?.avatar = nil
         gameStateMachine?.stage = nil
         gameStateMachine?.room = room
-        gameStateMachine?.enter(GameInMultiplayerPlayState.self)
+        gameStateMachine?.enter(MultiplayerGameInPlayState.self)
     }
     
     private func presentErrorAlert(error: Error) {

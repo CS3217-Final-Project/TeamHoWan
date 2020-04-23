@@ -6,7 +6,7 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-enum Avatar: Int, CaseIterable {
+enum Avatar: Int, CaseIterable, Codable {
     case elementalWizard
     case holyKnight
     

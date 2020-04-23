@@ -12,27 +12,27 @@ import UIKit
  Model representing a Player on the network.
  */
 class PlayerModel: Codable {
-    var uid: String
+    let uid: String
     var name: String
     var isHost: Bool
     var isReady: Bool
     var avatar: String
-    var powerUpActivated: PowerUpModel?
-    var monsters: [MonsterModel]
-    
+    var didLose: Bool
     var toPlayer: Player {
         .init(uid: uid, name: name, avatar: Avatar.getAvatar(withName: avatar))
     }
     
-    init(uid: String, name: String = FirebaseKeys.defaultEmptyString, isHost: Bool,
-         isReady: Bool = false, avatar: String = FirebaseKeys.defaultAvatar,
-         powerUp: PowerUpModel? = nil, monsters: [MonsterModel] = []) {
+    init(uid: String,
+         isHost: Bool,
+         name: String = "",
+         isReady: Bool = false,
+         avatar: String = FirebaseKeys.defaultAvatar,
+         didLose: Bool = false) {
         self.uid = uid
         self.name = name
         self.isHost = isHost
         self.isReady = isReady
         self.avatar = avatar
-        self.powerUpActivated = powerUp
-        self.monsters = monsters
+        self.didLose = didLose
     }
 }

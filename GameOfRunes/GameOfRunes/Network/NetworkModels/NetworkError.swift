@@ -1,5 +1,5 @@
 //
-//  NetworkErrors.swift
+//  NetworkError.swift
 //  GameOfRunes
 //
 //  Created by Andy on 19/4/20.

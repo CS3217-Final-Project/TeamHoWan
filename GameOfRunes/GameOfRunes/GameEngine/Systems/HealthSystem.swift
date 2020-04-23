@@ -22,6 +22,14 @@ class HealthSystem: GKComponentSystem<HealthComponent>, System {
         return entityHealthComponent.healthPoints
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? HealthComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+
     func removeComponent(_ component: Component) {
         guard let component = component as? HealthComponent else {
             return

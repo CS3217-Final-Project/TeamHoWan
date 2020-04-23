@@ -27,18 +27,17 @@ enum GameConfig {
     
     enum Unit {
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
-        static let slowMovementSpeed: Float = 75.0
-        static let normalMovementSpeed: Float = 100.0
-        static let fastMovementSpeed: Float = 150.0
+        static let slowMovementSpeed: Float = 50.0
+        static let normalMovementSpeed: Float = 75.0
+        static let fastMovementSpeed: Float = 125.0
         static let bossMovementSpeed: Float = 25.0
-        static let standardUnitTraversalTime: Float = 7.5
+        static let standardUnitTraversalTime: Float = 10
         static let accelerationScalingFactor: Float = 1.0
     }
     
     enum Enemy {
         static let runeScalingFactor: CGFloat = 0.4
         static let gestureBubbleOffsetPercentage: CGFloat = 0.95
-        static let gestureBubbleOffset = CGPoint(x: 0.0, y: 90.0)
         static let normalScore = 10
 
         // Note: monster difficulties must be unique
@@ -59,6 +58,8 @@ enum GameConfig {
         static let manaMinValue: Int = 5
         static let manaMaxValue: Int = 20
         static let manaPerManaUnit: Int = 10
+        static let manaUltraRareThreshold: Double = 90.0
+        static let manaRareThreshold: Double = 60.0
     }
 
     enum SceneManager {
@@ -98,6 +99,8 @@ enum GameConfig {
         static var gestureAreaHeightRatio: CGFloat {
             1 - playerAreaHeightRatio
         }
+        static let unitWidthRatio: CGFloat = 1 / 6
+        static let removalAnimationWidthRatio: CGFloat = 1 / 5
 
         // Spawning of Enemies
         static let numLanes: Int = 3
@@ -137,6 +140,12 @@ enum GameConfig {
         // zPositions
         static let backgroundLayerZPosition: CGFloat = -100
         static let uiLayerZPosition: CGFloat = 0
+    }
+    
+    enum MultiplayerGameEndScene {
+        static let fontSizeRatio: CGFloat = 1 / 12
+        static let buttonWidthRatio: CGFloat = 1 / 6
+        static let buttonHeightRatio: CGFloat = 1 / 6
     }
 
     enum MultiplayerGameScene {

@@ -53,6 +53,11 @@ class RemoveDelegate {
         if shouldIncreaseScore, let scoreComponent = entity.component(ofType: ScoreComponent.self) {
             gameEngine?.addScore(by: scoreComponent.scorePoints)
         }
+        
+        if entity.type == .enemyEntity,
+            let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity {
+                gameEngine?.remove(gestureEntity)
+        }
 
         removeUnitFromGameWithAnimation(entity, fullAnimation: fullAnimation)
     }
@@ -67,7 +72,7 @@ class RemoveDelegate {
             .animate(
                 with: TextureContainer.manaRemovalTextures,
                 timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
-                resize: true,
+                resize: false,
                 restore: false
             ),
             .removeFromParent()
@@ -75,6 +80,9 @@ class RemoveDelegate {
         
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
+        let length = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size).width
+            * GameConfig.GamePlayScene.removalAnimationWidthRatio
+        animationNode.size = .init(width: length, height: length)
         animationNode.position = spriteComponent.node.position
         animationNode.run(removalAnimation)
         renderNode.addNodeToLayer(layer: .removalAnimationLayer, node: animationNode)
@@ -104,7 +112,7 @@ class RemoveDelegate {
             .animate(
                 with: animationTextures,
                 timePerFrame: GameConfig.Unit.removalAnimationTimePerFrame,
-                resize: true,
+                resize: false,
                 restore: false
             ),
             .removeFromParent()
@@ -112,6 +120,9 @@ class RemoveDelegate {
         
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
+        let length = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size).width
+            * GameConfig.GamePlayScene.removalAnimationWidthRatio
+        animationNode.size = .init(width: length, height: length)
         animationNode.position = spriteComponent.node.position
         // have to save the value instead of a strong reference to the entity
         let entityType = entity.type
