@@ -112,26 +112,6 @@ protocol NetworkInterface {
                           onRoomClose: (() -> Void)?,
                           onError: ((Error) -> Void)?)
     
-    func observeEnemy(roomId: String,
-                      uid: String,
-                      onDataChange: (([EnemyModel]) -> Void)?,
-                      onError: ((Error) -> Void)?)
-    
-    func observeMetadata(roomId: String,
-                         uid: String,
-                         onDataChange: ((MetadataModel) -> Void)?,
-                         onError: ((Error) -> Void)?)
-    
-    func observePowerUp(roomId: String,
-                        uid: String,
-                        onDataChange: ((PowerUpModel) -> Void)?,
-                        onError: ((Error) -> Void)?)
-    
-    /**
-     Removes all observers.
-     */
-    func removeObservers()
-    
     /**
      Starts a game instance for a particular room. This method creates the game by calling`createGame`
      and changes the `hasStarted` flag of the room.
@@ -153,7 +133,7 @@ protocol NetworkInterface {
      - onError: error handler
      */
     func updateGameHasStarted(roomId: String, to: Bool, completion: (() -> Void)?, onError: ((Error) -> Void)?)
-
+    
     /**
      Get an avatar in given room and given uid.
      - Parameters:
@@ -163,6 +143,23 @@ protocol NetworkInterface {
      - onError: error handler
      */
     func getAvatar(roomId: String, uid: String, completion: ((Avatar) -> Void)?, onError: ((Error) -> Void)?)
+    
+    // ================================== Game functions =========================================
+    
+    func observeEnemy(roomId: String,
+                      uid: String,
+                      onDataChange: (([EnemyModel]) -> Void)?,
+                      onError: ((Error) -> Void)?)
+    
+    func observeMetadata(roomId: String,
+                         uid: String,
+                         onDataChange: ((MetadataModel) -> Void)?,
+                         onError: ((Error) -> Void)?)
+    
+    func observePowerUp(roomId: String,
+                        uid: String,
+                        onDataChange: ((PowerUpModel) -> Void)?,
+                        onError: ((Error) -> Void)?)
     
     /**
      Update own monsters on the network.
@@ -188,7 +185,6 @@ protocol NetworkInterface {
      - completion: completion handler
      - onError: error handler
      */
-
     func updatePowerUp(roomId: String,
                        uid: String,
                        powerUp: PowerUpModel,
@@ -211,10 +207,8 @@ protocol NetworkInterface {
                           uid: String,
                           completion: (() -> Void)?,
                           onError: ((Error) -> Void)?)
-}
-
-extension NetworkInterface {
-    func checkForConnection() {
-        
-    }
+    /**
+     Removes all observers.
+     */
+    func removeObservers()
 }

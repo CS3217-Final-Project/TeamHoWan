@@ -36,16 +36,7 @@ extension FirebaseNetwork {
         let avatar = description[FirebaseKeys.rooms_players_avatar] as? String ?? FirebaseKeys.defaultAvatar
         let isReady = description[FirebaseKeys.rooms_players_isReady] as? Bool ?? FirebaseKeys.defaultBool
         let didLose = description[FirebaseKeys.rooms_players_didLose] as? Bool ?? FirebaseKeys.defaultBool
-        let monsters = description[FirebaseKeys.rooms_players_monsters] as? [[String: AnyObject]] ?? []
-        let powerUp = description[FirebaseKeys.rooms_players_powerUp] as? [String: AnyObject] ?? [:]
-        let metadata = description[FirebaseKeys.rooms_players_metadata] as? [String: AnyObject] ?? [:]
-        
-        let decodedMonsters = decodeMonsters(data: monsters)
-        let decodedPowerUp = decodePowerUp(data: powerUp)
-        let decodedMetadata = decodeMetadata(data: metadata)
-        
-        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar, didLose: didLose,
-                           powerUp: decodedPowerUp, monsters: decodedMonsters, metadata: decodedMetadata)
+        return PlayerModel(uid: uid, isHost: isHost, name: name, isReady: isReady, avatar: avatar, didLose: didLose)
     }
     
     /**
@@ -60,10 +51,9 @@ extension FirebaseNetwork {
         let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultString
         let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultBool
         let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultBool
-        let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultBool
         let players = dict[FirebaseKeys.rooms_players] as? [String: AnyObject] ?? [:]
 
-        let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
+        let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted)
         for (playerUid, playerDescription) in players {
             room.addPlayer(firebasePlayerModelFactory(forUid: playerUid, forDescription: playerDescription))
         }
@@ -84,48 +74,14 @@ extension FirebaseNetwork {
                           name: String,
                           isHost: Bool,
                           isReady: Bool,
-                          avatar: String = FirebaseKeys.defaultAvatar,
-                          didLose: Bool = FirebaseKeys.defaultBool,
-                          powerUp: PowerUpModel? = nil,
-                          monsters: [EnemyModel] = [],
-                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
-        let encodedPowerUp = encodePowerUp(powerUp: powerUp)
-        let encodedMonsters = encodeMonsters(monsters: monsters)
-        let encodedMetadata = encodeMetadata(metadata: metadata)
-        return [
+                          avatar: String = FirebaseKeys.defaultAvatar) -> [String: AnyObject] {
+        [
             FirebaseKeys.rooms_players_isHost: isHost as AnyObject,
             FirebaseKeys.rooms_players_uid: uid as AnyObject,
             FirebaseKeys.rooms_players_name: name as AnyObject,
             FirebaseKeys.rooms_players_isReady: isReady as AnyObject,
-            FirebaseKeys.rooms_players_avatar: avatar as AnyObject,
-            FirebaseKeys.rooms_players_didLose: didLose as AnyObject,
-            FirebaseKeys.rooms_players_powerUp: encodedPowerUp as AnyObject,
-            FirebaseKeys.rooms_players_monsters: encodedMonsters as AnyObject,
-            FirebaseKeys.rooms_players_metadata: encodedMetadata as AnyObject
+            FirebaseKeys.rooms_players_avatar: avatar as AnyObject
         ]
-    }
-    
-    /**
-     Convenience method for using `PlayerData` to convert into a firebase usable dictionary.
-     */
-    func createPlayerDict(playerData: PlayerData,
-                          isHost: Bool,
-                          isReady: Bool,
-                          didLose: Bool = FirebaseKeys.defaultBool,
-                          powerUp: PowerUpModel? = nil,
-                          monsters: [EnemyModel] = [],
-                          metadata: MetadataModel? = nil) -> [String: AnyObject] {
-        createPlayerDict(
-            uid: playerData.uid,
-            name: playerData.name,
-            isHost: isHost,
-            isReady: isReady,
-            avatar: playerData.avatar.name,
-            didLose: didLose,
-            powerUp: powerUp,
-            monsters: monsters,
-            metadata: metadata
-        )
     }
     
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {
