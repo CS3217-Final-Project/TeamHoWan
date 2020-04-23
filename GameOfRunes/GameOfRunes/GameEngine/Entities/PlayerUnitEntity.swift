@@ -34,11 +34,16 @@ class PlayerUnitEntity: Entity {
                 )
             )
         )
+        
+        // Speed and Acceleration are Proportionate to Screen Size (Treat speed as ratio)
+        let timetaken = GameConfig.Unit.standardUnitTraversalTime
+        let unitMaxSpeed = Float(renderNodeSize.height) / timetaken
+        let unitMaxAcceleration = GameConfig.Unit.accelerationScalingFactor * unitMaxSpeed
  
         let spriteComponent = SpriteComponent(node: unitNode, layerType: .unitLayer)
         let moveComponent = MoveComponent(
-            maxSpeed: 100,
-            maxAcceleration: 5.0,
+            maxSpeed: unitMaxSpeed,
+            maxAcceleration: unitMaxAcceleration,
             radius: .init(unitNode.size.height / 2)
         )
         let teamComponent = TeamComponent(team: .player)

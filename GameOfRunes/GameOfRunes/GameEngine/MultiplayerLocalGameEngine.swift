@@ -38,10 +38,10 @@ class MultiplayerLocalGameEngine: GameEngine {
             return isAdded
         }
         
-        var newUuid = Util.generateUuid()
+        var newUuid = UUID().uuidString
         
         while uuidEnemyMapping[newUuid] != nil {
-            newUuid = Util.generateUuid()
+            newUuid = UUID().uuidString
         }
         
         uuidEnemyMapping[newUuid] = entity
@@ -54,8 +54,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         let monstersRemoved = toRemoveEntities.filter { entity in entity.type == .enemyEntity }
         
         if !monstersRemoved.isEmpty {
-            let monstersLeft = Set(uuidEnemyMapping.values).symmetricDifference(monstersRemoved)
-            monstersLeft.forEach { entity in
+            monstersRemoved.forEach { entity in
                 guard let uuid = enemyUuidMapping.removeValue(forKey: entity) else {
                     return
                 }

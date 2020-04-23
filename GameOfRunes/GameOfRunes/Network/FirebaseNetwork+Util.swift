@@ -169,9 +169,7 @@ extension FirebaseNetwork {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
             decodedPowerUp = try decoder.decode(PowerUpModel.self, from: jsonData)
-        } catch {
-            print(error)
-        }
+        } catch { }
         return decodedPowerUp
     }
     
@@ -180,9 +178,7 @@ extension FirebaseNetwork {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
             decodedMonsters = try decoder.decode([EnemyModel].self, from: jsonData)
-        } catch {
-            print(error)
-        }
+        } catch { }
         return decodedMonsters ?? []
     }
     
@@ -191,9 +187,7 @@ extension FirebaseNetwork {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
             decodedMetadata = try decoder.decode(MetadataModel.self, from: jsonData)
-        } catch {
-            print(error)
-        }
+        } catch { }
         return decodedMetadata
     }
 }

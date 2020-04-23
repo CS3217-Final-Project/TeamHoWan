@@ -56,7 +56,7 @@ class RemoveDelegate {
         
         if entity.type == .enemyEntity,
             let gestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity {
-            gameEngine?.remove(gestureEntity)
+                gameEngine?.remove(gestureEntity)
         }
 
         removeUnitFromGameWithAnimation(entity, fullAnimation: fullAnimation)
