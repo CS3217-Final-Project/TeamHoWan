@@ -27,11 +27,11 @@ enum GameConfig {
     
     enum Unit {
         static let removalAnimationTimePerFrame: TimeInterval = 0.075
-        static let slowMovementSpeed: Float = 75.0
-        static let normalMovementSpeed: Float = 100.0
-        static let fastMovementSpeed: Float = 150.0
+        static let slowMovementSpeed: Float = 50.0
+        static let normalMovementSpeed: Float = 75.0
+        static let fastMovementSpeed: Float = 125.0
         static let bossMovementSpeed: Float = 25.0
-        static let standardUnitTraversalTime: Float = 7.5
+        static let standardUnitTraversalTime: Float = 10
         static let accelerationScalingFactor: Float = 1.0
     }
     
