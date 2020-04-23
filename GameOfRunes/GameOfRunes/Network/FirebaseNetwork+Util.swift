@@ -51,10 +51,9 @@ extension FirebaseNetwork {
         let roomId = dict[FirebaseKeys.rooms_roomId] as? String ?? FirebaseKeys.defaultString
         let isOpen = dict[FirebaseKeys.rooms_isOpen] as? Bool ?? FirebaseKeys.defaultBool
         let hasStarted = dict[FirebaseKeys.rooms_hasStarted] as? Bool ?? FirebaseKeys.defaultBool
-        let gameCreated = dict[FirebaseKeys.rooms_gameCreated] as? Bool ?? FirebaseKeys.defaultBool
         let players = dict[FirebaseKeys.rooms_players] as? [String: AnyObject] ?? [:]
 
-        let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted, gameCreated: gameCreated)
+        let room = RoomModel(roomId: roomId, isOpen: isOpen, hasStarted: hasStarted)
         for (playerUid, playerDescription) in players {
             room.addPlayer(firebasePlayerModelFactory(forUid: playerUid, forDescription: playerDescription))
         }

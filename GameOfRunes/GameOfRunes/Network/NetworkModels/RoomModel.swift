@@ -15,14 +15,12 @@ class RoomModel: Codable {
     let roomId: String
     var isOpen: Bool
     var hasStarted: Bool
-    var gameCreated: Bool
     var players: [PlayerModel] = []
     
-    init(roomId: String = "", isOpen: Bool = false, hasStarted: Bool = false, gameCreated: Bool = false) {
+    init(roomId: String = "", isOpen: Bool = false, hasStarted: Bool = false) {
         self.roomId = roomId
         self.isOpen = isOpen
         self.hasStarted = hasStarted
-        self.gameCreated = gameCreated
     }
     
     func addPlayer(_ player: PlayerModel) {
