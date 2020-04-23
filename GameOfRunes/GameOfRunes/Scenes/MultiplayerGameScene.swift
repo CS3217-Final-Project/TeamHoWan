@@ -69,4 +69,11 @@ class MultiplayerGameScene: GameScene {
         super.update(currentTime)
         self.remoteRootRenderNode.update(with: deltaTime)
     }
+    
+    override func gameDidEnd(didWin: Bool, finalScore: Int) {
+        print("Multiplayer game ended")
+        gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.didWin = didWin
+        gameStateMachine?.state(forClass: MultiplayerGameEndState.self)?.finalScore = finalScore
+        gameStateMachine?.enter(MultiplayerGameEndState.self)
+    }
 }

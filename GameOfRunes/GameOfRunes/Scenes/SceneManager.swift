@@ -22,6 +22,7 @@ class SceneManager {
         case map
         case home
         case multiplayerPlay
+        case multiplayerEnd(win: Bool)
     }
     
     private let presentingView: SKView
@@ -41,9 +42,9 @@ class SceneManager {
         gameStateMachine: gameStateMachine
     )
     private let gameHomeScene: GameHomeScene
+    private let multiplayerGameEndScene: MultiplayerGameEndScene
 
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
-        // TODO: The following can be removed once the code is in production
         presentingView.showsFPS = true
         presentingView.showsNodeCount = true
         
@@ -54,9 +55,10 @@ class SceneManager {
         
         let sceneSize = self.presentingView.bounds.size
         
-        self.gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
-        self.gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
-        self.gameHomeScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        gamePauseScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        gameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        gameHomeScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
+        multiplayerGameEndScene = .init(size: sceneSize, gameStateMachine: gameStateMachine)
     }
     
     func transitionToScene(
@@ -71,7 +73,7 @@ class SceneManager {
         case .pause:
             scene = gamePauseScene
         case .end(let didWin):
-            self.gameEndScene.didWin = didWin
+            gameEndScene.didWin = didWin
             scene = gameEndScene
         case .map:
             gameMapScene.refreshSelectedStage()
@@ -80,13 +82,16 @@ class SceneManager {
             scene = gameHomeScene
         case .multiplayerPlay:
             scene = multiplayerGamePlayScene
+        case .multiplayerEnd(let didWin):
+            multiplayerGameEndScene.didWin = didWin
+            scene = multiplayerGameEndScene
         }
         
         presentingView.presentScene(scene, transition: transition)
     }
     
     func loadNewMultiplayerScene() {
-        multiplayerGamePlayScene = .init(size: self.presentingView.bounds.size, gameStateMachine: gameStateMachine)
+        multiplayerGamePlayScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
     }
     
     /**
@@ -101,5 +106,9 @@ class SceneManager {
     */
     func loadNewMap() {
         gameMapScene = .init(size: presentingView.bounds.size, gameStateMachine: gameStateMachine)
+    }
+    
+    func resetMultiplayerState() {
+        gameHomeScene.resetRoomState()
     }
 }

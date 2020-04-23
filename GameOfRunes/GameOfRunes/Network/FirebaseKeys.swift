@@ -24,6 +24,7 @@ enum FirebaseKeys {
     static let rooms_players_uid = "uid"
     static let rooms_players_name = "name"
     static let rooms_players_avatar = "avatar"
+    static let rooms_players_didLose = "did_lose"
 
     // Game keys
     static let games = "games"
@@ -33,7 +34,6 @@ enum FirebaseKeys {
     static let games_players_powerUp = "powerUp"
     static let games_players_monsters = "monsters"
     static let games_players_metadata = "metadata"
-    static let rooms_players_didLose = "did_lose"
 
     /// Joins keys with the required (firebase) separator
     /// - Parameters:

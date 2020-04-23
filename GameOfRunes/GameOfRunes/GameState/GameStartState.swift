@@ -7,9 +7,10 @@
 //
 
 import GameplayKit
+import ReplayKit
 
 /**
- State for `GameStateMachine` when the Game is just starting.
+ State for `GameStateMachine` when the game is just starting.
  This state automatically transitions to `GameInPlayState` when ready.
  */
 class GameStartState: GKState {
@@ -27,6 +28,11 @@ class GameStartState: GKState {
         }
         
         sceneManager.loadNewStage()
-        gameStateMachine.enter(GameInPlayState.self)
+        RPScreenRecorder.shared().startRecording { err in
+            print(err?.localizedDescription ?? "Start recording")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                gameStateMachine.enter(GameInPlayState.self)
+            }
+        }
     }
 }

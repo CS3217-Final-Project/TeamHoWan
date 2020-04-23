@@ -82,7 +82,7 @@ protocol NetworkInterface {
      - completion: completion handler
      - onError: error handler
      */
-    func toggleReadyState(uid: String, roomId: String, completion: (() -> Void)?, onError: ((Error) -> Void)?)
+    func updateReadyState(uid: String, roomId: String, newValue: Bool, completion: (() -> Void)?, onError: ((Error) -> Void)?)
     
     /**
      Toggle the player's avatar in the room that the player is in.
@@ -202,7 +202,11 @@ protocol NetworkInterface {
                        didLose: Bool,
                        completion: (() -> Void)?,
                        onError: ((Error) -> Void)?)
-
+    
+    func resetPlayerState(roomId: String,
+                          uid: String,
+                          completion: (() -> Void)?,
+                          onError: ((Error) -> Void)?)
     /**
      Removes all observers.
      */

@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import ReplayKit
 
 /** Scene to be displayed when the game is paused. */
 class GamePauseScene: SKScene, TapResponder {
@@ -16,14 +17,13 @@ class GamePauseScene: SKScene, TapResponder {
         self.gameStateMachine = gameStateMachine
         super.init(size: size)
         
-        let center = CGPoint(x: frame.midX, y: frame.midY)
+        anchorPoint = .init(x: 0.5, y: 0.5)
         
         let resumeButton = ButtonNode(
             size: .init(width: size.width * GameConfig.GamePauseScene.buttonWidthRatio,
                         height: size.width * GameConfig.GamePauseScene.buttonHeightRatio),
             texture: .init(imageNamed: "resume-button"),
-            buttonType: .resumeButton,
-            position: center
+            buttonType: .resumeButton
         )
         
         addChild(resumeButton)
@@ -35,8 +35,7 @@ class GamePauseScene: SKScene, TapResponder {
             buttonType: .homeButton
         )
         
-        homeButton.position = center
-            + .init(dx: -resumeButton.size.width / 2, dy: 0.0)
+        homeButton.position = .init(x: -resumeButton.size.width / 2, y: 0.0)
             + .init(dx: -homeButton.size.width, dy: 0.0)
         addChild(homeButton)
         
@@ -47,8 +46,7 @@ class GamePauseScene: SKScene, TapResponder {
             buttonType: .restartButton
         )
         
-        restartButton.position = center
-            + .init(dx: resumeButton.size.width / 2, dy: 0.0)
+        restartButton.position = .init(x: resumeButton.size.width / 2, y: 0.0)
             + .init(dx: restartButton.size.width, dy: 0.0)
         addChild(restartButton)
     }
@@ -67,8 +65,10 @@ class GamePauseScene: SKScene, TapResponder {
         case .resumeButton:
             gameStateMachine?.enter(GameInPlayState.self)
         case .homeButton:
+            RPScreenRecorder.shared().stopRecording { _, _ in print("End recording") }
             gameStateMachine?.enter(GameStageSelectionState.self)
         case .restartButton:
+            RPScreenRecorder.shared().stopRecording { _, _ in print("End recording") }
             gameStateMachine?.enter(GameStartState.self)
         default:
             print("Unknown node tapped:", tappedNode)

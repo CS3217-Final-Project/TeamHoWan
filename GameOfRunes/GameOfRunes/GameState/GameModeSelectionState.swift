@@ -12,7 +12,7 @@ import GameplayKit
 class GameModeSelectionState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        stateClass is GameStageSelectionState.Type || stateClass is GameInMultiplayerPlayState.Type
+        stateClass is GameStageSelectionState.Type || stateClass is MultiplayerGameInPlayState.Type
     }
     
     override func didEnter(from previousState: GKState?) {
@@ -21,6 +21,14 @@ class GameModeSelectionState: GKState {
         guard let gameStateMachine = stateMachine as? GameStateMachine,
             let sceneManager = gameStateMachine.sceneManager else {
                 fatalError("No SceneManager associated with GameStateMachine")
+        }
+        
+        if previousState is MultiplayerGameEndState {
+            sceneManager.transitionToScene(
+                sceneIdentifier: .home,
+                transition: .doorsOpenHorizontal(withDuration: GameConfig.SceneManager.sceneTransitionDuration)
+            )
+            return
         }
         
         sceneManager.transitionToScene(sceneIdentifier: .home)

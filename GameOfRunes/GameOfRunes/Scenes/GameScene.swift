@@ -79,6 +79,7 @@ class GameScene: SKScene {
      and the final score.
      */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
+        print("Single player game ended")
         gameStateMachine?.state(forClass: GameEndState.self)?.didWin = didWin
         gameStateMachine?.state(forClass: GameEndState.self)?.finalScore = finalScore
         gameStateMachine?.enter(GameEndState.self)

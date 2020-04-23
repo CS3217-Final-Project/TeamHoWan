@@ -37,6 +37,7 @@ class RealmStorage: Storage {
      Set up database to use the default path determined by Realm.
      */
     private func setUpDb() {
+        print("Realm file path:", Realm.Configuration.defaultConfiguration.fileURL ?? "path not found")
         do {
             realm = try Realm()
             print("Successfully load Realm database")

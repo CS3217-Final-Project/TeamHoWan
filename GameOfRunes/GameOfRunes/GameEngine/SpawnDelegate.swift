@@ -14,7 +14,6 @@ import GameplayKit
  */
 class SpawnDelegate {
     private weak var gameEngine: GameEngine?
-    // TODO: When timer is up, should retrieve this information from GameMetaData
     private var timeTillNextSpawn: TimeInterval
     private let endlessModeSpawnHandler: EndlessModeSpawnHandler
 

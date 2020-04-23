@@ -31,7 +31,7 @@ class DroppedManaEntity: Entity {
         spriteComponent.node.run(
             .repeatForever(
                 .animate(
-                    with: TextureContainer.getManaTextures(manaType: getManaType(manaPoints: manaPoints)),
+                    with: TextureContainer.getManaTextures(manaType: ManaType.getManaType(manaPoints: manaPoints)),
                     timePerFrame: 0.05,
                     resize: false,
                     restore: true
@@ -41,22 +41,5 @@ class DroppedManaEntity: Entity {
         
         addComponent(spriteComponent)
         addComponent(ManaComponent(manaPoints: manaPoints))
-    }
-    
-    // TODO: Refactor once meta-data is completed
-    private func getManaType(manaPoints: Int) -> ManaType {
-        let max = GameConfig.Mana.manaMaxValue
-        let min = GameConfig.Mana.manaMinValue
-        
-        let percentile = Double((manaPoints - min)) / Double((max - min)) * 100
-        
-        switch percentile {
-        case 90...:
-            return .ultraRare
-        case 60...:
-            return .rare
-        default:
-            return .common
-        }
     }
 }

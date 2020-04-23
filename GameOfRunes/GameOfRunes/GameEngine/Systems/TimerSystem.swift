@@ -71,6 +71,14 @@ class TimerSystem: GKComponentSystem<TimerComponent>, System {
         timerComponent.time = timerComponent.initialTimerValue
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? TimerComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? TimerComponent else {
             return

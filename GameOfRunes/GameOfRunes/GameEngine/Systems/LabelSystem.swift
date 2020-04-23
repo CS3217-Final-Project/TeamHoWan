@@ -59,6 +59,14 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         entity.component(ofType: LabelComponent.self)?.node.removeFromParent()
     }
     
+    func addComponent(_ component: Component) {
+        guard let component = component as? LabelComponent else {
+            return
+        }
+        
+        super.addComponent(component)
+    }
+    
     func removeComponent(_ component: Component) {
         guard let component = component as? LabelComponent else {
             return

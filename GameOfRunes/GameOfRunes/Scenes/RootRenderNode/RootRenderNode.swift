@@ -296,13 +296,7 @@ extension RootRenderNode {
      transitions (it has a reference to `GameStateMachine` for this purpose.
      */
     func gameDidEnd(didWin: Bool, finalScore: Int) {
-        print("game ended")
-        guard let gameScene = scene as? GameScene else {
-            print("Scene is not of type GameScene")
-            return
-        }
-
-        gameScene.gameDidEnd(didWin: didWin, finalScore: finalScore)
+        (scene as? GameScene)?.gameDidEnd(didWin: didWin, finalScore: finalScore)
     }
 }
 

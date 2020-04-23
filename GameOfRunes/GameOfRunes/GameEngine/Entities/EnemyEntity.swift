@@ -13,15 +13,12 @@ class EnemyEntity: Entity {
         .enemyEntity
     }
 
-    init(enemyType: EnemyType, gameEngine: GameEngine) {
+    init(enemyType: EnemyType, gameEngine: GameEngine?) {
         super.init()
 
-        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
-            return
-        }
-
         let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        enemyNode.size = enemyNode.size.scaleTo(width: renderNodeSize.width / 6)
+        let renderNodeSize = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size)
+        enemyNode.size = enemyNode.size.scaleTo(width: renderNodeSize.width * GameConfig.GamePlayScene.unitWidthRatio)
         CollisionType.enemyUnit.setPhysicsBody(
             for: enemyNode,
             with: enemyNode.size
@@ -62,6 +59,6 @@ class EnemyEntity: Entity {
         addComponent(healthComponent)
         addComponent(moveComponent)
         addComponent(enemyTypeComponent)
-        gameEngine.setInitialGesture(for: self)
+        gameEngine?.setInitialGesture(for: self)
     }
 }

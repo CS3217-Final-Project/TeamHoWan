@@ -80,6 +80,7 @@ disabled_rules:
   - large_tuple
   - weak_delegate
   - function_parameter_count
+  - type_body_length
 
 line_length:
   warning: 120

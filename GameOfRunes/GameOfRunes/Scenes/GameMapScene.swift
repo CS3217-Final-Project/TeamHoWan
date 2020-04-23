@@ -121,6 +121,8 @@ extension GameMapScene: TapResponder {
             // Here is the place to load the selected stage and selected avatar
             gameStateMachine?.stage = selectedStageNode?.stage
             gameStateMachine?.avatar = stageSelectionNode.selectedAvatar
+            gameStateMachine?.room = nil
+            
             gameStateMachine?.enter(GameStartState.self)
         case .powerUpIconButton:
             // ignore

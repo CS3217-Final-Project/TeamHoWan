@@ -17,6 +17,8 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     }
     
     override func addComponent(foundIn entity: GKEntity) {
+        super.addComponent(foundIn: entity)
+        
         guard let gestureEntityComponent = entity.component(ofType: GestureEntityComponent.self) else {
             return
         }
@@ -25,6 +27,8 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
     }
     
     override func removeComponent(foundIn entity: GKEntity) {
+        super.removeComponent(foundIn: entity)
+        
         guard let gestureEntityComponent = entity.component(ofType: GestureEntityComponent.self) else {
             return
         }
@@ -32,24 +36,38 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
         gameEngine?.remove(gestureEntityComponent.gestureEntity)
     }
     
-    func setInitialGesture(for entity: Entity) {
-        guard entity.type == .enemyEntity,
+    override func update(deltaTime seconds: TimeInterval) {
+        for component in components {
+            updateComponent(component)
+        }
+    }
+    
+    private func updateComponent(_ component: GestureEntityComponent) {
+        guard let entity = component.entity,
             let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode,
-            let gesture = generateGesture(for: entity) else {
-                return
+            let gestureNode = component.gestureEntity
+                .component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
+            return
+        }
+        
+        gestureNode.position.x = enemyNode.position.x
+        gestureNode.position.y = enemyNode.position.y +
+            GameConfig.Enemy.gestureBubbleOffsetPercentage * enemyNode.size.height
+    }
+    
+    func setInitialGesture(for entity: Entity) {
+        guard entity.type == .enemyEntity, let gesture = generateGesture(for: entity) else {
+            return
         }
 
         let gestureEntity = GestureEntity(gesture: gesture, parent: entity)
-        gestureEntity.component(ofType: SpriteComponent.self)?
-            .setGestureConstraint(referenceNode: enemyNode)
         let gestureEntityComponent = GestureEntityComponent(gestureEntity)
         entity.addComponent(gestureEntityComponent)
     }
     
     func setGesture(for entity: Entity, using gesture: CustomGesture?) {
-        guard entity.type == .enemyEntity,
-            let enemyNode = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode else {
-                return
+        guard entity.type == .enemyEntity else {
+            return
         }
         
         var nextGesture = gesture
@@ -62,16 +80,16 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
             return
         }
 
-        if let currentGestureEntity = entity.component(ofType: GestureEntityComponent.self)?.gestureEntity {
+        if let currentGestureEntityComponent = entity.component(ofType: GestureEntityComponent.self) {
             entity.removeComponent(ofType: GestureEntityComponent.self)
-            gameEngine?.remove(currentGestureEntity)
+            gameEngine?.removeComponent(currentGestureEntityComponent)
+            gameEngine?.remove(currentGestureEntityComponent.gestureEntity)
         }
         
         let gestureEntity = GestureEntity(gesture: newGesture, parent: entity)
-        gestureEntity.component(ofType: SpriteComponent.self)?
-            .setGestureConstraint(referenceNode: enemyNode)
         let gestureEntityComponent = GestureEntityComponent(gestureEntity)
         entity.addComponent(gestureEntityComponent)
+        gameEngine?.addComponent(gestureEntityComponent)
         gameEngine?.add(gestureEntity)
     }
     
@@ -88,6 +106,14 @@ class GestureEntitySystem: GKComponentSystem<GestureEntityComponent>, System {
         }
         
         return availableGestures.randomElement()
+    }
+    
+    func addComponent(_ component: Component) {
+        guard let component = component as? GestureEntityComponent else {
+            return
+        }
+        
+        super.addComponent(component)
     }
     
     func removeComponent(_ component: Component) {

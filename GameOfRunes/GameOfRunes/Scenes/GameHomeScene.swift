@@ -213,7 +213,7 @@ extension GameHomeScene: TapResponder {
         case .playButton:
             startGame()
         case .readyButton:
-            toggleReady()
+            updateReadyState(newValue: !room.isReady)
         case .backButton:
             guard let currentViewNode = currentViewNode, let previousViewNode = navigationStack.popLast() else {
                 return
@@ -268,10 +268,6 @@ extension GameHomeScene {
         nameField.placeholder = "Enter a name"
         nameField.delegate = self
         nameField.textColor = .black
-        
-        // TODO: remove, only for testing purposes.
-        nameField.text = "Simp"
-        nameField.resignFirstResponder()
     }
     
     private func setUpViews() {
@@ -390,8 +386,8 @@ extension GameHomeScene {
     private func roomNotOpen() {
         alertNode.presentAlert(
             alertDescription: "Room is full",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -400,8 +396,8 @@ extension GameHomeScene {
     private func roomDoesNotExist() {
         alertNode.presentAlert(
             alertDescription: "Room does not exist",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -423,13 +419,23 @@ extension GameHomeScene {
         room = .init()
     }
     
-    private func toggleReady() {
+    func resetRoomState() {
         guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
         }
-        dbRef.toggleReadyState(
+
+        dbRef.updateGameHasStarted(roomId: roomId, to: false, completion: nil, onError: presentErrorAlert)
+        dbRef.resetPlayerState(roomId: roomId, uid: localPlayerUid, completion: nil, onError: presentErrorAlert)
+    }
+    
+    private func updateReadyState(newValue: Bool) {
+        guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
+            return
+        }
+        dbRef.updateReadyState(
             uid: localPlayerUid,
             roomId: roomId,
+            newValue: newValue,
             completion: nil,
             onError: presentErrorAlert
         )
@@ -448,8 +454,8 @@ extension GameHomeScene {
     private func onRoomClose() {
         alertNode.presentAlert(
             alertDescription: "Room has been closed",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -477,9 +483,9 @@ extension GameHomeScene {
     
     private func insufficientPlayers() {
         alertNode.presentAlert(
-            alertDescription: "Insufficient players!",
-            showTick: false,
-            showCross: true,
+            alertDescription: "Insufficient players",
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -488,8 +494,8 @@ extension GameHomeScene {
     private func notAllReady() {
         alertNode.presentAlert(
             alertDescription: "Not all players are ready",
-            showTick: false,
-            showCross: true,
+            showTick: true,
+            showCross: false,
             showLoader: false,
             status: .warning
         )
@@ -499,7 +505,7 @@ extension GameHomeScene {
         gameStateMachine?.avatar = nil
         gameStateMachine?.stage = nil
         gameStateMachine?.room = room
-        gameStateMachine?.enter(GameInMultiplayerPlayState.self)
+        gameStateMachine?.enter(MultiplayerGameInPlayState.self)
     }
     
     private func presentErrorAlert(error: Error) {

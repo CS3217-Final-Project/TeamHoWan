@@ -38,10 +38,10 @@ class MultiplayerLocalGameEngine: GameEngine {
             return isAdded
         }
         
-        var newUuid = Util.generateUuid()
+        var newUuid = UUID().uuidString
         
         while uuidEnemyMapping[newUuid] != nil {
-            newUuid = Util.generateUuid()
+            newUuid = UUID().uuidString
         }
         
         uuidEnemyMapping[newUuid] = entity
@@ -54,8 +54,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         let monstersRemoved = toRemoveEntities.filter { entity in entity.type == .enemyEntity }
         
         if !monstersRemoved.isEmpty {
-            let monstersLeft = Set(uuidEnemyMapping.values).symmetricDifference(monstersRemoved)
-            monstersLeft.forEach { entity in
+            monstersRemoved.forEach { entity in
                 guard let uuid = enemyUuidMapping.removeValue(forKey: entity) else {
                     return
                 }
@@ -83,7 +82,7 @@ class MultiplayerLocalGameEngine: GameEngine {
             numPlayerLost += 1
         }
         
-        if numPlayerLost == (room.players.count - 1) {
+        if numPlayerLost == room.players.count - 1 {
             network.removeObservers()
             rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
@@ -102,7 +101,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func pushMonstersToNetwork() {
-        let monsterModels = Array<EnemyModel>(entities(for: .enemyEntity).compactMap({ entity in
+        let monsterModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
             guard let playArea = rootRenderNode?.size else {
                 return nil
             }

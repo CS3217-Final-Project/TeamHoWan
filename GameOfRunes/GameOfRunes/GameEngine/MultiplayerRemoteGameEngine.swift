@@ -13,6 +13,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
     private let roomId: String
     private let uid: String
     private var uuidEnemyMapping: [String: Entity] = [:]
+    private var enemyUuidMapping: [Entity: String] = [:]
     
     init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
         self.roomId = roomId
@@ -31,9 +32,36 @@ class MultiplayerRemoteGameEngine: GameEngine {
                                onError: nil)
     }
     
+    override func remove(_ entity: Entity) {
+        if entity.type == .enemyEntity,
+            let uuid = enemyUuidMapping.removeValue(forKey: entity) {
+                uuidEnemyMapping.removeValue(forKey: uuid)
+        }
+
+        super.remove(entity)
+    }
+    
     override func didGameEnd() {}
 
     override func cleanUpPowerUp() {}
+    
+    override func incrementCombo() {}
+    
+    override func unitForceRemoved(_ entity: Entity) {
+        guard entity.type == .playerUnitEntity else {
+            return
+        }
+        
+        super.unitForceRemoved(entity)
+    }
+    
+    override func unitReachedLine(_ entity: Entity) {
+        guard entity.type == .playerUnitEntity else {
+            return
+        }
+        
+        super.unitReachedLine(entity)
+    }
     
     private func syncEnemies(_ enemies: [EnemyModel]) {
         guard let size = rootRenderNode?.size else {
@@ -45,20 +73,14 @@ class MultiplayerRemoteGameEngine: GameEngine {
                 return
             }
 
-            uuidEnemyMapping[uuid] = nil
-            remove(enemy)
+            super.unitForceRemoved(enemy)
         }
         
-        for enemy in enemies where uuidEnemyMapping[enemy.uuid] == nil {
-            let newEnemy = EnemyEntity(enemyType: enemy.enemyType, gameEngine: self)
-            add(newEnemy)
-            uuidEnemyMapping[enemy.uuid] = newEnemy
-        }
-        
-        for enemy in enemies {
+        for enemy in enemies where uuidEnemyMapping[enemy.uuid] != nil {
             guard let enemyEntity = uuidEnemyMapping[enemy.uuid] else {
                 continue
             }
+
             let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
             enemyEntity.component(ofType: SpriteComponent.self)?.node.position = position
             
@@ -66,6 +88,21 @@ class MultiplayerRemoteGameEngine: GameEngine {
                 .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
                     setGesture(for: enemyEntity, using: enemy.gestureType)
             }
+        }
+        
+        for enemy in enemies where uuidEnemyMapping[enemy.uuid] == nil {
+            let newEnemy = EnemyEntity(enemyType: enemy.enemyType, gameEngine: self)
+            let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
+            newEnemy.component(ofType: SpriteComponent.self)?.node.position = position
+
+            if enemy.gestureType != newEnemy.component(ofType: GestureEntityComponent.self)?
+                .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
+                    setGesture(for: newEnemy, using: enemy.gestureType)
+            }
+
+            add(newEnemy)
+            uuidEnemyMapping[enemy.uuid] = newEnemy
+            enemyUuidMapping[newEnemy] = enemy.uuid
         }
     }
     

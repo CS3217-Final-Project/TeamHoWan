@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-/** State for `GameStateMachine` when the Game is paused. */
+/** State for `GameStateMachine` when the game is paused. */
 class GamePauseState: GKState {
     /** Checks for if the state to transition to is valid. */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
