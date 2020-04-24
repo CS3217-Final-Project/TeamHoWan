@@ -35,8 +35,10 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func enemiesKilled(_ count: Int) {
-        let numToSpawn = count / 5
-        spawnDelegate.spawnEnemies(numToSpawn)
+        guard count >= 3 else {
+            return
+        }
+        spawnDelegate.startNextSpawnWave(highlightUnits: true)
     }
     
     override func add(_ entity: Entity) -> Bool {

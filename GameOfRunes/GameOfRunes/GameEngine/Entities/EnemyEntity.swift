@@ -23,7 +23,7 @@ class EnemyEntity: Entity {
             for: enemyNode,
             with: enemyNode.size
         )
-
+        
         enemyNode.run(
             .repeatForever(
                 .animate(
@@ -35,7 +35,7 @@ class EnemyEntity: Entity {
             ),
             withKey: GameConfig.AnimationNodeKey.enemy_walking
         )
- 
+        
         let spriteComponent = SpriteComponent(node: enemyNode, layerType: .unitLayer)
 
         // Monster Speed and Acceleration are Proportionate to Screen Size (Treat speed as ratio)
