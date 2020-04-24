@@ -523,7 +523,7 @@ class FirebaseNetwork: NetworkInterface {
                           onError: ((Error) -> Void)? = nil) {
         updateDidLose(roomId: roomId, uid: uid, didLose: false, onError: onError)
         updateReadyState(uid: uid, roomId: roomId, newValue: false, onError: onError)
-        let gameRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId)
+        let gameRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId))
         gameRef.removeValue(completionBlock: { err, _ in
             if let error = err {
                 onError?(error)

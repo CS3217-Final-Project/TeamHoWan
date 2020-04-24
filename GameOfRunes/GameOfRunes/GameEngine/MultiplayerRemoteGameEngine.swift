@@ -94,6 +94,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
             let newEnemy = EnemyEntity(enemyType: enemy.enemyType, gameEngine: self)
             let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
             newEnemy.component(ofType: SpriteComponent.self)?.node.position = position
+            newEnemy.component(ofType: SpriteComponent.self)?.isTinted = enemy.isTinted
 
             if enemy.gestureType != newEnemy.component(ofType: GestureEntityComponent.self)?
                 .gestureEntity.component(ofType: GestureComponent.self)?.gesture {
