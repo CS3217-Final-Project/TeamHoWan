@@ -37,6 +37,7 @@ class MultiplayerGameScene: GameScene {
         rootRenderNode = LocalRootRenderNode(
             roomId: roomId,
             uid: localPlayer.uid,
+            remotePlayers: roomData.remoteplayers,
             stage: EnemyWaveCreator.endlessSeedStage,
             avatar: localPlayerAvatar,
             zPosition: GameConfig.GamePlayScene.rootRenderNodeZPosition,

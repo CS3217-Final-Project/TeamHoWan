@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameEngine: GameEngineFacade {
     private lazy var removeDelegate: RemoveDelegate = .init(gameEngine: self)
-    private lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
+    private(set) lazy var spawnDelegate: SpawnDelegate = .init(gameEngine: self)
     private var entities = [EntityType: Set<Entity>]()
     private(set) var systems = [ComponentType: System]()
     private(set) var toRemoveEntities = Set<Entity>()
@@ -24,7 +24,6 @@ class GameEngine: GameEngineFacade {
     var comboEntity: ComboEntity? {
         entities[.comboEntity]?.first as? ComboEntity
     }
-    
     var isDivineShieldActivated: Bool {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }

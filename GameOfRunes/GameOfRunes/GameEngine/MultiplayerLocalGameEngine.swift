@@ -15,16 +15,28 @@ class MultiplayerLocalGameEngine: GameEngine {
     private var uuidEnemyMapping: [String: Entity] = [:]
     private var enemyUuidMapping: [Entity: String] = [:]
     
-    init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+    init(roomId: String, uid: String, remotePlayers: [Player],
+         stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
         self.roomId = roomId
         self.uid = uid
-        
+
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
         network.observeRoomState(roomId: roomId, onDataChange: { [weak self] room in
                 self?.didGameEnd(room: room)
             }, onRoomClose: { [weak self] in
                 self?.network.removeObservers()
             }, onError: nil)
+        
+        for player in remotePlayers {
+            network.observeNumberOfEnemiesKilled(roomId: roomId, uid: player.uid,
+                                                 onDataChange: { [weak self] count in self?.enemiesKilled(count) },
+                                                 onError: nil)
+        }
+    }
+    
+    private func enemiesKilled(_ count: Int) {
+        let numToSpawn = count / 5
+        spawnDelegate.spawnEnemies(numToSpawn)
     }
     
     override func add(_ entity: Entity) -> Bool {
@@ -63,6 +75,7 @@ class MultiplayerLocalGameEngine: GameEngine {
             }
             
             pushMonstersToNetwork()
+            pushMonstersKilledToNetwork(monstersRemoved.count)
         }
         
         super.update(with: deltaTime)
@@ -108,12 +121,16 @@ class MultiplayerLocalGameEngine: GameEngine {
             return EnemyModel(entity, uuid: enemyUuidMapping[entity], playAreaSize: playArea)
         }))
         
-        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, completion: {}, onError: { _ in })
+        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, completion: nil, onError: nil)
+    }
+    
+    private func pushMonstersKilledToNetwork(_ count: Int) {
+        network.updateNumberOfEnemiesKilled(roomId: roomId, uid: uid, count: count, completion: nil, onError: nil)
     }
     
     private func pushMetadataToNetwork() {
         let metadataModel = MetadataModel(metadata)
-        network.updateMetadata(roomId: roomId, uid: uid, metadata: metadataModel, completion: {}, onError: { _ in })
+        network.updateMetadata(roomId: roomId, uid: uid, metadata: metadataModel, completion: nil, onError: nil)
     }
     
     private func pushPowerUpToNetwork(at position: CGPoint, with size: CGSize?) {
@@ -122,6 +139,6 @@ class MultiplayerLocalGameEngine: GameEngine {
             return
         }
         let powerUpModel = PowerUpModel(powerUpType: powerUp, playAreaSize: playArea, position: position, size: size)
-        network.updatePowerUp(roomId: roomId, uid: uid, powerUp: powerUpModel, completion: {}, onError: { _ in })
+        network.updatePowerUp(roomId: roomId, uid: uid, powerUp: powerUpModel, completion: nil, onError: nil)
     }
 }

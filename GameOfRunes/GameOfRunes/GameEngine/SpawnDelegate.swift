@@ -70,6 +70,27 @@ class SpawnDelegate {
         }
     }
     
+    func spawnEnemies(_ count: Int) {
+        var numToSpawn = count
+        
+        while numToSpawn > 0 {
+            // Add More Waves for Endless Mode
+            if checkEndlessModeNeedWaveAddition() {
+                self.endlessModeSpawnHandler.addMoreWaves()
+            }
+            
+            // Check that there are still waves left
+            guard let gameMetaData = gameEngine?.metadata,
+                !gameMetaData.stageWaves.isEmpty else {
+                return
+            }
+
+            let enemySpawnWave = gameMetaData.stageWaves.removeFirstSpawnWave()
+            spawnEnemyWave(enemySpawnWave)
+            numToSpawn -= enemySpawnWave.compactMap({ $0 }).count
+        }
+    }
+    
     private func spawnPlayerUnit(at laneIndex: Int) {
         let playerUnitEntity = PlayerUnitEntity(gameEngine: gameEngine)
         
