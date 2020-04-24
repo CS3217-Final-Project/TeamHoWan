@@ -24,7 +24,7 @@ class EnemyModel: Codable {
         self.enemyType = enemyType
         self.position = position
         self.gestureType = gestureType
-        self.isTinted = false
+        self.isTinted = isTinted
     }
     
     init?(_ entity: Entity, uuid: String?, playAreaSize: CGSize) {
