@@ -35,10 +35,10 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func enemiesKilled(_ count: Int) {
-        guard count >= 3 else {
+        guard count >= 2 else {
             return
         }
-        spawnDelegate.startNextSpawnWave(highlightUnits: true)
+        spawnDelegate.startNextSpawnWave(tintUnits: true)
     }
     
     override func add(_ entity: Entity) -> Bool {
