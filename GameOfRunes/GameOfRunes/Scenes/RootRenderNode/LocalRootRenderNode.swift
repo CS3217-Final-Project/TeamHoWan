@@ -22,6 +22,7 @@ class LocalRootRenderNode: RootRenderNode {
      */
     init(roomId: String,
          uid: String,
+         remotePlayers: [Player],
          stage: Stage,
          avatar: Avatar,
          zPosition: CGFloat,
@@ -31,6 +32,7 @@ class LocalRootRenderNode: RootRenderNode {
         super.init(size: size)
         self.gameEngine = MultiplayerLocalGameEngine(roomId: roomId,
                                                      uid: uid,
+                                                     remotePlayers: remotePlayers,
                                                      stage: stage,
                                                      avatar: avatar,
                                                      renderNode: self)

@@ -203,6 +203,17 @@ protocol NetworkInterface {
                        completion: (() -> Void)?,
                        onError: ((Error) -> Void)?)
     
+    func updateNumberOfEnemiesKilled(roomId: String,
+                                     uid: String,
+                                     count: Int,
+                                     completion: (() -> Void)?,
+                                     onError: ((Error) -> Void)?)
+    
+    func observeNumberOfEnemiesKilled(roomId: String,
+                                      uid: String,
+                                      onDataChange: ((Int) -> Void)?,
+                                      onError: ((Error) -> Void)?)
+    
     func resetPlayerState(roomId: String,
                           uid: String,
                           completion: (() -> Void)?,

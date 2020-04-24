@@ -14,6 +14,15 @@ class SpriteComponent: GKSKNodeComponent, Component {
         .spriteComponent
     }
     var activePauses = 0
+    var isTinted: Bool = false {
+        didSet {
+            guard oldValue != isTinted, let spriteNode = node as? SKSpriteNode else {
+                return
+            }
+            spriteNode.color = .red
+            spriteNode.colorBlendFactor = isTinted ? 0.5 : 0.0
+        }
+    }
     
     // Specifies which `GameScene` layer node to add `node` to
     let layerType: SpriteLayerType

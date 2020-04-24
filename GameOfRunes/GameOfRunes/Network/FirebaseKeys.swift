@@ -33,6 +33,7 @@ enum FirebaseKeys {
     static let games_players_powerUp = "powerUp"
     static let games_players_monsters = "monsters"
     static let games_players_metadata = "metadata"
+    static let games_players_enemies_killed = "enemies_killed"
 
     /// Joins keys with the required (firebase) separator
     /// - Parameters:

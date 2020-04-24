@@ -23,7 +23,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
 
         network.observeEnemy(roomId: roomId, uid: uid,
                              onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
-                             onError: nil)
+                             onError: { [weak self] enemies in self?.syncEnemies([]) })
         network.observeMetadata(roomId: roomId, uid: uid,
                                 onDataChange: { [weak self] metadata in self?.syncMetadata(metadata) },
                                 onError: nil)
@@ -94,6 +94,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
             let newEnemy = EnemyEntity(enemyType: enemy.enemyType, gameEngine: self)
             let position = CGPoint(x: enemy.position.x * size.width, y: enemy.position.y * size.height)
             newEnemy.component(ofType: SpriteComponent.self)?.node.position = position
+            newEnemy.component(ofType: SpriteComponent.self)?.isTinted = enemy.isTinted
 
             if enemy.gestureType != newEnemy.component(ofType: GestureEntityComponent.self)?
                 .gestureEntity.component(ofType: GestureComponent.self)?.gesture {

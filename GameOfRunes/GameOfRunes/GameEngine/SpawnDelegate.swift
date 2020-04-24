@@ -47,7 +47,7 @@ class SpawnDelegate {
         return isEndless && hasInsufficientEnemyWaves
     }
 
-    func startNextSpawnWave() {
+    func startNextSpawnWave(tintUnits: Bool = false) {
         // Add More Waves for Endless Mode
         if checkEndlessModeNeedWaveAddition() {
             self.endlessModeSpawnHandler.addMoreWaves()
@@ -60,7 +60,7 @@ class SpawnDelegate {
         }
 
         let enemySpawnWave = gameMetaData.stageWaves.removeFirstSpawnWave()
-        spawnEnemyWave(enemySpawnWave)
+        spawnEnemyWave(enemySpawnWave, shouldTint: tintUnits)
         self.timeTillNextSpawn = gameMetaData.levelSpawnInterval
     }
     
@@ -88,9 +88,9 @@ class SpawnDelegate {
         gameEngine?.add(playerUnitEntity)
     }
 
-    private func spawnEnemyWave(_ enemyWave: [EnemyType?]) {
+    private func spawnEnemyWave(_ enemyWave: [EnemyType?], shouldTint: Bool = false) {
         enemyWave.enumerated().forEach { laneIndex, enemyType in
-            spawnEnemy(at: laneIndex, enemyType: enemyType)
+            spawnEnemy(at: laneIndex, enemyType: enemyType, shouldTint: shouldTint)
         }
     }
 
@@ -98,7 +98,7 @@ class SpawnDelegate {
      Creates the `EnemyEntity` at the correct spawn location (determined by the
      `laneIndex` and adds it to `GameEngine`.
      */
-    private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?) {
+    private func spawnEnemy(at laneIndex: Int, enemyType: EnemyType?, shouldTint: Bool = false) {
         // No need to spawn enemy if enemyType is nil (i.e. lane is empty)
         guard let enemyType = enemyType, let gameEngine = gameEngine else {
             return
@@ -116,6 +116,7 @@ class SpawnDelegate {
             totalPoints: GameConfig.GamePlayScene.numLanes,
             yPosition: (1 - GameConfig.GamePlayScene.verticalOffSetRatio) * renderNodeSize.height
         )
+        spriteComponent.isTinted = shouldTint
 
         gameEngine.add(enemyEntity)
         gameEngine.metadata.numEnemiesOnField += 1
