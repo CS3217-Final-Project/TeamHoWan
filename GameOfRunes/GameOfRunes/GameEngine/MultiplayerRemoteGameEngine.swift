@@ -32,6 +32,15 @@ class MultiplayerRemoteGameEngine: GameEngine {
                                onError: nil)
     }
     
+    @discardableResult
+    override func add(_ entity: Entity) -> Bool {
+        if entity.type == .comboEntity {
+            return false
+        } else {
+            return super.add(entity)
+        }
+    }
+    
     override func remove(_ entity: Entity) {
         if entity.type == .enemyEntity,
             let uuid = enemyUuidMapping.removeValue(forKey: entity) {
@@ -42,10 +51,6 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     override func didGameEnd() {}
-
-    override func cleanUpPowerUp() {}
-    
-    override func incrementCombo() {}
     
     override func unitForceRemoved(_ entity: Entity) {
         guard entity.type == .playerUnitEntity else {

@@ -148,7 +148,6 @@
 		56FC8CF624342CF300B6DBC9 /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */; };
 		56FC8CF82434320B00B6DBC9 /* FirebaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */; };
 		56FC8CFA2434393D00B6DBC9 /* FirebaseNetwork+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC8CF92434393D00B6DBC9 /* FirebaseNetwork+Util.swift */; };
-		56FF3A02243F63BF00745A8D /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A01243F63BF00745A8D /* PlayerData.swift */; };
 		56FF3A182440596F00745A8D /* CircleActivatedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */; };
 		56FF3A1A24405AE900745A8D /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1924405AE900745A8D /* Animatable.swift */; };
 		56FF3A2024405B9800745A8D /* HellfirePowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */; };
@@ -391,7 +390,6 @@
 		56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetwork.swift; sourceTree = "<group>"; };
 		56FC8CF92434393D00B6DBC9 /* FirebaseNetwork+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseNetwork+Util.swift"; sourceTree = "<group>"; };
-		56FF3A01243F63BF00745A8D /* PlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleActivatedPowerUp.swift; sourceTree = "<group>"; };
 		56FF3A1924405AE900745A8D /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellfirePowerUp.swift; sourceTree = "<group>"; };
@@ -513,7 +511,6 @@
 				565863F02446D68300206E29 /* NetworkModels */,
 				4A09C4F2242FC36200CA7625 /* Stage.swift */,
 				4A1B333D243280E600B67B91 /* StageRealmModel.swift */,
-				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
 				8ACFE99F2434C00B00102FF9 /* FirstInitModel.swift */,
 				4A1B333F2432845D00B67B91 /* EnemyWaveRealmModel.swift */,
 				4A1B334324328ACE00B67B91 /* EnemyTypeRealmModel.swift */,
@@ -1476,7 +1473,6 @@
 				4AA5B3722416BB6B008D4953 /* HealthBarNode.swift in Sources */,
 				561DB6EB2421CBCE005FA871 /* CircleGestureRecognizer.swift in Sources */,
 				C6AC47652430AF290078D5F1 /* EnemyTypeComponent.swift in Sources */,
-				56FF3A02243F63BF00745A8D /* PlayerData.swift in Sources */,
 				8A2C033D242EF0B000A8EC96 /* EnemySpawnUnit.swift in Sources */,
 				56FF3A282440623900745A8D /* DivineBlessingPowerUp.swift in Sources */,
 				4AC87A4E241AC12700D79639 /* PowerUpIconNode.swift in Sources */,

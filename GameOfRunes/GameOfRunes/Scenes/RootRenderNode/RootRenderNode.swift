@@ -314,6 +314,10 @@ extension RootRenderNode {
     }
 
     func deselectPowerUp() {
+        guard playerAreaNode != nil else {
+            return
+        }
+        
         selectedPowerUp = nil
         gameEngine.updateSelectedPowerUp(powerUpType: selectedPowerUp)
     }

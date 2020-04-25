@@ -112,8 +112,8 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func leaveRoom(roomId uid: String,
-                   uid roomId: String,
+    func leaveRoom(roomId: String,
+                   uid: String,
                    completion: (() -> Void)? = nil,
                    onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid))

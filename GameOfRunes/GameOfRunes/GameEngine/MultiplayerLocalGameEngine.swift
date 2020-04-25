@@ -41,6 +41,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         spawnDelegate.startNextSpawnWave(tintUnits: true)
     }
     
+    @discardableResult
     override func add(_ entity: Entity) -> Bool {
         let isAdded = super.add(entity)
         
