@@ -657,13 +657,13 @@
 		4AA508C9241614D500D9ADE4 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				56FF3A1E24405B7E00745A8D /* PowerUp */,
 				4AA508CA2416170600D9ADE4 /* ArenaType.swift */,
 				56D2A646242BBAAE00BDD5DC /* CollisionType.swift */,
 				C6B322DD241BC7AB001072AE /* EntityType.swift */,
 				19D664C824207DDD00351C92 /* ComponentType.swift */,
 				4AA508CC24161A1900D9ADE4 /* EnemyType.swift */,
 				8A712E812423693200B3824E /* SpriteLayerType.swift */,
-				4AC87A4B241A3EB100D79639 /* PowerUpType.swift */,
 				4AB47A3E2423F0F700EDADC1 /* ManaType.swift */,
 				4AA5B36124164FC9008D4953 /* Team.swift */,
 				4A72EB4524200BE6005FA909 /* ButtonType.swift */,
@@ -896,15 +896,6 @@
 		56FF3A162440586900745A8D /* PowerUp */ = {
 			isa = PBXGroup;
 			children = (
-				56FF3A1E24405B7E00745A8D /* PowerUpClasses */,
-				56FF3A1D24405B6F00745A8D /* PowerUpProtocols */,
-			);
-			path = PowerUp;
-			sourceTree = "<group>";
-		};
-		56FF3A1D24405B6F00745A8D /* PowerUpProtocols */ = {
-			isa = PBXGroup;
-			children = (
 				4A5B423D243F27A800DF4D32 /* PowerUp.swift */,
 				56FF3A172440596F00745A8D /* CircleActivatedPowerUp.swift */,
 				56BEDFA1244161D9001737BC /* ImmediatelyActivatedPowerUp.swift */,
@@ -914,12 +905,13 @@
 				56BEDFA3244161F7001737BC /* CastingAnimationPowerUp.swift */,
 				56FF3A2124405CE100745A8D /* Collidable.swift */,
 			);
-			path = PowerUpProtocols;
+			path = PowerUp;
 			sourceTree = "<group>";
 		};
-		56FF3A1E24405B7E00745A8D /* PowerUpClasses */ = {
+		56FF3A1E24405B7E00745A8D /* PowerUp */ = {
 			isa = PBXGroup;
 			children = (
+				4AC87A4B241A3EB100D79639 /* PowerUpType.swift */,
 				56FF3A1F24405B9800745A8D /* HellfirePowerUp.swift */,
 				56FF3A23244060AB00745A8D /* IcePrisonPowerUp.swift */,
 				56FF3A272440623900745A8D /* DivineBlessingPowerUp.swift */,
@@ -927,7 +919,7 @@
 				56FF3A252440615000745A8D /* DarkVortexPowerUp.swift */,
 				56FF3A2B2440633400745A8D /* HeroicCallPowerUp.swift */,
 			);
-			path = PowerUpClasses;
+			path = PowerUp;
 			sourceTree = "<group>";
 		};
 		5A6CB57AA35FD0CFDEBF8802 /* Frameworks */ = {
