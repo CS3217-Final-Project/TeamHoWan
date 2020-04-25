@@ -510,6 +510,7 @@
 		4A09C4F1242FC20500CA7625 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				565863F02446D68300206E29 /* NetworkModels */,
 				4A09C4F2242FC36200CA7625 /* Stage.swift */,
 				4A1B333D243280E600B67B91 /* StageRealmModel.swift */,
 				56FF3A01243F63BF00745A8D /* PlayerData.swift */,
@@ -545,6 +546,8 @@
 				4AC6E4C0244656F70082DF53 /* NumberPadResponder.swift */,
 				4AC6E4C6244777B30082DF53 /* PowerUpContainerResponder.swift */,
 				4A6329EB2449EEE40071CDF6 /* AvatarOverviewNodeResponder.swift */,
+				C6AFF686241A66360076F02B /* System.swift */,
+				19D664CA24207ECE00351C92 /* Component.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 		4A72EB42241FE18B005FA909 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4AA508D32416213B00D9ADE4 /* Extensions */,
 				8AAE9C06241E450300D29593 /* TextureContainer.swift */,
 				C69B35E02449A9E900BC2343 /* Util.swift */,
 				56E82D6F2417E9D2009172C6 /* GameConfig.swift */,
@@ -687,13 +691,11 @@
 				4AA5B37D24176D00008D4953 /* UIColor+hexColorCodeInitializer.swift */,
 				4AA5B3832417BA71008D4953 /* SKSpriteNode+helpers.swift */,
 				4A45E913244464F200F9FA22 /* String+helpers.swift */,
-				4A6329ED2449F1120071CDF6 /* GameHomeScene+AlertResponder.swift */,
-				4A6329EF2449F1930071CDF6 /* GameHomeScene+UITextFieldDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4AA5B3702416BB54008D4953 /* Custom Nodes */ = {
+		4AA5B3702416BB54008D4953 /* UI Nodes */ = {
 			isa = PBXGroup;
 			children = (
 				8AAE9BFF241E2DE200D29593 /* DroppedManaNode */,
@@ -708,7 +710,7 @@
 				56E82D6D2417E7B7009172C6 /* GestureNode.swift */,
 				56FFE165241B5BDB00ED4D74 /* GestureAreaNode.swift */,
 			);
-			path = "Custom Nodes";
+			path = "UI Nodes";
 			sourceTree = "<group>";
 		};
 		4AC87A442419ED3400D79639 /* Sounds */ = {
@@ -759,18 +761,16 @@
 			isa = PBXGroup;
 			children = (
 				4ACC8BA82414C69800F235AE /* AppDelegate.swift */,
-				4AA508D32416213B00D9ADE4 /* Extensions */,
 				4A72EB42241FE18B005FA909 /* Utils */,
 				4A1B333A24327D5300B67B91 /* Protocols */,
 				8A2C033E242EF0D400A8EC96 /* Errors */,
-				8A2C033B242EF08E00A8EC96 /* Levels and Waves */,
 				56FC8CF22434239500B6DBC9 /* Network */,
-				8A5CE9B424187BFD00BEC4B9 /* GameState */,
+				8A5CE9B424187BFD00BEC4B9 /* GameStateMachine */,
 				566121DE2416936E00475CE1 /* Scenes */,
 				566121D7241682C500475CE1 /* Gesture Recogniser */,
 				C6AFF67F241923040076F02B /* GameEngine */,
 				4AA508C9241614D500D9ADE4 /* Types */,
-				4AA5B3702416BB54008D4953 /* Custom Nodes */,
+				4AA5B3702416BB54008D4953 /* UI Nodes */,
 				4ACAF529242A71BB0062DDBA /* View Controllers */,
 				4A09C4F1242FC20500CA7625 /* Models */,
 				4AA5B37F2417879B008D4953 /* Assets.xcassets */,
@@ -816,7 +816,6 @@
 				C6AC4776243256690078D5F1 /* PowerUpComponent.swift */,
 				C6AC47682430B0C90078D5F1 /* GestureEntityComponent.swift */,
 				4ACC8BD92415322400F235AE /* HealthComponent.swift */,
-				19D664CA24207ECE00351C92 /* Component.swift */,
 				4ACC8BDD2415324400F235AE /* ManaComponent.swift */,
 			);
 			path = Components;
@@ -847,7 +846,6 @@
 				C69B35E4244CB28B00BC2343 /* MetadataModel.swift */,
 				C6AACD5C244483DC0012C7D9 /* PowerUpModel.swift */,
 				C6AACD58244483870012C7D9 /* RoomModel.swift */,
-				56412E79244C0E0300449780 /* NetworkError.swift */,
 				C6AACD5A2444839F0012C7D9 /* EnemyModel.swift */,
 			);
 			path = NetworkModels;
@@ -877,6 +875,8 @@
 				8A649E9624409EB6005A5371 /* MultiplayerGameScene.swift */,
 				4A2441B1244F4A09003BC9D8 /* MultiplayerGameEndScene.swift */,
 				8A5CE9BD24187F2300BEC4B9 /* SceneManager.swift */,
+				4A6329ED2449F1120071CDF6 /* GameHomeScene+AlertResponder.swift */,
+				4A6329EF2449F1930071CDF6 /* GameHomeScene+UITextFieldDelegate.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -884,7 +884,6 @@
 		56FC8CF22434239500B6DBC9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				565863F02446D68300206E29 /* NetworkModels */,
 				56FC8CF524342CF300B6DBC9 /* NetworkInterface.swift */,
 				56FC8CF72434320B00B6DBC9 /* FirebaseNetwork.swift */,
 				C6AACD5E244490E10012C7D9 /* FirebaseObserver.swift */,
@@ -954,8 +953,10 @@
 		8A2C033B242EF08E00A8EC96 /* Levels and Waves */ = {
 			isa = PBXGroup;
 			children = (
+				8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */,
 				8A2C033C242EF0B000A8EC96 /* EnemySpawnUnit.swift */,
 				8A3C4DE1242F15DE0022FD59 /* EnemyWaveCreator.swift */,
+				8AB10595244B3AEA009538BF /* EndlessModeSpawnHandler.swift */,
 			);
 			path = "Levels and Waves";
 			sourceTree = "<group>";
@@ -964,11 +965,12 @@
 			isa = PBXGroup;
 			children = (
 				8A2C033F242EF10000A8EC96 /* LevelWaveError.swift */,
+				56412E79244C0E0300449780 /* NetworkError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		8A5CE9B424187BFD00BEC4B9 /* GameState */ = {
+		8A5CE9B424187BFD00BEC4B9 /* GameStateMachine */ = {
 			isa = PBXGroup;
 			children = (
 				8A5CE9B724187EBA00BEC4B9 /* GameStartState.swift */,
@@ -981,7 +983,7 @@
 				4A2441B3244F4BBE003BC9D8 /* MultiplayerGameEndState.swift */,
 				8A5CE9CA24189FF700BEC4B9 /* GameStateMachine.swift */,
 			);
-			path = GameState;
+			path = GameStateMachine;
 			sourceTree = "<group>";
 		};
 		8A649E8F244050F6005A5371 /* RootRenderNode */ = {
@@ -1090,6 +1092,7 @@
 		C6AFF67C241919A00076F02B /* Systems */ = {
 			isa = PBXGroup;
 			children = (
+				C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */,
 				C6AFF68C241A7A530076F02B /* SpriteSystem.swift */,
 				560DED99242B902400A6D9A6 /* ScoreSystem.swift */,
 				C6A99CF3241FCD15003AE88A /* LabelSystem.swift */,
@@ -1099,7 +1102,6 @@
 				C6AFF68A241A674A0076F02B /* MoveSystem.swift */,
 				C6AFF684241A61650076F02B /* HealthSystem.swift */,
 				C6AC4774243256550078D5F1 /* PowerUpSystem.swift */,
-				C6AFF686241A66360076F02B /* System.swift */,
 				C6AFF688241A67430076F02B /* ManaSystem.swift */,
 				C60EAF65242E2A350037BEAC /* PlayerSystem.swift */,
 			);
@@ -1115,9 +1117,7 @@
 				8A32CB6D24421BCE00E509D6 /* MultiplayerRemoteGameEngine.swift */,
 				C6AFF680241923410076F02B /* RemoveDelegate.swift */,
 				C6AFF682241A5FC40076F02B /* GameMetaData.swift */,
-				C6AFF67D24191A2A0076F02B /* GameEngine+SystemDelegate.swift */,
-				8A3C4DE3242F398A0022FD59 /* SpawnDelegate.swift */,
-				8AB10595244B3AEA009538BF /* EndlessModeSpawnHandler.swift */,
+				8A2C033B242EF08E00A8EC96 /* Levels and Waves */,
 				C6AACD4524407C290012C7D9 /* Contact */,
 				C6AFF67C241919A00076F02B /* Systems */,
 				4ACC8BCF2414D53800F235AE /* Components */,
