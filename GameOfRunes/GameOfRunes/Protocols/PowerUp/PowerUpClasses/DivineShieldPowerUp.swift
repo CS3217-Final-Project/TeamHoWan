@@ -9,17 +9,14 @@
 import SpriteKit
 
 enum DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
-    static var type: PowerUpType {
-        .divineShield
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { 5 }
-    static var description: String { """
+    static let type: PowerUpType = .divineShield
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = 5
+    static let description: String = """
         Divine Shield
         Tap to use the divine shield bestowed by King
         Arthur himself which gives invulnerability
         """
-    }
     
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         DivineShieldPowerUpEntity(at: position, with: size)

@@ -9,17 +9,14 @@
 import SpriteKit
 
 enum HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
-    static var type: PowerUpType {
-        .heroicCall
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { Double(Int.max) }
-    static var description: String { """
+    static let type: PowerUpType = .heroicCall
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = Double(Int.max)
+    static let description: String = """
             Heroic Call
             Tap to to call upon a wave of elite knights
             to fight against incoming enemies
             """
-    }
     
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         nil

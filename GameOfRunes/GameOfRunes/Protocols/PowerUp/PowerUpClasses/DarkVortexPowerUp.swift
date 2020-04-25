@@ -9,17 +9,14 @@
 import SpriteKit
 
 enum DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
-    static var type: PowerUpType {
-        .darkVortex
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { 5 }
-    static var description: String { """
+    static let type: PowerUpType = .darkVortex
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = 5
+    static let description: String = """
         Dark Vortex
         Tap on the arena to summon a dark vortex
         that pulls nearby enemies towards it
         """
-    }
     
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         DarkVortexPowerUpEntity(at: position, with: size)

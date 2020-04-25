@@ -9,17 +9,14 @@
 import SpriteKit
 
 enum IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
-    static var type: PowerUpType {
-        .icePrison
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { 1 }
-    static var description: String { """
+    static let type: PowerUpType = .icePrison
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = 1
+    static let description: String = """
         Ice Prison
         Draw a circle to call upon an ancient spell
         that freezes all enemies in the region
         """
-    }
     
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         IcePrisonPowerUpEntity(at: position, with: size)

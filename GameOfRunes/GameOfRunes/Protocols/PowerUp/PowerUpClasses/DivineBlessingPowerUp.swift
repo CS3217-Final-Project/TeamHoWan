@@ -9,18 +9,14 @@
 import SpriteKit
 
 enum DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
-    static var type: PowerUpType {
-        .divineBlessing
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { 1 }
-    static var description: String { """
+    static let type: PowerUpType = .divineBlessing
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = 1
+    static let description: String = """
         Divine Blessing
         Draw a circle to invoke a divine blessing that
         simplifies all enemy gestures in the region
         """
-    }
-    
     
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         DivineBlessingPowerUpEntity(at: position, with: size)

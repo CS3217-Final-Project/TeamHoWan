@@ -9,19 +9,15 @@
 import SpriteKit
 
 enum HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
-    static var type: PowerUpType {
-        .hellfire
-    }
-    static var manaUnitCost: Int { 0 }
-    static var duration: TimeInterval { 5 }
-    static var description: String { """
+    static let type: PowerUpType = .hellfire
+    static let manaUnitCost: Int = 0
+    static let duration: TimeInterval = 5
+    static let description: String = """
         Hellfire
         Draw a circle to invoke a ring of fire
         that destroys all enemies that touches it
         """
-    }
 
-    
     static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         HellfirePowerUpEntity(at: position, with: size)
     }

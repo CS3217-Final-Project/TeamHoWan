@@ -348,7 +348,7 @@ class FirebaseNetwork: NetworkInterface {
                                                     uid, FirebaseKeys.games_players_monsters))
         let handle = ref.observe(.value, with: { [weak self] snapshot in
             guard let data = snapshot.value as? [[String: AnyObject]],
-                let monsters = self?.decodeMonsters(data: data) else {
+                let monsters = self?.decodeEnemies(data: data) else {
                     return
             }
             onDataChange?(monsters)
@@ -427,7 +427,7 @@ class FirebaseNetwork: NetworkInterface {
         
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
                                                     uid, FirebaseKeys.games_players_monsters))
-        let encodedEnemies = encodeMonsters(monsters: enemies)
+        let encodedEnemies = encodeEnemies(enemies: enemies)
         ref.onDisconnectRemoveValue()
         ref.setValue(encodedEnemies, withCompletionBlock: { err, _ in
             if let error = err {

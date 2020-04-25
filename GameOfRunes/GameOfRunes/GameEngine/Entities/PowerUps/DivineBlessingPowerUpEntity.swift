@@ -17,7 +17,6 @@ class DivineBlessingPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let powerUpType: PowerUpType = .divineBlessing
         let powerUp = DivineBlessingPowerUp.self
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
@@ -25,7 +24,7 @@ class DivineBlessingPowerUpEntity: Entity {
         
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
-        let powerUpComponent = PowerUpComponent(powerUpType)
+        let powerUpComponent = PowerUpComponent(powerUp.type)
         powerUpComponent.fading = true
         
         addComponent(animationSpriteComponent)

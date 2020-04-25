@@ -18,9 +18,7 @@ class DarkVortexPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
         
-        let powerUpType: PowerUpType = .darkVortex
         let powerUp = DarkVortexPowerUp.self
-        
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         let attractionEntity = AttractionEntity(node: animationNode,
                                                 layerType: .powerUpAnimationLayer,
@@ -28,7 +26,7 @@ class DarkVortexPowerUpEntity: Entity {
                                                 parent: self)
         
         let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
-        let powerUpComponent = PowerUpComponent(powerUpType)
+        let powerUpComponent = PowerUpComponent(powerUp.type)
         let attractionEntitiesComponent = AttractionEntitiesComponent(attractionEntity)
         
         addComponent(timerComponent)
