@@ -21,9 +21,9 @@ class MultiplayerRemoteGameEngine: GameEngine {
         
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
 
-        network.observeEnemy(roomId: roomId, uid: uid,
-                             onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
-                             onError: { [weak self] enemies in self?.syncEnemies([]) })
+        network.observeEnemies(roomId: roomId, uid: uid,
+                               onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
+                               onError: { [weak self] _ in self?.syncEnemies([]) })
         network.observeMetadata(roomId: roomId, uid: uid,
                                 onDataChange: { [weak self] metadata in self?.syncMetadata(metadata) },
                                 onError: nil)

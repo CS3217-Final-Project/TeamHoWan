@@ -21,16 +21,16 @@ class MultiplayerLocalGameEngine: GameEngine {
         self.uid = uid
 
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
-        network.observeRoomState(roomId: roomId, onDataChange: { [weak self] room in
+        network.observeRoom(roomId: roomId, onDataChange: { [weak self] room in
                 self?.didGameEnd(room: room)
             }, onRoomClose: { [weak self] in
                 self?.network.removeObservers()
             }, onError: nil)
         
         for player in remotePlayers {
-            network.observeNumberOfEnemiesKilled(roomId: roomId, uid: player.uid,
-                                                 onDataChange: { [weak self] count in self?.enemiesKilled(count) },
-                                                 onError: nil)
+            network.observeEnemiesKilled(roomId: roomId, uid: player.uid,
+                                         onDataChange: { [weak self] count in self?.enemiesKilled(count) },
+                                         onError: nil)
         }
     }
     
@@ -116,18 +116,18 @@ class MultiplayerLocalGameEngine: GameEngine {
     }
     
     private func pushMonstersToNetwork() {
-        let monsterModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
+        let enemyModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
             guard let playArea = rootRenderNode?.size else {
                 return nil
             }
             return EnemyModel(entity, uuid: enemyUuidMapping[entity], playAreaSize: playArea)
         }))
         
-        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, completion: nil, onError: nil)
+        network.updateEnemies(roomId: roomId, uid: uid, enemies: enemyModels, completion: nil, onError: nil)
     }
     
     private func pushMonstersKilledToNetwork(_ count: Int) {
-        network.updateNumberOfEnemiesKilled(roomId: roomId, uid: uid, count: count, completion: nil, onError: nil)
+        network.updateEnemiesKilled(roomId: roomId, uid: uid, count: count, completion: nil, onError: nil)
     }
     
     private func pushMetadataToNetwork() {

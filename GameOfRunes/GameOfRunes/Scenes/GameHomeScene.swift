@@ -297,9 +297,9 @@ extension GameHomeScene: AvatarOverviewNodeResponder {
         guard let avatar = newValue, let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
         }
-        dbRef.setAvatar(
-            uid: localPlayerUid,
+        dbRef.updateAvatar(
             roomId: roomId,
+            uid: localPlayerUid,
             avatar: avatar.name,
             completion: nil,
             onError: presentErrorAlert
@@ -330,7 +330,7 @@ extension GameHomeScene {
         localPlayerUid = uid
         
         dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
-        dbRef.observeRoomState(
+        dbRef.observeRoom(
             roomId: roomId,
             onDataChange: onDataChange,
             onRoomClose: onRoomClose,
@@ -354,9 +354,9 @@ extension GameHomeScene {
         )
         
         dbRef.joinRoom(
+            roomId: joinRoomViewNode.inputRoomId,
             uid: UUID().uuidString,
             name: playerName,
-            roomId: joinRoomViewNode.inputRoomId,
             completion: joinRoomSuccess,
             onRoomNotOpen: roomNotOpen,
             onRoomNotExist: roomDoesNotExist,
@@ -370,7 +370,7 @@ extension GameHomeScene {
         localPlayerUid = uid
         
         dbRef.addConnectionObserver(uponDisconnect: uponDisconnect)
-        dbRef.observeRoomState(
+        dbRef.observeRoom(
             roomId: joinRoomViewNode.inputRoomId,
             onDataChange: onDataChange,
             onRoomClose: onRoomClose,
@@ -407,7 +407,7 @@ extension GameHomeScene {
         guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
         }
-        dbRef.leaveRoom(uid: localPlayerUid, roomId: roomId, completion: leaveRoomSuccess, onError: presentErrorAlert)
+        dbRef.leaveRoom(roomId: roomId, uid: localPlayerUid, completion: leaveRoomSuccess, onError: presentErrorAlert)
     }
     
     private func leaveRoomSuccess() {
@@ -424,18 +424,18 @@ extension GameHomeScene {
             return
         }
 
-        dbRef.updateGameHasStarted(roomId: roomId, to: false, completion: nil, onError: presentErrorAlert)
-        dbRef.resetPlayerState(roomId: roomId, uid: localPlayerUid, completion: nil, onError: presentErrorAlert)
+        dbRef.updateRoomHasStarted(roomId: roomId, to: false, completion: nil, onError: presentErrorAlert)
+        dbRef.resetGameState(roomId: roomId, uid: localPlayerUid, completion: nil, onError: presentErrorAlert)
     }
     
     private func updateReadyState(newValue: Bool) {
         guard let localPlayerUid = room.localPlayer?.uid, let roomId = room.roomId else {
             return
         }
-        dbRef.updateReadyState(
-            uid: localPlayerUid,
+        dbRef.updatePlayerIsReady(
             roomId: roomId,
-            newValue: newValue,
+            uid: localPlayerUid,
+            to: newValue,
             completion: nil,
             onError: presentErrorAlert
         )
