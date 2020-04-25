@@ -9,7 +9,7 @@
 protocol ImmediatelyActivatedPowerUp: PowerUp { }
 
 extension ImmediatelyActivatedPowerUp {
-    func prepareForActivation(gameEngine: GameEngine) {
+    static func prepareForActivation(gameEngine: GameEngine) {
         
     }
 }

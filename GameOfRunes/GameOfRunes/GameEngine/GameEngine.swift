@@ -271,7 +271,7 @@ class GameEngine: GameEngineFacade {
             return
         }
 
-        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
+        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp.Type {
             activatePowerUp(at: rootRenderNode.center)
         } else {
             selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)

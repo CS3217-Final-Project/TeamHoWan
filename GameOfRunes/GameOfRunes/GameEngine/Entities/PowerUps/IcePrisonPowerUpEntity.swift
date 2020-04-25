@@ -19,7 +19,7 @@ class IcePrisonPowerUpEntity: Entity {
         super.init()
         
         let powerUpType: PowerUpType = .icePrison
-        let powerUp = IcePrisonPowerUp.shared
+        let powerUp = IcePrisonPowerUp.self
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)

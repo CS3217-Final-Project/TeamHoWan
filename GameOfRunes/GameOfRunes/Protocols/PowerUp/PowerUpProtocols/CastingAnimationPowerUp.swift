@@ -14,15 +14,12 @@ extension CastingAnimationPowerUp {
     /**
      Returns the Animation Node with animation for "casting" phase
      */
-    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp) -> SKSpriteNode {
+    static func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp.Type) -> SKSpriteNode {
         let animationNode = SKSpriteNode(texture: nil, color: .clear, size: size.applying(.init(scaleX: 1.7, y: 1.7)))
         animationNode.position = position
         
         // Create Animations (Casting of Power-Up)
-        guard let powerUpType = PowerUpType.getPowerUpType(powerUp: powerUp) else {
-            return SKSpriteNode()
-        }
-        let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUpType)
+        let powerUpCastTextures = TextureContainer.getPowerUpCastTextures(powerUpType: powerUp.type)
         let powerUpCastAnimation: SKAction = .animate(
             with: powerUpCastTextures,
             timePerFrame: 0.05,

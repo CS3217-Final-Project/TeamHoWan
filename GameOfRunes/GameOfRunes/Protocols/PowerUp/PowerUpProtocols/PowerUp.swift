@@ -9,11 +9,12 @@
 import SpriteKit
 
 protocol PowerUp {
-    var description: String { get }
-    var manaUnitCost: Int { get }
-    var duration: TimeInterval { get }
+    static var type: PowerUpType { get }
+    static var description: String { get }
+    static var manaUnitCost: Int { get }
+    static var duration: TimeInterval { get }
 
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity?
-    func prepareForActivation(gameEngine: GameEngine)
-    func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine)
+    static func createEntity(at position: CGPoint, with size: CGSize) -> Entity?
+    static func prepareForActivation(gameEngine: GameEngine)
+    static func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine)
 }

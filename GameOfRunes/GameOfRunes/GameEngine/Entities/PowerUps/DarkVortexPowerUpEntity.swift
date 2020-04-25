@@ -19,7 +19,7 @@ class DarkVortexPowerUpEntity: Entity {
         super.init()
         
         let powerUpType: PowerUpType = .darkVortex
-        let powerUp = DarkVortexPowerUp.shared
+        let powerUp = DarkVortexPowerUp.self
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         let attractionEntity = AttractionEntity(node: animationNode,

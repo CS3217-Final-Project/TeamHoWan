@@ -8,23 +8,24 @@
 
 import SpriteKit
 
-class DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
-    static let shared = DarkVortexPowerUp()
-    let manaUnitCost: Int = 0
-    let duration: TimeInterval = 5
-    let description: String = """
-            Dark Vortex
-            Tap on the arena to summon a dark vortex
-            that pulls nearby enemies towards it
-            """
+enum DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
+    static var type: PowerUpType {
+        .darkVortex
+    }
+    static var manaUnitCost: Int { 0 }
+    static var duration: TimeInterval { 5 }
+    static var description: String { """
+        Dark Vortex
+        Tap on the arena to summon a dark vortex
+        that pulls nearby enemies towards it
+        """
+    }
     
-    private init() { }
-    
-    func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
+    static func createEntity(at position: CGPoint, with size: CGSize) -> Entity? {
         DarkVortexPowerUpEntity(at: position, with: size)
     }
     
-    func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
+    static func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
         guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
             return
         }

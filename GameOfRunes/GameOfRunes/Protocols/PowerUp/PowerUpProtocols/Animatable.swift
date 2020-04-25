@@ -9,5 +9,5 @@
 import SpriteKit
 
 protocol Animatable {
-    func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp) -> SKSpriteNode
+    static func getAnimationNode(at position: CGPoint, with size: CGSize, powerUp: PowerUp.Type) -> SKSpriteNode
 }

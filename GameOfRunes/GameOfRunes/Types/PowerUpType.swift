@@ -6,8 +6,6 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-import SpriteKit
-
 enum PowerUpType: String, CaseIterable, Codable {
     case darkVortex
     case hellfire
@@ -16,39 +14,20 @@ enum PowerUpType: String, CaseIterable, Codable {
     case divineShield
     case heroicCall
     
-    var powerUp: PowerUp {
+    var powerUp: PowerUp.Type {
         switch self {
         case .darkVortex:
-            return DarkVortexPowerUp.shared
+            return DarkVortexPowerUp.self
         case .hellfire:
-            return HellfirePowerUp.shared
+            return HellfirePowerUp.self
         case .icePrison:
-            return IcePrisonPowerUp.shared
+            return IcePrisonPowerUp.self
         case .divineBlessing:
-            return DivineBlessingPowerUp.shared
+            return DivineBlessingPowerUp.self
         case .divineShield:
-            return DivineShieldPowerUp.shared
+            return DivineShieldPowerUp.self
         case .heroicCall:
-            return HeroicCallPowerUp.shared
-        }
-    }
-    
-    static func getPowerUpType(powerUp: PowerUp) -> PowerUpType? {
-        switch powerUp {
-        case is DarkVortexPowerUp:
-            return .darkVortex
-        case is HellfirePowerUp:
-            return .hellfire
-        case is IcePrisonPowerUp:
-            return .icePrison
-        case is DivineBlessingPowerUp:
-            return .divineBlessing
-        case is DivineShieldPowerUp:
-            return .divineShield
-        case is HeroicCallPowerUp:
-            return .heroicCall
-        default:
-            return nil
+            return HeroicCallPowerUp.self
         }
     }
 }

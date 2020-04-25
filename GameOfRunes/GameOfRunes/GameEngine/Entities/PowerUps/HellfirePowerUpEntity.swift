@@ -19,7 +19,7 @@ class HellfirePowerUpEntity: Entity {
         super.init()
         
         let powerUpType: PowerUpType = .hellfire
-        let powerUp = HellfirePowerUp.shared
+        let powerUp = HellfirePowerUp.self
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         CollisionType.powerUp.setPhysicsBody(for: animationNode, with: size)
