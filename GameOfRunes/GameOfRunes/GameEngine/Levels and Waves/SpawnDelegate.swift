@@ -74,7 +74,7 @@ class SpawnDelegate {
         let playerUnitEntity = PlayerUnitEntity(gameEngine: gameEngine)
         
         guard let spriteComponent = playerUnitEntity.component(ofType: SpriteComponent.self),
-            let playerEndPoint = gameEngine?.rootRenderNode?.playerEndPoint else {
+            let playerEndPoint = gameEngine?.renderNode?.playerEndPoint else {
                 return
         }
         
@@ -106,7 +106,7 @@ class SpawnDelegate {
 
         let enemyEntity = EnemyEntity(enemyType: enemyType, gameEngine: gameEngine)
         guard let spriteComponent = enemyEntity.component(ofType: SpriteComponent.self),
-            let renderNodeSize = gameEngine.rootRenderNode?.size else {
+            let renderNodeSize = gameEngine.renderNode?.size else {
                 return
         }
 

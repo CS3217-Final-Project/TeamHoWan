@@ -10,6 +10,6 @@ protocol TapActivatedPowerUp: PowerUp { }
 
 extension TapActivatedPowerUp {
     static func prepareForActivation(gameEngine: GameEngine) {
-        gameEngine.rootRenderNode?.deactivateGestureDetection()
+        gameEngine.renderNode?.deactivateGestureDetection()
     }
 }

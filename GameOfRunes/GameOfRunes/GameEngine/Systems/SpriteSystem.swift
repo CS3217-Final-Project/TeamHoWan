@@ -20,7 +20,7 @@ class SpriteSystem: GKComponentSystem<SpriteComponent>, System {
         super.addComponent(foundIn: entity)
 
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self),
-            let renderNode = gameEngine?.rootRenderNode else {
+            let renderNode = gameEngine?.renderNode else {
             return
         }
 

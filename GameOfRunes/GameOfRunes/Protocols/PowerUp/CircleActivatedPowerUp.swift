@@ -10,6 +10,6 @@ protocol CircleActivatedPowerUp: PowerUp { }
 
 extension CircleActivatedPowerUp {
     static func prepareForActivation(gameEngine: GameEngine) {
-        gameEngine.rootRenderNode?.activateGestureDetection()
+        gameEngine.renderNode?.activateGestureDetection()
     }
 }

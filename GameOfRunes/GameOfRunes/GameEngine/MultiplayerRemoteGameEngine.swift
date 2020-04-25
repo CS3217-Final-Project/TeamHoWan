@@ -15,7 +15,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
     private var uuidEnemyMapping: [String: Entity] = [:]
     private var enemyUuidMapping: [Entity: String] = [:]
     
-    init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+    init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RenderNodeFacade) {
         self.roomId = roomId
         self.uid = uid
         
@@ -69,7 +69,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     private func syncEnemies(_ enemies: [EnemyModel]) {
-        guard let size = rootRenderNode?.size else {
+        guard let size = renderNode?.size else {
             return
         }
         
@@ -122,7 +122,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     private func activatePowerUp(_ powerUp: PowerUpModel) {
-        guard let playArea = rootRenderNode?.size else {
+        guard let playArea = renderNode?.size else {
             return
         }
         

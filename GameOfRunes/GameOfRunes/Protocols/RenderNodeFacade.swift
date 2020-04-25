@@ -11,7 +11,7 @@ import SpriteKit
 /**
  Methods and properties exposed to the GameEngine
  */
-protocol GameSceneFacade: AnyObject {
+protocol RenderNodeFacade: AnyObject {
     var center: CGPoint { get }
     var size: CGSize { get }
     var playerEndPoint: SKSpriteNode! { get }

@@ -16,7 +16,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     private var enemyUuidMapping: [Entity: String] = [:]
     
     init(roomId: String, uid: String, remotePlayers: [Player],
-         stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+         stage: Stage, avatar: Avatar, renderNode: RenderNodeFacade) {
         self.roomId = roomId
         self.uid = uid
 
@@ -88,7 +88,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         if metadata.playerHealth <= 0 {
             network.removeObservers()
             network.updateDidLose(roomId: roomId, uid: uid, didLose: true, completion: nil, onError: nil)
-            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
     }
     
@@ -100,7 +100,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         
         if numPlayerLost == room.players.count - 1 {
             network.removeObservers()
-            rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
     
@@ -118,7 +118,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     
     private func pushMonstersToNetwork() {
         let enemyModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
-            guard let playArea = rootRenderNode?.size else {
+            guard let playArea = renderNode?.size else {
                 return nil
             }
             return EnemyModel(entity, uuid: enemyUuidMapping[entity], playAreaSize: playArea)
@@ -138,7 +138,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     
     private func pushPowerUpToNetwork(at position: CGPoint, with size: CGSize?) {
         guard let powerUp = metadata.selectedPowerUp,
-            let playArea = rootRenderNode?.size else {
+            let playArea = renderNode?.size else {
             return
         }
         let powerUpModel = PowerUpModel(powerUpType: powerUp, playAreaSize: playArea, position: position, size: size)

@@ -23,7 +23,7 @@ enum DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
     }
     
     static func activate(at position: CGPoint, with size: CGSize?, gameEngine: GameEngine) {
-        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
+        guard let renderNodeSize = gameEngine.renderNode?.size else {
             return
         }
 
