@@ -10,7 +10,7 @@ import SpriteKit
 
 enum IcePrisonPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
     static let type: PowerUpType = .icePrison
-    static let manaUnitCost: Int = 1//8
+    static let manaUnitCost: Int = 8
     static let duration: TimeInterval = 1
     static let description: String = """
         Ice Prison

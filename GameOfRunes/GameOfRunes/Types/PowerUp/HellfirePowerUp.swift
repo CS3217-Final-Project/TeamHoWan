@@ -10,7 +10,7 @@ import SpriteKit
 
 enum HellfirePowerUp: CircleActivatedPowerUp, Collidable, AllAnimationPowerUp {
     static let type: PowerUpType = .hellfire
-    static let manaUnitCost: Int = 1//6
+    static let manaUnitCost: Int = 6
     static let duration: TimeInterval = 5
     static let description: String = """
         Hellfire
