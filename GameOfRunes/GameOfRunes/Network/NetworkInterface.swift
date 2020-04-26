@@ -139,13 +139,13 @@ protocol NetworkInterface {
                       completion: (() -> Void)?,
                       onError: ((Error) -> Void)?)
     
+    // ================================== Game functions =========================================
+    
     func updateDidLose(roomId: String,
                        uid: String,
                        didLose: Bool,
                        completion: (() -> Void)?,
                        onError: ((Error) -> Void)?)
-    
-    // ================================== Game functions =========================================
     
     func observeEnemies(roomId: String,
                         uid: String,

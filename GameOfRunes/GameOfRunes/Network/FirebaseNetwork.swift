@@ -319,6 +319,8 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
+    // ================================== Game functions =========================================
+    
     func updateDidLose(roomId: String,
                        uid: String,
                        didLose: Bool,
@@ -336,8 +338,6 @@ class FirebaseNetwork: NetworkInterface {
             completion?()
         })
     }
-    
-    // ================================== Game functions =========================================
     
     func observeEnemies(roomId: String,
                         uid: String,

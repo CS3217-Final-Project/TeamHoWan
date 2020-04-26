@@ -112,13 +112,9 @@ class MultiplayerRemoteGameEngine: GameEngine {
         }
     }
     
-    private func syncMetadata(_ metadata: MetadataModel) {
-        guard let playerEntity = playerEntity else {
-            return
-        }
-        
-        playerEntity.component(ofType: HealthComponent.self)?.healthPoints = metadata.playerHealth
-        playerEntity.component(ofType: ManaComponent.self)?.manaPoints = metadata.playerMana
+    private func syncMetadata(_ metadataModel: MetadataModel) {
+        metadata.playerHealth = metadataModel.playerHealth
+        metadata.playerMana = metadataModel.playerMana
     }
     
     private func activatePowerUp(_ powerUp: PowerUpModel) {

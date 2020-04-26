@@ -116,6 +116,16 @@ class MultiplayerLocalGameEngine: GameEngine {
         super.activatePowerUp(at: position, with: size)
     }
     
+    override func increasePlayerMana(by manaPoints: Int) {
+        super.increasePlayerMana(by: manaPoints)
+        pushMetadataToNetwork()
+    }
+    
+    override func decreasePlayerHealth() {
+        super.decreasePlayerHealth()
+        pushMetadataToNetwork()
+    }
+    
     private func pushMonstersToNetwork() {
         let enemyModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
             guard let playArea = renderNode?.size else {
