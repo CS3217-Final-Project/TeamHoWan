@@ -79,7 +79,7 @@ extension GameViewController {
             name: "The Beginning",
             chapter: "Peasant Land 1",
             category: .normal,
-            relativePositionRatioInMap: (x: 0.6, y: -0.55),
+            relativePositionRatioInMap: (x: 0.6, y: -0.56),
             arena: .arena1,
             difficulty: 100,
             numWaves: stage1EnemyWaveData.0.count,

@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "stage-node-normal-selected@1x.png",
+      "filename" : "stage-node-normal-selected.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "stage-node-normal-selected@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

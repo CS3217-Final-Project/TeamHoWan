@@ -28,7 +28,7 @@ class StageNode: ButtonNode {
         let mapHalfHeight = mapSize.height / 2
         
         let nodeImage = SKTexture(imageNamed: "stage-node-\(stage.category)")
-        let nodeSize = nodeImage.size().scaleTo(width: mapHalfWidth / 20)
+        let nodeSize = nodeImage.size().scaleTo(width: mapHalfWidth / 14)
         
         let positionRatio = stage.relativePositionRatioInMap
         let nodePosition = CGPoint(x: mapHalfWidth * positionRatio.x, y: mapHalfHeight * positionRatio.y)
