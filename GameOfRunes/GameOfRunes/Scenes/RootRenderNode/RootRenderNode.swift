@@ -23,14 +23,14 @@ class RootRenderNode: SKNode, RenderNodeFacade {
     }
 
     // layers
-    private var backgroundLayer: SKNode!
-    private var powerUpAnimationLayer: SKNode!
-    private var unitLayer: SKNode!
-    private var removalAnimationLayer: SKNode!
-    var gestureLayer: SKNode!
-    private var playerAreaLayer: SKNode!
-    var manaDropLayer: SKNode!
-    private var highestPriorityLayer: SKNode!
+    private(set) var backgroundLayer: SKNode!
+    private(set) var powerUpAnimationLayer: SKNode!
+    private(set) var unitLayer: SKNode!
+    private(set) var removalAnimationLayer: SKNode!
+    private(set) var gestureLayer: SKNode!
+    private(set) var playerAreaLayer: SKNode!
+    private(set) var manaDropLayer: SKNode!
+    private(set) var highestPriorityLayer: SKNode!
 
     private var playerAreaNode: PlayerAreaNode!
     var playerEndPoint: SKSpriteNode!

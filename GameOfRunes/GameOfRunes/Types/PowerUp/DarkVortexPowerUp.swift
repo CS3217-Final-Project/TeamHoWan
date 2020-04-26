@@ -10,7 +10,7 @@ import SpriteKit
 
 enum DarkVortexPowerUp: TapActivatedPowerUp, AllAnimationPowerUp {
     static let type: PowerUpType = .darkVortex
-    static let manaUnitCost: Int = 0
+    static let manaUnitCost: Int = 1//4
     static let duration: TimeInterval = 5
     static let description: String = """
         Dark Vortex

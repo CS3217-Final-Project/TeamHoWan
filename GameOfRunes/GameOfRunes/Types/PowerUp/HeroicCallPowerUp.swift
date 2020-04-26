@@ -10,7 +10,7 @@ import SpriteKit
 
 enum HeroicCallPowerUp: ImmediatelyActivatedPowerUp {
     static let type: PowerUpType = .heroicCall
-    static let manaUnitCost: Int = 0
+    static let manaUnitCost: Int = 2//4
     static let duration: TimeInterval = Double(Int.max)
     static let description: String = """
             Heroic Call

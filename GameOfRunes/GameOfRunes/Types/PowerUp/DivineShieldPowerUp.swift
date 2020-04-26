@@ -10,7 +10,7 @@ import SpriteKit
 
 enum DivineShieldPowerUp: ImmediatelyActivatedPowerUp, CastingAnimationPowerUp {
     static let type: PowerUpType = .divineShield
-    static let manaUnitCost: Int = 0
+    static let manaUnitCost: Int = 1//5
     static let duration: TimeInterval = 5
     static let description: String = """
         Divine Shield

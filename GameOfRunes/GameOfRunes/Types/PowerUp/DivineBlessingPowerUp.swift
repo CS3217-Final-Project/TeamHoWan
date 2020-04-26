@@ -10,7 +10,7 @@ import SpriteKit
 
 enum DivineBlessingPowerUp: CircleActivatedPowerUp, Collidable, CastingAnimationPowerUp {
     static let type: PowerUpType = .divineBlessing
-    static let manaUnitCost: Int = 0
+    static let manaUnitCost: Int = 2
     static let duration: TimeInterval = 1
     static let description: String = """
         Divine Blessing
