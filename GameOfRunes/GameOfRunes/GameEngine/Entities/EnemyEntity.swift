@@ -17,7 +17,7 @@ class EnemyEntity: Entity {
         super.init()
 
         let enemyNode = SKSpriteNode(texture: TextureContainer.getEnemyTexture(enemyType))
-        let renderNodeSize = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size)
+        let renderNodeSize = (gameEngine?.renderNode?.size ?? UIScreen.main.bounds.size)
         enemyNode.size = enemyNode.size.scaleTo(width: renderNodeSize.width * GameConfig.GamePlayScene.unitWidthRatio)
         CollisionType.enemyUnit.setPhysicsBody(
             for: enemyNode,

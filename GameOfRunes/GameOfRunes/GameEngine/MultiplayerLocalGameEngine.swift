@@ -16,21 +16,21 @@ class MultiplayerLocalGameEngine: GameEngine {
     private var enemyUuidMapping: [Entity: String] = [:]
     
     init(roomId: String, uid: String, remotePlayers: [Player],
-         stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+         stage: Stage, avatar: Avatar, renderNode: RenderNodeFacade) {
         self.roomId = roomId
         self.uid = uid
 
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
-        network.observeRoomState(roomId: roomId, onDataChange: { [weak self] room in
+        network.observeRoom(roomId: roomId, onDataChange: { [weak self] room in
                 self?.didGameEnd(room: room)
             }, onRoomClose: { [weak self] in
                 self?.network.removeObservers()
             }, onError: nil)
         
         for player in remotePlayers {
-            network.observeNumberOfEnemiesKilled(roomId: roomId, uid: player.uid,
-                                                 onDataChange: { [weak self] count in self?.enemiesKilled(count) },
-                                                 onError: nil)
+            network.observeEnemiesKilled(roomId: roomId, uid: player.uid,
+                                         onDataChange: { [weak self] count in self?.enemiesKilled(count) },
+                                         onError: nil)
         }
     }
     
@@ -41,6 +41,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         spawnDelegate.startNextSpawnWave(tintUnits: true)
     }
     
+    @discardableResult
     override func add(_ entity: Entity) -> Bool {
         let isAdded = super.add(entity)
         
@@ -87,7 +88,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         if metadata.playerHealth <= 0 {
             network.removeObservers()
             network.updateDidLose(roomId: roomId, uid: uid, didLose: true, completion: nil, onError: nil)
-            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
     }
     
@@ -99,7 +100,7 @@ class MultiplayerLocalGameEngine: GameEngine {
         
         if numPlayerLost == room.players.count - 1 {
             network.removeObservers()
-            rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
     
@@ -115,19 +116,34 @@ class MultiplayerLocalGameEngine: GameEngine {
         super.activatePowerUp(at: position, with: size)
     }
     
+    override func increasePlayerMana(by manaPoints: Int) {
+        super.increasePlayerMana(by: manaPoints)
+        
+        guard manaPoints > 0 else {
+            return
+        }
+
+        pushMetadataToNetwork()
+    }
+    
+    override func decreasePlayerHealth() {
+        super.decreasePlayerHealth()
+        pushMetadataToNetwork()
+    }
+    
     private func pushMonstersToNetwork() {
-        let monsterModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
-            guard let playArea = rootRenderNode?.size else {
+        let enemyModels: [EnemyModel] = (entities(for: .enemyEntity).compactMap({ entity in
+            guard let playArea = renderNode?.size else {
                 return nil
             }
             return EnemyModel(entity, uuid: enemyUuidMapping[entity], playAreaSize: playArea)
         }))
         
-        network.updateMonsters(roomId: roomId, uid: uid, monsters: monsterModels, completion: nil, onError: nil)
+        network.updateEnemies(roomId: roomId, uid: uid, enemies: enemyModels, completion: nil, onError: nil)
     }
     
     private func pushMonstersKilledToNetwork(_ count: Int) {
-        network.updateNumberOfEnemiesKilled(roomId: roomId, uid: uid, count: count, completion: nil, onError: nil)
+        network.updateEnemiesKilled(roomId: roomId, uid: uid, count: count, completion: nil, onError: nil)
     }
     
     private func pushMetadataToNetwork() {
@@ -137,7 +153,7 @@ class MultiplayerLocalGameEngine: GameEngine {
     
     private func pushPowerUpToNetwork(at position: CGPoint, with size: CGSize?) {
         guard let powerUp = metadata.selectedPowerUp,
-            let playArea = rootRenderNode?.size else {
+            let playArea = renderNode?.size else {
             return
         }
         let powerUpModel = PowerUpModel(powerUpType: powerUp, playAreaSize: playArea, position: position, size: size)

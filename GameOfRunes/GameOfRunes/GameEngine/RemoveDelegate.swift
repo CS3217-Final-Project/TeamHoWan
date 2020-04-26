@@ -64,7 +64,7 @@ class RemoveDelegate {
     
     func removeDroppedMana(_ entity: Entity) {
         guard let spriteComponent = entity.component(ofType: SpriteComponent.self),
-            let renderNode = gameEngine?.rootRenderNode else {
+            let renderNode = gameEngine?.renderNode else {
             return
         }
         
@@ -80,7 +80,7 @@ class RemoveDelegate {
         
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
-        let length = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size).width
+        let length = (gameEngine?.renderNode?.size ?? UIScreen.main.bounds.size).width
             * GameConfig.GamePlayScene.removalAnimationWidthRatio
         animationNode.size = .init(width: length, height: length)
         animationNode.position = spriteComponent.node.position
@@ -100,7 +100,7 @@ class RemoveDelegate {
     private func removeUnitFromGameWithAnimation(_ entity: Entity, fullAnimation: Bool) {
         guard entity.type == .enemyEntity || entity.type == .playerUnitEntity,
             let spriteComponent = entity.component(ofType: SpriteComponent.self),
-            let renderNode = gameEngine?.rootRenderNode else {
+            let renderNode = gameEngine?.renderNode else {
                 return
         }
 
@@ -120,7 +120,7 @@ class RemoveDelegate {
         
         // separate removal animation from entity
         let animationNode = SKSpriteNode()
-        let length = (gameEngine?.rootRenderNode?.size ?? UIScreen.main.bounds.size).width
+        let length = (gameEngine?.renderNode?.size ?? UIScreen.main.bounds.size).width
             * GameConfig.GamePlayScene.removalAnimationWidthRatio
         animationNode.size = .init(width: length, height: length)
         animationNode.position = spriteComponent.node.position

@@ -17,13 +17,12 @@ class DivineShieldPowerUpEntity: Entity {
     init(at position: CGPoint, with size: CGSize) {
         super.init()
 
-        let powerUpType: PowerUpType = .divineShield
-        let powerUp = DivineShieldPowerUp.shared
+        let powerUp = DivineShieldPowerUp.self
         
         let animationNode = powerUp.getAnimationNode(at: position, with: size, powerUp: powerUp)
         let animationSpriteComponent = SpriteComponent(node: animationNode, layerType: .powerUpAnimationLayer)
         let timerComponent = TimerComponent(initialTimerValue: powerUp.duration)
-        let powerUpComponent = PowerUpComponent(powerUpType)
+        let powerUpComponent = PowerUpComponent(powerUp.type)
         
         addComponent(animationSpriteComponent)
         addComponent(timerComponent)

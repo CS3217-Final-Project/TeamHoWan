@@ -20,7 +20,7 @@ class LabelSystem: GKComponentSystem<LabelComponent>, System {
         super.addComponent(foundIn: entity)
         
         guard let labelComponent = entity.component(ofType: LabelComponent.self),
-            let rootRenderNode = gameEngine?.rootRenderNode else {
+            let rootRenderNode = gameEngine?.renderNode else {
             return
         }
         

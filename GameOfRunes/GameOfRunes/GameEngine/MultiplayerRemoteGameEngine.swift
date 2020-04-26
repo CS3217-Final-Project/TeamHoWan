@@ -15,21 +15,30 @@ class MultiplayerRemoteGameEngine: GameEngine {
     private var uuidEnemyMapping: [String: Entity] = [:]
     private var enemyUuidMapping: [Entity: String] = [:]
     
-    init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
+    init(roomId: String, uid: String, stage: Stage, avatar: Avatar, renderNode: RenderNodeFacade) {
         self.roomId = roomId
         self.uid = uid
         
         super.init(stage: stage, avatar: avatar, renderNode: renderNode)
 
-        network.observeEnemy(roomId: roomId, uid: uid,
-                             onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
-                             onError: { [weak self] enemies in self?.syncEnemies([]) })
+        network.observeEnemies(roomId: roomId, uid: uid,
+                               onDataChange: { [weak self] enemies in self?.syncEnemies(enemies) },
+                               onError: { [weak self] _ in self?.syncEnemies([]) })
         network.observeMetadata(roomId: roomId, uid: uid,
                                 onDataChange: { [weak self] metadata in self?.syncMetadata(metadata) },
                                 onError: nil)
         network.observePowerUp(roomId: roomId, uid: uid,
                                onDataChange: { [weak self] powerUp in self?.activatePowerUp(powerUp) },
                                onError: nil)
+    }
+    
+    @discardableResult
+    override func add(_ entity: Entity) -> Bool {
+        if entity.type == .comboEntity {
+            return false
+        } else {
+            return super.add(entity)
+        }
     }
     
     override func remove(_ entity: Entity) {
@@ -42,10 +51,6 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     override func didGameEnd() {}
-
-    override func cleanUpPowerUp() {}
-    
-    override func incrementCombo() {}
     
     override func unitForceRemoved(_ entity: Entity) {
         guard entity.type == .playerUnitEntity else {
@@ -64,7 +69,7 @@ class MultiplayerRemoteGameEngine: GameEngine {
     }
     
     private func syncEnemies(_ enemies: [EnemyModel]) {
-        guard let size = rootRenderNode?.size else {
+        guard let size = renderNode?.size else {
             return
         }
         
@@ -107,17 +112,13 @@ class MultiplayerRemoteGameEngine: GameEngine {
         }
     }
     
-    private func syncMetadata(_ metadata: MetadataModel) {
-        guard let playerEntity = playerEntity else {
-            return
-        }
-        
-        playerEntity.component(ofType: HealthComponent.self)?.healthPoints = metadata.playerHealth
-        playerEntity.component(ofType: ManaComponent.self)?.manaPoints = metadata.playerMana
+    private func syncMetadata(_ metadataModel: MetadataModel) {
+        metadata.playerHealth = metadataModel.playerHealth
+        metadata.playerMana = metadataModel.playerMana
     }
     
     private func activatePowerUp(_ powerUp: PowerUpModel) {
-        guard let playArea = rootRenderNode?.size else {
+        guard let playArea = renderNode?.size else {
             return
         }
         

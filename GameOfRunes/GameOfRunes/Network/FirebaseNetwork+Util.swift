@@ -9,13 +9,6 @@
 import Foundation
 
 extension FirebaseNetwork {
-    private var encoder: JSONEncoder {
-        JSONEncoder()
-    }
-
-    private var decoder: JSONDecoder {
-        JSONDecoder()
-    }
     
     /**
      Adapter pattern: Conversion from firebase dictionary to a PlayerModel
@@ -87,33 +80,33 @@ extension FirebaseNetwork {
     func encodePowerUp(powerUp: PowerUpModel?) -> [String: Any] {
         var encodedPowerUp: [String: Any] = [:]
         do {
-            let powerUpData = try encoder.encode(powerUp)
+            let powerUpData = try Util.encoder.encode(powerUp)
             encodedPowerUp = try JSONSerialization.jsonObject(with: powerUpData, options: .allowFragments)
                 as? [String: Any] ?? [:]
         } catch { }
         return encodedPowerUp
     }
     
-    func encodeMonsters(monsters: [EnemyModel]) -> [[String: Any]] {
-        var encodedMonsters: [[String: Any]] = []
+    func encodeEnemies(enemies: [EnemyModel]) -> [[String: Any]] {
+        var encodedEnemies: [[String: Any]] = []
         do {
-            for monster in monsters {
-                let monsterData = try encoder.encode(monster)
-                let serializedMonster = try JSONSerialization.jsonObject(with: monsterData, options: .allowFragments)
+            for enemy in enemies {
+                let enemyData = try Util.encoder.encode(enemy)
+                let serializedMonster = try JSONSerialization.jsonObject(with: enemyData, options: .allowFragments)
                     as? [String: Any]
-                guard let encodedMonster = serializedMonster else {
+                guard let encodedEnemy = serializedMonster else {
                     continue
                 }
-                encodedMonsters.append(encodedMonster)
+                encodedEnemies.append(encodedEnemy)
             }
         } catch { }
-        return encodedMonsters
+        return encodedEnemies
     }
     
     func encodeMetadata(metadata: MetadataModel?) -> [String: Any] {
         var encodedMetadata: [String: Any] = [:]
         do {
-            let metadataData = try encoder.encode(metadata)
+            let metadataData = try Util.encoder.encode(metadata)
             encodedMetadata = try JSONSerialization.jsonObject(with: metadataData, options: .allowFragments)
                 as? [String: Any] ?? [:]
         } catch { }
@@ -124,25 +117,25 @@ extension FirebaseNetwork {
         var decodedPowerUp: PowerUpModel?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-            decodedPowerUp = try decoder.decode(PowerUpModel.self, from: jsonData)
+            decodedPowerUp = try Util.decoder.decode(PowerUpModel.self, from: jsonData)
         } catch { }
         return decodedPowerUp
     }
     
-    func decodeMonsters(data: [[String: AnyObject]]) -> [EnemyModel] {
-        var decodedMonsters: [EnemyModel]?
+    func decodeEnemies(data: [[String: AnyObject]]) -> [EnemyModel] {
+        var decodedEnemies: [EnemyModel]?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-            decodedMonsters = try decoder.decode([EnemyModel].self, from: jsonData)
+            decodedEnemies = try Util.decoder.decode([EnemyModel].self, from: jsonData)
         } catch { }
-        return decodedMonsters ?? []
+        return decodedEnemies ?? []
     }
     
     func decodeMetadata(data: [String: AnyObject]) -> MetadataModel? {
         var decodedMetadata: MetadataModel?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-            decodedMetadata = try decoder.decode(MetadataModel.self, from: jsonData)
+            decodedMetadata = try Util.decoder.decode(MetadataModel.self, from: jsonData)
         } catch { }
         return decodedMetadata
     }

@@ -6,7 +6,12 @@
 //  Copyright © 2020 TeamHoWan. All rights reserved.
 //
 
-class Util {
+import Foundation
+
+enum Util {
+    static let encoder = JSONEncoder()
+    static let decoder = JSONDecoder()
+    
     /**
      Generates a random 5 digit number for roomId. This can generate duplicates and collisions can occur.
      */

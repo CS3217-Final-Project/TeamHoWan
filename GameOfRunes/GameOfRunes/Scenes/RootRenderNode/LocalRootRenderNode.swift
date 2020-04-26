@@ -54,4 +54,12 @@ class LocalRootRenderNode: RootRenderNode {
         // Set Up Background Music
         setUpBackgroundMusic()
     }
+    
+    override func buildLayers() {
+        super.buildLayers()
+        gestureLayer.zPosition = GameConfig.MultiplayerGameScene.gestureLayerZPosition
+        playerAreaLayer.zPosition = GameConfig.MultiplayerGameScene.playerAreaLayerZPosition
+        manaDropLayer.zPosition = GameConfig.MultiplayerGameScene.manaDropLayerZPosition
+        highestPriorityLayer.zPosition = GameConfig.MultiplayerGameScene.highestPriorityLayerZPosition
+    }
 }

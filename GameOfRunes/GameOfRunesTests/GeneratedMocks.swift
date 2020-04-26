@@ -1,690 +1,4 @@
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-23 05:57:31 +0000
-
-//
-//  DroppedManaNode.swift
-//  GameOfRunes
-//
-//  Created by Brian Yen on 15/3/20.
-//  Copyright © 2020 TeamHoWan. All rights reserved.
-//
-
-import Cuckoo
-@testable import GameOfRunes
-
-import SpriteKit
-
-
- class MockDroppedManaNode: DroppedManaNode, Cuckoo.ClassMock {
-    
-     typealias MocksType = DroppedManaNode
-    
-     typealias Stubbing = __StubbingProxy_DroppedManaNode
-     typealias Verification = __VerificationProxy_DroppedManaNode
-
-     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
-
-    
-    private var __defaultImplStub: DroppedManaNode?
-
-     func enableDefaultImplementation(_ stub: DroppedManaNode) {
-        __defaultImplStub = stub
-        cuckoo_manager.enableDefaultStubImplementation()
-    }
-    
-
-    
-    
-    
-     override var droppedManaEntity: DroppedManaEntity? {
-        get {
-            return cuckoo_manager.getter("droppedManaEntity",
-                superclassCall:
-                    
-                    super.droppedManaEntity
-                    ,
-                defaultCall: __defaultImplStub!.droppedManaEntity)
-        }
-        
-        set {
-            cuckoo_manager.setter("droppedManaEntity",
-                value: newValue,
-                superclassCall:
-                    
-                    super.droppedManaEntity = newValue
-                    ,
-                defaultCall: __defaultImplStub!.droppedManaEntity = newValue)
-        }
-        
-    }
-    
-
-    
-
-    
-    
-    
-     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
-        
-    return cuckoo_manager.call("touchesEnded(_: Set<UITouch>, with: UIEvent?)",
-            parameters: (touches, event),
-            escapingParameters: (touches, event),
-            superclassCall:
-                
-                super.touchesEnded(touches, with: event)
-                ,
-            defaultCall: __defaultImplStub!.touchesEnded(touches, with: event))
-        
-    }
-    
-
-	 struct __StubbingProxy_DroppedManaNode: Cuckoo.StubbingProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	
-	     init(manager: Cuckoo.MockManager) {
-	        self.cuckoo_manager = manager
-	    }
-	    
-	    
-	    var droppedManaEntity: Cuckoo.ClassToBeStubbedOptionalProperty<MockDroppedManaNode, DroppedManaEntity> {
-	        return .init(manager: cuckoo_manager, name: "droppedManaEntity")
-	    }
-	    
-	    
-	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.ClassStubNoReturnFunction<(Set<UITouch>, UIEvent?)> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
-	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
-	        return .init(stub: cuckoo_manager.createStub(for: MockDroppedManaNode.self, method: "touchesEnded(_: Set<UITouch>, with: UIEvent?)", parameterMatchers: matchers))
-	    }
-	    
-	}
-
-	 struct __VerificationProxy_DroppedManaNode: Cuckoo.VerificationProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	    private let callMatcher: Cuckoo.CallMatcher
-	    private let sourceLocation: Cuckoo.SourceLocation
-	
-	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-	        self.cuckoo_manager = manager
-	        self.callMatcher = callMatcher
-	        self.sourceLocation = sourceLocation
-	    }
-	
-	    
-	    
-	    var droppedManaEntity: Cuckoo.VerifyOptionalProperty<DroppedManaEntity> {
-	        return .init(manager: cuckoo_manager, name: "droppedManaEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	
-	    
-	    @discardableResult
-	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.__DoNotUse<(Set<UITouch>, UIEvent?), Void> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
-	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
-	        return cuckoo_manager.verify("touchesEnded(_: Set<UITouch>, with: UIEvent?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-	    }
-	    
-	}
-}
-
- class DroppedManaNodeStub: DroppedManaNode {
-    
-    
-     override var droppedManaEntity: DroppedManaEntity? {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (DroppedManaEntity?).self)
-        }
-        
-        set { }
-        
-    }
-    
-
-    
-
-    
-     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)   {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
-}
-
-
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/HealthBarNode.swift at 2020-04-23 05:57:31 +0000
-
-//
-//  HealthBarNode.swift
-//  GameOfRunes
-//
-//  Created by Jermy on 10/3/20.
-//  Copyright © 2020 TeamHoWan. All rights reserved.
-//
-
-import Cuckoo
-@testable import GameOfRunes
-
-import SpriteKit
-
-
- class MockHealthBarNode: HealthBarNode, Cuckoo.ClassMock {
-    
-     typealias MocksType = HealthBarNode
-    
-     typealias Stubbing = __StubbingProxy_HealthBarNode
-     typealias Verification = __VerificationProxy_HealthBarNode
-
-     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
-
-    
-    private var __defaultImplStub: HealthBarNode?
-
-     func enableDefaultImplementation(_ stub: HealthBarNode) {
-        __defaultImplStub = stub
-        cuckoo_manager.enableDefaultStubImplementation()
-    }
-    
-
-    
-    
-    
-     override var totalLives: Int {
-        get {
-            return cuckoo_manager.getter("totalLives",
-                superclassCall:
-                    
-                    super.totalLives
-                    ,
-                defaultCall: __defaultImplStub!.totalLives)
-        }
-        
-        set {
-            cuckoo_manager.setter("totalLives",
-                value: newValue,
-                superclassCall:
-                    
-                    super.totalLives = newValue
-                    ,
-                defaultCall: __defaultImplStub!.totalLives = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var livesLeft: Int {
-        get {
-            return cuckoo_manager.getter("livesLeft",
-                superclassCall:
-                    
-                    super.livesLeft
-                    ,
-                defaultCall: __defaultImplStub!.livesLeft)
-        }
-        
-        set {
-            cuckoo_manager.setter("livesLeft",
-                value: newValue,
-                superclassCall:
-                    
-                    super.livesLeft = newValue
-                    ,
-                defaultCall: __defaultImplStub!.livesLeft = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var size: CGSize {
-        get {
-            return cuckoo_manager.getter("size",
-                superclassCall:
-                    
-                    super.size
-                    ,
-                defaultCall: __defaultImplStub!.size)
-        }
-        
-        set {
-            cuckoo_manager.setter("size",
-                value: newValue,
-                superclassCall:
-                    
-                    super.size = newValue
-                    ,
-                defaultCall: __defaultImplStub!.size = newValue)
-        }
-        
-    }
-    
-
-    
-
-    
-
-	 struct __StubbingProxy_HealthBarNode: Cuckoo.StubbingProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	
-	     init(manager: Cuckoo.MockManager) {
-	        self.cuckoo_manager = manager
-	    }
-	    
-	    
-	    var totalLives: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "totalLives")
-	    }
-	    
-	    
-	    var livesLeft: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "livesLeft")
-	    }
-	    
-	    
-	    var size: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, CGSize> {
-	        return .init(manager: cuckoo_manager, name: "size")
-	    }
-	    
-	    
-	}
-
-	 struct __VerificationProxy_HealthBarNode: Cuckoo.VerificationProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	    private let callMatcher: Cuckoo.CallMatcher
-	    private let sourceLocation: Cuckoo.SourceLocation
-	
-	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-	        self.cuckoo_manager = manager
-	        self.callMatcher = callMatcher
-	        self.sourceLocation = sourceLocation
-	    }
-	
-	    
-	    
-	    var totalLives: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "totalLives", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var livesLeft: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "livesLeft", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var size: Cuckoo.VerifyProperty<CGSize> {
-	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	
-	    
-	}
-}
-
- class HealthBarNodeStub: HealthBarNode {
-    
-    
-     override var totalLives: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var livesLeft: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var size: CGSize {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
-        }
-        
-        set { }
-        
-    }
-    
-
-    
-
-    
-}
-
-
-// MARK: - Mocks generated from file: GameOfRunes/Custom Nodes/Player Area/ManaBarNode.swift at 2020-04-23 05:57:31 +0000
-
-//
-//  ManaBarNode.swift
-//  GameOfRunes
-//
-//  Created by Jermy on 10/3/20.
-//  Copyright © 2020 TeamHoWan. All rights reserved.
-//
-
-import Cuckoo
-@testable import GameOfRunes
-
-import SpriteKit
-
-
- class MockManaBarNode: ManaBarNode, Cuckoo.ClassMock {
-    
-     typealias MocksType = ManaBarNode
-    
-     typealias Stubbing = __StubbingProxy_ManaBarNode
-     typealias Verification = __VerificationProxy_ManaBarNode
-
-     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
-
-    
-    private var __defaultImplStub: ManaBarNode?
-
-     func enableDefaultImplementation(_ stub: ManaBarNode) {
-        __defaultImplStub = stub
-        cuckoo_manager.enableDefaultStubImplementation()
-    }
-    
-
-    
-    
-    
-     override var numManaUnits: Int {
-        get {
-            return cuckoo_manager.getter("numManaUnits",
-                superclassCall:
-                    
-                    super.numManaUnits
-                    ,
-                defaultCall: __defaultImplStub!.numManaUnits)
-        }
-        
-        set {
-            cuckoo_manager.setter("numManaUnits",
-                value: newValue,
-                superclassCall:
-                    
-                    super.numManaUnits = newValue
-                    ,
-                defaultCall: __defaultImplStub!.numManaUnits = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var manaPointsPerUnit: Int {
-        get {
-            return cuckoo_manager.getter("manaPointsPerUnit",
-                superclassCall:
-                    
-                    super.manaPointsPerUnit
-                    ,
-                defaultCall: __defaultImplStub!.manaPointsPerUnit)
-        }
-        
-        set {
-            cuckoo_manager.setter("manaPointsPerUnit",
-                value: newValue,
-                superclassCall:
-                    
-                    super.manaPointsPerUnit = newValue
-                    ,
-                defaultCall: __defaultImplStub!.manaPointsPerUnit = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var currentManaPoints: Int {
-        get {
-            return cuckoo_manager.getter("currentManaPoints",
-                superclassCall:
-                    
-                    super.currentManaPoints
-                    ,
-                defaultCall: __defaultImplStub!.currentManaPoints)
-        }
-        
-        set {
-            cuckoo_manager.setter("currentManaPoints",
-                value: newValue,
-                superclassCall:
-                    
-                    super.currentManaPoints = newValue
-                    ,
-                defaultCall: __defaultImplStub!.currentManaPoints = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var totalManaPoints: Int {
-        get {
-            return cuckoo_manager.getter("totalManaPoints",
-                superclassCall:
-                    
-                    super.totalManaPoints
-                    ,
-                defaultCall: __defaultImplStub!.totalManaPoints)
-        }
-        
-    }
-    
-    
-    
-     override var size: CGSize {
-        get {
-            return cuckoo_manager.getter("size",
-                superclassCall:
-                    
-                    super.size
-                    ,
-                defaultCall: __defaultImplStub!.size)
-        }
-        
-        set {
-            cuckoo_manager.setter("size",
-                value: newValue,
-                superclassCall:
-                    
-                    super.size = newValue
-                    ,
-                defaultCall: __defaultImplStub!.size = newValue)
-        }
-        
-    }
-    
-    
-    
-     override var manaColor: UIColor {
-        get {
-            return cuckoo_manager.getter("manaColor",
-                superclassCall:
-                    
-                    super.manaColor
-                    ,
-                defaultCall: __defaultImplStub!.manaColor)
-        }
-        
-        set {
-            cuckoo_manager.setter("manaColor",
-                value: newValue,
-                superclassCall:
-                    
-                    super.manaColor = newValue
-                    ,
-                defaultCall: __defaultImplStub!.manaColor = newValue)
-        }
-        
-    }
-    
-
-    
-
-    
-
-	 struct __StubbingProxy_ManaBarNode: Cuckoo.StubbingProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	
-	     init(manager: Cuckoo.MockManager) {
-	        self.cuckoo_manager = manager
-	    }
-	    
-	    
-	    var numManaUnits: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "numManaUnits")
-	    }
-	    
-	    
-	    var manaPointsPerUnit: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit")
-	    }
-	    
-	    
-	    var currentManaPoints: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "currentManaPoints")
-	    }
-	    
-	    
-	    var totalManaPoints: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockManaBarNode, Int> {
-	        return .init(manager: cuckoo_manager, name: "totalManaPoints")
-	    }
-	    
-	    
-	    var size: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, CGSize> {
-	        return .init(manager: cuckoo_manager, name: "size")
-	    }
-	    
-	    
-	    var manaColor: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, UIColor> {
-	        return .init(manager: cuckoo_manager, name: "manaColor")
-	    }
-	    
-	    
-	}
-
-	 struct __VerificationProxy_ManaBarNode: Cuckoo.VerificationProxy {
-	    private let cuckoo_manager: Cuckoo.MockManager
-	    private let callMatcher: Cuckoo.CallMatcher
-	    private let sourceLocation: Cuckoo.SourceLocation
-	
-	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-	        self.cuckoo_manager = manager
-	        self.callMatcher = callMatcher
-	        self.sourceLocation = sourceLocation
-	    }
-	
-	    
-	    
-	    var numManaUnits: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "numManaUnits", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var manaPointsPerUnit: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var currentManaPoints: Cuckoo.VerifyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "currentManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var totalManaPoints: Cuckoo.VerifyReadOnlyProperty<Int> {
-	        return .init(manager: cuckoo_manager, name: "totalManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var size: Cuckoo.VerifyProperty<CGSize> {
-	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	    
-	    var manaColor: Cuckoo.VerifyProperty<UIColor> {
-	        return .init(manager: cuckoo_manager, name: "manaColor", callMatcher: callMatcher, sourceLocation: sourceLocation)
-	    }
-	    
-	
-	    
-	}
-}
-
- class ManaBarNodeStub: ManaBarNode {
-    
-    
-     override var numManaUnits: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var manaPointsPerUnit: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var currentManaPoints: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var totalManaPoints: Int {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (Int).self)
-        }
-        
-    }
-    
-    
-     override var size: CGSize {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
-        }
-        
-        set { }
-        
-    }
-    
-    
-     override var manaColor: UIColor {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (UIColor).self)
-        }
-        
-        set { }
-        
-    }
-    
-
-    
-
-    
-}
-
-
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/GestureComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GestureComponent.swift
@@ -793,7 +107,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/HealthComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  HealthComponent.swift
@@ -946,7 +260,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/ManaComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  ManaComponent.swift
@@ -1099,7 +413,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveBehavior.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  MoveBehavior.swift
@@ -1176,7 +490,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/MoveComponent/MoveComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  MoveComponent.swift
@@ -1389,7 +703,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/SpriteComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  SpriteComponent.swift
@@ -1463,6 +777,30 @@ import SpriteKit
         
     }
     
+    
+    
+     override var isTinted: Bool {
+        get {
+            return cuckoo_manager.getter("isTinted",
+                superclassCall:
+                    
+                    super.isTinted
+                    ,
+                defaultCall: __defaultImplStub!.isTinted)
+        }
+        
+        set {
+            cuckoo_manager.setter("isTinted",
+                value: newValue,
+                superclassCall:
+                    
+                    super.isTinted = newValue
+                    ,
+                defaultCall: __defaultImplStub!.isTinted = newValue)
+        }
+        
+    }
+    
 
     
 
@@ -1501,6 +839,11 @@ import SpriteKit
 	    }
 	    
 	    
+	    var isTinted: Cuckoo.ClassToBeStubbedProperty<MockSpriteComponent, Bool> {
+	        return .init(manager: cuckoo_manager, name: "isTinted")
+	    }
+	    
+	    
 	    func setGestureConstraint<M1: Cuckoo.Matchable>(referenceNode: M1) -> Cuckoo.ClassStubNoReturnFunction<(SKSpriteNode)> where M1.MatchedType == SKSpriteNode {
 	        let matchers: [Cuckoo.ParameterMatcher<(SKSpriteNode)>] = [wrap(matchable: referenceNode) { $0 }]
 	        return .init(stub: cuckoo_manager.createStub(for: MockSpriteComponent.self, method: "setGestureConstraint(referenceNode: SKSpriteNode)", parameterMatchers: matchers))
@@ -1528,6 +871,11 @@ import SpriteKit
 	    
 	    var activePauses: Cuckoo.VerifyProperty<Int> {
 	        return .init(manager: cuckoo_manager, name: "activePauses", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var isTinted: Cuckoo.VerifyProperty<Bool> {
+	        return .init(manager: cuckoo_manager, name: "isTinted", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	
@@ -1561,6 +909,16 @@ import SpriteKit
         
     }
     
+    
+     override var isTinted: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+        set { }
+        
+    }
+    
 
     
 
@@ -1572,7 +930,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TeamComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  TeamComponent.swift
@@ -1681,7 +1039,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Components/TimerComponent.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  TimerComponent.swift
@@ -1877,7 +1235,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/DroppedManaEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  DroppedManaEntity.swift
@@ -1986,7 +1344,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EndPointEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  EndPointEntity.swift
@@ -2095,7 +1453,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/EnemyEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  EnemyEntity.swift
@@ -2203,7 +1561,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/GestureEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GestureEntity.swift
@@ -2311,7 +1669,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PlayerEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  PlayerEntity.swift
@@ -2419,7 +1777,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/DarkVortexPowerUpEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  DarkVortexPowerUpEntity.swift
@@ -2528,7 +1886,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/HellfirePowerUpEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  HellfireEntity.swift
@@ -2637,7 +1995,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/PowerUps/IcePrisonPowerUpEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  IcePrisonPowerUpEntity.swift
@@ -2746,7 +2104,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Entities/TimerEntity.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  TimerEntity.swift
@@ -2854,22 +2212,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine+SystemDelegate.swift at 2020-04-23 05:57:31 +0000
-
-//
-//  SystemDelegate.swift
-//  GameOfRunes
-//
-//  Created by Dong SiJi on 11/3/20.
-//  Copyright © 2020 TeamHoWan. All rights reserved.
-//
-
-import Cuckoo
-@testable import GameOfRunes
-
-import GameplayKit
-
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/GameEngine.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameEngine.swift
@@ -2907,6 +2250,20 @@ import SpriteKit
     
     
     
+     override var spawnDelegate: SpawnDelegate {
+        get {
+            return cuckoo_manager.getter("spawnDelegate",
+                superclassCall:
+                    
+                    super.spawnDelegate
+                    ,
+                defaultCall: __defaultImplStub!.spawnDelegate)
+        }
+        
+    }
+    
+    
+    
      override var systems: [ComponentType: System] {
         get {
             return cuckoo_manager.getter("systems",
@@ -2935,14 +2292,14 @@ import SpriteKit
     
     
     
-     override var rootRenderNode: RootRenderNode? {
+     override var renderNode: RenderNodeFacade? {
         get {
-            return cuckoo_manager.getter("rootRenderNode",
+            return cuckoo_manager.getter("renderNode",
                 superclassCall:
                     
-                    super.rootRenderNode
+                    super.renderNode
                     ,
-                defaultCall: __defaultImplStub!.rootRenderNode)
+                defaultCall: __defaultImplStub!.renderNode)
         }
         
     }
@@ -3407,6 +2764,11 @@ import SpriteKit
 	    }
 	    
 	    
+	    var spawnDelegate: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, SpawnDelegate> {
+	        return .init(manager: cuckoo_manager, name: "spawnDelegate")
+	    }
+	    
+	    
 	    var systems: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, [ComponentType: System]> {
 	        return .init(manager: cuckoo_manager, name: "systems")
 	    }
@@ -3417,8 +2779,8 @@ import SpriteKit
 	    }
 	    
 	    
-	    var rootRenderNode: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, RootRenderNode?> {
-	        return .init(manager: cuckoo_manager, name: "rootRenderNode")
+	    var renderNode: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockGameEngine, RenderNodeFacade?> {
+	        return .init(manager: cuckoo_manager, name: "renderNode")
 	    }
 	    
 	    
@@ -3587,6 +2949,11 @@ import SpriteKit
 	
 	    
 	    
+	    var spawnDelegate: Cuckoo.VerifyReadOnlyProperty<SpawnDelegate> {
+	        return .init(manager: cuckoo_manager, name: "spawnDelegate", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
 	    var systems: Cuckoo.VerifyReadOnlyProperty<[ComponentType: System]> {
 	        return .init(manager: cuckoo_manager, name: "systems", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
@@ -3597,8 +2964,8 @@ import SpriteKit
 	    }
 	    
 	    
-	    var rootRenderNode: Cuckoo.VerifyReadOnlyProperty<RootRenderNode?> {
-	        return .init(manager: cuckoo_manager, name: "rootRenderNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    var renderNode: Cuckoo.VerifyReadOnlyProperty<RenderNodeFacade?> {
+	        return .init(manager: cuckoo_manager, name: "renderNode", callMatcher: callMatcher, sourceLocation: sourceLocation)
 	    }
 	    
 	    
@@ -3786,6 +3153,14 @@ import SpriteKit
  class GameEngineStub: GameEngine {
     
     
+     override var spawnDelegate: SpawnDelegate {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (SpawnDelegate).self)
+        }
+        
+    }
+    
+    
      override var systems: [ComponentType: System] {
         get {
             return DefaultValueRegistry.defaultValue(for: ([ComponentType: System]).self)
@@ -3802,9 +3177,9 @@ import SpriteKit
     }
     
     
-     override var rootRenderNode: RootRenderNode? {
+     override var renderNode: RenderNodeFacade? {
         get {
-            return DefaultValueRegistry.defaultValue(for: (RootRenderNode?).self)
+            return DefaultValueRegistry.defaultValue(for: (RenderNodeFacade?).self)
         }
         
     }
@@ -3948,7 +3323,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/RemoveDelegate.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  RemoveDelegate.swift
@@ -4114,7 +3489,22 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/GameEngine+SystemDelegate.swift at 2020-04-25 13:27:49 +0000
+
+//
+//  SystemDelegate.swift
+//  GameOfRunes
+//
+//  Created by Dong SiJi on 11/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import GameplayKit
+
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/HealthSystem.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  HealthSystem.swift
@@ -4280,7 +3670,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/ManaSystem.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  ManaSystem.swift
@@ -4476,7 +3866,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/MoveSystem.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  MoveSystem.swift
@@ -4642,7 +4032,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/SpriteSystem.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  SpriteSystem.swift
@@ -4958,7 +4348,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameEngine/Systems/TimerSystem.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  TimerSystem.swift
@@ -5184,7 +4574,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameEndState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameEndState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameEndState.swift
@@ -5438,7 +4828,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameInPlayState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameInPlayState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameInPlayState.swift
@@ -5574,7 +4964,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameModeSelectionState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameModeSelectionState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameModeSelectionState.swift
@@ -5710,7 +5100,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GamePauseState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GamePauseState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GamePauseState.swift
@@ -5846,7 +5236,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStageSelectionState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameStageSelectionState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameStageSelectionState.swift
@@ -5982,7 +5372,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStartState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameStartState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameStartState.swift
@@ -6119,7 +5509,7 @@ import ReplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/GameStateMachine.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/GameStateMachine.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameStateMachine.swift
@@ -6371,7 +5761,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/MultiplayerGameEndState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/MultiplayerGameEndState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  MultiplayerGameEndState.swift
@@ -6595,7 +5985,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/GameState/MultiplayerGameInPlayState.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/GameStateMachine/MultiplayerGameInPlayState.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  MultiplayerGameInPlayState.swift
@@ -6731,7 +6121,7 @@ import GameplayKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/GameScene.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  GameScene.swift
@@ -7006,7 +6396,7 @@ import SpriteKit
 }
 
 
-// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-23 05:57:31 +0000
+// MARK: - Mocks generated from file: GameOfRunes/Scenes/SceneManager.swift at 2020-04-25 13:27:49 +0000
 
 //
 //  SceneManager.swift
@@ -7228,6 +6618,692 @@ import SpriteKit
      override func resetMultiplayerState()   {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/UI Nodes/DroppedManaNode/DroppedManaNode.swift at 2020-04-25 13:27:49 +0000
+
+//
+//  DroppedManaNode.swift
+//  GameOfRunes
+//
+//  Created by Brian Yen on 15/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockDroppedManaNode: DroppedManaNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = DroppedManaNode
+    
+     typealias Stubbing = __StubbingProxy_DroppedManaNode
+     typealias Verification = __VerificationProxy_DroppedManaNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: DroppedManaNode?
+
+     func enableDefaultImplementation(_ stub: DroppedManaNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var droppedManaEntity: DroppedManaEntity? {
+        get {
+            return cuckoo_manager.getter("droppedManaEntity",
+                superclassCall:
+                    
+                    super.droppedManaEntity
+                    ,
+                defaultCall: __defaultImplStub!.droppedManaEntity)
+        }
+        
+        set {
+            cuckoo_manager.setter("droppedManaEntity",
+                value: newValue,
+                superclassCall:
+                    
+                    super.droppedManaEntity = newValue
+                    ,
+                defaultCall: __defaultImplStub!.droppedManaEntity = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+    
+    
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)  {
+        
+    return cuckoo_manager.call("touchesEnded(_: Set<UITouch>, with: UIEvent?)",
+            parameters: (touches, event),
+            escapingParameters: (touches, event),
+            superclassCall:
+                
+                super.touchesEnded(touches, with: event)
+                ,
+            defaultCall: __defaultImplStub!.touchesEnded(touches, with: event))
+        
+    }
+    
+
+	 struct __StubbingProxy_DroppedManaNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var droppedManaEntity: Cuckoo.ClassToBeStubbedOptionalProperty<MockDroppedManaNode, DroppedManaEntity> {
+	        return .init(manager: cuckoo_manager, name: "droppedManaEntity")
+	    }
+	    
+	    
+	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.ClassStubNoReturnFunction<(Set<UITouch>, UIEvent?)> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
+	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
+	        return .init(stub: cuckoo_manager.createStub(for: MockDroppedManaNode.self, method: "touchesEnded(_: Set<UITouch>, with: UIEvent?)", parameterMatchers: matchers))
+	    }
+	    
+	}
+
+	 struct __VerificationProxy_DroppedManaNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var droppedManaEntity: Cuckoo.VerifyOptionalProperty<DroppedManaEntity> {
+	        return .init(manager: cuckoo_manager, name: "droppedManaEntity", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	    @discardableResult
+	    func touchesEnded<M1: Cuckoo.Matchable, M2: Cuckoo.OptionalMatchable>(_ touches: M1, with event: M2) -> Cuckoo.__DoNotUse<(Set<UITouch>, UIEvent?), Void> where M1.MatchedType == Set<UITouch>, M2.OptionalMatchedType == UIEvent {
+	        let matchers: [Cuckoo.ParameterMatcher<(Set<UITouch>, UIEvent?)>] = [wrap(matchable: touches) { $0.0 }, wrap(matchable: event) { $0.1 }]
+	        return cuckoo_manager.verify("touchesEnded(_: Set<UITouch>, with: UIEvent?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+	    }
+	    
+	}
+}
+
+ class DroppedManaNodeStub: DroppedManaNode {
+    
+    
+     override var droppedManaEntity: DroppedManaEntity? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (DroppedManaEntity?).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)   {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/UI Nodes/Player Area/HealthBarNode.swift at 2020-04-25 13:27:49 +0000
+
+//
+//  HealthBarNode.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 10/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockHealthBarNode: HealthBarNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = HealthBarNode
+    
+     typealias Stubbing = __StubbingProxy_HealthBarNode
+     typealias Verification = __VerificationProxy_HealthBarNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: HealthBarNode?
+
+     func enableDefaultImplementation(_ stub: HealthBarNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var totalLives: Int {
+        get {
+            return cuckoo_manager.getter("totalLives",
+                superclassCall:
+                    
+                    super.totalLives
+                    ,
+                defaultCall: __defaultImplStub!.totalLives)
+        }
+        
+        set {
+            cuckoo_manager.setter("totalLives",
+                value: newValue,
+                superclassCall:
+                    
+                    super.totalLives = newValue
+                    ,
+                defaultCall: __defaultImplStub!.totalLives = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var livesLeft: Int {
+        get {
+            return cuckoo_manager.getter("livesLeft",
+                superclassCall:
+                    
+                    super.livesLeft
+                    ,
+                defaultCall: __defaultImplStub!.livesLeft)
+        }
+        
+        set {
+            cuckoo_manager.setter("livesLeft",
+                value: newValue,
+                superclassCall:
+                    
+                    super.livesLeft = newValue
+                    ,
+                defaultCall: __defaultImplStub!.livesLeft = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var size: CGSize {
+        get {
+            return cuckoo_manager.getter("size",
+                superclassCall:
+                    
+                    super.size
+                    ,
+                defaultCall: __defaultImplStub!.size)
+        }
+        
+        set {
+            cuckoo_manager.setter("size",
+                value: newValue,
+                superclassCall:
+                    
+                    super.size = newValue
+                    ,
+                defaultCall: __defaultImplStub!.size = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_HealthBarNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var totalLives: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "totalLives")
+	    }
+	    
+	    
+	    var livesLeft: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "livesLeft")
+	    }
+	    
+	    
+	    var size: Cuckoo.ClassToBeStubbedProperty<MockHealthBarNode, CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_HealthBarNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var totalLives: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "totalLives", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var livesLeft: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "livesLeft", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var size: Cuckoo.VerifyProperty<CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class HealthBarNodeStub: HealthBarNode {
+    
+    
+     override var totalLives: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var livesLeft: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var size: CGSize {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+// MARK: - Mocks generated from file: GameOfRunes/UI Nodes/Player Area/ManaBarNode.swift at 2020-04-25 13:27:49 +0000
+
+//
+//  ManaBarNode.swift
+//  GameOfRunes
+//
+//  Created by Jermy on 10/3/20.
+//  Copyright © 2020 TeamHoWan. All rights reserved.
+//
+
+import Cuckoo
+@testable import GameOfRunes
+
+import SpriteKit
+
+
+ class MockManaBarNode: ManaBarNode, Cuckoo.ClassMock {
+    
+     typealias MocksType = ManaBarNode
+    
+     typealias Stubbing = __StubbingProxy_ManaBarNode
+     typealias Verification = __VerificationProxy_ManaBarNode
+
+     let cuckoo_manager = Cuckoo.MockManager.preconfiguredManager ?? Cuckoo.MockManager(hasParent: true)
+
+    
+    private var __defaultImplStub: ManaBarNode?
+
+     func enableDefaultImplementation(_ stub: ManaBarNode) {
+        __defaultImplStub = stub
+        cuckoo_manager.enableDefaultStubImplementation()
+    }
+    
+
+    
+    
+    
+     override var numManaUnits: Int {
+        get {
+            return cuckoo_manager.getter("numManaUnits",
+                superclassCall:
+                    
+                    super.numManaUnits
+                    ,
+                defaultCall: __defaultImplStub!.numManaUnits)
+        }
+        
+        set {
+            cuckoo_manager.setter("numManaUnits",
+                value: newValue,
+                superclassCall:
+                    
+                    super.numManaUnits = newValue
+                    ,
+                defaultCall: __defaultImplStub!.numManaUnits = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var manaPointsPerUnit: Int {
+        get {
+            return cuckoo_manager.getter("manaPointsPerUnit",
+                superclassCall:
+                    
+                    super.manaPointsPerUnit
+                    ,
+                defaultCall: __defaultImplStub!.manaPointsPerUnit)
+        }
+        
+        set {
+            cuckoo_manager.setter("manaPointsPerUnit",
+                value: newValue,
+                superclassCall:
+                    
+                    super.manaPointsPerUnit = newValue
+                    ,
+                defaultCall: __defaultImplStub!.manaPointsPerUnit = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var currentManaPoints: Int {
+        get {
+            return cuckoo_manager.getter("currentManaPoints",
+                superclassCall:
+                    
+                    super.currentManaPoints
+                    ,
+                defaultCall: __defaultImplStub!.currentManaPoints)
+        }
+        
+        set {
+            cuckoo_manager.setter("currentManaPoints",
+                value: newValue,
+                superclassCall:
+                    
+                    super.currentManaPoints = newValue
+                    ,
+                defaultCall: __defaultImplStub!.currentManaPoints = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var totalManaPoints: Int {
+        get {
+            return cuckoo_manager.getter("totalManaPoints",
+                superclassCall:
+                    
+                    super.totalManaPoints
+                    ,
+                defaultCall: __defaultImplStub!.totalManaPoints)
+        }
+        
+    }
+    
+    
+    
+     override var size: CGSize {
+        get {
+            return cuckoo_manager.getter("size",
+                superclassCall:
+                    
+                    super.size
+                    ,
+                defaultCall: __defaultImplStub!.size)
+        }
+        
+        set {
+            cuckoo_manager.setter("size",
+                value: newValue,
+                superclassCall:
+                    
+                    super.size = newValue
+                    ,
+                defaultCall: __defaultImplStub!.size = newValue)
+        }
+        
+    }
+    
+    
+    
+     override var manaColor: UIColor {
+        get {
+            return cuckoo_manager.getter("manaColor",
+                superclassCall:
+                    
+                    super.manaColor
+                    ,
+                defaultCall: __defaultImplStub!.manaColor)
+        }
+        
+        set {
+            cuckoo_manager.setter("manaColor",
+                value: newValue,
+                superclassCall:
+                    
+                    super.manaColor = newValue
+                    ,
+                defaultCall: __defaultImplStub!.manaColor = newValue)
+        }
+        
+    }
+    
+
+    
+
+    
+
+	 struct __StubbingProxy_ManaBarNode: Cuckoo.StubbingProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	
+	     init(manager: Cuckoo.MockManager) {
+	        self.cuckoo_manager = manager
+	    }
+	    
+	    
+	    var numManaUnits: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "numManaUnits")
+	    }
+	    
+	    
+	    var manaPointsPerUnit: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit")
+	    }
+	    
+	    
+	    var currentManaPoints: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "currentManaPoints")
+	    }
+	    
+	    
+	    var totalManaPoints: Cuckoo.ClassToBeStubbedReadOnlyProperty<MockManaBarNode, Int> {
+	        return .init(manager: cuckoo_manager, name: "totalManaPoints")
+	    }
+	    
+	    
+	    var size: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size")
+	    }
+	    
+	    
+	    var manaColor: Cuckoo.ClassToBeStubbedProperty<MockManaBarNode, UIColor> {
+	        return .init(manager: cuckoo_manager, name: "manaColor")
+	    }
+	    
+	    
+	}
+
+	 struct __VerificationProxy_ManaBarNode: Cuckoo.VerificationProxy {
+	    private let cuckoo_manager: Cuckoo.MockManager
+	    private let callMatcher: Cuckoo.CallMatcher
+	    private let sourceLocation: Cuckoo.SourceLocation
+	
+	     init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+	        self.cuckoo_manager = manager
+	        self.callMatcher = callMatcher
+	        self.sourceLocation = sourceLocation
+	    }
+	
+	    
+	    
+	    var numManaUnits: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "numManaUnits", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var manaPointsPerUnit: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "manaPointsPerUnit", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var currentManaPoints: Cuckoo.VerifyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "currentManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var totalManaPoints: Cuckoo.VerifyReadOnlyProperty<Int> {
+	        return .init(manager: cuckoo_manager, name: "totalManaPoints", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var size: Cuckoo.VerifyProperty<CGSize> {
+	        return .init(manager: cuckoo_manager, name: "size", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	    
+	    var manaColor: Cuckoo.VerifyProperty<UIColor> {
+	        return .init(manager: cuckoo_manager, name: "manaColor", callMatcher: callMatcher, sourceLocation: sourceLocation)
+	    }
+	    
+	
+	    
+	}
+}
+
+ class ManaBarNodeStub: ManaBarNode {
+    
+    
+     override var numManaUnits: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var manaPointsPerUnit: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var currentManaPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var totalManaPoints: Int {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Int).self)
+        }
+        
+    }
+    
+    
+     override var size: CGSize {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (CGSize).self)
+        }
+        
+        set { }
+        
+    }
+    
+    
+     override var manaColor: UIColor {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UIColor).self)
+        }
+        
+        set { }
+        
+    }
+    
+
+    
+
     
 }
 

@@ -18,7 +18,7 @@ struct CollisionEnemyUnitPowerUp: Collision {
     private func resolveCollisionHelper(_ firstEntity: Entity, _ secondEntity: Entity, gameEngine: GameEngine) {
         guard firstEntity.type == .enemyEntity, secondEntity.type == .powerUpEntity,
             let powerUpType = secondEntity.component(ofType: PowerUpComponent.self)?.powerUpType,
-            let powerUp = powerUpType.powerUp as? Collidable else {
+            let powerUp = powerUpType.powerUp as? Collidable.Type else {
                 return
         }
 

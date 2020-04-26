@@ -16,7 +16,7 @@ class GameEngine: GameEngineFacade {
     private(set) var systems = [ComponentType: System]()
     private(set) var toRemoveEntities = Set<Entity>()
     let metadata: GameMetaData
-    private(set) weak var rootRenderNode: RootRenderNode?
+    private(set) weak var renderNode: RenderNodeFacade?
 
     var playerEntity: PlayerEntity? {
         entities[.playerEntity]?.first as? PlayerEntity
@@ -28,8 +28,8 @@ class GameEngine: GameEngineFacade {
         entities(for: .powerUpEntity).contains(where: { $0 is DivineShieldPowerUpEntity })
     }
     
-    init(stage: Stage, avatar: Avatar, renderNode: RootRenderNode) {
-        self.rootRenderNode = renderNode
+    init(stage: Stage, avatar: Avatar, renderNode: RenderNodeFacade) {
+        self.renderNode = renderNode
         
         metadata = GameMetaData(
             stage: stage,
@@ -111,14 +111,14 @@ class GameEngine: GameEngineFacade {
     func didGameEnd() {
         // Player Loses the Game
         if metadata.playerHealth <= 0 {
-            rootRenderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: false, finalScore: metadata.score)
         }
         
         // Player Wins the Game
         if (metadata.playerHealth > 0) &&
             (metadata.numEnemiesOnField == 0) &&
             metadata.stageWaves.isEmpty {
-            rootRenderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
+            renderNode?.gameDidEnd(didWin: true, finalScore: metadata.score)
         }
     }
     
@@ -263,16 +263,16 @@ class GameEngine: GameEngineFacade {
         metadata.selectedPowerUp = powerUpType
         
         guard let selectedPowerUp = metadata.selectedPowerUp else {
-            rootRenderNode?.activateGestureDetection()
+            renderNode?.activateGestureDetection()
             return
         }
 
-        guard let rootRenderNode = rootRenderNode else {
+        guard let renderNode = renderNode else {
             return
         }
 
-        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp {
-            activatePowerUp(at: rootRenderNode.center)
+        if selectedPowerUp.powerUp is ImmediatelyActivatedPowerUp.Type {
+            activatePowerUp(at: renderNode.center)
         } else {
             selectedPowerUp.powerUp.prepareForActivation(gameEngine: self)
         }
@@ -293,7 +293,7 @@ class GameEngine: GameEngineFacade {
         }
         
         if checkIfPowerUpIsDisabled(selectedPowerUp) {
-            rootRenderNode?.showPowerUpDisabled(at: position)
+            renderNode?.showPowerUpDisabled(at: position)
             cleanUpPowerUp()
             return
         }
@@ -301,7 +301,7 @@ class GameEngine: GameEngineFacade {
         let manaPointsRequired = selectedPowerUp.powerUp.manaUnitCost * metadata.manaPointsPerManaUnit
         
         guard metadata.playerMana >= manaPointsRequired else {
-            rootRenderNode?.showInsufficientMana(at: position)
+            renderNode?.showInsufficientMana(at: position)
             cleanUpPowerUp()
             return
         }
@@ -312,7 +312,7 @@ class GameEngine: GameEngineFacade {
     }
     
     func cleanUpPowerUp() {
-        rootRenderNode?.deselectPowerUp()
+        renderNode?.deselectPowerUp()
     }
     
     func spawnPlayerUnitWave() {

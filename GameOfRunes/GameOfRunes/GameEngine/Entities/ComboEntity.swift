@@ -17,7 +17,7 @@ class ComboEntity: Entity {
     init(gameEngine: GameEngine) {
         super.init()
         
-        guard let renderNodeSize = gameEngine.rootRenderNode?.size else {
+        guard let renderNodeSize = gameEngine.renderNode?.size else {
             return
         }
         

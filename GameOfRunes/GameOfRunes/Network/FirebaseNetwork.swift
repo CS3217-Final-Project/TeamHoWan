@@ -27,15 +27,14 @@ class FirebaseNetwork: NetworkInterface {
                 }
             }
         })
+
         self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
     }
     
-    func createRoom(
-        uid: String,
-        name: String,
-        completion: ((String, String) -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
+    func createRoom(uid: String,
+                    name: String,
+                    completion: ((String, String) -> Void)? = nil,
+                    onError: ((Error) -> Void)? = nil) {
         let roomId = Util.generateUuid()
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
@@ -66,15 +65,13 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func joinRoom(
-        uid: String,
-        name: String,
-        roomId: String,
-        completion: ((String) -> Void)? = nil,
-        onRoomNotOpen: (() -> Void)? = nil,
-        onRoomNotExist: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
+    func joinRoom(roomId: String,
+                  uid: String,
+                  name: String,
+                  completion: ((String) -> Void)? = nil,
+                  onRoomNotOpen: (() -> Void)? = nil,
+                  onRoomNotExist: (() -> Void)? = nil,
+                  onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
         
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
@@ -99,6 +96,7 @@ class FirebaseNetwork: NetworkInterface {
                 // Player already inside the game
                 return
             }
+
             let playerDict = self?.createPlayerDict(uid: uid, name: name, isHost: false, isReady: false)
             let currentUserRef = ref.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms_players, uid))
             currentUserRef.setValue(playerDict, withCompletionBlock: { err, _ in
@@ -114,7 +112,41 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func closeRoom(uid: String, roomId: String, completion: (() -> Void)? = nil, onError: ((Error) -> Void)? = nil) {
+    func leaveRoom(roomId: String,
+                   uid: String,
+                   completion: (() -> Void)? = nil,
+                   onError: ((Error) -> Void)? = nil) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid))
+        let isHostRef = ref.child(FirebaseKeys.rooms_players_isHost)
+        
+        isHostRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            guard let isHost = snapshot.value as? Bool else {
+                // Player does not exist
+                if let onError = onError {
+                    onError(NetworkError.incorrectDatabaseSchema)
+                }
+                return
+            }
+            if isHost {
+                self?.closeRoom(roomId: roomId, uid: uid, completion: nil, onError: onError)
+            } else {
+                ref.setValue(nil, withCompletionBlock: { err, _ in
+                    if let error = err {
+                        onError?(error)
+                        return
+                    }
+                })
+            }
+            completion?()
+        }) { err in
+            onError?(err)
+        }
+    }
+    
+    private func closeRoom(roomId: String,
+                           uid: String,
+                           completion: (() -> Void)? = nil,
+                           onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
         let hostRef = ref.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms_players, uid,
                                                       FirebaseKeys.rooms_players_isHost))
@@ -136,55 +168,53 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func leaveRoom(uid: String, roomId: String, completion: (() -> Void)? = nil, onError: ((Error) -> Void)? = nil) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid))
-        let isHostRef = ref.child(FirebaseKeys.rooms_players_isHost)
+    func observeRoom(roomId: String,
+                     onDataChange: ((RoomModel) -> Void)? = nil,
+                     onRoomClose: (() -> Void)? = nil,
+                     onError: ((Error) -> Void)? = nil) {
         
-        isHostRef.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let isHost = snapshot.value as? Bool else {
-                // Player does not exist
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let roomSnap = snapshot.value as? [String: AnyObject],
+                let roomModel = self?.firebaseRoomModelFactory(forDict: roomSnap) else {
+                    // Room does not exist
+                    onRoomClose?()
+                    return
+            }
+            
+            guard !roomModel.players.isEmpty else {
+                onRoomClose?()
+                return
+            }
+            let playerCount = roomModel.players.count
+            if playerCount > 1 {
+                self?.setRoomOpenState(roomId: roomId, to: false)
+            } else if playerCount == 1 {
+                self?.setRoomOpenState(roomId: roomId, to: true)
+            }
+            onDataChange?(roomModel)
+        }) { err in
+            onError?(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    private func setRoomOpenState(roomId: String,
+                                  to: Bool,
+                                  completion: (() -> Void)? = nil,
+                                  onError: ((Error) -> Void)? = nil) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_isOpen))
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard snapshot.value as? Bool != nil else {
                 if let onError = onError {
                     onError(NetworkError.incorrectDatabaseSchema)
                 }
                 return
             }
-            if isHost {
-                self?.closeRoom(uid: uid, roomId: roomId, completion: nil, onError: onError)
-            } else {
-                ref.setValue(nil, withCompletionBlock: { err, _ in
-                    if let error = err {
-                        onError?(error)
-                        return
-                    }
-                })
-            }
-            completion?()
-        }) { err in
-            onError?(err)
-        }
-    }
-    
-    func updateReadyState(
-        uid: String,
-        roomId: String,
-        newValue: Bool,
-        completion: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(
-            FirebaseKeys.rooms,
-            roomId,
-            FirebaseKeys.rooms_players,
-            uid,
-            FirebaseKeys.rooms_players_isReady
-        ))
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard snapshot.value is Bool else {
-                // Room does not exist
-                onError?(NetworkError.incorrectDatabaseSchema)
-                return
-            }
-            ref.setValue(newValue, withCompletionBlock: { err, _ in
+            ref.setValue(to, withCompletionBlock: { err, _ in
                 if let error = err {
                     onError?(error)
                     return
@@ -196,122 +226,12 @@ class FirebaseNetwork: NetworkInterface {
         }
     }
     
-    func setAvatar(
-        uid: String,
-        roomId: String,
-        avatar: String,
-        completion: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid,
-                                                    FirebaseKeys.rooms_players_avatar))
-        ref.setValue(avatar, withCompletionBlock: { err, _ in
-            if let error = err {
-                onError?(error)
-                return
-            }
-        })
-    }
-    
-    func observeRoomState(roomId id: String,
-                          onDataChange: ((RoomModel) -> Void)? = nil,
-                          onRoomClose: (() -> Void)? = nil,
-                          onError: ((Error) -> Void)? = nil) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, id))
-        let handle = ref.observe(.value, with: { snapshot in
-            guard let roomSnap = snapshot.value as? [String: AnyObject] else {
-                // Room does not exist
-                onRoomClose?()
-                return
-            }
-            let roomModel = self.firebaseRoomModelFactory(forDict: roomSnap)
-            guard !roomModel.players.isEmpty else {
-                onRoomClose?()
-                return
-            }
-            let playerCount = roomModel.players.count
-            if playerCount > 1 {
-                self.setRoomOpenState(to: false, forRoomId: id)
-            } else if playerCount == 1 {
-                self.setRoomOpenState(to: true, forRoomId: id)
-            }
-            onDataChange?(roomModel)
-        }) { err in
-            onError?(err)
-        }
+    func startGame(roomId: String,
+                   completion: (() -> Void)? = nil,
+                   insufficientPlayers: (() -> Void)? = nil,
+                   onNotAllReady: (() -> Void)? = nil,
+                   onError: ((Error) -> Void)? = nil) {
         
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
-    func observeEnemy(roomId: String,
-                      uid: String,
-                      onDataChange: (([EnemyModel]) -> Void)?,
-                      onError: ((Error) -> Void)?) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
-                                                    uid, FirebaseKeys.games_players_monsters))
-        let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let data = snapshot.value as? [[String: AnyObject]],
-                let monsters = self?.decodeMonsters(data: data) else {
-                    return
-            }
-            onDataChange?(monsters)
-        }) { err in
-            onError?(err)
-        }
-        
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
-    func observeMetadata(roomId: String,
-                         uid: String,
-                         onDataChange: ((MetadataModel) -> Void)?,
-                         onError: ((Error) -> Void)?) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
-                                                    uid, FirebaseKeys.games_players_metadata))
-        let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let data = snapshot.value as? [String: AnyObject],
-                let metadata = self?.decodeMetadata(data: data) else {
-                    return
-            }
-            onDataChange?(metadata)
-        }) { err in
-            onError?(err)
-        }
-        
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
-    func observePowerUp(roomId: String,
-                        uid: String,
-                        onDataChange: ((PowerUpModel) -> Void)?,
-                        onError: ((Error) -> Void)?) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
-                                                    uid, FirebaseKeys.games_players_powerUp))
-        let handle = ref.observe(.value, with: { [weak self] snapshot in
-            guard let data = snapshot.value as? [String: AnyObject],
-                let powerUp = self?.decodePowerUp(data: data) else {
-                    return
-            }
-            onDataChange?(powerUp)
-        }) { err in
-            onError?(err)
-        }
-        
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
-    func removeObservers() {
-        observers.forEach { observer in observer.reference.removeObserver(withHandle: observer.handle) }
-        observers = []
-    }
-    
-    func startGame(
-        roomId: String,
-        completion: (() -> Void)? = nil,
-        insufficientPlayers: (() -> Void)? = nil,
-        onNotAllReady: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players))
         
         ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
@@ -339,18 +259,17 @@ class FirebaseNetwork: NetworkInterface {
                 return
             }
             
-            self?.updateGameHasStarted(roomId: roomId, to: true, completion: completion, onError: onError)
+            self?.updateRoomHasStarted(roomId: roomId, to: true, completion: completion, onError: onError)
         }) { err in
             onError?(err)
         }
     }
     
-    func updateGameHasStarted(
-        roomId: String,
-        to: Bool,
-        completion: (() -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
+    func updateRoomHasStarted(roomId: String,
+                              to: Bool,
+                              completion: (() -> Void)? = nil,
+                              onError: ((Error) -> Void)? = nil) {
+        
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_hasStarted))
         ref.setValue(to, withCompletionBlock: { err, _ in
             if let error = err {
@@ -360,39 +279,176 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
-    func getAvatar(
-        roomId: String,
-        uid: String,
-        completion: ((Avatar) -> Void)? = nil,
-        onError: ((Error) -> Void)? = nil
-    ) {
+    func updatePlayerIsReady(roomId: String,
+                             uid: String,
+                             to: Bool,
+                             completion: (() -> Void)? = nil,
+                             onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
-                                                    uid, FirebaseKeys.rooms_players_avatar))
-        ref.observeSingleEvent(of: .value, with: { snap in
-            guard let avatarString = snap.value as? String,
-                let avatar = Avatar.getAvatar(withName: avatarString) else {
-                    if let onError = onError {
-                        onError(NetworkError.incorrectDatabaseSchema)
-                    }
-                    return
+                                                    uid, FirebaseKeys.rooms_players_isReady))
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard snapshot.value is Bool else {
+                // Room does not exist
+                onError?(NetworkError.incorrectDatabaseSchema)
+                return
             }
-            completion?(avatar)
+            ref.setValue(to, withCompletionBlock: { err, _ in
+                if let error = err {
+                    onError?(error)
+                    return
+                }
+                completion?()
+            })
         }) { err in
             onError?(err)
         }
     }
     
-    func updateMonsters(roomId: String,
+    func updateAvatar(roomId: String,
+                      uid: String,
+                      avatar: String,
+                      completion: (() -> Void)? = nil,
+                      onError: ((Error) -> Void)? = nil) {
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players, uid,
+                                                    FirebaseKeys.rooms_players_avatar))
+        ref.setValue(avatar, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+        })
+    }
+    
+    // ================================== Game functions =========================================
+    
+    func updateDidLose(roomId: String,
+                       uid: String,
+                       didLose: Bool,
+                       completion: (() -> Void)? = nil,
+                       onError: ((Error) -> Void)? = nil) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
+                                                    uid, FirebaseKeys.rooms_players_didLose))
+        ref.setValue(didLose, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+            self.dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId)).setValue(nil)
+            completion?()
+        })
+    }
+    
+    func observeEnemies(roomId: String,
                         uid: String,
-                        monsters: [EnemyModel],
-                        completion: (() -> Void)? = nil,
-                        onError: ((Error) -> Void)? = nil) {
+                        onDataChange: (([EnemyModel]) -> Void)?,
+                        onError: ((Error) -> Void)?) {
         
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
                                                     uid, FirebaseKeys.games_players_monsters))
-        let encodedMonsters = encodeMonsters(monsters: monsters)
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let data = snapshot.value as? [[String: AnyObject]],
+                let monsters = self?.decodeEnemies(data: data) else {
+                    return
+            }
+            onDataChange?(monsters)
+        }) { err in
+            onError?(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func observeMetadata(roomId: String,
+                         uid: String,
+                         onDataChange: ((MetadataModel) -> Void)?,
+                         onError: ((Error) -> Void)?) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                                                    uid, FirebaseKeys.games_players_metadata))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let data = snapshot.value as? [String: AnyObject],
+                let metadata = self?.decodeMetadata(data: data) else {
+                    return
+            }
+            onDataChange?(metadata)
+        }) { err in
+            onError?(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func observePowerUp(roomId: String,
+                        uid: String,
+                        onDataChange: ((PowerUpModel) -> Void)?,
+                        onError: ((Error) -> Void)?) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                                                    uid, FirebaseKeys.games_players_powerUp))
+        let handle = ref.observe(.value, with: { [weak self] snapshot in
+            guard let data = snapshot.value as? [String: AnyObject],
+                let powerUp = self?.decodePowerUp(data: data) else {
+                    return
+            }
+            onDataChange?(powerUp)
+        }) { err in
+            onError?(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func observeEnemiesKilled(roomId: String,
+                              uid: String,
+                              onDataChange: ((Int) -> Void)? = nil,
+                              onError: ((Error) -> Void)? = nil) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                                                    uid, FirebaseKeys.games_players_enemies_killed))
+        
+        let handle = ref.observe(.value, with: { snapshot in
+            guard let data = snapshot.value as? Int else {
+                return
+            }
+            onDataChange?(data)
+        }) { err in
+            onError?(err)
+        }
+        
+        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
+    }
+    
+    func updateEnemies(roomId: String,
+                       uid: String,
+                       enemies: [EnemyModel],
+                       completion: (() -> Void)? = nil,
+                       onError: ((Error) -> Void)? = nil) {
+        
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                                                    uid, FirebaseKeys.games_players_monsters))
+        let encodedEnemies = encodeEnemies(enemies: enemies)
         ref.onDisconnectRemoveValue()
-        ref.setValue(encodedMonsters, withCompletionBlock: { err, _ in
+        ref.setValue(encodedEnemies, withCompletionBlock: { err, _ in
+            if let error = err {
+                onError?(error)
+                return
+            }
+            completion?()
+        })
+    }
+    
+    func updateMetadata(roomId: String,
+                        uid: String,
+                        metadata: MetadataModel,
+                        completion: (() -> Void)? = nil,
+                        onError: ((Error) -> Void)? = nil) {
+
+        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
+                                                    uid, FirebaseKeys.games_players_metadata))
+        let encodedMetadata = encodeMetadata(metadata: metadata)
+        ref.onDisconnectRemoveValue()
+        ref.setValue(encodedMetadata, withCompletionBlock: { err, _ in
             if let error = err {
                 onError?(error)
                 return
@@ -420,92 +476,12 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
     
-    func updateMetadata(roomId: String,
-                        uid: String,
-                        metadata: MetadataModel,
-                        completion: (() -> Void)? = nil,
-                        onError: ((Error) -> Void)? = nil) {
+    func updateEnemiesKilled(roomId: String,
+                             uid: String,
+                             count: Int,
+                             completion: (() -> Void)? = nil,
+                             onError: ((Error) -> Void)? = nil) {
         
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
-                                                    uid, FirebaseKeys.games_players_metadata))
-        let encodedMetadata = encodeMetadata(metadata: metadata)
-        ref.onDisconnectRemoveValue()
-        ref.setValue(encodedMetadata, withCompletionBlock: { err, _ in
-            if let error = err {
-                onError?(error)
-                return
-            }
-            completion?()
-        })
-    }
-    
-    func updateDidLose(roomId: String,
-                       uid: String,
-                       didLose: Bool,
-                       completion: (() -> Void)? = nil,
-                       onError: ((Error) -> Void)? = nil) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_players,
-                                                    uid, FirebaseKeys.rooms_players_didLose))
-        ref.setValue(didLose, withCompletionBlock: { err, _ in
-            if let error = err {
-                onError?(error)
-                return
-            }
-            self.dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId)).setValue(nil)
-            completion?()
-        })
-    }
-    
-    func setRoomOpenState(to: Bool,
-                          forRoomId roomId: String,
-                          _ onComplete: (() -> Void)? = nil,
-                          _ onError: ((Error) -> Void)? = nil) {
-    
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.rooms, roomId, FirebaseKeys.rooms_isOpen))
-        
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            guard snapshot.value as? Bool != nil else {
-                if let onError = onError {
-                    onError(NetworkError.incorrectDatabaseSchema)
-                }
-                return
-            }
-            ref.setValue(to, withCompletionBlock: { err, _ in
-                if let error = err {
-                    onError?(error)
-                    return
-                }
-                onComplete?()
-            })
-        }) { err in
-            onError?(err)
-        }
-    }
-    
-    func observeNumberOfEnemiesKilled(roomId: String,
-                                      uid: String,
-                                      onDataChange: ((Int) -> Void)? = nil,
-                                      onError: ((Error) -> Void)? = nil) {
-        let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
-                                                    uid, FirebaseKeys.games_players_enemies_killed))
-        
-        let handle = ref.observe(.value, with: { snapshot in
-            guard let data = snapshot.value as? Int else {
-                return
-            }
-            onDataChange?(data)
-        }) { err in
-            onError?(err)
-        }
-        
-        self.observers.append(FirebaseObserver(withHandle: handle, withRef: ref))
-    }
-    
-    func updateNumberOfEnemiesKilled(roomId: String,
-                                     uid: String,
-                                     count: Int,
-                                     completion: (() -> Void)? = nil,
-                                     onError: ((Error) -> Void)? = nil) {
         let ref = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId, FirebaseKeys.games_players,
                                                     uid, FirebaseKeys.games_players_enemies_killed))
         ref.setValue(count, withCompletionBlock: { err, _ in
@@ -517,12 +493,13 @@ class FirebaseNetwork: NetworkInterface {
         })
     }
 
-    func resetPlayerState(roomId: String,
-                          uid: String,
-                          completion: (() -> Void)? = nil,
-                          onError: ((Error) -> Void)? = nil) {
+    func resetGameState(roomId: String,
+                        uid: String,
+                        completion: (() -> Void)? = nil,
+                        onError: ((Error) -> Void)? = nil) {
+        
         updateDidLose(roomId: roomId, uid: uid, didLose: false, onError: onError)
-        updateReadyState(uid: uid, roomId: roomId, newValue: false, onError: onError)
+        updatePlayerIsReady(roomId: roomId, uid: uid, to: false, onError: onError)
         let gameRef = dbRef.child(FirebaseKeys.joinKeys(FirebaseKeys.games, roomId))
         gameRef.removeValue(completionBlock: { err, _ in
             if let error = err {
@@ -531,5 +508,10 @@ class FirebaseNetwork: NetworkInterface {
             }
             completion?()
         })
+    }
+    
+    func removeObservers() {
+        observers.forEach { observer in observer.reference.removeObserver(withHandle: observer.handle) }
+        observers = []
     }
 }
