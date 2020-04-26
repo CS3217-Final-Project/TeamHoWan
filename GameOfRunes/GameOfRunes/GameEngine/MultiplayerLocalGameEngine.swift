@@ -118,6 +118,11 @@ class MultiplayerLocalGameEngine: GameEngine {
     
     override func increasePlayerMana(by manaPoints: Int) {
         super.increasePlayerMana(by: manaPoints)
+        
+        guard manaPoints > 0 else {
+            return
+        }
+
         pushMetadataToNetwork()
     }
     
