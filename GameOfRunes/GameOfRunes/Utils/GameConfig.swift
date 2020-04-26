@@ -152,9 +152,9 @@ enum GameConfig {
         static let miniMapAlpha: CGFloat = 0.6
         static let miniMapZPosition: CGFloat = 1_500
         static let scalingFactor: CGFloat = 0.3 //Size of Minimap Relative to Screen Size
-        static let gestureLayerZPosition: CGFloat = 3000
-        static let playerAreaLayerZPosition: CGFloat = 3100
-        static let manaDropLayerZPosition: CGFloat = 3200
+        static let gestureLayerZPosition: CGFloat = 3_000
+        static let playerAreaLayerZPosition: CGFloat = 3_100
+        static let manaDropLayerZPosition: CGFloat = 3_200
         static let highestPriorityLayerZPosition: CGFloat = 4_000
     }
 }
