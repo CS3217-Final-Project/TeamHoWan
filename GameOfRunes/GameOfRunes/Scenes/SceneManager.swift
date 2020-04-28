@@ -45,8 +45,8 @@ class SceneManager {
     private let multiplayerGameEndScene: MultiplayerGameEndScene
 
     init(presentingView: SKView, gameStateMachine: GameStateMachine) {
-        presentingView.showsFPS = true
-        presentingView.showsNodeCount = true
+        presentingView.showsFPS = false
+        presentingView.showsNodeCount = false
         
         presentingView.ignoresSiblingOrder = true
         self.presentingView = presentingView
