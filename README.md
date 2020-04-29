@@ -1,4 +1,4 @@
-<img src="GameOfRunes-logo.png" width="500" />
+<img src="GameOfRunes-logo.jpg" width="500" />
 
 ![](https://api.travis-ci.com/CS3217-Final-Project/TeamHoWan.svg?branch=master)
 
@@ -11,7 +11,7 @@ The game itself takes on a medieval theme, and the player will have to defend hi
 
 | Game Map | Avatar Selection | Gameplay |
 |----------|------------------|----------|
-|<img src="preview1.png" width="300" /> | <img src="preview2.png" width="300" /> | <img src="preview3.png" width="300" /> |
+|<img src="preview1.jpg" width="300" /> | <img src="preview2.jpg" width="300" /> | <img src="preview3.jpg" width="300" /> |
 
 Player guide: [file](./Game%20Of%20Runes%20Player%20Guide.pdf)
 
