@@ -1,4 +1,6 @@
-<img src="GameOfRunes-logo.jpg" width="500" />
+<p align="center">
+  <img src="GameOfRunes-logo.jpg" width="500" />
+</p>
 
 ![](https://api.travis-ci.com/CS3217-Final-Project/TeamHoWan.svg?branch=master)
 
