@@ -3,5 +3,5 @@ os: osx
 osx_image: xcode11.4
 xcode_workspace: GameOfRunes/GameOfRunes.xcworkspace
 xcode_scheme: GameOfRunes
-xcode_destination: platform=iOS Simulator,OS=13.4,name=iPad Air (3rd generation)
+xcode_destination: platform=iOS Simulator,OS=13.4.1,name=iPad Air (3rd generation)
 podfile: GameOfRunes/Podfile
